@@ -80,10 +80,10 @@
 </template>
 <script lang="ts" setup>
   import { ref, unref } from 'vue';
-  import { QrCode, QrCodeActionType } from '@/components/Qrcode';
+  import { QrCode, QrCodeActionType } from '@c/Qrcode';
   import LogoImg from '@/assets/images/logo.png';
-  import { CollapseContainer } from '@/components/Container';
-  import { PageWrapper } from '@/components/Page';
+  import { CollapseContainer } from '@c/Container';
+  import { PageWrapper } from '@c/Page';
   import { type Nullable } from '@vben/types';
   import { QRCode } from 'ant-design-vue';
 

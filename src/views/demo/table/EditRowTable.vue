@@ -18,7 +18,7 @@
     BasicColumn,
     ActionItem,
     EditRecordRow,
-  } from '@/components/Table';
+  } from '@c/Table';
   import { optionsListApi } from '@/api/demo/select';
 
   import { demoListApi } from '@/api/demo/table';

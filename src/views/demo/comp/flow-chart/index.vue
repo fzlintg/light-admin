@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { FlowChart } from '@/components/FlowChart';
-  import { PageWrapper } from '@/components/Page';
+  import { FlowChart } from '@c/FlowChart';
+  import { PageWrapper } from '@c/Page';
   import demoData from './dataTurbo.json';
 </script>

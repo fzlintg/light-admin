@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { useTabs } from '@/hooks/web/useTabs';
   import { useRoute } from 'vue-router';
 

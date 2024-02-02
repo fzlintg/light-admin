@@ -93,8 +93,8 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { BasicTable, useTable } from '@/components/Table';
-  import { PageWrapper } from '@/components/Page';
+  import { BasicTable, useTable } from '@c/Table';
+  import { PageWrapper } from '@c/Page';
   import { Divider, Card, Empty, Descriptions, Steps, Tabs } from 'ant-design-vue';
 
   import { refundTimeTableSchema, refundTimeTableData } from './data';

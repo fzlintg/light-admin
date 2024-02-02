@@ -11,5 +11,5 @@
 <script lang="ts" setup>
   import { Card, CardGrid } from 'ant-design-vue';
   import { navItems } from './data';
-  import Icon from '@/components/Icon/Icon.vue';
+  import Icon from '@c/Icon/Icon.vue';
 </script>

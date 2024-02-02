@@ -2,14 +2,14 @@
   import type { PropType, CSSProperties } from 'vue';
 
   import { computed, defineComponent, unref, toRef } from 'vue';
-  import { BasicMenu } from '@/components/Menu';
-  import { SimpleMenu } from '@/components/SimpleMenu';
-  import { AppLogo } from '@/components/Application';
+  import { BasicMenu } from '@c/Menu';
+  import { SimpleMenu } from '@c/SimpleMenu';
+  import { AppLogo } from '@c/Application';
 
   import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-  import { ScrollContainer } from '@/components/Container';
+  import { ScrollContainer } from '@c/Container';
 
   import { useGo } from '@/hooks/web/usePage';
   import { useSplitMenu } from './useLayoutMenu';

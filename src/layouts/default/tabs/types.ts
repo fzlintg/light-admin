@@ -1,4 +1,4 @@
-import type { DropMenu } from '@/components/Dropdown';
+import type { DropMenu } from '@c/Dropdown';
 import type { RouteLocationNormalized } from 'vue-router';
 
 export enum TabContentEnum {

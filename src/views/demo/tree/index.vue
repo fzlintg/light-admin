@@ -57,9 +57,9 @@
 </template>
 <script lang="ts" setup>
   import { nextTick, ref, unref } from 'vue';
-  import { BasicTree, TreeActionType, TreeItem } from '@/components/Tree';
+  import { BasicTree, TreeActionType, TreeItem } from '@c/Tree';
   import { treeData } from './data';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { Card, Row, Col, Spin } from 'ant-design-vue';
   import { cloneDeep, uniq } from 'lodash-es';
   import { isArray } from '@/utils/is';

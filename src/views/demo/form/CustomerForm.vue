@@ -20,11 +20,11 @@
 </template>
 <script lang="tsx" setup>
   import { h } from 'vue';
-  import { BasicForm, FormSchema, useForm } from '@/components/Form';
-  import { CollapseContainer } from '@/components/Container';
+  import { BasicForm, FormSchema, useForm } from '@c/Form';
+  import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@/hooks/web/useMessage';
   import { Input, FormItem, FormItemRest, Select } from 'ant-design-vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const custom_typeKey2typeValueRules = (model) => {
     return [

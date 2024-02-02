@@ -16,10 +16,10 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { BasicUpload } from '@/components/Upload';
+  import { BasicUpload } from '@c/Upload';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { BasicForm, FormSchema, useForm } from '@/components/Form';
-  import { PageWrapper } from '@/components/Page';
+  import { BasicForm, FormSchema, useForm } from '@c/Form';
+  import { PageWrapper } from '@c/Page';
   import { Alert } from 'ant-design-vue';
   import { uploadApi } from '@/api/sys/upload';
 

@@ -12,7 +12,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicForm, useForm } from '@c/Form';
   import { step2Schemas } from './data';
   import { Alert, Divider, Descriptions } from 'ant-design-vue';
 

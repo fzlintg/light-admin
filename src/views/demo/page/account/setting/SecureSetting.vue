@@ -24,7 +24,7 @@
 </template>
 <script lang="ts" setup>
   import { List } from 'ant-design-vue';
-  import { CollapseContainer } from '@/components/Container';
+  import { CollapseContainer } from '@c/Container';
   import { secureSettingList } from './data';
 
   const ListItem = List.Item;

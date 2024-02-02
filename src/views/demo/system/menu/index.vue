@@ -32,10 +32,10 @@
 <script lang="ts" setup>
   import { nextTick } from 'vue';
 
-  import { BasicTable, useTable, TableAction } from '@/components/Table';
+  import { BasicTable, useTable, TableAction } from '@c/Table';
   import { getMenuList } from '@/api/demo/system';
 
-  import { useDrawer } from '@/components/Drawer';
+  import { useDrawer } from '@c/Drawer';
   import MenuDrawer from './MenuDrawer.vue';
 
   import { columns, searchFormSchema } from './menu.data';

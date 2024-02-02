@@ -1,4 +1,4 @@
-import { BasicColumn } from '@/components/Table';
+import { BasicColumn } from '@c/Table';
 
 export const columns: BasicColumn[] = [
   {

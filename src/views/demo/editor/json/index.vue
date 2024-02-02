@@ -15,8 +15,8 @@
 </template>
 <script lang="ts" setup>
   import { ref, unref, h } from 'vue';
-  import { CodeEditor, JsonPreview, MODE } from '@/components/CodeEditor';
-  import { PageWrapper } from '@/components/Page';
+  import { CodeEditor, JsonPreview, MODE } from '@c/CodeEditor';
+  import { PageWrapper } from '@c/Page';
   import { Radio, Space, Modal, type RadioGroupProps } from 'ant-design-vue';
 
   const jsonData =

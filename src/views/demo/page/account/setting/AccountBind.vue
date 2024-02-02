@@ -24,8 +24,8 @@
 </template>
 <script lang="ts" setup>
   import { List } from 'ant-design-vue';
-  import { CollapseContainer } from '@/components/Container';
-  import Icon from '@/components/Icon/Icon.vue';
+  import { CollapseContainer } from '@c/Container';
+  import Icon from '@c/Icon/Icon.vue';
 
   import { accountBindList } from './data';
 

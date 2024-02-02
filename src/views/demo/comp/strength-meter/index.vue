@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { StrengthMeter } from '@/components/StrengthMeter';
-  import { PageWrapper } from '@/components/Page';
+  import { StrengthMeter } from '@c/StrengthMeter';
+  import { PageWrapper } from '@c/Page';
 </script>
 <style lang="less" scoped>
   .demo-wrap {

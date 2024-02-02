@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { BasicTable } from '@/components/Table';
-  import { jsonToSheetXlsx, ExpExcelModal, ExportModalResult } from '@/components/Excel';
+  import { BasicTable } from '@c/Table';
+  import { jsonToSheetXlsx, ExpExcelModal, ExportModalResult } from '@c/Excel';
   import { columns, data } from './data';
-  import { useModal } from '@/components/Modal';
-  import { PageWrapper } from '@/components/Page';
+  import { useModal } from '@c/Modal';
+  import { PageWrapper } from '@c/Page';
 
   function defaultHeader({ filename, bookType }: ExportModalResult) {
     // 默认Object.keys(data[0])作为header

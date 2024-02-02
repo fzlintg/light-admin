@@ -5,8 +5,8 @@
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { Tinymce } from '@/components/Tinymce';
-  import { PageWrapper } from '@/components/Page';
+  import { Tinymce } from '@c/Tinymce';
+  import { PageWrapper } from '@c/Page';
 
   const value = ref('hello world!');
   function handleChange(value: string) {

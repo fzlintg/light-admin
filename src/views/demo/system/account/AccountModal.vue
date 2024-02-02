@@ -5,8 +5,8 @@
 </template>
 <script lang="ts" setup>
   import { ref, computed, unref } from 'vue';
-  import { BasicModal, useModalInner } from '@/components/Modal';
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicModal, useModalInner } from '@c/Modal';
+  import { BasicForm, useForm } from '@c/Form';
   import { accountFormSchema } from './account.data';
   import { getDeptList } from '@/api/demo/system';
 

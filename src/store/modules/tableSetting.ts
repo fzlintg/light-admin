@@ -5,7 +5,7 @@ import { TABLE_SETTING_KEY } from '@/enums/cacheEnum';
 import { Persistent } from '@/utils/cache/persistent';
 
 import type { TableSetting } from '#/store';
-import type { SizeType, ColumnOptionsType } from '@/components/Table/src/types/table';
+import type { SizeType, ColumnOptionsType } from '@c/Table/src/types/table';
 
 interface TableSettingState {
   setting: Nullable<Partial<TableSetting>>;

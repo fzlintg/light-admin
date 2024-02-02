@@ -9,8 +9,8 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { CardList } from '@/components/CardList';
-  import { PageWrapper } from '@/components/Page';
+  import { CardList } from '@c/CardList';
+  import { PageWrapper } from '@c/Page';
   import { demoListApi } from '@/api/demo/table';
   import { useMessage } from '@/hooks/web/useMessage';
 

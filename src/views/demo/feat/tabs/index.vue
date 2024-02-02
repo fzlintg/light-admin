@@ -27,9 +27,9 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
 
-  import { CollapseContainer } from '@/components/Container';
+  import { CollapseContainer } from '@c/Container';
   import { useTabs } from '@/hooks/web/useTabs';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { Alert } from 'ant-design-vue';
   import { useMessage } from '@/hooks/web/useMessage';
   import { useGo } from '@/hooks/web/usePage';

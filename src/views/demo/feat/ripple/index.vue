@@ -10,7 +10,7 @@
 </template>
 <script lang="ts" setup>
   import RippleDirective from '@/directives/ripple';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const vRipple = RippleDirective;
 </script>

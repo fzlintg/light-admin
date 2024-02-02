@@ -103,6 +103,6 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { Card, Row, Col } from 'ant-design-vue';
 </script>

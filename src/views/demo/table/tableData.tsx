@@ -1,6 +1,6 @@
 import { optionsListApi } from '@/api/demo/select';
-import { FormProps, FormSchema, BasicColumn } from '@/components/Table';
-import { VxeFormItemProps, VxeGridPropTypes } from '@/components/VxeTable';
+import { FormProps, FormSchema, BasicColumn } from '@c/Table';
+import { VxeFormItemProps, VxeGridPropTypes } from '@c/VxeTable';
 import { ref } from 'vue';
 import { Input } from 'ant-design-vue';
 

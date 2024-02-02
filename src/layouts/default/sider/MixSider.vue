@@ -88,10 +88,10 @@
   import type { CSSProperties } from 'vue';
   import { computed, onMounted, ref, unref, watch } from 'vue';
   import type { RouteLocationNormalized } from 'vue-router';
-  import { ScrollContainer } from '@/components/Container';
-  import { SimpleMenu } from '@/components/SimpleMenu';
-  import Icon from '@/components/Icon/Icon.vue';
-  import { AppLogo } from '@/components/Application';
+  import { ScrollContainer } from '@c/Container';
+  import { SimpleMenu } from '@c/SimpleMenu';
+  import Icon from '@c/Icon/Icon.vue';
+  import { AppLogo } from '@c/Application';
   import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
   import { usePermissionStore } from '@/store/modules/permission';
   import { useDragLine } from './useLayoutSider';
@@ -106,9 +106,7 @@
   import LayoutTrigger from '../trigger/index.vue';
   import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 
-  const SimpleMenuTag = createAsyncComponent(
-    () => import('@/components/SimpleMenu/src/SimpleMenuTag.vue'),
-  );
+  const SimpleMenuTag = createAsyncComponent(() => import('@c/SimpleMenu/src/SimpleMenuTag.vue'));
 
   defineOptions({ name: 'LayoutMixSider' });
 

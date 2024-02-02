@@ -9,9 +9,9 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { BasicTable, useTable } from '@/components/Table';
+  import { BasicTable, useTable } from '@c/Table';
   import { getBasicColumns } from './tableData';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   import { demoListApi } from '@/api/demo/table';
 

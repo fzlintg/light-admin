@@ -52,15 +52,15 @@
 <script lang="ts" setup>
   import { shallowRef, ComponentOptions, ref, nextTick } from 'vue';
   import { Alert, Space, message } from 'ant-design-vue';
-  import { useModal } from '@/components/Modal';
+  import { useModal } from '@c/Modal';
   import Modal1 from './Modal1.vue';
   import Modal2 from './Modal2.vue';
   import Modal3 from './Modal3.vue';
   import Modal4 from './Modal4.vue';
   import Modal5 from './Modal5.vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { type Nullable } from '@vben/types';
-  import { createPrompt } from '@/components/Prompt';
+  import { createPrompt } from '@c/Prompt';
 
   const currentModal = shallowRef<Nullable<ComponentOptions>>(null);
   const [register1, { openModal: openModal1 }] = useModal();

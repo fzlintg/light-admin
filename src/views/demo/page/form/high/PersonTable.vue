@@ -18,7 +18,7 @@
     BasicColumn,
     ActionItem,
     EditRecordRow,
-  } from '@/components/Table';
+  } from '@c/Table';
 
   const columns: BasicColumn[] = [
     {

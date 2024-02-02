@@ -54,10 +54,10 @@
 </template>
 <script lang="ts" setup>
   import { Tag, List } from 'ant-design-vue';
-  import Icon from '@/components/Icon/Icon.vue';
-  import { BasicForm } from '@/components/Form';
+  import Icon from '@c/Icon/Icon.vue';
+  import { BasicForm } from '@c/Form';
   import { actions, searchList, schemas } from './data';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const prefixCls = 'list-search';
 </script>

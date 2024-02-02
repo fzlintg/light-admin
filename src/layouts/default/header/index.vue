@@ -58,7 +58,7 @@
   import { Layout } from 'ant-design-vue';
   import { computed, unref } from 'vue';
 
-  import { AppLocalePicker, AppLogo, AppSearch } from '@/components/Application';
+  import { AppLocalePicker, AppLogo, AppSearch } from '@c/Application';
   import { SettingButtonPositionEnum } from '@/enums/appEnum';
   import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
   import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';

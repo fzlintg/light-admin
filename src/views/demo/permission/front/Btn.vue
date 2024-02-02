@@ -66,8 +66,8 @@
   import { useUserStore } from '@/store/modules/user';
   import { RoleEnum } from '@/enums/roleEnum';
   import { usePermission } from '@/hooks/web/usePermission';
-  import { Authority } from '@/components/Authority';
-  import { PageWrapper } from '@/components/Page';
+  import { Authority } from '@c/Authority';
+  import { PageWrapper } from '@c/Page';
 
   const { changeRole, hasPermission } = usePermission();
   const userStore = useUserStore();

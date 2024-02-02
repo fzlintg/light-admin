@@ -28,8 +28,8 @@
   import { computed } from 'vue';
   import { useI18n } from '@/hooks/web/useI18n';
   import { useDesign } from '@/hooks/web/useDesign';
-  import { BasicModal, useModalInner } from '@/components/Modal';
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicModal, useModalInner } from '@c/Modal';
+  import { BasicForm, useForm } from '@c/Form';
 
   import { useUserStore } from '@/store/modules/user';
   import { useLockStore } from '@/store/modules/lock';

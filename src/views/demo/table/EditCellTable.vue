@@ -10,7 +10,7 @@
 </template>
 <script lang="ts" setup>
   import { h } from 'vue';
-  import { BasicTable, useTable, BasicColumn } from '@/components/Table';
+  import { BasicTable, useTable, BasicColumn } from '@c/Table';
   import { optionsListApi } from '@/api/demo/select';
 
   import { demoListApi } from '@/api/demo/table';

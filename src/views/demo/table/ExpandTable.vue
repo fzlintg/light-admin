@@ -34,8 +34,8 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { PageWrapper } from '@/components/Page';
+  import { BasicTable, useTable, TableAction } from '@c/Table';
+  import { PageWrapper } from '@c/Page';
   import { getBasicColumns } from './tableData';
 
   import { demoListApi } from '@/api/demo/table';

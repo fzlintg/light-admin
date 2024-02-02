@@ -23,9 +23,9 @@
 </template>
 <script lang="ts" setup>
   import { reactive } from 'vue';
-  import { PageWrapper } from '@/components/Page';
-  import { Time } from '@/components/Time';
-  import { CollapseContainer } from '@/components/Container';
+  import { PageWrapper } from '@c/Page';
+  import { Time } from '@c/Time';
+  import { CollapseContainer } from '@c/Container';
 
   const now = new Date().getTime();
   const state = reactive({

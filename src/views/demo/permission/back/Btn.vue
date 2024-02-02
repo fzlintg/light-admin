@@ -62,10 +62,10 @@
   import { Alert, Divider } from 'ant-design-vue';
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
   import { usePermission } from '@/hooks/web/usePermission';
-  import { Authority } from '@/components/Authority';
+  import { Authority } from '@c/Authority';
   import { usePermissionStore } from '@/store/modules/permission';
   import { PermissionModeEnum } from '@/enums/appEnum';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { useAppStore } from '@/store/modules/app';
   import { useUserStore } from '@/store/modules/user';
 

@@ -22,12 +22,12 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
   import { Tabs } from 'ant-design-vue';
-  import { PageWrapper } from '@/components/Page';
-  import { CollapseContainer } from '@/components/Container';
+  import { PageWrapper } from '@c/Page';
+  import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@/hooks/web/useMessage';
   import { omit } from 'lodash-es';
   import { deepMerge } from '@/utils';
-  import { BasicForm, FormSchema, useForm, FormProps, UseFormReturnType } from '@/components/Form';
+  import { BasicForm, FormSchema, useForm, FormProps, UseFormReturnType } from '@c/Form';
 
   defineOptions({ name: 'TabsFormDemo' });
 

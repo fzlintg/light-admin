@@ -10,9 +10,9 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { BasicForm, FormSchema, useForm } from '@/components/Form';
-  import { CollapseContainer } from '@/components/Container';
-  import { PageWrapper } from '@/components/Page';
+  import { BasicForm, FormSchema, useForm } from '@c/Form';
+  import { CollapseContainer } from '@c/Container';
+  import { PageWrapper } from '@c/Page';
 
   const getSchamas = (): FormSchema[] => {
     return [

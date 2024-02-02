@@ -1,4 +1,4 @@
-import { useAppProviderContext } from '@/components/Application';
+import { useAppProviderContext } from '@c/Application';
 import { computed, unref } from 'vue';
 
 export function useAppInject() {

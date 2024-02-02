@@ -52,9 +52,9 @@
 </template>
 <script lang="ts" setup>
   import { Progress, Row, Col, List } from 'ant-design-vue';
-  import Icon from '@/components/Icon/Icon.vue';
+  import Icon from '@c/Icon/Icon.vue';
   import { cardList } from './data';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const prefixCls = 'list-basic';
 

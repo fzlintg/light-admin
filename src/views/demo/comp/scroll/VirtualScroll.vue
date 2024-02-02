@@ -24,9 +24,9 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { VScroll } from '@/components/VirtualScroll';
+  import { VScroll } from '@c/VirtualScroll';
   import { Divider } from 'ant-design-vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const data = (() => {
     const arr: any[] = [];

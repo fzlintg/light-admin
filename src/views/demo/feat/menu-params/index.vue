@@ -16,7 +16,7 @@
 <script lang="ts" setup>
   import { useRouter } from 'vue-router';
   import { computed, ref, unref } from 'vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const value = ref('');
 

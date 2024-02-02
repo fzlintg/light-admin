@@ -4,5 +4,5 @@
   </BasicModal>
 </template>
 <script lang="ts" setup>
-  import { BasicModal } from '@/components/Modal';
+  import { BasicModal } from '@c/Modal';
 </script>

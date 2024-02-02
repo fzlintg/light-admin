@@ -58,10 +58,10 @@
 <script lang="ts" setup>
   import { type Recordable } from '@vben/types';
   import { computed, unref, ref } from 'vue';
-  import { BasicForm, ApiSelect, FormSchema } from '@/components/Form';
-  import { CollapseContainer } from '@/components/Container';
+  import { BasicForm, ApiSelect, FormSchema } from '@c/Form';
+  import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   import { optionsListApi } from '@/api/demo/select';
   import { useDebounceFn } from '@vueuse/core';

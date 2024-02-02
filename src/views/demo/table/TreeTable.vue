@@ -11,7 +11,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { BasicTable, useTable } from '@/components/Table';
+  import { BasicTable, useTable } from '@c/Table';
   import { getBasicColumns, getTreeTableData } from './tableData';
 
   const [register, { expandAll, collapseAll, expandRows, collapseRows }] = useTable({

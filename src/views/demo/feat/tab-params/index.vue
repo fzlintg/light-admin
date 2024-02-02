@@ -12,7 +12,7 @@
   import { useRouter } from 'vue-router';
 
   import { Input } from 'ant-design-vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const { currentRoute } = useRouter();
 

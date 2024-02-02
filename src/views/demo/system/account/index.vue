@@ -40,12 +40,12 @@
 <script lang="ts" setup>
   import { reactive } from 'vue';
 
-  import { BasicTable, useTable, TableAction } from '@/components/Table';
+  import { BasicTable, useTable, TableAction } from '@c/Table';
   import { getAccountList } from '@/api/demo/system';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import DeptTree from './DeptTree.vue';
 
-  import { useModal } from '@/components/Modal';
+  import { useModal } from '@c/Modal';
   import AccountModal from './AccountModal.vue';
 
   import { columns, searchFormSchema } from './account.data';

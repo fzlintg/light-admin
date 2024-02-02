@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
   import { Tabs } from 'ant-design-vue';
-  import { ScrollContainer } from '@/components/Container';
+  import { ScrollContainer } from '@c/Container';
   import { settingList } from './data';
   import BaseSetting from './BaseSetting.vue';
   import SecureSetting from './SecureSetting.vue';

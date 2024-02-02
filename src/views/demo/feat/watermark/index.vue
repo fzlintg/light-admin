@@ -17,9 +17,9 @@
 </template>
 <script lang="ts" setup>
   import { onUnmounted } from 'vue';
-  import { CollapseContainer } from '@/components/Container';
+  import { CollapseContainer } from '@c/Container';
   import { useWatermark } from '@/hooks/web/useWatermark';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const { setWatermark, clear, clearAll } = useWatermark();
   const { setWatermark: setWatermark2 } = useWatermark();

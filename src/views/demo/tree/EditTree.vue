@@ -53,10 +53,10 @@
 <script lang="ts" setup>
   import { h } from 'vue';
   import { Row, Col } from 'ant-design-vue';
-  import { BasicTree, TreeActionItem, ContextMenuItem } from '@/components/Tree';
+  import { BasicTree, TreeActionItem, ContextMenuItem } from '@c/Tree';
   import { treeData, treeData2, treeData3 } from './data';
   import { PlusOutlined, DeleteOutlined } from '@ant-design/icons-vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   import { EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
 

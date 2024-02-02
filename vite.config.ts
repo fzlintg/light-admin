@@ -1,4 +1,5 @@
 import { defineApplicationConfig } from '@vben/vite-config';
+import { resolve } from 'path';
 
 export default defineApplicationConfig({
   overrides: {
@@ -33,6 +34,11 @@ export default defineApplicationConfig({
       },
       warmup: {
         clientFiles: ['./index.html', './src/{views,components}/*'],
+      },
+    },
+    resolve: {
+      alias: {
+        '@c': resolve(__dirname, 'packages/components'), // 路径别名
       },
     },
   },

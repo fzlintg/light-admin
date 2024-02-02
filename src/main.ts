@@ -1,13 +1,13 @@
 import 'uno.css';
 import '@/design/index.less';
-import '@/components/VxeTable/src/css/index.scss';
+import '@c/VxeTable/src/css/index.scss';
 import 'ant-design-vue/dist/reset.css';
 // Register icon sprite
 import 'virtual:svg-icons-register';
 
 import { createApp } from 'vue';
 
-import { registerGlobComp } from '@/components/registerGlobComp';
+import { registerGlobComp } from '@c/registerGlobComp';
 import { setupGlobDirectives } from '@/directives';
 import { setupI18n } from '@/locales/setupI18n';
 import { setupErrorHandle } from '@/logics/error-handle';

@@ -19,6 +19,6 @@
 </template>
 <script lang="ts" setup>
   import { Card, CardGrid } from 'ant-design-vue';
-  import Icon from '@/components/Icon/Icon.vue';
+  import Icon from '@c/Icon/Icon.vue';
   import { groupItems } from './data';
 </script>

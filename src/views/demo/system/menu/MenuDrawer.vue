@@ -12,9 +12,9 @@
 </template>
 <script lang="ts" setup>
   import { ref, computed, unref } from 'vue';
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicForm, useForm } from '@c/Form';
   import { formSchema } from './menu.data';
-  import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
+  import { BasicDrawer, useDrawerInner } from '@c/Drawer';
 
   import { getMenuList } from '@/api/demo/system';
 

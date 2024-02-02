@@ -9,10 +9,10 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicForm, useForm } from '@c/Form';
   import { schemas } from './data';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   defineOptions({ name: 'FormBasicPage' });
 

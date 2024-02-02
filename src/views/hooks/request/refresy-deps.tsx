@@ -2,7 +2,7 @@ import { computed, defineComponent, reactive, ref, unref } from 'vue';
 import { Button, Card, Typography, Select } from 'ant-design-vue';
 import { imitateApi } from './mock-api';
 import { useRequest } from '@vben/hooks';
-import { PageWrapper } from '@/components/Page';
+import { PageWrapper } from '@c/Page';
 
 const options = [
   { label: 'Jack', value: 'Jack' },

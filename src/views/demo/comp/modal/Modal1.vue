@@ -22,7 +22,7 @@
 </template>
 <script lang="ts" setup>
   import { ref, watch } from 'vue';
-  import { BasicModal, useModalInner } from '@/components/Modal';
+  import { BasicModal, useModalInner } from '@c/Modal';
 
   const loading = ref(true);
   const lines = ref(10);

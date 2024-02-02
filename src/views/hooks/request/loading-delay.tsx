@@ -1,7 +1,7 @@
 import { defineComponent, unref } from 'vue';
 import { Card, Typography, Button, Space } from 'ant-design-vue';
 import { useRequest } from '@vben/hooks';
-import { PageWrapper } from '@/components/Page';
+import { PageWrapper } from '@c/Page';
 import { imitateApi } from './mock-api';
 
 export default defineComponent({

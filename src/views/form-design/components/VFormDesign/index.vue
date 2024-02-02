@@ -104,7 +104,7 @@
   import { IFormDesignMethods, IPropsPanel, IToolbarMethods } from '../../typings/form-type';
   import { useDesign } from '@/hooks/web/useDesign';
 
-  import { CollapseContainer } from '@/components/Container';
+  import { CollapseContainer } from '@c/Container';
 
   defineProps({
     title: {

@@ -30,7 +30,7 @@
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { BasicTable, ColumnChangeParam } from '@/components/Table';
+  import { BasicTable, ColumnChangeParam } from '@c/Table';
   import { getBasicColumns, getBasicData } from './tableData';
 
   const canResize = ref(false);

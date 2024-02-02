@@ -5,8 +5,8 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { createImgPreview, ImagePreview } from '@/components/Preview';
-  import { PageWrapper } from '@/components/Page';
+  import { createImgPreview, ImagePreview } from '@c/Preview';
+  import { PageWrapper } from '@c/Page';
 
   const imgList = [
     'https://picsum.photos/id/66/346/216',

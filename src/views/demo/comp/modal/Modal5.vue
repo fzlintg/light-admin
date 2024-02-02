@@ -11,8 +11,8 @@
 </template>
 <script lang="ts" setup>
   import { ref, nextTick } from 'vue';
-  import { BasicModal } from '@/components/Modal';
-  import { BasicTable, ColumnChangeParam, useTable } from '@/components/Table';
+  import { BasicModal } from '@c/Modal';
+  import { BasicTable, ColumnChangeParam, useTable } from '@c/Table';
   import { getBasicColumns } from '../../table/tableData';
   import { demoListApi } from '@/api/demo/table';
 

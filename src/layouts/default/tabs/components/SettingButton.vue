@@ -6,9 +6,9 @@
 </template>
 <script lang="ts" setup>
   import SettingDrawer from '@/layouts/default/setting/SettingDrawer';
-  import Icon from '@/components/Icon/Icon.vue';
+  import Icon from '@c/Icon/Icon.vue';
 
-  import { useDrawer } from '@/components/Drawer';
+  import { useDrawer } from '@c/Drawer';
 
   import { useDesign } from '@/hooks/web/useDesign';
 

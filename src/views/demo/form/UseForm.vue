@@ -37,9 +37,9 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
   import { Drawer, Space } from 'ant-design-vue';
-  import { BasicForm, type FormSchema, useForm, type FormProps } from '@/components/Form';
-  import { CollapseContainer } from '@/components/Container';
-  import { PageWrapper } from '@/components/Page';
+  import { BasicForm, type FormSchema, useForm, type FormProps } from '@c/Form';
+  import { CollapseContainer } from '@c/Container';
+  import { PageWrapper } from '@c/Page';
   import { areaRecord } from '@/api/demo/cascader';
 
   const sizeList = [

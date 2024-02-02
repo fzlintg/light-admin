@@ -20,8 +20,8 @@
 <script lang="ts" setup>
   import { Radio } from 'ant-design-vue';
   import { useI18n } from '@/hooks/web/useI18n';
-  import { BasicModal, useModalInner } from '@/components/Modal';
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicModal, useModalInner } from '@c/Modal';
+  import { BasicForm, useForm } from '@c/Form';
   import { ref } from 'vue';
   import { useAppStore } from '@/store/modules/app';
   import type { ApiAddress } from '#/store';

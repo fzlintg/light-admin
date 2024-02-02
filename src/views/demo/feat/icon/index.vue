@@ -53,7 +53,7 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { CollapseContainer } from '@/components/Container';
+  import { CollapseContainer } from '@c/Container';
   import { Alert } from 'ant-design-vue';
   import {
     QqCircleFilled,
@@ -64,8 +64,8 @@
     TaobaoCircleFilled,
     CodepenCircleFilled,
   } from '@ant-design/icons-vue';
-  import { IconPicker, SvgIcon } from '@/components/Icon';
-  import Icon from '@/components/Icon/Icon.vue';
+  import { IconPicker, SvgIcon } from '@c/Icon';
+  import Icon from '@c/Icon/Icon.vue';
   import { openWindow } from '@/utils';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 </script>

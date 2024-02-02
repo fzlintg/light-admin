@@ -6,8 +6,8 @@
   </BasicDrawer>
 </template>
 <script lang="ts" setup>
-  import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
-  import { BasicForm, FormSchema, useForm } from '@/components/Form';
+  import { BasicDrawer, useDrawerInner } from '@c/Drawer';
+  import { BasicForm, FormSchema, useForm } from '@c/Form';
 
   const schemas: FormSchema[] = [
     {

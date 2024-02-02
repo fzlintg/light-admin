@@ -14,11 +14,11 @@
 </template>
 <script lang="ts" setup>
   import { reactive, ref } from 'vue';
-  import { ActionItem, TableAction } from '@/components/Table';
-  import { PageWrapper } from '@/components/Page';
+  import { ActionItem, TableAction } from '@c/Table';
+  import { PageWrapper } from '@c/Page';
   import { useMessage } from '@/hooks/web/useMessage';
   import { vxeTableColumns, vxeTableFormSchema } from './tableData';
-  import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@/components/VxeTable';
+  import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';
 
   const { createMessage } = useMessage();

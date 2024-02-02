@@ -30,10 +30,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { BasicTable, useTable, TableAction } from '@/components/Table';
+  import { BasicTable, useTable, TableAction } from '@c/Table';
   import { getRoleListByPage } from '@/api/demo/system';
 
-  import { useDrawer } from '@/components/Drawer';
+  import { useDrawer } from '@c/Drawer';
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';

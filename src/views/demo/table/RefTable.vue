@@ -31,7 +31,7 @@
 </template>
 <script lang="ts" setup>
   import { ref, unref } from 'vue';
-  import { BasicTable, TableActionType } from '@/components/Table';
+  import { BasicTable, TableActionType } from '@c/Table';
   import { getBasicColumns, getBasicShortColumns } from './tableData';
   import { useMessage } from '@/hooks/web/useMessage';
   import { demoListApi } from '@/api/demo/table';

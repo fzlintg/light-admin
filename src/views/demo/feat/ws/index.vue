@@ -53,7 +53,7 @@
 <script lang="ts" setup>
   import { reactive, watchEffect, computed } from 'vue';
   import { Tag, Input } from 'ant-design-vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { useWebSocket } from '@vueuse/core';
   import { formatToDateTime } from '@/utils/dateUtil';
 

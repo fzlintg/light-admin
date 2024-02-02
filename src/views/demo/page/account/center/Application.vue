@@ -29,7 +29,7 @@
 </template>
 <script lang="ts" setup>
   import { List, Card, Row, Col } from 'ant-design-vue';
-  import Icon from '@/components/Icon/Icon.vue';
+  import Icon from '@c/Icon/Icon.vue';
   import { applicationList } from './data';
 
   const ListItem = List.Item;

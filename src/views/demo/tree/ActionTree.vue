@@ -29,10 +29,10 @@
 </template>
 <script lang="ts" setup>
   import { ref, unref } from 'vue';
-  import { BasicTree, TreeActionType } from '@/components/Tree';
+  import { BasicTree, TreeActionType } from '@c/Tree';
   import { treeData } from './data';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { type Nullable } from '@vben/types';
 
   const treeRef = ref<Nullable<TreeActionType>>(null);

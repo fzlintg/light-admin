@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { AppProvider } from '@/components/Application';
+  import { AppProvider } from '@c/Application';
   import { useTitle } from '@/hooks/web/useTitle';
   import { useLocale } from '@/locales/useLocale';
   import { ConfigProvider } from 'ant-design-vue';

@@ -12,8 +12,8 @@
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { ClickOutSide } from '@/components/ClickOutSide';
-  import { PageWrapper } from '@/components/Page';
+  import { ClickOutSide } from '@c/ClickOutSide';
+  import { PageWrapper } from '@c/Page';
 
   const text = ref('Click');
 

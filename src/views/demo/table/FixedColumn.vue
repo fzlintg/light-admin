@@ -27,7 +27,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { BasicTable, useTable, BasicColumn, TableAction } from '@/components/Table';
+  import { BasicTable, useTable, BasicColumn, TableAction } from '@c/Table';
 
   import { demoListApi } from '@/api/demo/table';
 

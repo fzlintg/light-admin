@@ -15,9 +15,9 @@
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { BasicForm, useForm } from '@/components/Form';
-  import { CollapseContainer } from '@/components/Container';
-  import { PageWrapper } from '@/components/Page';
+  import { BasicForm, useForm } from '@c/Form';
+  import { CollapseContainer } from '@c/Container';
+  import { PageWrapper } from '@c/Page';
 
   const [register, { appendSchemaByField, removeSchemaByField, validate }] = useForm({
     schemas: [

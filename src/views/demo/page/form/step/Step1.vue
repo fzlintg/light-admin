@@ -27,7 +27,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicForm, useForm } from '@c/Form';
   import { step1Schemas } from './data';
 
   import { Select, Input, Divider } from 'ant-design-vue';

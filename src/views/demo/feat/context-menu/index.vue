@@ -11,9 +11,9 @@
 </template>
 <script lang="ts" setup>
   import { useContextMenu } from '@/hooks/web/useContextMenu';
-  import { CollapseContainer } from '@/components/Container';
+  import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
 
   const [createContextMenu] = useContextMenu();
   const { createMessage } = useMessage();

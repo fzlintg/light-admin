@@ -33,9 +33,9 @@
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { PageWrapper } from '@/components/Page';
-  import { CollapseContainer } from '@/components/Container';
-  import { CropperImage, CropperAvatar } from '@/components/Cropper';
+  import { PageWrapper } from '@c/Page';
+  import { CollapseContainer } from '@c/Container';
+  import { CropperImage, CropperAvatar } from '@c/Cropper';
   import { uploadApi } from '@/api/sys/upload';
   import img from '@/assets/images/header.jpg';
   import { useUserStore } from '@/store/modules/user';

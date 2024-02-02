@@ -4,7 +4,7 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { useDesign } from '@/hooks/web/useDesign';
   import { driver } from 'driver.js';
   import 'driver.js/dist/driver.css';

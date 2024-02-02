@@ -19,8 +19,8 @@
   import type { RouteLocationNormalized } from 'vue-router';
 
   import { computed, unref } from 'vue';
-  import { Dropdown } from '@/components/Dropdown';
-  import Icon from '@/components/Icon/Icon.vue';
+  import { Dropdown } from '@c/Dropdown';
+  import Icon from '@c/Icon/Icon.vue';
 
   import { TabContentProps } from '../types';
 

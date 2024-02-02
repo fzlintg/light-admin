@@ -20,10 +20,10 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { BasicForm, useForm } from '@/components/Form';
+  import { BasicForm, useForm } from '@c/Form';
   import { ref } from 'vue';
   import PersonTable from './PersonTable.vue';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { schemas, taskSchemas } from './data';
   import { Card } from 'ant-design-vue';
 

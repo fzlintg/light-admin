@@ -20,7 +20,7 @@
 
 <script lang="ts">
   import { defineComponent, reactive, toRefs } from 'vue';
-  import { CodeEditor, MODE } from '@/components/CodeEditor';
+  import { CodeEditor, MODE } from '@c/CodeEditor';
 
   import { copyText } from '@/utils/copyTextToClipboard';
   import { useMessage } from '@/hooks/web/useMessage';

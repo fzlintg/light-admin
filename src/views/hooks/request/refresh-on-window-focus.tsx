@@ -2,7 +2,7 @@ import { defineComponent } from 'vue';
 import { Card, Typography, Spin } from 'ant-design-vue';
 import { imitateApi } from './mock-api';
 import { useRequest } from '@vben/hooks';
-import { PageWrapper } from '@/components/Page';
+import { PageWrapper } from '@c/Page';
 
 const Demo1 = defineComponent({
   setup() {

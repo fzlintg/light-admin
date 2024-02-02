@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { BasicTable, useTable } from '@/components/Table';
+  import { BasicTable, useTable } from '@c/Table';
   import { getMergeHeaderColumns } from './tableData';
 
   import { demoListApi } from '@/api/demo/table';

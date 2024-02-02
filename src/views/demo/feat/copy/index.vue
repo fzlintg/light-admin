@@ -10,9 +10,9 @@
 </template>
 <script lang="ts" setup>
   import { unref, ref } from 'vue';
-  import { CollapseContainer } from '@/components/Container';
+  import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import { copyText } from '@/utils/copyTextToClipboard';
 
   const valueRef = ref('');

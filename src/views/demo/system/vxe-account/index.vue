@@ -12,12 +12,12 @@
 </template>
 <script lang="ts" setup>
   import { reactive, ref } from 'vue';
-  import { ActionItem, TableAction } from '@/components/Table';
+  import { ActionItem, TableAction } from '@c/Table';
   import { getAccountList } from '@/api/demo/system';
-  import { PageWrapper } from '@/components/Page';
+  import { PageWrapper } from '@c/Page';
   import DeptTree from '../account/DeptTree.vue';
   import { columns, searchFormSchema } from './vxeAccount.data';
-  import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@/components/VxeTable';
+  import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
 
   const tableRef = ref<VxeGridInstance>();
   const searchInfo = ref();
