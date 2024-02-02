@@ -28,9 +28,9 @@
   import { useGo } from '@h/web/usePage';
   import { useI18n } from '@h/web/useI18n';
 
-  import { propTypes } from '@/utils/propTypes';
-  import { isString } from '@/utils/is';
-  import { filter } from '@/utils/helper/treeHelper';
+  import { propTypes } from '@u/propTypes';
+  import { isString } from '@u/is';
+  import { filter } from '@u/helper/treeHelper';
   import { getMenus } from '@/router/menus';
 
   import { REDIRECT_NAME } from '@/router/constant';

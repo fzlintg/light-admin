@@ -1,4 +1,4 @@
-import { Persistent, BasicKeys } from '@/utils/cache/persistent';
+import { Persistent, BasicKeys } from '@u/cache/persistent';
 import { CacheTypeEnum, TOKEN_KEY } from '@/enums/cacheEnum';
 import projectSetting from '@/settings/projectSetting';
 

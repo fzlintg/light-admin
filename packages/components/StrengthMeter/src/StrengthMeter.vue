@@ -23,7 +23,7 @@
   import { Input } from 'ant-design-vue';
   import { zxcvbn } from '@zxcvbn-ts/core';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@/utils/propTypes';
+  import { propTypes } from '@u/propTypes';
 
   defineOptions({ name: 'StrengthMeter' });
 

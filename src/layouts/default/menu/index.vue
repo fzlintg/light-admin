@@ -13,9 +13,9 @@
 
   import { useGo } from '@h/web/usePage';
   import { useSplitMenu } from './useLayoutMenu';
-  import { openWindow } from '@/utils';
-  import { propTypes } from '@/utils/propTypes';
-  import { isHttpUrl } from '@/utils/is';
+  import { openWindow } from '@u';
+  import { propTypes } from '@u/propTypes';
+  import { isHttpUrl } from '@u/is';
   import { useRootSetting } from '@h/setting/useRootSetting';
   import { useAppInject } from '@h/web/useAppInject';
   import { useDesign } from '@h/web/useDesign';

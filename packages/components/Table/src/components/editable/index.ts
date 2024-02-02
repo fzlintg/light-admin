@@ -3,7 +3,7 @@ import type { BasicColumn } from '@c/Table/src/types/table';
 import { h, Ref, toRaw } from 'vue';
 
 import EditableCell from './EditableCell.vue';
-import { isArray } from '@/utils/is';
+import { isArray } from '@u/is';
 
 interface Params {
   text: string;

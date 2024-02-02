@@ -5,7 +5,7 @@ import { tryOnUnmounted, useDebounceFn } from '@vueuse/core';
 import { unref, nextTick, watch, computed, ref } from 'vue';
 import { useEventListener } from '@h/event/useEventListener';
 import { useBreakpoint } from '@h/event/useBreakpoint';
-import echarts from '@/utils/lib/echarts';
+import echarts from '@u/lib/echarts';
 import { useRootSetting } from '@h/setting/useRootSetting';
 import { useMenuSetting } from '@h/setting/useMenuSetting';
 

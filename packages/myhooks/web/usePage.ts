@@ -5,8 +5,8 @@ import { unref } from 'vue';
 
 import { useRouter } from 'vue-router';
 import { REDIRECT_NAME } from '@/router/constant';
-import { isHttpUrl } from '@/utils/is';
-import { openWindow } from '@/utils';
+import { isHttpUrl } from '@u/is';
+import { openWindow } from '@u';
 
 import { useMultipleTabStore } from '@/store/modules/multipleTab';
 

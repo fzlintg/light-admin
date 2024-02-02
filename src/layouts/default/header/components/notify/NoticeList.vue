@@ -53,7 +53,7 @@
   import { ListItem } from './data';
   import { useDesign } from '@h/web/useDesign';
   import { List, Avatar, Tag, Typography } from 'ant-design-vue';
-  import { isNumber } from '@/utils/is';
+  import { isNumber } from '@u/is';
 
   const props = defineProps({
     list: {

@@ -1,5 +1,5 @@
 import { Slots } from 'vue';
-import { isFunction } from '@/utils/is';
+import { isFunction } from '@u/is';
 import { RenderOpts } from '@c/Form';
 
 /**

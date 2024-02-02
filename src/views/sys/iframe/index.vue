@@ -15,7 +15,7 @@
   import { ref, unref, computed, onMounted, onUnmounted } from 'vue';
   import { Spin } from 'ant-design-vue';
   import { useWindowSizeFn } from '@vben/hooks';
-  import { propTypes } from '@/utils/propTypes';
+  import { propTypes } from '@u/propTypes';
   import { useDesign } from '@h/web/useDesign';
   import { useLayoutHeight } from '@/layouts/default/content/useContentViewHeight';
 

@@ -30,8 +30,8 @@
   import { Modal, Upload } from 'ant-design-vue';
   import { UploadRequestOption } from 'ant-design-vue/lib/vc-upload/interface';
   import { useMessage } from '@h/web/useMessage';
-  import { isArray, isFunction, isObject, isString } from '@/utils/is';
-  import { warn } from '@/utils/log';
+  import { isArray, isFunction, isObject, isString } from '@u/is';
+  import { warn } from '@u/log';
   import { useI18n } from '@h/web/useI18n';
   import { useUploadType } from '../hooks/useUpload';
   import { uploadContainerProps } from '../props';

@@ -25,7 +25,7 @@
   import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
   import { useOpenKeys } from './useOpenKeys';
   import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
-  import { isFunction } from '@/utils/is';
+  import { isFunction } from '@u/is';
   import { basicProps } from './props';
   import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { REDIRECT_NAME } from '@/router/constant';

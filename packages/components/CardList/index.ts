@@ -1,4 +1,4 @@
-import { withInstall } from '@/utils';
+import { withInstall } from '@u';
 import cardList from './src/CardList.vue';
 
 export const CardList = withInstall(cardList);

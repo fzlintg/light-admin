@@ -46,7 +46,7 @@
   import { BasicTitle } from '@c/Basic';
   import { useI18n } from '@h/web/useI18n';
   import { useDebounceFn } from '@vueuse/core';
-  import { createBEM } from '@/utils/bem';
+  import { createBEM } from '@u/bem';
   import { ToolbarEnum } from '../types/tree';
 
   const searchValue = ref('');

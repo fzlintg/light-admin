@@ -3,7 +3,7 @@ import { FileBasicColumn } from './types/typing';
 
 import type { Options } from 'sortablejs';
 
-import { Merge } from '@/utils/types';
+import { Merge } from '@u/types';
 
 type SortableOptions = Merge<
   Omit<Options, 'onEnd'>,

@@ -7,7 +7,7 @@
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
   import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@/utils/propTypes';
+  import { propTypes } from '@u/propTypes';
 
   defineProps({
     theme: propTypes.oneOf(['light', 'dark']),

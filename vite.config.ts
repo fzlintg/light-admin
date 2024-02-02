@@ -40,6 +40,7 @@ export default defineApplicationConfig({
       alias: {
         '@c': resolve(__dirname, 'packages/components'), // 路径别名
         '@h': resolve(__dirname, 'packages/myhooks'), // 路径别名
+        '@u': resolve(__dirname, 'packages/utils'), // 路径别名
       },
     },
   },

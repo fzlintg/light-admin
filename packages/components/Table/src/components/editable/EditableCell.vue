@@ -10,11 +10,11 @@
 
   import clickOutside from '@/directives/clickOutside';
 
-  import { propTypes } from '@/utils/propTypes';
-  import { isArray, isBoolean, isFunction, isNumber, isString } from '@/utils/is';
+  import { propTypes } from '@u/propTypes';
+  import { isArray, isBoolean, isFunction, isNumber, isString } from '@u/is';
   import { createPlaceholderMessage } from './helper';
   import { pick, set } from 'lodash-es';
-  import { treeToList } from '@/utils/helper/treeHelper';
+  import { treeToList } from '@u/helper/treeHelper';
   import { Spin } from 'ant-design-vue';
   import { parseRowKey } from '../../helper';
 

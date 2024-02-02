@@ -3,7 +3,7 @@ import type { PropType } from 'vue';
 
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
 import { ThemeEnum } from '@/enums/appEnum';
-import { propTypes } from '@/utils/propTypes';
+import { propTypes } from '@u/propTypes';
 import type { Key } from './types';
 import type { MenuTheme } from 'ant-design-vue';
 import type { MenuMode } from 'ant-design-vue/lib/menu/src/interface';

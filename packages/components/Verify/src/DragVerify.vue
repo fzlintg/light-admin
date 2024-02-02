@@ -4,7 +4,7 @@
   import { useTimeoutFn } from '@vben/hooks';
   import { useEventListener } from '@h/event/useEventListener';
   import { basicProps } from './props';
-  import { getSlot } from '@/utils/helper/tsxHelper';
+  import { getSlot } from '@u/helper/tsxHelper';
   import { CheckOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 
   export default defineComponent({

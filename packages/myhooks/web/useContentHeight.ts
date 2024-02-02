@@ -1,6 +1,6 @@
 import { useLayoutHeight } from '@/layouts/default/content/useContentViewHeight';
-import { getViewportOffset } from '@/utils/domUtils';
-import { isNumber, isString } from '@/utils/is';
+import { getViewportOffset } from '@u/domUtils';
+import { isNumber, isString } from '@u/is';
 import { onMountedOrActivated, useWindowSizeFn } from '@vben/hooks';
 import { ComputedRef, isRef, nextTick, Ref, ref, unref, watch } from 'vue';
 

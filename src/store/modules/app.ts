@@ -12,10 +12,10 @@ import { store } from '@/store';
 
 import { ThemeEnum } from '@/enums/appEnum';
 import { APP_DARK_MODE_KEY, PROJ_CFG_KEY, API_ADDRESS } from '@/enums/cacheEnum';
-import { Persistent } from '@/utils/cache/persistent';
+import { Persistent } from '@u/cache/persistent';
 import { darkMode } from '@/settings/designSetting';
 import { resetRouter } from '@/router';
-import { deepMerge } from '@/utils';
+import { deepMerge } from '@u';
 
 interface AppState {
   darkMode?: ThemeEnum;

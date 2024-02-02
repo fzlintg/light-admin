@@ -1,4 +1,4 @@
-import { withInstall } from '@/utils';
+import { withInstall } from '@u';
 import collapseContainer from './src/collapse/CollapseContainer.vue';
 import scrollContainer from './src/ScrollContainer.vue';
 

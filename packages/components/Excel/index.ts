@@ -1,4 +1,4 @@
-import { withInstall } from '@/utils';
+import { withInstall } from '@u';
 import impExcel from './src/ImportExcel.vue';
 import expExcelModal from './src/ExportExcelModal.vue';
 

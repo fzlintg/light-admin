@@ -67,8 +67,8 @@
   import { useAppInject } from '@h/web/useAppInject';
   import { useDesign } from '@h/web/useDesign';
   import { useLocale } from '@/locales/useLocale';
-  import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
-  import { propTypes } from '@/utils/propTypes';
+  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
+  import { propTypes } from '@u/propTypes';
 
   import LayoutMenu from '../menu/index.vue';
   import LayoutTrigger from '../trigger/index.vue';

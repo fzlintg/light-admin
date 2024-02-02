@@ -12,7 +12,7 @@
     PropType,
   } from 'vue';
   import { useEventListener } from '@h/event/useEventListener';
-  import { getSlot } from '@/utils/helper/tsxHelper';
+  import { getSlot } from '@u/helper/tsxHelper';
 
   type NumberOrNumberString = PropType<string | number | undefined>;
 

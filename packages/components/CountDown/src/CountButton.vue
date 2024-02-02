@@ -7,7 +7,7 @@
   import { ref, watchEffect, computed, unref } from 'vue';
   import { Button } from 'ant-design-vue';
   import { useCountdown } from './useCountdown';
-  import { isFunction } from '@/utils/is';
+  import { isFunction } from '@u/is';
   import { useI18n } from '@h/web/useI18n';
 
   defineOptions({ name: 'CountButton' });

@@ -2,7 +2,7 @@ import type { ComputedRef, Slots } from 'vue';
 import type { BasicTableProps, FetchParams } from '../types/table';
 import { unref, computed } from 'vue';
 import type { FormProps } from '@c/Form';
-import { isFunction } from '@/utils/is';
+import { isFunction } from '@u/is';
 
 export function useTableForm(
   propsRef: ComputedRef<BasicTableProps>,

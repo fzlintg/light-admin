@@ -1,4 +1,4 @@
-import { withInstall } from '@/utils';
+import { withInstall } from '@u';
 import ellipsisText from './src/EllipsisText.vue';
 
 export const EllipsisText = withInstall(ellipsisText);

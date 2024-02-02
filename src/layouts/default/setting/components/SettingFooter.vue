@@ -29,7 +29,7 @@
   import { useDesign } from '@h/web/useDesign';
   import { useI18n } from '@h/web/useI18n';
   import { useMessage } from '@h/web/useMessage';
-  import { copyText } from '@/utils/copyTextToClipboard';
+  import { copyText } from '@u/copyTextToClipboard';
   import { updateColorWeak } from '@/logics/theme/updateColorWeak';
   import { updateGrayMode } from '@/logics/theme/updateGrayMode';
   import defaultSetting from '@/settings/projectSetting';

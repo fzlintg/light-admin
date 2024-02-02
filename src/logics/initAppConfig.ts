@@ -14,11 +14,11 @@ import { updateGrayMode } from '@/logics/theme/updateGrayMode';
 import { useAppStore } from '@/store/modules/app';
 import { useLocaleStore } from '@/store/modules/locale';
 
-import { getCommonStoragePrefix, getStorageShortName } from '@/utils/env';
+import { getCommonStoragePrefix, getStorageShortName } from '@u/env';
 
 import { ThemeEnum } from '@/enums/appEnum';
-import { deepMerge } from '@/utils';
-import { Persistent } from '@/utils/cache/persistent';
+import { deepMerge } from '@u';
+import { Persistent } from '@u/cache/persistent';
 
 // Initial project configuration
 export function initAppConfigStore() {

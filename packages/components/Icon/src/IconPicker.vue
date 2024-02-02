@@ -87,7 +87,7 @@
   import { useDebounceFn } from '@vueuse/core';
   import { useI18n } from '@h/web/useI18n';
   import svgIcons from 'virtual:svg-icons-names';
-  import { copyText } from '@/utils/copyTextToClipboard';
+  import { copyText } from '@u/copyTextToClipboard';
 
   function getIcons() {
     const prefix = iconsData.prefix;

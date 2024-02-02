@@ -15,7 +15,7 @@
   import { useUserStoreWithOut } from '@/store/modules/user';
 
   import { SettingButtonPositionEnum } from '@/enums/appEnum';
-  import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
 
   import SessionTimeoutLogin from '@/views/sys/login/SessionTimeoutLogin.vue';
 

@@ -1,4 +1,4 @@
-import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+import { createAsyncComponent } from '@u/factory/createAsyncComponent';
 import FullScreen from './FullScreen.vue';
 
 export const UserDropDown = createAsyncComponent(() => import('./user-dropdown/index.vue'), {

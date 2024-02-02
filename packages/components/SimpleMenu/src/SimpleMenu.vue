@@ -26,11 +26,11 @@
   import Menu from './components/Menu.vue';
   import SimpleSubMenu from './SimpleSubMenu.vue';
   import { listenerRouteChange } from '@/logics/mitt/routeChange';
-  import { propTypes } from '@/utils/propTypes';
+  import { propTypes } from '@u/propTypes';
   import { REDIRECT_NAME } from '@/router/constant';
   import { useRouter } from 'vue-router';
-  import { isFunction, isHttpUrl } from '@/utils/is';
-  import { openWindow } from '@/utils';
+  import { isFunction, isHttpUrl } from '@u/is';
+  import { openWindow } from '@u';
   import { useOpenKeys } from './useOpenKeys';
 
   defineOptions({ name: 'SimpleMenu', inheritAttrs: false });

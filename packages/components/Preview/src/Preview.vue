@@ -20,8 +20,8 @@
 
   import { Image } from 'ant-design-vue';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@/utils/propTypes';
-  import { isString } from '@/utils/is';
+  import { propTypes } from '@u/propTypes';
+  import { isString } from '@u/is';
 
   interface ImageProps {
     alt?: string;

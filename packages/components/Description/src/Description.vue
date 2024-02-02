@@ -15,8 +15,8 @@
   import { Descriptions } from 'ant-design-vue';
   import { CollapseContainer } from '@c/Container';
   import { useDesign } from '@h/web/useDesign';
-  import { isFunction } from '@/utils/is';
-  import { getSlot } from '@/utils/helper/tsxHelper';
+  import { isFunction } from '@u/is';
+  import { getSlot } from '@u/helper/tsxHelper';
   import { useAttrs } from '@vben/hooks';
 
   const props = {

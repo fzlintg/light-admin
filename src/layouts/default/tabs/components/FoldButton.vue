@@ -10,7 +10,7 @@
   import { useDesign } from '@h/web/useDesign';
   import { useHeaderSetting } from '@h/setting/useHeaderSetting';
   import { useMenuSetting } from '@h/setting/useMenuSetting';
-  import { triggerWindowResize } from '@/utils/event';
+  import { triggerWindowResize } from '@u/event';
 
   defineOptions({ name: 'FoldButton' });
 

@@ -10,14 +10,14 @@ import { checkStatus } from './checkStatus';
 import { useGlobSetting } from '@h/setting';
 import { useMessage } from '@h/web/useMessage';
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '@/enums/httpEnum';
-import { isString, isUndefined, isNull, isEmpty } from '@/utils/is';
-import { getToken } from '@/utils/auth';
-import { setObjToUrlParams, deepMerge } from '@/utils';
+import { isString, isUndefined, isNull, isEmpty } from '@u/is';
+import { getToken } from '@u/auth';
+import { setObjToUrlParams, deepMerge } from '@u';
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog';
 import { useI18n } from '@h/web/useI18n';
 import { joinTimestamp, formatRequestDate } from './helper';
 import { useUserStoreWithOut } from '@/store/modules/user';
-import { AxiosRetry } from '@/utils/http/axios/axiosRetry';
+import { AxiosRetry } from '@u/http/axios/axiosRetry';
 import axios from 'axios';
 
 const globSetting = useGlobSetting();

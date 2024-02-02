@@ -66,6 +66,6 @@
   } from '@ant-design/icons-vue';
   import { IconPicker, SvgIcon } from '@c/Icon';
   import Icon from '@c/Icon/Icon.vue';
-  import { openWindow } from '@/utils';
+  import { openWindow } from '@u';
   import { PageWrapper } from '@c/Page';
 </script>

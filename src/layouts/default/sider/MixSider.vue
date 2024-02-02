@@ -104,7 +104,7 @@
   import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@/router/menus';
   import { listenerRouteChange } from '@/logics/mitt/routeChange';
   import LayoutTrigger from '../trigger/index.vue';
-  import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
 
   const SimpleMenuTag = createAsyncComponent(() => import('@c/SimpleMenu/src/SimpleMenuTag.vue'));
 

@@ -18,9 +18,9 @@
     provide,
   } from 'vue';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@/utils/propTypes';
+  import { propTypes } from '@u/propTypes';
   import { createSimpleRootMenuContext, type MenuEmitterEvents } from './useSimpleMenuContext';
-  import { mitt } from '@/utils/mitt';
+  import { mitt } from '@u/mitt';
 
   defineOptions({ name: 'Menu' });
 

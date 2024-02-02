@@ -4,7 +4,7 @@
   </transition>
 </template>
 <script lang="ts" setup>
-  import { addClass, removeClass } from '@/utils/domUtils';
+  import { addClass, removeClass } from '@u/domUtils';
 
   defineOptions({ name: 'CollapseTransition' });
 
