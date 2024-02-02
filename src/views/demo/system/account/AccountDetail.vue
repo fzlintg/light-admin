@@ -30,8 +30,8 @@
   import { ref } from 'vue';
   import { useRoute } from 'vue-router';
   import { PageWrapper } from '@c/Page';
-  import { useGo } from '@/hooks/web/usePage';
-  import { useTabs } from '@/hooks/web/useTabs';
+  import { useGo } from '@h/web/usePage';
+  import { useTabs } from '@h/web/useTabs';
   import { Tabs } from 'ant-design-vue';
 
   defineOptions({ name: 'AccountDetail' });

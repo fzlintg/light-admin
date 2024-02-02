@@ -5,7 +5,7 @@
   import BasicDragVerify from './DragVerify.vue';
   import { hackCss } from '@/utils/domUtils';
   import { rotateProps } from './props';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
 
   export default defineComponent({
     name: 'ImgRotateDragVerify',

@@ -49,13 +49,13 @@
   import type { Menu } from '@/router/types';
 
   import { computed } from 'vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import Icon from '@c/Icon/Icon.vue';
 
   import MenuItem from './components/MenuItem.vue';
   import SubMenu from './components/SubMenuItem.vue';
   import { propTypes } from '@/utils/propTypes';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
 
   const SimpleMenuTag = createAsyncComponent(() => import('./SimpleMenuTag.vue'));

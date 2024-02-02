@@ -4,10 +4,10 @@ import { watch, unref, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { MenuSplitTyeEnum } from '@/enums/menuEnum';
 import { useThrottleFn } from '@vueuse/core';
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+import { useMenuSetting } from '@h/setting/useMenuSetting';
 import { getChildrenMenus, getCurrentParentPath, getMenus, getShallowMenus } from '@/router/menus';
 import { usePermissionStore } from '@/store/modules/permission';
-import { useAppInject } from '@/hooks/web/useAppInject';
+import { useAppInject } from '@h/web/useAppInject';
 
 export function useSplitMenu(splitType: Ref<MenuSplitTyeEnum>) {
   // Menu array

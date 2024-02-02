@@ -32,10 +32,10 @@
 <script lang="ts" setup>
   import { computed, CSSProperties, unref, ref, watchEffect, watch, PropType } from 'vue';
   import CropperModal from './CropperModal.vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useModal } from '@c/Modal';
-  import { useMessage } from '@/hooks/web/useMessage';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useMessage } from '@h/web/useMessage';
+  import { useI18n } from '@h/web/useI18n';
   import type { ButtonProps } from '@c/Button';
   import Icon from '@c/Icon/Icon.vue';
 

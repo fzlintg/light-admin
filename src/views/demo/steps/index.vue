@@ -5,7 +5,7 @@
 </template>
 <script lang="ts" setup>
   import { PageWrapper } from '@c/Page';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { driver } from 'driver.js';
   import 'driver.js/dist/driver.css';
 

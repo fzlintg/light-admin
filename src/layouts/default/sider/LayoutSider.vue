@@ -30,9 +30,9 @@
   import { computed, CSSProperties, h, ref, unref } from 'vue';
 
   import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-  import { useAppInject } from '@/hooks/web/useAppInject';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
+  import { useAppInject } from '@h/web/useAppInject';
+  import { useDesign } from '@h/web/useDesign';
   import LayoutTrigger from '@/layouts/default/trigger/index.vue';
 
   import LayoutMenu from '../menu/index.vue';

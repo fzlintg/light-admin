@@ -15,7 +15,7 @@
   import { h } from 'vue';
   import { BasicForm, FormSchema } from '@c/Form';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { MarkDown } from '@c/Markdown';
   import { PageWrapper } from '@c/Page';
 

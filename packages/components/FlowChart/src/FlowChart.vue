@@ -14,7 +14,7 @@
   import FlowChartToolbar from './FlowChartToolbar.vue';
   import LogicFlow from '@logicflow/core';
   import { Snapshot, BpmnElement, Menu, DndPanel, SelectionSelect } from '@logicflow/extension';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useAppStore } from '@/store/modules/app';
   import { createFlowChartContext } from './useFlowContext';
   import { toLogicFlowData } from './adpterForTurbo';

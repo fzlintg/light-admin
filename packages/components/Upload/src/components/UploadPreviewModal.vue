@@ -18,7 +18,7 @@
   import { PreviewFileItem } from '../types/typing';
   import { downloadByUrl } from '@/utils/file/download';
   import { createPreviewColumns, createPreviewActionColumn } from './data';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { isArray } from '@/utils/is';
 
   const props = defineProps(previewProps);

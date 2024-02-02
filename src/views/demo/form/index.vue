@@ -60,7 +60,7 @@
   import { computed, unref, ref } from 'vue';
   import { BasicForm, ApiSelect, FormSchema } from '@c/Form';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
 
   import { optionsListApi } from '@/api/demo/select';

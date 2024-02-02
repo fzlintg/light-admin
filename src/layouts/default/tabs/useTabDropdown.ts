@@ -6,8 +6,8 @@ import { computed, unref, reactive } from 'vue';
 import { MenuEventEnum } from './types';
 import { useMultipleTabStore } from '@/store/modules/multipleTab';
 import { RouteLocationNormalized, useRouter } from 'vue-router';
-import { useTabs } from '@/hooks/web/useTabs';
-import { useI18n } from '@/hooks/web/useI18n';
+import { useTabs } from '@h/web/useTabs';
+import { useI18n } from '@h/web/useI18n';
 
 export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: ComputedRef<boolean>) {
   const state = reactive({

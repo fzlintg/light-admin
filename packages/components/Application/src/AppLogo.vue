@@ -12,10 +12,10 @@
 </template>
 <script lang="ts" setup>
   import { computed, unref } from 'vue';
-  import { useGlobSetting } from '@/hooks/setting';
-  import { useGo } from '@/hooks/web/usePage';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useGlobSetting } from '@h/setting';
+  import { useGo } from '@h/web/usePage';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
+  import { useDesign } from '@h/web/useDesign';
   import { PageEnum } from '@/enums/pageEnum';
   import { useUserStore } from '@/store/modules/user';
 

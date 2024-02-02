@@ -8,8 +8,8 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
   import Icon from '@c/Icon/Icon.vue';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useI18n } from '@h/web/useI18n';
+  import { useDesign } from '@h/web/useDesign';
   import { contentProps } from '../props';
 
   defineOptions({ name: 'MenuItemContent' });

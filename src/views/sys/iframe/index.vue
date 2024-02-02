@@ -16,7 +16,7 @@
   import { Spin } from 'ant-design-vue';
   import { useWindowSizeFn } from '@vben/hooks';
   import { propTypes } from '@/utils/propTypes';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useLayoutHeight } from '@/layouts/default/content/useContentViewHeight';
 
   const emit = defineEmits(['message']);

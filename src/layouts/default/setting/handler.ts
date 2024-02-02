@@ -7,7 +7,7 @@ import { updateGrayMode } from '@/logics/theme/updateGrayMode';
 import { useAppStore } from '@/store/modules/app';
 import { ProjectConfig } from '#/config';
 import { updateDarkTheme } from '@/logics/theme/dark';
-import { useRootSetting } from '@/hooks/setting/useRootSetting';
+import { useRootSetting } from '@h/setting/useRootSetting';
 import projectSetting from '@/settings/projectSetting';
 
 export function baseHandler(event: HandlerEnum, value: any) {

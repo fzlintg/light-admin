@@ -5,7 +5,7 @@
   import { extendSlots } from '@/utils/helper/tsxHelper';
   import { omit } from 'lodash-es';
   import { useAttrs } from '@vben/hooks';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
 
   const props = {
     /**

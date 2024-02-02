@@ -31,7 +31,7 @@
   import { ref, unref } from 'vue';
   import { BasicTree, TreeActionType } from '@c/Tree';
   import { treeData } from './data';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
   import { type Nullable } from '@vben/types';
 

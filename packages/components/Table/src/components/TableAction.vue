@@ -38,9 +38,9 @@
   import { ActionItem, TableActionType } from '@c/Table';
   import { PopConfirmButton } from '@c/Button';
   import { Dropdown } from '@c/Dropdown';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useTableContext } from '../hooks/useTableContext';
-  import { usePermission } from '@/hooks/web/usePermission';
+  import { usePermission } from '@h/web/usePermission';
   import { isBoolean, isFunction, isString } from '@/utils/is';
   import { propTypes } from '@/utils/propTypes';
   import { ACTION_COLUMN_FLAG } from '../const';

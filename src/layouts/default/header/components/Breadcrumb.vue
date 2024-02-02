@@ -23,10 +23,10 @@
   import { Breadcrumb } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
 
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { useGo } from '@/hooks/web/usePage';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useDesign } from '@h/web/useDesign';
+  import { useRootSetting } from '@h/setting/useRootSetting';
+  import { useGo } from '@h/web/usePage';
+  import { useI18n } from '@h/web/useI18n';
 
   import { propTypes } from '@/utils/propTypes';
   import { isString } from '@/utils/is';

@@ -1,5 +1,5 @@
 import { ref, computed, ComputedRef, unref } from 'vue';
-import { useEventListener } from '@/hooks/event/useEventListener';
+import { useEventListener } from '@h/event/useEventListener';
 import { screenMap, sizeEnum, screenEnum } from '@/enums/breakpointEnum';
 
 // 可以用这个替换，优化项

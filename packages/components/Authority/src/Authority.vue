@@ -5,7 +5,7 @@
   import type { PropType } from 'vue';
   import { defineComponent } from 'vue';
   import { RoleEnum } from '@/enums/roleEnum';
-  import { usePermission } from '@/hooks/web/usePermission';
+  import { usePermission } from '@h/web/usePermission';
   import { getSlot } from '@/utils/helper/tsxHelper';
 
   export default defineComponent({

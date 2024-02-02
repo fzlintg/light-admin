@@ -49,7 +49,7 @@
   import AccountModal from './AccountModal.vue';
 
   import { columns, searchFormSchema } from './account.data';
-  import { useGo } from '@/hooks/web/usePage';
+  import { useGo } from '@h/web/usePage';
 
   defineOptions({ name: 'AccountManagement' });
 

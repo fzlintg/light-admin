@@ -39,6 +39,7 @@ export default defineApplicationConfig({
     resolve: {
       alias: {
         '@c': resolve(__dirname, 'packages/components'), // 路径别名
+        '@h': resolve(__dirname, 'packages/myhooks'), // 路径别名
       },
     },
   },

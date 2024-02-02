@@ -37,14 +37,14 @@
   import FoldButton from './components/FoldButton.vue';
   import TabRedo from './components/TabRedo.vue';
 
-  import { useGo } from '@/hooks/web/usePage';
+  import { useGo } from '@h/web/usePage';
 
   import { useMultipleTabStore } from '@/store/modules/multipleTab';
   import { useUserStore } from '@/store/modules/user';
 
   import { initAffixTabs, useTabsDrag } from './useMultipleTabs';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
+  import { useDesign } from '@h/web/useDesign';
+  import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
 
   import { REDIRECT_NAME } from '@/router/constant';
   import { listenerRouteChange } from '@/logics/mitt/routeChange';
@@ -55,8 +55,8 @@
   import { multipleTabHeight } from '@/settings/designSetting';
 
   import SettingButton from './components/SettingButton.vue';
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
 
   defineOptions({ name: 'MultipleTabs' });
 

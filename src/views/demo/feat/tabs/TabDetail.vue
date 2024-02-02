@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
   import { PageWrapper } from '@c/Page';
-  import { useTabs } from '@/hooks/web/useTabs';
+  import { useTabs } from '@h/web/useTabs';
   import { useRoute } from 'vue-router';
 
   defineOptions({ name: 'TabDetail' });

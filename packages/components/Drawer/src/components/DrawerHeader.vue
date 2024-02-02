@@ -20,7 +20,7 @@
 <script lang="ts" setup>
   import { BasicTitle } from '@c/Basic';
   import { ArrowLeftOutlined } from '@ant-design/icons-vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { propTypes } from '@/utils/propTypes';
 
   defineOptions({ name: 'BasicDrawerHeader' });

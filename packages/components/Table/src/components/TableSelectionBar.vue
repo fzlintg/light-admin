@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useI18n } from '@h/web/useI18n';
+  import { useDesign } from '@h/web/useDesign';
 
   import type { TableActionType } from '../types/table';
   import { Alert as AAlert } from 'ant-design-vue';

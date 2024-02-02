@@ -46,7 +46,7 @@
   import { Button, ButtonProps } from '@c/Button';
   import { BasicArrow } from '@c/Basic';
   import { useFormContext } from '../hooks/useFormContext';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@/utils/propTypes';
 
   defineOptions({ name: 'BasicFormAction' });

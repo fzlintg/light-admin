@@ -22,7 +22,7 @@
   import { h } from 'vue';
   import { BasicForm, FormSchema, useForm } from '@c/Form';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { Input, FormItem, FormItemRest, Select } from 'ant-design-vue';
   import { PageWrapper } from '@c/Page';
 

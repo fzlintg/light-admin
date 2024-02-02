@@ -7,9 +7,9 @@
   import { unref, computed } from 'vue';
   import Icon from '@c/Icon/Icon.vue';
 
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+  import { useDesign } from '@h/web/useDesign';
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { triggerWindowResize } from '@/utils/event';
 
   defineOptions({ name: 'FoldButton' });

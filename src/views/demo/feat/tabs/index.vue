@@ -28,11 +28,11 @@
   import { ref } from 'vue';
 
   import { CollapseContainer } from '@c/Container';
-  import { useTabs } from '@/hooks/web/useTabs';
+  import { useTabs } from '@h/web/useTabs';
   import { PageWrapper } from '@c/Page';
   import { Alert } from 'ant-design-vue';
-  import { useMessage } from '@/hooks/web/useMessage';
-  import { useGo } from '@/hooks/web/usePage';
+  import { useMessage } from '@h/web/useMessage';
+  import { useGo } from '@h/web/usePage';
 
   defineOptions({ name: 'TabsDemo' });
 

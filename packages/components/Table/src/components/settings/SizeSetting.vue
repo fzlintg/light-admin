@@ -27,7 +27,7 @@
   import { ref, onMounted } from 'vue';
   import { Tooltip, Dropdown, Menu, type MenuProps } from 'ant-design-vue';
   import { ColumnHeightOutlined } from '@ant-design/icons-vue';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { useTableContext } from '../../hooks/useTableContext';
   import { getPopupContainer } from '@/utils';
 

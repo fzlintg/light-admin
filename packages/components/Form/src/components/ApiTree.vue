@@ -13,7 +13,7 @@
   import { isArray, isFunction } from '@/utils/is';
   import { get } from 'lodash-es';
   import { DataNode } from 'ant-design-vue/es/tree';
-  import { useRuleFormItem } from '@/hooks/component/useFormItem';
+  import { useRuleFormItem } from '@h/component/useFormItem';
 
   defineOptions({ name: 'ApiTree' });
 

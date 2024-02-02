@@ -4,7 +4,7 @@ import type { MenuState, Key } from './types';
 import { computed, Ref, toRaw, unref } from 'vue';
 import { useTimeoutFn } from '@vben/hooks';
 import { uniq } from 'lodash-es';
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+import { useMenuSetting } from '@h/setting/useMenuSetting';
 import { getAllParentPath } from '@/router/helper/menuHelper';
 
 export function useOpenKeys(

@@ -4,7 +4,7 @@ import { toRaw, unref } from 'vue';
 import { defineStore } from 'pinia';
 import { store } from '@/store';
 
-import { useGo, useRedo } from '@/hooks/web/usePage';
+import { useGo, useRedo } from '@h/web/usePage';
 import { Persistent } from '@/utils/cache/persistent';
 
 import { PageEnum } from '@/enums/pageEnum';

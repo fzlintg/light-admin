@@ -3,7 +3,7 @@
 </template>
 <script lang="ts" setup>
   import { ref, nextTick, unref, onMounted } from 'vue';
-  import { useScript } from '@/hooks/web/useScript';
+  import { useScript } from '@h/web/useScript';
 
   defineOptions({ name: 'GoogleMap' });
 

@@ -71,7 +71,7 @@
   import { basicProps } from './props';
   import { useFullScreen } from './hooks/useModalFullScreen';
   import { omit } from 'lodash-es';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
 
   defineOptions({ name: 'BasicModal', inheritAttrs: false });
 

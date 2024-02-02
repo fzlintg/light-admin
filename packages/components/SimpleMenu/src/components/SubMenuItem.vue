@@ -69,7 +69,7 @@
     onBeforeMount,
     inject,
   } from 'vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { propTypes } from '@/utils/propTypes';
   import { useMenuItem } from './useMenu';
   import { useSimpleRootMenuContext } from './useSimpleMenuContext';

@@ -8,17 +8,17 @@
 
   import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
 
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { ScrollContainer } from '@c/Container';
 
-  import { useGo } from '@/hooks/web/usePage';
+  import { useGo } from '@h/web/usePage';
   import { useSplitMenu } from './useLayoutMenu';
   import { openWindow } from '@/utils';
   import { propTypes } from '@/utils/propTypes';
   import { isHttpUrl } from '@/utils/is';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { useAppInject } from '@/hooks/web/useAppInject';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useRootSetting } from '@h/setting/useRootSetting';
+  import { useAppInject } from '@h/web/useAppInject';
+  import { useDesign } from '@h/web/useDesign';
 
   export default defineComponent({
     name: 'LayoutMenu',

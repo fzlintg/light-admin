@@ -6,9 +6,9 @@
   import notDataSvg from '@/assets/svg/no-data.svg';
   import netWorkSvg from '@/assets/svg/net-error.svg';
   import { useRoute } from 'vue-router';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useGo, useRedo } from '@/hooks/web/usePage';
+  import { useDesign } from '@h/web/useDesign';
+  import { useI18n } from '@h/web/useI18n';
+  import { useGo, useRedo } from '@h/web/usePage';
   import { PageEnum } from '@/enums/pageEnum';
 
   interface MapValue {

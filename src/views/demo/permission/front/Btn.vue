@@ -65,7 +65,7 @@
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
   import { useUserStore } from '@/store/modules/user';
   import { RoleEnum } from '@/enums/roleEnum';
-  import { usePermission } from '@/hooks/web/usePermission';
+  import { usePermission } from '@h/web/usePermission';
   import { Authority } from '@c/Authority';
   import { PageWrapper } from '@c/Page';
 

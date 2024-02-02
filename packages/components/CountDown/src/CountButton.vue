@@ -8,7 +8,7 @@
   import { Button } from 'ant-design-vue';
   import { useCountdown } from './useCountdown';
   import { isFunction } from '@/utils/is';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
 
   defineOptions({ name: 'CountButton' });
 

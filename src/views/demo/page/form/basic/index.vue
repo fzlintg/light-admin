@@ -11,7 +11,7 @@
 <script lang="ts" setup>
   import { BasicForm, useForm } from '@c/Form';
   import { schemas } from './data';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
 
   defineOptions({ name: 'FormBasicPage' });

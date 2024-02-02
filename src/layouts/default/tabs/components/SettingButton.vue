@@ -10,7 +10,7 @@
 
   import { useDrawer } from '@c/Drawer';
 
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
 
   defineOptions({ name: 'SettingButton' });
 

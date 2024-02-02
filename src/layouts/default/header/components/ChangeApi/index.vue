@@ -19,7 +19,7 @@
 </template>
 <script lang="ts" setup>
   import { Radio } from 'ant-design-vue';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { BasicModal, useModalInner } from '@c/Modal';
   import { BasicForm, useForm } from '@c/Form';
   import { ref } from 'vue';

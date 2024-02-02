@@ -4,7 +4,7 @@ import { isImgTypeByName } from '../helper';
 import { Progress, Tag } from 'ant-design-vue';
 import TableAction from '@c/Table/src/components/TableAction.vue';
 import ThumbUrl from './ThumbUrl.vue';
-import { useI18n } from '@/hooks/web/useI18n';
+import { useI18n } from '@h/web/useI18n';
 
 const { t } = useI18n();
 

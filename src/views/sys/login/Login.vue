@@ -49,9 +49,9 @@
 </template>
 <script lang="ts" setup>
   import { AppDarkModeToggle, AppLocalePicker, AppLogo } from '@c/Application';
-  import { useGlobSetting } from '@/hooks/setting';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useGlobSetting } from '@h/setting';
+  import { useDesign } from '@h/web/useDesign';
+  import { useI18n } from '@h/web/useI18n';
   import { useLocaleStore } from '@/store/modules/locale';
   import { computed } from 'vue';
   import ForgetPasswordForm from './ForgetPasswordForm.vue';

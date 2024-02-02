@@ -2,7 +2,7 @@ import { BasicColumn, FormSchema } from '@c/Table';
 import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { setRoleStatus } from '@/api/demo/system';
-import { useMessage } from '@/hooks/web/useMessage';
+import { useMessage } from '@h/web/useMessage';
 
 type CheckedType = boolean | string | number;
 export const columns: BasicColumn[] = [

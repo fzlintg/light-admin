@@ -18,7 +18,7 @@
   import 'vditor/dist/index.css';
   import { useLocale } from '@/locales/useLocale';
   import { useModalContext } from '../../Modal';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { useRootSetting } from '@h/setting/useRootSetting';
   import { onMountedOrActivated } from '@vben/hooks';
   import { getTheme } from './getTheme';
 

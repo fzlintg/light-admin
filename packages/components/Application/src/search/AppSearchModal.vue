@@ -63,11 +63,11 @@
   import AppSearchFooter from './AppSearchFooter.vue';
   import Icon from '@c/Icon/Icon.vue';
   import vClickOutside from '@/directives/clickOutside';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useRefs } from '@vben/hooks';
   import { useMenuSearch } from './useMenuSearch';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useAppInject } from '@/hooks/web/useAppInject';
+  import { useI18n } from '@h/web/useI18n';
+  import { useAppInject } from '@h/web/useAppInject';
 
   const props = defineProps({
     visible: { type: Boolean },

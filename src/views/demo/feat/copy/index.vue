@@ -11,7 +11,7 @@
 <script lang="ts" setup>
   import { unref, ref } from 'vue';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
   import { copyText } from '@/utils/copyTextToClipboard';
 

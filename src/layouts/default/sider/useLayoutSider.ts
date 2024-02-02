@@ -4,7 +4,7 @@ import { computed, unref, onMounted, nextTick } from 'vue';
 
 import { TriggerEnum } from '@/enums/menuEnum';
 
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+import { useMenuSetting } from '@h/setting/useMenuSetting';
 import { useDebounceFn } from '@vueuse/core';
 import { useAppStore } from '@/store/modules/app';
 

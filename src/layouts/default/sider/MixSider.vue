@@ -92,13 +92,13 @@
   import { SimpleMenu } from '@c/SimpleMenu';
   import Icon from '@c/Icon/Icon.vue';
   import { AppLogo } from '@c/Application';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { usePermissionStore } from '@/store/modules/permission';
   import { useDragLine } from './useLayoutSider';
-  import { useGlobSetting } from '@/hooks/setting';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useGo } from '@/hooks/web/usePage';
+  import { useGlobSetting } from '@h/setting';
+  import { useDesign } from '@h/web/useDesign';
+  import { useI18n } from '@h/web/useI18n';
+  import { useGo } from '@h/web/usePage';
   import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@/enums/appEnum';
   import vClickOutside from '@/directives/clickOutside';
   import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@/router/menus';

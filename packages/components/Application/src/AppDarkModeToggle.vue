@@ -9,8 +9,8 @@
   import { computed, unref } from 'vue';
   import { SvgIcon } from '@c/Icon';
   import { ThemeEnum } from '@/enums/appEnum';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useRootSetting } from '@h/setting/useRootSetting';
+  import { useDesign } from '@h/web/useDesign';
   import { updateDarkTheme } from '@/logics/theme/dark';
   import { updateHeaderBgColor, updateSidebarBgColor } from '@/logics/theme/updateBackground';
 

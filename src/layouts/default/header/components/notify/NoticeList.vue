@@ -51,7 +51,7 @@
 <script lang="ts" setup>
   import { computed, PropType, ref, watch, unref } from 'vue';
   import { ListItem } from './data';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { List, Avatar, Tag, Typography } from 'ant-design-vue';
   import { isNumber } from '@/utils/is';
 

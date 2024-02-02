@@ -69,7 +69,7 @@
   import { buildShortUUID } from '@/utils/uuid';
   import { bindHandlers } from './helper';
   import { onMountedOrActivated } from '@vben/hooks';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { isNumber } from '@/utils/is';
   import { useLocale } from '@/locales/useLocale';
   import { useAppStore } from '@/store/modules/app';

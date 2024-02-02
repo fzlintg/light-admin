@@ -18,7 +18,7 @@
   import { BasicModal, useModalInner } from '@c/Modal';
   import { BasicForm, FormSchema, useForm } from '@c/Form';
 
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
 
   const { t } = useI18n();
 

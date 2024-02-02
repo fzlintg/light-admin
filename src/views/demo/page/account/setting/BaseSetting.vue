@@ -28,7 +28,7 @@
   import { CollapseContainer } from '@c/Container';
   import { CropperAvatar } from '@c/Cropper';
 
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
 
   import headerImg from '@/assets/images/header.jpg';
   import { accountInfoApi } from '@/api/demo/account';

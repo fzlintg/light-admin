@@ -2,7 +2,7 @@ import type { AppRouteRecordRaw, Menu } from '@/router/types';
 
 import { defineStore } from 'pinia';
 import { store } from '@/store';
-import { useI18n } from '@/hooks/web/useI18n';
+import { useI18n } from '@h/web/useI18n';
 import { useUserStore } from './user';
 import { useAppStoreWithOut } from './app';
 import { toRaw } from 'vue';
@@ -21,7 +21,7 @@ import { filter } from '@/utils/helper/treeHelper';
 import { getMenuList } from '@/api/sys/menu';
 import { getPermCode } from '@/api/sys/user';
 
-import { useMessage } from '@/hooks/web/useMessage';
+import { useMessage } from '@h/web/useMessage';
 import { PageEnum } from '@/enums/pageEnum';
 
 interface PermissionState {

@@ -1,7 +1,7 @@
 import { watch, unref } from 'vue';
-import { useI18n } from '@/hooks/web/useI18n';
+import { useI18n } from '@h/web/useI18n';
 import { useTitle as usePageTitle } from '@vueuse/core';
-import { useGlobSetting } from '@/hooks/setting';
+import { useGlobSetting } from '@h/setting';
 import { useRouter } from 'vue-router';
 import { useLocaleStore } from '@/store/modules/locale';
 import { REDIRECT_NAME } from '@/router/constant';

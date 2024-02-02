@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { theme } from 'ant-design-vue';
-import { useRootSetting } from '@/hooks/setting/useRootSetting';
+import { useRootSetting } from '@h/setting/useRootSetting';
 import { ThemeEnum } from '@/enums/appEnum';
 
 export function useDarkModeTheme() {

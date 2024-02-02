@@ -106,9 +106,9 @@
   import { SettingOutlined, DragOutlined } from '@ant-design/icons-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { ScrollContainer } from '@c/Container';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { useTableContext } from '../../hooks/useTableContext';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { isFunction, isNil } from '@/utils/is';
   import { getPopupContainer as getParentContainer } from '@/utils';
   import { cloneDeep, omit } from 'lodash-es';

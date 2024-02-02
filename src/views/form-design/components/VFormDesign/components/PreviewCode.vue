@@ -23,7 +23,7 @@
   import { CodeEditor, MODE } from '@c/CodeEditor';
 
   import { copyText } from '@/utils/copyTextToClipboard';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
 
   export default defineComponent({
     name: 'PreviewCode',

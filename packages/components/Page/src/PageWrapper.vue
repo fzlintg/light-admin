@@ -35,8 +35,8 @@
 </template>
 <script lang="ts" setup>
   import { PageWrapperFixedHeightKey } from '@/enums/pageEnum';
-  import { useContentHeight } from '@/hooks/web/useContentHeight';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useContentHeight } from '@h/web/useContentHeight';
+  import { useDesign } from '@h/web/useDesign';
   import { propTypes } from '@/utils/propTypes';
   import { PageHeader } from 'ant-design-vue';
   import { omit } from 'lodash-es';

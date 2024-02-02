@@ -44,7 +44,7 @@
   } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { BasicTitle } from '@c/Basic';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { useDebounceFn } from '@vueuse/core';
   import { createBEM } from '@/utils/bem';
   import { ToolbarEnum } from '../types/tree';

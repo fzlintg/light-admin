@@ -29,10 +29,10 @@
 
   import FrameLayout from '@/layouts/iframe/index.vue';
 
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
+  import { useRootSetting } from '@h/setting/useRootSetting';
 
-  import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
-  import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
+  import { useTransitionSetting } from '@h/setting/useTransitionSetting';
+  import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
   import { getTransitionName } from './transition';
 
   import { useMultipleTabStore } from '@/store/modules/multipleTab';

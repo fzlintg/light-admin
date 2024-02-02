@@ -23,14 +23,14 @@
   import LayoutSideBar from './sider/index.vue';
   import LayoutMultipleHeader from './header/MultipleHeader.vue';
 
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useLockPage } from '@/hooks/web/useLockPage';
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
+  import { useDesign } from '@h/web/useDesign';
+  import { useLockPage } from '@h/web/useLockPage';
 
-  import { useAppInject } from '@/hooks/web/useAppInject';
+  import { useAppInject } from '@h/web/useAppInject';
 
-  import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
+  import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
 
   const LayoutFeatures = createAsyncComponent(() => import('@/layouts/default/feature/index.vue'));
   const LayoutFooter = createAsyncComponent(() => import('@/layouts/default/footer/index.vue'));

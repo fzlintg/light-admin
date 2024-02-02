@@ -8,7 +8,7 @@
   import type { ErrorLogInfo } from '#/store';
   import { BasicModal } from '@c/Modal';
   import { Description, useDescription } from '@c/Description';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { getDescSchema } from './data';
 
   defineProps({

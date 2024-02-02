@@ -35,7 +35,7 @@
   import { IVFormComponent } from '../../../typings/v-form-component';
   import draggable from 'vuedraggable';
   import Icon from '@c/Icon/Icon.vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
 
   export default defineComponent({
     name: 'CollapseItem',

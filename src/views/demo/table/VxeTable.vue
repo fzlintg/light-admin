@@ -16,7 +16,7 @@
   import { reactive, ref } from 'vue';
   import { ActionItem, TableAction } from '@c/Table';
   import { PageWrapper } from '@c/Page';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { vxeTableColumns, vxeTableFormSchema } from './tableData';
   import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';

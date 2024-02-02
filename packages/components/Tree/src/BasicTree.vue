@@ -29,7 +29,7 @@
   import { extendSlots, getSlot } from '@/utils/helper/tsxHelper';
   import { filter, treeToList, eachTree } from '@/utils/helper/treeHelper';
   import { useTree } from './hooks/useTree';
-  import { useContextMenu } from '@/hooks/web/useContextMenu';
+  import { useContextMenu } from '@h/web/useContextMenu';
   import { CreateContextOptions } from '@c/ContextMenu';
   import { treeEmits, treeProps } from './types/tree';
   import { createBEM } from '@/utils/bem';

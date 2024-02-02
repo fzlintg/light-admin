@@ -6,7 +6,7 @@
 <script lang="ts" setup>
   import { computed, PropType } from 'vue';
   import { BasicTitle } from '@c/Basic';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { isFunction } from '@/utils/is';
 
   defineOptions({ name: 'BasicTableTitle' });

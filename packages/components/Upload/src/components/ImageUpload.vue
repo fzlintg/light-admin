@@ -29,10 +29,10 @@
   import type { UploadFile, UploadProps } from 'ant-design-vue';
   import { Modal, Upload } from 'ant-design-vue';
   import { UploadRequestOption } from 'ant-design-vue/lib/vc-upload/interface';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { isArray, isFunction, isObject, isString } from '@/utils/is';
   import { warn } from '@/utils/log';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { useUploadType } from '../hooks/useUpload';
   import { uploadContainerProps } from '../props';
   import { isImgTypeByName } from '../helper';

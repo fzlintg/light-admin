@@ -40,7 +40,7 @@
   import { IFormConfig } from '../../../typings/v-form-component';
   import { formItemsForEach, generateKey } from '../../../utils';
   import { CodeEditor, MODE } from '@c/CodeEditor';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { Upload, Modal } from 'ant-design-vue';
 
   export default defineComponent({

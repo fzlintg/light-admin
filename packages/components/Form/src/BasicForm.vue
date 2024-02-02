@@ -61,7 +61,7 @@
   import { useDebounceFn } from '@vueuse/core';
 
   import { basicProps } from './props';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { cloneDeep } from 'lodash-es';
   import { TableActionType } from '@c/Table';
 

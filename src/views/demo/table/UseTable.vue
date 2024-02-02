@@ -22,7 +22,7 @@
 <script lang="ts" setup>
   import { BasicTable, ColumnChangeParam, useTable } from '@c/Table';
   import { getBasicColumns, getBasicShortColumns } from './tableData';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { demoListApi } from '@/api/demo/table';
 
   const { createMessage } = useMessage();

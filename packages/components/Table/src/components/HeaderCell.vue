@@ -4,7 +4,7 @@
   import { defineComponent, computed } from 'vue';
   import BasicHelp from '@c/Basic/src/BasicHelp.vue';
   import EditTableHeaderCell from './EditTableHeaderIcon.vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { ColumnType } from 'ant-design-vue/lib/table/interface';
 
   export default defineComponent({

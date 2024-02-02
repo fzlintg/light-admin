@@ -8,11 +8,11 @@
 
 <script lang="ts" setup>
   import { AppProvider } from '@c/Application';
-  import { useTitle } from '@/hooks/web/useTitle';
+  import { useTitle } from '@h/web/useTitle';
   import { useLocale } from '@/locales/useLocale';
   import { ConfigProvider } from 'ant-design-vue';
 
-  import { useDarkModeTheme } from '@/hooks/setting/useDarkModeTheme';
+  import { useDarkModeTheme } from '@h/setting/useDarkModeTheme';
   import 'dayjs/locale/zh-cn';
   import { computed } from 'vue';
 

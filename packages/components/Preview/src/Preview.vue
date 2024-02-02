@@ -19,7 +19,7 @@
   import { computed } from 'vue';
 
   import { Image } from 'ant-design-vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { propTypes } from '@/utils/propTypes';
   import { isString } from '@/utils/is';
 

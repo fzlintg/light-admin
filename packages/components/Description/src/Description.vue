@@ -14,7 +14,7 @@
   import { get } from 'lodash-es';
   import { Descriptions } from 'ant-design-vue';
   import { CollapseContainer } from '@c/Container';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { isFunction } from '@/utils/is';
   import { getSlot } from '@/utils/helper/tsxHelper';
   import { useAttrs } from '@vben/hooks';

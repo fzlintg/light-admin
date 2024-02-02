@@ -6,7 +6,7 @@
   import { getPopupContainer } from '@/utils';
   import { isString, isArray } from '@/utils/is';
   import { getSlot } from '@/utils/helper/tsxHelper';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
 
   const props = {
     /**

@@ -30,7 +30,7 @@
   import { Alert, Space } from 'ant-design-vue';
   import { useUserStore } from '@/store/modules/user';
   import { RoleEnum } from '@/enums/roleEnum';
-  import { usePermission } from '@/hooks/web/usePermission';
+  import { usePermission } from '@h/web/usePermission';
   import { PageWrapper } from '@c/Page';
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
 

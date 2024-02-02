@@ -8,7 +8,7 @@
 <script lang="ts" setup>
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import Login from './Login.vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useUserStore } from '@/store/modules/user';
   import { usePermissionStore } from '@/store/modules/permission';
   import { useAppStore } from '@/store/modules/app';

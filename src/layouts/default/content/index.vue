@@ -13,9 +13,9 @@
   import { BackTop } from 'ant-design-vue';
 
   import PageLayout from '@/layouts/page/index.vue';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
+  import { useDesign } from '@h/web/useDesign';
+  import { useRootSetting } from '@h/setting/useRootSetting';
+  import { useTransitionSetting } from '@h/setting/useTransitionSetting';
   import { useContentViewHeight } from './useContentViewHeight';
 
   defineOptions({ name: 'LayoutContent' });

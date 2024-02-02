@@ -17,7 +17,7 @@
     getCurrentInstance,
     provide,
   } from 'vue';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { propTypes } from '@/utils/propTypes';
   import { createSimpleRootMenuContext, type MenuEmitterEvents } from './useSimpleMenuContext';
   import { mitt } from '@/utils/mitt';

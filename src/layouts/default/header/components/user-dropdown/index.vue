@@ -47,9 +47,9 @@
   import { computed } from 'vue';
   import { DOC_URL } from '@/settings/siteSetting';
   import { useUserStore } from '@/store/modules/user';
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting';
+  import { useI18n } from '@h/web/useI18n';
+  import { useDesign } from '@h/web/useDesign';
   import { useModal } from '@c/Modal';
   import headerImg from '@/assets/images/header.jpg';
   import { propTypes } from '@/utils/propTypes';

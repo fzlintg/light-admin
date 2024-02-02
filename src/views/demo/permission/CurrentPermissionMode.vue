@@ -13,7 +13,7 @@
   import { useAppStore } from '@/store/modules/app';
   import { PermissionModeEnum } from '@/enums/appEnum';
   import { Divider } from 'ant-design-vue';
-  import { usePermission } from '@/hooks/web/usePermission';
+  import { usePermission } from '@h/web/usePermission';
 
   defineOptions({ name: 'CurrentPermissionMode' });
 

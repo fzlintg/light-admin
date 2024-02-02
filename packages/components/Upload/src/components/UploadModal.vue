@@ -54,7 +54,7 @@
   import { BasicModal, useModalInner } from '@c/Modal';
   // hooks
   import { useUploadType } from '../hooks/useUpload';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   //   types
   import { FileItem, UploadResultStatus } from '../types/typing';
   import { basicProps } from '../props';
@@ -65,7 +65,7 @@
   import { isFunction } from '@/utils/is';
   import { warn } from '@/utils/log';
   import FileList from './FileList.vue';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
 
   const props = defineProps({
     ...basicProps,

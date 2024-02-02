@@ -38,8 +38,8 @@
   import DetailModal from './DetailModal.vue';
   import { BasicTable, useTable, TableAction } from '@c/Table';
   import { useModal } from '@c/Modal';
-  import { useMessage } from '@/hooks/web/useMessage';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useMessage } from '@h/web/useMessage';
+  import { useI18n } from '@h/web/useI18n';
   import { useErrorLogStore } from '@/store/modules/errorLog';
   import { fireErrorApi } from '@/api/demo/error';
   import { getColumns } from './data';

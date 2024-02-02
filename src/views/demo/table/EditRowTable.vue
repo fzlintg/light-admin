@@ -24,7 +24,7 @@
   import { demoListApi } from '@/api/demo/table';
   import { treeOptionsListApi } from '@/api/demo/tree';
   import { cloneDeep } from 'lodash-es';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
 
   const columns: BasicColumn[] = [
     {

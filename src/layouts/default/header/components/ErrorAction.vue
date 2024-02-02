@@ -14,7 +14,7 @@
   import { computed } from 'vue';
   import { Tooltip, Badge } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { useErrorLogStore } from '@/store/modules/errorLog';
   import { PageEnum } from '@/enums/pageEnum';
 

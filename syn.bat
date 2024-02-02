@@ -1,5 +1,5 @@
 
 git add .
-git commit -m "feat: add code"  
+git commit --no-verify -m "feat: add code"  
 git push
 

@@ -102,7 +102,7 @@
   import { useRefHistory, UseRefHistoryReturn } from '@vueuse/core';
   import { globalConfigState } from './config/formItemPropsConfig';
   import { IFormDesignMethods, IPropsPanel, IToolbarMethods } from '../../typings/form-type';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
 
   import { CollapseContainer } from '@c/Container';
 

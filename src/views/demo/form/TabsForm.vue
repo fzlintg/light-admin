@@ -24,7 +24,7 @@
   import { Tabs } from 'ant-design-vue';
   import { PageWrapper } from '@c/Page';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { omit } from 'lodash-es';
   import { deepMerge } from '@/utils';
   import { BasicForm, FormSchema, useForm, FormProps, UseFormReturnType } from '@c/Form';

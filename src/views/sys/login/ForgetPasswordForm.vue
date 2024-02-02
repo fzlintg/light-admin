@@ -37,7 +37,7 @@
   import LoginFormTitle from './LoginFormTitle.vue';
   import { Form, Input, Button } from 'ant-design-vue';
   import { CountdownInput } from '@c/CountDown';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { useLoginState, useFormRules, LoginStateEnum } from './useLogin';
 
   const FormItem = Form.Item;

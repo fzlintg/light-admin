@@ -4,9 +4,9 @@ import { computed, unref } from 'vue';
 
 import { useAppStore } from '@/store/modules/app';
 
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-import { useRootSetting } from '@/hooks/setting/useRootSetting';
-import { useFullContent } from '@/hooks/web/useFullContent';
+import { useMenuSetting } from '@h/setting/useMenuSetting';
+import { useRootSetting } from '@h/setting/useRootSetting';
+import { useFullContent } from '@h/web/useFullContent';
 import { MenuModeEnum } from '@/enums/menuEnum';
 
 export function useHeaderSetting() {

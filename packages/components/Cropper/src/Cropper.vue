@@ -15,7 +15,7 @@
   import { onMounted, ref, unref, computed, onUnmounted } from 'vue';
   import Cropper from 'cropperjs';
   import 'cropperjs/dist/cropper.css';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useDebounceFn } from '@vueuse/core';
   import { useAttrs } from '@vben/hooks';
 

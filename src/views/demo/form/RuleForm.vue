@@ -15,7 +15,7 @@
 <script lang="ts" setup>
   import { BasicForm, FormSchema, useForm } from '@c/Form';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
   import { isAccountExist } from '@/api/demo/system';
 

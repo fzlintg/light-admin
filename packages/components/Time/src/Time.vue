@@ -3,7 +3,7 @@
 </template>
 <script lang="ts" setup>
   import { ref, watch } from 'vue';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
   import { useIntervalFn } from '@vueuse/core';
   import { formatToDateTime, formatToDate, dateUtil } from '@/utils/dateUtil';
   import { isNumber, isObject, isString } from '@/utils/is';

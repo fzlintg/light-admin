@@ -23,7 +23,7 @@
   } from '../helper';
   import { cloneDeep, upperFirst } from 'lodash-es';
   import { useItemLabelWidth } from '../hooks/useLabelWidth';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useI18n } from '@h/web/useI18n';
 
   export default defineComponent({
     name: 'BasicFormItem',

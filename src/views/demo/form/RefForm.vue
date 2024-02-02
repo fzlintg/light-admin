@@ -70,7 +70,7 @@
   import { nextTick, ref, unref } from 'vue';
   import { BasicForm, FormSchema, FormActionType, FormProps } from '@c/Form';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
   import { type Nullable } from '@vben/types';
 

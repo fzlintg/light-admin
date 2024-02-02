@@ -33,7 +33,7 @@
   import { ref, unref } from 'vue';
   import { BasicTable, TableActionType } from '@c/Table';
   import { getBasicColumns, getBasicShortColumns } from './tableData';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { demoListApi } from '@/api/demo/table';
   import { type Nullable } from '@vben/types';
 

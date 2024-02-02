@@ -4,8 +4,8 @@
 <script lang="ts" setup>
   import { computed, unref } from 'vue';
 
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
+  import { useDesign } from '@h/web/useDesign';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
 
   defineOptions({ name: 'DargBar' });
 

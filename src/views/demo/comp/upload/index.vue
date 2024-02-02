@@ -17,7 +17,7 @@
 </template>
 <script lang="ts" setup>
   import { BasicUpload } from '@c/Upload';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { BasicForm, FormSchema, useForm } from '@c/Form';
   import { PageWrapper } from '@c/Page';
   import { Alert } from 'ant-design-vue';

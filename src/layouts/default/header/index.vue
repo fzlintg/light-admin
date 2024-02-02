@@ -61,11 +61,11 @@
   import { AppLocalePicker, AppLogo, AppSearch } from '@c/Application';
   import { SettingButtonPositionEnum } from '@/enums/appEnum';
   import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { useAppInject } from '@/hooks/web/useAppInject';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting';
+  import { useMenuSetting } from '@h/setting/useMenuSetting';
+  import { useRootSetting } from '@h/setting/useRootSetting';
+  import { useAppInject } from '@h/web/useAppInject';
+  import { useDesign } from '@h/web/useDesign';
   import { useLocale } from '@/locales/useLocale';
   import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
   import { propTypes } from '@/utils/propTypes';

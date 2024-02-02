@@ -14,12 +14,12 @@ import { AppDarkModeToggle } from '@c/Application';
 
 import { MenuTypeEnum, TriggerEnum } from '@/enums/menuEnum';
 
-import { useRootSetting } from '@/hooks/setting/useRootSetting';
-import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
-import { useTransitionSetting } from '@/hooks/setting/useTransitionSetting';
-import { useI18n } from '@/hooks/web/useI18n';
+import { useRootSetting } from '@h/setting/useRootSetting';
+import { useMenuSetting } from '@h/setting/useMenuSetting';
+import { useHeaderSetting } from '@h/setting/useHeaderSetting';
+import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
+import { useTransitionSetting } from '@h/setting/useTransitionSetting';
+import { useI18n } from '@h/web/useI18n';
 
 import { baseHandler } from './handler';
 

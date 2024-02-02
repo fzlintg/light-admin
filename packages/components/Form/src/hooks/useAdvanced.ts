@@ -3,7 +3,7 @@ import type { AdvanceState } from '../types/hooks';
 import { ComputedRef, getCurrentInstance, Ref, shallowReactive, computed, unref, watch } from 'vue';
 import type { FormProps, FormSchemaInner as FormSchema } from '../types/form';
 import { isBoolean, isFunction, isNumber, isObject } from '@/utils/is';
-import { useBreakpoint } from '@/hooks/event/useBreakpoint';
+import { useBreakpoint } from '@h/event/useBreakpoint';
 import { useDebounceFn } from '@vueuse/core';
 
 const BASIC_COL_LEN = 24;

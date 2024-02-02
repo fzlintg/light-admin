@@ -26,8 +26,8 @@
 </template>
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useI18n } from '@h/web/useI18n';
+  import { useDesign } from '@h/web/useDesign';
   import { BasicModal, useModalInner } from '@c/Modal';
   import { BasicForm, useForm } from '@c/Form';
 

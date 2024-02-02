@@ -15,7 +15,7 @@
 
   import { demoListApi } from '@/api/demo/table';
   import { treeOptionsListApi } from '@/api/demo/tree';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { Progress } from 'ant-design-vue';
 
   const columns: BasicColumn[] = [

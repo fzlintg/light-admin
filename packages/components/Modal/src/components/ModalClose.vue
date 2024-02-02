@@ -17,8 +17,8 @@
   import { computed } from 'vue';
   import { FullscreenExitOutlined, FullscreenOutlined, CloseOutlined } from '@ant-design/icons-vue';
   import { Tooltip } from 'ant-design-vue';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useI18n } from '@/hooks/web/useI18n';
+  import { useDesign } from '@h/web/useDesign';
+  import { useI18n } from '@h/web/useI18n';
 
   defineOptions({ name: 'ModalClose' });
 

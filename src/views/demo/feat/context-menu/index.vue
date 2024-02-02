@@ -10,9 +10,9 @@
   </PageWrapper>
 </template>
 <script lang="ts" setup>
-  import { useContextMenu } from '@/hooks/web/useContextMenu';
+  import { useContextMenu } from '@h/web/useContextMenu';
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
 
   const [createContextMenu] = useContextMenu();

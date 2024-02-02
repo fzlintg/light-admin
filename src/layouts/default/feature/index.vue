@@ -9,9 +9,9 @@
 <script lang="ts" setup>
   import { computed, unref } from 'vue';
 
-  import { useRootSetting } from '@/hooks/setting/useRootSetting';
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useRootSetting } from '@h/setting/useRootSetting';
+  import { useHeaderSetting } from '@h/setting/useHeaderSetting';
+  import { useDesign } from '@h/web/useDesign';
   import { useUserStoreWithOut } from '@/store/modules/user';
 
   import { SettingButtonPositionEnum } from '@/enums/appEnum';
@@ -19,7 +19,7 @@
 
   import SessionTimeoutLogin from '@/views/sys/login/SessionTimeoutLogin.vue';
 
-  import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
+  import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
 
   defineOptions({ name: 'LayoutFeatures' });
 

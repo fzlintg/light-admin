@@ -12,7 +12,7 @@
   import { CardList } from '@c/CardList';
   import { PageWrapper } from '@c/Page';
   import { demoListApi } from '@/api/demo/table';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
 
   const { notification } = useMessage();
   // 请求api时附带参数

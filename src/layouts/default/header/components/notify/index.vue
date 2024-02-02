@@ -28,8 +28,8 @@
   import { BellOutlined } from '@ant-design/icons-vue';
   import { tabListData, ListItem } from './data';
   import NoticeList from './NoticeList.vue';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useDesign } from '@h/web/useDesign';
+  import { useMessage } from '@h/web/useMessage';
 
   const { prefixCls } = useDesign('header-notify');
   const { createMessage } = useMessage();

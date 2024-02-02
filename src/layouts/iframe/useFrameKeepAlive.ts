@@ -6,7 +6,7 @@ import { useMultipleTabStore } from '@/store/modules/multipleTab';
 
 import { uniqBy } from 'lodash-es';
 
-import { useMultipleTabSetting } from '@/hooks/setting/useMultipleTabSetting';
+import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
 
 import { useRouter } from 'vue-router';
 

@@ -53,7 +53,7 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
   import { BasicDragVerify, DragVerifyActionType, PassingData } from '@c/Verify';
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
   import { BugOutlined, RightOutlined } from '@ant-design/icons-vue';
   import { PageWrapper } from '@c/Page';
   import { type Nullable } from '@vben/types';

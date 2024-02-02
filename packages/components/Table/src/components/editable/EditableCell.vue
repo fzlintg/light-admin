@@ -5,7 +5,7 @@
   import { CheckOutlined, CloseOutlined, FormOutlined } from '@ant-design/icons-vue';
   import { CellComponent } from './CellComponent';
 
-  import { useDesign } from '@/hooks/web/useDesign';
+  import { useDesign } from '@h/web/useDesign';
   import { useTableContext } from '../../hooks/useTableContext';
 
   import clickOutside from '@/directives/clickOutside';
