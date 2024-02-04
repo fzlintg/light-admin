@@ -9,9 +9,9 @@ import { wrapperEnv } from './build/utils'
 import { createVitePlugins } from './build/vite/plugin'
 import { OUTPUT_DIR } from './build/constant'
 
-function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir)
-}
+// function pathResolve(dir: string) {
+//   return resolve(process.cwd(), '.', dir)
+// }
 
 const { dependencies, devDependencies, name, version } = pkg
 const __APP_INFO__ = {
@@ -35,22 +35,26 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     base: VITE_PUBLIC_PATH,
     root,
     resolve: {
-      alias: [
-        {
-          find: 'vue-i18n',
-          replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
-        },
-        // /@/xxxx => src/xxxx
-        {
-          find: /\/@\//,
-          replacement: pathResolve('src') + '/',
-        },
-        // /#/xxxx => types/xxxx
-        {
-          find: /\/#\//,
-          replacement: pathResolve('types') + '/',
-        },
-      ],
+      alias: {
+        '@': resolve(__dirname, 'src'),
+        '#': resolve(__dirname, 'types'),
+      },
+      // [
+      //   {
+      //     find: 'vue-i18n',
+      //     replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
+      //   },
+      //   // /@/xxxx => src/xxxx
+      //   {
+      //     find: /\/@\//,
+      //     replacement: pathResolve('src') + '/',
+      //   },
+      //   // /#/xxxx => types/xxxx
+      //   {
+      //     find: /\/#\//,
+      //     replacement: pathResolve('types') + '/',
+      //   },
+      // ],
     },
     server: {
       https: true,
