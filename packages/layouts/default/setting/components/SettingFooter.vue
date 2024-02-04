@@ -31,9 +31,9 @@
   import { useMessage } from '/@/hooks/web/useMessage'
   import { useCopyToClipboard } from '/@/hooks/web/useCopyToClipboard'
 
-  import { updateColorWeak } from '/@/logics/theme/updateColorWeak'
-  import { updateGrayMode } from '/@/logics/theme/updateGrayMode'
-  import defaultSetting from '/@/settings/projectSetting'
+  import { updateColorWeak } from '/@logics/theme/updateColorWeak'
+  import { updateGrayMode } from '/@logics/theme/updateGrayMode'
+  import defaultSetting from '/@settings/projectSetting'
 
   export default defineComponent({
     name: 'SettingFooter',

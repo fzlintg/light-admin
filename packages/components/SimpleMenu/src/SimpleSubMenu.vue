@@ -52,9 +52,9 @@
 
   import MenuItem from './components/MenuItem.vue'
   import SubMenu from './components/SubMenuItem.vue'
-  import { propTypes } from '/@/utils/propTypes'
+  import { propTypes } from '/@utils/propTypes'
   import { useI18n } from '/@/hooks/web/useI18n'
-  import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent'
+  import { createAsyncComponent } from '/@utils/factory/createAsyncComponent'
 
   export default defineComponent({
     name: 'SimpleSubMenu',

@@ -12,7 +12,7 @@ import {
 
 import { AppDarkModeToggle } from '/@/components/Application'
 
-import { MenuTypeEnum, TriggerEnum } from '/@/enums/menuEnum'
+import { MenuTypeEnum, TriggerEnum } from '/@enums/menuEnum'
 
 import { useRootSetting } from '/@/hooks/setting/useRootSetting'
 import { useMenuSetting } from '/@/hooks/setting/useMenuSetting'
@@ -37,7 +37,7 @@ import {
   HEADER_PRESET_BG_COLOR_LIST,
   SIDE_BAR_BG_COLOR_LIST,
   APP_PRESET_COLOR_LIST,
-} from '/@/settings/designSetting'
+} from '/@settings/designSetting'
 
 const { t } = useI18n()
 

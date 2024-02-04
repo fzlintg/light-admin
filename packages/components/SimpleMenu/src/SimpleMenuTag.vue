@@ -7,7 +7,7 @@
   import { defineComponent, computed } from 'vue'
 
   import { useDesign } from '/@/hooks/web/useDesign'
-  import { propTypes } from '/@/utils/propTypes'
+  import { propTypes } from '/@utils/propTypes'
 
   export default defineComponent({
     name: 'SimpleMenuTag',

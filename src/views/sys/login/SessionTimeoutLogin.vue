@@ -12,7 +12,7 @@
   import { useUserStore } from '/@/store/modules/user'
   import { usePermissionStore } from '/@/store/modules/permission'
   import { useAppStore } from '/@/store/modules/app'
-  import { PermissionModeEnum } from '/@/enums/appEnum'
+  import { PermissionModeEnum } from '/@enums/appEnum'
 
   const { prefixCls } = useDesign('st-login')
   const userStore = useUserStore()

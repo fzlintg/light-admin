@@ -55,7 +55,7 @@
 <script lang="ts">
   import { defineComponent, unref, computed } from 'vue'
 
-  import { propTypes } from '/@/utils/propTypes'
+  import { propTypes } from '/@utils/propTypes'
 
   import { Layout } from 'ant-design-vue'
   import { AppLogo } from '/@/components/Application'
@@ -68,16 +68,16 @@
   import { useMenuSetting } from '/@/hooks/setting/useMenuSetting'
   import { useRootSetting } from '/@/hooks/setting/useRootSetting'
 
-  import { MenuModeEnum, MenuSplitTyeEnum } from '/@/enums/menuEnum'
-  import { SettingButtonPositionEnum } from '/@/enums/appEnum'
+  import { MenuModeEnum, MenuSplitTyeEnum } from '/@enums/menuEnum'
+  import { SettingButtonPositionEnum } from '/@enums/appEnum'
   import { AppLocalePicker } from '/@/components/Application'
 
   import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify } from './components'
   import { useAppInject } from '/@/hooks/web/useAppInject'
   import { useDesign } from '/@/hooks/web/useDesign'
 
-  import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent'
-  import { useLocale } from '/@/locales/useLocale'
+  import { createAsyncComponent } from '/@utils/factory/createAsyncComponent'
+  import { useLocale } from '/@locales/useLocale'
 
   export default defineComponent({
     name: 'LayoutHeader',
@@ -92,7 +92,7 @@
       FullScreen,
       Notify,
       AppSearch,
-      SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue'), {
+      SettingDrawer: createAsyncComponent(() => import('/@directives/default/setting/index.vue'), {
         loading: true,
       }),
     },

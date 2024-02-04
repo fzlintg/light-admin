@@ -30,9 +30,9 @@
 
   import { Layout } from 'ant-design-vue'
   import LayoutMenu from '../menu/index.vue'
-  import LayoutTrigger from '/@/layouts/default/trigger/index.vue'
+  import LayoutTrigger from '/@directives/default/trigger/index.vue'
 
-  import { MenuModeEnum, MenuSplitTyeEnum } from '/@/enums/menuEnum'
+  import { MenuModeEnum, MenuSplitTyeEnum } from '/@enums/menuEnum'
 
   import { useMenuSetting } from '/@/hooks/setting/useMenuSetting'
   import { useTrigger, useDragLine, useSiderEvent } from './useLayoutSider'

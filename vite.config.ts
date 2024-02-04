@@ -40,7 +40,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '@/': resolve(__dirname, 'src/'),
         '#': resolve(__dirname, 'types'),
         '@c': resolve(__dirname, 'packages/components'),
-        '@h': resolve(__dirname, 'packages/myhooks'), // 路径别名
+        '@h': resolve(__dirname, 'packages/hooks'), // 路径别名
         '@utils': resolve(__dirname, 'packages/utils'), // 路径别名
         '@layouts': resolve(__dirname, 'packages/layouts'), // 路径别名
         '@directives': resolve(__dirname, 'packages/directives'), // 路径别名

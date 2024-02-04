@@ -2,7 +2,7 @@ import type { AppRouteRecordRaw, AppRouteModule } from '/@/router/types'
 
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '/@/router/routes/basic'
 
-import { PageEnum } from '/@/enums/pageEnum'
+import { PageEnum } from '/@enums/pageEnum'
 import { t } from '/@/hooks/web/useI18n'
 
 // import.meta.globEager() 直接引入所有的模块 Vite 独有的功能
