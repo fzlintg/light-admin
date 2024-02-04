@@ -26,7 +26,7 @@
   import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@h/web/useMessage';
   import { omit } from 'lodash-es';
-  import { deepMerge } from '@u';
+  import { deepMerge } from '@utils';
   import { BasicForm, FormSchema, useForm, FormProps, UseFormReturnType } from '@c/Form';
 
   defineOptions({ name: 'TabsFormDemo' });

@@ -6,5 +6,5 @@ const setting: Partial<ProjectConfig> = {
     showSettingButton: false
 
 }
-
-export default _.merge(projectSetting, setting)
+//const result=_.merge(projectSetting, setting)
+export default _.merge(projectSetting, setting);

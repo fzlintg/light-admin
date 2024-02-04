@@ -15,7 +15,7 @@ import { APP_DARK_MODE_KEY, PROJ_CFG_KEY, API_ADDRESS } from '@enums/cacheEnum';
 import { Persistent } from '@utils/cache/persistent';
 import { darkMode } from '@settings/designSetting';
 import { resetRouter } from '@/router';
-import { deepMerge } from '@u';
+import { deepMerge } from '@utils';
 
 interface AppState {
   darkMode?: ThemeEnum;

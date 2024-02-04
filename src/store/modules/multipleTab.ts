@@ -9,10 +9,10 @@ import { Persistent } from '@utils/cache/persistent';
 
 import { PageEnum } from '@enums/pageEnum';
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic';
-import { getRawRoute } from '@u';
+import { getRawRoute } from '@utils';
 import { MULTIPLE_TABS_KEY } from '@enums/cacheEnum';
 
-import projectSetting from '@settings/projectSetting';
+import projectSetting from '@/settings/projectSetting';
 import { useUserStore } from '@/store/modules/user';
 
 export interface MultipleTabState {
