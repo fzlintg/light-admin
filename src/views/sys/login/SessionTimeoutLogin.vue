@@ -12,7 +12,7 @@
   import { useUserStore } from '@/store/modules/user';
   import { usePermissionStore } from '@/store/modules/permission';
   import { useAppStore } from '@/store/modules/app';
-  import { PermissionModeEnum } from '@/enums/appEnum';
+  import { PermissionModeEnum } from '@enums/appEnum';
   import { type Nullable } from '@vben/types';
 
   const { prefixCls } = useDesign('st-login');

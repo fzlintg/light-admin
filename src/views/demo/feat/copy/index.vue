@@ -13,7 +13,7 @@
   import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@h/web/useMessage';
   import { PageWrapper } from '@c/Page';
-  import { copyText } from '@u/copyTextToClipboard';
+  import { copyText } from '@utils/copyTextToClipboard';
 
   const valueRef = ref('');
   const { createMessage } = useMessage();

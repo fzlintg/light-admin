@@ -99,12 +99,12 @@
   import { useDesign } from '@h/web/useDesign';
   import { useI18n } from '@h/web/useI18n';
   import { useGo } from '@h/web/usePage';
-  import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@/enums/appEnum';
-  import vClickOutside from '@/directives/clickOutside';
+  import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@enums/appEnum';
+  import vClickOutside from '@directives/clickOutside';
   import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@/router/menus';
-  import { listenerRouteChange } from '@/logics/mitt/routeChange';
+  import { listenerRouteChange } from '@logics/mitt/routeChange';
   import LayoutTrigger from '../trigger/index.vue';
-  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@utils/factory/createAsyncComponent';
 
   const SimpleMenuTag = createAsyncComponent(() => import('@c/SimpleMenu/src/SimpleMenuTag.vue'));
 

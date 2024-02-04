@@ -23,7 +23,7 @@
   import { ref, watchEffect, unref, computed } from 'vue';
   import { Dropdown } from '@c/Dropdown';
   import Icon from '@c/Icon/Icon.vue';
-  import { useLocale } from '@/locales/useLocale';
+  import { useLocale } from '@locales/useLocale';
   import { localeList } from '@/settings/localeSetting';
 
   const props = defineProps({

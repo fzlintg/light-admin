@@ -1,6 +1,6 @@
 import { Tag } from 'ant-design-vue';
 import { BasicColumn } from '@c/Table';
-import { ErrorTypeEnum } from '@/enums/exceptionEnum';
+import { ErrorTypeEnum } from '@enums/exceptionEnum';
 import { useI18n } from '@h/web/useI18n';
 
 const { t } = useI18n();

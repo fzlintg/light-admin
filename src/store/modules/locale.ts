@@ -3,8 +3,8 @@ import type { LocaleSetting, LocaleType } from '#/config';
 import { defineStore } from 'pinia';
 import { store } from '@/store';
 
-import { LOCALE_KEY } from '@/enums/cacheEnum';
-import { createLocalStorage } from '@u/cache';
+import { LOCALE_KEY } from '@enums/cacheEnum';
+import { createLocalStorage } from '@utils/cache';
 import { localeSetting } from '@/settings/localeSetting';
 
 const ls = createLocalStorage();

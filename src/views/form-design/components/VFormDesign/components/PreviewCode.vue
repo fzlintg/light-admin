@@ -22,7 +22,7 @@
   import { defineComponent, reactive, toRefs } from 'vue';
   import { CodeEditor, MODE } from '@c/CodeEditor';
 
-  import { copyText } from '@u/copyTextToClipboard';
+  import { copyText } from '@utils/copyTextToClipboard';
   import { useMessage } from '@h/web/useMessage';
 
   export default defineComponent({

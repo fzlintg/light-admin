@@ -47,7 +47,7 @@
   import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
 
   import { REDIRECT_NAME } from '@/router/constant';
-  import { listenerRouteChange } from '@/logics/mitt/routeChange';
+  import { listenerRouteChange } from '@logics/mitt/routeChange';
 
   import { useRouter } from 'vue-router';
 

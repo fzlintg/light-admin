@@ -7,7 +7,7 @@
   import { computed, PropType } from 'vue';
   import { BasicTitle } from '@c/Basic';
   import { useDesign } from '@h/web/useDesign';
-  import { isFunction } from '@u/is';
+  import { isFunction } from '@utils/is';
 
   defineOptions({ name: 'BasicTableTitle' });
 

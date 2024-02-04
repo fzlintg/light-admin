@@ -4,7 +4,7 @@
   </span>
 </template>
 <script lang="ts" setup>
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { Image } from 'ant-design-vue';
 
   defineProps({

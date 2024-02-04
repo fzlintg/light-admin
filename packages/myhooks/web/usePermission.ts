@@ -10,11 +10,11 @@ import { router, resetRouter } from '@/router';
 // import { RootRoute } from '@/router/routes';
 
 import projectSetting from '@/settings/projectSetting';
-import { PermissionModeEnum } from '@/enums/appEnum';
-import { RoleEnum } from '@/enums/roleEnum';
+import { PermissionModeEnum } from '@enums/appEnum';
+import { RoleEnum } from '@enums/roleEnum';
 
 import { intersection } from 'lodash-es';
-import { isArray } from '@u/is';
+import { isArray } from '@utils/is';
 import { useMultipleTabStore } from '@/store/modules/multipleTab';
 
 // User permissions related operations

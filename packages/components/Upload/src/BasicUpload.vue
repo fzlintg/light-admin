@@ -46,7 +46,7 @@
   import { uploadContainerProps } from './props';
   import { omit } from 'lodash-es';
   import { useI18n } from '@h/web/useI18n';
-  import { isArray } from '@u/is';
+  import { isArray } from '@utils/is';
   import UploadModal from './components/UploadModal.vue';
   import UploadPreviewModal from './components/UploadPreviewModal.vue';
 

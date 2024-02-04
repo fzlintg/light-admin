@@ -1,4 +1,4 @@
-import { ThemeEnum } from '../enums/appEnum';
+import { ThemeEnum } from '../../packages/enums/appEnum';
 
 export const prefixCls = 'vben';
 

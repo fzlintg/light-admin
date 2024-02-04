@@ -23,8 +23,8 @@
   import { PropType, ref, unref, watch } from 'vue';
   import { Cascader } from 'ant-design-vue';
   import type { CascaderProps } from 'ant-design-vue';
-  import { propTypes } from '@u/propTypes';
-  import { isFunction } from '@u/is';
+  import { propTypes } from '@utils/propTypes';
+  import { isFunction } from '@utils/is';
   import { get, omit } from 'lodash-es';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { LoadingOutlined } from '@ant-design/icons-vue';

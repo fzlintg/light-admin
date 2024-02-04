@@ -62,7 +62,7 @@
   import { SearchOutlined } from '@ant-design/icons-vue';
   import AppSearchFooter from './AppSearchFooter.vue';
   import Icon from '@c/Icon/Icon.vue';
-  import vClickOutside from '@/directives/clickOutside';
+  import vClickOutside from '@directives/clickOutside';
   import { useDesign } from '@h/web/useDesign';
   import { useRefs } from '@vben/hooks';
   import { useMenuSearch } from './useMenuSearch';

@@ -16,7 +16,7 @@
   import { useGo } from '@h/web/usePage';
   import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { useDesign } from '@h/web/useDesign';
-  import { PageEnum } from '@/enums/pageEnum';
+  import { PageEnum } from '@enums/pageEnum';
   import { useUserStore } from '@/store/modules/user';
 
   const props = defineProps({

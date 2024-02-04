@@ -6,7 +6,7 @@
   import { SimpleMenu } from '@c/SimpleMenu';
   import { AppLogo } from '@c/Application';
 
-  import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
+  import { MenuModeEnum, MenuSplitTyeEnum } from '@enums/menuEnum';
 
   import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { ScrollContainer } from '@c/Container';
@@ -14,8 +14,8 @@
   import { useGo } from '@h/web/usePage';
   import { useSplitMenu } from './useLayoutMenu';
   import { openWindow } from '@u';
-  import { propTypes } from '@u/propTypes';
-  import { isHttpUrl } from '@u/is';
+  import { propTypes } from '@utils/propTypes';
+  import { isHttpUrl } from '@utils/is';
   import { useRootSetting } from '@h/setting/useRootSetting';
   import { useAppInject } from '@h/web/useAppInject';
   import { useDesign } from '@h/web/useDesign';

@@ -1,11 +1,11 @@
 import type { RouteLocationRaw, Router } from 'vue-router';
 
-import { PageEnum } from '@/enums/pageEnum';
+import { PageEnum } from '@enums/pageEnum';
 import { unref } from 'vue';
 
 import { useRouter } from 'vue-router';
 import { REDIRECT_NAME } from '@/router/constant';
-import { isHttpUrl } from '@u/is';
+import { isHttpUrl } from '@utils/is';
 import { openWindow } from '@u';
 
 import { useMultipleTabStore } from '@/store/modules/multipleTab';

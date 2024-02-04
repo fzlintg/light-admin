@@ -21,7 +21,7 @@
   import { BasicTitle } from '@c/Basic';
   import { ArrowLeftOutlined } from '@ant-design/icons-vue';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
 
   defineOptions({ name: 'BasicDrawerHeader' });
 

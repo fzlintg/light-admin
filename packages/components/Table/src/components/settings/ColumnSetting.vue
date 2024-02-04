@@ -109,7 +109,7 @@
   import { useI18n } from '@h/web/useI18n';
   import { useTableContext } from '../../hooks/useTableContext';
   import { useDesign } from '@h/web/useDesign';
-  import { isFunction, isNil } from '@u/is';
+  import { isFunction, isNil } from '@utils/is';
   import { getPopupContainer as getParentContainer } from '@u';
   import { cloneDeep, omit } from 'lodash-es';
   import Sortablejs from 'sortablejs';

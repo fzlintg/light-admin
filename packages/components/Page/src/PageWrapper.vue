@@ -34,10 +34,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { PageWrapperFixedHeightKey } from '@/enums/pageEnum';
+  import { PageWrapperFixedHeightKey } from '@enums/pageEnum';
   import { useContentHeight } from '@h/web/useContentHeight';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { PageHeader } from 'ant-design-vue';
   import { omit } from 'lodash-es';
   import {

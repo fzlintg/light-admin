@@ -5,7 +5,7 @@
   import type { Menu } from '@/router/types';
   import { computed } from 'vue';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
 
   defineOptions({ name: 'SimpleMenuTag' });
 

@@ -15,9 +15,9 @@
   import { ref, unref, computed, onMounted, onUnmounted } from 'vue';
   import { Spin } from 'ant-design-vue';
   import { useWindowSizeFn } from '@vben/hooks';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { useDesign } from '@h/web/useDesign';
-  import { useLayoutHeight } from '@l/default/content/useContentViewHeight';
+  import { useLayoutHeight } from '@layouts/default/content/useContentViewHeight';
 
   const emit = defineEmits(['message']);
   defineProps({

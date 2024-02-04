@@ -43,7 +43,7 @@
   import { Dropdown, Menu, Popconfirm } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { omit } from 'lodash-es';
-  import { isFunction } from '@u/is';
+  import { isFunction } from '@utils/is';
 
   const ADropdown = Dropdown;
   const AMenu = Menu;

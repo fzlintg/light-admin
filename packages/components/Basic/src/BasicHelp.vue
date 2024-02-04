@@ -4,8 +4,8 @@
   import { Tooltip } from 'ant-design-vue';
   import { InfoCircleOutlined } from '@ant-design/icons-vue';
   import { getPopupContainer } from '@u';
-  import { isString, isArray } from '@u/is';
-  import { getSlot } from '@u/helper/tsxHelper';
+  import { isString, isArray } from '@utils/is';
+  import { getSlot } from '@utils/helper/tsxHelper';
   import { useDesign } from '@h/web/useDesign';
 
   const props = {

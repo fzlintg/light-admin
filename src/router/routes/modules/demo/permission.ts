@@ -1,7 +1,7 @@
 import type { AppRouteModule } from '@/router/types';
 
 import { getParentLayout, LAYOUT } from '@/router/constant';
-import { RoleEnum } from '@/enums/roleEnum';
+import { RoleEnum } from '@enums/roleEnum';
 import { t } from '@h/web/useI18n';
 
 const permission: AppRouteModule = {

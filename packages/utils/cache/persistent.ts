@@ -2,7 +2,7 @@ import type { LockInfo, UserInfo, TableSetting } from '#/store';
 import type { ProjectConfig } from '#/config';
 import type { RouteLocationNormalized } from 'vue-router';
 
-import { createLocalStorage, createSessionStorage } from '@u/cache';
+import { createLocalStorage, createSessionStorage } from '@utils/cache';
 import { Memory } from './memory';
 import {
   TOKEN_KEY,
@@ -14,7 +14,7 @@ import {
   APP_SESSION_CACHE_KEY,
   MULTIPLE_TABS_KEY,
   TABLE_SETTING_KEY,
-} from '@/enums/cacheEnum';
+} from '@enums/cacheEnum';
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting';
 import { toRaw } from 'vue';
 import { pick, omit } from 'lodash-es';

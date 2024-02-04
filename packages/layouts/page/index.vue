@@ -27,7 +27,7 @@
 <script lang="ts" setup>
   import { computed, unref } from 'vue';
 
-  import FrameLayout from '@l/iframe/index.vue';
+  import FrameLayout from '@layouts/iframe/index.vue';
 
   import { useRootSetting } from '@h/setting/useRootSetting';
 

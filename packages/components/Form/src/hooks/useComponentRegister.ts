@@ -2,7 +2,7 @@ import type { ComponentType } from '../types';
 import { tryOnUnmounted } from '@vueuse/core';
 import { add, del } from '../componentMap';
 import type { Component } from 'vue';
-import { isPascalCase } from '@u/is';
+import { isPascalCase } from '@utils/is';
 
 export function useComponentRegister<T extends string, R extends Component>(
   compName: ComponentType | T,

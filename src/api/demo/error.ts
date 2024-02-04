@@ -1,4 +1,4 @@
-import { defHttp } from '@u/http/axios';
+import { defHttp } from '@utils/http/axios';
 
 enum Api {
   // The address does not exist

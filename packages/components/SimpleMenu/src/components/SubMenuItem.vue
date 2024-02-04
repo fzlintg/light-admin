@@ -70,14 +70,14 @@
     inject,
   } from 'vue';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { useMenuItem } from './useMenu';
   import { useSimpleRootMenuContext } from './useSimpleMenuContext';
   import { CollapseTransition } from '@c/Transition';
   import Icon from '@c/Icon/Icon.vue';
   import { Popover } from 'ant-design-vue';
-  import { isBoolean, isObject } from '@u/is';
-  import { mitt } from '@u/mitt';
+  import { isBoolean, isObject } from '@utils/is';
+  import { mitt } from '@utils/mitt';
 
   defineOptions({ name: 'SubMenu' });
 

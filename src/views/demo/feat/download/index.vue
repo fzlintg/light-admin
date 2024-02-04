@@ -21,7 +21,7 @@
     downloadByData,
     downloadByBase64,
     downloadByOnlineUrl,
-  } from '@u/file/download';
+  } from '@utils/file/download';
   import imgBase64 from './imgBase64';
   import { PageWrapper } from '@c/Page';
   import { Alert } from 'ant-design-vue';

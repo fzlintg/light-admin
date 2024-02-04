@@ -16,7 +16,7 @@
 <script lang="ts" setup>
   import { computed, unref } from 'vue';
   import { Layout } from 'ant-design-vue';
-  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@utils/factory/createAsyncComponent';
 
   import LayoutHeader from './header/index.vue';
   import LayoutContent from './content/index.vue';
@@ -32,8 +32,8 @@
 
   import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
 
-  const LayoutFeatures = createAsyncComponent(() => import('@l/default/feature/index.vue'));
-  const LayoutFooter = createAsyncComponent(() => import('@l/default/footer/index.vue'));
+  const LayoutFeatures = createAsyncComponent(() => import('@layouts/default/feature/index.vue'));
+  const LayoutFooter = createAsyncComponent(() => import('@layouts/default/footer/index.vue'));
 
   defineOptions({ name: 'DefaultLayout' });
 

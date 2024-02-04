@@ -64,7 +64,7 @@
   import { Alert, Divider, Space } from 'ant-design-vue';
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
   import { useUserStore } from '@/store/modules/user';
-  import { RoleEnum } from '@/enums/roleEnum';
+  import { RoleEnum } from '@enums/roleEnum';
   import { usePermission } from '@h/web/usePermission';
   import { Authority } from '@c/Authority';
   import { PageWrapper } from '@c/Page';

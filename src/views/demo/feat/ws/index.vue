@@ -55,7 +55,7 @@
   import { Tag, Input } from 'ant-design-vue';
   import { PageWrapper } from '@c/Page';
   import { useWebSocket } from '@vueuse/core';
-  import { formatToDateTime } from '@u/dateUtil';
+  import { formatToDateTime } from '@utils/dateUtil';
 
   const InputTextArea = Input.TextArea;
 

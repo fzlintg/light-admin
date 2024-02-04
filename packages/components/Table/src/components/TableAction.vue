@@ -41,8 +41,8 @@
   import { useDesign } from '@h/web/useDesign';
   import { useTableContext } from '../hooks/useTableContext';
   import { usePermission } from '@h/web/usePermission';
-  import { isBoolean, isFunction, isString } from '@u/is';
-  import { propTypes } from '@u/propTypes';
+  import { isBoolean, isFunction, isString } from '@utils/is';
+  import { propTypes } from '@utils/propTypes';
   import { ACTION_COLUMN_FLAG } from '../const';
 
   defineOptions({ name: 'TableAction' });

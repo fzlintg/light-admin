@@ -3,7 +3,7 @@ import type { CSSProperties, PropType } from 'vue';
 import type { ColEx } from './types';
 import type { TableActionType } from '@c/Table';
 import type { RowProps } from 'ant-design-vue/lib/grid/Row';
-import { propTypes } from '@u/propTypes';
+import { propTypes } from '@utils/propTypes';
 
 import { ButtonProps } from '@c/Button';
 

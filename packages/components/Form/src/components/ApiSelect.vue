@@ -24,12 +24,12 @@
   import { PropType, ref, computed, unref, watch } from 'vue';
   import { Select } from 'ant-design-vue';
   import type { SelectValue } from 'ant-design-vue/es/select';
-  import { isFunction } from '@u/is';
+  import { isFunction } from '@utils/is';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { get, omit, isEqual } from 'lodash-es';
   import { LoadingOutlined } from '@ant-design/icons-vue';
   import { useI18n } from '@h/web/useI18n';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
 
   type OptionsItem = { label?: string; value?: string; disabled?: boolean; [name: string]: any };
 

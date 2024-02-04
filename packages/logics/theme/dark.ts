@@ -1,4 +1,4 @@
-import { addClass, hasClass, removeClass } from '@u/domUtils';
+import { addClass, hasClass, removeClass } from '@utils/domUtils';
 
 export type CustomColorType = {
   name: string;

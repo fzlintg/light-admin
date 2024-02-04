@@ -1,5 +1,5 @@
 import 'uno.css';
-import '@/design/index.less';
+import '@design/index.less';
 import '@c/VxeTable/src/css/index.scss';
 import 'ant-design-vue/dist/reset.css';
 // Register icon sprite
@@ -8,10 +8,10 @@ import 'virtual:svg-icons-register';
 import { createApp } from 'vue';
 
 import { registerGlobComp } from '@c/registerGlobComp';
-import { setupGlobDirectives } from '@/directives';
-import { setupI18n } from '@/locales/setupI18n';
-import { setupErrorHandle } from '@/logics/error-handle';
-import { initAppConfigStore } from '@/logics/initAppConfig';
+import { setupGlobDirectives } from '@d';
+import { setupI18n } from '@locales/setupI18n';
+import { setupErrorHandle } from '@logics/error-handle';
+import { initAppConfigStore } from '@logics/initAppConfig';
 import { router, setupRouter } from '@/router';
 import { setupRouterGuard } from '@/router/guard';
 import { setupStore } from '@/store';

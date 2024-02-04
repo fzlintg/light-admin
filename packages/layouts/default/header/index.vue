@@ -59,22 +59,22 @@
   import { computed, unref } from 'vue';
 
   import { AppLocalePicker, AppLogo, AppSearch } from '@c/Application';
-  import { SettingButtonPositionEnum } from '@/enums/appEnum';
-  import { MenuModeEnum, MenuSplitTyeEnum } from '@/enums/menuEnum';
+  import { SettingButtonPositionEnum } from '@enums/appEnum';
+  import { MenuModeEnum, MenuSplitTyeEnum } from '@enums/menuEnum';
   import { useHeaderSetting } from '@h/setting/useHeaderSetting';
   import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { useRootSetting } from '@h/setting/useRootSetting';
   import { useAppInject } from '@h/web/useAppInject';
   import { useDesign } from '@h/web/useDesign';
-  import { useLocale } from '@/locales/useLocale';
-  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
-  import { propTypes } from '@u/propTypes';
+  import { useLocale } from '@locales/useLocale';
+  import { createAsyncComponent } from '@utils/factory/createAsyncComponent';
+  import { propTypes } from '@utils/propTypes';
 
   import LayoutMenu from '../menu/index.vue';
   import LayoutTrigger from '../trigger/index.vue';
   import { ErrorAction, FullScreen, LayoutBreadcrumb, Notify, UserDropDown } from './components';
 
-  const SettingDrawer = createAsyncComponent(() => import('@l/default/setting/index.vue'), {
+  const SettingDrawer = createAsyncComponent(() => import('@layouts/default/setting/index.vue'), {
     loading: true,
   });
   defineOptions({ name: 'LayoutHeader' });

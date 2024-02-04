@@ -1,6 +1,6 @@
 import type { ComputedRef, Ref } from 'vue';
 import { nextTick, unref } from 'vue';
-import { warn } from '@u/log';
+import { warn } from '@utils/log';
 
 export function useTableScrollTo(
   tableElRef: Ref<ComponentRef>,

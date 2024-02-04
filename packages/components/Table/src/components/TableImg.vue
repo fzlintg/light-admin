@@ -38,7 +38,7 @@
   import { computed } from 'vue';
   import { useDesign } from '@h/web/useDesign';
   import { Image, Badge } from 'ant-design-vue';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
 
   defineOptions({ name: 'TableImage' });
 

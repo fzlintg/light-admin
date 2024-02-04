@@ -40,9 +40,13 @@ export default defineApplicationConfig({
       alias: {
         '@c': resolve(__dirname, 'packages/components'), // 路径别名
         '@h': resolve(__dirname, 'packages/myhooks'), // 路径别名
-        '@u': resolve(__dirname, 'packages/utils'), // 路径别名
-        '@l': resolve(__dirname, 'packages/layouts'), // 路径别名
-
+        '@utils': resolve(__dirname, 'packages/utils'), // 路径别名
+        '@layouts': resolve(__dirname, 'packages/layouts'), // 路径别名
+        '@directives': resolve(__dirname, 'packages/directives'), // 路径别名
+        '@logics': resolve(__dirname, 'packages/logics'), // 路径别名
+        '@design': resolve(__dirname, 'packages/design'), // 路径别名
+        '@enums': resolve(__dirname, 'packages/enums'), // 路径别名
+        '@locales': resolve(__dirname, 'packages/locales'), // 路径别名
       },
     },
   },

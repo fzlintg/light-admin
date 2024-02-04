@@ -64,7 +64,7 @@
   import { usePermission } from '@h/web/usePermission';
   import { Authority } from '@c/Authority';
   import { usePermissionStore } from '@/store/modules/permission';
-  import { PermissionModeEnum } from '@/enums/appEnum';
+  import { PermissionModeEnum } from '@enums/appEnum';
   import { PageWrapper } from '@c/Page';
   import { useAppStore } from '@/store/modules/app';
   import { useUserStore } from '@/store/modules/user';

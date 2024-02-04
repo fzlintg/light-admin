@@ -18,9 +18,9 @@
   import { type Recordable } from '@vben/types';
   import { type PropType, computed, watch, ref, onMounted, unref, useAttrs } from 'vue';
   import { TreeSelect } from 'ant-design-vue';
-  import { isArray, isFunction } from '@u/is';
+  import { isArray, isFunction } from '@utils/is';
   import { get } from 'lodash-es';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { LoadingOutlined } from '@ant-design/icons-vue';
 
   defineOptions({ name: 'ApiTreeSelect' });

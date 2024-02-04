@@ -1,7 +1,7 @@
 import type { AppRouteModule } from '@/router/types';
 
 import { getParentLayout, LAYOUT } from '@/router/constant';
-import { ExceptionEnum } from '@/enums/exceptionEnum';
+import { ExceptionEnum } from '@enums/exceptionEnum';
 import { t } from '@h/web/useI18n';
 
 const ExceptionPage = () => import('@/views/sys/exception/Exception.vue');

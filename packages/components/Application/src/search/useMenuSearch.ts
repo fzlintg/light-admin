@@ -3,7 +3,7 @@ import { type AnyFunction } from '@vben/types';
 import { ref, onBeforeMount, unref, Ref, nextTick } from 'vue';
 import { getMenus } from '@/router/menus';
 import { cloneDeep } from 'lodash-es';
-import { filter, forEach } from '@u/helper/treeHelper';
+import { filter, forEach } from '@utils/helper/treeHelper';
 import { useGo } from '@h/web/usePage';
 import { useScrollTo } from '@vben/hooks';
 import { onKeyStroke, useDebounceFn } from '@vueuse/core';

@@ -3,10 +3,10 @@ import type { ErrorLogInfo } from '#/store';
 import { defineStore } from 'pinia';
 import { store } from '@/store';
 
-import { formatToDateTime } from '@u/dateUtil';
+import { formatToDateTime } from '@utils/dateUtil';
 import projectSetting from '@/settings/projectSetting';
 
-import { ErrorTypeEnum } from '@/enums/exceptionEnum';
+import { ErrorTypeEnum } from '@enums/exceptionEnum';
 
 export interface ErrorLogState {
   errorLogInfoList: Nullable<ErrorLogInfo[]>;

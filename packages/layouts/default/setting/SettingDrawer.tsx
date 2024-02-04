@@ -12,7 +12,7 @@ import {
 
 import { AppDarkModeToggle } from '@c/Application';
 
-import { MenuTypeEnum, TriggerEnum } from '@/enums/menuEnum';
+import { MenuTypeEnum, TriggerEnum } from '@enums/menuEnum';
 
 import { useRootSetting } from '@h/setting/useRootSetting';
 import { useMenuSetting } from '@h/setting/useMenuSetting';

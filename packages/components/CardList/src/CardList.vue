@@ -86,8 +86,8 @@
   import { List, Card, Image, Typography, Tooltip, Slider, Avatar } from 'ant-design-vue';
   import { Dropdown } from '@c/Dropdown';
   import { BasicForm, useForm } from '@c/Form';
-  import { propTypes } from '@u/propTypes';
-  import { isFunction } from '@u/is';
+  import { propTypes } from '@utils/propTypes';
+  import { isFunction } from '@utils/is';
   import { useSlider, grid } from './data';
 
   const ListItem = List.Item;

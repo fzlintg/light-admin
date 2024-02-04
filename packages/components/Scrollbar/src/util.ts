@@ -1,5 +1,5 @@
 import type { BarMap } from './types';
-import type { MergeAll } from '@u/types';
+import type { MergeAll } from '@utils/types';
 
 export const BAR_MAP: BarMap = {
   vertical: {

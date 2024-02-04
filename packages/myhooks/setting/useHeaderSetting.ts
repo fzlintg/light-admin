@@ -7,7 +7,7 @@ import { useAppStore } from '@/store/modules/app';
 import { useMenuSetting } from '@h/setting/useMenuSetting';
 import { useRootSetting } from '@h/setting/useRootSetting';
 import { useFullContent } from '@h/web/useFullContent';
-import { MenuModeEnum } from '@/enums/menuEnum';
+import { MenuModeEnum } from '@enums/menuEnum';
 
 export function useHeaderSetting() {
   const { getFullContent } = useFullContent();

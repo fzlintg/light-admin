@@ -25,11 +25,11 @@
   import { useDesign } from '@h/web/useDesign';
   import Menu from './components/Menu.vue';
   import SimpleSubMenu from './SimpleSubMenu.vue';
-  import { listenerRouteChange } from '@/logics/mitt/routeChange';
-  import { propTypes } from '@u/propTypes';
+  import { listenerRouteChange } from '@logics/mitt/routeChange';
+  import { propTypes } from '@utils/propTypes';
   import { REDIRECT_NAME } from '@/router/constant';
   import { useRouter } from 'vue-router';
-  import { isFunction, isHttpUrl } from '@u/is';
+  import { isFunction, isHttpUrl } from '@utils/is';
   import { openWindow } from '@u';
   import { useOpenKeys } from './useOpenKeys';
 

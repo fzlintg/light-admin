@@ -27,8 +27,8 @@
     watch,
     type PropType,
   } from 'vue';
-  import type { StyleValue } from '@u/types';
-  import { addResizeListener, removeResizeListener } from '@u/event';
+  import type { StyleValue } from '@utils/types';
+  import { addResizeListener, removeResizeListener } from '@utils/event';
   import componentSetting from '@/settings/componentSetting';
   import Bar from './bar';
 

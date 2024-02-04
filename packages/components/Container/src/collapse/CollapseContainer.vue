@@ -5,7 +5,7 @@
   import { useTimeoutFn } from '@vben/hooks';
   import { CollapseTransition } from '@c/Transition';
   import CollapseHeader from './CollapseHeader.vue';
-  import { triggerWindowResize } from '@u/event';
+  import { triggerWindowResize } from '@utils/event';
   import { useDesign } from '@h/web/useDesign';
 
   const collapseContainerProps = {

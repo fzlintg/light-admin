@@ -9,7 +9,7 @@
 <script lang="ts" setup>
   import { AppProvider } from '@c/Application';
   import { useTitle } from '@h/web/useTitle';
-  import { useLocale } from '@/locales/useLocale';
+  import { useLocale } from '@locales/useLocale';
   import { ConfigProvider } from 'ant-design-vue';
 
   import { useDarkModeTheme } from '@h/setting/useDarkModeTheme';

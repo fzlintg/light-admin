@@ -54,9 +54,9 @@
 
   import MenuItem from './components/MenuItem.vue';
   import SubMenu from './components/SubMenuItem.vue';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { useI18n } from '@h/web/useI18n';
-  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@utils/factory/createAsyncComponent';
 
   const SimpleMenuTag = createAsyncComponent(() => import('./SimpleMenuTag.vue'));
 

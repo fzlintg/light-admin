@@ -52,7 +52,7 @@
   import { ref, computed, unref, toRaw, inject, watchEffect, useAttrs, useSlots } from 'vue';
   import { Table } from 'ant-design-vue';
   import { BasicForm, useForm } from '@c/Form';
-  import { PageWrapperFixedHeightKey } from '@/enums/pageEnum';
+  import { PageWrapperFixedHeightKey } from '@enums/pageEnum';
   import HeaderCell from './components/HeaderCell.vue';
   import { InnerHandlers, InnerMethods } from './types/table';
   import { usePagination } from './hooks/usePagination';
@@ -72,8 +72,8 @@
   import { useDesign } from '@h/web/useDesign';
   import { omit } from 'lodash-es';
   import { basicProps } from './props';
-  import { isFunction } from '@u/is';
-  import { warn } from '@u/log';
+  import { isFunction } from '@utils/is';
+  import { warn } from '@utils/log';
 
   defineOptions({ name: 'BasicTable' });
 

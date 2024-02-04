@@ -1,4 +1,4 @@
-import { defHttp } from '@u/http/axios';
+import { defHttp } from '@utils/http/axios';
 import { AreaModel, AreaParams } from '@/api/demo/model/areaModel';
 
 enum Api {

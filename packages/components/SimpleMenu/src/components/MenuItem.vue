@@ -19,7 +19,7 @@
 <script lang="ts" setup>
   import { PropType, ref, computed, unref, getCurrentInstance, watch, useSlots } from 'vue';
   import { useDesign } from '@h/web/useDesign';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { useMenuItem } from './useMenu';
   import { Tooltip } from 'ant-design-vue';
   import { useSimpleRootMenuContext } from './useSimpleMenuContext';

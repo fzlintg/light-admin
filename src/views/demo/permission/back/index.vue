@@ -27,7 +27,7 @@
   import { usePermission } from '@h/web/usePermission';
   import { useUserStore } from '@/store/modules/user';
   import { PageWrapper } from '@c/Page';
-  import { PermissionModeEnum } from '@/enums/appEnum';
+  import { PermissionModeEnum } from '@enums/appEnum';
   import { useAppStore } from '@/store/modules/app';
   import { Alert, Space } from 'ant-design-vue';
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';

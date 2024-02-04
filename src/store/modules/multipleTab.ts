@@ -5,12 +5,12 @@ import { defineStore } from 'pinia';
 import { store } from '@/store';
 
 import { useGo, useRedo } from '@h/web/usePage';
-import { Persistent } from '@u/cache/persistent';
+import { Persistent } from '@utils/cache/persistent';
 
-import { PageEnum } from '@/enums/pageEnum';
+import { PageEnum } from '@enums/pageEnum';
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic';
 import { getRawRoute } from '@u';
-import { MULTIPLE_TABS_KEY } from '@/enums/cacheEnum';
+import { MULTIPLE_TABS_KEY } from '@enums/cacheEnum';
 
 import projectSetting from '@/settings/projectSetting';
 import { useUserStore } from '@/store/modules/user';

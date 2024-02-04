@@ -62,7 +62,7 @@
   import { PageWrapper } from '@c/Page';
   import { Card, Row, Col, Spin } from 'ant-design-vue';
   import { cloneDeep, uniq } from 'lodash-es';
-  import { isArray } from '@u/is';
+  import { isArray } from '@utils/is';
   import { type Nullable } from '@vben/types';
   import { SmileTwoTone, CarryOutOutlined } from '@ant-design/icons-vue';
 

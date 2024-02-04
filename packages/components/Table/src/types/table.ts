@@ -9,8 +9,8 @@ import type {
 import type { ColumnProps } from 'ant-design-vue/lib/table';
 
 import { ComponentType } from './componentType';
-import { VueNode } from '@u/propTypes';
-import { RoleEnum } from '@/enums/roleEnum';
+import { VueNode } from '@utils/propTypes';
+import { RoleEnum } from '@enums/roleEnum';
 import { FixedType } from 'ant-design-vue/es/vc-table/interface';
 
 import AntDesignVueTable from 'ant-design-vue/es/table';

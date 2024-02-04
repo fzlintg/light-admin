@@ -22,16 +22,16 @@
   import { computed, unref, reactive, watch, toRefs, ref } from 'vue';
   import { Menu, MenuProps } from 'ant-design-vue';
   import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
-  import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
+  import { MenuModeEnum, MenuTypeEnum } from '@enums/menuEnum';
   import { useOpenKeys } from './useOpenKeys';
   import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
-  import { isFunction } from '@u/is';
+  import { isFunction } from '@utils/is';
   import { basicProps } from './props';
   import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { REDIRECT_NAME } from '@/router/constant';
   import { useDesign } from '@h/web/useDesign';
   import { getCurrentParentPath } from '@/router/menus';
-  import { listenerRouteChange } from '@/logics/mitt/routeChange';
+  import { listenerRouteChange } from '@logics/mitt/routeChange';
   import { getAllParentPath } from '@/router/helper/menuHelper';
 
   defineOptions({ name: 'BasicMenu' });

@@ -52,9 +52,9 @@
   import { useDesign } from '@h/web/useDesign';
   import { useModal } from '@c/Modal';
   import headerImg from '@/assets/images/header.jpg';
-  import { propTypes } from '@u/propTypes';
+  import { propTypes } from '@utils/propTypes';
   import { openWindow } from '@u';
-  import { createAsyncComponent } from '@u/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@utils/factory/createAsyncComponent';
 
   type MenuEvent = 'logout' | 'doc' | 'lock' | 'api';
 

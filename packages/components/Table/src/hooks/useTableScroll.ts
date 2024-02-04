@@ -1,7 +1,7 @@
 import type { BasicTableProps, TableRowSelection, BasicColumn } from '../types/table';
 import { Ref, ComputedRef, ref, computed, unref, nextTick, watch } from 'vue';
-import { getViewportOffset } from '@u/domUtils';
-import { isBoolean } from '@u/is';
+import { getViewportOffset } from '@utils/domUtils';
+import { isBoolean } from '@utils/is';
 import { useWindowSizeFn, onMountedOrActivated } from '@vben/hooks';
 import { useModalContext } from '@c/Modal';
 import { useDebounceFn, promiseTimeout } from '@vueuse/core';

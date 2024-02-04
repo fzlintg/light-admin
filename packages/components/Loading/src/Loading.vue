@@ -11,7 +11,7 @@
 <script lang="ts" setup>
   import type { PropType } from 'vue';
   import { Spin } from 'ant-design-vue';
-  import { SizeEnum } from '@/enums/sizeEnum';
+  import { SizeEnum } from '@enums/sizeEnum';
 
   defineOptions({ name: 'Loading' });
 

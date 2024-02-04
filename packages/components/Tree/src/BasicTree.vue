@@ -25,14 +25,14 @@
   import { TreeIcon } from './TreeIcon';
   import { ScrollContainer } from '@c/Container';
   import { omit, get, difference, cloneDeep } from 'lodash-es';
-  import { isArray, isBoolean, isEmpty, isFunction } from '@u/is';
-  import { extendSlots, getSlot } from '@u/helper/tsxHelper';
-  import { filter, treeToList, eachTree } from '@u/helper/treeHelper';
+  import { isArray, isBoolean, isEmpty, isFunction } from '@utils/is';
+  import { extendSlots, getSlot } from '@utils/helper/tsxHelper';
+  import { filter, treeToList, eachTree } from '@utils/helper/treeHelper';
   import { useTree } from './hooks/useTree';
   import { useContextMenu } from '@h/web/useContextMenu';
   import { CreateContextOptions } from '@c/ContextMenu';
   import { treeEmits, treeProps } from './types/tree';
-  import { createBEM } from '@u/bem';
+  import { createBEM } from '@utils/bem';
   import type { TreeProps } from 'ant-design-vue/es/tree/Tree';
 
   export default defineComponent({
