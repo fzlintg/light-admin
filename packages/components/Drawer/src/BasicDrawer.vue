@@ -37,7 +37,7 @@
   import { Drawer } from 'ant-design-vue';
   import { useI18n } from '@h/web/useI18n';
   import { isFunction, isNumber } from '@utils/is';
-  import { deepMerge } from '@u';
+  import { deepMerge } from '@utils';
   import DrawerFooter from './components/DrawerFooter.vue';
   import DrawerHeader from './components/DrawerHeader.vue';
   import { ScrollContainer } from '@c/Container';

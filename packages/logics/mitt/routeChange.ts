@@ -4,7 +4,7 @@
 
 import { mitt } from '@utils/mitt';
 import type { RouteLocationNormalized } from 'vue-router';
-import { getRawRoute } from '@u';
+import { getRawRoute } from '@utils';
 
 const key = Symbol();
 

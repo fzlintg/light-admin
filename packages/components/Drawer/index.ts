@@ -1,4 +1,4 @@
-import { withInstall } from '@u';
+import { withInstall } from '@utils';
 import basicDrawer from './src/BasicDrawer.vue';
 
 export const BasicDrawer = withInstall(basicDrawer);

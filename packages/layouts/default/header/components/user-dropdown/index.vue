@@ -53,7 +53,7 @@
   import { useModal } from '@c/Modal';
   import headerImg from '@/assets/images/header.jpg';
   import { propTypes } from '@utils/propTypes';
-  import { openWindow } from '@u';
+  import { openWindow } from '@utils';
   import { createAsyncComponent } from '@utils/factory/createAsyncComponent';
 
   type MenuEvent = 'logout' | 'doc' | 'lock' | 'api';

@@ -50,7 +50,7 @@
   import { dateItemType, isIncludeSimpleComponents } from './helper';
   import { dateUtil } from '@utils/dateUtil';
 
-  import { deepMerge } from '@u';
+  import { deepMerge } from '@utils';
 
   import { useFormValues } from './hooks/useFormValues';
   import useAdvanced from './hooks/useAdvanced';

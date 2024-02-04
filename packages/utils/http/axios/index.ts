@@ -12,7 +12,7 @@ import { useMessage } from '@h/web/useMessage';
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '@enums/httpEnum';
 import { isString, isUndefined, isNull, isEmpty } from '@utils/is';
 import { getToken } from '@utils/auth';
-import { setObjToUrlParams, deepMerge } from '@u';
+import { setObjToUrlParams, deepMerge } from '@utils';
 import { useErrorLogStoreWithOut } from '@/store/modules/errorLog';
 import { useI18n } from '@h/web/useI18n';
 import { joinTimestamp, formatRequestDate } from './helper';

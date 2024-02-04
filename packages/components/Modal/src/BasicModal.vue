@@ -67,7 +67,7 @@
   import ModalFooter from './components/ModalFooter.vue';
   import ModalHeader from './components/ModalHeader.vue';
   import { isFunction } from '@utils/is';
-  import { deepMerge } from '@u';
+  import { deepMerge } from '@utils';
   import { basicProps } from './props';
   import { useFullScreen } from './hooks/useModalFullScreen';
   import { omit } from 'lodash-es';

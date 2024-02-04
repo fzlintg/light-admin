@@ -30,7 +30,7 @@
   import { REDIRECT_NAME } from '@/router/constant';
   import { useRouter } from 'vue-router';
   import { isFunction, isHttpUrl } from '@utils/is';
-  import { openWindow } from '@u';
+  import { openWindow } from '@utils';
   import { useOpenKeys } from './useOpenKeys';
 
   defineOptions({ name: 'SimpleMenu', inheritAttrs: false });

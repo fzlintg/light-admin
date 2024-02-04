@@ -3,7 +3,7 @@ import type { PaginationProps } from '../types/pagination';
 import type { DynamicProps } from '#/utils';
 import type { FormActionType } from '@c/Form';
 import type { WatchStopHandle } from 'vue';
-import { getDynamicProps } from '@u';
+import { getDynamicProps } from '@utils';
 import { ref, onUnmounted, unref, watch, toRaw } from 'vue';
 import { isProdMode } from '@utils/env';
 import { error } from '@utils/log';

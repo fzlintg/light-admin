@@ -17,7 +17,7 @@ import { useLocaleStore } from '@/store/modules/locale';
 import { getCommonStoragePrefix, getStorageShortName } from '@utils/env';
 
 import { ThemeEnum } from '@enums/appEnum';
-import { deepMerge } from '@u';
+import { deepMerge } from '@utils';
 import { Persistent } from '@utils/cache/persistent';
 
 // Initial project configuration

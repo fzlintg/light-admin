@@ -1,4 +1,4 @@
-import { withInstall } from '@u';
+import { withInstall } from '@utils';
 import basicUpload from './src/BasicUpload.vue';
 import uploadImage from './src/components/ImageUpload.vue';
 

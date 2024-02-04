@@ -13,7 +13,7 @@
 
   import { useGo } from '@h/web/usePage';
   import { useSplitMenu } from './useLayoutMenu';
-  import { openWindow } from '@u';
+  import { openWindow } from '@utils';
   import { propTypes } from '@utils/propTypes';
   import { isHttpUrl } from '@utils/is';
   import { useRootSetting } from '@h/setting/useRootSetting';

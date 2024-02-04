@@ -3,7 +3,7 @@ import type { FormProps, FormSchemaInner as FormSchema, FormActionType } from '.
 import type { NamePath } from 'ant-design-vue/lib/form/interface';
 import { unref, toRaw, nextTick } from 'vue';
 import { isArray, isFunction, isObject, isString, isDef, isNil } from '@utils/is';
-import { deepMerge } from '@u';
+import { deepMerge } from '@utils';
 import {
   dateItemType,
   handleInputNumberValue,

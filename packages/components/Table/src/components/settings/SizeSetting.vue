@@ -29,7 +29,7 @@
   import { ColumnHeightOutlined } from '@ant-design/icons-vue';
   import { useI18n } from '@h/web/useI18n';
   import { useTableContext } from '../../hooks/useTableContext';
-  import { getPopupContainer } from '@u';
+  import { getPopupContainer } from '@utils';
 
   import { useTableSettingStore } from '@/store/modules/tableSetting';
 
