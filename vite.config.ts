@@ -47,6 +47,7 @@ export default defineApplicationConfig({
         '@design': resolve(__dirname, 'packages/design'), // 路径别名
         '@enums': resolve(__dirname, 'packages/enums'), // 路径别名
         '@locales': resolve(__dirname, 'packages/locales'), // 路径别名
+        '@settings': resolve(__dirname, 'packages/settings'), // 路径别名
       },
     },
   },
