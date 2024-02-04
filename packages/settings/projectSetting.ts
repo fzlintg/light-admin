@@ -18,7 +18,7 @@ import {
 // ! You need to clear the browser cache after the change
 const setting: ProjectConfig = {
   // Whether to show the configuration button
-  showSettingButton: false,
+  showSettingButton: true,
 
   // Whether to show the theme switch button
   showDarkModeToggle: true,
