@@ -1,0 +1,18 @@
+Debugger listening on ws://127.0.0.1:7980/d68ab5ff-613a-4376-b4b8-bd9fafb43a09
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+
+> @vben/vite-config@1.0.0 stub E:\JS\work\light-admin\light-admin\internal\vite-config
+> pnpm unbuild --stub
+
+Debugger listening on ws://127.0.0.1:7988/45034b7c-c18b-4b94-acc0-6c7006ffc08e
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+Debugger listening on ws://127.0.0.1:7994/bd11e5d8-d342-4420-bd7e-2de8ef9f554a
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+[36mℹ[39m Stubbing vite-config
+[36mℹ[39m Cleaning dist directory: [36m./dist[39m
+Waiting for the debugger to disconnect...
+Waiting for the debugger to disconnect...
+Waiting for the debugger to disconnect...

@@ -1,0 +1,18 @@
+Debugger listening on ws://127.0.0.1:7982/21cc8d5f-8eaa-48ad-b4ad-90802323d199
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+
+> @vben/eslint-config@1.0.0 stub E:\JS\work\light-admin\light-admin\internal\eslint-config
+> pnpm unbuild --stub
+
+Debugger listening on ws://127.0.0.1:7987/4fd99f9f-fe24-4b91-8132-b390fcb1fe1f
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+Debugger listening on ws://127.0.0.1:7992/bd9e4499-1279-4cde-b998-3172b2462eac
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+[36mℹ[39m Stubbing eslint-config
+[36mℹ[39m Cleaning dist directory: [36m./dist[39m
+Waiting for the debugger to disconnect...
+Waiting for the debugger to disconnect...
+Waiting for the debugger to disconnect...
