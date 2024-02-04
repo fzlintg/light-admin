@@ -12,7 +12,7 @@ import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '@/router/routes/basic';
 import { getRawRoute } from '@u';
 import { MULTIPLE_TABS_KEY } from '@enums/cacheEnum';
 
-import projectSetting from '@/settings/projectSetting';
+import projectSetting from '@settings/projectSetting';
 import { useUserStore } from '@/store/modules/user';
 
 export interface MultipleTabState {

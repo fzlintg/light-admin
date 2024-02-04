@@ -8,7 +8,7 @@ import 'virtual:svg-icons-register';
 import { createApp } from 'vue';
 
 import { registerGlobComp } from '@c/registerGlobComp';
-import { setupGlobDirectives } from '@d';
+import { setupGlobDirectives } from '@directives';
 import { setupI18n } from '@locales/setupI18n';
 import { setupErrorHandle } from '@logics/error-handle';
 import { initAppConfigStore } from '@logics/initAppConfig';

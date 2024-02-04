@@ -9,7 +9,7 @@ import { toRaw } from 'vue';
 import { transformObjToRoute, flatMultiLevelRoutes } from '@/router/helper/routeHelper';
 import { transformRouteToMenu } from '@/router/helper/menuHelper';
 
-import projectSetting from '@/settings/projectSetting';
+import projectSetting from '@settings/projectSetting';
 
 import { PermissionModeEnum } from '@enums/appEnum';
 

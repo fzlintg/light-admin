@@ -4,7 +4,7 @@ import { useI18n } from '@h/web/useI18n';
 // import router from '@/router';
 // import { PageEnum } from '@enums/pageEnum';
 import { useUserStoreWithOut } from '@/store/modules/user';
-import projectSetting from '@/settings/projectSetting';
+import projectSetting from '@settings/projectSetting';
 import { SessionTimeoutProcessingEnum } from '@enums/appEnum';
 
 const { createMessage, createErrorModal } = useMessage();

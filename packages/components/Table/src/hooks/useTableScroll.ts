@@ -9,7 +9,7 @@ import { useDebounceFn, promiseTimeout } from '@vueuse/core';
 import {
   footerHeight as layoutFooterHeight,
   layoutMultipleHeadePlaceholderTime,
-} from '@/settings/designSetting';
+} from '@settings/designSetting';
 
 import { useRootSetting } from '@h/setting/useRootSetting';
 

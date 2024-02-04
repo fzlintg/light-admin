@@ -630,7 +630,7 @@
 
 ### ✨ Refactor
 
-- 独立组件配置到 `/@/settings/componentsSetting`
+- 独立组件配置到 `/@settings/componentsSetting`
 - `colorSetting`和`designSetting`现在合并为`designSetting`
 - `ant-design-vue`组件注册移动到`components/registerComponent`
 - 移除 `setup` 文件夹

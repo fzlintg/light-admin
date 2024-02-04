@@ -24,7 +24,7 @@
   import { Dropdown } from '@c/Dropdown';
   import Icon from '@c/Icon/Icon.vue';
   import { useLocale } from '@locales/useLocale';
-  import { localeList } from '@/settings/localeSetting';
+  import { localeList } from '@settings/localeSetting';
 
   const props = defineProps({
     /**

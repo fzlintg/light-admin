@@ -52,7 +52,7 @@
   import { useRouter } from 'vue-router';
 
   import { useMouse } from '@vueuse/core';
-  import { multipleTabHeight } from '@/settings/designSetting';
+  import { multipleTabHeight } from '@settings/designSetting';
 
   import SettingButton from './components/SettingButton.vue';
   import { useHeaderSetting } from '@h/setting/useHeaderSetting';

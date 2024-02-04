@@ -617,7 +617,7 @@ When mock is not used, move `mock.js` out of the package file
 
 ### ✨ Refactor
 
-- Independent component configuration to `/@/settings/componentsSetting`
+- Independent component configuration to `/@settings/componentsSetting`
 - `colorSetting` and `designSetting` are now merged into `designSetting`
 - `ant-design-vue` component registration moved to `components/registerComponent`
 - Remove the `setup` folder

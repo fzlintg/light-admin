@@ -37,8 +37,8 @@ import {
 //   HEADER_PRESET_BG_COLOR_LIST,
 //   SIDE_BAR_BG_COLOR_LIST,
 //   APP_PRESET_COLOR_LIST,
-// } from '@/settings/designSetting';
-import { SIDE_BAR_BG_COLOR_LIST } from '@/settings/designSetting';
+// } from '@settings/designSetting';
+import { SIDE_BAR_BG_COLOR_LIST } from '@settings/designSetting';
 
 const { t } = useI18n();
 

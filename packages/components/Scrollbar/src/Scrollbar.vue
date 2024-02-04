@@ -29,7 +29,7 @@
   } from 'vue';
   import type { StyleValue } from '@utils/types';
   import { addResizeListener, removeResizeListener } from '@utils/event';
-  import componentSetting from '@/settings/componentSetting';
+  import componentSetting from '@settings/componentSetting';
   import Bar from './bar';
 
   defineOptions({ name: 'Scrollbar' });
