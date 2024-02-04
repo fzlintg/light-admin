@@ -1,4 +1,4 @@
-import { useLayoutHeight } from '@/layouts/default/content/useContentViewHeight';
+import { useLayoutHeight } from '@l/default/content/useContentViewHeight';
 import { getViewportOffset } from '@u/domUtils';
 import { isNumber, isString } from '@u/is';
 import { onMountedOrActivated, useWindowSizeFn } from '@vben/hooks';

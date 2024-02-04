@@ -12,7 +12,7 @@
   import { ref } from 'vue';
   import { BackTop } from 'ant-design-vue';
 
-  import PageLayout from '@/layouts/page/index.vue';
+  import PageLayout from '@l/page/index.vue';
   import { useDesign } from '@h/web/useDesign';
   import { useRootSetting } from '@h/setting/useRootSetting';
   import { useTransitionSetting } from '@h/setting/useTransitionSetting';

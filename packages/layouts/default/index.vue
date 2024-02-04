@@ -32,8 +32,8 @@
 
   import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
 
-  const LayoutFeatures = createAsyncComponent(() => import('@/layouts/default/feature/index.vue'));
-  const LayoutFooter = createAsyncComponent(() => import('@/layouts/default/footer/index.vue'));
+  const LayoutFeatures = createAsyncComponent(() => import('@l/default/feature/index.vue'));
+  const LayoutFooter = createAsyncComponent(() => import('@l/default/footer/index.vue'));
 
   defineOptions({ name: 'DefaultLayout' });
 

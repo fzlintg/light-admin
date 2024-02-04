@@ -74,7 +74,7 @@
   import LayoutTrigger from '../trigger/index.vue';
   import { ErrorAction, FullScreen, LayoutBreadcrumb, Notify, UserDropDown } from './components';
 
-  const SettingDrawer = createAsyncComponent(() => import('@/layouts/default/setting/index.vue'), {
+  const SettingDrawer = createAsyncComponent(() => import('@l/default/setting/index.vue'), {
     loading: true,
   });
   defineOptions({ name: 'LayoutHeader' });

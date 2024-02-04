@@ -24,7 +24,7 @@
   defineOptions({ name: 'LayoutFeatures' });
 
   const LayoutLockPage = createAsyncComponent(() => import('@/views/sys/lock/index.vue'));
-  const SettingDrawer = createAsyncComponent(() => import('@/layouts/default/setting/index.vue'));
+  const SettingDrawer = createAsyncComponent(() => import('@l/default/setting/index.vue'));
 
   const { getShowSettingButton, getSettingButtonPosition, getFullContent } = useRootSetting();
   const userStore = useUserStoreWithOut();

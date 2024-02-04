@@ -5,7 +5,7 @@
   </span>
 </template>
 <script lang="ts" setup>
-  import SettingDrawer from '@/layouts/default/setting/SettingDrawer';
+  import SettingDrawer from '@l/default/setting/SettingDrawer';
   import Icon from '@c/Icon/Icon.vue';
 
   import { useDrawer } from '@c/Drawer';

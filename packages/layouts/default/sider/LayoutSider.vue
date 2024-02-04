@@ -33,7 +33,7 @@
   import { useMenuSetting } from '@h/setting/useMenuSetting';
   import { useAppInject } from '@h/web/useAppInject';
   import { useDesign } from '@h/web/useDesign';
-  import LayoutTrigger from '@/layouts/default/trigger/index.vue';
+  import LayoutTrigger from '@l/default/trigger/index.vue';
 
   import LayoutMenu from '../menu/index.vue';
   import DragBar from './DragBar.vue';
