@@ -69,15 +69,15 @@
     onBeforeMount,
     inject,
   } from 'vue'
-  import { useDesign } from '/@/hooks/web/useDesign'
-  import { propTypes } from '/@utils/propTypes'
+  import { useDesign } from '@hooks/web/useDesign'
+  import { propTypes } from '@utils/propTypes'
   import { useMenuItem } from './useMenu'
   import { useSimpleRootMenuContext } from './useSimpleMenuContext'
-  import { CollapseTransition } from '/@/components/Transition'
-  import Icon from '/@/components/Icon'
+  import { CollapseTransition } from '@c/Transition'
+  import Icon from '@c/Icon'
   import { Popover } from 'ant-design-vue'
-  import { isBoolean, isObject } from '/@utils/is'
-  import mitt from '/@utils/mitt'
+  import { isBoolean, isObject } from '@utils/is'
+  import mitt from '@utils/mitt'
 
   const DELAY = 200
   export default defineComponent({

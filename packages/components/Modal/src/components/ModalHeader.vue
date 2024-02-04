@@ -6,7 +6,7 @@
 <script lang="ts">
   import type { PropType } from 'vue'
   import { defineComponent } from 'vue'
-  import { BasicTitle } from '/@/components/Basic'
+  import { BasicTitle } from '@c/Basic'
 
   export default defineComponent({
     name: 'BasicModalHeader',

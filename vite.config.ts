@@ -37,10 +37,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-        '@/': resolve(__dirname, 'src/'),
+
         '#': resolve(__dirname, 'types'),
         '@c': resolve(__dirname, 'packages/components'),
-        '@h': resolve(__dirname, 'packages/hooks'), // 路径别名
+        '@hooks': resolve(__dirname, 'packages/hooks'), // 路径别名
         '@utils': resolve(__dirname, 'packages/utils'), // 路径别名
         '@layouts': resolve(__dirname, 'packages/layouts'), // 路径别名
         '@directives': resolve(__dirname, 'packages/directives'), // 路径别名
@@ -49,6 +49,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '@enums': resolve(__dirname, 'packages/enums'), // 路径别名
         '@locales': resolve(__dirname, 'packages/locales'), // 路径别名
         '@settings': resolve(__dirname, 'packages/settings'), // 路径别名
+        '@': resolve(__dirname, 'src'),
       },
       // [
       //   {
