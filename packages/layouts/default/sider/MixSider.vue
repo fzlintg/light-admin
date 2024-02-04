@@ -94,7 +94,7 @@
   import { useI18n } from '@hooks/web/useI18n'
   import { useGo } from '@hooks/web/usePage'
   import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@enums/appEnum'
-  import clickOutside from '@/directives/clickOutside'
+  import clickOutside from '@directives/clickOutside'
   import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@/router/menus'
   import { listenerRouteChange } from '@logics/mitt/routeChange'
   import LayoutTrigger from '../trigger/index.vue'

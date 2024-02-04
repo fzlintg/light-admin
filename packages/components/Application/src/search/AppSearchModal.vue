@@ -63,7 +63,7 @@
   import AppSearchFooter from './AppSearchFooter.vue'
   import Icon from '@c/Icon'
   // @ts-ignore
-  import vClickOutside from '@/directives/clickOutside'
+  import vClickOutside from '@directives/clickOutside'
   import { useDesign } from '@hooks/web/useDesign'
   import { useRefs } from '@hooks/core/useRefs'
   import { useMenuSearch } from './useMenuSearch'
