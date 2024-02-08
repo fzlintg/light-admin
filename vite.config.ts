@@ -1,8 +1,16 @@
 import { defineApplicationConfig } from '@vben/vite-config';
 import { resolve } from 'path';
 
+import AutoImport from 'unplugin-auto-import/vite';
+
 export default defineApplicationConfig({
   overrides: {
+    plugins: [
+      ...AutoImport({
+        imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
+        dts: 'src/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
+      }),
+    ],
     optimizeDeps: {
       include: [
         'echarts/core',
@@ -48,7 +56,6 @@ export default defineApplicationConfig({
         '@enums': resolve(__dirname, 'packages/enums'), // 路径别名
         '@locales': resolve(__dirname, 'packages/locales'), // 路径别名
         '@settings': resolve(__dirname, 'packages/settings'), // 路径别名
-        
       },
     },
   },
