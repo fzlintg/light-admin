@@ -9,7 +9,7 @@ import Layouts from 'vite-plugin-vue-layouts';
 export default defineApplicationConfig({
   overrides: {
     plugins: [
-      ...AutoImport({
+      AutoImport({
         imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
         dts: 'src/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
       }),
