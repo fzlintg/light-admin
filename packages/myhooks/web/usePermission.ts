@@ -59,6 +59,7 @@ export function usePermission() {
    */
   function hasPermission(value?: RoleEnum | RoleEnum[] | string | string[], def = true): boolean {
     // Visible by default
+
     if (!value) {
       return def;
     }

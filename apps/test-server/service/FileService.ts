@@ -10,8 +10,8 @@ export default class UserService {
     let fileReader, fileResource, writeStream;
 
     const fileFunc = function (file) {
-      fileReader = fs.createReadStream(file.path);
-      fileResource = filePath + `/${file.name}`;
+      fileReader = fs.createReadStream(file.filePath);
+      fileResource = filePath + `/${file.newFilename}`;
       console.log(fileResource);
 
       writeStream = fs.createWriteStream(fileResource);
@@ -22,7 +22,7 @@ export default class UserService {
       if (flag) {
         let url = '';
         for (let i = 0; i < files.length; i++) {
-          url += uploadUrl + `/${files[i].name},`;
+          url += uploadUrl + `/${files[i].newFilename},`;
         }
         url = url.replace(/,$/gi, '');
         ctx.body = {
@@ -32,7 +32,7 @@ export default class UserService {
         };
       } else {
         ctx.body = {
-          url: uploadUrl + `/${files.name}`,
+          url: uploadUrl + `/${files.newFilename}`,
           code: 0,
           message: 'upload Success!',
         };
