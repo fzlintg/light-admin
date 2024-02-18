@@ -8,7 +8,7 @@ import { REDIRECT_NAME } from '@/router/constant';
 import { isHttpUrl } from '@utils/is';
 import { openWindow } from '@utils';
 
-import { useMultipleTabStore } from '@/store/modules/multipleTab';
+import { useMultipleTabStore } from '@store/modules/multipleTab';
 
 export type PathAsPageEnum<T> = T extends { path: string } ? T & { path: PageEnum } : T;
 export type RouteLocationRawEx = PathAsPageEnum<RouteLocationRaw>;

@@ -10,7 +10,7 @@
 </template>
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import { useAppStore } from '@/store/modules/app';
+  import { useAppStore } from '@store/modules/app';
   import { PermissionModeEnum } from '@enums/appEnum';
   import { Divider } from 'ant-design-vue';
   import { usePermission } from '@h/web/usePermission';

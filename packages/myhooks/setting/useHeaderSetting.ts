@@ -2,7 +2,7 @@ import type { HeaderSetting } from '#/config';
 
 import { computed, unref } from 'vue';
 
-import { useAppStore } from '@/store/modules/app';
+import { useAppStore } from '@store/modules/app';
 
 import { useMenuSetting } from '@h/setting/useMenuSetting';
 import { useRootSetting } from '@h/setting/useRootSetting';

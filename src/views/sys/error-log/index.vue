@@ -40,7 +40,7 @@
   import { useModal } from '@c/Modal';
   import { useMessage } from '@h/web/useMessage';
   import { useI18n } from '@h/web/useI18n';
-  import { useErrorLogStore } from '@/store/modules/errorLog';
+  import { useErrorLogStore } from '@store/modules/errorLog';
   import { fireErrorApi } from '@/api/demo/error';
   import { getColumns } from './data';
   import { cloneDeep } from 'lodash-es';

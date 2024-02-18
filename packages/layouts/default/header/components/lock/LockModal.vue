@@ -31,8 +31,8 @@
   import { BasicModal, useModalInner } from '@c/Modal';
   import { BasicForm, useForm } from '@c/Form';
 
-  import { useUserStore } from '@/store/modules/user';
-  import { useLockStore } from '@/store/modules/lock';
+  import { useUserStore } from '@store/modules/user';
+  import { useLockStore } from '@store/modules/lock';
   import headerImg from '@/assets/images/header.jpg';
 
   defineOptions({ name: 'LockModal' });

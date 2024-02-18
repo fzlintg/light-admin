@@ -12,7 +12,7 @@
   import { useRootSetting } from '@h/setting/useRootSetting';
   import { useHeaderSetting } from '@h/setting/useHeaderSetting';
   import { useDesign } from '@h/web/useDesign';
-  import { useUserStoreWithOut } from '@/store/modules/user';
+  import { useUserStoreWithOut } from '@store/modules/user';
 
   import { SettingButtonPositionEnum } from '@enums/appEnum';
   import { createAsyncComponent } from '@utils/factory/createAsyncComponent';

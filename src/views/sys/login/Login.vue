@@ -52,7 +52,7 @@
   import { useGlobSetting } from '@h/setting';
   import { useDesign } from '@h/web/useDesign';
   import { useI18n } from '@h/web/useI18n';
-  import { useLocaleStore } from '@/store/modules/locale';
+  import { useLocaleStore } from '@store/modules/locale';
   import { computed } from 'vue';
   import ForgetPasswordForm from './ForgetPasswordForm.vue';
   import LoginForm from './LoginForm.vue';

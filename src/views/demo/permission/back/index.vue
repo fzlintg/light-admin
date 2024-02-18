@@ -25,10 +25,10 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
   import { usePermission } from '@h/web/usePermission';
-  import { useUserStore } from '@/store/modules/user';
+  import { useUserStore } from '@store/modules/user';
   import { PageWrapper } from '@c/Page';
   import { PermissionModeEnum } from '@enums/appEnum';
-  import { useAppStore } from '@/store/modules/app';
+  import { useAppStore } from '@store/modules/app';
   import { Alert, Space } from 'ant-design-vue';
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
 

@@ -9,9 +9,9 @@
   import { onBeforeUnmount, onMounted, ref } from 'vue';
   import Login from './Login.vue';
   import { useDesign } from '@h/web/useDesign';
-  import { useUserStore } from '@/store/modules/user';
-  import { usePermissionStore } from '@/store/modules/permission';
-  import { useAppStore } from '@/store/modules/app';
+  import { useUserStore } from '@store/modules/user';
+  import { usePermissionStore } from '@store/modules/permission';
+  import { useAppStore } from '@store/modules/app';
   import { PermissionModeEnum } from '@enums/appEnum';
   import { type Nullable } from '@vben/types';
 

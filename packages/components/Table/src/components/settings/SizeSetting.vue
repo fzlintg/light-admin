@@ -31,7 +31,7 @@
   import { useTableContext } from '../../hooks/useTableContext';
   import { getPopupContainer } from '@utils';
 
-  import { useTableSettingStore } from '@/store/modules/tableSetting';
+  import { useTableSettingStore } from '@store/modules/tableSetting';
 
   const tableSettingStore = useTableSettingStore();
 

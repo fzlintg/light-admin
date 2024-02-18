@@ -11,7 +11,7 @@ import { doLogout, getUserInfo, loginApi } from '@/api/sys/user';
 import { useI18n } from '@h/web/useI18n';
 import { useMessage } from '@h/web/useMessage';
 import { router } from '@/router';
-import { usePermissionStore } from '@/store/modules/permission';
+import { usePermissionStore } from '@store/modules/permission';
 import { RouteRecordRaw } from 'vue-router';
 import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic';
 import { isArray } from '@utils/is';

@@ -1,8 +1,8 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { useAppStore } from '@/store/modules/app';
-import { usePermissionStore } from '@/store/modules/permission';
-import { useUserStore } from '@/store/modules/user';
+import { useAppStore } from '@store/modules/app';
+import { usePermissionStore } from '@store/modules/permission';
+import { useUserStore } from '@store/modules/user';
 
 import { useTabs } from './useTabs';
 
@@ -15,7 +15,7 @@ import { RoleEnum } from '@enums/roleEnum';
 
 import { intersection } from 'lodash-es';
 import { isArray } from '@utils/is';
-import { useMultipleTabStore } from '@/store/modules/multipleTab';
+import { useMultipleTabStore } from '@store/modules/multipleTab';
 
 // User permissions related operations
 export function usePermission() {

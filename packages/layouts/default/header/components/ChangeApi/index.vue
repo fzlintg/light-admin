@@ -23,7 +23,7 @@
   import { BasicModal, useModalInner } from '@c/Modal';
   import { BasicForm, useForm } from '@c/Form';
   import { ref } from 'vue';
-  import { useAppStore } from '@/store/modules/app';
+  import { useAppStore } from '@store/modules/app';
   import type { ApiAddress } from '#/store';
 
   const appStore = useAppStore();

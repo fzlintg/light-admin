@@ -39,8 +39,8 @@
 
   import { useGo } from '@h/web/usePage';
 
-  import { useMultipleTabStore } from '@/store/modules/multipleTab';
-  import { useUserStore } from '@/store/modules/user';
+  import { useMultipleTabStore } from '@store/modules/multipleTab';
+  import { useUserStore } from '@store/modules/user';
 
   import { initAffixTabs, useTabsDrag } from './useMultipleTabs';
   import { useDesign } from '@h/web/useDesign';

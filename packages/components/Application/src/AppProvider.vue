@@ -3,7 +3,7 @@
   import { createAppProviderContext } from './useAppContext';
   import { createBreakpointListen } from '@h/event/useBreakpoint';
   import { prefixCls } from '@settings/designSetting';
-  import { useAppStore } from '@/store/modules/app';
+  import { useAppStore } from '@store/modules/app';
   import { MenuModeEnum, MenuTypeEnum } from '@enums/menuEnum';
 
   const props = {

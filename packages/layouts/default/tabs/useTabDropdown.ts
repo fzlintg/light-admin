@@ -4,7 +4,7 @@ import type { ComputedRef } from 'vue';
 
 import { computed, unref, reactive } from 'vue';
 import { MenuEventEnum } from './types';
-import { useMultipleTabStore } from '@/store/modules/multipleTab';
+import { useMultipleTabStore } from '@store/modules/multipleTab';
 import { RouteLocationNormalized, useRouter } from 'vue-router';
 import { useTabs } from '@h/web/useTabs';
 import { useI18n } from '@h/web/useI18n';

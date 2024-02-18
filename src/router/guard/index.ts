@@ -1,6 +1,6 @@
 import type { Router, RouteLocationNormalized } from 'vue-router';
-import { useAppStoreWithOut } from '@/store/modules/app';
-import { useUserStoreWithOut } from '@/store/modules/user';
+import { useAppStoreWithOut } from '@store/modules/app';
+import { useUserStoreWithOut } from '@store/modules/user';
 import { useTransitionSetting } from '@h/setting/useTransitionSetting';
 import { AxiosCanceler } from '@utils/http/axios/axiosCancel';
 import { Modal, notification } from 'ant-design-vue';

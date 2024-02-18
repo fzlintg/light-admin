@@ -97,7 +97,7 @@
   import { useI18n } from '@h/web/useI18n';
   import { useMessage } from '@h/web/useMessage';
 
-  import { useUserStore } from '@/store/modules/user';
+  import { useUserStore } from '@store/modules/user';
   import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
   import { useDesign } from '@h/web/useDesign';
   //import { onKeyStroke } from '@vueuse/core';

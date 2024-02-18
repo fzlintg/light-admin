@@ -6,7 +6,7 @@ import { TriggerEnum } from '@enums/menuEnum';
 
 import { useMenuSetting } from '@h/setting/useMenuSetting';
 import { useDebounceFn } from '@vueuse/core';
-import { useAppStore } from '@/store/modules/app';
+import { useAppStore } from '@store/modules/app';
 
 /**
  * Handle related operations of menu events

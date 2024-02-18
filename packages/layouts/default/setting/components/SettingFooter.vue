@@ -21,10 +21,10 @@
 
   import { CopyOutlined, RedoOutlined } from '@ant-design/icons-vue';
 
-  import { useAppStore } from '@/store/modules/app';
-  import { usePermissionStore } from '@/store/modules/permission';
-  import { useMultipleTabStore } from '@/store/modules/multipleTab';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAppStore } from '@store/modules/app';
+  import { usePermissionStore } from '@store/modules/permission';
+  import { useMultipleTabStore } from '@store/modules/multipleTab';
+  import { useUserStore } from '@store/modules/user';
 
   import { useDesign } from '@h/web/useDesign';
   import { useI18n } from '@h/web/useI18n';

@@ -11,8 +11,8 @@ import { updateHeaderBgColor, updateSidebarBgColor } from '@logics/theme/updateB
 import { updateColorWeak } from '@logics/theme/updateColorWeak';
 import { updateGrayMode } from '@logics/theme/updateGrayMode';
 
-import { useAppStore } from '@/store/modules/app';
-import { useLocaleStore } from '@/store/modules/locale';
+import { useAppStore } from '@store/modules/app';
+import { useLocaleStore } from '@store/modules/locale';
 
 import { getCommonStoragePrefix, getStorageShortName } from '@utils/env';
 

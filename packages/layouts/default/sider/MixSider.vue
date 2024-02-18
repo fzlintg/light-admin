@@ -93,7 +93,7 @@
   import Icon from '@c/Icon/Icon.vue';
   import { AppLogo } from '@c/Application';
   import { useMenuSetting } from '@h/setting/useMenuSetting';
-  import { usePermissionStore } from '@/store/modules/permission';
+  import { usePermissionStore } from '@store/modules/permission';
   import { useDragLine } from './useLayoutSider';
   import { useGlobSetting } from '@h/setting';
   import { useDesign } from '@h/web/useDesign';

@@ -116,7 +116,7 @@
   import { INDEX_COLUMN_FLAG } from '@c/Table/src/const';
 
   // 列表设置缓存
-  import { useTableSettingStore } from '@/store/modules/tableSetting';
+  import { useTableSettingStore } from '@store/modules/tableSetting';
   import { useRoute } from 'vue-router';
   import { TableRowSelection } from '@c/Table/src/types/table';
 

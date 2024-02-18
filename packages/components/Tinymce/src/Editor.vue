@@ -72,7 +72,7 @@
   import { useDesign } from '@h/web/useDesign';
   import { isNumber } from '@utils/is';
   import { useLocale } from '@locales/useLocale';
-  import { useAppStore } from '@/store/modules/app';
+  import { useAppStore } from '@store/modules/app';
 
   defineOptions({ name: 'Tinymce', inheritAttrs: false });
 

@@ -22,7 +22,7 @@
   import { useAppInject } from '@h/web/useAppInject';
   import { useDesign } from '@h/web/useDesign';
   import { useLayoutHeight } from '../content/useContentViewHeight';
-  import { useMultipleTabStore } from '@/store/modules/multipleTab';
+  import { useMultipleTabStore } from '@store/modules/multipleTab';
 
   const HEADER_HEIGHT = 48;
 

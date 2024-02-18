@@ -63,11 +63,11 @@
   import CurrentPermissionMode from '../CurrentPermissionMode.vue';
   import { usePermission } from '@h/web/usePermission';
   import { Authority } from '@c/Authority';
-  import { usePermissionStore } from '@/store/modules/permission';
+  import { usePermissionStore } from '@store/modules/permission';
   import { PermissionModeEnum } from '@enums/appEnum';
   import { PageWrapper } from '@c/Page';
-  import { useAppStore } from '@/store/modules/app';
-  import { useUserStore } from '@/store/modules/user';
+  import { useAppStore } from '@store/modules/app';
+  import { useUserStore } from '@store/modules/user';
 
   const { hasPermission } = usePermission();
   const permissionStore = usePermissionStore();

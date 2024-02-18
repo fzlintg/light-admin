@@ -35,7 +35,7 @@
   import { useMultipleTabSetting } from '@h/setting/useMultipleTabSetting';
   import { getTransitionName } from './transition';
 
-  import { useMultipleTabStore } from '@/store/modules/multipleTab';
+  import { useMultipleTabStore } from '@store/modules/multipleTab';
 
   defineOptions({ name: 'PageLayout' });
 
