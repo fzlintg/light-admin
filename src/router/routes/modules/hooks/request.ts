@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types';
+import type { AppRouteModule } from '@router/types';
 
-import { LAYOUT } from '@/router/constant';
+import { LAYOUT } from '@router/constant';
 
 const charts: AppRouteModule = {
   path: '/useRequest',

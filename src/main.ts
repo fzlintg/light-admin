@@ -13,7 +13,7 @@ import { setupI18n } from '@locales/setupI18n';
 import { setupErrorHandle } from '@logics/error-handle';
 import { initAppConfigStore } from '@logics/initAppConfig';
 import { router, setupRouter } from '@/router';
-import { setupRouterGuard } from '@/router/guard';
+import { setupRouterGuard } from '@router/guard';
 import { setupStore } from '@/store';
 
 import App from './App.vue';

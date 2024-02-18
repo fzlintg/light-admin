@@ -1,4 +1,4 @@
-import type { Menu } from '@/router/types';
+import type { Menu } from '@router/types';
 import type { PropType } from 'vue';
 
 import { MenuModeEnum, MenuTypeEnum } from '@enums/menuEnum';

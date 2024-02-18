@@ -84,7 +84,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import type { Menu } from '@/router/types';
+  import type { Menu } from '@router/types';
   import type { CSSProperties } from 'vue';
   import { computed, onMounted, ref, unref, watch } from 'vue';
   import type { RouteLocationNormalized } from 'vue-router';
@@ -101,7 +101,7 @@
   import { useGo } from '@h/web/usePage';
   import { SIDE_BAR_MINI_WIDTH, SIDE_BAR_SHOW_TIT_MINI_WIDTH } from '@enums/appEnum';
   import vClickOutside from '@directives/clickOutside';
-  import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@/router/menus';
+  import { getChildrenMenus, getCurrentParentPath, getShallowMenus } from '@router/menus';
   import { listenerRouteChange } from '@logics/mitt/routeChange';
   import LayoutTrigger from '../trigger/index.vue';
   import { createAsyncComponent } from '@utils/factory/createAsyncComponent';

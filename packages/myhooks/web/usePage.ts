@@ -4,7 +4,7 @@ import { PageEnum } from '@enums/pageEnum';
 import { unref } from 'vue';
 
 import { useRouter } from 'vue-router';
-import { REDIRECT_NAME } from '@/router/constant';
+import { REDIRECT_NAME } from '@router/constant';
 import { isHttpUrl } from '@utils/is';
 import { openWindow } from '@utils';
 

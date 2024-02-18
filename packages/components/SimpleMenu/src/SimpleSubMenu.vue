@@ -46,7 +46,7 @@
 </template>
 <script lang="ts" setup>
   import type { PropType } from 'vue';
-  import type { Menu } from '@/router/types';
+  import type { Menu } from '@router/types';
 
   import { computed } from 'vue';
   import { useDesign } from '@h/web/useDesign';

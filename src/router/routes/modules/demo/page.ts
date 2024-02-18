@@ -1,6 +1,6 @@
-import type { AppRouteModule } from '@/router/types';
+import type { AppRouteModule } from '@router/types';
 
-import { getParentLayout, LAYOUT } from '@/router/constant';
+import { getParentLayout, LAYOUT } from '@router/constant';
 import { ExceptionEnum } from '@enums/exceptionEnum';
 import { t } from '@h/web/useI18n';
 
