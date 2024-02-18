@@ -3,8 +3,8 @@ import { resolve } from 'path';
 
 import AutoImport from 'unplugin-auto-import/vite';
 
-import Pages from 'vite-plugin-pages';
-import Layouts from 'vite-plugin-vue-layouts';
+// import Pages from 'vite-plugin-pages';
+// import Layouts from 'vite-plugin-vue-layouts';
 
 export default defineApplicationConfig({
   overrides: {
@@ -13,17 +13,17 @@ export default defineApplicationConfig({
         imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
         dts: 'src/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
       }),
-      Pages({
-        // 需要生成路由的文件目录，默认就是识别src下面的pages文件
-        pagesDir: resolve(__dirname, 'src') + '/pages',
-        //dirs: "src/pages",
+      // Pages({
+      //   // 需要生成路由的文件目录，默认就是识别src下面的pages文件
+      //   pagesDir: resolve(__dirname, 'src') + '/pages',
+      //   //dirs: "src/pages",
 
-        // 排除在外的目录，即不将所有 components 目录下的 .vue 文件生成路由
-        exclude: ['**/components/*.vue'],
-      }),
-      Layouts({
-        layoutsDirs: resolve(__dirname, 'src') + '/layouts',
-      }),
+      //   // 排除在外的目录，即不将所有 components 目录下的 .vue 文件生成路由
+      //   exclude: ['**/components/*.vue'],
+      // }),
+      // Layouts({
+      //   layoutsDirs: resolve(__dirname, 'src') + '/layouts',
+      // }),
     ],
     optimizeDeps: {
       include: [
