@@ -12,7 +12,7 @@
     style="top: 20px"
     width="850px"
   >
-    <PreviewCode :editorJson="editorJson" />
+    <PreviewCode :editorJson="editorJson" @close="visible = false" />
   </Modal>
 </template>
 <script lang="ts">
