@@ -13,7 +13,8 @@
       >
         复制数据
       </a-button>
-      <a-button @click="handleExportJson" type="primary">导出代码</a-button>
+      <a-button @click="handleExportJson" class="copy-btn" type="primary">导出代码</a-button>
+      <a-button @click="handleClose" type="primary">关闭</a-button>
     </div>
   </div>
 </template>
@@ -40,7 +41,7 @@
         default: '',
       },
     },
-    setup(props) {
+    setup(props, { emit }) {
       const state = reactive({
         visible: false,
       });
@@ -54,7 +55,9 @@
         actions.setAttribute('download', fileName);
         actions.click();
       };
-
+      const handleClose = () => {
+        emit('close');
+      };
       const handleExportJson = () => {
         exportData(props.editorJson);
       };
@@ -76,6 +79,7 @@
         exportData,
         handleCopyJson,
         handleExportJson,
+        handleClose,
         MODE,
       };
     },

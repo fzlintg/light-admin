@@ -12,7 +12,7 @@
     width="850px"
     :destroyOnClose="true"
   >
-    <PreviewCode :editorJson="editorVueJson" fileFormat="vue" />
+    <PreviewCode :editorJson="editorVueJson" fileFormat="vue" @close="visible = false" />
   </Modal>
 </template>
 <script lang="ts">
