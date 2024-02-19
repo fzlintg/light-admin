@@ -1,4 +1,4 @@
-import type { AppRouteRecordRaw, Menu } from '@/router/types';
+import type { AppRouteRecordRaw, Menu } from '@router/types';
 
 import { defineStore } from 'pinia';
 import { store } from '@/store';
@@ -6,8 +6,8 @@ import { useI18n } from '@h/web/useI18n';
 import { useUserStore } from './user';
 import { useAppStoreWithOut } from './app';
 import { toRaw } from 'vue';
-import { transformObjToRoute, flatMultiLevelRoutes } from '@/router/helper/routeHelper';
-import { transformRouteToMenu } from '@/router/helper/menuHelper';
+import { transformObjToRoute, flatMultiLevelRoutes } from '@router/helper/routeHelper';
+import { transformRouteToMenu } from '@router/helper/menuHelper';
 
 import projectSetting from '@/settings/projectSetting';
 

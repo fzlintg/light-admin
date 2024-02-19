@@ -1,7 +1,7 @@
-import type { AppRouteModule, AppRouteRecordRaw } from '@/router/types';
+import type { AppRouteModule, AppRouteRecordRaw } from '@router/types';
 import type { Router, RouteRecordNormalized } from 'vue-router';
 
-import { getParentLayout, LAYOUT, EXCEPTION_COMPONENT } from '@/router/constant';
+import { getParentLayout, LAYOUT, EXCEPTION_COMPONENT } from '@router/constant';
 import { cloneDeep, omit } from 'lodash-es';
 import { warn } from '@utils/log';
 import { createRouter, createWebHashHistory } from 'vue-router';

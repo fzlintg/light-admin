@@ -4,7 +4,7 @@ import { useTitle as usePageTitle } from '@vueuse/core';
 import { useGlobSetting } from '@h/setting';
 import { useRouter } from 'vue-router';
 import { useLocaleStore } from '@store/modules/locale';
-import { REDIRECT_NAME } from '@/router/constant';
+import { REDIRECT_NAME } from '@router/constant';
 
 /**
  * Listening to page changes and dynamically changing site titles

@@ -10,7 +10,7 @@ export default class UserService {
     let fileReader, fileResource, writeStream;
 
     const fileFunc = function (file) {
-      fileReader = fs.createReadStream(file.filePath);
+      fileReader = fs.createReadStream(file.filepath);
       fileResource = filePath + `/${file.newFilename}`;
       console.log(fileResource);
 
