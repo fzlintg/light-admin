@@ -72,6 +72,7 @@ export default defineApplicationConfig({
         '@settings': resolve(__dirname, 'packages/settings'), // 路径别名
         '@store': resolve(__dirname, 'packages/store'), // 路径别名
         '@router': resolve(__dirname, 'packages/router'), // 路径别名
+        '@views': resolve(__dirname, 'packages/views'), // 路径别名
       },
     },
   },

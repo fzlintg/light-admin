@@ -4,7 +4,7 @@ import { getParentLayout, LAYOUT } from '@router/constant';
 import { ExceptionEnum } from '@enums/exceptionEnum';
 import { t } from '@h/web/useI18n';
 
-const ExceptionPage = () => import('@/views/sys/exception/Exception.vue');
+const ExceptionPage = () => import('@views/sys/exception/Exception.vue');
 
 const page: AppRouteModule = {
   path: '/page-demo',
