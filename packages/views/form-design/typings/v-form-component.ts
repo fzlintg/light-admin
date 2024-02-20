@@ -68,6 +68,8 @@ export interface IVFormComponent {
   wrapperCol?: IAnyObject;
   // 子控件
   columns?: Array<{ span: number; children: any[] }>;
+  //默认值 lintg
+  defaultValue?: any;
 }
 
 declare type namesType = string | string[];

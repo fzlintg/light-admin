@@ -5,7 +5,6 @@
   <div class="properties-content">
     <div class="properties-body" v-if="formConfig.currentItem">
       <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择组件" />
-
       <Form label-align="left" layout="vertical">
         <!--    循环遍历渲染组件属性      -->
 
@@ -101,6 +100,7 @@
   import FormOptions from './FormOptions.vue';
   import { formItemsForEach, remove } from '../../../utils';
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
+  import customConfig from '../config/custom/index';
 
   export default defineComponent({
     name: 'ComponentProps',
@@ -120,7 +120,7 @@
       Row,
     },
     setup() {
-      // 让compuated属性自动更新
+      // 让computed属性自动更新
 
       const allOptions = ref([] as Omit<IBaseFormAttrs, 'tag'>[]);
       const showControlAttrs = (includes: string[] | undefined) => {
@@ -191,6 +191,15 @@
                 }
               }
             });
+          //add by lintg
+          if (customConfig[formConfig.value.currentItem!.component]) {
+            allOptions.value.push(
+              ...customConfig[formConfig.value.currentItem!.component].map((item) => ({
+                ...item,
+                category: 'input',
+              })),
+            );
+          }
         },
         {
           immediate: true,
@@ -237,6 +246,7 @@
         linkOptions,
         controlOptions,
         inputOptions,
+        allOptions,
       };
     },
   });

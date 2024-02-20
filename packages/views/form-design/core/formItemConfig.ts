@@ -53,6 +53,38 @@ export const customComponents: IVFormComponent[] = [];
 // 属性props，类型为对象，不能为undefined或是null。
 export const baseComponents: IVFormComponent[] = [
   {
+    component: 'ApiSelect',
+    label: '远程下拉',
+    required: true,
+    icon: 'wpf:password1',
+    field: '',
+    componentProps: {
+      api: () => {},
+      params: {
+        id: 1,
+      },
+
+      resultField: 'list',
+      // use name as label
+      labelField: 'name',
+      // use id as value
+      valueField: 'id',
+      // not request untill to select
+      immediate: true,
+      onChange: (e, v) => {
+        console.log('ApiSelect====>:', e, v);
+      },
+      // atfer request callback
+      onOptionsChange: (options) => {
+        console.log('get options', options.length, options);
+      },
+    },
+    colProps: {
+      span: 8,
+    },
+    defaultValue: '0',
+  },
+  {
     component: 'InputCountDown',
     label: '倒计时输入',
     icon: 'line-md:iconify2',

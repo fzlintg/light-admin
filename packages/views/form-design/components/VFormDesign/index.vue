@@ -174,6 +174,7 @@
    */
   const handleSetSelectItem = (schema: IVFormComponent) => {
     formConfig.value.currentItem = schema as any;
+
     handleChangePropsTabs(
       schema.key ? (formConfig.value.activeKey! === 1 ? 2 : formConfig.value.activeKey!) : 1,
     );
@@ -210,7 +211,8 @@
     generateKey(formItem);
     if (!formConfig.value.currentItem?.key) {
       handleSetSelectItem(formItem);
-      formConfig.value.schemas && formConfig.value.schemas.push(formItem as any);
+      //   formConfig.value.schemas && formConfig.value.schemas.push(formItem as any);
+      formConfig.value.schemas?.push(formItem as any);
 
       return;
     }
