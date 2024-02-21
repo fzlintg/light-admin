@@ -9,6 +9,11 @@ import { ComponentType } from '@c/Form/src/types';
 import { componentMap as Cmp } from '../components';
 import { Component } from 'vue';
 
+// 左侧控件列表与初始化的控件属性
+// props.slotName,会在formitem级别生成一个slot,并绑定当前record值
+// 属性props，类型为对象，不能为undefined或是null。
+import { optionsListApi } from '@/api/demo/select';
+
 const componentMap = new Map<string, Component>();
 
 //如果有其它控件，可以在这里初始化
@@ -47,10 +52,6 @@ export function setFormDesignComponents(config: IVFormComponent | IVFormComponen
 
 //外部设置的自定义控件
 export const customComponents: IVFormComponent[] = [];
-
-// 左侧控件列表与初始化的控件属性
-// props.slotName,会在formitem级别生成一个slot,并绑定当前record值
-// 属性props，类型为对象，不能为undefined或是null。
 export const baseComponents: IVFormComponent[] = [
   {
     component: 'ApiSelect',
@@ -59,11 +60,10 @@ export const baseComponents: IVFormComponent[] = [
     icon: 'wpf:password1',
     field: '',
     componentProps: {
-      api: () => {},
+      api: optionsListApi,
       params: {
         id: 1,
       },
-
       resultField: 'list',
       // use name as label
       labelField: 'name',
