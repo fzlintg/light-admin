@@ -54,6 +54,10 @@ export function setFormDesignComponents(config: IVFormComponent | IVFormComponen
 export const customComponents: IVFormComponent[] = [];
 export const baseComponents: IVFormComponent[] = [
   {
+    component: 'Code',
+    label: '代码',
+  },
+  {
     component: 'ApiSelect',
     label: '远程下拉',
     required: true,
@@ -358,26 +362,33 @@ export const baseComponents: IVFormComponent[] = [
       ],
     },
   },
-  // {
-  //   component: 'Button',
-  //   label: '按钮',
-  //   icon: 'dashicons:button',
-  //   field: '',
-  //   colProps: { span: 24 },
-  //   hiddenLabel: true,
-  //   componentProps: {},
-  // },
-  // {
-  //   component: 'ColorPicker',
-  //   label: '颜色选择器',
-  //   icon: 'carbon:color-palette',
-  //   field: '',
-  //   colProps: { span: 24 },
-  //   componentProps: {
-  //     defaultValue: '',
-  //     value: '',
-  //   },
-  // },
+  {
+    component: 'Button',
+    label: '按钮',
+    icon: 'dashicons:button',
+    field: '',
+    colProps: { span: 24 },
+    hiddenLabel: true,
+    componentProps: {
+      value: 'primary',
+      type: 'primary',
+      size: 'small',
+      onClick: () => {
+        console.log('点击');
+      },
+    },
+  },
+  {
+    component: 'ColorPicker',
+    label: '颜色选择器',
+    icon: 'carbon:color-palette',
+    field: '',
+    colProps: { span: 24 },
+    componentProps: {
+      defaultValue: '',
+      value: '',
+    },
+  },
 
   {
     component: 'slot',

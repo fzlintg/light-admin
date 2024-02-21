@@ -58,6 +58,7 @@
   const RadioGroup = Radio.Group;
 
   const modeValue = ref<MODE>(MODE.JSON);
+
   const value = ref(jsonData);
 
   const handleModeChange: RadioGroupProps['onChange'] = (e) => {
