@@ -31,6 +31,7 @@
     autoFormat: { type: Boolean, default: true },
     bordered: { type: Boolean, default: true },
   });
+  const emit = defineEmits(['update:value']);
   const loading = ref(true);
   const lines = ref(10);
   //const [, { setModalProps, redoModalHeight }] = useModalInner();
@@ -39,7 +40,12 @@
   // const emitData = ref('');
   const value = ref('');
   //const { t } = useI18n();
-
+  watch(
+    () => value,
+    (v) => {
+      emit('update:value', v);
+    },
+  );
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', value);
 

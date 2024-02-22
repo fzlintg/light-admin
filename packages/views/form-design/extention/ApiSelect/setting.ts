@@ -17,13 +17,15 @@ export default [
     component: 'Input',
   },
   {
-    name: 'api',
+    name: 'apiFunc',
     label: 'api',
     component: 'Code',
     componentProps: {
       mode: MODE.JS,
       buttonText: '编辑',
       editorTitle: '代码编辑',
+      bordered: true,
+      autoFormat: true,
     },
   },
 ];

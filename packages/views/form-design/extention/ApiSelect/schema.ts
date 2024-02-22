@@ -7,6 +7,7 @@ export default {
   field: '',
   componentProps: {
     api: optionsListApi,
+    apiFunc: '',
     params: {
       id: 1,
     },
