@@ -25,9 +25,13 @@ import {
   Transfer,
 } from 'ant-design-vue';
 
+import { comp as customComponents } from '../extention/loader';
 //ant-desing本身的Form控件库
 
 const componentMap = new Map<string, Component>();
+for (const compName in customComponents) {
+  componentMap.set(compName, customComponents[compName]);
+}
 componentMap.set('Radio', Radio);
 componentMap.set('Button', Button);
 componentMap.set('Calendar', Calendar);

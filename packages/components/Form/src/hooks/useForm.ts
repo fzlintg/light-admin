@@ -30,7 +30,10 @@ export function useForm(props?: Props): UseFormReturnType {
     return form as FormActionType;
   }
 
-  /**该函数用于注册一个表单实例。首先，如果当前是生产模式，则在组件卸载时将formRef和loadedRef置为null。然后，如果loadedRef已经存在且当前是生产模式且实例与formRef相同，则直接返回。否则，将formRef设置为实例，并将loadedRef设置为true。最后，使用watch监听props的变化，并在变化时调用实例的setProps方法，并传入动态属性。
+  /**该函数用于注册一个表单实例。首先，如果当前是生产模式，则在组件卸载时将formRef和loadedRef置为null。
+   * 然后，如果loadedRef已经存在且当前是生产模式且实例与formRef相同，则直接返回。
+   * 否则，将formRef设置为实例，并将loadedRef设置为true。
+   * 最后，使用watch监听props的变化，并在变化时调用实例的setProps方法，并传入动态属性。
    *
    */
   function register(instance: FormActionType) {

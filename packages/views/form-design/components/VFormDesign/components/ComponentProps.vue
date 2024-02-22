@@ -100,7 +100,8 @@
   import FormOptions from './FormOptions.vue';
   import { formItemsForEach, remove } from '../../../utils';
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
-  import customConfig from '../config/custom/index';
+  //import customConfig from '../config/custom/index';
+  import { setting as customSetting } from '../../../extention/loader';
 
   export default defineComponent({
     name: 'ComponentProps',
@@ -192,9 +193,9 @@
               }
             });
           //add by lintg
-          if (customConfig[formConfig.value.currentItem!.component]) {
+          if (customSetting[formConfig.value.currentItem!.component]) {
             allOptions.value.push(
-              ...customConfig[formConfig.value.currentItem!.component].map((item) => ({
+              ...customSetting[formConfig.value.currentItem!.component].map((item) => ({
                 ...item,
                 category: 'input',
               })),

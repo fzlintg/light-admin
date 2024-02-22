@@ -35,7 +35,8 @@ import { IconPicker } from '@c/Icon';
 import { CountdownInput } from '@c/CountDown';
 import { BasicTitle } from '@c/Basic';
 import { CropperAvatar } from '@c/Cropper';
-import customComponents from './custom/index';
+//import customComponents from './custom/index';
+//import { comp as customComponents } from '@views/form-design/extention/loader';
 
 const componentMap = new Map<ComponentType | string, Component>();
 
@@ -80,9 +81,10 @@ componentMap.set('Divider', Divider);
 componentMap.set('CropperAvatar', CropperAvatar);
 componentMap.set('BasicTitle', BasicTitle);
 //add by lintg
-for (const compName in customComponents) {
-  componentMap.set(compName, customComponents[compName]);
-}
+// debugger;
+// for (const compName in customComponents) {
+//   componentMap.set(compName, customComponents[compName]);
+// }
 
 export function add<T extends string, R extends Component>(
   compName: ComponentType | T,

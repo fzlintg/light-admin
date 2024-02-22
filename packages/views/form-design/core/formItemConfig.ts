@@ -12,7 +12,9 @@ import { Component } from 'vue';
 // 左侧控件列表与初始化的控件属性
 // props.slotName,会在formitem级别生成一个slot,并绑定当前record值
 // 属性props，类型为对象，不能为undefined或是null。
-import { optionsListApi } from '@/api/demo/select';
+//import { optionsListApi } from '@/api/demo/select';
+
+import { schema as extensionSchema } from '../extention/loader';
 
 const componentMap = new Map<string, Component>();
 
@@ -53,41 +55,44 @@ export function setFormDesignComponents(config: IVFormComponent | IVFormComponen
 //外部设置的自定义控件
 export const customComponents: IVFormComponent[] = [];
 export const baseComponents: IVFormComponent[] = [
-  {
-    component: 'Code',
-    label: '代码',
-  },
-  {
-    component: 'ApiSelect',
-    label: '远程下拉',
-    required: true,
-    icon: 'wpf:password1',
-    field: '',
-    componentProps: {
-      api: optionsListApi,
-      params: {
-        id: 1,
-      },
-      resultField: 'list',
-      // use name as label
-      labelField: 'name',
-      // use id as value
-      valueField: 'id',
-      // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
-    },
-    colProps: {
-      span: 8,
-    },
-    defaultValue: '0',
-  },
+  // {
+  //   component: 'Code',
+  //   label: '代码',
+  //   componentProps: {
+  //     buttonText: '编辑',
+  //   },
+  // },
+  // {
+  //   component: 'ApiSelect',
+  //   label: '远程下拉',
+  //   required: true,
+  //   icon: 'wpf:password1',
+  //   field: '',
+  //   componentProps: {
+  //     api: optionsListApi,
+  //     params: {
+  //       id: 1,
+  //     },
+  //     resultField: 'list',
+  //     // use name as label
+  //     labelField: 'name',
+  //     // use id as value
+  //     valueField: 'id',
+  //     // not request untill to select
+  //     immediate: true,
+  //     onChange: (e, v) => {
+  //       console.log('ApiSelect====>:', e, v);
+  //     },
+  //     // atfer request callback
+  //     onOptionsChange: (options) => {
+  //       console.log('get options', options.length, options);
+  //     },
+  //   },
+  //   colProps: {
+  //     span: 8,
+  //   },
+  //   defaultValue: '0',
+  // },
   {
     component: 'InputCountDown',
     label: '倒计时输入',
@@ -401,6 +406,9 @@ export const baseComponents: IVFormComponent[] = [
     },
   },
 ];
+
+//add by lintg
+baseComponents.push(...extensionSchema);
 
 // https://next.antdv.com/components/transfer-cn
 const transferControl = {

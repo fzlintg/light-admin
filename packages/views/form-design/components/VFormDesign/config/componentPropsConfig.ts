@@ -1,10 +1,9 @@
 import { IBaseFormAttrs } from './formItemPropsConfig';
-import config from './custom/index';
 
 interface IBaseComponentProps {
   [key: string]: IBaseFormAttrs[];
 }
-console.log(config);
+
 type BaseFormAttrs = Omit<IBaseFormAttrs, 'tag'>;
 
 export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
