@@ -1,3 +1,5 @@
+import { MODE } from '@c/CodeEditor';
+
 export default [
   {
     name: 'labelField',
@@ -11,7 +13,17 @@ export default [
   },
   {
     name: 'resultField',
-    label: 'value字段',
+    label: 'result字段',
     component: 'Input',
+  },
+  {
+    name: 'api',
+    label: 'api',
+    component: 'Code',
+    componentProps: {
+      mode: MODE.JS,
+      buttonText: '编辑',
+      editorTitle: '代码编辑',
+    },
   },
 ];

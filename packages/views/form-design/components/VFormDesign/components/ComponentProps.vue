@@ -18,7 +18,7 @@
                   v-if="child.component"
                   v-bind="child.componentProps"
                   v-model:value="formConfig.currentItem.componentProps[item.name][index]"
-                  :is="child.component"
+                  :is="getComponent(child.component)"
                 />
               </template>
             </div>
@@ -27,7 +27,7 @@
               v-else-if="item.component"
               class="component-prop"
               v-bind="item.componentProps"
-              :is="item.component"
+              :is="getComponent(item.component)"
               v-model:value="formConfig.currentItem.componentProps[item.name]"
             />
           </FormItem>
@@ -102,7 +102,9 @@
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
   //import customConfig from '../config/custom/index';
   import { setting as customSetting } from '../../../extention/loader';
+  import { componentMap } from '../../../core/formItemConfig';
 
+  //console.log(...componentMap);
   export default defineComponent({
     name: 'ComponentProps',
     components: {
@@ -119,6 +121,7 @@
       RadioButtonGroup,
       Col,
       Row,
+      //Code: componentMap['Code'],
     },
     setup() {
       // 让computed属性自动更新
@@ -135,6 +138,10 @@
         formConfig.value.currentItem.componentProps =
           formConfig.value.currentItem.componentProps || {};
       }
+      //lintg
+      const getComponent = (name) => {
+        return componentMap.get(name) || name;
+      };
 
       watch(
         () => formConfig.value.currentItem?.field,
@@ -196,8 +203,8 @@
           if (customSetting[formConfig.value.currentItem!.component]) {
             allOptions.value.push(
               ...customSetting[formConfig.value.currentItem!.component].map((item) => ({
-                ...item,
                 category: 'input',
+                ...item,
               })),
             );
           }
@@ -248,6 +255,7 @@
         controlOptions,
         inputOptions,
         allOptions,
+        getComponent,
       };
     },
   });

@@ -1,14 +1,19 @@
 <template>
-  <a-button @click="openModal"> {{ props.buttonText }} </a-button>
+  <a-button @click="openModal" v-bind="$attrs"> {{ props.buttonText }} </a-button>
   <BasicModal
-    v-bind="$attrs"
     destroyOnClose
     @register="register"
-    title="代码编辑"
+    :title="props.editorTitle"
     @open-change="handleShow"
     @ok="handleOk"
   >
-    <CodeEditor v-model:value="state" :mode="modeValue" />
+    <CodeEditor
+      v-model:value="state"
+      :mode="props.mode"
+      :readonly="props.readonly"
+      :autoFormat="props.autoFormat"
+      :bordered="props.bordered"
+    />
   </BasicModal>
 </template>
 <script setup>
@@ -20,12 +25,17 @@
   const props = defineProps({
     value: propTypes.string,
     buttonText: propTypes.string,
+    mode: MODE,
+    editorTitle: propTypes.string,
+    readonly: { type: Boolean },
+    autoFormat: { type: Boolean, default: true },
+    bordered: { type: Boolean, default: true },
   });
   const loading = ref(true);
   const lines = ref(10);
   //const [, { setModalProps, redoModalHeight }] = useModalInner();
   const [register, { openModal, closeModal }] = useModal();
-  const modeValue = ref < MODE > MODE.JSON;
+  //const modeValue = ref < MODE > MODE.JSON;
   // const emitData = ref('');
   const value = ref('');
   //const { t } = useI18n();
