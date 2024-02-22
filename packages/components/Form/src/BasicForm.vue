@@ -131,6 +131,10 @@
         componentProps = {},
         isHandleDateDefaultValue = true,
       } = schema;
+
+      // if (componentProps.apiFunc) {
+      //   componentProps.api = new Function(componentProps.apiFunc);
+      // }
       // handle date type
       if (
         isHandleDateDefaultValue &&

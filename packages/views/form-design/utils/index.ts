@@ -164,6 +164,10 @@ export const handleAsyncOptions = async (
  */
 export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
+    //lintg
+    if (item.componentProps?.apiFunc) {
+      item.componentProps.api = new Function(item.componentProps?.apiFunc);
+    }
     if ('required' in item) {
       !isArray(item.rules) && (item.rules = []);
       item.rules.push({ required: true, message: item.message });

@@ -23,7 +23,7 @@
   import { propTypes } from '@utils/propTypes';
 
   const props = defineProps({
-    value: propTypes.string,
+    value: propTypes.string || propTypes.function,
     buttonText: propTypes.string,
     mode: MODE,
     editorTitle: propTypes.string,
