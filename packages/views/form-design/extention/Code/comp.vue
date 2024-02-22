@@ -34,39 +34,20 @@
   const emit = defineEmits(['update:value']);
   const loading = ref(true);
   const lines = ref(10);
-  //const [, { setModalProps, redoModalHeight }] = useModalInner();
+
   const [register, { openModal, closeModal }] = useModal();
-  //const modeValue = ref < MODE > MODE.JSON;
-  // const emitData = ref('');
-  const value = ref('');
+  const [state] = useRuleFormItem(props, 'value', 'change');
   //const { t } = useI18n();
   watch(
-    () => value,
+    () => state.value,
     (v) => {
       emit('update:value', v);
     },
   );
   // Embedded in the form, just use the hook binding to perform form verification
-  const [state] = useRuleFormItem(props, 'value', 'change', value);
 
   const handleOk = () => {
     closeModal();
   };
-  const handleShow = () => {
-    // setModalProps({
-    //   title: '代码编辑器',
-    //   width: 1000,
-    //   centered: true,
-    //   maskClosable: true,
-    //   okText: '确定',
-    //   cancelText: '取消',
-    //   onOk: () => {
-    //     redoModalHeight();
-    //   },
-    // });
-    // loading.value = true;
-    // setTimeout(() => {
-    //   loading.value = false;
-    // });
-  };
+  const handleShow = () => {};
 </script>
