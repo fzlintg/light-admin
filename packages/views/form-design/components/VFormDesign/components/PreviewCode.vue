@@ -90,6 +90,7 @@
   // modal复制按钮样式
   .copy-btn-box {
     padding-top: 8px;
+    padding-bottom: 10px;
     text-align: center;
 
     .copy-btn {

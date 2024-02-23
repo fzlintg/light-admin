@@ -165,9 +165,13 @@ export const handleAsyncOptions = async (
 export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
     //lintg
-    if (item.componentProps?.apiFunc) {
-      item.componentProps.api = new Function(item.componentProps?.apiFunc);
+    for (const name in item.componentProps) {
+      if (name.indexOf('$') > -1) {
+        const originName = item.componentProps[name].split('$')[0];
+        item.componentProps[originName] = new Function(item.componentProps[name]);
+      }
     }
+
     if ('required' in item) {
       !isArray(item.rules) && (item.rules = []);
       item.rules.push({ required: true, message: item.message });
@@ -202,3 +206,5 @@ export const runCode = <T>(code: any): T => {
     return code;
   }
 };
+
+export const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;

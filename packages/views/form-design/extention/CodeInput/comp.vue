@@ -1,37 +1,41 @@
 <template>
-  <a-alert :message="props.prefix" type="info" class="code-prefix" />
-  <div :style="{ height: props.height + 'em' }">
+  <a-button @click="openModal" v-bind="$attrs"> {{ props.buttonText }} </a-button>
+  <BasicModal
+    destroyOnClose
+    @register="register"
+    :title="props.editorTitle"
+    @open-change="handleShow"
+    @ok="handleOk"
+  >
     <CodeEditor
-      v-bind="$attrs"
       v-model:value="state"
       :mode="props.mode"
       :readonly="props.readonly"
       :autoFormat="props.autoFormat"
       :bordered="props.bordered"
     />
-  </div>
-  <a-alert :message="props.suffix" type="info" class="code-prefix" />
+  </BasicModal>
 </template>
 <script setup>
   import { CodeEditor, MODE } from '@c/CodeEditor';
+  import { BasicModal, useModal } from '@c/Modal';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
-  import { Alert as AAlert } from 'ant-design-vue';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
     buttonText: propTypes.string,
-    height: propTypes.number,
     mode: MODE,
     editorTitle: propTypes.string,
     readonly: { type: Boolean },
     autoFormat: { type: Boolean, default: true },
     bordered: { type: Boolean, default: true },
-    prefix: propTypes.string,
-    suffix: propTypes.string,
   });
   const emit = defineEmits(['update:value']);
+  const loading = ref(true);
+  const lines = ref(10);
 
+  const [register, { openModal, closeModal }] = useModal();
   const [state] = useRuleFormItem(props, 'value', 'change');
   //const { t } = useI18n();
   watch(
@@ -41,9 +45,9 @@
     },
   );
   // Embedded in the form, just use the hook binding to perform form verification
+
+  const handleOk = () => {
+    closeModal();
+  };
+  const handleShow = () => {};
 </script>
-<style>
-  .code-prefix {
-    margin-left: 30px;
-  }
-</style>

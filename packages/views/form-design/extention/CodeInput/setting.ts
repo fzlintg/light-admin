@@ -6,6 +6,11 @@ for (const item in MODE) {
 }
 export default [
   {
+    name: 'buttonText',
+    label: '按钮文本',
+    component: 'Input',
+  },
+  {
     name: 'mode',
     label: '模式',
     component: 'Select',
@@ -14,18 +19,8 @@ export default [
     },
   },
   {
-    name: 'height',
-    label: '高度',
-    component: 'InputNumber',
-  },
-  {
-    name: 'prefix',
-    label: '前缀',
-    component: 'Input',
-  },
-  {
-    name: 'suffix',
-    label: '后缀',
+    name: 'editorTitle',
+    label: '编辑器标题',
     component: 'Input',
   },
   {

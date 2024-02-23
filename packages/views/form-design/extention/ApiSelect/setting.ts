@@ -18,7 +18,7 @@ export default [
     component: 'Input',
   },
   {
-    name: 'apiFunc',
+    name: 'api$func',
     label: 'api',
     component: 'Code',
     componentProps: {
