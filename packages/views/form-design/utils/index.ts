@@ -166,8 +166,8 @@ export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
     //lintg
     for (const name in item.componentProps) {
-      if (name.indexOf('$') > -1) {
-        const originName = item.componentProps[name].split('$')[0];
+      if (name.indexOf('__func') > -1 && item.componentProps[name].trim().length > 0) {
+        const originName = name.split('__')[0];
         item.componentProps[originName] = new Function(item.componentProps[name]);
       }
     }

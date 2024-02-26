@@ -18,9 +18,9 @@ export default [
     component: 'Input',
   },
   {
-    name: 'api$func',
+    name: 'api__func',
     label: 'api',
-    component: 'Code',
+    component: 'CodeInput',
     componentProps: {
       mode: MODE.JS,
       buttonText: '编辑',

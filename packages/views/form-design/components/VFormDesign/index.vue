@@ -13,7 +13,7 @@
     >
       <CollapseContainer title="基础控件">
         <CollapseItem
-          :list="baseComponents"
+          :list="baseComponentsOrigin"
           :handleListPush="handleListPushDrag"
           @add-attrs="handleAddAttrs"
           @handle-list-push="handleListPush"
@@ -21,7 +21,7 @@
       </CollapseContainer>
       <CollapseContainer title="自定义控件">
         <CollapseItem
-          :list="customComponents"
+          :list="baseComponentsCustom"
           @add-attrs="handleAddAttrs"
           :handleListPush="handleListPushDrag"
           @handle-list-push="handleListPush"
@@ -92,7 +92,7 @@
 
   import 'codemirror/mode/javascript/javascript';
 
-  import { ref, provide, Ref } from 'vue';
+  import { ref, provide, Ref, computed } from 'vue';
   import { Layout, LayoutContent, LayoutSider } from 'ant-design-vue';
 
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
@@ -122,6 +122,13 @@
 
   const codeModal = ref<null | IToolbarMethods>(null);
 
+  //add by lintg
+  const baseComponentsOrigin = computed(() =>
+    baseComponents.filter((item) => item._type == undefined),
+  );
+  const baseComponentsCustom = computed(() =>
+    baseComponents.filter((item) => item._type == 'custom'),
+  );
   const formModel = ref({});
   // endregion
   const formConfig = ref<IFormConfig>({

@@ -10,7 +10,7 @@ for (const path in settingModules) {
 }
 for (const path in schemaModules) {
   const component = path.split('/')[1];
-  schema.push({ component, ...schemaModules[path].default });
+  schema.push({ component, ...schemaModules[path].default, _type: 'custom' });
 }
 for (const path in compModules) {
   const name = path.split('/')[1];

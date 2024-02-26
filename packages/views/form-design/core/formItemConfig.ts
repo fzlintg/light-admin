@@ -409,7 +409,7 @@ export const baseComponents: IVFormComponent[] = [
 
 //add by lintg
 baseComponents.push(...extensionSchema);
-
+//customComponents.push(...extensionSchema);
 // https://next.antdv.com/components/transfer-cn
 const transferControl = {
   component: 'Transfer',
