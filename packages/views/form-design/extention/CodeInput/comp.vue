@@ -19,6 +19,8 @@
     readonly: { type: Boolean },
     autoFormat: { type: Boolean, default: true },
     bordered: { type: Boolean, default: true },
+    prefix: propTypes.string,
+    suffix: propTypes.string,
   });
   const emit = defineEmits(['update:value']);
   const schemas = [
@@ -32,8 +34,8 @@
         autoFormat: true,
         readonly: false,
         height: 10,
-        prefix: 'function(){',
-        suffix: '}',
+        prefix: props.prefix || 'function(){',
+        suffix: props.suffix || '}',
       },
       colProps: {
         span: 24,

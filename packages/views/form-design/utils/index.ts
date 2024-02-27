@@ -168,7 +168,11 @@ export const formatRules = (schemas: IVFormComponent[]) => {
     for (const name in item.componentProps) {
       if (name.indexOf('__func') > -1 && item.componentProps[name].trim().length > 0) {
         const originName = name.split('__')[0];
-        item.componentProps[originName] = new Function(item.componentProps[name]);
+        let args = [];
+        if (item.componentProps[originName + '__params']) {
+          args = item.componentProps[originName + '__params'];
+        }
+        item.componentProps[originName] = new Function(...args, item.componentProps[name]);
       }
     }
 

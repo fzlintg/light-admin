@@ -13,6 +13,8 @@ export default {
       //do something
       return v;
     },
+    afterFetch__func: '',
+    afterFetch__params: ['v'],
     resultField: 'list',
   },
   colProps: {

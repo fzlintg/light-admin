@@ -93,5 +93,6 @@
     treeData.value = (result as (Recordable & { key: string | number })[]) || [];
     isFirstLoaded.value = true;
     emit('options-change', treeData.value);
+    //  nextTick(() => {});
   }
 </script>
