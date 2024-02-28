@@ -3,7 +3,7 @@ import { MODE } from '@c/CodeEditor';
 export default [
   {
     name: 'api__func',
-    label: '获取数据',
+    label: '获取数据api',
     component: 'CodeInput',
     componentProps: {
       mode: MODE.JS,
@@ -15,8 +15,8 @@ export default [
     },
   },
   {
-    name: 'afterFetch__func',
-    label: '获取数据后处理',
+    name: 'onChange__func',
+    label: 'onChange',
     component: 'CodeInput',
     componentProps: {
       mode: MODE.JS,
@@ -24,7 +24,7 @@ export default [
       editorTitle: '代码编辑',
       bordered: true,
       autoFormat: true,
-      prefix: 'function afterFetch(v){',
+      prefix: 'function onChange(e,v){',
     },
   },
 ];

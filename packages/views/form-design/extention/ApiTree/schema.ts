@@ -1,16 +1,16 @@
 import { treeOptionsListApi } from '@/api/demo/tree';
 
 export default {
-  label: '远程Tree',
+  label: '树',
   helpMessage: ['ApiTree组件', '使用接口提供的数据生成选项'],
   required: true,
   componentProps: {
     api: treeOptionsListApi,
+    api__func: '',
     params: {
       count: 2,
     },
     afterFetch: (v) => {
-      //do something
       return v;
     },
     afterFetch__func: '',
