@@ -32,12 +32,10 @@ export default [
     category: 'control',
     name: 'bordered',
     label: '显示边框',
-    component: 'Checkbox',
   },
   {
     category: 'control',
     name: 'autoFormat',
     label: '自动格式化',
-    component: 'Checkbox',
   },
 ];
