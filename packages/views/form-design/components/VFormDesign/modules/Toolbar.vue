@@ -1,10 +1,12 @@
 <!--
  * @Description: 工具栏
 -->
-<template>
+<template>   
   <div class="operating-area">
     <!-- 头部操作按钮区域 start -->
     <!-- 操作左侧区域 start -->
+  
+
     <div class="left-btn-box">
       <Tooltip v-for="item in toolbarsConfigs" :title="item.title" :key="item.icon">
         <a @click="$emit(item.event)" class="toolbar-text">
@@ -104,7 +106,6 @@
 
   .operating-area {
     display: flex;
-    place-content: center space-between;
     height: @operating-area-height;
     padding: 0 12px;
     padding-left: 30px;
@@ -112,6 +113,7 @@
     font-size: 16px;
     line-height: @operating-area-height;
     text-align: left;
+    place-content: center space-between;
 
     a {
       margin: 0 5px;

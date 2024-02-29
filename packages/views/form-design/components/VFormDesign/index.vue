@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <LayoutSider
-      :class="`sidebar left ${prefixCls}-sider`"
+      :class="` left ${prefixCls}-sider`"
       collapsible
       collapsedWidth="0"
       width="270"
@@ -11,6 +11,7 @@
       }"
       breakpoint="md"
     >
+    <div class="sidebar">
       <CollapseContainer title="基础控件">
         <CollapseItem
           :list="baseComponentsOrigin"
@@ -35,6 +36,7 @@
           @handle-list-push="handleListPush"
         />
       </CollapseContainer>
+    </div>
     </LayoutSider>
     <LayoutContent>
       <Toolbar
@@ -52,16 +54,17 @@
       />
     </LayoutContent>
     <LayoutSider
-      :class="`sidebar right ${prefixCls}-sider`"
+      :class="`right ${prefixCls}-sider`"
       collapsible
       :reverseArrow="true"
       collapsedWidth="0"
       width="270"
       :zeroWidthTriggerStyle="{ 'margin-top': '-70px', 'background-color': 'gray' }"
       breakpoint="lg"
-      :style="{ overflow: 'auto', height: '100vh' }"
+     
     >
-      <PropsPanel ref="propsPanel" :activeKey="formConfig.activeKey">
+
+      <PropsPanel ref="propsPanel"  :activeKey="formConfig.activeKey">
         <template v-for="item of formConfig.schemas" #[`${item.component}Props`]="data">
           <slot
             :name="`${item.component}Props`"
@@ -361,7 +364,7 @@
 
   .sidebar {
     height: calc(100vh - 78px);
-    overflow: auto;
-    overflow-x: hidden;
+   overflow: auto;
+   overflow-x: hidden;
   }
 </style>

@@ -2,8 +2,8 @@
  * @Description: 右侧属性配置面板
 -->
 <template>
-  <div>
-    <Tabs v-model:activeKey="formConfig.activeKey" :tabBarStyle="{ margin: 0 }">
+  <div class="sidebar">
+    <Tabs v-model:activeKey="formConfig.activeKey" :tabBarStyle="{ 'margin-left': '10px' }">
       <TabPane :key="1" tab="表单">
         <FormProps />
       </TabPane>
@@ -14,8 +14,11 @@
         <ComponentColumnProps />
       </TabPane>
       <TabPane :key="4" tab="组件">
-        <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
+          <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
         <ComponentProps v-else />
+
+       
+        
       </TabPane>
     </Tabs>
   </div>
@@ -58,6 +61,12 @@
 
 <style lang="less" scoped>
   @import url('../styles/variable.less');
+
+  .sidebar {
+    height: calc(100vh - 78px);
+   overflow: auto;
+   overflow-x: hidden;
+  }
 
   :deep(.ant-tabs) {
     box-sizing: border-box;
