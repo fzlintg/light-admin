@@ -6,7 +6,7 @@
       collapsedWidth="0"
       width="270"
       :zeroWidthTriggerStyle="{
-        'margin-top': '-70px',
+        'margin-top': '-60px',
         color:'black', 'background-color': 'transparent'
       }"
       breakpoint="md"
@@ -59,7 +59,7 @@
       :reverseArrow="true"
       collapsedWidth="0"
       width="270"
-      :zeroWidthTriggerStyle="{ 'margin-top': '-70px',color:'black', 'background-color': 'transparent' }"
+      :zeroWidthTriggerStyle="{ 'margin-top': '-60px',color:'black', 'background-color': 'transparent' }"
       breakpoint="lg"
      
     >
