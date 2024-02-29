@@ -58,7 +58,7 @@
       collapsible
       :reverseArrow="true"
       collapsedWidth="0"
-      width="270"
+      width="280"
       :zeroWidthTriggerStyle="{ 'margin-top': '-60px',color:'black', 'background-color': 'transparent' }"
       breakpoint="lg"
      
