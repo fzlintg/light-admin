@@ -7,7 +7,7 @@
       width="270"
       :zeroWidthTriggerStyle="{
         'margin-top': '-70px',
-        'background-color': 'gray',
+        color:'black', 'background-color': 'transparent'
       }"
       breakpoint="md"
     >
@@ -59,19 +59,19 @@
       :reverseArrow="true"
       collapsedWidth="0"
       width="270"
-      :zeroWidthTriggerStyle="{ 'margin-top': '-70px', 'background-color': 'gray' }"
+      :zeroWidthTriggerStyle="{ 'margin-top': '-70px',color:'black', 'background-color': 'transparent' }"
       breakpoint="lg"
      
     >
-
-      <PropsPanel ref="propsPanel"  :activeKey="formConfig.activeKey">
+    <div class="sidebar mx-2" >
+      <PropsPanel ref="propsPanel"  :activeKey="formConfig.activeKey" >
         <template v-for="item of formConfig.schemas" #[`${item.component}Props`]="data">
           <slot
             :name="`${item.component}Props`"
             v-bind="{ formItem: data, props: data.componentProps }"
           ></slot>
         </template>
-      </PropsPanel>
+      </PropsPanel></div>
     </LayoutSider>
   </Layout>
 
@@ -367,4 +367,5 @@
    overflow: auto;
    overflow-x: hidden;
   }
+
 </style>

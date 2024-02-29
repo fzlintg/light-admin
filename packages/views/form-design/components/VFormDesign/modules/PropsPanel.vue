@@ -2,7 +2,7 @@
  * @Description: 右侧属性配置面板
 -->
 <template>
-  <div class="sidebar">
+
     <Tabs v-model:activeKey="formConfig.activeKey" :tabBarStyle="{ 'margin-left': '10px' }">
       <TabPane :key="1" tab="表单">
         <FormProps />
@@ -21,7 +21,7 @@
         
       </TabPane>
     </Tabs>
-  </div>
+  
 </template>
 <script lang="ts">
   import { computed, defineComponent } from 'vue';

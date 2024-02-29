@@ -1,6 +1,7 @@
 import 'uno.css';
 import '@design/index.less';
 import '@c/VxeTable/src/css/index.scss';
+import '@design/tools.scss'
 import 'ant-design-vue/dist/reset.css';
 // Register icon sprite
 import 'virtual:svg-icons-register';
