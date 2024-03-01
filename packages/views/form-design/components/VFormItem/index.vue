@@ -4,6 +4,7 @@
 <template>
   <Col v-bind="colPropsComputed">
     <FormItem v-bind="{ ...formItemProps }">
+      <div>1</div>
       <template #label v-if="!formItemProps.hiddenLabel && schema.component !== 'Divider'">
         <Tooltip>
           <span>{{ schema.label }}</span>
