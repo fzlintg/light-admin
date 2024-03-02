@@ -101,7 +101,7 @@
   import { formItemsForEach, remove } from '../../../utils';
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
   //import customConfig from '../config/custom/index';
-  import { setting as customSetting } from '../../../extention/loader';
+  import { setting as customSetting ,func as customFuncs} from '../../../extention/loader';
   import { componentMap } from '../../../core/formItemConfig';
 
   //console.log(...componentMap);
@@ -138,10 +138,15 @@
         formConfig.value.currentItem.componentProps =
           formConfig.value.currentItem.componentProps || {};
       }
-      //lintg
+      //add by lintg
       const getComponent = (name) => {
         return componentMap.get(name) || name;
       };
+     
+      for(const item in customFuncs){
+        componentPropsFuncs[item]=customFuncs[item]
+      }
+      //end add
 
       watch(
         () => formConfig.value.currentItem?.field,
@@ -208,6 +213,7 @@
               })),
             );
           }
+
         },
         {
           immediate: true,
@@ -223,8 +229,8 @@
       // 非控制性选择
       const inputOptions = computed(() => {
         return allOptions.value.filter((item) => {
-          return item.category == 'input';
-        });
+          return item.category == 'input' && item.componentProps?.hidden!=true;
+        });  //lintg  添加了hidden
       });
 
       watch(

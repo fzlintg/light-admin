@@ -1,5 +1,7 @@
 <template>
-  <Tree v-bind="getAttrs" v-model:selectedKeys="state">
+  <Tree v-bind="getAttrs" v-model:selectedKeys="state" 
+  v-model:checkedKeys="state"
+  :treeData="treeData">
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
@@ -11,7 +13,7 @@
   import { type PropType, computed, watch, ref, onMounted, unref, useAttrs } from 'vue';
   import { Tree, TreeProps } from 'ant-design-vue';
   import { isArray, isFunction } from '@utils/is';
-  import { get } from 'lodash-es';
+  import { get,omit } from 'lodash-es';
   import { DataNode } from 'ant-design-vue/es/tree';
   import { useRuleFormItem } from '@h/component/useFormItem';
 
@@ -26,6 +28,7 @@
     value: {
       type: Array as PropType<TreeProps['selectedKeys']>,
     },
+  
   });
 
   const emit = defineEmits(['options-change', 'change', 'update:value']);
@@ -39,10 +42,11 @@
 
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
   const getAttrs = computed(() => {
-    return {
-      ...(props.api ? { treeData: unref(treeData) } : {}),
-      ...attrs,
+    let result={
+      ...attrs, 
+      //...(props.api ? { treeData: unref(treeData) } : {}),  //lintg
     };
+    return result;
   });
 
   watch(

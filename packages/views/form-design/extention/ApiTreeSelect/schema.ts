@@ -1,4 +1,3 @@
-import { on } from '@utils/domUtils';
 import { treeOptionsListApi } from '@/api/demo/tree';
 
 export default {
@@ -11,6 +10,9 @@ export default {
     onChange: (e, v) => {
       console.log('ApiTreeSelect====>:', e, v);
     },
+    treeCheckable:false,
+    allowClear:true,
+    placeholder:"请选择",
     onChange__params: ['e', 'v'],
   },
   colProps: {

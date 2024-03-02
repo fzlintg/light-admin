@@ -16,6 +16,7 @@ export interface IBaseFormAttrs {
   on?: IAnyObject;
   children?: IBaseFormAttrs[];
   category?: 'control' | 'input';
+  hidden?:boolean;   //lintg
 }
 
 export interface IBaseFormItemControlAttrs extends IBaseFormAttrs {

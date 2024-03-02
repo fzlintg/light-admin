@@ -27,4 +27,9 @@ export default [
       prefix: 'function afterFetch(v){',
     },
   },
+  {
+    category: 'control',
+    name: 'checkable',
+    label: '多选',
+  },
 ];

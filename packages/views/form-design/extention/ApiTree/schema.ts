@@ -16,6 +16,8 @@ export default {
     afterFetch__func: '',
     afterFetch__params: ['v'],
     resultField: 'list',
+    checkable:false
+  //  treeData:[]
   },
   colProps: {
     span: 8,

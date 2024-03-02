@@ -147,6 +147,7 @@ export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
       'TimePicker',
       'TreeSelect',
       'Cascader',
+      "ApiTreeSelect"
     ],
   },
   {
@@ -1122,7 +1123,7 @@ deleteProps(componentAttrs['StrengthMeter'], 'suffix');
 export const baseComponentAttrs: IBaseComponentProps = componentAttrs;
 
 //在所有的选项中查找需要配置项
-const findCompoentProps = (props, name) => {
+export const findComponentProps = (props, name) => {
   const idx = props.findIndex((value: BaseFormAttrs) => {
     return value.name === name;
   });
@@ -1134,7 +1135,7 @@ const findCompoentProps = (props, name) => {
 // 根据其它选项的值更新自身控件配置值
 export const componentPropsFuncs = {
   RadioGroup: (compProp, options: BaseFormAttrs[]) => {
-    const props = findCompoentProps(options, 'size');
+    const props = findComponentProps(options, 'size');
     if (props) {
       if (compProp['optionType'] && compProp['optionType'] != 'button') {
         props['disabled'] = true;
