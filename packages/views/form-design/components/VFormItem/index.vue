@@ -159,10 +159,18 @@
         let { options, treeData } = props.schema.componentProps ?? {};
         if (options) options = await handleAsyncOptions(options);
         if (treeData) treeData = await handleAsyncOptions(treeData);
-        return {
-          options,
-      //    treeData,
-        };
+        const result={};
+        if(options?.length>0){
+          result.options=options;
+        }
+        if(treeData?.length>0){
+          result.treeData=treeData;
+        }
+        return result
+        // return {
+        //   options,
+        //   treeData,
+        // };
       });
 
       /**

@@ -240,8 +240,8 @@
       // 非控制性选择
       const inputOptions = computed(() => {
         return allOptions.value.filter((item) => {
-          return item.category == 'input' && item.componentProps?.hidden!=true;
-        });  //lintg  添加了hidden
+          return item.category == 'input' && !(item?.hidden);
+        });  //lintg  添加了hidden)
       });
 
       watch(

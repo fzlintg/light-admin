@@ -18,5 +18,5 @@ export default {
   },
   colProps: {
     span: 8,
-  },
+  },itemProps:{}
 };
