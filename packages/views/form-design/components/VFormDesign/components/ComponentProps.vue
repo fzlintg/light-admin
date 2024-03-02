@@ -149,7 +149,7 @@
       }
 
       for(let schema of customSchema){
-        customSetting[schema.component]=customSetting[schema.component]||{};
+        customSetting[schema.component]=customSetting[schema.component]||[];
         for(const propItem in schema.componentProps){
           if(!!defaultSetting[propItem]&&customSetting[schema.component].filter(i=>i.name==propItem).length==0){
             customSetting[schema.component].push({name:propItem,...defaultSetting[propItem]})
