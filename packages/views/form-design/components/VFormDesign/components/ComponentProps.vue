@@ -101,7 +101,8 @@
   import { formItemsForEach, remove } from '../../../utils';
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
   //import customConfig from '../config/custom/index';
-  import { setting as customSetting ,func as customFuncs} from '../../../extention/loader';
+  import { schema as customSchema,setting as customSetting ,func as customFuncs} from '../../../extention/loader';
+  import defaultSetting from "../../../extention/defaultSetting"
   import { componentMap } from '../../../core/formItemConfig';
 
   //console.log(...componentMap);
@@ -145,6 +146,15 @@
      
       for(const item in customFuncs){
         componentPropsFuncs[item]=customFuncs[item]
+      }
+
+      for(let schema of customSchema){
+        customSetting[schema.component]=customSetting[schema.component]||{};
+        for(const propItem in schema.componentProps){
+          if(!!defaultSetting[propItem]&&customSetting[schema.component].filter(i=>i.name==propItem).length==0){
+            customSetting[schema.component].push({name:propItem,...defaultSetting[propItem]})
+          }
+        }
       }
       //end add
 
@@ -205,7 +215,8 @@
               }
             });
           //add by lintg
-          if (customSetting[formConfig.value.currentItem!.component]) {
+
+          if (customSetting[formConfig.value.currentItem!.component]?.length>0) {
             allOptions.value.push(
               ...customSetting[formConfig.value.currentItem!.component].map((item) => ({
                 category: 'input',

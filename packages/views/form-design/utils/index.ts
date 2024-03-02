@@ -164,7 +164,7 @@ export const handleAsyncOptions = async (
  */
 export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
-    //lintg
+    //lintg 添加__func自动功能
     for (const name in item.componentProps) {
       if (name.indexOf('__func') > -1 && item.componentProps[name].trim().length > 0) {
         const originName = name.split('__')[0];

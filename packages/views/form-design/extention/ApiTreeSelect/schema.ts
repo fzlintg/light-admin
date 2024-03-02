@@ -6,6 +6,7 @@ export default {
   required: true,
   componentProps: {
     api: treeOptionsListApi,
+    api__func:"",
     resultField: 'list',
     onChange: (e, v) => {
       console.log('ApiTreeSelect====>:', e, v);

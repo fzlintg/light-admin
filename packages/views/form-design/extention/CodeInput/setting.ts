@@ -6,11 +6,6 @@ for (const item in MODE) {
 }
 export default [
   {
-    name: 'buttonText',
-    label: '按钮文本',
-    component: 'Input',
-  },
-  {
     name: 'mode',
     label: '模式',
     component: 'Select',

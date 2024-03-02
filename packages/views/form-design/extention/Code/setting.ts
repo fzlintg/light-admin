@@ -14,11 +14,6 @@ export default [
     },
   },
   {
-    name: 'height',
-    label: '高度',
-    component: 'InputNumber',
-  },
-  {
     name: 'prefix',
     label: '前缀',
     component: 'Input',
