@@ -1,6 +1,7 @@
 import { MODE } from '@c/CodeEditor';
 import { endsWith } from 'lodash-es';
-const setting={
+
+const setting = {
   api__func: {
     label: '获取数据api',
     component: 'CodeInput',
@@ -17,11 +18,11 @@ const setting={
     label: '结果字段',
     component: 'Input',
   },
-  labelField:{
+  labelField: {
     label: '标签字段',
     component: 'Input',
   },
-  valueField:{
+  valueField: {
     label: '值字段',
     component: 'Input',
   },
@@ -29,11 +30,11 @@ const setting={
     category: 'control',
     label: '允许清除',
   },
-  checkable:{
+  checkable: {
     category: 'control',
     label: '多选',
   },
-  onChange__func:{
+  onChange__func: {
     label: 'onChange',
     component: 'CodeInput',
     componentProps: {
@@ -45,20 +46,19 @@ const setting={
       prefix: 'function onChange(e,v){',
     },
   },
-  height:{
+  height: {
     label: '高度',
     component: 'InputNumber',
   },
-  buttonText:{
+  buttonText: {
     label: '按钮文本',
     component: 'Input',
   },
 };
-for(let item in setting){
-  
-  if(!setting[item].sortTitle){
-    if(endsWith(item,"Field")) setting[item].sortTitle="字段设置"
-    else  if(endsWith(item,"__func")) setting[item].sortTitle="函数"
+for (const item in setting) {
+  if (!setting[item].sortTitle) {
+    if (endsWith(item, 'Field')) setting[item].sortTitle = '字段设置';
+    else if (endsWith(item, '__func')) setting[item].sortTitle = '函数';
   }
 }
 

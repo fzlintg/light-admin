@@ -2,7 +2,7 @@ import { optionsListApi } from '@/api/demo/select';
 
 export default {
   component: 'ApiRadioGroup',
-  label: '远程Radio',
+  label: 'API单选',
   //  helpMessage: ['ApiRadioGroup组件', '使用接口提供的数据生成选项'],
   required: true,
   componentProps: {

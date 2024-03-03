@@ -9,7 +9,7 @@
         <!--    循环遍历渲染组件属性      -->
 
         <div v-if="formConfig.currentItem && formConfig.currentItem.componentProps">
-          <FormItem v-for="item in inputOptions" :key="item.name" :label="item.label">
+          <FormItem :label="item.label" v-for="item in inputOptions" :key="item.name">
             <!--     处理数组属性，placeholder       -->
 
             <div v-if="item.children">
@@ -24,14 +24,21 @@
             </div>
             <!--     如果不是数组，则正常处理属性值       -->
             <component
-              v-else-if="item.component"
+              v-else-if="item.component && item.component != 'Divider'"
               class="component-prop"
               v-bind="item.componentProps"
               :is="getComponent(item.component)"
               v-model:value="formConfig.currentItem.componentProps[item.name]"
             />
+            <Divider
+              class="divider_title"
+              dashed
+              v-else-if="item.component == 'Divider' && item.componentProps.label"
+              >{{ item.componentProps.label }}</Divider
+            >
           </FormItem>
-          <FormItem label="控制属性">
+          <Divider class="divider_title" dashed>控制属性</Divider>
+          <FormItem>
             <Col v-for="item in controlOptions" :key="item.name">
               <Checkbox
                 v-if="showControlAttrs(item.includes)"
@@ -87,6 +94,7 @@
     RadioGroup,
     Col,
     Row,
+    Divider,
   } from 'ant-design-vue';
   import RadioButtonGroup from '@c/Form/src/components/RadioButtonGroup.vue';
   import { computed, defineComponent, ref, watch } from 'vue';
@@ -101,8 +109,12 @@
   import { formItemsForEach, remove } from '../../../utils';
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
   //import customConfig from '../config/custom/index';
-  import { schema as customSchema,setting as customSetting ,func as customFuncs} from '../../../extention/loader';
-  import defaultSetting from "../../../extention/defaultSetting"
+  import {
+    schema as customSchema,
+    setting as customSetting,
+    func as customFuncs,
+  } from '../../../extention/loader';
+  import defaultSetting from '../../../extention/defaultSetting';
   import { componentMap } from '../../../core/formItemConfig';
 
   //console.log(...componentMap);
@@ -122,6 +134,7 @@
       RadioButtonGroup,
       Col,
       Row,
+      Divider,
       //Code: componentMap['Code'],
     },
     setup() {
@@ -143,16 +156,19 @@
       const getComponent = (name) => {
         return componentMap.get(name) || name;
       };
-     
-      for(const item in customFuncs){
-        componentPropsFuncs[item]=customFuncs[item]
+
+      for (const item in customFuncs) {
+        componentPropsFuncs[item] = customFuncs[item];
       }
 
-      for(let schema of customSchema){
-        customSetting[schema.component]=customSetting[schema.component]||[];
-        for(const propItem in schema.componentProps){
-          if(!!defaultSetting[propItem]&&customSetting[schema.component].filter(i=>i.name==propItem).length==0){
-            customSetting[schema.component].push({name:propItem,...defaultSetting[propItem]})
+      for (let schema of customSchema) {
+        customSetting[schema.component] = customSetting[schema.component] || [];
+        for (const propItem in schema.componentProps) {
+          if (
+            !!defaultSetting[propItem] &&
+            customSetting[schema.component].filter((i) => i.name == propItem).length == 0
+          ) {
+            customSetting[schema.component].push({ name: propItem, ...defaultSetting[propItem] });
           }
         }
       }
@@ -216,7 +232,7 @@
             });
           //add by lintg
 
-          if (customSetting[formConfig.value.currentItem!.component]?.length>0) {
+          if (customSetting[formConfig.value.currentItem!.component]?.length > 0) {
             allOptions.value.push(
               ...customSetting[formConfig.value.currentItem!.component].map((item) => ({
                 category: 'input',
@@ -224,7 +240,6 @@
               })),
             );
           }
-
         },
         {
           immediate: true,
@@ -239,13 +254,32 @@
 
       // 非控制性选择
       const inputOptions = computed(() => {
-        let result= allOptions.value.filter((item) => {
-          return item.category == 'input' && !(item?.hidden);
-        }).sort(function(a,b){
-          return  a.sortTitle>b.sortTitle?1:a.sortTitle<b.sortTitle?-1:0
-        });  //lintg  添加了hidden)
-        console.log(result);
-        debugger;
+        let result = allOptions.value
+          .filter((item) => {
+            return item.category == 'input' && !item?.hidden;
+          })
+          .sort(function (a, b) {
+            return a.sortTitle > b.sortTitle ? -1 : a.sortTitle < b.sortTitle ? 1 : 0;
+          }); //lintg  添加了hidden)
+        let title = '';
+        for (let i = 0; i < result.length; i++) {
+          if (title != result[i].sortTitle) {
+            title = result[i].sortTitle;
+            console.log(title);
+            result.splice(i, 0, {
+              component: 'Divider',
+              componentProps: {
+                label: title || '通用属性',
+              },
+              colProps: {
+                span: 24,
+              },
+            });
+            i++;
+          }
+        }
+        // console.log(result);
+        //  debugger;
         return result;
       });
 
@@ -282,3 +316,9 @@
     },
   });
 </script>
+<style scoped>
+  .divider_title {
+    border-color: #f00;
+    font-weight: bold;
+  }
+</style>

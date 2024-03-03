@@ -1,7 +1,7 @@
 import { optionsListApi } from '@/api/demo/select';
 
 export default {
-  label: '远程下拉',
+  label: 'API选择',
   required: true,
   icon: 'wpf:password1',
   field: '',
