@@ -1,6 +1,6 @@
 // import { VueConstructor } from 'vue';
 import { IVFormComponent, IFormConfig, IValidationRule } from '../typings/v-form-component';
-import { cloneDeep, isArray, isFunction, isNumber, uniqueId } from 'lodash-es';
+import { cloneDeep, isArray, isFunction, isNumber, uniqueId, endsWith } from 'lodash-es';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
 
@@ -164,15 +164,11 @@ export const handleAsyncOptions = async (
  */
 export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
-    //lintg 添加__func自动功能
+    //lintg  函数自动生成
     for (const name in item.componentProps) {
-      if (name.indexOf('__func') > -1 && item.componentProps[name].trim().length > 0) {
-        const originName = name.split('__')[0];
-        let args = [];
-        if (item.componentProps[originName + '__params']) {
-          args = item.componentProps[originName + '__params'];
-        }
-        item.componentProps[originName] = new Function(...args, item.componentProps[name]);
+      if (endsWith(name, '__func') && item.componentProps[name].trim().length > 0) {
+        const originName = name.substr(0, name.length - 6);
+        item.componentProps[originName] = new Function(item.componentProps[name]);
       }
     }
 
