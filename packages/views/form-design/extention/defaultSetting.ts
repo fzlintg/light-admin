@@ -1,6 +1,6 @@
 import { MODE } from '@c/CodeEditor';
-
-export default {
+import { endsWith } from 'lodash-es';
+const setting={
   api__func: {
     label: '获取数据api',
     component: 'CodeInput',
@@ -54,3 +54,12 @@ export default {
     component: 'Input',
   },
 };
+for(let item in setting){
+  
+  if(!setting[item].sortTitle){
+    if(endsWith(item,"Field")) setting[item].sortTitle="字段设置"
+    else  if(endsWith(item,"__func")) setting[item].sortTitle="函数"
+  }
+}
+
+export default setting;

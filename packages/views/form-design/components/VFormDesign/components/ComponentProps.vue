@@ -239,9 +239,14 @@
 
       // 非控制性选择
       const inputOptions = computed(() => {
-        return allOptions.value.filter((item) => {
+        let result= allOptions.value.filter((item) => {
           return item.category == 'input' && !(item?.hidden);
+        }).sort(function(a,b){
+          return  a.sortTitle>b.sortTitle?1:a.sortTitle<b.sortTitle?-1:0
         });  //lintg  添加了hidden)
+        console.log(result);
+        debugger;
+        return result;
       });
 
       watch(
