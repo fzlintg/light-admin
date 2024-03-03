@@ -55,11 +55,24 @@ const setting = {
     component: 'Input',
   },
 };
-for (const item in setting) {
-  if (!setting[item].sortTitle) {
-    if (endsWith(item, 'Field')) setting[item].sortTitle = '字段设置';
-    else if (endsWith(item, '__func')) setting[item].sortTitle = '函数';
-  }
-}
 
+export function getSetting(item, options) {
+  if (endsWith(item, '__func')) {
+    const func = item.substr(0, item.length - 6);
+    const params = options[`${func}__params`] || [];
+    return {
+      label: func,
+      component: 'CodeInput',
+      componentProps: {
+        mode: MODE.JS,
+        buttonText: '编辑',
+        editorTitle: '代码编辑',
+        bordered: true,
+        autoFormat: true,
+        prefix: `function ${func}(${params}){`,
+      },
+    };
+  }
+  return undefined;
+}
 export default setting;

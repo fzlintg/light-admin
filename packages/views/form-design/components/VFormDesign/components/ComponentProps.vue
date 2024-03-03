@@ -114,9 +114,9 @@
     setting as customSetting,
     func as customFuncs,
   } from '../../../extention/loader';
-  import defaultSetting from '../../../extention/defaultSetting';
+  import defaultSetting, { getSetting } from '../../../extention/defaultSetting';
   import { componentMap } from '../../../core/formItemConfig';
-
+  import { endsWith } from 'lodash-es';
   //console.log(...componentMap);
   export default defineComponent({
     name: 'ComponentProps',
@@ -160,20 +160,29 @@
       for (const item in customFuncs) {
         componentPropsFuncs[item] = customFuncs[item];
       }
-
+      //生成配置
       for (let schema of customSchema) {
         customSetting[schema.component] = customSetting[schema.component] || [];
         for (const propItem in schema.componentProps) {
-          if (
-            !!defaultSetting[propItem] &&
-            customSetting[schema.component].filter((i) => i.name == propItem).length == 0
-          ) {
-            customSetting[schema.component].push({ name: propItem, ...defaultSetting[propItem] });
+          if (customSetting[schema.component].filter((i) => i.name == propItem).length == 0) {
+            if (defaultSetting[propItem])
+              customSetting[schema.component].push({ name: propItem, ...defaultSetting[propItem] });
+            else {
+              let setting = getSetting(propItem, schema.componentProps);
+              setting && customSetting[schema.component].push({ name: propItem, ...setting });
+            }
           }
         }
       }
-      //end add
-
+      //自动修正配置分类
+      for (const item in customSetting) {
+        for (let comp of customSetting[item]) {
+          if (!comp.sortTitle) {
+            if (endsWith(comp.name, 'Field')) comp.sortTitle = '字段设置';
+            else if (endsWith(comp.name, '__func')) comp.sortTitle = '函数';
+          }
+        }
+      }
       watch(
         () => formConfig.value.currentItem?.field,
         (_newValue, oldValue) => {
@@ -265,7 +274,7 @@
         for (let i = 0; i < result.length; i++) {
           if (title != result[i].sortTitle) {
             title = result[i].sortTitle;
-            console.log(title);
+            // console.log(title);
             result.splice(i, 0, {
               component: 'Divider',
               componentProps: {

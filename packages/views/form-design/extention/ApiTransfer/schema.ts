@@ -21,9 +21,11 @@ export default {
   componentProps: {
     render: (item) => item.label,
     render__func: '',
+    render__params: ['item'],
     api: async () => {
       return Promise.resolve(guangdong);
     },
+    api__func: '',
   },
   defaultValue: ['1'],
   required: true,
