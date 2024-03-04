@@ -47,6 +47,7 @@
         <FormNodeOperate :schema="schema" :currentItem="currentItem" />
       </div>
     </template>
+    <template v-else-if="schema.component == 'Tabs'"> ok </template>
     <FormNode
       v-else
       :key="schema.key"

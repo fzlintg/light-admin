@@ -18,6 +18,7 @@
       </Col>
     </Row>
   </template>
+  <template v-if="schema.component == 'Tabs'"> ok </template>
   <VFormItem
     v-else
     :formConfig="formConfig"

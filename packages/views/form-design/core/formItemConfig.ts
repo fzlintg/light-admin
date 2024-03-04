@@ -468,4 +468,11 @@ export const layoutComponents: IVFormComponent[] = [
       gutter: 0,
     },
   },
+  {
+    component: 'Tabs',
+    label: '标签页',
+    icon: 'icon-grid',
+    componentProps: {},
+    colProps: { span: 24 },
+  },
 ];
