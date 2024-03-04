@@ -19,7 +19,7 @@
     </Row>
   </template>
   <template v-else-if="schema.component == 'Tabs'">
-    <Tabs class="ml-3">
+    <Tabs class="mx-3 w100">
       <TabPane v-for="(colItem, index) in schema.columns" :key="index" :tab="colItem.label">
         <FormRender
           v-for="(item, k) in colItem.children"
