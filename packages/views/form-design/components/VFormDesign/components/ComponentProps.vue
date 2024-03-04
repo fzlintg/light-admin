@@ -77,6 +77,9 @@
         <FormItem label="栅格" v-if="['Grid'].includes(formConfig.currentItem.component)">
           <FormOptions />
         </FormItem>
+        <FormItem label="标签" v-if="['Tabs'].includes(formConfig.currentItem.component)">
+          <FormOptions />
+        </FormItem>
       </Form>
     </div>
   </div>

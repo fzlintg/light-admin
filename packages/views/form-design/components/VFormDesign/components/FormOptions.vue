@@ -14,15 +14,27 @@
         添加栅格
       </a>
     </div>
-    <div v-else>
-      <div v-for="(item, index) of formConfig.currentItem!.componentProps![key]" :key="index">
+    <div v-else-if="formConfig.currentItem!.component == 'Tabs'">
+      <div v-for="(item, index) of formConfig.currentItem!['columns']" :key="index">
         <div class="options-box">
-          <Input v-model:value="item.label" />
-          <Input v-model:value="item.value" class="options-value" />
-          <a class="options-delete" @click="deleteOptions(index)">
+          <Input v-model:value="item.label" class="options-value" />
+          <a class="options-delete" @click="deleteGridOptions(index)">
             <Icon icon="ant-design:delete-outlined" />
           </a>
         </div>
+      </div>
+      <a @click="addGridOptions">
+        <Icon icon="ant-design:file-add-outlined" />
+        添加标签
+      </a>
+    </div>
+    <div v-else v-for="(item, index) of formConfig.currentItem!.componentProps![key]" :key="index">
+      <div class="options-box">
+        <Input v-model:value="item.label" />
+        <Input v-model:value="item.value" class="options-value" />
+        <a class="options-delete" @click="deleteOptions(index)">
+          <Icon icon="ant-design:delete-outlined" />
+        </a>
       </div>
       <a @click="addOptions">
         <Icon icon="ant-design:file-add-outlined" />
