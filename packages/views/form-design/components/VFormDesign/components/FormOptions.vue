@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-if="['Grid'].includes(formConfig.currentItem!.component)">
+    <div v-if="['Grid', 'Tabs'].includes(formConfig.currentItem!.component)">
       <div v-for="(item, index) of formConfig.currentItem!['columns']" :key="index">
         <div class="options-box">
-          <Input v-model:value="item.span" class="options-value" />
+          <Input v-model:value="item[attrObj[comp]]" class="options-value" />
           <a class="options-delete" @click="deleteGridOptions(index)">
             <Icon icon="ant-design:delete-outlined" />
           </a>
@@ -11,23 +11,10 @@
       </div>
       <a @click="addGridOptions">
         <Icon icon="ant-design:file-add-outlined" />
-        添加栅格
+        添加{{ labelObj[comp] }}
       </a>
     </div>
-    <div v-else-if="formConfig.currentItem!.component == 'Tabs'">
-      <div v-for="(item, index) of formConfig.currentItem!['columns']" :key="index">
-        <div class="options-box">
-          <Input v-model:value="item.label" class="options-value" />
-          <a class="options-delete" @click="deleteGridOptions(index)">
-            <Icon icon="ant-design:delete-outlined" />
-          </a>
-        </div>
-      </div>
-      <a @click="addGridOptions">
-        <Icon icon="ant-design:file-add-outlined" />
-        添加标签
-      </a>
-    </div>
+
     <div v-else v-for="(item, index) of formConfig.currentItem!.componentProps![key]" :key="index">
       <div class="options-box">
         <Input v-model:value="item.label" />
@@ -57,9 +44,18 @@
     components: { Input, Icon },
     // props: {},
     setup() {
-      const state = reactive({});
       const { formConfig } = useFormDesignState();
-      const key = formConfig.value.currentItem?.component === 'TreeSelect' ? 'treeData' : 'options';
+      const comp = computed(() => formConfig.value?.currentItem?.component);
+      const state = reactive({});
+      const key = comp.value === 'TreeSelect' ? 'treeData' : 'options';
+      const labelObj = {
+        Grid: '栅格',
+        Tabs: '标签页',
+      };
+      const attrObj = {
+        Grid: 'span',
+        Tabs: 'label',
+      };
       const addOptions = () => {
         if (!formConfig.value.currentItem?.componentProps?.[key])
           formConfig.value.currentItem!.componentProps![key] = [];
@@ -74,14 +70,19 @@
       };
 
       const addGridOptions = () => {
-        formConfig.value.currentItem?.['columns']?.push({
-          span: 12,
-          children: [],
-        });
+        if (comp.value == 'Grid') {
+          formConfig.value.currentItem?.['columns']?.push({
+            span: 12,
+            children: [],
+          });
+        } else
+          formConfig.value.currentItem?.['columns']?.push({
+            label: `标签${formConfig.value.currentItem?.['columns'].length + 1}`,
+            children: [],
+          });
       };
       const deleteGridOptions = (index: number) => {
-        if (index === 0) return message.warning('请至少保留一个栅格');
-
+        if (index === 0) return message.warning(`请至少保留一个${labelObj[state.comp]}`);
         remove(formConfig.value.currentItem!['columns']!, index);
       };
       return {
@@ -92,6 +93,9 @@
         key,
         deleteGridOptions,
         addGridOptions,
+        labelObj,
+        attrObj,
+        comp,
       };
     },
   });

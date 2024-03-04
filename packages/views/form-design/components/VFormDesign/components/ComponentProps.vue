@@ -74,10 +74,10 @@
           <FormOptions />
         </FormItem>
 
-        <FormItem label="栅格" v-if="['Grid'].includes(formConfig.currentItem.component)">
-          <FormOptions />
-        </FormItem>
-        <FormItem label="标签" v-if="['Tabs'].includes(formConfig.currentItem.component)">
+        <FormItem
+          :label="formConfig.currentItem.component == 'Grid' ? '栅格' : '标签'"
+          v-if="['Grid', 'Tabs'].includes(formConfig.currentItem.component)"
+        >
           <FormOptions />
         </FormItem>
       </Form>
@@ -119,6 +119,7 @@
   } from '../../../extention/loader';
   import defaultSetting, { getSetting } from '../../../extention/defaultSetting';
   import { componentMap } from '../../../core/formItemConfig';
+  import ItemOptions from './ItemOptions.vue';
   //import { endsWith } from 'lodash-es';
   //console.log(...componentMap);
   export default defineComponent({
@@ -138,6 +139,7 @@
       Col,
       Row,
       Divider,
+      ItemOptions,
       //Code: componentMap['Code'],
     },
     setup() {

@@ -18,7 +18,20 @@
       </Col>
     </Row>
   </template>
-  <template v-if="schema.component == 'Tabs'"> ok </template>
+  <template v-else-if="schema.component == 'Tabs'">
+    <Tabs class="ml-3">
+      <TabPane v-for="(colItem, index) in schema.columns" :key="index" :tab="colItem.label">
+        <FormRender
+          v-for="(item, k) in colItem.children"
+          :key="k"
+          :schema="item"
+          :formData="formData"
+          :formConfig="formConfig"
+          :setFormModel="setFormModel"
+        />
+      </TabPane>
+    </Tabs>
+  </template>
   <VFormItem
     v-else
     :formConfig="formConfig"
@@ -41,7 +54,7 @@
   import { defineComponent, PropType } from 'vue';
   import { IVFormComponent, IFormConfig } from '../../../typings/v-form-component';
   import VFormItem from '../../VFormItem/index.vue';
-  import { Row, Col } from 'ant-design-vue';
+  import { Row, Col, Tabs, TabPane } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'FormRender',
@@ -49,6 +62,8 @@
       VFormItem,
       Row,
       Col,
+      Tabs,
+      TabPane,
     },
     props: {
       formData: {
