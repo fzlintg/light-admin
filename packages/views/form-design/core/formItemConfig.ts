@@ -451,7 +451,7 @@ export const layoutComponents: IVFormComponent[] = [
     field: '',
     component: 'Grid',
     label: '栅格布局',
-    icon: 'icon-grid',
+    icon: 'ant-design:border-bottom-outlined',
     componentProps: {},
     columns: [
       {
@@ -471,8 +471,18 @@ export const layoutComponents: IVFormComponent[] = [
   {
     component: 'Tabs',
     label: '标签页',
-    icon: 'icon-grid',
+    icon: 'gravity-ui:layout-tabs',
     componentProps: {},
+    columns: [
+      {
+        label: '标签1',
+        children: [],
+      },
+      {
+        label: '标签2',
+        children: [],
+      },
+    ],
     colProps: { span: 24 },
   },
 ];

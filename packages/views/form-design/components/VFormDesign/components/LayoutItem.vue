@@ -47,7 +47,42 @@
         <FormNodeOperate :schema="schema" :currentItem="currentItem" />
       </div>
     </template>
-    <template v-else-if="schema.component == 'Tabs'"> ok </template>
+    <template v-else-if="schema.component == 'Tabs'">
+      <div
+        class="grid-box"
+        :class="{ active: schema.key === currentItem.key }"
+        @click.stop="handleSetSelectItem(schema)"
+      >
+        <tabs>
+          <tab-pane v-for="(tabItem, index) in schema.columns" :key="index" :tab="tabItem.label">
+            <draggable
+              class="list-main draggable-box"
+              :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
+              v-bind="{
+                group: 'form-draggable',
+                ghostClass: 'moving',
+                animation: 180,
+                handle: '.drag-move',
+              }"
+              item-key="key"
+              v-model="tabItem.children"
+              @start="$emit('dragStart', $event, tabItem.children)"
+              @add="$emit('handleColAdd', $event, tabItem.children)"
+            >
+              <template #item="{ element }">
+                <LayoutItem
+                  class="drag-move"
+                  :schema="element"
+                  :current-item="currentItem"
+                  @handle-copy="$emit('handle-copy')"
+                  @handle-delete="$emit('handle-delete')"
+                />
+              </template>
+            </draggable>
+          </tab-pane>
+        </tabs>
+      </div>
+    </template>
     <FormNode
       v-else
       :key="schema.key"
@@ -65,7 +100,7 @@
   import FormNodeOperate from './FormNodeOperate.vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import { IVFormComponent } from '../../../typings/v-form-component';
-  import { Row, Col } from 'ant-design-vue';
+  import { Row, Col, Tabs, TabPane } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'LayoutItem',
@@ -75,6 +110,8 @@
       draggable,
       Row,
       Col,
+      Tabs,
+      TabPane,
     },
     props: {
       schema: {
