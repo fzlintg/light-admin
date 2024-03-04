@@ -2,26 +2,21 @@
  * @Description: 右侧属性配置面板
 -->
 <template>
-
-    <Tabs v-model:activeKey="formConfig.activeKey" :tabBarStyle="{ 'margin-left': '10px' }">
-      <TabPane :key="1" tab="表单">
-        <FormProps />
-      </TabPane>
-      <TabPane :key="2" tab="控件">
-        <FormItemProps />
-      </TabPane>
-      <TabPane :key="3" tab="栅格">
-        <ComponentColumnProps />
-      </TabPane>
-      <TabPane :key="4" tab="组件">
-          <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
-        <ComponentProps v-else />
-
-       
-        
-      </TabPane>
-    </Tabs>
-  
+  <Tabs v-model:activeKey="formConfig.activeKey" :tabBarStyle="{ 'margin-left': '10px' }">
+    <TabPane :key="1" tab="表单">
+      <FormProps />
+    </TabPane>
+    <TabPane :key="2" tab="控件">
+      <FormItemProps />
+    </TabPane>
+    <TabPane :key="3" tab="栅格">
+      <ComponentColumnProps />
+    </TabPane>
+    <TabPane :key="4" tab="组件">
+      <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
+      <ComponentProps v-else />
+    </TabPane>
+  </Tabs>
 </template>
 <script lang="ts">
   import { computed, defineComponent } from 'vue';
@@ -64,8 +59,8 @@
 
   .sidebar {
     height: calc(100vh - 78px);
-   overflow: auto;
-   overflow-x: hidden;
+    overflow: auto;
+    overflow-x: hidden;
   }
 
   :deep(.ant-tabs) {

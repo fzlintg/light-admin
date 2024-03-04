@@ -7,36 +7,37 @@
       width="270"
       :zeroWidthTriggerStyle="{
         'margin-top': '-60px',
-        color:'black', 'background-color': 'transparent'
+        color: 'black',
+        'background-color': 'transparent',
       }"
       breakpoint="md"
     >
-    <div class="sidebar">
-      <CollapseContainer title="基础控件">
-        <CollapseItem
-          :list="baseComponentsOrigin"
-          :handleListPush="handleListPushDrag"
-          @add-attrs="handleAddAttrs"
-          @handle-list-push="handleListPush"
-        />
-      </CollapseContainer>
-      <CollapseContainer title="自定义控件">
-        <CollapseItem
-          :list="baseComponentsCustom"
-          @add-attrs="handleAddAttrs"
-          :handleListPush="handleListPushDrag"
-          @handle-list-push="handleListPush"
-        />
-      </CollapseContainer>
-      <CollapseContainer title="布局控件">
-        <CollapseItem
-          :list="layoutComponents"
-          :handleListPush="handleListPushDrag"
-          @add-attrs="handleAddAttrs"
-          @handle-list-push="handleListPush"
-        />
-      </CollapseContainer>
-    </div>
+      <div class="sidebar">
+        <CollapseContainer title="基础控件">
+          <CollapseItem
+            :list="baseComponentsOrigin"
+            :handleListPush="handleListPushDrag"
+            @add-attrs="handleAddAttrs"
+            @handle-list-push="handleListPush"
+          />
+        </CollapseContainer>
+        <CollapseContainer title="自定义控件">
+          <CollapseItem
+            :list="baseComponentsCustom"
+            @add-attrs="handleAddAttrs"
+            :handleListPush="handleListPushDrag"
+            @handle-list-push="handleListPush"
+          />
+        </CollapseContainer>
+        <CollapseContainer title="布局控件">
+          <CollapseItem
+            :list="layoutComponents"
+            :handleListPush="handleListPushDrag"
+            @add-attrs="handleAddAttrs"
+            @handle-list-push="handleListPush"
+          />
+        </CollapseContainer>
+      </div>
     </LayoutSider>
     <LayoutContent>
       <Toolbar
@@ -59,19 +60,22 @@
       :reverseArrow="true"
       collapsedWidth="0"
       width="280"
-      :zeroWidthTriggerStyle="{ 'margin-top': '-60px',color:'black', 'background-color': 'transparent' }"
+      :zeroWidthTriggerStyle="{
+        'margin-top': '-60px',
+        color: 'black',
+        'background-color': 'transparent',
+      }"
       breakpoint="lg"
-     
     >
-    <div class="sidebar mx-2" >
-      <PropsPanel ref="propsPanel"  :activeKey="formConfig.activeKey" >
-        <template v-for="item of formConfig.schemas" #[`${item.component}Props`]="data">
-          <slot
-            :name="`${item.component}Props`"
-            v-bind="{ formItem: data, props: data.componentProps }"
-          ></slot>
-        </template>
-      </PropsPanel></div>
+      <div class="sidebar mx-2">
+        <PropsPanel ref="propsPanel" :activeKey="formConfig.activeKey">
+          <template v-for="item of formConfig.schemas" #[`${item.component}Props`]="data">
+            <slot
+              :name="`${item.component}Props`"
+              v-bind="{ formItem: data, props: data.componentProps }"
+            ></slot>
+          </template> </PropsPanel
+      ></div>
     </LayoutSider>
   </Layout>
 
@@ -364,8 +368,7 @@
 
   .sidebar {
     height: calc(100vh - 78px);
-   overflow: auto;
-   overflow-x: hidden;
+    overflow: auto;
+    overflow-x: hidden;
   }
-
 </style>

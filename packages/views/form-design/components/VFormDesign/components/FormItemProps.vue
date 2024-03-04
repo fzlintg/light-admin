@@ -2,7 +2,7 @@
  * @Description: 表单项属性，控件属性面板
 -->
 <template>
-  <div class="properties-content">
+  <div class="properties-content mx-2">
     <div class="properties-body" v-if="formConfig.currentItem?.itemProps">
       <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择控件" />
       <Form v-else label-align="left" layout="vertical">

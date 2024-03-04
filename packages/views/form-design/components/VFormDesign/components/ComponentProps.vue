@@ -2,7 +2,7 @@
  * @Description: 组件属性控件
 -->
 <template>
-  <div class="properties-content">
+  <div class="properties-content mx-2">
     <div class="properties-body" v-if="formConfig.currentItem">
       <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择组件" />
       <Form label-align="left" layout="vertical">
