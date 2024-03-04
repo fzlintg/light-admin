@@ -4,7 +4,6 @@
 <template>
   <Col v-bind="colPropsComputed">
     <FormItem v-bind="{ ...formItemProps }">
-      
       <template #label v-if="!formItemProps.hiddenLabel && schema.component !== 'Divider'">
         <Tooltip>
           <span>{{ schema.label }}</span>
@@ -25,7 +24,7 @@
         >{{ schema.label }}</Divider
       >
       <!-- 部分控件需要一个空div -->
-      <div
+      <div v-else
         ><component
           class="v-form-item-wrapper"
           :is="componentItem"
@@ -159,14 +158,14 @@
         let { options, treeData } = props.schema.componentProps ?? {};
         if (options) options = await handleAsyncOptions(options);
         if (treeData) treeData = await handleAsyncOptions(treeData);
-        const result={};
-        if(options?.length>0){
-          result.options=options;
+        const result = {};
+        if (options?.length > 0) {
+          result.options = options;
         }
-        if(treeData?.length>0){
-          result.treeData=treeData;
+        if (treeData?.length > 0) {
+          result.treeData = treeData;
         }
-        return result
+        return result;
         // return {
         //   options,
         //   treeData,
