@@ -116,7 +116,7 @@
   } from '../../../extention/loader';
   import defaultSetting, { getSetting } from '../../../extention/defaultSetting';
   import { componentMap } from '../../../core/formItemConfig';
-  import { endsWith } from 'lodash-es';
+  //import { endsWith } from 'lodash-es';
   //console.log(...componentMap);
   export default defineComponent({
     name: 'ComponentProps',
@@ -178,8 +178,8 @@
       for (const item in customSetting) {
         for (let comp of customSetting[item]) {
           if (!comp.sortTitle) {
-            if (endsWith(comp.name, 'Field')) comp.sortTitle = '字段设置';
-            else if (endsWith(comp.name, '__func')) comp.sortTitle = '函数';
+            if (comp.name?.endsWith('Field')) comp.sortTitle = '字段设置';
+            else if (comp.name?.endsWith('__func')) comp.sortTitle = '函数';
           }
         }
       }

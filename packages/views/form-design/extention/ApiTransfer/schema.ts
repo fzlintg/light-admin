@@ -17,6 +17,7 @@ const guangdong = [
 ];
 export default {
   label: 'API穿梭框',
+  icon: 'bx:bx-transfer-alt',
   component: 'ApiTransfer',
   componentProps: {
     render: (item) => item.label,

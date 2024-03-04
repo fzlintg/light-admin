@@ -4,6 +4,7 @@ export default {
   label: 'API树',
   helpMessage: ['ApiTree组件', '使用接口提供的数据生成选项'],
   required: true,
+  icon: 'clarity:tree-view-line',
   componentProps: {
     api: treeOptionsListApi,
     api__func: '',

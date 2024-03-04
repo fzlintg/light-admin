@@ -95,7 +95,7 @@ export const baseComponents: IVFormComponent[] = [
   // },
   {
     component: 'InputCountDown',
-    label: '倒计时输入',
+    label: '倒计输入',
     icon: 'line-md:iconify2',
     colProps: { span: 24 },
     field: '',
@@ -103,7 +103,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'IconPicker',
-    label: '图标选择器',
+    label: '图标选择',
     icon: 'line-md:iconify2',
     colProps: { span: 24 },
     field: '',
@@ -157,7 +157,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'CheckboxGroup',
-    label: '复选框-组',
+    label: '复选框组',
     icon: 'ant-design:check-circle-filled',
     field: '',
     colProps: { span: 24 },
@@ -186,7 +186,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'InputNumber',
-    label: '数字输入框',
+    label: '数字输入',
     icon: 'ant-design:field-number-outlined',
     field: '',
     colProps: { span: 24 },
@@ -285,7 +285,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Slider',
-    label: '滑动输入条',
+    label: '滑动输入',
     icon: 'vaadin:slider',
     field: '',
     colProps: { span: 24 },
@@ -385,7 +385,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'ColorPicker',
-    label: '颜色选择器',
+    label: '颜色选择',
     icon: 'carbon:color-palette',
     field: '',
     colProps: { span: 24 },

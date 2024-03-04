@@ -2,6 +2,8 @@ import { MODE } from '@c/CodeEditor';
 
 export default {
   label: '代码输入',
+  icon: 'ant-design:credit-card-outlined',
+  //icon: 'prime:file-edit',
   componentProps: {
     buttonText: '编辑',
     mode: MODE.JSON,

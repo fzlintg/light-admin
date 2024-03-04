@@ -1,5 +1,5 @@
 import { MODE } from '@c/CodeEditor';
-import { endsWith } from 'lodash-es';
+//import { endsWith } from 'lodash-es';
 
 const setting = {
   api__func: {
@@ -57,7 +57,7 @@ const setting = {
 };
 
 export function getSetting(item, options) {
-  if (endsWith(item, '__func')) {
+  if (item?.endsWith('__func')) {
     const func = item.substr(0, item.length - 6);
     const params = options[`${func}__params`] || [];
     return {
