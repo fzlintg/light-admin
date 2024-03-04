@@ -81,6 +81,7 @@
             </draggable>
           </tab-pane>
         </tabs>
+        <FormNodeOperate :schema="schema" :currentItem="currentItem" />
       </div>
     </template>
     <FormNode
