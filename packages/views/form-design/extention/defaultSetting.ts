@@ -14,6 +14,10 @@ const setting = {
       prefix: 'function api(){',
     },
   },
+  title: {
+    label: '标题',
+    component: 'Input',
+  },
   resultField: {
     label: '结果字段',
     component: 'Input',

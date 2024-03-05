@@ -10,7 +10,7 @@
   } from '../types/form';
   import type { Rule as ValidationRule } from 'ant-design-vue/lib/form/interface';
   import type { TableActionType } from '@c/Table';
-  import { Col, Divider, Form, Alert } from 'ant-design-vue';
+  import { Col, Divider, Form, Alert, Card } from 'ant-design-vue';
   import { componentMap } from '../componentMap';
   import { BasicHelp, BasicTitle } from '@c/Basic';
   import { isBoolean, isFunction, isNull } from '@utils/is';
@@ -29,6 +29,7 @@
     name: 'BasicFormItem',
     components: {
       Alert,
+      Card,
     },
     inheritAttrs: false,
     props: {
