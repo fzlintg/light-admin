@@ -3,7 +3,7 @@
 -->
 <template>
   <Col v-bind="colPropsComputed">
-    <FormItem v-bind="{ ...formItemProps }">
+    <FormItem v-bind="{ ...formItemProps }" class="mr-3">
       <template #label v-if="!formItemProps.hiddenLabel && schema.component !== 'Divider'">
         <Tooltip>
           <span>{{ schema.label }}</span>
