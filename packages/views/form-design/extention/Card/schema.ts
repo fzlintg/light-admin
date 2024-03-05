@@ -3,7 +3,8 @@ export default {
   formItem: false,
   icon: 'ant-design:border-outlined',
   componentProps: {
-    title: '',
+    title: '卡片',
     bordered: false,
   },
+  children: [],
 };

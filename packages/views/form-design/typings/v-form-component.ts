@@ -68,7 +68,8 @@ export interface IVFormComponent {
   // 组件布局
   wrapperCol?: IAnyObject;
   // 子控件
-  columns?: Array<{ span?: number; label?: string; children: any[] }>; //lintg 为tabs增加title可选
+  columns?: Array<{ span?: number; label?: string; children: any[] }>; //lintg 为tabs增加label可选
+  children?: any[]; //card类型控件
   //默认值 lintg
   defaultValue?: any;
 }

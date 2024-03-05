@@ -84,6 +84,40 @@
         <FormNodeOperate :schema="schema" :currentItem="currentItem" />
       </div>
     </template>
+    <template v-else-if="schema.component == 'Card'">
+      <div
+        class="grid-box"
+        :class="{ active: schema.key === currentItem.key }"
+        @click.stop="handleSetSelectItem(schema)"
+      >
+        <card v-bind="schema.componentProps">
+          <draggable
+            class="list-main draggable-box"
+            :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
+            v-bind="{
+              group: 'form-draggable',
+              ghostClass: 'moving',
+              animation: 180,
+              handle: '.drag-move',
+            }"
+            item-key="key"
+            v-model="schema.children"
+            @start="$emit('dragStart', $event, schema.children)"
+            @add="$emit('handleColAdd', $event, schema.children)"
+          >
+            <template #item="{ element }">
+              <LayoutItem
+                class="drag-move"
+                :schema="element"
+                :current-item="currentItem"
+                @handle-copy="$emit('handle-copy')"
+                @handle-delete="$emit('handle-delete')"
+              />
+            </template>
+          </draggable>
+        </card>
+      </div>
+    </template>
     <FormNode
       v-else
       :key="schema.key"
@@ -101,7 +135,7 @@
   import FormNodeOperate from './FormNodeOperate.vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import { IVFormComponent } from '../../../typings/v-form-component';
-  import { Row, Col, Tabs, TabPane } from 'ant-design-vue';
+  import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'LayoutItem',
@@ -113,6 +147,7 @@
       Col,
       Tabs,
       TabPane,
+      Card,
     },
     props: {
       schema: {
