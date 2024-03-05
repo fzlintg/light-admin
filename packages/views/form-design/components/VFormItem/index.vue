@@ -3,7 +3,16 @@
 -->
 <template>
   <Col v-bind="colPropsComputed">
-    <FormItem v-bind="{ ...formItemProps }" class="mr-3">
+    <component
+      v-if="schema.formItem == false"
+      class="m-3"
+      :is="componentItem"
+      v-bind="{ ...cmpProps, ...asyncProps }"
+      :schema="schema"
+      :style="schema.width ? { width: schema.width } : {}"
+      @click="handleClick(schema)"
+    />
+    <FormItem v-else v-bind="{ ...formItemProps }" class="mr-3">
       <template #label v-if="!formItemProps.hiddenLabel && schema.component !== 'Divider'">
         <Tooltip>
           <span>{{ schema.label }}</span>

@@ -19,6 +19,7 @@ declare type Value = [number, number] | number;
  * 组件属性
  */
 export interface IVFormComponent {
+  formItem?: boolean; //lintg 是否表单字段
   // extends Omit<FormSchema, 'component' | 'label' | 'field' | 'rules'> {
   // 对应的字段
   field?: string;

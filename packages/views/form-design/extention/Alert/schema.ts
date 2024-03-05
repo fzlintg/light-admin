@@ -5,5 +5,7 @@ export default {
   componentProps: {
     message: '测试一下',
     type: 'success',
+    closable: true,
+    showIcon: true,
   },
 };

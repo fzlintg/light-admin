@@ -1,5 +1,5 @@
 <template>
-  <alert :type="props.type" :message="props.message" />
+  <alert v-bind="props" />
 </template>
 <script setup>
   import { useRuleFormItem } from '@h/component/useFormItem';
@@ -11,6 +11,7 @@
     value: propTypes.string || propTypes.function,
     message: propTypes.string,
     type: propTypes.string,
+    closable: propTypes.boolean,
   });
 
   // Embedded in the form, just use the hook binding to perform form verification
