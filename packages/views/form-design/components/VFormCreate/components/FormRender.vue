@@ -32,6 +32,25 @@
       </TabPane>
     </Tabs>
   </template>
+  <template v-else-if="schema.component == 'Card'">
+    <Card v-bind="schema.componentProps" class="mx-3 w100">
+      <template #extra>hi</template>
+      <template  v-for="(value,key,index) in schema.componentProps!.slotName"
+      v-if="schema.componentProps && schema.componentProps.slotName"
+      #extra
+    >hi
+     {{value}}
+    </template>
+      <FormRender
+        v-for="(item, k) in schema.children"
+        :key="k"
+        :schema="item"
+        :formData="formData"
+        :formConfig="formConfig"
+        :setFormModel="setFormModel"
+      />
+    </Card>
+  </template>
   <VFormItem
     v-else
     :formConfig="formConfig"
@@ -54,7 +73,7 @@
   import { defineComponent, PropType } from 'vue';
   import { IVFormComponent, IFormConfig } from '../../../typings/v-form-component';
   import VFormItem from '../../VFormItem/index.vue';
-  import { Row, Col, Tabs, TabPane } from 'ant-design-vue';
+  import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'FormRender',
@@ -64,6 +83,7 @@
       Col,
       Tabs,
       TabPane,
+      Card,
     },
     props: {
       formData: {

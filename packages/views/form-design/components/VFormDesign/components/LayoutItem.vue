@@ -91,6 +91,9 @@
         @click.stop="handleSetSelectItem(schema)"
       >
         <card v-bind="schema.componentProps">
+          <template #[key] v-for="(value, key) in schema.componentProps?.slotsName">
+            {{ value }}
+          </template>
           <draggable
             class="list-main draggable-box"
             :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
@@ -115,8 +118,10 @@
               />
             </template>
           </draggable>
-        </card>
+        </card>     
+        <FormNodeOperate :schema="schema" :currentItem="currentItem" />
       </div>
+ 
     </template>
     <FormNode
       v-else

@@ -42,8 +42,9 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
   const { resetFields, validate, clearValidate, validateField } = useForm(formdata, []);
 
   const submit = async () => {
-    //const _result = await validate();
-
+    const _result = await validate();
+    console.log(_result);
+    debugger;
     const data = cloneDeep(toRaw(formdata.value));
     emit?.('submit', data);
     props.formConfig.submit?.(data);

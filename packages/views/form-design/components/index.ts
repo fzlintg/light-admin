@@ -29,6 +29,7 @@ import { comp as customComponents } from '../extention/loader';
 //ant-desing本身的Form控件库
 
 const componentMap = new Map<string, Component>();
+//自定义组件 lintg
 for (const compName in customComponents) {
   componentMap.set(compName, customComponents[compName]);
 }

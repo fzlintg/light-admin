@@ -79,6 +79,7 @@
       };
       const handleGetData = async () => {
         const _data = await state.fApi.submit?.();
+    //const _data = await state.fApi.validate?.();
         jsonModal.value?.showModal?.(_data);
       };
 

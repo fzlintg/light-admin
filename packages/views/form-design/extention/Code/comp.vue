@@ -1,5 +1,5 @@
 <template>
-  <a-alert :message="props.prefix" type="info" class="code-prefix" />
+  <a-alert v-if="props.prefix&&props.prefix!=''" :message="props.prefix" type="info" class="code-prefix" />
   <div :style="{ height: props.height + 'em' }">
     <CodeEditor
       v-bind="$attrs"
@@ -10,7 +10,7 @@
       :bordered="props.bordered"
     />
   </div>
-  <a-alert :message="props.suffix" type="info" class="code-prefix" />
+  <a-alert v-if="props.suffix&&props.suffix!=''" :message="props.suffix" type="info" class="code-prefix" />
 </template>
 <script setup>
   import { CodeEditor, MODE } from '@c/CodeEditor';

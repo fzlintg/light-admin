@@ -34,8 +34,8 @@
         autoFormat: true,
         readonly: false,
         height: 10,
-        prefix: props.prefix || 'function(){',
-        suffix: props.suffix || '}',
+        prefix: props.prefix ?? 'function(){',
+        suffix: props.suffix ?? '}',
       },
       colProps: {
         span: 24,

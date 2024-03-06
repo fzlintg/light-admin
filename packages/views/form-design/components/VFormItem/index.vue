@@ -9,6 +9,10 @@
       :is="componentItem"
       v-bind="{ ...cmpProps, ...asyncProps }"
       :schema="schema"
+      :formConfig="formConfig"
+
+    :formData="formData"
+    :setFormModel="setFormModel"
       :style="schema.width ? { width: schema.width } : {}"
       @click="handleClick(schema)"
     />
@@ -82,6 +86,10 @@
       formConfig: {
         type: Object as PropType<IFormConfig>,
         required: true,
+      },
+      setFormModel: {
+        type: Function as PropType<(key: string, value: any) => void>,
+        default: null,
       },
     },
     emits: ['update:form-data', 'change'],

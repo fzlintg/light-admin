@@ -5,6 +5,9 @@ export default {
   componentProps: {
     title: '卡片',
     bordered: false,
+    slotsName:{
+      extra:"hi"
+    }
   },
   children: [],
 };

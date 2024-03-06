@@ -62,7 +62,7 @@
 
   import { basicProps } from './props';
   import { useDesign } from '@h/web/useDesign';
-  import { cloneDeep } from 'lodash-es';
+  import { cloneDeep,set } from 'lodash-es';
   import { TableActionType } from '@c/Table';
 
   defineOptions({ name: 'BasicForm' });
@@ -276,6 +276,7 @@
   }
 
   function setFormModel(key: string, value: any, schema: FormSchema) {
+    //set(formModel,key,value)  //lintg
     formModel[key] = value;
     emit('field-value-change', key, value);
     // TODO 优化验证，这里如果是autoLink=false手动关联的情况下才会再次触发此函数
