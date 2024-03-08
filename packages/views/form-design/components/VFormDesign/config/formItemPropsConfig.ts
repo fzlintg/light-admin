@@ -17,6 +17,7 @@ export interface IBaseFormAttrs {
   children?: IBaseFormAttrs[];
   category?: 'control' | 'input';
   hidden?:boolean;   //lintg
+  sortTitle?:string;   //lintg 分类
 }
 
 export interface IBaseFormItemControlAttrs extends IBaseFormAttrs {
