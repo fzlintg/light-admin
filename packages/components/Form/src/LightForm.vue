@@ -42,7 +42,7 @@
   import type { AdvanceState } from './types/hooks';
   import type { Ref } from 'vue';
 
-  import { reactive, ref, computed, unref, onMounted, watch, nextTick, useAttrs, toRaw } from 'vue';
+  import { reactive, ref, computed, unref, onMounted, watch, nextTick, useAttrs } from 'vue';
   import { Form, Row, type FormProps as AntFormProps } from 'ant-design-vue';
   import FormItem from './components/FormItem.vue';
   import FormAction from './components/FormAction.vue';
@@ -65,7 +65,7 @@
   import { cloneDeep, set } from 'lodash-es';
   import { TableActionType } from '@c/Table';
 
-  defineOptions({ name: 'BasicForm' });
+  defineOptions({ name: 'LightForm' });
 
   const props = defineProps(basicProps);
 
@@ -120,13 +120,7 @@
     };
   });
 
-  const toRawUnref = (val: any) => {
-    return toRaw(unref(val));
-  };
-  //const getBindValue = computed(() => ({ ...attrs, ...props, ...unref(getProps) }) as AntFormProps);
-  const getBindValue = computed(
-    () => ({ ...toRawUnref(attrs), ...toRawUnref(props), ...toRawUnref(getProps) }) as AntFormProps,
-  );
+  const getBindValue = computed(() => ({ ...attrs, ...props, ...unref(getProps) }) as AntFormProps);
 
   const getSchema = computed((): FormSchema[] => {
     const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);

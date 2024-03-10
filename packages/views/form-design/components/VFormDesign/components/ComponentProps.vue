@@ -9,34 +9,10 @@
         <!--    循环遍历渲染组件属性      -->
 
         <div v-if="formConfig.currentItem && formConfig.currentItem.componentProps">
-          <FormItem :label="item.label" v-for="item in inputOptions" :key="item.name">
-            <!--     处理数组属性，placeholder       -->
-
-            <div v-if="item.children">
-              <template v-for="(child, index) of item.children" :key="index">
-                <component
-                  v-if="child.component"
-                  v-bind="child.componentProps"
-                  v-model:value="formConfig.currentItem.componentProps[item.name][index]"
-                  :is="getComponent(child.component)"
-                />
-              </template>
-            </div>
-            <!--     如果不是数组，则正常处理属性值       -->
-            <component
-              v-else-if="item.component && item.component != 'Divider'"
-              class="component-prop"
-              v-bind="item.componentProps"
-              :is="getComponent(item.component)"
-              v-model:value="formConfig.currentItem.componentProps[item.name]"
-            />
-            <Divider
-              class="divider_title"
-              dashed
-              v-else-if="item.component == 'Divider' && item.componentProps.label"
-              >{{ item.componentProps.label }}</Divider
-            >
-          </FormItem>
+          <LightProps
+            :schema="inputOptions"
+            v-model:props="formConfig.currentItem.componentProps"
+          />
           <Divider class="divider_title" dashed>控制属性</Divider>
           <FormItem>
             <Col v-for="item in controlOptions" :key="item.name">
@@ -56,6 +32,9 @@
             v-model:value="formConfig.currentItem['link']"
             :options="linkOptions"
           />
+        </FormItem>
+        <FormItem label="提交按钮">
+          <Checkbox v-model:checked="formConfig.currentItem.showActionButtonGroup" />
         </FormItem>
 
         <FormItem
@@ -120,7 +99,8 @@
   import defaultSetting, { getSetting } from '../../../extention/defaultSetting';
   import { componentMap } from '../../../core/formItemConfig';
   import ItemOptions from './ItemOptions.vue';
-  //import { endsWith } from 'lodash-es';
+  //import { get, set } from 'lodash-es';
+  import LightProps from './LighProps.vue';
   //console.log(...componentMap);
   export default defineComponent({
     name: 'ComponentProps',
@@ -140,6 +120,7 @@
       Row,
       Divider,
       ItemOptions,
+      LightProps,
       //Code: componentMap['Code'],
     },
     setup() {
@@ -158,6 +139,17 @@
           formConfig.value.currentItem.componentProps || {};
       }
       //add by lintg
+      // const getItemProps = (name) => {
+      //   return computed({
+      //     get() {
+      //       return get(formConfig.currentItem.componentProps, name);
+      //     },
+      //     set(value) {
+      //       set(formConfig.currentItem.componentProps, name, value);
+      //     },
+      //   });
+      // };
+      // formConfig.currentItem.componentProps[item.name];
       const getComponent = (name) => {
         return componentMap.get(name) || name;
       };
@@ -326,6 +318,7 @@
         inputOptions,
         allOptions,
         getComponent,
+        //   getItemProps
       };
     },
   });
