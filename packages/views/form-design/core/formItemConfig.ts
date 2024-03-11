@@ -382,6 +382,7 @@ export const baseComponents: IVFormComponent[] = [
       onClick: () => {
         console.log('点击');
       },
+      onClick__func: '',
     },
   },
   {
