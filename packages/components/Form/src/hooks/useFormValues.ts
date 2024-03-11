@@ -131,9 +131,18 @@ export function useFormValues({
     return dateUtil(time).format(format);
   }
 
+  // function getDefaultByComponent(item) {
+  //   let result;
+  //   switch (item) {
+  //     default:
+  //       result = '';
+  //   }
+  //   return result;
+  // }
   function initDefault() {
     const schemas = unref(getSchema);
     const obj: Recordable = {};
+
     schemas.forEach((item) => {
       const { defaultValue, defaultValueObj } = item;
       const fieldKeys = Object.keys(defaultValueObj || {});

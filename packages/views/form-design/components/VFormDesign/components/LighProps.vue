@@ -29,7 +29,17 @@
   import { useAttrs } from '@vben/hooks';
   import { componentMap } from '../../../core/formItemConfig';
 
-  import { defineEmits, computed, onMounted, ref, reactive, watch, toRaw, unref } from 'vue';
+  import {
+    defineProps,
+    defineEmits,
+    computed,
+    onMounted,
+    ref,
+    reactive,
+    watch,
+    toRaw,
+    unref,
+  } from 'vue';
   import { useFormValues } from '../../../../../components/Form/src/hooks/useFormValues';
   import { get, set } from 'lodash-es';
 
@@ -41,7 +51,7 @@
     return unref(attrs).schema;
   });
   const formModel = reactive({});
-
+  const toRawUnref = (value) => toRaw(unref(value));
   const defaultValueRef = ref({});
   const { initDefault } = useFormValues({
     getProps,
@@ -53,7 +63,7 @@
   onMounted(() => {
     initDefault();
     for (const item in formModel) {
-      formModel[item] = get(attrs.value.props, item);
+      formModel[item] = get(toRawUnref(attrs).props, item);
     }
   });
   watch(

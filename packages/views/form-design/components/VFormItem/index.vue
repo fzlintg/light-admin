@@ -10,12 +10,12 @@
       v-bind="{ ...cmpProps, ...asyncProps }"
       :schema="schema"
       :formConfig="formConfig"
-
-    :formData="formData"
-    :setFormModel="setFormModel"
+      :formData="formData"
+      :setFormModel="setFormModel"
       :style="schema.width ? { width: schema.width } : {}"
       @click="handleClick(schema)"
-    />
+      >{{ schema.component == 'Button' ? schema.label : '' }}
+    </component>
     <FormItem v-else v-bind="{ ...formItemProps }" class="mr-3">
       <template #label v-if="!formItemProps.hiddenLabel && schema.component !== 'Divider'">
         <Tooltip>
@@ -37,6 +37,7 @@
         >{{ schema.label }}</Divider
       >
       <!-- 部分控件需要一个空div -->
+      <Button v-else-if="['Button'].includes(schema.component)">{{ schema.label }}</Button>
       <div v-else
         ><component
           class="v-form-item-wrapper"
@@ -47,8 +48,6 @@
           @change="handleChange"
           @click="handleClick(schema)"
       /></div>
-
-      <span v-if="['Button'].includes(schema.component)">{{ schema.label }}</span>
     </FormItem>
   </Col>
 </template>

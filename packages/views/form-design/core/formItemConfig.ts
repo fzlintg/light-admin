@@ -1,3 +1,4 @@
+import { Slots, Component } from 'vue';
 /**
  * @description：表单配置
  */
@@ -7,7 +8,6 @@ import { componentMap as VbenCmp, add } from '@c/Form/src/componentMap';
 import { ComponentType } from '@c/Form/src/types';
 
 import { componentMap as Cmp } from '../components';
-import { Component } from 'vue';
 
 // 左侧控件列表与初始化的控件属性
 // props.slotName,会在formitem级别生成一个slot,并绑定当前record值
@@ -369,6 +369,7 @@ export const baseComponents: IVFormComponent[] = [
   },
   {
     component: 'Button',
+    formItem: false,
     label: '按钮',
     icon: 'dashicons:button',
     field: '',
