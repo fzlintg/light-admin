@@ -37,7 +37,6 @@
         >{{ schema.label }}</Divider
       >
       <!-- 部分控件需要一个空div -->
-      <Button v-else-if="['Button'].includes(schema.component)">{{ schema.label }}</Button>
       <div v-else
         ><component
           class="v-form-item-wrapper"

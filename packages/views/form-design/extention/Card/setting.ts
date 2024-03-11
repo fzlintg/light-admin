@@ -4,8 +4,8 @@ export default [
   {
     component: 'CodeInput',
     label: '工具栏渲染',
-    name: 'slotsName_extra',
-    field: 'slotsName.extra',
+    name: 'slots_extra',
+    field: 'slots.extra',
     componentProps: {
       mode: MODE.HTML,
       buttonText: '编辑',

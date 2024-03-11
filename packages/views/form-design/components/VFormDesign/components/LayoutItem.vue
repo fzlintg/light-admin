@@ -6,6 +6,7 @@
 <template>
   <Col v-bind="colPropsComputed">
     <template v-if="['Grid'].includes(schema.component)">
+      <component :is="widget['Grid']" :schema="schema" :currentItem="currentItem" v-bind="$attrs" />
       <div
         class="grid-box"
         :class="{ active: schema.key === currentItem.key }"
@@ -91,7 +92,7 @@
         @click.stop="handleSetSelectItem(schema)"
       >
         <card v-bind="schema.componentProps">
-          <template #[key] v-for="(value, key) in schema.componentProps?.slotsName">
+          <template #[key] v-for="(value, key) in schema.componentProps?.slots">
             {{ value }}
           </template>
           <draggable
@@ -118,10 +119,9 @@
               />
             </template>
           </draggable>
-        </card>     
+        </card>
         <FormNodeOperate :schema="schema" :currentItem="currentItem" />
       </div>
- 
     </template>
     <FormNode
       v-else
@@ -141,6 +141,7 @@
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import { IVFormComponent } from '../../../typings/v-form-component';
   import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
+  import { widget } from '../../../extention/loader';
 
   export default defineComponent({
     name: 'LayoutItem',
@@ -189,6 +190,7 @@
         handleSetSelectItem,
         layoutTag,
         list1,
+        widget,
       };
     },
   });

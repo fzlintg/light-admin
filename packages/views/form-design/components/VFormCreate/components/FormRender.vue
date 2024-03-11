@@ -34,13 +34,9 @@
   </template>
   <template v-else-if="schema.component == 'Card'">
     <Card v-bind="schema.componentProps" class="mx-3 w100">
-      <template #extra>hi</template>
-      <template  v-for="(value,key,index) in schema.componentProps!.slotName"
-      v-if="schema.componentProps && schema.componentProps.slotName"
-      #extra
-    >hi
-     {{value}}
-    </template>
+      <template #[key] v-for="(value, key) in schema.componentProps?.slots">
+        {{ value }}
+      </template>
       <FormRender
         v-for="(item, k) in schema.children"
         :key="k"
