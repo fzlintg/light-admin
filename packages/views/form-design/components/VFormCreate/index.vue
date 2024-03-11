@@ -28,7 +28,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { computed, defineComponent, PropType, provide, ref, unref } from 'vue';
+  import { toRaw, onMounted, computed, defineComponent, PropType, provide, ref, unref } from 'vue';
   import FormRender from './components/FormRender.vue';
   import { IFormConfig, AForm } from '../../typings/v-form-component';
   import { Form, Row, Col } from 'ant-design-vue';
@@ -36,6 +36,7 @@
   import { IProps, IVFormMethods, useVFormMethods } from '../../hooks/useVFormMethods';
   import { useVModel } from '@vueuse/core';
   import { omit } from 'lodash-es';
+  import { useFormValues } from '../../../../components/Form/src/hooks/useFormValues';
 
   export default defineComponent({
     name: 'VFormCreate',
@@ -65,7 +66,9 @@
 
       const formModelNew = computed({
         get: () => props.formModel,
-        set: (value) => emit('update:formModel', value),
+        set: (value) => {
+          emit('update:formModel', value);
+        },
       });
 
       const noHiddenList = computed(() => {
@@ -127,7 +130,21 @@
       };
 
       provide<(key: String, value: any) => void>('setFormModelMethod', setFormModel);
-
+      //lintg
+      const toRawUnref = (value) => toRaw(unref(value));
+      const defaultValueRef = reactive({});
+      const getSchema = computed(() => unref(noHiddenList));
+      // const formModel=
+      const { initDefault } = useFormValues({
+        getProps: () => formModelProps,
+        defaultValueRef,
+        getSchema,
+        formModel: formModelNew.value,
+      });
+      onMounted(() => {
+        initDefault();
+        emit('update:formModel', formModelNew.value);
+      });
       // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
       return {
         eFormModel,

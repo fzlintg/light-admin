@@ -133,6 +133,7 @@ export type RenderOpts = {
 interface BaseFormSchema<T extends ComponentType = any> {
   // Field name
   formItem?: boolean; //lintg,判断非表单字段
+  name?: string; //lintg
   field: string;
   // Extra Fields name[]
   fields?: string[];

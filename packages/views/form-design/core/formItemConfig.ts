@@ -183,6 +183,7 @@ export const baseComponents: IVFormComponent[] = [
     componentProps: {
       type: 'text',
     },
+    defaultValue: '',
   },
   {
     component: 'InputNumber',
@@ -199,6 +200,7 @@ export const baseComponents: IVFormComponent[] = [
     field: '',
     colProps: { span: 24 },
     componentProps: {},
+    defaultValue: '',
   },
   {
     component: 'Select',
@@ -227,6 +229,7 @@ export const baseComponents: IVFormComponent[] = [
     field: '',
     colProps: { span: 24 },
     componentProps: {},
+    defaultValue: false,
   },
   {
     component: 'RadioGroup',
@@ -298,14 +301,16 @@ export const baseComponents: IVFormComponent[] = [
     field: '',
     colProps: { span: 24 },
     componentProps: {},
+    defaultValue: 0,
   },
   {
     component: 'Switch',
     label: '开关',
     icon: 'entypo:switch',
-    field: '',
+
     colProps: { span: 24 },
     componentProps: {},
+    defaultValue: false,
   },
   {
     component: 'TreeSelect',

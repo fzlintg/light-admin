@@ -16,7 +16,7 @@ import {
   InputNumber,
   Switch,
   TimePicker,
-  // ColorPicker,
+  //ColorPicker,
   TreeSelect,
   Slider,
   Rate,
@@ -33,7 +33,7 @@ const componentMap = new Map<string, Component>();
 for (const compName in customComponents) {
   componentMap.set(compName, customComponents[compName]);
 }
-
+//componentMap.set('ColorPicker', ColorPicker);
 componentMap.set('Radio', Radio);
 componentMap.set('Button', Button);
 componentMap.set('Calendar', Calendar);
