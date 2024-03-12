@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid-box"
+  class="drag-move-box grid-box"
     :class="{ active: schema.key === currentItem.key }"
     @click.stop="handleSetSelectItem(schema)"
   >
@@ -52,8 +52,9 @@
     formDesignMethods: { handleSetSelectItem },
     // formConfig,
   } = useFormDesignState();
-
-  const { currentItem, schema } = useAttrs();
+debugger;
+  const { currentItem, schema } = toRefs(useAttrs());
+  debugger;
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');

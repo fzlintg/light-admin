@@ -46,7 +46,7 @@
   const {
     formDesignMethods: { handleSetSelectItem },
   } = useFormDesignState();
-  const { currentItem, schema } = useAttrs();
+  const { currentItem, schema } = toRefs(useAttrs());
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');
