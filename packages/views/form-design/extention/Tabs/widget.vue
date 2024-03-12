@@ -4,13 +4,8 @@
     :class="{ active: schema.key === currentItem.key }"
     @click.stop="handleSetSelectItem(schema)"
   >
-    <Row class="grid-row" v-bind="schema.componentProps">
-      <Col
-        class="grid-col"
-        v-for="(colItem, index) in schema.columns"
-        :key="index"
-        :span="colItem.span"
-      >
+    <tabs>
+      <tab-pane v-for="(tabItem, index) in schema.columns" :key="index" :tab="tabItem.label">
         <draggable
           class="list-main draggable-box"
           :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
@@ -21,9 +16,9 @@
             handle: '.drag-move',
           }"
           item-key="key"
-          v-model="colItem.children"
-          @start="$emit('dragStart', $event, colItem.children)"
-          @add="$emit('handleColAdd', $event, colItem.children)"
+          v-model="tabItem.children"
+          @start="$emit('dragStart', $event, tabItem.children)"
+          @add="$emit('handleColAdd', $event, tabItem.children)"
         >
           <template #item="{ element }">
             <LayoutItem
@@ -35,24 +30,22 @@
             />
           </template>
         </draggable>
-      </Col>
-    </Row>
+      </tab-pane>
+    </tabs>
     <FormNodeOperate :schema="schema" :currentItem="currentItem" />
   </div>
 </template>
 <script lang="ts" setup>
   import FormNodeOperate from '../../components/VFormDesign/components/FormNodeOperate.vue';
   import { useFormDesignState } from '../../hooks/useFormDesignState';
-  import { Row, Col } from 'ant-design-vue';
+  import { Tabs, TabPane } from 'ant-design-vue';
   import draggable from 'vuedraggable';
   import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
 
-  //const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
+  // const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },
-    // formConfig,
   } = useFormDesignState();
-
   const { currentItem, schema } = useAttrs();
 </script>
 <style lang="less">

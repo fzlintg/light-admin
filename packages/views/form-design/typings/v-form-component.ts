@@ -23,6 +23,7 @@ export interface IVFormComponent {
   // extends Omit<FormSchema, 'component' | 'label' | 'field' | 'rules'> {
   // 对应的字段
   field?: string;
+  type?: string; //lintg container/item
   // 组件类型
   component: string;
   // 组件label
