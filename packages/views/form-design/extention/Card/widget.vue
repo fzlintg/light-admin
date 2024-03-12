@@ -39,7 +39,7 @@
 <script lang="ts" setup>
   import FormNodeOperate from '../../components/VFormDesign/components/FormNodeOperate.vue';
   import { useFormDesignState } from '../../hooks/useFormDesignState';
-  import { Tabs, TabPane } from 'ant-design-vue';
+  import { Card } from 'ant-design-vue';
   import draggable from 'vuedraggable';
   import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
 

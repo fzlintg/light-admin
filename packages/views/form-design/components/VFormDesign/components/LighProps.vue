@@ -30,7 +30,7 @@
   import { componentMap } from '../../../core/formItemConfig';
 
   import {
-    defineProps,
+    //  defineProps,
     defineEmits,
     computed,
     onMounted,
