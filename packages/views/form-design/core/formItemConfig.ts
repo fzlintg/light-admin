@@ -457,6 +457,7 @@ export const layoutComponents: IVFormComponent[] = [
   {
     field: '',
     component: 'Grid',
+    type: 'container',
     label: '栅格布局',
     icon: 'ant-design:border-bottom-outlined',
     componentProps: {},
@@ -478,6 +479,7 @@ export const layoutComponents: IVFormComponent[] = [
   {
     component: 'Tabs',
     label: '标签页',
+    type: 'container',
     icon: 'gravity-ui:layout-tabs',
     componentProps: {},
     columns: [

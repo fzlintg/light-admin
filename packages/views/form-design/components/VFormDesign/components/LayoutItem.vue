@@ -7,46 +7,6 @@
   <Col v-bind="colPropsComputed">
     <template v-if="['Grid'].includes(schema.component)">
       <component :is="widget['Grid']" :schema="schema" :currentItem="currentItem" v-bind="$attrs" />
-      <div
-        class="grid-box"
-        :class="{ active: schema.key === currentItem.key }"
-        @click.stop="handleSetSelectItem(schema)"
-      >
-        <Row class="grid-row" v-bind="schema.componentProps">
-          <Col
-            class="grid-col"
-            v-for="(colItem, index) in schema.columns"
-            :key="index"
-            :span="colItem.span"
-          >
-            <draggable
-              class="list-main draggable-box"
-              :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
-              v-bind="{
-                group: 'form-draggable',
-                ghostClass: 'moving',
-                animation: 180,
-                handle: '.drag-move',
-              }"
-              item-key="key"
-              v-model="colItem.children"
-              @start="$emit('dragStart', $event, colItem.children)"
-              @add="$emit('handleColAdd', $event, colItem.children)"
-            >
-              <template #item="{ element }">
-                <LayoutItem
-                  class="drag-move"
-                  :schema="element"
-                  :current-item="currentItem"
-                  @handle-copy="$emit('handle-copy')"
-                  @handle-delete="$emit('handle-delete')"
-                />
-              </template>
-            </draggable>
-          </Col>
-        </Row>
-        <FormNodeOperate :schema="schema" :currentItem="currentItem" />
-      </div>
     </template>
     <template v-else-if="schema.component == 'Tabs'">
       <div

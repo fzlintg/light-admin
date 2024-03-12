@@ -43,13 +43,17 @@
 <script lang="ts" setup>
   import FormNodeOperate from '../../components/VFormDesign/components/FormNodeOperate.vue';
   import { useFormDesignState } from '../../hooks/useFormDesignState';
+  import { Row, Col } from 'ant-design-vue';
+  import draggable from 'vuedraggable';
+  import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
 
+  const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },
-    formConfig,
+    // formConfig,
   } = useFormDesignState();
   const attrs = useAttrs();
-  const { currentItem, schema } = toRefs(attrs);
+  const { currentItem, schema } = attrs;
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');
