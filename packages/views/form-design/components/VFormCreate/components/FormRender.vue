@@ -1,6 +1,6 @@
 <template>
   <template v-if="['Grid'].includes(schema.component)">
-    <Row class="grid-row">
+    <Row class="grid-row w100">
       <Col
         class="grid-col"
         v-for="(colItem, index) in schema.columns"
