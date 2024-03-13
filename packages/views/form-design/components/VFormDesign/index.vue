@@ -188,9 +188,7 @@
    * @param schema 当前选中的表单项
    */
   const handleSetSelectItem = (schema: IVFormComponent) => {
-  debugger;
     formConfig.value.currentItem = schema as any;
-
     handleChangePropsTabs(
       schema.key ? (formConfig.value.activeKey! === 1 ? 2 : formConfig.value.activeKey!) : 1,
     );

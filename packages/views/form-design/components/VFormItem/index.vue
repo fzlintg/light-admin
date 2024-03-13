@@ -3,8 +3,16 @@
 -->
 <template>
   <Col v-bind="colPropsComputed">
+    <template v-if="schema.type == 'container'">
+      <component
+        :is="widget[schema.component]"
+        :schema="schema"
+     
+        v-bind="$attrs"
+      />
+    </template>
     <component
-      v-if="schema.formItem == false"
+      v-else-if="schema.formItem == false"
       class="m-3"
       :is="componentItem"
       v-bind="{ ...cmpProps, ...asyncProps }"
@@ -61,7 +69,7 @@
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
-
+  import { widget } from '../../extention/loader';
   export default defineComponent({
     name: 'VFormItem',
     components: {
@@ -80,6 +88,9 @@
       schema: {
         type: Object as PropType<IVFormComponent>,
         required: true,
+      },
+      currentItem:{
+        type:Object
       },
       formConfig: {
         type: Object as PropType<IFormConfig>,
@@ -223,6 +234,7 @@
         cmpProps,
         handleChange,
         colPropsComputed,
+        widget
       };
     },
   });

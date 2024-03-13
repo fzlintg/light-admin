@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="grid-box"
-    :class="{ active: schema.key === currentItem.key }"
-    @click.stop="handleSetSelectItem(schema)"
-  >
+<div class="grid-box" >
     <tabs>
       <tab-pane v-for="(tabItem, index) in schema.columns" :key="index" :tab="tabItem.label">
         <draggable
@@ -32,7 +28,7 @@
         </draggable>
       </tab-pane>
     </tabs>
-    <FormNodeOperate :schema="schema" :currentItem="currentItem" />
+
   </div>
 </template>
 <script lang="ts" setup>

@@ -1,9 +1,5 @@
 <template>
-  <div
-  class="drag-move-box grid-box"
-    :class="{ active: schema.key === currentItem.key }"
-    @click.stop="handleSetSelectItem(schema)"
-  >
+<div class="grid-box">
     <Row class="grid-row" v-bind="schema.componentProps">
       <Col
         class="grid-col"
@@ -37,7 +33,6 @@
         </draggable>
       </Col>
     </Row>
-    <FormNodeOperate :schema="schema" :currentItem="currentItem" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -52,9 +47,9 @@
     formDesignMethods: { handleSetSelectItem },
     // formConfig,
   } = useFormDesignState();
-debugger;
+
   const { currentItem, schema } = toRefs(useAttrs());
-  debugger;
+
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');

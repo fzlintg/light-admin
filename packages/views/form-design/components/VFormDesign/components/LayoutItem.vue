@@ -5,17 +5,10 @@
 
 <template>
   <Col v-bind="colPropsComputed">
-    <template v-if="schema.type == 'container'">
-      <component
-        :is="widget[schema.component]"
-        :schema="schema"
-        :currentItem="currentItem"
-        v-bind="$attrs"
-      />
-    </template>
+
 
     <FormNode
-      v-else
+
       :key="schema.key"
       :schema="schema"
       :current-item="currentItem"
@@ -32,7 +25,7 @@
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import { IVFormComponent } from '../../../typings/v-form-component';
   import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
-  import { widget } from '../../../extention/loader';
+
 
   export default defineComponent({
     name: 'LayoutItem',
@@ -81,7 +74,7 @@
         handleSetSelectItem,
         layoutTag,
         list1,
-        widget,
+     //   widget,
       };
     },
   });

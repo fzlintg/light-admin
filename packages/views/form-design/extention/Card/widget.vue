@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="grid-box"
-    :class="{ active: schema.key === currentItem.key }"
-    @click.stop="handleSetSelectItem(schema)"
-  >
+<div class="grid-box">
     <card v-bind="schema.componentProps">
       <template #[key] v-for="(value, key) in schema.componentProps?.slots">
         {{ value }}
@@ -33,7 +29,7 @@
         </template>
       </draggable>
     </card>
-    <FormNodeOperate :schema="schema" :currentItem="currentItem" />
+    
   </div>
 </template>
 <script lang="ts" setup>

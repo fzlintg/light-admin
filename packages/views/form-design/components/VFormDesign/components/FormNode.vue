@@ -8,7 +8,7 @@
     :class="{ active: schema.key === formConfig.currentItem?.key }"
   >
     <div class="form-item-box">
-      <VFormItem :formConfig="formConfig" :schema="schema" />
+      <VFormItem :formConfig="formConfig" :schema="schema" :current-item="formConfig.currentItem"/>
     </div>
     <div class="show-key-box">
       {{ schema.label + (schema.field ? '/' + schema.field : '') }}
