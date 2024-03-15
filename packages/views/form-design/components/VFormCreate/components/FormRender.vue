@@ -1,4 +1,5 @@
 <template>
+
   <template v-if="['Grid'].includes(schema.component)">
     <Row class="grid-row w100">
       <Col
@@ -70,10 +71,11 @@
   import { IVFormComponent, IFormConfig } from '../../../typings/v-form-component';
   import VFormItem from '../../VFormItem/index.vue';
   import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
-
+  import { item as itemCmp } from '../../../extention/loader';
   export default defineComponent({
     name: 'FormRender',
     components: {
+      
       VFormItem,
       Row,
       Col,
@@ -100,7 +102,11 @@
       },
     },
     emits: ['change', 'submit', 'reset'],
-    setup(_props) {},
+    setup(_props) {
+      return {
+        itemCmp,
+      };
+    },
   });
 </script>
 

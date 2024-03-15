@@ -5,10 +5,7 @@
 
 <template>
   <Col v-bind="colPropsComputed">
-
-
     <FormNode
-
       :key="schema.key"
       :schema="schema"
       :current-item="currentItem"

@@ -7,7 +7,6 @@
       <component
         :is="widget[schema.component]"
         :schema="schema"
-     
         v-bind="$attrs"
       />
     </template>
