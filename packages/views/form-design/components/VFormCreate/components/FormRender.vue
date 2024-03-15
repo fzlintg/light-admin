@@ -1,40 +1,5 @@
 <template>
-  <template v-if="['Grid'].includes(schema.component)">
-    <Row class="grid-row w100">
-      <Col
-        class="grid-col"
-        v-for="(colItem, index) in schema.columns"
-        :key="index"
-        :span="colItem.span"
-      >
-        <FormRender
-          v-for="(item, k) in colItem.children"
-          :key="k"
-          :schema="item"
-          :formData="formData"
-          :formConfig="formConfig"
-          :setFormModel="setFormModel"
-        />
-      </Col>
-    </Row>
-  </template>
-  <template v-else-if="schema.component == 'Tabs'">
-    <Tabs class="mx-3 w100">
-      <TabPane v-for="(colItem, index) in schema.columns" :key="index" :tab="colItem.label">
-        <FormRender
-          v-for="(item, k) in colItem.children"
-          :key="k"
-          :schema="item"
-          :formData="formData"
-          :formConfig="formConfig"
-          :setFormModel="setFormModel"
-        />
-      </TabPane>
-    </Tabs>
-  </template>
-
   <VFormItem
-    v-else
     isRender
     :formConfig="formConfig"
     :schema="schema"

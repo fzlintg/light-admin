@@ -1,27 +1,23 @@
 <template>
-  <Row class="grid-row w100">
-    <Col
-      class="grid-col"
-      v-for="(colItem, index) in schema.columns"
-      :key="index"
-      :span="colItem.span"
-    >
-      <VFormItem
-        isRender
-        v-for="(item, k) in colItem.children"
-        :key="k"
-        :schema="item"
-        :formData="formData"
-        :formConfig="formConfig"
-        :setFormModel="setFormModel"
-      />
-    </Col>
-  </Row>
+  <card v-bind="schema.componentProps">
+    <template #[key] v-for="(value, key) in schema.componentProps?.slots">
+      {{ value }}
+    </template>
+    <VFormItem
+      isRender
+      v-for="(item, k) in schema.children"
+      :key="k"
+      :schema="item"
+      :formData="formData"
+      :formConfig="formConfig"
+      :setFormModel="setFormModel"
+    />
+  </card>
 </template>
 <script setup>
   import VFormItem from '../../components/VFormItem/index.vue';
 
-  import { Row, Col } from 'ant-design-vue';
+  import { Card } from 'ant-design-vue';
 
   const { schema, formData, formConfig, setFormModel } = toRefs(useAttrs());
 </script>
