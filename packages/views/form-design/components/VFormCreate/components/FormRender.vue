@@ -35,6 +35,7 @@
 
   <VFormItem
     v-else
+    isRender
     :formConfig="formConfig"
     :schema="schema"
     :formData="formData"
