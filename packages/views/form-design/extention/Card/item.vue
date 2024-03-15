@@ -6,7 +6,8 @@
       :key="index"
       :span="colItem.span"
     >
-      <FormRender
+      <VFormItem
+        isRender
         v-for="(item, k) in colItem.children"
         :key="k"
         :schema="item"
@@ -18,7 +19,9 @@
   </Row>
 </template>
 <script setup>
-  import FormRender from '@views/form-design/components/VFormCreate/components/FormRender.vue';
-  import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
-  const { schema, formData, formConfig, setFormModel } = toRefs(getAttrs());
+  import VFormItem from '../../components/VFormItem/index.vue';
+
+  import { Row, Col } from 'ant-design-vue';
+
+  const { schema, formData, formConfig, setFormModel } = toRefs(useAttrs());
 </script>

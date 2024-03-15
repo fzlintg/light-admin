@@ -5,9 +5,11 @@
   <Col v-bind="colPropsComputed">
     <template v-if="schema.type == 'container'">
       <component
-        :is="widget[schema.component]"
+        :is="isRender ? item[schema.component] : widget[schema.component]"
         :schema="schema"
-        v-bind="$attrs"
+        :formConfig="formConfig"
+        :formData="formData"
+        :setFormModel="setFormModel"
       />
     </template>
     <component
@@ -68,7 +70,8 @@
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
-  import { widget } from '../../extention/loader';
+  import { widget, item } from '../../extention/loader';
+
   export default defineComponent({
     name: 'VFormItem',
     components: {
@@ -88,8 +91,12 @@
         type: Object as PropType<IVFormComponent>,
         required: true,
       },
-      currentItem:{
-        type:Object
+      // currentItem: {
+      //   type: Object,
+      // },
+      isRender: {
+        type: Boolean,
+        default: false,
       },
       formConfig: {
         type: Object as PropType<IFormConfig>,
@@ -233,7 +240,8 @@
         cmpProps,
         handleChange,
         colPropsComputed,
-        widget
+        widget,
+        item,
       };
     },
   });

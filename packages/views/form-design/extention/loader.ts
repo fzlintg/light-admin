@@ -1,37 +1,24 @@
-const settingModules = import.meta.glob('./**/setting.ts', { eager: true });
-const schemaModules = import.meta.glob('./**/schema.ts', { eager: true });
-const funcModules = import.meta.glob('./**/func.ts', { eager: true });
-const compModules = import.meta.glob('./**/comp.vue', { eager: true });
-const widgetModules = import.meta.glob('./**/widget.vue', { eager: true });
-const itemModules = import.meta.glob('./**/item.vue', { eager: true });
+const modules = {
+  setting: import.meta.glob('./**/setting.ts', { eager: true }),
+  func: import.meta.glob('./**/func.ts', { eager: true }),
+  comp: import.meta.glob('./**/comp.vue', { eager: true }),
+  widget: import.meta.glob('./**/widget.vue', { eager: true }),
+  item: import.meta.glob('./**/item.vue', { eager: true }),
+};
 
-const setting = {},
-  schema: Array<any> = [],
-  comp = {},
-  func = {},
-  widget = {},item={};
-for (const path in settingModules) {
-  const name = path.split('/')[1];
-  setting[name] = settingModules[path].default;
+const schemaModules = import.meta.glob('./**/schema.ts', { eager: true });
+const expModule = {},
+  schema = [];
+for (const item in modules) {
+  expModule[item] = {};
+  for (const path in modules[item]) {
+    const name = path.split('/')[1];
+    expModule[item][name] = modules[item][path].default;
+  }
 }
 for (const path in schemaModules) {
   const component = path.split('/')[1];
   schema.push({ component, ...schemaModules[path].default, _type: 'custom' });
 }
-for (const path in compModules) {
-  const name = path.split('/')[1];
-  comp[name] = compModules[path].default;
-}
-for (const path in funcModules) {
-  const name = path.split('/')[1];
-  func[name] = funcModules[path].default;
-}
-for (const path in widgetModules) {
-  const name = path.split('/')[1];
-  widget[name] = widgetModules[path].default;
-}
-for (const path in itemModules) {
-  const name = path.split('/')[1];
-  item[name] = itemModules[path].default;
-}
-export { setting, schema, comp, func, widget,item };
+const { setting, comp, func, widget, item } = expModule;
+export { setting, schema, comp, func, widget, item };

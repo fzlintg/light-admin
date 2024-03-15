@@ -1,5 +1,4 @@
 <template>
-
   <template v-if="['Grid'].includes(schema.component)">
     <Row class="grid-row w100">
       <Col
@@ -33,21 +32,7 @@
       </TabPane>
     </Tabs>
   </template>
-  <template v-else-if="schema.component == 'Card'">
-    <Card v-bind="schema.componentProps" class="mx-3 w100">
-      <template #[key] v-for="(value, key) in schema.componentProps?.slots">
-        {{ value }}
-      </template>
-      <FormRender
-        v-for="(item, k) in schema.children"
-        :key="k"
-        :schema="item"
-        :formData="formData"
-        :formConfig="formConfig"
-        :setFormModel="setFormModel"
-      />
-    </Card>
-  </template>
+
   <VFormItem
     v-else
     :formConfig="formConfig"
@@ -72,10 +57,10 @@
   import VFormItem from '../../VFormItem/index.vue';
   import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
   import { item as itemCmp } from '../../../extention/loader';
+
   export default defineComponent({
     name: 'FormRender',
     components: {
-      
       VFormItem,
       Row,
       Col,
