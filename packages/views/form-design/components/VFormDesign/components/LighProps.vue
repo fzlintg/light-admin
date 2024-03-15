@@ -6,7 +6,7 @@
         <component
           v-if="child.component"
           v-bind="child.componentProps"
-          v-model:value="formModel[item.field || item.name][index]"
+          v-model:value="formModel[item.name][index]"
           :is="getComponent(child.component)"
         />
       </template>
@@ -17,7 +17,7 @@
       class="component-prop"
       v-bind="item.componentProps"
       :is="getComponent(item.component)"
-      v-model:value="formModel[item.field || item.name]"
+      v-model:value="formModel[item.name]"
     />
     <Divider class="divider_title" dashed v-else-if="item.component == 'Divider'">{{
       item.componentProps.label
