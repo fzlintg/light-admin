@@ -158,6 +158,7 @@
         componentPropsFuncs[item] = customFuncs[item];
       }
       //生成配置  lintg
+
       for (let schema of customSchema) {
         customSetting[schema.component] = customSetting[schema.component] || [];
         for (const propItem in schema.componentProps) {
@@ -171,6 +172,7 @@
           }
         }
       }
+
       //自动修正配置分类 lintg
       for (const item in customSetting) {
         for (let comp of customSetting[item]) {
