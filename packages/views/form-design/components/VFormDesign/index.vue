@@ -13,25 +13,9 @@
       breakpoint="md"
     >
       <div class="sidebar">
-        <CollapseContainer title="基础控件">
+        <CollapseContainer :title="item.name" v-for="(item, key) in formItemConfig" :key="key">
           <CollapseItem
-            :list="baseComponentsOrigin"
-            :handleListPush="handleListPushDrag"
-            @add-attrs="handleAddAttrs"
-            @handle-list-push="handleListPush"
-          />
-        </CollapseContainer>
-        <CollapseContainer title="自定义控件">
-          <CollapseItem
-            :list="baseComponentsCustom"
-            @add-attrs="handleAddAttrs"
-            :handleListPush="handleListPushDrag"
-            @handle-list-push="handleListPush"
-          />
-        </CollapseContainer>
-        <CollapseContainer title="布局控件">
-          <CollapseItem
-            :list="layoutComponents"
+            :list="item.schema"
             :handleListPush="handleListPushDrag"
             @add-attrs="handleAddAttrs"
             @handle-list-push="handleListPush"
@@ -106,7 +90,8 @@
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
   import { formItemsForEach, generateKey } from '../../utils';
   import { cloneDeep } from 'lodash-es';
-  import { baseComponents, customComponents, layoutComponents } from '../../core/formItemConfig';
+  //import { baseComponents, customComponents, layoutComponents } from '../../core/formItemConfig';
+  import { formItemConfig } from '../../core/formItemConfig';
   import { useRefHistory, UseRefHistoryReturn } from '@vueuse/core';
   import { globalConfigState } from './config/formItemPropsConfig';
   import { IFormDesignMethods, IPropsPanel, IToolbarMethods } from '../../typings/form-type';
@@ -131,12 +116,13 @@
   const codeModal = ref<null | IToolbarMethods>(null);
 
   //add by lintg
-  const baseComponentsOrigin = computed(() =>
-    baseComponents.filter((item) => item._type == undefined),
-  );
-  const baseComponentsCustom = computed(() =>
-    baseComponents.filter((item) => item._type == 'custom'),
-  );
+
+  // const baseComponentsOrigin = computed(() =>
+  //   baseComponents.filter((item) => item._type == undefined),
+  // );
+  // const baseComponentsCustom = computed(() =>
+  //   baseComponents.filter((item) => item._type == 'custom'),
+  // );
   const formModel = ref({});
   // endregion
   const formConfig = ref<IFormConfig>({

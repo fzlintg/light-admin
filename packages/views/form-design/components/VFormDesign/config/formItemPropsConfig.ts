@@ -1,5 +1,6 @@
 import { IAnyObject } from '../../../typings/base-type';
-import { baseComponents, customComponents } from '../../../core/formItemConfig';
+//import { baseComponents, customComponents } from '../../../core/formItemConfig';
+import { formItemConfig } from '../../../core/formItemConfig';
 import { Input, Select, RadioGroup, Slider } from 'ant-design-vue';
 import { Component } from 'vue';
 
@@ -16,8 +17,8 @@ export interface IBaseFormAttrs {
   on?: IAnyObject;
   children?: IBaseFormAttrs[];
   category?: 'control' | 'input';
-  hidden?:boolean;   //lintg
-  sortTitle?:string;   //lintg 分类
+  hidden?: boolean; //lintg
+  sortTitle?: string; //lintg 分类
 }
 
 export interface IBaseFormItemControlAttrs extends IBaseFormAttrs {
@@ -180,6 +181,7 @@ export const advanceFormItemColProps: IBaseFormAttrs[] = [
   },
 ];
 // 控件属性面板的配置项
+//baseComponents, customComponents
 export const baseFormItemProps: IBaseFormAttrs[] = [
   {
     // 动态的切换控件的类型
@@ -187,8 +189,8 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
     label: '控件-FormItem',
     component: Select,
     componentProps: {
-      options: baseComponents
-        .concat(customComponents)
+      options: formItemConfig.base.schema
+        .concat(formItemConfig.custom.schema)
         .map((item) => ({ value: item.component, label: item.label })),
     },
   },

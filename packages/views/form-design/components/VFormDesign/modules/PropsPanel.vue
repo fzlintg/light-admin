@@ -25,7 +25,7 @@
   import ComponentProps from '../components/ComponentProps.vue';
   import ComponentColumnProps from '../components/FormItemColumnProps.vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
-  import { customComponents } from '../../../core/formItemConfig';
+  import { formItemConfig } from '../../../core/formItemConfig';
   import { TabPane, Tabs } from 'ant-design-vue';
 
   type ChangeTabKey = 1 | 2;
@@ -44,6 +44,9 @@
     },
     setup() {
       const { formConfig } = useFormDesignState();
+
+      const customComponents = formItemConfig.custom.schema;
+
       const slotProps = computed(() => {
         return customComponents.find(
           (item) => item.component === formConfig.value.currentItem?.component,
