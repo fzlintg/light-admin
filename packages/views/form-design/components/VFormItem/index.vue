@@ -3,7 +3,7 @@
 -->
 <template>
   <Col v-bind="colPropsComputed">
-    <template v-if="schema.type == 'container'">
+    <template v-if="schema.type == 'container' || (schema.type == 'containerItem' && !isRender)">
       <component
         :is="isRender ? item[schema.component] : widget[schema.component]"
         :schema="schema"

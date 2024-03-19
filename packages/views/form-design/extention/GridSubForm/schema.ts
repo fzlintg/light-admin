@@ -1,7 +1,8 @@
 export default {
   label: '多行表单',
   field: '',
-  type: 'container',
+  type: 'containerItem',
+  formItem: true,
   icon: 'ant-design:border-bottom-outlined',
   componentProps: {},
   columns: [

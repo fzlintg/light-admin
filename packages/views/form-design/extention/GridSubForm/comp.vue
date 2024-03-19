@@ -1,10 +1,10 @@
 <template>
   <div class="grid-box mx-3 sub-form-container">
     <Row class="header-row bg-light b-1">
-      <a-button>新增</a-button>
+      <a-button @click="add" class="btn-add">新增</a-button>
     </Row>
     <div>
-      <Row class="sub-form-row" v-bind="schema.componentProps">
+      <Row class="sub-form-row" v-bind="schema.componentProps" v-for="(item, index) in state">
         <Col>
           <a-button type="primary" shape="circle" :icon="h(PlusOutlined)" />
         </Col>
@@ -31,10 +31,21 @@
 <script setup>
   import { Row, Col, Button as AButton } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
-  import { h } from 'vue';
+  import { h, defineProps } from 'vue';
   import { PlusOutlined } from '@ant-design/icons-vue';
+  import { useRuleFormItem } from '@h/component/useFormItem';
+  import { propTypes } from '@utils/propTypes';
 
+  const props = defineProps({
+    value: propTypes.string || propTypes.function,
+  });
   const { schema, formData, formConfig, setFormModel } = toRefs(useAttrs());
+  const [state] = useRuleFormItem(props, 'value', 'change');
+  state.value = [{}];
+  debugger;
+  const add = () => {
+    state.value.push({});
+  };
 </script>
 <style lang="scss" scoped>
   .sub-form-container {
