@@ -14,7 +14,7 @@
     </TabPane>
     <TabPane :key="4" tab="组件">
       <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
-      <ComponentProps v-else />
+      <ComponentProps />
     </TabPane>
   </Tabs>
 </template>
