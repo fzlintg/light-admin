@@ -4,13 +4,18 @@
       <a-button @click="add" class="btn-add">新增</a-button>
     </Row>
     <div>
-      <Row class="sub-form-row" v-bind="schema.componentProps" v-for="(item, index) in state">
+      <Row
+        class="sub-form-row"
+        v-bind="props.schema.componentProps"
+        v-for="(rowData, index) in state"
+        :key="rowData.id"
+      >
         <Col>
           <a-button type="primary" shape="circle" :icon="h(PlusOutlined)" />
         </Col>
         <Col
           class="grid-col my-3"
-          v-for="(colItem, index) in schema.columns"
+          v-for="(colItem, index) in props.schema.columns"
           :key="index"
           :span="colItem.span"
         >
@@ -19,9 +24,9 @@
             v-for="(item, k) in colItem.children"
             :key="k"
             :schema="item"
-            :formData="formData"
-            :formConfig="formConfig"
-            :setFormModel="setFormModel"
+            :formData="rowData"
+            :formConfig="props.formConfig"
+            :setFormModel="setRowData(rowData)"
           />
         </Col>
       </Row>
@@ -35,16 +40,44 @@
   import { PlusOutlined } from '@ant-design/icons-vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
+  import { useFormModelState } from '../../hooks/useFormDesignState.ts';
+  import { set, uniqueId } from 'lodash-es';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
+    schema: propTypes.Object,
+    formData: propTypes.Object,
+    formConfig: propTypes.Object,
+    setFormModel: propTypes.function,
   });
-  const { schema, formData, formConfig, setFormModel } = toRefs(useAttrs());
+  const emit = defineEmits(['update:value']);
+  //const { formModel: formData1, setFormModel } = useFormModelState();
+  //provide('formModel', () => formData1[props.schema.field]);
+
   const [state] = useRuleFormItem(props, 'value', 'change');
-  state.value = [{}];
-  debugger;
+  state.value = [{ id: uniqueId('gsf_') }];
+
+  //const { t } = useI18n();
+  watch(
+    () => state.value,
+    (v) => {
+      emit('update:value', v);
+    },
+    {
+      deep: true,
+      immediate: true,
+    },
+  );
+
   const add = () => {
-    state.value.push({});
+    state.value.push({ id: uniqueId('gsf_') });
+  };
+
+  const setRowData = (row) => {
+    return (field, value) => {
+      debugger;
+      set(row, field, value);
+    };
   };
 </script>
 <style lang="scss" scoped>

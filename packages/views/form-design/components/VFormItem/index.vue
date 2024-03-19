@@ -8,8 +8,8 @@
         :is="isRender ? item[schema.component] : widget[schema.component]"
         :schema="schema"
         :formConfig="formConfig"
-        :formData="formData"
-        :setFormModel="setFormModel"
+        :formData="cur_formData"
+        :setFormModel="cur_setFormModel"
       />
     </template>
     <component
@@ -19,8 +19,8 @@
       v-bind="{ ...cmpProps, ...asyncProps }"
       :schema="schema"
       :formConfig="formConfig"
-      :formData="formData"
-      :setFormModel="setFormModel"
+      :formData="cur_formData"
+      :setFormModel="cur_setFormModel"
       :style="schema.width ? { width: schema.width } : {}"
       @click="handleClick(schema)"
       >{{ schema.component == 'Button' ? schema.label : '' }}
@@ -52,6 +52,7 @@
           :is="componentItem"
           v-bind="{ ...cmpProps, ...asyncProps }"
           :schema="schema"
+          :formConfig="formConfig"
           :style="schema.width ? { width: schema.width } : {}"
           @change="handleChange"
           @click="handleClick(schema)"
@@ -61,12 +62,12 @@
 </template>
 <script lang="ts">
   import { type Recordable } from '@vben/types';
-  import { defineComponent, reactive, toRefs, computed, PropType, unref } from 'vue';
+  import { ref, defineComponent, reactive, toRefs, computed, PropType, unref } from 'vue';
   import { componentMap } from '../../core/formItemConfig';
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions } from '../../utils';
-  import { omit } from 'lodash-es';
+  import { omit, isEmpty } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -113,7 +114,10 @@
         componentMap,
       });
 
-      const { formModel: formData1, setFormModel } = useFormModelState();
+      const { formModel: formData1, setFormModel: setFormModel1 } = useFormModelState();
+      const cur_formData = isEmpty(props.formData) ? formData1 : ref(props.formData);
+      const cur_setFormModel = props.setFormModel || setFormModel1;
+
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
         return colProps;
@@ -220,7 +224,7 @@
         return {
           ...attrs,
           disabled,
-          [isCheck ? 'checked' : 'value']: formData1.value[field!],
+          [isCheck ? 'checked' : 'value']: cur_formData.value[field!],
         };
       });
 
@@ -228,7 +232,7 @@
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;
         const value = target ? (isCheck ? target.checked : target.value) : e;
-        setFormModel(props.schema.field!, value);
+        cur_setFormModel(props.schema.field!, value);
         emit('change', value);
       };
       return {
