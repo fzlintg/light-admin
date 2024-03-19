@@ -54,8 +54,8 @@
         </FormItem>
 
         <FormItem
-          :label="formConfig.currentItem.component == 'Grid' ? '栅格' : '标签'"
-          v-if="['Grid', 'Tabs'].includes(formConfig.currentItem.component)"
+          :label="formConfig.currentItem.component == 'Tabs' ? '标签' : '栅格'"
+          v-if="['Grid', 'Tabs', 'GridSubForm'].includes(formConfig.currentItem.component)"
         >
           <FormOptions />
         </FormItem>

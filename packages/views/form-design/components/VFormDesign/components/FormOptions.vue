@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="['Grid', 'Tabs'].includes(formConfig.currentItem!.component)">
+    <div v-if="['Grid', 'Tabs', 'GridSubForm'].includes(formConfig.currentItem!.component)">
       <div v-for="(item, index) of formConfig.currentItem!['columns']" :key="index">
         <div class="options-box">
           <Input v-model:value="item[attrObj[comp]]" class="options-value" />
