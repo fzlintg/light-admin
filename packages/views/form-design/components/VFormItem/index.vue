@@ -3,28 +3,22 @@
 -->
 <template>
   <Col v-bind="colPropsComputed">
-    <template v-if="schema.type == 'container' || (schema.type == 'containerItem' && !isRender)">
+    <div v-if="['showItem', 'container'].includes(schema.type) || inSubForm">
+      <span v-if="inSubForm">{{ schema.label }}</span
+      >{{ cur_formData }}
       <component
-        :is="isRender ? item[schema.component] : widget[schema.component]"
+        class="m-3"
+        :is="componentItem"
+        v-bind="{ ...cmpProps, ...asyncProps }"
         :schema="schema"
         :formConfig="formConfig"
         :formData="cur_formData"
         :setFormModel="cur_setFormModel"
-      />
-    </template>
-    <component
-      v-else-if="schema.formItem == false"
-      class="m-3"
-      :is="componentItem"
-      v-bind="{ ...cmpProps, ...asyncProps }"
-      :schema="schema"
-      :formConfig="formConfig"
-      :formData="cur_formData"
-      :setFormModel="cur_setFormModel"
-      :style="schema.width ? { width: schema.width } : {}"
-      @click="handleClick(schema)"
-      >{{ schema.component == 'Button' ? schema.label : '' }}
-    </component>
+        :style="schema.width ? { width: schema.width } : {}"
+        @click="handleClick(schema)"
+        >{{ schema.component == 'Button' ? schema.label : '' }}
+      </component>
+    </div>
     <FormItem v-else v-bind="{ ...formItemProps }" class="mr-3">
       <template #label v-if="!formItemProps.hiddenLabel && schema.component !== 'Divider'">
         <Tooltip>
@@ -54,6 +48,8 @@
           :schema="schema"
           :formConfig="formConfig"
           :style="schema.width ? { width: schema.width } : {}"
+          :formData="cur_formData"
+          :setFormModel="cur_setFormModel"
           @change="handleChange"
           @click="handleClick(schema)"
       /></div>
@@ -71,7 +67,7 @@
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
-  import { widget, item } from '../../extention/loader';
+  import { widget } from '../../extention/loader';
 
   export default defineComponent({
     name: 'VFormItem',
@@ -106,6 +102,10 @@
       setFormModel: {
         type: Function as PropType<(key: string, value: any) => void>,
         default: null,
+      },
+      inSubForm: {
+        type: Boolean,
+        default: false,
       },
     },
     emits: ['update:form-data', 'change'],
@@ -180,7 +180,11 @@
         return newConfig;
       }) as Recordable<any>;
 
-      const componentItem = computed(() => componentMap.get(props.schema.component as string));
+      const componentItem = computed(() =>
+        props.isRender || !['container', 'containerItem'].includes(props.schema.type)
+          ? componentMap.get(props.schema.component as string)
+          : widget[props.schema.component],
+      );
 
       // console.log('component change:', props.schema.component, componentItem.value);
       const handleClick = (schema: IVFormComponent) => {
@@ -221,18 +225,22 @@
 
         disabled = props.formConfig.disabled || disabled;
 
-        return {
+        let result = {
           ...attrs,
           disabled,
           [isCheck ? 'checked' : 'value']: cur_formData.value[field!],
         };
+
+        return result;
       });
 
       const handleChange = function (e) {
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;
         const value = target ? (isCheck ? target.checked : target.value) : e;
+
         cur_setFormModel(props.schema.field!, value);
+
         emit('change', value);
       };
       return {
@@ -245,7 +253,6 @@
         handleChange,
         colPropsComputed,
         widget,
-        item,
       };
     },
   });

@@ -1,32 +1,33 @@
 <template>
   <div class="grid-box mx-3 sub-form-container">
     <Row class="header-row bg-light b-1">
-      <a-button @click="add" class="btn-add">新增</a-button>
+      <a-button @click="addRowId" class="btn-add">新增</a-button>
     </Row>
     <div>
       <Row
         class="sub-form-row"
         v-bind="props.schema.componentProps"
-        v-for="(rowData, index) in state"
-        :key="rowData.id"
+        v-for="(rowId, rowIdx) in rowIds"
+        :key="rowId"
       >
         <Col>
-          <a-button type="primary" shape="circle" :icon="h(PlusOutlined)" />
+          <a-button type="primary" shape="circle" :icon="h(PlusOutlined)" @click="addRowId" />
         </Col>
         <Col
           class="grid-col my-3"
-          v-for="(colItem, index) in props.schema.columns"
-          :key="index"
+          v-for="(colItem, colIdx) in props.schema.columns"
+          :key="colIdx"
           :span="colItem.span"
-        >
+          >{{ colItem.children }}
           <VFormItem
             isRender
             v-for="(item, k) in colItem.children"
             :key="k"
             :schema="item"
-            :formData="rowData"
+            :formData="state[rowIdx]"
             :formConfig="props.formConfig"
-            :setFormModel="setRowData(rowData)"
+            :setFormModel="setRowData(rowIdx)"
+            :inSubForm="true"
           />
         </Col>
       </Row>
@@ -55,7 +56,8 @@
   //provide('formModel', () => formData1[props.schema.field]);
 
   const [state] = useRuleFormItem(props, 'value', 'change');
-  state.value = [{ id: uniqueId('gsf_') }];
+  state.value = [];
+  const rowIds = reactive([]);
 
   //const { t } = useI18n();
   watch(
@@ -69,16 +71,19 @@
     },
   );
 
-  const add = () => {
-    state.value.push({ id: uniqueId('gsf_') });
+  const addRowId = () => {
+    rowIds.push(uniqueId('gsf_'));
+    state.value.push({});
   };
 
-  const setRowData = (row) => {
+  const setRowData = (idx) => {
     return (field, value) => {
       debugger;
-      set(row, field, value);
+      set(state.value[idx], field, value);
     };
   };
+
+  addRowId();
 </script>
 <style lang="scss" scoped>
   .sub-form-container {

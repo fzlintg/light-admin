@@ -1,6 +1,6 @@
 export default {
   label: '提示',
-  formItem: false,
+  type: 'showItem',
   icon: 'ant-design:bell-outlined',
   componentProps: {
     message: '测试一下',
