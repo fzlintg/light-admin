@@ -18,7 +18,7 @@
           v-for="(colItem, colIdx) in props.schema.columns"
           :key="colIdx"
           :span="colItem.span"
-          >{{ colItem.children }}
+        >
           <VFormItem
             isRender
             v-for="(item, k) in colItem.children"
@@ -60,16 +60,16 @@
   const rowIds = reactive([]);
 
   //const { t } = useI18n();
-  watch(
-    () => state.value,
-    (v) => {
-      emit('update:value', v);
-    },
-    {
-      deep: true,
-      immediate: true,
-    },
-  );
+  // watch(
+  //   () => state.value,
+  //   (v) => {
+  //     emit('update:value', v);
+  //   },
+  //   {
+  //     deep: true,
+  //     immediate: true,
+  //   },
+  // );
 
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
@@ -77,8 +77,7 @@
   };
 
   const setRowData = (idx) => {
-    return (field, value) => {
-      debugger;
+    return (field, value, e) => {
       set(state.value[idx], field, value);
     };
   };

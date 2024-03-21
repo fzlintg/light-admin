@@ -3,9 +3,8 @@
 -->
 <template>
   <Col v-bind="colPropsComputed">
-    <div v-if="['showItem', 'container'].includes(schema.type) || inSubForm">
-      <span v-if="inSubForm">{{ schema.label }}</span
-      >{{ cur_formData }}
+    <div v-if="['showItem', 'container'].includes(schema.type) || inSubForm" @click.stop>
+      <span v-if="inSubForm">{{ schema.label }}</span>
       <component
         class="m-3"
         :is="componentItem"
@@ -15,6 +14,7 @@
         :formData="cur_formData"
         :setFormModel="cur_setFormModel"
         :style="schema.width ? { width: schema.width } : {}"
+        @change="handleChange"
         @click="handleClick(schema)"
         >{{ schema.component == 'Button' ? schema.label : '' }}
       </component>
@@ -63,7 +63,7 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions } from '../../utils';
-  import { omit, isEmpty } from 'lodash-es';
+  import { omit, isEmpty, isArray } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -115,8 +115,8 @@
       });
 
       const { formModel: formData1, setFormModel: setFormModel1 } = useFormModelState();
-      const cur_formData = isEmpty(props.formData) ? formData1 : ref(props.formData);
-      const cur_setFormModel = props.setFormModel || setFormModel1;
+      const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
+      const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel1;
 
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
@@ -235,13 +235,20 @@
       });
 
       const handleChange = function (e) {
+        //  if (props.schema.component == 'GridSubForm') return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;
         const value = target ? (isCheck ? target.checked : target.value) : e;
+        //   if (props.schema.component == 'GridSubForm') debugger;
+        if (props.schema.component == 'GridSubForm' && !isArray(value)) return;
+        cur_setFormModel(props.schema.field!, value, e);
 
-        cur_setFormModel(props.schema.field!, value);
-
-        emit('change', value);
+        // if (props.inSubForm) {
+        //   e.stopPropagation();
+        //   debugger;
+        // }
+        // debugger;
+        //  if (!props.inSubForm) emit('change', value);
       };
       return {
         ...toRefs(state),
