@@ -1,7 +1,7 @@
 <template>
   <div class="grid-box mx-3 sub-form-container">
     <Row class="header-row bg-light b-1">
-      <a-button @click="addRowId" class="btn-add">新增</a-button>
+      <a-button @click="addRowId" :icon="h(PlusOutlined)">新增</a-button>
     </Row>
     <div>
       <Row
@@ -11,7 +11,18 @@
         :key="rowId"
       >
         <Col>
-          <a-button type="primary" shape="circle" :icon="h(PlusOutlined)" @click="addRowId" />
+          <a-button
+            class="m-3"
+            shape="circle"
+            :icon="h(PlusOutlined)"
+            @click="insertRowId(rowIdx)"
+          />
+          <a-button
+            class="m-3"
+            shape="circle"
+            :icon="h(MinusOutlined)"
+            @click="removeRowId(rowIdx)"
+          />
         </Col>
         <Col
           class="grid-col my-3"
@@ -38,7 +49,7 @@
   import { Row, Col, Button as AButton } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
   import { h, defineProps } from 'vue';
-  import { PlusOutlined } from '@ant-design/icons-vue';
+  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   import { useFormModelState } from '../../hooks/useFormDesignState.ts';
@@ -60,16 +71,16 @@
   const rowIds = reactive([]);
 
   //const { t } = useI18n();
-  // watch(
-  //   () => state.value,
-  //   (v) => {
-  //     emit('update:value', v);
-  //   },
-  //   {
-  //     deep: true,
-  //     immediate: true,
-  //   },
-  // );
+  watch(
+    () => state.value,
+    (v) => {
+      emit('update:value', v);
+    },
+    {
+      deep: true,
+      immediate: true,
+    },
+  );
 
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
@@ -80,6 +91,14 @@
     return (field, value, e) => {
       set(state.value[idx], field, value);
     };
+  };
+  const removeRowId = (idx) => {
+    rowIds.splice(idx, 1);
+    state.value.splice(idx, 1);
+  };
+  const insertRowId = (idx) => {
+    rowIds.splice(idx, 0, uniqueId('gsf_'));
+    state.value.splice(idx, 0, {});
   };
 
   addRowId();
