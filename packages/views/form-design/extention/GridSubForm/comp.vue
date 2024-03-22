@@ -1,62 +1,71 @@
 <template>
   <div class="grid-box mx-3 sub-form-container">
     <Row class="header-row bg-light b-1">
-      <a-button @click="addRowId" :icon="h(PlusOutlined)">新增</a-button>
+      <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
+        <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
+      </a-button>
     </Row>
 
-    <Row
-      class="sub-form-row"
-      v-bind="props.schema.componentProps"
-      v-for="rowId in rowIds"
-      :key="rowId"
+    <draggable
+      v-model="rowIds"
+      :item-key="(ele) => ele"
+      v-bind="{ group: 'optionsGroup', ghostClass: 'ghost', handle: '.drag-option' }"
+      @end="dragend"
     >
-      <Col :span="2">
-        <span>
-          <a-button
-            class="m-1"
-            shape="circle"
-            :icon="h(PlusOutlined)"
-            @click="insertRowId(rowIdx)"
-          />
-          <a-button
-            class="m-1"
-            shape="circle"
-            :icon="h(MinusOutlined)"
-            @click="removeRowId(rowIdx)"
-          /> </span
-      ></Col>
-      <Col :span="22">
-        <Row>
-          <Col
-            class="grid-col my-3"
-            v-for="(colItem, colIdx) in props.schema.columns"
-            :key="colIdx"
-            :span="colItem.span"
-          >
-            <VFormItem
-              isRender
-              v-for="(item, k) in colItem.children"
-              :key="k"
-              :schema="item"
-              :formData="getRow(rowId)"
-              :formConfig="props.formConfig"
-              :setFormModel="setRowData(rowId)"
-              :inSubForm="true"
-            />
-          </Col> </Row
-      ></Col>
-    </Row>
+      <template #item="{ element: rowId, index: rowIdx }">
+        <Row class="sub-form-row" v-bind="props.schema.componentProps" :key="rowId">
+          <Col :span="2">
+            <span class="d-flex flex-column ai-center">
+              <Icon icon="ant-design:drag-outlined" class="drag-option" />
+              <Icon
+                icon="ant-design:plus-circle-twotone"
+                @click="insertRowId(rowIdx)"
+                color="blue"
+                class="my-3 hand"
+              />
+              <Icon
+                icon="ant-design:minus-circle-twotone"
+                @click="removeRowId(rowIdx)"
+                class="hand"
+                color="red"
+              /> </span
+          ></Col>
+          <Col :span="22">
+            <Row>
+              <Col
+                class="grid-col my-3"
+                v-for="(colItem, colIdx) in props.schema.columns"
+                :key="colIdx"
+                :span="colItem.span"
+              >
+                <VFormItem
+                  isRender
+                  v-for="(item, k) in colItem.children"
+                  :key="k"
+                  :schema="item"
+                  :formData="getRow(rowId)"
+                  :formConfig="props.formConfig"
+                  :setFormModel="setRowData(rowId)"
+                  :inSubForm="true"
+                />
+              </Col> </Row
+          ></Col>
+        </Row>
+      </template>
+    </draggable>
   </div>
 </template>
 <script setup>
   import { Row, Col, Button as AButton } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
   import { h, defineProps } from 'vue';
-  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
+
+  import Icon from '@c/Icon/Icon.vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { set, uniqueId } from 'lodash-es';
+  import draggable from 'vuedraggable';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
@@ -102,10 +111,18 @@
     rowIds.splice(idx, 0, uniqueId('gsf_'));
     state.value.splice(idx, 0, {});
   };
-
+  const dragend = ({ oldIndex, newIndex }) => {
+    rowIds.splice(newIndex, 0, rowIds.splice(oldIndex, 1)[0]);
+    state.value.splice(newIndex, 0, state.value.splice(oldIndex, 1)[0]);
+    return true;
+  };
   addRowId();
 </script>
 <style lang="scss" scoped>
+  .drag-option {
+    cursor: move;
+  }
+
   .sub-form-container {
     margin-bottom: 8px;
     text-align: left; //IE浏览器强制居左对齐

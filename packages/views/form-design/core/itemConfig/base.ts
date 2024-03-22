@@ -61,6 +61,7 @@ export const schema = [
     icon: 'ant-design:check-circle-outlined',
     colProps: { span: 24 },
     field: '',
+    defaultValue: false,
   },
   {
     component: 'CheckboxGroup',
@@ -80,6 +81,7 @@ export const schema = [
         },
       ],
     },
+    defaultValue: [],
   },
   {
     component: 'Input',

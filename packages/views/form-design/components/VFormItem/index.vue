@@ -3,10 +3,13 @@
 -->
 <template>
   <Col v-bind="colPropsComputed">
-    <div v-if="['showItem', 'container'].includes(schema.type) || inSubForm" @click.stop>
-      <span v-if="inSubForm">{{ schema.label }}</span>
+    <div
+      v-if="['showItem', 'container'].includes(schema.type) || inSubForm"
+      class="d-flex flex-column mr-2"
+    >
+      <span v-if="inSubForm" class="mb-2">{{ schema.label }}</span>
       <component
-        class="m-3"
+        class="mr-2"
         :is="componentItem"
         v-bind="{ ...cmpProps, ...asyncProps }"
         :schema="schema"
@@ -63,7 +66,7 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions } from '../../utils';
-  import { omit, isEmpty, isArray } from 'lodash-es';
+  import { omit, isArray } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
