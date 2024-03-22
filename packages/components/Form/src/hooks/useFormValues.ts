@@ -8,7 +8,7 @@ import { cloneDeep, get, set, unset } from 'lodash-es';
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>;
   getSchema: ComputedRef<FormSchema[]>;
-  getProps: ComputedRef<FormProps>;
+  getProps?: ComputedRef<FormProps>;
   formModel: Recordable;
 }
 

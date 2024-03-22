@@ -64,8 +64,9 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { set, uniqueId } from 'lodash-es';
+  import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
+  import { useFormValues } from '@c/Form/src/hooks/useFormValues.ts';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
@@ -78,6 +79,15 @@
   const [state] = useRuleFormItem(props, 'value', 'change');
   state.value = [];
   const rowIds = reactive([]);
+  const defaultValueRef = ref({});
+  const rowModel = ref({});
+  debugger;
+  const { initDefault } = useFormValues({
+    defaultValueRef,
+    getSchema: () => props.schema.columns,
+    formModel: rowModel,
+  });
+  initDefault();
   watch(
     () => state.value,
     (v) => {
@@ -91,7 +101,7 @@
 
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
-    state.value.push({});
+    state.value.push(cloneDeep(defaultValueRef.value));
   };
   const getRow = (rowId) => {
     return state.value[rowIds.indexOf(rowId)];
