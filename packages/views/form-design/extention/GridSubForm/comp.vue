@@ -14,7 +14,7 @@
     >
       <template #item="{ element: rowId, index: rowIdx }">
         <Row class="sub-form-row" v-bind="props.schema.componentProps" :key="rowId">
-          <Col :span="2">
+          <Col :span="1">
             <span class="d-flex flex-column ai-center">
               <Icon icon="ant-design:drag-outlined" class="drag-option" />
               <Icon
@@ -30,7 +30,7 @@
                 color="red"
               /> </span
           ></Col>
-          <Col :span="22">
+          <Col :span="23">
             <Row>
               <Col
                 class="grid-col my-3"
