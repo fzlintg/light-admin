@@ -3,22 +3,22 @@
     <Row class="header-row bg-light b-1">
       <a-button @click="addRowId" :icon="h(PlusOutlined)">新增</a-button>
     </Row>
-    <div>
+
       <Row
         class="sub-form-row"
         v-bind="props.schema.componentProps"
         v-for="(rowId, rowIdx) in rowIds"
         :key="rowId"
       >
-        <Col>
+        <Col :span="2">
           <a-button
-            class="m-3"
+            class="m-1"
             shape="circle"
             :icon="h(PlusOutlined)"
             @click="insertRowId(rowIdx)"
           />
           <a-button
-            class="m-3"
+            class="m-1"
             shape="circle"
             :icon="h(MinusOutlined)"
             @click="removeRowId(rowIdx)"
@@ -35,15 +35,15 @@
             v-for="(item, k) in colItem.children"
             :key="k"
             :schema="item"
-            :formData="state[rowIdx]"
+            :formData="getRow(rowId)"
             :formConfig="props.formConfig"
-            :setFormModel="setRowData(rowIdx)"
+            :setFormModel="setRowData(rowId)"
             :inSubForm="true"
           />
         </Col>
       </Row>
     </div>
-  </div>
+ 
 </template>
 <script setup>
   import { Row, Col, Button as AButton } from 'ant-design-vue';
@@ -86,9 +86,13 @@
     rowIds.push(uniqueId('gsf_'));
     state.value.push({});
   };
+  const getRow=(rowId)=>{
+    return state.value[rowIds.indexOf(rowId)];
+  }
 
-  const setRowData = (idx) => {
+  const setRowData = (rowId) => {
     return (field, value, e) => {
+      const idx=rowIds.indexOf(rowId)
       set(state.value[idx], field, value);
     };
   };
