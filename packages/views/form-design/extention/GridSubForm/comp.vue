@@ -63,14 +63,9 @@
     setFormModel: propTypes.function,
   });
   const emit = defineEmits(['update:value']);
-  //const { formModel: formData1, setFormModel } = useFormModelState();
-  //provide('formModel', () => formData1[props.schema.field]);
-
   const [state] = useRuleFormItem(props, 'value', 'change');
   state.value = [];
   const rowIds = reactive([]);
-
-  //const { t } = useI18n();
   watch(
     () => state.value,
     (v) => {
