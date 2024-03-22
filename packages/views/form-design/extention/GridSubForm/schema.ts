@@ -7,19 +7,19 @@ export default {
   componentProps: {},
   columns: [
     {
-      span: 11,
+      span: 12,
       children: [],
     },
     {
-      span: 11,
+      span: 12,
       children: [],
     },
     {
-      span: 11,
+      span: 12,
       children: [],
     },
     {
-      span: 11,
+      span: 12,
       children: [],
     },
   ],

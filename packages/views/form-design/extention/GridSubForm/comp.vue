@@ -4,13 +4,14 @@
       <a-button @click="addRowId" :icon="h(PlusOutlined)">新增</a-button>
     </Row>
 
-      <Row
-        class="sub-form-row"
-        v-bind="props.schema.componentProps"
-        v-for="(rowId, rowIdx) in rowIds"
-        :key="rowId"
-      >
-        <Col :span="2">
+    <Row
+      class="sub-form-row"
+      v-bind="props.schema.componentProps"
+      v-for="rowId in rowIds"
+      :key="rowId"
+    >
+      <Col :span="2">
+        <span>
           <a-button
             class="m-1"
             shape="circle"
@@ -22,28 +23,30 @@
             shape="circle"
             :icon="h(MinusOutlined)"
             @click="removeRowId(rowIdx)"
-          />
-        </Col>
-        <Col
-          class="grid-col my-3"
-          v-for="(colItem, colIdx) in props.schema.columns"
-          :key="colIdx"
-          :span="colItem.span"
-        >
-          <VFormItem
-            isRender
-            v-for="(item, k) in colItem.children"
-            :key="k"
-            :schema="item"
-            :formData="getRow(rowId)"
-            :formConfig="props.formConfig"
-            :setFormModel="setRowData(rowId)"
-            :inSubForm="true"
-          />
-        </Col>
-      </Row>
-    </div>
- 
+          /> </span
+      ></Col>
+      <Col :span="22">
+        <Row>
+          <Col
+            class="grid-col my-3"
+            v-for="(colItem, colIdx) in props.schema.columns"
+            :key="colIdx"
+            :span="colItem.span"
+          >
+            <VFormItem
+              isRender
+              v-for="(item, k) in colItem.children"
+              :key="k"
+              :schema="item"
+              :formData="getRow(rowId)"
+              :formConfig="props.formConfig"
+              :setFormModel="setRowData(rowId)"
+              :inSubForm="true"
+            />
+          </Col> </Row
+      ></Col>
+    </Row>
+  </div>
 </template>
 <script setup>
   import { Row, Col, Button as AButton } from 'ant-design-vue';
@@ -52,7 +55,7 @@
   import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
-  import { useFormModelState } from '../../hooks/useFormDesignState.ts';
+  //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { set, uniqueId } from 'lodash-es';
 
   const props = defineProps({
@@ -81,13 +84,13 @@
     rowIds.push(uniqueId('gsf_'));
     state.value.push({});
   };
-  const getRow=(rowId)=>{
+  const getRow = (rowId) => {
     return state.value[rowIds.indexOf(rowId)];
-  }
+  };
 
   const setRowData = (rowId) => {
     return (field, value, e) => {
-      const idx=rowIds.indexOf(rowId)
+      const idx = rowIds.indexOf(rowId);
       set(state.value[idx], field, value);
     };
   };
