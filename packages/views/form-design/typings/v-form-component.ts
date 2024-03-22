@@ -73,6 +73,7 @@ export interface IVFormComponent {
   children?: any[]; //card类型控件
   //默认值 lintg
   defaultValue?: any;
+  defaultValueObj?: any;
 }
 
 declare type namesType = string | string[];

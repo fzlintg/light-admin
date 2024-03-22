@@ -4,6 +4,7 @@ import { unref } from 'vue';
 import type { Ref, ComputedRef } from 'vue';
 import type { FormProps, FormSchemaInner as FormSchema } from '../types/form';
 import { cloneDeep, get, set, unset } from 'lodash-es';
+import { getInitValue } from '@views/form-design/utils/index.ts';
 
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>;
@@ -140,6 +141,13 @@ export function useFormValues({
   //   return result;
   // }
   function initDefault() {
+    const schemas = unref(getSchema);
+    const obj: Recordable = {};
+    getInitValue(schemas, obj);
+    Object.assign(formModel, obj);
+    defaultValueRef.value = cloneDeep(obj);
+  }
+  function initDefault2() {
     const schemas = unref(getSchema);
     const obj: Recordable = {};
 

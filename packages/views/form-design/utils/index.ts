@@ -1,6 +1,6 @@
 // import { VueConstructor } from 'vue';
 import { IVFormComponent, IFormConfig, IValidationRule } from '../typings/v-form-component';
-import { cloneDeep, isArray, isFunction, isNumber, uniqueId, endsWith } from 'lodash-es';
+import { cloneDeep, isArray, isFunction, isNumber, uniqueId, endsWith, isNil } from 'lodash-es';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
 
@@ -125,6 +125,36 @@ export const findFormItem: (
   return res;
 };
 
+//基于schema返回组件对象初始值
+export const getInitValue = (schemas, formData: Object): any => {
+  formItemsForEach(schemas, (item) => {
+    const { component, field, defaultValue, defaultValueObj } = item;
+    if (['Grid'].includes(component)) {
+      // 栅格布局
+      item.columns?.forEach((item) => {
+        getInitValue(item.children, formData);
+      });
+    } else if (['GridSubForm'].includes(component)) {
+      formData[field!] = [{}];
+      item.columns?.forEach((item) => {
+        getInitValue(item.children, formData[field!][0]);
+      });
+    } else {
+      const fieldKeys = Object.keys(defaultValueObj || {});
+      if (fieldKeys.length) {
+        fieldKeys.map((field) => {
+          if (formData[field] === undefined) {
+            formData[field] = defaultValueObj![field];
+          }
+        });
+      }
+      if (!isNil(defaultValue)) {
+        formData[field!] = defaultValue;
+      }
+    }
+  });
+  return formData;
+};
 /**
  * 打开json模态框时删除当前项属性
  * @param formConfig {IFormConfig}

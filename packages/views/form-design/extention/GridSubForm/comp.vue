@@ -66,7 +66,7 @@
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
-  import { useFormValues } from '@c/Form/src/hooks/useFormValues.ts';
+  import { getInitValue } from '../../utils';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
@@ -79,15 +79,9 @@
   const [state] = useRuleFormItem(props, 'value', 'change');
   state.value = [];
   const rowIds = reactive([]);
-  const defaultValueRef = ref({});
-  const rowModel = ref({});
-  debugger;
-  const { initDefault } = useFormValues({
-    defaultValueRef,
-    getSchema: () => props.schema.columns,
-    formModel: rowModel,
-  });
-  initDefault();
+  const subFormDefaultValue = reactive({});
+  getInitValue([props.schema], subFormDefaultValue);
+  const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
   watch(
     () => state.value,
     (v) => {
@@ -101,14 +95,15 @@
 
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
-    state.value.push(cloneDeep(defaultValueRef.value));
+
+    state.value.push(cloneDeep(initValue));
   };
   const getRow = (rowId) => {
     return state.value[rowIds.indexOf(rowId)];
   };
 
   const setRowData = (rowId) => {
-    return (field, value, e) => {
+    return (field, value) => {
       const idx = rowIds.indexOf(rowId);
       set(state.value[idx], field, value);
     };
@@ -119,7 +114,7 @@
   };
   const insertRowId = (idx) => {
     rowIds.splice(idx, 0, uniqueId('gsf_'));
-    state.value.splice(idx, 0, {});
+    state.value.splice(idx, 0, cloneDeep(initValue));
   };
   const dragend = ({ oldIndex, newIndex }) => {
     rowIds.splice(newIndex, 0, rowIds.splice(oldIndex, 1)[0]);

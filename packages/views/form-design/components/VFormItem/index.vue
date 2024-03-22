@@ -4,10 +4,9 @@
 <template>
   <Col v-bind="colPropsComputed">
     <div
-      v-if="['showItem', 'container'].includes(schema.type) || inSubForm"
+      v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
       class="d-flex flex-column mr-2"
     >
-      <span v-if="inSubForm" class="mb-2">{{ schema.label }}</span>
       <component
         class="mr-2"
         :is="componentItem"
