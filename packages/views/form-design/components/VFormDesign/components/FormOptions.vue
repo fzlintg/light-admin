@@ -84,7 +84,8 @@
           });
       };
       const deleteGridOptions = (index: number) => {
-        if (index === 0) return message.warning(`请至少保留一个${labelObj[state.comp]}`);
+        if (formConfig.value.currentItem!['columns'].length == 1)
+          return message.warning(`请至少保留一个${labelObj[comp.value]}`);
         remove(formConfig.value.currentItem!['columns']!, index);
       };
       return {
