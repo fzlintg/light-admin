@@ -1,9 +1,11 @@
 <template>
   <div class="grid-box mx-3 sub-form-container">
     <Row class="header-row bg-light b-1">
-      <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
-        <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
-      </a-button>
+      <div class="action-header-column">
+        <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
+          <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
+        </a-button>
+      </div>
     </Row>
 
     <draggable
@@ -14,49 +16,38 @@
     >
       <template #item="{ element: rowId, index: rowIdx }">
         <Row class="sub-form-row" v-bind="props.schema.componentProps" :key="rowId">
-          <Col :span="1">
-            <span class="d-flex flex-column ai-center">
-              <Icon icon="ant-design:drag-outlined" class="drag-option" />
-              <Icon
-                icon="ant-design:plus-circle-twotone"
-                @click="insertRowId(rowIdx)"
-                color="blue"
-                class="my-3 hand"
-              />
-              <Icon
-                icon="ant-design:minus-circle-twotone"
-                @click="removeRowId(rowIdx)"
-                class="hand"
-                color="red"
-              /> </span
-          ></Col>
-          <Col :span="23">
-            <Row>
-              <Col
-                class="grid-col my-3"
-                v-for="(colItem, colIdx) in props.schema.columns"
-                :key="colIdx"
-                :span="colItem.span"
-              >
-                <VFormItem
-                  isRender
-                  v-for="(item, k) in colItem.children"
-                  :key="k"
-                  :schema="item"
-                  :formData="getRow(rowId)"
-                  :formConfig="props.formConfig"
-                  :setFormModel="setRowData(rowId)"
-                  :inSubForm="true"
-                />
-              </Col> </Row
-          ></Col>
+          <span class="d-flex flex-column ai-center">
+            <Icon icon="ant-design:drag-outlined" class="drag-option" />
+            <Icon
+              icon="ant-design:plus-circle-twotone"
+              @click="insertRowId(rowIdx)"
+              color="blue"
+              class="my-3 hand"
+            />
+            <Icon
+              icon="ant-design:minus-circle-twotone"
+              @click="removeRowId(rowIdx)"
+              class="hand"
+              color="red"
+            />
+          </span>
+          <VFormItem
+            isRender
+            v-for="(item, k) in schema.children"
+            :key="k"
+            :schema="item"
+            :formData="getRow(rowId)"
+            :formConfig="props.formConfig"
+            :setFormModel="setRowData(rowId)"
+            :inSubForm="true"
+          />
         </Row>
       </template>
     </draggable>
   </div>
 </template>
 <script setup>
-  import { Row, Col, Button as AButton } from 'ant-design-vue';
+  import { Row, Button as AButton } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
   import { h, defineProps } from 'vue';
 
@@ -64,7 +55,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { cloneDeep, isArray, set, uniqueId } from 'lodash-es';
+  import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
   import { getInitValue } from '../../utils';
 
@@ -132,6 +123,25 @@
 <style lang="scss" scoped>
   .drag-option {
     cursor: move;
+  }
+
+  div.action-header-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    padding: 8px;
+    border: 1px solid #e1e2e3;
+    background: #f1f2f3;
+
+    .action-label {
+      margin-right: 12px;
+    }
+
+    .action-button {
+      padding-right: 8px;
+      padding-left: 8px;
+    }
   }
 
   .sub-form-container {

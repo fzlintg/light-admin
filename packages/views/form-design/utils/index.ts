@@ -139,6 +139,9 @@ export const getInitValue = (schemas, formData: Object): any => {
       item.columns?.forEach((item) => {
         getInitValue(item.children, formData[field!][0]);
       });
+    } else if (['SubForm'].includes(component)) {
+      if (!formData[field!]) formData[field!] = [{}];
+      getInitValue(item.children, formData[field!][0]);
     } else {
       const fieldKeys = Object.keys(defaultValueObj || {});
       if (fieldKeys.length) {

@@ -242,7 +242,7 @@
         const target = e ? e.target : null;
         const value = target ? (isCheck ? target.checked : target.value) : e;
         //   if (props.schema.component == 'GridSubForm') debugger;
-        if (props.schema.component == 'GridSubForm' && !isArray(value)) return;
+        if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
         cur_setFormModel(props.schema.field!, value, e);
 
         // if (props.inSubForm) {

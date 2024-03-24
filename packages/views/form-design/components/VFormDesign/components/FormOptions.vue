@@ -51,10 +51,12 @@
       const labelObj = {
         Grid: '栅格',
         Tabs: '标签页',
+        GridSubForm: '栅格',
       };
       const attrObj = {
         Grid: 'span',
         Tabs: 'label',
+        GridSubForm: 'span',
       };
       const addOptions = () => {
         if (!formConfig.value.currentItem?.componentProps?.[key])
