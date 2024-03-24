@@ -135,7 +135,7 @@ export const getInitValue = (schemas, formData: Object): any => {
         getInitValue(item.children, formData);
       });
     } else if (['GridSubForm'].includes(component)) {
-      formData[field!] = [{}];
+      if (!formData[field!]) formData[field!] = [{}];
       item.columns?.forEach((item) => {
         getInitValue(item.children, formData[field!][0]);
       });

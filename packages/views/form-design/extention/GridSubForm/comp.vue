@@ -64,7 +64,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { cloneDeep, set, uniqueId } from 'lodash-es';
+  import { cloneDeep, isArray, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
   import { getInitValue } from '../../utils';
 
@@ -77,8 +77,15 @@
   });
   const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
-  state.value = [];
   const rowIds = reactive([]);
+  if (!state.value) state.value = [];
+  if (Array.isArray(state.value)) {
+    for (let i = 0; i < state.value.length; i++) {
+      rowIds.push(uniqueId('gsf_'));
+    }
+  }
+  //if (Array.isArray(state.value)) state.value.splice(0, state.value.length); //初始值,清空数组
+
   const subFormDefaultValue = reactive({});
   getInitValue([props.schema], subFormDefaultValue);
   const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
@@ -95,7 +102,6 @@
 
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
-
     state.value.push(cloneDeep(initValue));
   };
   const getRow = (rowId) => {
@@ -121,7 +127,7 @@
     state.value.splice(newIndex, 0, state.value.splice(oldIndex, 1)[0]);
     return true;
   };
-  addRowId();
+  if (rowIds.length == 0) addRowId(); //保持至少一行
 </script>
 <style lang="scss" scoped>
   .drag-option {
