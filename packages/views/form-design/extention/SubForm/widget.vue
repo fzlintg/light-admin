@@ -17,14 +17,14 @@
           @add="$emit('handleColAdd', $event, schema.children)"
         >
           <template #item="{ element }">
-            <div class="sub-form-table-column">
+            <span class="w-80">
               <LayoutItem
                 class="drag-move"
                 :schema="element"
                 :current-item="currentItem"
                 @handle-copy="$emit('handle-copy')"
                 @handle-delete="$emit('handle-delete')"
-              /> </div
+              /> </span
           ></template>
         </draggable>
       </div>
@@ -54,6 +54,10 @@
 
   .hidden-item {
     background-color: rgb(240 191 195);
+  }
+
+  .sub-form-table {
+    min-height: 120px;
   }
 
   :deep(.sub-form-table) {

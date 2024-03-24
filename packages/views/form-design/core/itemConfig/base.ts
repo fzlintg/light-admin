@@ -202,6 +202,7 @@ export const schema = [
     field: '',
     colProps: { span: 24 },
     componentProps: {},
+    defaultValue: 0,
   },
   {
     component: 'Rate',

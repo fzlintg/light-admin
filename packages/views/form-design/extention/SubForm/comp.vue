@@ -1,11 +1,12 @@
 <template>
   <div class="grid-box mx-3 sub-form-container">
     <Row class="header-row bg-light b-1">
-      <div class="action-header-column">
+      <div class="w-20 jc-center d-flex">
         <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
           <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
         </a-button>
       </div>
+      <div v-for="(item, k) in schema.children" class="w-40">{{ item.label }} </div>
     </Row>
 
     <draggable
@@ -16,7 +17,7 @@
     >
       <template #item="{ element: rowId, index: rowIdx }">
         <Row class="sub-form-row" v-bind="props.schema.componentProps" :key="rowId">
-          <span class="d-flex flex-column ai-center">
+          <span class="d-flex flex-column ai-center w-20">
             <Icon icon="ant-design:drag-outlined" class="drag-option" />
             <Icon
               icon="ant-design:plus-circle-twotone"
@@ -31,16 +32,18 @@
               color="red"
             />
           </span>
-          <VFormItem
-            isRender
-            v-for="(item, k) in schema.children"
-            :key="k"
-            :schema="item"
-            :formData="getRow(rowId)"
-            :formConfig="props.formConfig"
-            :setFormModel="setRowData(rowId)"
-            :inSubForm="true"
-          />
+          <div class="sub-form-table-column w-40">
+            <VFormItem
+              isRender
+              hiddenLabel
+              v-for="(item, k) in schema.children"
+              :key="k"
+              :schema="item"
+              :formData="getRow(rowId)"
+              :formConfig="props.formConfig"
+              :setFormModel="setRowData(rowId)"
+              :inSubForm="true"
+          /></div>
         </Row>
       </template>
     </draggable>
@@ -144,7 +147,24 @@
     }
   }
 
+  div.sub-form-table-column {
+    display: inline-block;
+    padding: 8px;
+    border: 1px solid #e1e2e3;
+
+    :deep(.el-form-item) {
+      margin-right: 4px;
+      margin-bottom: 0;
+      margin-left: 4px;
+    }
+
+    :deep(.el-form-item__content) {
+      margin-left: 0 !important;
+    }
+  }
+
   .sub-form-container {
+    min-height: 120px;
     margin-bottom: 8px;
     text-align: left; //IE浏览器强制居左对齐
 

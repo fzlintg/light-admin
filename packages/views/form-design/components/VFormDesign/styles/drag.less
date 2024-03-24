@@ -134,6 +134,20 @@
       transition: all 0.3s;
       background-color: @layout-background-color;
 
+      .draggable-box {
+        min-width: 50px;
+        height: 100%;
+        min-height: 100px;
+        border: 1px #8d1891 dashed;
+        // background: #fff;
+
+        .list-main {
+          position: relative;
+          min-height: 83px;
+          border: 1px #ccc dashed;
+        }
+      }
+
       .form-item-box {
         position: relative;
         box-sizing: border-box;
@@ -151,8 +165,8 @@
         .grid-col {
           .draggable-box {
             min-width: 50px;
-            min-height: 80px;
             height: 100%;
+            min-height: 80px;
             border: 1px #8d1891 dashed;
             // background: #fff;
 

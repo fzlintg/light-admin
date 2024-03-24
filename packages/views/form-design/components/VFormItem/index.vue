@@ -22,7 +22,10 @@
       </component>
     </div>
     <FormItem v-else v-bind="{ ...formItemProps }" class="mr-3">
-      <template #label v-if="!formItemProps.hiddenLabel && schema.component !== 'Divider'">
+      <template
+        #label
+        v-if="!hiddenLabel && !formItemProps.hiddenLabel && schema.component !== 'Divider'"
+      >
         <Tooltip>
           <span>{{ schema.label }}</span>
           <template #title v-if="schema.helpMessage"
@@ -109,8 +112,13 @@
         type: Boolean,
         default: false,
       },
+      hiddenLabel: {
+        type: Boolean,
+        default: false,
+      },
     },
     emits: ['update:form-data', 'change'],
+    setup(props, { emit }) {},
     setup(props, { emit }) {
       const state = reactive({
         componentMap,
