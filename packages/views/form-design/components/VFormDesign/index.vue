@@ -147,6 +147,7 @@
       item.colProps = item.colProps || { span: 24 };
       item.componentProps = item.componentProps || {};
       item.itemProps = item.itemProps || {};
+      item.width = item.width || '300px'; //lintg
     });
     formConfig.value = config as any;
   };
@@ -195,6 +196,7 @@
 
   const handleListPushDrag = (item: IVFormComponent) => {
     const formItem = cloneDeep(item);
+    formItem.width = formItem.width || '300px'; //lintg
     setGlobalConfigState(formItem);
     generateKey(formItem);
 

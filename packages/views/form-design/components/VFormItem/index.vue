@@ -15,7 +15,6 @@
         :formConfig="formConfig"
         :formData="cur_formData"
         :setFormModel="cur_setFormModel"
-        :style="schema.width ? { width: schema.width } : {}"
         @change="handleChange"
         @click="handleClick(schema)"
         >{{ schema.component == 'Button' ? schema.label : '' }}

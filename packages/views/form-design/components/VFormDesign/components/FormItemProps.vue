@@ -89,6 +89,7 @@
           formConfig.value.currentItem.itemProps.labelCol || {};
         formConfig.value.currentItem.itemProps.wrapperCol =
           formConfig.value.currentItem.itemProps.wrapperCol || {};
+        formConfig.value.currentItem.width = formConfig.value.currentItem.width || '300px';
       }
     },
     { deep: true, immediate: true },

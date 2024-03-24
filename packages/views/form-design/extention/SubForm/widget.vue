@@ -17,15 +17,15 @@
           @add="$emit('handleColAdd', $event, schema.children)"
         >
           <template #item="{ element }">
-            <span class="w-80">
-              <LayoutItem
-                class="drag-move"
-                :schema="element"
-                :current-item="currentItem"
-                @handle-copy="$emit('handle-copy')"
-                @handle-delete="$emit('handle-delete')"
-              /> </span
-          ></template>
+            <LayoutItem
+              :style="{ width: element.width }"
+              class="drag-move sub-form-table-column"
+              :schema="element"
+              :current-item="currentItem"
+              @handle-copy="$emit('handle-copy')"
+              @handle-delete="$emit('handle-delete')"
+            />
+          </template>
         </draggable>
       </div>
     </el-form>
@@ -60,16 +60,7 @@
     min-height: 120px;
   }
 
-  :deep(.sub-form-table) {
-    min-height: 68px;
-
-    .sub-form-drag-drop-zone {
-      min-height: 28px;
-    }
-
-    div.sub-form-table-column {
-      display: inline-block;
-      //width: 200px;
-    }
+  .sub-form-table-column {
+    display: inline-block;
   }
 </style>

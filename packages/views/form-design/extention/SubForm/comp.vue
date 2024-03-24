@@ -6,7 +6,9 @@
           <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
         </a-button>
       </div>
-      <div v-for="(item, k) in schema.children" class="w-40">{{ item.label }} </div>
+      <div v-for="(item, k) in schema.children" :style="item.width ? { width: item.width } : {}"
+        >{{ item.label }}
+      </div>
     </Row>
 
     <draggable
@@ -32,10 +34,11 @@
               color="red"
             />
           </span>
-          <div class="sub-form-table-column w-40">
+          <span class="d-flex" style="">
             <VFormItem
               isRender
               hiddenLabel
+              :style="{ width: item.width, display: 'inline-block' }"
               v-for="(item, k) in schema.children"
               :key="k"
               :schema="item"
@@ -43,7 +46,7 @@
               :formConfig="props.formConfig"
               :setFormModel="setRowData(rowId)"
               :inSubForm="true"
-          /></div>
+          /></span>
         </Row>
       </template>
     </draggable>
@@ -147,20 +150,8 @@
     }
   }
 
-  div.sub-form-table-column {
+  .sub-form-table-column {
     display: inline-block;
-    padding: 8px;
-    border: 1px solid #e1e2e3;
-
-    :deep(.el-form-item) {
-      margin-right: 4px;
-      margin-bottom: 0;
-      margin-left: 4px;
-    }
-
-    :deep(.el-form-item__content) {
-      margin-left: 0 !important;
-    }
   }
 
   .sub-form-container {

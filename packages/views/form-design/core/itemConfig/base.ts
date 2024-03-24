@@ -101,6 +101,7 @@ export const schema = [
     field: '',
     colProps: { span: 24 },
     componentProps: { style: 'width:200px' },
+    defaultValue: 0,
   },
   {
     component: 'InputTextArea',

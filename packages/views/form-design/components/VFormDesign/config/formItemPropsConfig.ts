@@ -1,7 +1,7 @@
 import { IAnyObject } from '../../../typings/base-type';
 //import { baseComponents, customComponents } from '../../../core/formItemConfig';
 import { formItemConfig } from '../../../core/formItemConfig';
-import { Input, Select, RadioGroup, Slider } from 'ant-design-vue';
+import { Input, Select, RadioGroup, Slider, InputNumber } from 'ant-design-vue';
 import { Component } from 'vue';
 
 export const globalConfigState: { span: number } = {
@@ -19,6 +19,7 @@ export interface IBaseFormAttrs {
   category?: 'control' | 'input';
   hidden?: boolean; //lintg
   sortTitle?: string; //lintg 分类
+  width?: string;
 }
 
 export interface IBaseFormItemControlAttrs extends IBaseFormAttrs {
@@ -192,6 +193,14 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
       options: formItemConfig.base.schema
         .concat(formItemConfig.custom.schema)
         .map((item) => ({ value: item.component, label: item.label })),
+    },
+  },
+  {
+    name: 'width',
+    label: '组件列宽度',
+    component: Input,
+    componentProps: {
+      placeholder: '单行表单内组件有效',
     },
   },
   {
