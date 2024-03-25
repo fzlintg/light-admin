@@ -56,7 +56,6 @@
           v-bind="{ ...cmpProps, ...asyncProps }"
           :schema="schema"
           :formConfig="formConfig"
-          :style="schema.width ? { width: schema.width } : {}"
           :formData="cur_formData"
           :setFormModel="cur_setFormModel"
           @change="handleChange"

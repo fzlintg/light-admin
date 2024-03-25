@@ -9,4 +9,6 @@ export default {
   options: {
     gutter: 0,
   },
+  onRowDelete: () => {},
+  onRowDelete__func: '',
 };

@@ -19,13 +19,13 @@
     >
       <template #item="{ element: rowId, index: rowIdx }">
         <Row class="header-row" v-bind="props.schema.componentProps" :key="rowId">
-          <span class="d-flex flex-column ai-center w-20">
+          <span class="d-flex ai-center w-20">
             <Icon icon="ant-design:drag-outlined" class="drag-option" />
             <Icon
               icon="ant-design:plus-circle-twotone"
               @click="insertRowId(rowIdx)"
               color="blue"
-              class="my-3 hand"
+              class="mr-2 hand"
             />
             <Icon
               icon="ant-design:minus-circle-twotone"
