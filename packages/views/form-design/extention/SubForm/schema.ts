@@ -4,11 +4,14 @@ export default {
   type: 'containerItem',
   formItem: true,
   icon: 'ant-design:border-bottom-outlined',
-  componentProps: {},
+  componentProps: {
+    onRowDelete__func: '',
+    onRowDelete__params: ['{idx,data,row}'],
+    onRowInsert__func: '',
+    onRowInsert__params: ['{idx,data,row}'],
+  },
   children: [],
   options: {
     gutter: 0,
   },
-  onRowDelete: () => {},
-  onRowDelete__func: '',
 };

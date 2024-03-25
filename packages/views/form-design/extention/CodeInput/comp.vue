@@ -1,6 +1,12 @@
 <template>
   <a-button @click="openModal" v-bind="$attrs"> {{ props.buttonText }} </a-button>
-  <BasicModal destroyOnClose @register="register" :title="props.editorTitle" @ok="handleOk">
+  <BasicModal
+    width="1000px"
+    destroyOnClose
+    @register="register"
+    :title="props.editorTitle"
+    @ok="handleOk"
+  >
     <BasicForm @register="registerForm" />
   </BasicModal>
 </template>
@@ -33,7 +39,7 @@
         bordered: true,
         autoFormat: true,
         readonly: false,
-        height: 10,
+        height: 20,
         prefix: props.prefix ?? 'function(){',
         suffix: props.suffix ?? '}',
       },
@@ -64,4 +70,3 @@
     closeModal();
   };
 </script>
-  

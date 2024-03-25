@@ -209,6 +209,7 @@
   const handleListPush = (item: IVFormComponent) => {
     // console.log('handleListPush', item);
     const formItem = cloneDeep(item);
+    formItem.width = formItem.width || '200px'; //lintg
     setGlobalConfigState(formItem);
     generateKey(formItem);
     if (!formConfig.value.currentItem?.key) {
