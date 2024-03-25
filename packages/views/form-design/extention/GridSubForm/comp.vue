@@ -104,6 +104,7 @@
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
     state.value.push(cloneDeep(initValue));
+    const idx = state.value.length - 1;
     emit('rowAdd', { idx, data: state.value, row: state.value[idx] });
   };
   const getRow = (rowId) => {
