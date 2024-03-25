@@ -9,6 +9,7 @@
       :key="schema.key"
       :schema="schema"
       :current-item="currentItem"
+      :parentComp="parentComp"
       @handle-copy="$emit('handle-copy')"
       @handle-delete="$emit('handle-delete')"
     />
@@ -22,7 +23,6 @@
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import { IVFormComponent } from '../../../typings/v-form-component';
   import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
-
 
   export default defineComponent({
     name: 'LayoutItem',
@@ -43,6 +43,10 @@
       },
       currentItem: {
         type: Object,
+        required: true,
+      },
+      parentComp: {
+        type: String,
         required: true,
       },
     },
@@ -71,7 +75,7 @@
         handleSetSelectItem,
         layoutTag,
         list1,
-     //   widget,
+        //   widget,
       };
     },
   });

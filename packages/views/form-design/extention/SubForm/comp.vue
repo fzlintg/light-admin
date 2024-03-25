@@ -18,7 +18,7 @@
       @end="dragend"
     >
       <template #item="{ element: rowId, index: rowIdx }">
-        <Row class="sub-form-row" v-bind="props.schema.componentProps" :key="rowId">
+        <Row class="header-row" v-bind="props.schema.componentProps" :key="rowId">
           <span class="d-flex flex-column ai-center w-20">
             <Icon icon="ant-design:drag-outlined" class="drag-option" />
             <Icon
@@ -34,19 +34,21 @@
               color="red"
             />
           </span>
-          <span class="d-flex" :style="{ width: '300px' }">
-            <VFormItem
-              isRender
-              hiddenLabel
-              :style="{ width: item.width, display: 'inline-block' }"
-              v-for="(item, k) in schema.children"
-              :key="k"
-              :schema="item"
-              :formData="getRow(rowId)"
-              :formConfig="props.formConfig"
-              :setFormModel="setRowData(rowId)"
-              :inSubForm="true"
-          /></span>
+
+          <VFormItem
+            class="form-item-box"
+            isRender
+            hiddenLabel
+            :style="{ width: item.width }"
+            v-for="(item, k) in schema.children"
+            :key="k"
+            :schema="item"
+            :formData="getRow(rowId)"
+            :formConfig="props.formConfig"
+            :setFormModel="setRowData(rowId)"
+            :inSubForm="true"
+            parentComp="SubForm"
+          />
         </Row>
       </template>
     </draggable>
@@ -173,6 +175,27 @@
       .row-number-span {
         margin-left: 16px;
       }
+    }
+  }
+
+  .form-item-box {
+    position: relative;
+    box-sizing: border-box;
+    word-wrap: break-word;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ant-form-item {
+      // 修改ant form-item的margin为padding
+      margin: 0;
+      padding-bottom: 6px;
     }
   }
 </style>

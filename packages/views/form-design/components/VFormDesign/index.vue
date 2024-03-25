@@ -196,7 +196,7 @@
 
   const handleListPushDrag = (item: IVFormComponent) => {
     const formItem = cloneDeep(item);
-    formItem.width = formItem.width || '300px'; //lintg
+    formItem.width = formItem.width || '200px'; //lintg
     setGlobalConfigState(formItem);
     generateKey(formItem);
 

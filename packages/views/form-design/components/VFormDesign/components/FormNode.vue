@@ -8,7 +8,12 @@
     :class="{ active: schema.key === formConfig.currentItem?.key }"
   >
     <div class="form-item-box">
-      <VFormItem :formConfig="formConfig" :schema="schema" :current-item="formConfig.currentItem"/>
+      <VFormItem
+        :formConfig="formConfig"
+        :schema="schema"
+        :parentComp="parentComp"
+        :current-item="formConfig.currentItem"
+      />
     </div>
     <div class="show-key-box">
       {{ schema.label + (schema.field ? '/' + schema.field : '') }}
@@ -33,6 +38,12 @@
       schema: {
         type: Object as PropType<IVFormComponent>,
         required: true,
+      },
+      parentComp: {
+        type: String,
+        default: () => {
+          return '';
+        },
       },
     },
     setup(props) {

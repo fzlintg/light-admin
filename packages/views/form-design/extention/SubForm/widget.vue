@@ -1,39 +1,38 @@
 <template>
   <div class="grid-box">
-    <el-form label-position="top">
-      <div class="sub-form-table">
-        <draggable
-          class="list-main draggable-box"
-          :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
-          v-bind="{
-            group: 'form-draggable',
-            ghostClass: 'moving',
-            animation: 180,
-            handle: '.drag-move',
-          }"
-          item-key="key"
-          v-model="schema.children"
-          @start="$emit('dragStart', $event, schema.children)"
-          @add="$emit('handleColAdd', $event, schema.children)"
-        >
-          <template #item="{ element }">
-            <LayoutItem
-              :style="{ width: element.width }"
-              class="drag-move sub-form-table-column"
-              :schema="element"
-              :current-item="currentItem"
-              @handle-copy="$emit('handle-copy')"
-              @handle-delete="$emit('handle-delete')"
-            />
-          </template>
-        </draggable>
-      </div>
-    </el-form>
+    <div class="sub-form-table">
+      <draggable
+        class="list-main draggable-box"
+        :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
+        v-bind="{
+          group: 'form-draggable',
+          ghostClass: 'moving',
+          animation: 180,
+          handle: '.drag-move',
+        }"
+        item-key="key"
+        v-model="schema.children"
+        @start="$emit('dragStart', $event, schema.children)"
+        @add="$emit('handleColAdd', $event, schema.children)"
+      >
+        <template #item="{ element }">
+          <LayoutItem
+            :style="{ width: element.width }"
+            class="drag-move sub-form-table-column"
+            :schema="element"
+            :current-item="currentItem"
+            parentComp="SubForm"
+            @handle-copy="$emit('handle-copy')"
+            @handle-delete="$emit('handle-delete')"
+          />
+        </template>
+      </draggable>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
   import { useFormDesignState } from '../../hooks/useFormDesignState';
-  import { Row, Col } from 'ant-design-vue';
+  import { Form as AForm } from 'ant-design-vue';
   import draggable from 'vuedraggable';
   import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
 

@@ -23,7 +23,12 @@
     <FormItem v-else v-bind="{ ...formItemProps }" class="mr-3">
       <template
         #label
-        v-if="!hiddenLabel && !formItemProps.hiddenLabel && schema.component !== 'Divider'"
+        v-if="
+          !hiddenLabel &&
+          !formItemProps.hiddenLabel &&
+          schema.component !== 'Divider' &&
+          parentComp != 'SubForm'
+        "
       >
         <Tooltip>
           <span>{{ schema.label }}</span>
@@ -72,6 +77,7 @@
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
   import { widget } from '../../extention/loader';
+  import { string } from 'vue-types';
 
   export default defineComponent({
     name: 'VFormItem',
@@ -115,9 +121,13 @@
         type: Boolean,
         default: false,
       },
+      parentComp: {
+        type: string,
+        default: '',
+      },
     },
     emits: ['update:form-data', 'change'],
-    setup(props, { emit }) {},
+
     setup(props, { emit }) {
       const state = reactive({
         componentMap,
@@ -129,7 +139,7 @@
 
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
-        return colProps;
+        return props.parentComp == 'SubForm' ? {} : colProps; //lintg
       });
       const formItemProps = computed(() => {
         const { formConfig } = unref(props);
