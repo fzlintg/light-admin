@@ -34,7 +34,7 @@
               color="red"
             />
           </span>
-          <span class="d-flex" style="">
+          <span class="d-flex" :style="{ width: '300px' }">
             <VFormItem
               isRender
               hiddenLabel

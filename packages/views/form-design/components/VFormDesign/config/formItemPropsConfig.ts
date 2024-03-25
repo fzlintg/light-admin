@@ -197,10 +197,10 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
   },
   {
     name: 'width',
-    label: '组件列宽度',
+    label: '组件列宽(单行表单)',
     component: Input,
     componentProps: {
-      placeholder: '单行表单内组件有效',
+      placeholder: '单行表单内有效',
     },
   },
   {

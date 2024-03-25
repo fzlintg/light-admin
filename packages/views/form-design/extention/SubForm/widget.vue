@@ -62,5 +62,6 @@
 
   .sub-form-table-column {
     display: inline-block;
+    vertical-align: top;
   }
 </style>

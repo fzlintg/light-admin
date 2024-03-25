@@ -264,11 +264,15 @@
           handleBeforeColAdd(event, schemas, isCopy);
           return true;
         }
-        if (['Grid', 'Tabs'].includes(formItem.component)) {
+        //lintg
+        else if (['Grid', 'GridSubForm'].includes(formItem.component)) {
           // 栅格布局
           formItem.columns?.forEach((item) => {
             traverse(item.children);
           });
+        } else if (['Tab', 'SubForm'].includes(formItem.component)) {
+          // 栅格布局
+          traverse(formItem.children || []);
         }
       });
     };
