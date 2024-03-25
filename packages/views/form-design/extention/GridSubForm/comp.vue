@@ -93,6 +93,7 @@
     () => state.value,
     (v) => {
       emit('update:value', v);
+      emit('rowChange', v);
     },
     {
       deep: true,
@@ -103,6 +104,7 @@
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
     state.value.push(cloneDeep(initValue));
+    emit('rowAdd', { idx, data: state.value, row: state.value[idx] });
   };
   const getRow = (rowId) => {
     return state.value[rowIds.indexOf(rowId)];
@@ -115,12 +117,14 @@
     };
   };
   const removeRowId = (idx) => {
+    emit('rowDelete', { idx, data: state.value, row: state.value[idx] });
     rowIds.splice(idx, 1);
     state.value.splice(idx, 1);
   };
   const insertRowId = (idx) => {
     rowIds.splice(idx, 0, uniqueId('gsf_'));
     state.value.splice(idx, 0, cloneDeep(initValue));
+    emit('rowInsert', { idx, data: state.value, row: state.value[idx] });
   };
   const dragend = ({ oldIndex, newIndex }) => {
     rowIds.splice(newIndex, 0, rowIds.splice(oldIndex, 1)[0]);

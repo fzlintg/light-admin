@@ -92,6 +92,7 @@
     () => state.value,
     (v) => {
       emit('update:value', v);
+      emit('rowChange', v);
     },
     {
       deep: true,

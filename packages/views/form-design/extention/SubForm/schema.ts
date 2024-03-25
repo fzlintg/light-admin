@@ -5,10 +5,10 @@ export default {
   formItem: true,
   icon: 'ant-design:border-bottom-outlined',
   componentProps: {
-    onRowDelete__func: '',
     onRowDelete__params: ['{idx,data,row}'],
-    onRowInsert__func: '',
     onRowInsert__params: ['{idx,data,row}'],
+    onRowAdd__params: ['{idx,data,row}'],
+    onRowChange__params: ['data'],
   },
   children: [],
   options: {
