@@ -286,6 +286,7 @@ export const schema = [
   {
     component: 'Button',
     formItem: false,
+    type: 'showItem',
     label: '按钮',
     icon: 'dashicons:button',
     field: '',

@@ -33,6 +33,13 @@
             :options="linkOptions"
           />
         </FormItem>
+        <FormItem label="数据源">
+          <Select
+            mode="multiple"
+            v-model:value="formConfig.currentItem.componentProps['ds']"
+            :options="dsOptions"
+          />
+        </FormItem>
         <FormItem label="提交按钮">
           <Checkbox v-model:checked="formConfig.currentItem.showActionButtonGroup" />
         </FormItem>
@@ -101,6 +108,7 @@
   import ItemOptions from './ItemOptions.vue';
   //import { get, set } from 'lodash-es';
   import LightProps from './LighProps.vue';
+  import ds from '../../../api/index';
   //console.log(...componentMap);
   export default defineComponent({
     name: 'ComponentProps',
@@ -125,7 +133,12 @@
     },
     setup() {
       // 让computed属性自动更新
-
+      const dsOptions = ds.map((item) => {
+        return {
+          label: item.label,
+          value: item.name,
+        };
+      });
       const allOptions = ref([] as Omit<IBaseFormAttrs, 'tag'>[]);
       const showControlAttrs = (includes: string[] | undefined) => {
         if (!includes) return true;
@@ -320,6 +333,7 @@
         inputOptions,
         allOptions,
         getComponent,
+        dsOptions,
         //   getItemProps
       };
     },

@@ -202,7 +202,7 @@ export const formatRules = (schemas: IVFormComponent[]) => {
       if (endsWith(name, '__func') && item.componentProps[name].trim().length > 0) {
         const originName = name.substr(0, name.length - 6);
         const params = item.componentProps[originName + '__params'] || [];
-        item.componentProps[originName] = new Function(...params, item.componentProps[name]);
+        item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
       }
     }
 

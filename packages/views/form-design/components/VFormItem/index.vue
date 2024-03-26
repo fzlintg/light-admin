@@ -5,7 +5,7 @@
   <Col v-bind="colPropsComputed">
     <div
       v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
-      class="d-flex flex-column mr-2"
+      class="d-flex m-2 jc-center"
     >
       <component
         class="mr-2"
@@ -248,6 +248,7 @@
           disabled,
           [isCheck ? 'checked' : 'value']: cur_formData.value[field!],
         };
+        console.log(result);
 
         return result;
       });
