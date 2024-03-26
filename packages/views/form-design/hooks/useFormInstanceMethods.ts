@@ -9,6 +9,7 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
   formdata,
   context: SetupContext<E>,
   _formInstance: Ref<AForm | null>,
+  formItemRefList: any, //lintg
 ) {
   /**
    * 绑定props和on中的上下文为parent
@@ -22,6 +23,7 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
       // 绑定 props 中的上下文
       forOwn(item.componentProps, (value: any, key) => {
         if (isFunction(value)) {
+          // const context = formItemRefList[item.field] || vm; //lintg
           item.componentProps![key] = value.bind(vm);
         }
       });

@@ -147,31 +147,31 @@ export function useFormValues({
     Object.assign(formModel, obj);
     defaultValueRef.value = cloneDeep(obj);
   }
-  function initDefault2() {
-    const schemas = unref(getSchema);
-    const obj: Recordable = {};
+  // function initDefault2() {
+  //   const schemas = unref(getSchema);
+  //   const obj: Recordable = {};
 
-    schemas.forEach((item) => {
-      const { defaultValue, defaultValueObj } = item;
-      const fieldKeys = Object.keys(defaultValueObj || {});
-      if (fieldKeys.length) {
-        fieldKeys.map((field) => {
-          obj[field] = defaultValueObj![field];
-          if (formModel[field] === undefined) {
-            formModel[field] = defaultValueObj![field];
-          }
-        });
-      }
-      if (!isNil(defaultValue)) {
-        obj[item.field] = defaultValue;
+  //   schemas.forEach((item) => {
+  //     const { defaultValue, defaultValueObj } = item;
+  //     const fieldKeys = Object.keys(defaultValueObj || {});
+  //     if (fieldKeys.length) {
+  //       fieldKeys.map((field) => {
+  //         obj[field] = defaultValueObj![field];
+  //         if (formModel[field] === undefined) {
+  //           formModel[field] = defaultValueObj![field];
+  //         }
+  //       });
+  //     }
+  //     if (!isNil(defaultValue)) {
+  //       obj[item.field] = defaultValue;
 
-        if (formModel[item.field] === undefined) {
-          formModel[item.field] = defaultValue;
-        }
-      }
-    });
-    defaultValueRef.value = cloneDeep(obj);
-  }
+  //       if (formModel[item.field] === undefined) {
+  //         formModel[item.field] = defaultValue;
+  //       }
+  //     }
+  //   });
+  //   defaultValueRef.value = cloneDeep(obj);
+  // }
 
   return { handleFormValues, initDefault };
 }

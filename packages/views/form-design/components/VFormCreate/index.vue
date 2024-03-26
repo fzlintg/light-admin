@@ -28,7 +28,17 @@
   </div>
 </template>
 <script lang="ts">
-  import { toRaw, onMounted, computed, defineComponent, PropType, provide, ref, unref } from 'vue';
+  import {
+    toRaw,
+    onMounted,
+    computed,
+    defineComponent,
+    PropType,
+    provide,
+    ref,
+    unref,
+    reactive,
+  } from 'vue';
   import FormRender from './components/FormRender.vue';
   import { IFormConfig, AForm } from '../../typings/v-form-component';
   import { Form, Row, Col } from 'ant-design-vue';
@@ -70,7 +80,11 @@
           emit('update:formModel', value);
         },
       });
-
+      const formItemRefList = reactive({}); //lintg
+      provide('registerFormItem', (name, item) => {
+        formItemRefList[name] = item;
+      });
+      provide('formItemRefList', formItemRefList);
       const noHiddenList = computed(() => {
         return (
           props.formConfig.schemas &&

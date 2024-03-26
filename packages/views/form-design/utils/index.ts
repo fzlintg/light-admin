@@ -79,7 +79,7 @@ export function randomUUID(): string {
  * @param str
  */
 export function toLine(str: string) {
-  return str.replace(/([A-Z])/g, '_$1').toLowerCase();
+  return str.replace(/([A-Z])/g, '$1').toLowerCase();
 }
 
 /**

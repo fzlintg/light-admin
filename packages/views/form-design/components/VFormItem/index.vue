@@ -66,7 +66,17 @@
 </template>
 <script lang="ts">
   import { type Recordable } from '@vben/types';
-  import { ref, defineComponent, reactive, toRefs, computed, PropType, unref } from 'vue';
+  import {
+    inject,
+    ref,
+    defineComponent,
+    reactive,
+    toRefs,
+    computed,
+    PropType,
+    unref,
+    getCurrentInstance,
+  } from 'vue';
   import { componentMap } from '../../core/formItemConfig';
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
@@ -135,7 +145,12 @@
       const { formModel: formData1, setFormModel: setFormModel1 } = useFormModelState();
       const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel1;
-
+      const formItemRefList: any = inject('formItemRefList'); //lintg
+      const proxy = getCurrentInstance();
+      formItemRefList && (formItemRefList[props.schema.field!] = proxy);
+      const getFormItem = (name) => {
+        return formItemRefList[name];
+      };
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
         return props.parentComp == 'SubForm' ? {} : colProps; //lintg
@@ -279,6 +294,7 @@
         handleChange,
         colPropsComputed,
         widget,
+        getFormItem,
       };
     },
   });
