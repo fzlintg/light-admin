@@ -17,6 +17,7 @@
         :setFormModel="cur_setFormModel"
         @change="handleChange"
         @click="handleClick(schema)"
+        :ref="formItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}
       </component>
     </div>
@@ -140,6 +141,7 @@
     setup(props, { emit }) {
       const state = reactive({
         componentMap,
+        formItemRef: null,
       });
 
       const { formModel: formData1, setFormModel: setFormModel1 } = useFormModelState();
@@ -153,6 +155,9 @@
       };
       const getValue = () => {
         return get(unref(cur_formData), props.schema.field);
+      };
+      const getModal = (name) => {
+        return formItemRefList[name].formItemRef;
       };
       const getFormRef = inject('getFormRef');
       forOwn(props.schema.componentProps, (value: any, key) => {
@@ -312,6 +317,7 @@
         getFormItem,
         getValue,
         getFormRef,
+        getModal,
       };
     },
   });
