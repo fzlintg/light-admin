@@ -3,11 +3,11 @@
 -->
 <template>
   <div
-    class="drag-move-box"
+    class="drag-move-box w100"
     @click.stop="handleSelectItem"
     :class="{ active: schema.key === formConfig.currentItem?.key }"
   >
-    <div class="form-item-box jc-center d-flex">
+    <div class="form-item-box jc-center d-flex w100">
       <VFormItem
         :formConfig="formConfig"
         :schema="schema"

@@ -8,7 +8,7 @@
       class="d-flex m-2 jc-start"
     >
       <component
-        class="mr-2"
+        class="mr-2 w100"
         :is="componentItem"
         v-bind="{ ...cmpProps, ...asyncProps }"
         :schema="schema"
