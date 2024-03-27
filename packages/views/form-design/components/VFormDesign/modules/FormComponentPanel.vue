@@ -103,7 +103,7 @@
       .list-main {
         display: flex;
         flex-wrap: wrap;
-        place-content: flex-start flex-start;
+        place-content: flex-start;
 
         .layout-width {
           width: 100%;
@@ -141,6 +141,8 @@
 
       .list-main {
         // 列表动画
+        height: 100%;
+
         .list-enter-active {
           transition: all 0.5s;
         }
