@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-box mx-3 sub-form-container">
+  <div class="grid-box mx-3 sub-form-container w100">
     <Row class="header-row bg-light b-1">
       <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
         <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>

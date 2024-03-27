@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-box mx-3 sub-form-container">
+  <div class="grid-box mx-3 sub-form-container flex-1">
     <Row class="header-row bg-light b-1">
       <div class="w-20 jc-center d-flex">
         <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
