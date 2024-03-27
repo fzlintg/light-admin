@@ -20,15 +20,16 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
     if (!vm) return;
 
     (props.formConfig.schemas as IVFormComponent[]).forEach((item) => {
-      // 绑定 props 中的上下文
-      forOwn(item.componentProps, (value: any, key) => {
-        if (isFunction(value)) {
-          // const context = formItemRefList[item.field] || vm; //lintg
-          item.componentProps![key] = value.bind(vm);
-        }
-      });
+      // 绑定 props 中的上下文  lintg
+      // forOwn(item.componentProps, (value: any, key) => {
+      //   if (isFunction(value)) {
+      //     // const context = formItemRefList[item.field] || vm; //lintg
+      //     item.componentProps![key] = value.bind(vm);
+      //   }
+      // });
       // 绑定事件监听（v-on）的上下文
       forOwn(item.on, (value: any, key) => {
+        debugger;
         if (isFunction(value)) {
           item.componentProps![key] = value.bind(vm);
         }

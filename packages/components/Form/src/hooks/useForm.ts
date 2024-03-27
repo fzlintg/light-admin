@@ -127,6 +127,9 @@ export function useForm(props?: Props): UseFormReturnType {
       const form = await getForm();
       return form.validateFields(nameList);
     },
+    getFormItem: (name) => {
+      return unref(formRef)?.getFormItem(name);
+    },
   };
 
   return [register, methods];

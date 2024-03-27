@@ -81,7 +81,7 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions } from '../../utils';
-  import { omit, isArray } from 'lodash-es';
+  import { omit, isArray, forOwn, isFunction, get } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -146,11 +146,20 @@
       const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel1;
       const formItemRefList: any = inject('formItemRefList'); //lintg
-      const proxy = getCurrentInstance();
+      const { proxy } = getCurrentInstance();
       formItemRefList && (formItemRefList[props.schema.field!] = proxy);
       const getFormItem = (name) => {
         return formItemRefList[name];
       };
+      const getValue = () => {
+        return get(unref(cur_formData), props.schema.field);
+      };
+      forOwn(props.schema.componentProps, (value: any, key) => {
+        if (isFunction(value)) {
+          // const context = formItemRefList[item.field] || vm; //lintg
+          props.schema.componentProps![key] = value.bind(proxy);
+        }
+      });
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
         return props.parentComp == 'SubForm' ? {} : colProps; //lintg
@@ -295,6 +304,7 @@
         colPropsComputed,
         widget,
         getFormItem,
+        getValue,
       };
     },
   });
