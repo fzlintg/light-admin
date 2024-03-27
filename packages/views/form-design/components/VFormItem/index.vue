@@ -290,12 +290,13 @@
 
       const handleChange = function (e) {
         //  if (props.schema.component == 'GridSubForm') return;
+        if (['Tabs', 'Card'].includes(props.schema.component)) return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;
         const value = target ? (isCheck ? target.checked : target.value) : e;
         //   if (props.schema.component == 'GridSubForm') debugger;
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
-        if (['Tabs'].includes(props.schema.component)) return;
+
         cur_setFormModel(props.schema.field!, value, e);
 
         // if (props.inSubForm) {

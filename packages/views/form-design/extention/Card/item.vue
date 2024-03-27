@@ -1,5 +1,5 @@
 <template>
-  <card v-bind="schema.componentProps">
+  <card v-bind="schema.componentProps" class="w-full">
     <template #[key] v-for="(value, key) in schema.componentProps?.slots">
       {{ value }}
     </template>
