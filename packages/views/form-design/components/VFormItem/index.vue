@@ -5,10 +5,10 @@
   <Col v-bind="colPropsComputed">
     <div
       v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
-      class="d-flex m-2 jc-start"
+      :class="{ 'd-flex': true, 'm-2': true, ['jc-' + formConfig.compAlign]: true }"
     >
       <component
-        class="mr-2 w100"
+        class="mr-2"
         :is="componentItem"
         v-bind="{ ...cmpProps, ...asyncProps }"
         :schema="schema"

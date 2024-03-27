@@ -7,7 +7,7 @@
     @click.stop="handleSelectItem"
     :class="{ active: schema.key === formConfig.currentItem?.key }"
   >
-    <div class="form-item-box jc-center d-flex w100">
+    <div class="form-item-box jc-start d-flex w100">
       <VFormItem
         :formConfig="formConfig"
         :schema="schema"

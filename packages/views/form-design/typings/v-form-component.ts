@@ -100,6 +100,7 @@ export interface IFormConfig extends PickAntFormConfig {
   schemas: IVFormComponent[];
   currentItem?: IVFormComponent;
   activeKey?: PropsTabKey;
+  compAlign?: 'left' | 'right' | 'center';
 }
 
 export interface AForm {

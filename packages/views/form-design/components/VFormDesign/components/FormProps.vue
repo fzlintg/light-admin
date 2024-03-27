@@ -31,6 +31,7 @@
           </RadioButton>
         </RadioGroup>
       </FormItem>
+
       <!-- </Row> -->
       <FormItem label="标签宽度（px）" v-show="formConfig.labelLayout === 'flex'">
         <InputNumber
@@ -63,6 +64,13 @@
           </RadioGroup>
         </FormItem>
       </div>
+      <FormItem label="组件对齐">
+        <RadioGroup button-style="solid" v-model:value="formConfig.compAlign">
+          <RadioButton value="center">居中</RadioButton>
+          <RadioButton value="start">靠左</RadioButton>
+          <RadioButton value="end">靠右</RadioButton>
+        </RadioGroup>
+      </FormItem>
       <FormItem label="表单属性">
         <Col
           ><Checkbox v-model:checked="formConfig.colon" v-if="formConfig.layout == 'horizontal'"
