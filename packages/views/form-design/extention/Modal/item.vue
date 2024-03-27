@@ -22,7 +22,6 @@
 </template>
 <script setup lang="ts">
   import VFormItem from '../../components/VFormItem/index.vue';
-
   import { Modal as AModal } from 'ant-design-vue';
 
   const open = ref(false);
@@ -31,7 +30,6 @@
     open.value = true;
   };
   const handleOk = (e: MouseEvent) => {
-    console.log(e);
     open.value = false;
   };
   const closeModal = () => {

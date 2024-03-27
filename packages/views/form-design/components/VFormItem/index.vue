@@ -5,7 +5,7 @@
   <Col v-bind="colPropsComputed">
     <div
       v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
-      class="d-flex m-2 jc-center"
+      class="d-flex m-2 jc-start"
     >
       <component
         class="mr-2"
@@ -295,6 +295,7 @@
         const value = target ? (isCheck ? target.checked : target.value) : e;
         //   if (props.schema.component == 'GridSubForm') debugger;
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
+        if (['Tabs'].includes(props.schema.component)) return;
         cur_setFormModel(props.schema.field!, value, e);
 
         // if (props.inSubForm) {

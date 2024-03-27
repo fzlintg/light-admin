@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-box mx-3">
+  <div class="grid-box mx-3 flex-1">
     <tabs>
       <tab-pane v-for="(tabItem, index) in schema.columns" :key="index" :tab="tabItem.label">
         <VFormItem
