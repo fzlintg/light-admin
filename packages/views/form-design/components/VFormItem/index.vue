@@ -154,9 +154,15 @@
       const getValue = () => {
         return get(unref(cur_formData), props.schema.field);
       };
+      const getFormRef = inject('getFormRef');
       forOwn(props.schema.componentProps, (value: any, key) => {
         if (isFunction(value)) {
-          // const context = formItemRefList[item.field] || vm; //lintg
+          props.schema.componentProps![key] = value.bind(proxy);
+        }
+      });
+      forOwn(props.schema.on, (value: any, key) => {
+        //  debugger;
+        if (isFunction(value)) {
           props.schema.componentProps![key] = value.bind(proxy);
         }
       });
@@ -305,6 +311,7 @@
         widget,
         getFormItem,
         getValue,
+        getFormRef,
       };
     },
   });

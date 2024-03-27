@@ -29,7 +29,7 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
       // });
       // 绑定事件监听（v-on）的上下文
       forOwn(item.on, (value: any, key) => {
-        debugger;
+        //  debugger;
         if (isFunction(value)) {
           item.componentProps![key] = value.bind(vm);
         }

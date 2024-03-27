@@ -85,6 +85,9 @@
         formItemRefList[name] = item;
       });
       provide('formItemRefList', formItemRefList);
+      provide('getFormRef', () => {
+        return eFormModel.value;
+      });
       const noHiddenList = computed(() => {
         return (
           props.formConfig.schemas &&
