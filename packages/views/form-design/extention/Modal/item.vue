@@ -1,6 +1,11 @@
 <template>
-  <a-button type="primary" @click="showModal">Open Modal</a-button>
-  <a-modal v-model:open="open" v-bind="schema.componentProps" @ok="handleOk">
+  <a-modal
+    v-model:open="open"
+    v-bind="schema.componentProps"
+    :centered="true"
+    @ok="handleOk"
+    @cancel="closeModal"
+  >
     <template #[key] v-for="(value, key) in schema.componentProps?.slots">
       {{ value }}
     </template>
@@ -29,4 +34,11 @@
     console.log(e);
     open.value = false;
   };
+  const closeModal = () => {
+    open.value = false;
+  };
+  defineExpose({
+    showModal,
+    closeModal,
+  });
 </script>

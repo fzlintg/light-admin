@@ -17,7 +17,7 @@
         :setFormModel="cur_setFormModel"
         @change="handleChange"
         @click="handleClick(schema)"
-        :ref="formItemRef"
+        ref="formItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}
       </component>
     </div>

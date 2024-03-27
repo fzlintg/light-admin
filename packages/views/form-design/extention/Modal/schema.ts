@@ -4,11 +4,8 @@ export default {
   type: 'container',
   icon: 'ant-design:border-outlined',
   componentProps: {
-    title: '卡片',
-    bordered: false,
-    slots: {
-      extra: 'hi',
-    },
+    title: '对话框',
+    slots: {},
   },
   children: [],
 };
