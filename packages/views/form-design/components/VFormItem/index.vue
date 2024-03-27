@@ -5,7 +5,7 @@
   <Col v-bind="colPropsComputed">
     <div
       v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
-      :class="{ 'd-flex': true, 'm-2': true, ['jc-' + formConfig.compAlign]: true }"
+      :class="{ 'd-flex': true, 'm-2': true, ['jc-' + schema.compAlign]: true }"
     >
       <component
         class="mr-2"

@@ -74,6 +74,7 @@ export interface IVFormComponent {
   //默认值 lintg
   defaultValue?: any;
   defaultValueObj?: any;
+  compAlign: string;
 }
 
 declare type namesType = string | string[];
@@ -100,7 +101,6 @@ export interface IFormConfig extends PickAntFormConfig {
   schemas: IVFormComponent[];
   currentItem?: IVFormComponent;
   activeKey?: PropsTabKey;
-  compAlign?: 'left' | 'right' | 'center';
 }
 
 export interface AForm {

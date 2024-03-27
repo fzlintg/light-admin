@@ -38,6 +38,13 @@
             />
           </FormItem>
         </div>
+        <FormItem label="组件对齐" v-if="formConfig.currentItem.type === 'showItem'">
+          <RadioGroup button-style="solid" v-model:value="formConfig.currentItem.compAlign">
+            <RadioButton value="center">居中</RadioButton>
+            <RadioButton value="start">靠左</RadioButton>
+            <RadioButton value="end">靠右</RadioButton>
+          </RadioGroup>
+        </FormItem>
         <FormItem label="控制属性" v-if="controlPropsList.length">
           <Col v-for="item of controlPropsList" :key="item.name">
             <Checkbox v-model:checked="formConfig.currentItem.itemProps[item.name]">
@@ -73,7 +80,17 @@
     advanceFormItemColProps,
   } from '../../VFormDesign/config/formItemPropsConfig';
 
-  import { Empty, Input, Form, FormItem, Switch, Checkbox, Col } from 'ant-design-vue';
+  import {
+    RadioGroup,
+    RadioButton,
+    Empty,
+    Input,
+    Form,
+    FormItem,
+    Switch,
+    Checkbox,
+    Col,
+  } from 'ant-design-vue';
   import RuleProps from './RuleProps.vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import { isArray } from 'lodash-es';
