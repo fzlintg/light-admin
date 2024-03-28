@@ -3,13 +3,6 @@ import { MODE } from '@c/CodeEditor';
 import { setting as extentionSetting } from './loader';
 import { formItemMap } from '../core/loader';
 
-for (const item in extentionSetting) {
-  extentionSetting[item].forEach((item) => {
-    item.defaultValue = item.defaultValue || formItemMap?.[item.component]?.defaultValue;
-  });
-}
-export { extentionSetting };
-
 const setting = {
   api__func: {
     label: '获取数据api',
@@ -72,6 +65,17 @@ const setting = {
     label: '边框',
   },
 };
+
+for (const item in extentionSetting) {
+  extentionSetting[item].forEach((item) => {
+    item.defaultValue = item.defaultValue || formItemMap?.[item.component]?.defaultValue;
+  });
+}
+for (const item in setting) {
+  setting[item].defaultValue =
+    setting[item].defaultValue || formItemMap?.[setting[item].component]?.defaultValue;
+}
+export { extentionSetting };
 
 export function getSetting(item, options) {
   if (item?.endsWith('__func')) {
