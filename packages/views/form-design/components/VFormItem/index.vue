@@ -2,7 +2,7 @@
  * @Description:
 -->
 <template>
-  <Col v-bind="colPropsComputed">
+  <Col v-bind="colPropsComputed" style="width: 100% !important">
     <div
       v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
       :class="{ 'd-flex': true, 'm-2': true, ['jc-' + schema.compAlign]: true }"
