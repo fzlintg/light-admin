@@ -29,6 +29,11 @@ export default [
     label: '显示边框',
   },
   {
+    component: 'InputNumber',
+    field: 'height',
+    label: '高度',
+  },
+  {
     category: 'control',
     field: 'autoFormat',
     label: '自动格式化',

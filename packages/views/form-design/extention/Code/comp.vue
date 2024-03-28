@@ -1,16 +1,19 @@
 <template>
-  <a-alert v-if="props.prefix&&props.prefix!=''" :message="props.prefix" type="info" class="code-prefix" />
+  <a-alert
+    v-if="props.prefix && props.prefix != ''"
+    :message="props.prefix"
+    type="info"
+    class="code-prefix"
+  />
   <div :style="{ height: props.height + 'em' }">
-    <CodeEditor
-      v-bind="$attrs"
-      v-model:value="state"
-      :mode="props.mode"
-      :readonly="props.readonly"
-      :autoFormat="props.autoFormat"
-      :bordered="props.bordered"
-    />
+    <CodeEditor v-bind="attrs" v-model:value="state" />
   </div>
-  <a-alert v-if="props.suffix&&props.suffix!=''" :message="props.suffix" type="info" class="code-prefix" />
+  <a-alert
+    v-if="props.suffix && props.suffix != ''"
+    :message="props.suffix"
+    type="info"
+    class="code-prefix"
+  />
 </template>
 <script setup>
   import { CodeEditor, MODE } from '@c/CodeEditor';
@@ -19,17 +22,12 @@
   import { Alert as AAlert } from 'ant-design-vue';
 
   const props = defineProps({
-    value: propTypes.string || propTypes.function,
-    buttonText: propTypes.string,
     height: propTypes.number,
-    mode: MODE,
-    editorTitle: propTypes.string,
-    readonly: { type: Boolean },
-    autoFormat: { type: Boolean, default: true },
-    bordered: { type: Boolean, default: true },
     prefix: propTypes.string,
     suffix: propTypes.string,
   });
+
+  const attrs = useAttrs();
   const emit = defineEmits(['update:value']);
 
   const [state] = useRuleFormItem(props, 'value', 'change');
