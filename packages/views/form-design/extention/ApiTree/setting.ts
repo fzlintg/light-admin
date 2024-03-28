@@ -1,9 +1,8 @@
 import { MODE } from '@c/CodeEditor';
 
 export default [
-  
   {
-    name: 'afterFetch__func',
+    field: 'afterFetch__func',
     label: '获取数据后处理',
     component: 'CodeInput',
     componentProps: {
@@ -14,5 +13,5 @@ export default [
       autoFormat: true,
       prefix: 'function afterFetch(v){',
     },
-  }
+  },
 ];

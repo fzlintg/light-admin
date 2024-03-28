@@ -1,3 +1,6 @@
+import { forEach } from '@utils/helper/treeHelper';
+// import { formItemMap } from '../core/loader';
+
 const modules = {
   setting: import.meta.glob('./**/setting.ts', { eager: true }),
   func: import.meta.glob('./**/func.ts', { eager: true }),
@@ -21,4 +24,5 @@ for (const path in schemaModules) {
   schema.push({ component, ...schemaModules[path].default, _type: 'custom' });
 }
 const { setting, comp, func, widget, item } = expModule;
+
 export { setting, schema, comp, func, widget, item };

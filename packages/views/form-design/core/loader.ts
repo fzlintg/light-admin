@@ -4,4 +4,11 @@ for (const path in module) {
   const itemClass = path.split('/')[2].split('.')[0];
   formItemConfig[itemClass] = module[path];
 }
-export { formItemConfig };
+const formItemMap = new Map();
+for (const key in formItemConfig) {
+  formItemConfig[key]?.schema?.forEach((item: any) => {
+    formItemMap[item.component] = item;
+  });
+}
+
+export { formItemConfig, formItemMap };

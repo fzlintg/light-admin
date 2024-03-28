@@ -6,7 +6,7 @@ for (const item in MODE) {
 }
 export default [
   {
-    name: 'mode',
+    field: 'mode',
     label: '模式',
     component: 'Select',
     componentProps: {
@@ -14,23 +14,23 @@ export default [
     },
   },
   {
-    name: 'prefix',
+    field: 'prefix',
     label: '前缀',
     component: 'Input',
   },
   {
-    name: 'suffix',
+    field: 'suffix',
     label: '后缀',
     component: 'Input',
   },
   {
     category: 'control',
-    name: 'bordered',
+    field: 'bordered',
     label: '显示边框',
   },
   {
     category: 'control',
-    name: 'autoFormat',
+    field: 'autoFormat',
     label: '自动格式化',
   },
 ];

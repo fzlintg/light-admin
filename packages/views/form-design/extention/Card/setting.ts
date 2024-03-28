@@ -4,7 +4,7 @@ export default [
   {
     component: 'CodeInput',
     label: '工具栏渲染',
-    name: 'slots_extra',
+    field: 'slots_extra',
     field: 'slots.extra',
     componentProps: {
       mode: MODE.HTML,

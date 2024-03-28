@@ -4,7 +4,7 @@ export default [
   {
     component: 'CodeInput',
     label: 'onRowDelete函数',
-    name: 'onRowDelete__func',
+    field: 'onRowDelete__func',
     type: 'showItem',
     componentProps: {
       mode: MODE.JS,
@@ -20,7 +20,7 @@ export default [
   {
     component: 'CodeInput',
     label: 'onRowInsert函数',
-    name: 'onRowInsert__func',
+    field: 'onRowInsert__func',
     type: 'showItem',
     componentProps: {
       mode: MODE.JS,
@@ -36,7 +36,7 @@ export default [
   {
     component: 'CodeInput',
     label: 'onRowAdd函数',
-    name: 'onRowAdd__func',
+    field: 'onRowAdd__func',
     type: 'showItem',
     componentProps: {
       mode: MODE.JS,
@@ -52,7 +52,7 @@ export default [
   {
     component: 'CodeInput',
     label: 'onRowChange函数',
-    name: 'onRowChange__func',
+    field: 'onRowChange__func',
     type: 'showItem',
     componentProps: {
       mode: MODE.JS,

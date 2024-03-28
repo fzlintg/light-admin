@@ -1,5 +1,7 @@
-export default[{
-  name:"apiParamKey",
-  component:"Input",
-  label:"参数名称"
-}]
+export default [
+  {
+    field: 'apiParamKey',
+    component: 'Input',
+    label: '参数名称',
+  },
+];

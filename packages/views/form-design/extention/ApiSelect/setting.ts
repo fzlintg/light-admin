@@ -3,22 +3,22 @@ import { optionsListApi } from '@/api/demo/select';
 
 export default [
   {
-    name: 'labelField',
+    field: 'labelField',
     label: '标签字段',
     component: 'Input',
   },
   {
-    name: 'valueField',
+    field: 'valueField',
     label: 'value字段',
     component: 'Input',
   },
   {
-    name: 'resultField',
+    field: 'resultField',
     label: 'result字段',
     component: 'Input',
   },
   {
-    name: 'api__func',
+    field: 'api__func',
     label: 'api',
     component: 'CodeInput',
     componentProps: {

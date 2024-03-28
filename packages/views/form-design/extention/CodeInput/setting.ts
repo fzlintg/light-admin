@@ -6,7 +6,7 @@ for (const item in MODE) {
 }
 export default [
   {
-    name: 'mode',
+    field: 'mode',
     label: '模式',
     component: 'Select',
     componentProps: {
@@ -14,19 +14,19 @@ export default [
     },
   },
   {
-    name: 'editorTitle',
+    field: 'editorTitle',
     label: '编辑器标题',
     component: 'Input',
   },
   {
     category: 'control',
-    name: 'bordered',
+    field: 'bordered',
     label: '显示边框',
     component: 'Checkbox',
   },
   {
     category: 'control',
-    name: 'autoFormat',
+    field: 'autoFormat',
     label: '自动格式化',
     component: 'Checkbox',
   },

@@ -15,11 +15,11 @@
           />
           <Divider class="divider_title" dashed>控制属性</Divider>
           <FormItem>
-            <Col v-for="item in controlOptions" :key="item.name">
+            <Col v-for="item in controlOptions" :key="item.field">
               <Checkbox
                 v-if="showControlAttrs(item.includes)"
                 v-bind="item.componentProps"
-                v-model:checked="formConfig.currentItem.componentProps[item.name]"
+                v-model:checked="formConfig.currentItem.componentProps[item.field]"
               >
                 {{ item.label }}
               </Checkbox>
@@ -40,6 +40,7 @@
             :options="dsOptions"
           />
         </FormItem>
+
         <FormItem label="提交按钮">
           <Checkbox v-model:checked="formConfig.currentItem.showActionButtonGroup" />
         </FormItem>
@@ -100,10 +101,14 @@
   //import customConfig from '../config/custom/index';
   import {
     schema as customSchema,
-    setting as customSetting,
+    // setting as customSetting,
     func as customFuncs,
   } from '../../../extention/loader';
-  import defaultSetting, { getSetting } from '../../../extention/defaultSetting';
+
+  import defaultSetting, {
+    getSetting,
+    extentionSetting as customSetting, //lintg
+  } from '../../../extention/defaultSetting';
   import { componentMap } from '../../../core/formItemConfig';
   import ItemOptions from './ItemOptions.vue';
   //import { get, set } from 'lodash-es';
@@ -136,7 +141,7 @@
       const dsOptions = ds.map((item) => {
         return {
           label: item.label,
-          value: item.name,
+          value: item.field,
         };
       });
       const allOptions = ref([] as Omit<IBaseFormAttrs, 'tag'>[]);
@@ -162,7 +167,7 @@
       //     },
       //   });
       // };
-      // formConfig.currentItem.componentProps[item.name];
+      // formConfig.currentItem.componentProps[item.field];
       const getComponent = (name) => {
         return componentMap.get(name) || name;
       };

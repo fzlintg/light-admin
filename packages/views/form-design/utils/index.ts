@@ -129,6 +129,7 @@ export const findFormItem: (
 export const getInitValue = (schemas, formData: Object): any => {
   formItemsForEach(schemas, (item) => {
     const { component, field, defaultValue, defaultValueObj } = item;
+    // const field = field || name;
     if (['Grid'].includes(component)) {
       // 栅格布局
       item.columns?.forEach((item) => {

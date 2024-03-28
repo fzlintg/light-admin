@@ -1,5 +1,14 @@
 import { MODE } from '@c/CodeEditor';
 //import { endsWith } from 'lodash-es';
+import { setting as extentionSetting } from './loader';
+import { formItemMap } from '../core/loader';
+
+for (const item in extentionSetting) {
+  extentionSetting[item].forEach((item) => {
+    item.defaultValue = item.defaultValue || formItemMap?.[item.component]?.defaultValue;
+  });
+}
+export { extentionSetting };
 
 const setting = {
   api__func: {
@@ -83,4 +92,5 @@ export function getSetting(item, options) {
   }
   return undefined;
 }
+
 export default setting;

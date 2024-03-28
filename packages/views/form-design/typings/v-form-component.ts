@@ -23,6 +23,7 @@ export interface IVFormComponent {
   // extends Omit<FormSchema, 'component' | 'label' | 'field' | 'rules'> {
   // 对应的字段
   field?: string;
+
   type?: string; //lintg container/item
   // 组件类型
   component: string;
@@ -74,7 +75,8 @@ export interface IVFormComponent {
   //默认值 lintg
   defaultValue?: any;
   defaultValueObj?: any;
-  compAlign: string;
+  compAlign?: string;
+  name?: string; //lintg
 }
 
 declare type namesType = string | string[];

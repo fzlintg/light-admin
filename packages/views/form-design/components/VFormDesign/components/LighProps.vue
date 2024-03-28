@@ -1,12 +1,12 @@
 <template>
-  <FormItem :label="item.label" v-for="item in getSchema" :key="item.name">
+  <FormItem :label="item.label" v-for="item in getSchema" :key="item.field">
     <!--     处理数组属性，placeholder       -->
     <div v-if="item.children">
       <template v-for="(child, index) of item.children" :key="index">
         <component
           v-if="child.component"
           v-bind="child.componentProps"
-          v-model:value="formModel[item.name][index]"
+          v-model:value="formModel[item.field][index]"
           :is="getComponent(child.component)"
         />
       </template>
@@ -17,7 +17,7 @@
       class="component-prop"
       v-bind="item.componentProps"
       :is="getComponent(item.component)"
-      v-model:value="formModel[item.name]"
+      v-model:value="formModel[item.field]"
     />
     <Divider class="divider_title" dashed v-else-if="item.component == 'Divider'">{{
       item.componentProps.label
@@ -62,6 +62,7 @@
   const emit = defineEmits(['update:props']);
   onMounted(() => {
     initDefault();
+
     for (const item in formModel) {
       formModel[item] = get(toRawUnref(attrs).props, item);
     }

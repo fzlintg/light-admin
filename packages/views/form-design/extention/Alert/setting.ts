@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'type',
+    field: 'type',
     label: '类型',
     component: 'Select',
     componentProps: {
@@ -11,21 +11,25 @@ export default [
         { label: '错误', value: 'error' },
       ],
     },
+    defaultValue: 'success',
   },
   {
-    name: 'message',
+    field: 'message',
     label: '消息',
     component: 'Input',
     componentProps: {},
+    defaultValue: '',
   },
   {
-    name: 'showIcon',
+    field: 'showIcon',
     label: '显示图标',
     category: 'control',
+    defaultValue: true,
   },
   {
-    name: 'closable',
+    field: 'closable',
     label: '可关闭',
     category: 'control',
+    defaultValue: true,
   },
 ];
