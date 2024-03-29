@@ -717,7 +717,7 @@ const componentAttrs: IBaseComponentProps = {
       componentProps: {
         placeholder: '请输入默认值',
       },
-      defaultValue: 0,
+      defaultValue: 1,
     },
     {
       field: 'min',
@@ -744,6 +744,7 @@ const componentAttrs: IBaseComponentProps = {
       componentProps: {
         placeholder: '请输入步长',
       },
+      defaultValue: 1,
     },
     {
       field: 'tooltipPlacement',

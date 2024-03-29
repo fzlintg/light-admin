@@ -59,13 +59,20 @@
   });
   // const emit = defineEmits(['update:props']);
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
-  const formData = {};
-  getInitValue(props.schema, formData);
-  // formState.value = cloneDeep(formData);
+  onMounted(() => {
+    const formData = {};
+    getInitValue(props.schema, formData);
+    // // formState.value = cloneDeep(formData);
+    // formState.value.min = formData.min;
+    // formState.value.max = formData.max;
+    // formState.value.defaultValue = formData.defaultValue;
+    // formState.value.step = formData.step;
+    // // formState.value.tooltipPlacement = formData.tooltipPlacement;
 
-  // for (const item in formData) {
-  //   formState.value= formData[item];
-  // }
+    for (const item in formData) {
+      formState.value[item] = formData[item];
+    }
+  });
 
   // Object.assign(formState.value, formData); //初始化
   //const attrs = useAttrs();
