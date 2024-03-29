@@ -6,35 +6,35 @@
     <div class="properties-body" v-if="formConfig.currentItem?.itemProps">
       <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择控件" />
       <Form v-else label-align="left" layout="vertical">
-        <div v-for="item of baseFormItemProps" :key="item.name">
+        <div v-for="item of baseFormItemProps" :key="item.field">
           <FormItem :label="item.label" v-if="showProps(item.exclude)">
             <component
               v-if="item.component"
               class="component-props"
               v-bind="item.componentProps"
               :is="item.component"
-              v-model:value="formConfig.currentItem[item.name]"
+              v-model:value="formConfig.currentItem[item.field]"
             />
           </FormItem>
         </div>
-        <div v-for="item of advanceFormItemProps" :key="item.name">
+        <div v-for="item of advanceFormItemProps" :key="item.field">
           <FormItem :label="item.label" v-if="showProps(item.exclude)">
             <component
               v-if="item.component"
               class="component-props"
               v-bind="item.componentProps"
               :is="item.component"
-              v-model:value="formConfig.currentItem.itemProps[item.name]"
+              v-model:value="formConfig.currentItem.itemProps[item.field]"
             />
           </FormItem> </div
-        ><div v-for="item of advanceFormItemColProps" :key="item.name">
+        ><div v-for="item of advanceFormItemColProps" :key="item.field">
           <FormItem :label="item.label" v-if="showProps(item.exclude)">
             <component
               v-if="item.component"
               class="component-props"
               v-bind="item.componentProps"
               :is="item.component"
-              v-model:value="formConfig.currentItem.itemProps[item.name]['span']"
+              v-model:value="formConfig.currentItem.itemProps[item.field]['span']"
             />
           </FormItem>
         </div>
@@ -46,8 +46,8 @@
           </RadioGroup>
         </FormItem>
         <FormItem label="控制属性" v-if="controlPropsList.length">
-          <Col v-for="item of controlPropsList" :key="item.name">
-            <Checkbox v-model:checked="formConfig.currentItem.itemProps[item.name]">
+          <Col v-for="item of controlPropsList" :key="item.field">
+            <Checkbox v-model:checked="formConfig.currentItem.itemProps[item.field]">
               {{ item.label }}
             </Checkbox>
           </Col>

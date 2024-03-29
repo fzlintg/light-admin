@@ -9,12 +9,12 @@ type BaseFormAttrs = Omit<IBaseFormAttrs, 'tag'>;
 export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
   {
     // 没有disabled属性的控件不能作为form控件
-    name: 'disabled',
+    field: 'disabled',
     label: '禁用',
   },
   {
     // 没有disabled属性的控件不能作为form控件
-    name: 'autofocus',
+    field: 'autofocus',
     label: '自动获取焦点',
     includes: [
       'Input',
@@ -33,7 +33,7 @@ export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
     ],
   },
   {
-    name: 'allowClear',
+    field: 'allowClear',
     label: '可清除',
     includes: [
       'Input',
@@ -49,55 +49,55 @@ export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
       'AutoComplete',
     ],
   },
-  { name: 'fullscreen', label: '全屏', includes: ['Calendar'] },
+  { field: 'fullscreen', label: '全屏', includes: ['Calendar'] },
   {
-    name: 'showSearch',
+    field: 'showSearch',
     label: '可搜索',
     includes: ['Select', 'TreeSelect', 'Cascader', 'Transfer'],
   },
   {
-    name: 'showTime',
+    field: 'showTime',
     label: '显示时间',
     includes: ['DatePicker', 'RangePicker', 'MonthPicker'],
   },
   {
-    name: 'range',
+    field: 'range',
     label: '双向滑动',
     includes: [],
   },
   {
-    name: 'allowHalf',
+    field: 'allowHalf',
     label: '允许半选',
     includes: ['Rate'],
   },
   {
-    name: 'multiple',
+    field: 'multiple',
     label: '多选',
     includes: ['Select', 'TreeSelect', 'Upload'],
   },
   {
-    name: 'directory',
+    field: 'directory',
     label: '文件夹',
     includes: ['Upload'],
   },
   {
-    name: 'withCredentials',
+    field: 'withCredentials',
     label: '携带cookie',
     includes: ['Upload'],
   },
   {
-    name: 'bordered',
+    field: 'bordered',
     label: '是否有边框',
     includes: ['Select', 'Input'],
   },
   {
-    name: 'defaultActiveFirstOption',
+    field: 'defaultActiveFirstOption',
     label: '高亮第一个选项',
     component: 'Checkbox',
     includes: ['Select', 'AutoComplete'],
   },
   {
-    name: 'dropdownMatchSelectWidth',
+    field: 'dropdownMatchSelectWidth',
     label: '下拉菜单和选择器同宽',
     component: 'Checkbox',
     includes: ['Select', 'TreeSelect', 'AutoComplete'],
@@ -107,7 +107,7 @@ export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
 //共用属性
 export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
   {
-    name: 'size',
+    field: 'size',
     label: '尺寸',
     component: 'RadioGroup',
     componentProps: {
@@ -129,7 +129,7 @@ export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
     includes: ['InputNumber', 'Input', 'Cascader', 'Button'],
   },
   {
-    name: 'placeholder',
+    field: 'placeholder',
     label: '占位符',
     component: 'Input',
     componentProps: {
@@ -147,11 +147,11 @@ export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
       'TimePicker',
       'TreeSelect',
       'Cascader',
-      "ApiTreeSelect"
+      'ApiTreeSelect',
     ],
   },
   {
-    name: 'style',
+    field: 'style',
     label: '样式',
     component: 'Input',
     componentProps: {
@@ -159,7 +159,7 @@ export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
     },
   },
   {
-    name: 'open',
+    field: 'open',
     label: '一直展开下拉菜单',
     component: 'RadioGroup',
     componentProps: {
@@ -186,7 +186,7 @@ export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
 const componentAttrs: IBaseComponentProps = {
   AutoComplete: [
     {
-      name: 'backfill',
+      field: 'backfill',
       label: '自动回填',
       component: 'Switch',
       componentProps: {
@@ -194,14 +194,14 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'defaultOpen',
+      field: 'defaultOpen',
       label: '是否默认展开下拉菜单',
       component: 'Checkbox',
     },
   ],
   IconPicker: [
     {
-      name: 'mode',
+      field: 'mode',
       label: '模式',
       component: 'RadioGroup',
       componentProps: {
@@ -217,7 +217,7 @@ const componentAttrs: IBaseComponentProps = {
   // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#%3Cinput%3E_types
   Input: [
     {
-      name: 'type',
+      field: 'type',
       label: '类型',
       component: 'Select',
       componentProps: {
@@ -248,7 +248,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'defaultValue',
+      field: 'defaultValue',
       label: '默认值',
       component: 'Input',
       componentProps: {
@@ -257,7 +257,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'prefix',
+      field: 'prefix',
       label: '前缀',
       component: 'Input',
       componentProps: {
@@ -266,7 +266,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'suffix',
+      field: 'suffix',
       label: '后缀',
       component: 'Input',
       componentProps: {
@@ -275,7 +275,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'addonBefore',
+      field: 'addonBefore',
       label: '前置标签',
       component: 'Input',
       componentProps: {
@@ -284,7 +284,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'addonAfter',
+      field: 'addonAfter',
       label: '后置标签',
       component: 'Input',
       componentProps: {
@@ -293,7 +293,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'maxLength',
+      field: 'maxLength',
       label: '最大长度',
       component: 'InputNumber',
       componentProps: {
@@ -305,7 +305,7 @@ const componentAttrs: IBaseComponentProps = {
 
   InputNumber: [
     {
-      name: 'defaultValue',
+      field: 'defaultValue',
       label: '默认值',
       component: 'InputNumber',
       componentProps: {
@@ -313,7 +313,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'min',
+      field: 'min',
       label: '最小值',
       component: 'InputNumber',
       componentProps: {
@@ -322,7 +322,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'max',
+      field: 'max',
       label: '最大值',
       component: 'InputNumber',
       componentProps: {
@@ -331,7 +331,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'precision',
+      field: 'precision',
       label: '数值精度',
       component: 'InputNumber',
       componentProps: {
@@ -340,7 +340,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'step',
+      field: 'step',
       label: '步长',
       component: 'InputNumber',
       componentProps: {
@@ -349,13 +349,13 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'decimalSeparator',
+      field: 'decimalSeparator',
       label: '小数点',
       component: 'Input',
       componentProps: { type: 'text', placeholder: '请输入小数点' },
     },
     {
-      name: 'addonBefore',
+      field: 'addonBefore',
       label: '前置标签',
       component: 'Input',
       componentProps: {
@@ -364,7 +364,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'addonAfter',
+      field: 'addonAfter',
       label: '后置标签',
       component: 'Input',
       componentProps: {
@@ -373,29 +373,29 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'controls',
+      field: 'controls',
       label: '是否显示增减按钮',
       component: 'Checkbox',
     },
     {
-      name: 'keyboard',
+      field: 'keyboard',
       label: '是否启用键盘快捷行为',
       component: 'Checkbox',
     },
     {
-      name: 'stringMode',
+      field: 'stringMode',
       label: '字符值模式',
       component: 'Checkbox',
     },
     {
-      name: 'bordered',
+      field: 'bordered',
       label: '是否有边框',
       component: 'Checkbox',
     },
   ],
   InputTextArea: [
     {
-      name: 'defaultValue',
+      field: 'defaultValue',
       label: '默认值',
       component: 'Input',
       componentProps: {
@@ -404,7 +404,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'maxlength',
+      field: 'maxlength',
       label: '最大长度',
       component: 'InputNumber',
       componentProps: {
@@ -412,7 +412,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'minlength',
+      field: 'minlength',
       label: '最小长度',
       component: 'InputNumber',
       componentProps: {
@@ -420,7 +420,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'cols',
+      field: 'cols',
       label: '可见列数',
       component: 'InputNumber',
       componentProps: {
@@ -429,7 +429,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'rows',
+      field: 'rows',
       label: '可见行数',
       component: 'InputNumber',
       componentProps: {
@@ -438,7 +438,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'minlength',
+      field: 'minlength',
       label: '最小长度',
       component: 'InputNumber',
       componentProps: {
@@ -446,27 +446,27 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'autosize',
+      field: 'autosize',
       label: '自适应内容高度',
       component: 'Checkbox',
     },
     {
-      name: 'showCount',
+      field: 'showCount',
       label: '是否展示字数',
       component: 'Checkbox',
     },
     {
-      name: 'readonly',
+      field: 'readonly',
       label: '是否只读',
       component: 'Checkbox',
     },
     {
-      name: 'spellcheck',
+      field: 'spellcheck',
       label: '读写检查',
       component: 'Checkbox',
     },
     {
-      name: 'autocomplete',
+      field: 'autocomplete',
       label: '是否自动完成',
       component: 'RadioGroup',
       componentProps: {
@@ -478,7 +478,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'autocorrect',
+      field: 'autocorrect',
       label: '是否自动纠错',
       component: 'RadioGroup',
       componentProps: {
@@ -492,7 +492,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   Select: [
     {
-      name: 'mode',
+      field: 'mode',
       label: '选择模式（默认单选）',
       component: 'RadioGroup',
       componentProps: {
@@ -505,29 +505,29 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'autoClearSearchValue',
+      field: 'autoClearSearchValue',
       label: '是否在选中项后清空搜索框',
       component: 'Checkbox',
     },
     {
-      name: 'labelInValue',
+      field: 'labelInValue',
       label: '选项的label包装到value中',
       component: 'Checkbox',
     },
     {
-      name: 'showArrow',
+      field: 'showArrow',
       label: '显示下拉小箭头',
       component: 'Checkbox',
     },
     {
-      name: 'defaultOpen',
+      field: 'defaultOpen',
       label: '默认展开下拉菜单',
       component: 'Checkbox',
     },
   ],
   Checkbox: [
     {
-      name: 'indeterminate',
+      field: 'indeterminate',
       label: '设置indeterminate状态',
       component: 'Checkbox',
     },
@@ -535,7 +535,7 @@ const componentAttrs: IBaseComponentProps = {
   CheckboxGroup: [],
   RadioGroup: [
     {
-      name: 'defaultValue',
+      field: 'defaultValue',
       label: '默认值',
       component: 'Input',
       componentProps: {
@@ -543,7 +543,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'buttonStyle',
+      field: 'buttonStyle',
       label: 'RadioButton的风格样式',
       component: 'RadioGroup',
       componentProps: {
@@ -560,7 +560,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'optionType',
+      field: 'optionType',
       label: 'options类型',
       component: 'RadioGroup',
       componentProps: {
@@ -599,7 +599,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'size',
+      field: 'size',
       label: '尺寸',
       component: 'RadioGroup',
       componentProps: {
@@ -622,7 +622,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   DatePicker: [
     {
-      name: 'format',
+      field: 'format',
       label: '展示格式（format）',
       component: 'Input',
       componentProps: {
@@ -630,7 +630,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'valueFormat',
+      field: 'valueFormat',
       label: '绑定值格式（valueFormat）',
       component: 'Input',
       componentProps: {
@@ -640,23 +640,23 @@ const componentAttrs: IBaseComponentProps = {
   ],
   RangePicker: [
     {
-      name: 'placeholder',
+      field: 'placeholder',
       label: '占位符',
       children: [
         {
-          name: '',
+          field: '',
           label: '',
           component: 'Input',
         },
         {
-          name: '',
+          field: '',
           label: '',
           component: 'Input',
         },
       ],
     },
     {
-      name: 'format',
+      field: 'format',
       label: '展示格式（format）',
       component: 'Input',
       componentProps: {
@@ -664,7 +664,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'valueFormat',
+      field: 'valueFormat',
       label: '绑定值格式（valueFormat）',
       component: 'Input',
       componentProps: {
@@ -674,7 +674,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   MonthPicker: [
     {
-      name: 'format',
+      field: 'format',
       label: '展示格式（format）',
       component: 'Input',
       componentProps: {
@@ -682,7 +682,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'valueFormat',
+      field: 'valueFormat',
       label: '绑定值格式（valueFormat）',
       component: 'Input',
       componentProps: {
@@ -692,7 +692,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   TimePicker: [
     {
-      name: 'format',
+      field: 'format',
       label: '展示格式（format）',
       component: 'Input',
       componentProps: {
@@ -700,7 +700,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'valueFormat',
+      field: 'valueFormat',
       label: '绑定值格式（valueFormat）',
       component: 'Input',
       componentProps: {
@@ -710,7 +710,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   Slider: [
     {
-      name: 'defaultValue',
+      field: 'defaultValue',
       label: '默认值',
       component: 'InputNumber',
       componentProps: {
@@ -718,7 +718,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'min',
+      field: 'min',
       label: '最小值',
       component: 'InputNumber',
       componentProps: {
@@ -726,7 +726,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'max',
+      field: 'max',
       label: '最大值',
       component: 'InputNumber',
       componentProps: {
@@ -734,7 +734,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'step',
+      field: 'step',
       label: '步长',
       component: 'InputNumber',
       componentProps: {
@@ -742,7 +742,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'tooltipPlacement',
+      field: 'tooltipPlacement',
       label: 'Tooltip 展示位置',
       component: 'Select',
       componentProps: {
@@ -763,39 +763,39 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'tooltipVisible',
+      field: 'tooltipVisible',
       label: '始终显示Tooltip',
       component: 'Checkbox',
     },
     {
-      name: 'dots',
+      field: 'dots',
       label: '只能拖拽到刻度上',
       component: 'Checkbox',
     },
     {
-      name: 'range',
+      field: 'range',
       label: '双滑块模式',
       component: 'Checkbox',
     },
     {
-      name: 'reverse',
+      field: 'reverse',
       label: '反向坐标轴',
       component: 'Checkbox',
     },
     {
-      name: 'vertical',
+      field: 'vertical',
       label: '垂直方向',
       component: 'Checkbox',
     },
     {
-      name: 'included',
+      field: 'included',
       label: '值为包含关系',
       component: 'Checkbox',
     },
   ],
   Rate: [
     {
-      name: 'defaultValue',
+      field: 'defaultValue',
       label: '默认值',
       component: 'InputNumber',
       componentProps: {
@@ -803,7 +803,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'character',
+      field: 'character',
       label: '自定义字符',
       component: 'Input',
       componentProps: {
@@ -811,7 +811,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'count',
+      field: 'count',
       label: 'start 总数',
       component: 'InputNumber',
       componentProps: {
@@ -821,7 +821,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   Switch: [
     {
-      name: 'checkedChildren',
+      field: 'checkedChildren',
       label: '选中时的内容',
       component: 'Input',
       componentProps: {
@@ -829,7 +829,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'checkedValue',
+      field: 'checkedValue',
       label: '选中时的值',
       component: 'Input',
       componentProps: {
@@ -837,7 +837,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'unCheckedChildren',
+      field: 'unCheckedChildren',
       label: '非选中时的内容',
       component: 'Input',
       componentProps: {
@@ -845,7 +845,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'unCheckedValue',
+      field: 'unCheckedValue',
       label: '非选中时的值',
       component: 'Input',
       componentProps: {
@@ -853,12 +853,12 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'loading',
+      field: 'loading',
       label: '加载中的开关',
       component: 'Checkbox',
     },
     {
-      name: 'size',
+      field: 'size',
       label: '尺寸',
       component: 'RadioGroup',
       componentProps: {
@@ -877,7 +877,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   TreeSelect: [
     {
-      name: 'defaultValue',
+      field: 'defaultValue',
       label: '默认值',
       component: 'Input',
       componentProps: {
@@ -885,7 +885,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'searchPlaceholder',
+      field: 'searchPlaceholder',
       label: '搜索框默认文字',
       component: 'Input',
       componentProps: {
@@ -893,7 +893,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'treeNodeFilterProp',
+      field: 'treeNodeFilterProp',
       label: '输入项过滤对应的 treeNode 属性',
       component: 'Input',
       componentProps: {
@@ -901,7 +901,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'treeNodeLabelProp',
+      field: 'treeNodeLabelProp',
       label: '作为显示的 prop 设置',
       component: 'Input',
       componentProps: {
@@ -909,7 +909,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'popupClassName',
+      field: 'popupClassName',
       label: '下拉菜单的 className 属性',
       component: 'Input',
       componentProps: {
@@ -918,37 +918,37 @@ const componentAttrs: IBaseComponentProps = {
     },
 
     {
-      name: 'labelInValue',
+      field: 'labelInValue',
       label: '选项的label包装到value中',
       component: 'Checkbox',
     },
     {
-      name: 'treeIcon',
+      field: 'treeIcon',
       label: '展示TreeNode title前的图标',
       component: 'Checkbox',
     },
     {
-      name: 'treeCheckable',
+      field: 'treeCheckable',
       label: '选项可勾选',
       component: 'Checkbox',
     },
     {
-      name: 'treeCheckStrictly',
+      field: 'treeCheckStrictly',
       label: '节点选择完全受控',
       component: 'Checkbox',
     },
     {
-      name: 'treeDefaultExpandAll',
+      field: 'treeDefaultExpandAll',
       label: '默认展开所有',
       component: 'Checkbox',
     },
     {
-      name: 'treeLine',
+      field: 'treeLine',
       label: '是否展示线条样式',
       component: 'Checkbox',
     },
     {
-      name: 'maxTagCount',
+      field: 'maxTagCount',
       label: '最多显示多少个 tag',
       component: 'InputNumber',
       componentProps: {
@@ -956,7 +956,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'size',
+      field: 'size',
       label: '尺寸',
       component: 'RadioGroup',
       componentProps: {
@@ -975,7 +975,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   Cascader: [
     {
-      name: 'expandTrigger',
+      field: 'expandTrigger',
       label: '次级展开方式(默认click)',
       component: 'RadioGroup',
       componentProps: {
@@ -994,7 +994,7 @@ const componentAttrs: IBaseComponentProps = {
   ],
   Button: [
     {
-      name: 'type',
+      field: 'type',
       label: '类型',
       component: 'RadioGroup',
       componentProps: {
@@ -1019,7 +1019,7 @@ const componentAttrs: IBaseComponentProps = {
       },
     },
     {
-      name: 'handle',
+      field: 'handle',
       label: '操作',
       component: 'RadioGroup',
       componentProps: {
@@ -1038,33 +1038,33 @@ const componentAttrs: IBaseComponentProps = {
   ],
   Upload: [
     {
-      name: 'action',
+      field: 'action',
       label: '上传地址',
       component: 'Input',
     },
     {
-      name: 'name',
+      field: 'name',
       label: '附件参数名（name）',
       component: 'Input',
     },
   ],
   // ColorPicker: [
   //   {
-  //     name: 'defaultValue',
+  //     field: 'defaultValue',
   //     label: '默认值',
   //     component: 'AColorPicker',
   //   },
   // ],
   slot: [
     {
-      name: 'slotName',
+      field: 'slotName',
       label: '插槽名称',
       component: 'Input',
     },
   ],
   Transfer: [
     // {
-    //   name: 'operations',
+    //   field: 'operations',
     //   label: '操作文案集合，顺序从上至下',
     //   component: 'Input',
     //   componentProps: {
@@ -1073,7 +1073,7 @@ const componentAttrs: IBaseComponentProps = {
     //   },
     // },
     // {
-    //   name: 'titles',
+    //   field: 'titles',
     //   label: '标题集合，顺序从左至右',
     //   component: 'Input',
     //   componentProps: {
@@ -1082,17 +1082,17 @@ const componentAttrs: IBaseComponentProps = {
     //   },
     // },
     {
-      name: 'oneWay',
+      field: 'oneWay',
       label: '展示为单向样式',
       component: 'Checkbox',
     },
     {
-      name: 'pagination',
+      field: 'pagination',
       label: '使用分页样式',
       component: 'Checkbox',
     },
     {
-      name: 'showSelectAll',
+      field: 'showSelectAll',
       label: '展示全选勾选框',
       component: 'Checkbox',
     },
@@ -1109,7 +1109,7 @@ function deleteProps(list: Omit<IBaseFormAttrs, 'tag'>[], key: string) {
 
 componentAttrs['StrengthMeter'] = componentAttrs['Input'];
 componentAttrs['StrengthMeter'].push({
-  name: 'visibilityToggle',
+  field: 'visibilityToggle',
   label: '是否显示切换按钮',
   component: 'Checkbox',
 });

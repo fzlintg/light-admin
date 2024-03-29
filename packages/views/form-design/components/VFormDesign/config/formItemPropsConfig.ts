@@ -8,7 +8,7 @@ export const globalConfigState: { span: number } = {
   span: 24,
 };
 export interface IBaseFormAttrs {
-  name: string; // 字段名
+  // name: string; // 字段名
   label: string; // 字段标签
   component?: string | Component; // 属性控件
   componentProps?: IAnyObject; // 传递给控件的属性
@@ -20,6 +20,7 @@ export interface IBaseFormAttrs {
   hidden?: boolean; //lintg
   sortTitle?: string; //lintg 分类
   width?: string;
+  field: string; //lintg
 }
 
 export interface IBaseFormItemControlAttrs extends IBaseFormAttrs {
@@ -28,7 +29,7 @@ export interface IBaseFormItemControlAttrs extends IBaseFormAttrs {
 
 export const baseItemColumnProps: IBaseFormAttrs[] = [
   {
-    name: 'span',
+    field: 'span',
     label: '栅格数',
     component: 'Slider',
     on: {
@@ -44,7 +45,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
   },
 
   {
-    name: 'offset',
+    field: 'offset',
     label: '栅格左侧的间隔格数',
     component: 'Slider',
     componentProps: {
@@ -54,7 +55,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'order',
+    field: 'order',
     label: '栅格顺序,flex 布局模式下有效',
     component: 'Slider',
     componentProps: {
@@ -64,7 +65,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'pull',
+    field: 'pull',
     label: '栅格向左移动格数',
     component: 'Slider',
     componentProps: {
@@ -74,7 +75,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'push',
+    field: 'push',
     label: '栅格向右移动格数',
     component: 'Slider',
     componentProps: {
@@ -84,7 +85,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'xs',
+    field: 'xs',
     label: '<576px 响应式栅格',
     component: 'Slider',
     componentProps: {
@@ -94,7 +95,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'sm',
+    field: 'sm',
     label: '≥576px 响应式栅格',
     component: 'Slider',
     componentProps: {
@@ -104,7 +105,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'md',
+    field: 'md',
     label: '≥768p 响应式栅格',
     component: 'Slider',
 
@@ -115,7 +116,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'lg',
+    field: 'lg',
     label: '≥992px 响应式栅格',
     component: 'Slider',
     componentProps: {
@@ -125,7 +126,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'xl',
+    field: 'xl',
     label: '≥1200px 响应式栅格',
     component: 'Slider',
     componentProps: {
@@ -135,7 +136,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'xxl',
+    field: 'xxl',
     label: '≥1600px 响应式栅格',
     component: 'Slider',
     componentProps: {
@@ -145,7 +146,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: '≥2000px',
+    field: '≥2000px',
     label: '≥1600px 响应式栅格',
     component: 'Slider',
     componentProps: {
@@ -159,7 +160,7 @@ export const baseItemColumnProps: IBaseFormAttrs[] = [
 // 控件属性面板的配置项
 export const advanceFormItemColProps: IBaseFormAttrs[] = [
   {
-    name: 'labelCol',
+    field: 'labelCol',
     label: '标签col',
     component: Slider,
     componentProps: {
@@ -170,7 +171,7 @@ export const advanceFormItemColProps: IBaseFormAttrs[] = [
     exclude: ['Grid'],
   },
   {
-    name: 'wrapperCol',
+    field: 'wrapperCol',
     label: '控件-span',
     component: Slider,
     componentProps: {
@@ -186,7 +187,7 @@ export const advanceFormItemColProps: IBaseFormAttrs[] = [
 export const baseFormItemProps: IBaseFormAttrs[] = [
   {
     // 动态的切换控件的类型
-    name: 'component',
+    field: 'component',
     label: '控件-FormItem',
     component: Select,
     componentProps: {
@@ -196,7 +197,7 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'width',
+    field: 'width',
     label: '组件列宽(单行表单)',
     component: Input,
     componentProps: {
@@ -204,7 +205,7 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
     },
   },
   {
-    name: 'label',
+    field: 'label',
     label: '标签',
     component: Input,
     componentProps: {
@@ -214,7 +215,7 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
     exclude: ['Grid'],
   },
   {
-    name: 'field',
+    field: 'field',
     label: '字段标识',
     component: Input,
     componentProps: {
@@ -224,7 +225,7 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
     exclude: ['Grid'],
   },
   {
-    name: 'helpMessage',
+    field: 'helpMessage',
     label: 'helpMessage',
     component: Input,
     componentProps: {
@@ -237,7 +238,7 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
 // 控件属性面板的配置项
 export const advanceFormItemProps: IBaseFormAttrs[] = [
   {
-    name: 'labelAlign',
+    field: 'labelAlign',
     label: '标签对齐',
     component: RadioGroup,
     componentProps: {
@@ -256,7 +257,7 @@ export const advanceFormItemProps: IBaseFormAttrs[] = [
   },
 
   {
-    name: 'help',
+    field: 'help',
     label: 'help',
     component: Input,
     componentProps: {
@@ -265,7 +266,7 @@ export const advanceFormItemProps: IBaseFormAttrs[] = [
     exclude: ['Grid'],
   },
   {
-    name: 'extra',
+    field: 'extra',
     label: '额外消息',
     component: Input,
     componentProps: {
@@ -275,7 +276,7 @@ export const advanceFormItemProps: IBaseFormAttrs[] = [
     exclude: ['Grid'],
   },
   {
-    name: 'validateTrigger',
+    field: 'validateTrigger',
     label: 'validateTrigger',
     component: Input,
     componentProps: {
@@ -285,7 +286,7 @@ export const advanceFormItemProps: IBaseFormAttrs[] = [
     exclude: ['Grid'],
   },
   {
-    name: 'validateStatus',
+    field: 'validateStatus',
     label: '校验状态',
     component: RadioGroup,
     componentProps: {
@@ -318,46 +319,46 @@ export const advanceFormItemProps: IBaseFormAttrs[] = [
 
 export const baseFormItemControlAttrs: IBaseFormItemControlAttrs[] = [
   {
-    name: 'required',
+    field: 'required',
     label: '必填项',
     component: 'Checkbox',
     exclude: ['alert'],
   },
   {
-    name: 'hidden',
+    field: 'hidden',
     label: '隐藏',
     component: 'Checkbox',
     exclude: ['alert'],
   },
   {
-    name: 'hiddenLabel',
+    field: 'hiddenLabel',
     component: 'Checkbox',
     exclude: ['Grid'],
     label: '隐藏标签',
   },
   {
-    name: 'colon',
+    field: 'colon',
     label: 'label后面显示冒号',
     component: 'Checkbox',
     componentProps: {},
     exclude: ['Grid'],
   },
   {
-    name: 'hasFeedback',
+    field: 'hasFeedback',
     label: '输入反馈',
     component: 'Checkbox',
     componentProps: {},
     includes: ['Input'],
   },
   {
-    name: 'autoLink',
+    field: 'autoLink',
     label: '自动关联',
     component: 'Checkbox',
     componentProps: {},
     includes: ['Input'],
   },
   {
-    name: 'validateFirst',
+    field: 'validateFirst',
     label: '检验证错误停止',
     component: 'Checkbox',
     componentProps: {},
