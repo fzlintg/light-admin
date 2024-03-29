@@ -28,21 +28,8 @@
 </template>
 <script lang="ts" setup>
   import { Form, FormItem, Divider } from 'ant-design-vue';
-  import { useAttrs } from '@vben/hooks';
   import { componentMap } from '../../../core/formItemConfig';
-
-  import {
-    //  defineProps,
-    defineEmits,
-    computed,
-    onMounted,
-    ref,
-    reactive,
-    watch,
-    toRaw,
-    unref,
-    watchEffect,
-  } from 'vue';
+  import { watchEffect } from 'vue';
   import { useRuleFormItem } from '../../../../../myhooks/component/useFormItem';
   import { getInitValue } from '../../../utils/index';
 
