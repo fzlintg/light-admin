@@ -43,9 +43,7 @@
     unref,
     watchEffect,
   } from 'vue';
-  import { useFormValues } from '../../../../../components/Form/src/hooks/useFormValues';
   import { useRuleFormItem } from '../../../../../myhooks/component/useFormItem';
-  import { forOwn, get, set, cloneDeep } from 'lodash-es';
   import { getInitValue } from '../../../utils/index';
 
   const props = defineProps({
@@ -63,7 +61,7 @@
     const formData = {};
     getInitValue(props.schema, formData);
     for (const item in formData) {
-      formState.value[item] = formData[item];
+      if (!formState.value[item]) formState.value[item] = formData[item];
     }
   });
   const getComponent = (name) => {
