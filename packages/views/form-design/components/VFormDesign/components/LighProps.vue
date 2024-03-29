@@ -41,6 +41,7 @@
     watch,
     toRaw,
     unref,
+    watchEffect,
   } from 'vue';
   import { useFormValues } from '../../../../../components/Form/src/hooks/useFormValues';
   import { useRuleFormItem } from '../../../../../myhooks/component/useFormItem';
@@ -57,65 +58,14 @@
       default: () => ({}),
     },
   });
-  // const emit = defineEmits(['update:props']);
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
-  onMounted(() => {
+  watchEffect(() => {
     const formData = {};
     getInitValue(props.schema, formData);
-    // // formState.value = cloneDeep(formData);
-    // formState.value.min = formData.min;
-    // formState.value.max = formData.max;
-    // formState.value.defaultValue = formData.defaultValue;
-    // formState.value.step = formData.step;
-    // // formState.value.tooltipPlacement = formData.tooltipPlacement;
-
     for (const item in formData) {
       formState.value[item] = formData[item];
     }
   });
-
-  // Object.assign(formState.value, formData); //初始化
-  //const attrs = useAttrs();
-
-  // const getProps = computed(() => {
-  //   return { ...unref(attrs) };
-  // });
-  // const getSchema = computed(() => {
-  //   return unref(attrs).schema;
-  // });
-  // const formModel = reactive({});
-  // const toRawUnref = (value) => toRaw(unref(value));
-  // const defaultValueRef = ref({});
-  // const { initDefault } = useFormValues({
-  //   getProps,
-  //   defaultValueRef,
-  //   getSchema,
-  //   formModel,
-  // });
-
-  // const emit = defineEmits(['update:props']);
-  // onMounted(() => {
-  //   initDefault();
-  //   // for (const item in formModel) {
-  //   //   formModel[item] = toRawUnref(attrs).props.defaultValue || formModel[item];
-  //   // }
-  //   watch(
-  //     () => formModel,
-  //     () => {
-  //       let formValue = {};
-  //       for (const item in formModel) {
-  //         set(formValue, item, formModel[item]);
-  //       }
-  //       attrs.value.props = { ...unref(attrs).props, ...formValue };
-  //       emit('update:props', formValue);
-  //     },
-  //     {
-  //       deep: true,
-  //       immediate: true,
-  //     },
-  //   );
-  // });
-
   const getComponent = (name) => {
     return componentMap.get(name) || name;
   };
