@@ -283,7 +283,6 @@
           disabled,
           [isCheck ? 'checked' : 'value']: cur_formData.value[field!],
         };
-        console.log(result);
 
         return result;
       });

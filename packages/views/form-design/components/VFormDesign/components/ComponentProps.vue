@@ -109,6 +109,7 @@
     getSetting,
     extentionSetting as customSetting, //lintg
   } from '../../../extention/defaultSetting';
+  import { formItemMap } from '../../../core/loader';
   import { componentMap } from '../../../core/formItemConfig';
   import ItemOptions from './ItemOptions.vue';
   //import { get, set } from 'lodash-es';
@@ -234,6 +235,7 @@
 
           baseComponentCommonAttrs.forEach((item) => {
             item.category = 'input';
+            item.defaultValue = item.defaultValue || formItemMap[item.component].defaultValue; //lintg
             if (item.includes) {
               if (item.includes.includes(formConfig.value.currentItem!.component)) {
                 allOptions.value.push(item);
@@ -249,6 +251,8 @@
 
           baseComponentAttrs[formConfig.value.currentItem!.component] &&
             baseComponentAttrs[formConfig.value.currentItem!.component].forEach(async (item) => {
+              item.defaultValue =
+                item.defaultValue || formItemMap[item.component as string].defaultValue;
               if (item.component) {
                 if (['Switch', 'Checkbox', 'Radio'].includes(item.component as string)) {
                   item.category = 'control';

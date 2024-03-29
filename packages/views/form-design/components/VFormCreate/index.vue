@@ -160,7 +160,7 @@
       });
       onMounted(() => {
         initDefault();
-        emit('update:formModel', formModelNew.value);
+        // emit('update:formModel', formModelNew.value);
       });
       // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
       return {

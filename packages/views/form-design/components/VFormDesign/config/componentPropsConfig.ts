@@ -436,6 +436,7 @@ const componentAttrs: IBaseComponentProps = {
         placeholder: '请输入可见行数',
         min: 0,
       },
+      defaultValue: 5,
     },
     {
       field: 'minlength',
@@ -716,6 +717,7 @@ const componentAttrs: IBaseComponentProps = {
       componentProps: {
         placeholder: '请输入默认值',
       },
+      defaultValue: 0,
     },
     {
       field: 'min',
@@ -724,6 +726,7 @@ const componentAttrs: IBaseComponentProps = {
       componentProps: {
         placeholder: '请输入最小值',
       },
+      defaultValue: 0,
     },
     {
       field: 'max',
@@ -732,6 +735,7 @@ const componentAttrs: IBaseComponentProps = {
       componentProps: {
         placeholder: '请输入最大值',
       },
+      defaultValue: 100,
     },
     {
       field: 'step',

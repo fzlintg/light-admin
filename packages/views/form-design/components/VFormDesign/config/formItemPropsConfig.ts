@@ -21,6 +21,7 @@ export interface IBaseFormAttrs {
   sortTitle?: string; //lintg 分类
   width?: string;
   field: string; //lintg
+  defaultValue?: any;
 }
 
 export interface IBaseFormItemControlAttrs extends IBaseFormAttrs {

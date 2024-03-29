@@ -67,14 +67,17 @@ const setting = {
 };
 
 for (const item in extentionSetting) {
+  //自定义编辑器配置
   extentionSetting[item].forEach((item) => {
     item.defaultValue = item.defaultValue || formItemMap?.[item.component]?.defaultValue;
   });
 }
 for (const item in setting) {
+  //如果componentProps带属性的自动生成编辑器配置
   setting[item].defaultValue =
     setting[item].defaultValue || formItemMap?.[setting[item].component]?.defaultValue;
 }
+//setting设置默认值
 export { extentionSetting };
 
 export function getSetting(item, options) {
