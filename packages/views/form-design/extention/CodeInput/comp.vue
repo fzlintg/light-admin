@@ -28,7 +28,7 @@
     prefix: propTypes.string,
     suffix: propTypes.string,
   });
-  const emit = defineEmits(['update:value']);
+  //const emit = defineEmits(['update:value']);
   const schemas = [
     {
       field: 'code_input',
@@ -51,18 +51,17 @@
 
   const [register, { openModal, closeModal }] = useModal(); //对话框注册
   const [state] = useRuleFormItem(props, 'value', 'change');
+  const model = computed(() => {
+    return {
+      code_input: state.value,
+    };
+  });
+
   const [registerForm, { getFieldsValue }] = useForm({
     schemas,
     showActionButtonGroup: false,
-    model: { code_input: state },
+    model,
   });
-  //const { t } = useI18n();
-  watch(
-    () => state.value,
-    (v) => {
-      emit('update:value', v);
-    },
-  );
 
   const handleOk = async () => {
     const data = await getFieldsValue();

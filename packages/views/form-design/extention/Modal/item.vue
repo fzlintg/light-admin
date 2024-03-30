@@ -6,9 +6,6 @@
     @ok="handleOk"
     @cancel="closeModal"
   >
-    <template #[key] v-for="(value, key) in schema.componentProps?.slots">
-      {{ value }}
-    </template>
     <VFormItem
       isRender
       v-for="(item, k) in schema.children"
@@ -17,7 +14,11 @@
       :formData="formData"
       :formConfig="formConfig"
       :setFormModel="setFormModel"
-    />
+    >
+      <template #[key] v-for="(value, key) in item.componentProps?.slots">
+        {{ value }}
+      </template>
+    </VFormItem>
   </a-modal>
 </template>
 <script setup lang="ts">

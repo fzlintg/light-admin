@@ -41,7 +41,7 @@ export interface FormActionType {
   validateFields: (nameList?: NamePath[]) => Promise<any>;
   validate: <T = Recordable>(nameList?: NamePath[] | false) => Promise<T>;
   scrollToField: (name: NamePath, options?: ScrollOptions) => Promise<void>;
-  getFormItem: () => {};
+  getFormItem: (name: any) => {};
 }
 
 export type RegisterFn = (formInstance: FormActionType) => void;
@@ -125,6 +125,7 @@ export interface FormProps {
   submitFunc?: () => Promise<void>;
   transformDateFunc?: (date: any) => string;
   colon?: boolean;
+  getFormItem: () => {};
 }
 export type RenderOpts = {
   disabled: boolean;

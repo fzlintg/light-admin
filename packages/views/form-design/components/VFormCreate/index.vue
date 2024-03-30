@@ -6,6 +6,7 @@
     <Form class="v-form-model" ref="eFormModel" :model="formModel" v-bind="formModelProps">
       <Row>
         <VFormItem
+          isRender
           v-for="(schema, index) of noHiddenList"
           :key="index"
           :schema="schema"

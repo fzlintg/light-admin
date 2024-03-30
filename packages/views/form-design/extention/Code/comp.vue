@@ -25,11 +25,11 @@
     height: propTypes.number,
     prefix: propTypes.string,
     suffix: propTypes.string,
+    value: propTypes.string,
   });
 
-  const attrs = useAttrs();
+  //const attrs = useAttrs();
   const emit = defineEmits(['update:value']);
-
   const [state] = useRuleFormItem(props, 'value', 'change');
   //const { t } = useI18n();
   watch(
