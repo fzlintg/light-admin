@@ -28,7 +28,7 @@
     prefix: propTypes.string,
     suffix: propTypes.string,
   });
-  //const emit = defineEmits(['update:value']);
+  const emit = defineEmits(['update:value']);
   const schemas = [
     {
       field: 'code_input',
@@ -62,7 +62,12 @@
     showActionButtonGroup: false,
     model,
   });
-
+  watch(
+    () => state.value,
+    (v) => {
+      emit('update:value', v);
+    },
+  );
   const handleOk = async () => {
     const data = await getFieldsValue();
     state.value = data.code_input;

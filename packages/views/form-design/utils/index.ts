@@ -201,6 +201,7 @@ export const formatRules = (schemas: IVFormComponent[]) => {
     //lintg  函数自动生成
     for (const name in item.componentProps) {
       if (endsWith(name, '__func') && item.componentProps[name].trim().length > 0) {
+        debugger;
         const originName = name.substr(0, name.length - 6);
         const params = item.componentProps[originName + '__params'] || [];
         item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
