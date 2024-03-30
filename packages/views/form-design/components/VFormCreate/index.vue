@@ -5,13 +5,13 @@
   <div class="v-form-container">
     <Form class="v-form-model" ref="eFormModel" :model="formModel" v-bind="formModelProps">
       <Row>
-        <FormRender
+        <VFormItem
           v-for="(schema, index) of noHiddenList"
           :key="index"
           :schema="schema"
           :formConfig="formConfig"
           :formData="formModelNew"
-          @change="handleChange"
+          @change="handleChange({ schema, value: $event })"
           :setFormModel="setFormModel"
           @submit="handleSubmit"
           @reset="resetFields"
@@ -22,7 +22,7 @@
               v-bind="{ formModel: formModel, field: schema.field, schema }"
             ></slot>
           </template>
-        </FormRender>
+        </VFormItem>
       </Row>
     </Form>
   </div>
@@ -47,11 +47,12 @@
   import { useVModel } from '@vueuse/core';
   import { omit } from 'lodash-es';
   import { useFormValues } from '../../../../components/Form/src/hooks/useFormValues';
+  import VFormItem from '../VFormItem/index.vue';
 
   export default defineComponent({
     name: 'VFormCreate',
     components: {
-      FormRender,
+      VFormItem,
       Form,
       Row,
     },
