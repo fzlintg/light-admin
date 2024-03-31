@@ -289,6 +289,7 @@
 
       const handleChange = function (e) {
         //  if (props.schema.component == 'GridSubForm') return;
+
         if (['Tabs', 'Card', 'Modal'].includes(props.schema.component)) return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;

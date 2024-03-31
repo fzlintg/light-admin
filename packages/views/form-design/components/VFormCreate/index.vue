@@ -40,7 +40,7 @@
     unref,
     reactive,
   } from 'vue';
-  import FormRender from './components/FormRender.vue';
+  //import FormRender from './components/FormRender.vue';
   import { IFormConfig, AForm } from '../../typings/v-form-component';
   import { Form, Row, Col } from 'ant-design-vue';
   import { useFormInstanceMethods } from '../../hooks/useFormInstanceMethods';
