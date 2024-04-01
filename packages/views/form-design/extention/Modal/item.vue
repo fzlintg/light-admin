@@ -60,8 +60,11 @@
     });
   };
   const closeModal = () => {
-    emit('dialogBeforeClose');
-    open.value = false;
+    emit('dialogBeforeClose', {
+      callback: (result) => {
+        open.value = !result;
+      },
+    });
   };
   const handleCancle = () => {
     emit('cancelButtonClick');

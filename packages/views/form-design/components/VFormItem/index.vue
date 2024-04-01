@@ -61,6 +61,7 @@
           :setFormModel="cur_setFormModel"
           @change="handleChange"
           @click="handleClick(schema)"
+          ref="formItemRef"
       /></div>
     </FormItem>
   </Col>
