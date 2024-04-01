@@ -53,30 +53,30 @@
   };
   const getFormModel = () => formModelNew.value;
   const handleOk = (e: MouseEvent) => {
-    emit('okButtonClick',(result)=>{
-      if(!result) return;
-      open.value=false;
+    emit('okButtonClick', {
+      callback: (result) => {
+        open.value = !result;
+      },
     });
-   // open.value = false;
   };
   const closeModal = () => {
     emit('dialogBeforeClose');
     open.value = false;
   };
   const handleCancle = () => {
-    emit('cancelButtonClick',()=>);
+    emit('cancelButtonClick');
     closeModal();
   };
   // const emitPromise=(evt,data)=>{
   //   return new Promise((resolve, reject) => {
   //   const timer = setTimeout(() => reject(new Error('Timeout')), 5000); // 5秒超时
   //   emit(evt, data);
- 
+
   //   const removeListener = this.$once(`${event}-reply`, (returnData) => {
   //     clearTimeout(timer);
   //     resolve(returnData);
   //   });
- 
+
   //   // 如果组件销毁，取消监听
   //   this.$on('hook:destroyed', removeListener);
   // });

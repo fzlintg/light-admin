@@ -1,5 +1,5 @@
 <template>
-  <Form :model="formState" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }">
+  <Form :model="formState" layout="vertical">
     <FormItem :label="item.label" v-for="item in props.schema" :key="item.field">
       <!--     处理数组属性，placeholder       -->
       <div v-if="item.children">

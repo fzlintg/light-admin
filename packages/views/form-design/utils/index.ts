@@ -203,7 +203,15 @@ export const formatRules = (schemas: IVFormComponent[]) => {
       if (endsWith(name, '__func') && item.componentProps[name].trim().length > 0) {
         const originName = name.substr(0, name.length - 6);
         const params = item.componentProps[originName + '__params'] || [];
-        item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
+        //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
+        const func = new AsyncFunction(...params, item.componentProps[name]);
+        item.componentProps[originName] = async function (...args) {
+          const result = await func.call(this, ...args);
+          const { callback } = args?.[0]; //要求第一个参数带callback
+          if (callback && isFunction(callback)) {
+            callback(result);
+          }
+        };
       }
     }
 
