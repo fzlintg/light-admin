@@ -40,15 +40,19 @@
   };
 
   const { schema, formConfig } = toRefs(useAttrs());
+  const emit = defineEmits(['dialogOpened', 'okButtonClick', 'cancelButtonClick']);
   formConfig.value.children = schema.value.children;
   const showModal = () => {
     open.value = true;
+    emit('dialogOpened');
   };
   const getFormModel = () => formModelNew.value;
   const handleOk = (e: MouseEvent) => {
+    emit('okButtonClick');
     open.value = false;
   };
   const closeModal = () => {
+    emit('cancelButtonClick');
     open.value = false;
   };
   defineExpose({

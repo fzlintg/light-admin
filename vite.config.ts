@@ -11,7 +11,12 @@ export default defineApplicationConfig({
     plugins: [
       AutoImport({
         imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
-        dts: 'src/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
+        eslintrc: {
+          enabled: true, // Default `false`
+          filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+          globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        },
+        dts: 'types/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
       }),
       // Pages({
       //   // 需要生成路由的文件目录，默认就是识别src下面的pages文件

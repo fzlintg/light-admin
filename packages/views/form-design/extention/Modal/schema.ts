@@ -6,6 +6,10 @@ export default {
   componentProps: {
     title: '对话框',
     slots: {},
+    onOKButtonClick__func: '',
+    onCancelButtonClick__func: '',
+    onDialogOpened__func: '',
+    onDialogBeforeClose__func: '',
   },
   children: [],
 };
