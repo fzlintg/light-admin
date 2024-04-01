@@ -6,7 +6,7 @@
       v-bind="schema.componentProps"
       :centered="true"
       @ok="handleOk"
-      @cancel="closeModal"
+      @cancel="handleCancle"
     >
       <Form :form="fApi" :model="formModelNew">
         <VFormItem
@@ -40,7 +40,12 @@
   };
 
   const { schema, formConfig } = toRefs(useAttrs());
-  const emit = defineEmits(['dialogOpened', 'okButtonClick', 'cancelButtonClick']);
+  const emit = defineEmits([
+    'dialogOpened',
+    'okButtonClick',
+    'cancelButtonClick',
+    'dialogBeforeClose',
+  ]);
   formConfig.value.children = schema.value.children;
   const showModal = () => {
     open.value = true;
@@ -48,13 +53,34 @@
   };
   const getFormModel = () => formModelNew.value;
   const handleOk = (e: MouseEvent) => {
-    emit('okButtonClick');
-    open.value = false;
+    emit('okButtonClick',(result)=>{
+      if(!result) return;
+      open.value=false;
+    });
+   // open.value = false;
   };
   const closeModal = () => {
-    emit('cancelButtonClick');
+    emit('dialogBeforeClose');
     open.value = false;
   };
+  const handleCancle = () => {
+    emit('cancelButtonClick',()=>);
+    closeModal();
+  };
+  // const emitPromise=(evt,data)=>{
+  //   return new Promise((resolve, reject) => {
+  //   const timer = setTimeout(() => reject(new Error('Timeout')), 5000); // 5秒超时
+  //   emit(evt, data);
+ 
+  //   const removeListener = this.$once(`${event}-reply`, (returnData) => {
+  //     clearTimeout(timer);
+  //     resolve(returnData);
+  //   });
+ 
+  //   // 如果组件销毁，取消监听
+  //   this.$on('hook:destroyed', removeListener);
+  // });
+  // }
   defineExpose({
     showModal,
     closeModal,
