@@ -12,7 +12,8 @@
       item-key="key"
       v-model="schema.children"
       @start="$emit('dragStart', $event, schema.children)"
-      @add="$emit('handleColAdd', $event, schema.children)"
+      :move="handleCheck"
+      @add="$emit('handleColAdd', event, schema.children)"
     >
       <template #item="{ element }">
         <LayoutItem
@@ -32,7 +33,7 @@
   import draggable from 'vuedraggable';
   import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
 
-  //const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
+  const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },
     // formConfig,

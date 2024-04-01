@@ -13,6 +13,7 @@
       item-key="type"
       @start="handleStart($event, list)"
       @add="handleAdd"
+      :move="handleCheck"
     >
       <template #item="{ element, index }">
         <li
@@ -65,7 +66,16 @@
       const cloneItem = (one) => {
         return props.handleListPush(one);
       };
-      return { prefixCls, state, handleStart, handleAdd, cloneItem };
+      const handleCheck = (evt) => {
+        if (!!evt.draggedContext && !!evt.draggedContext.element) {
+          let { type, component } = evt.draggedContext.element;
+          if (evt.to) {
+            if (evt.to.className != 'list-main ant-row' && component == 'Modal') return false;
+          }
+        }
+        return true;
+      };
+      return { prefixCls, state, handleStart, handleAdd, cloneItem, handleCheck };
     },
   });
 </script>

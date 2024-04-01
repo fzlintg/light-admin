@@ -20,6 +20,7 @@
           handle=".drag-move"
           v-model="formConfig.schemas"
           item-key="key"
+          :move="handleCheck"
           @add="addItem"
           @start="handleDragStart"
         >
@@ -82,12 +83,21 @@
       const layoutTag = computed(() => {
         return formConfig.value.layout === 'horizontal' ? 'Col' : 'div';
       });
-
+      const handleCheck = (evt) => {
+        if (!!evt.draggedContext && !!evt.draggedContext.element) {
+          let { component } = evt.draggedContext.element;
+          if (evt.to) {
+            if (evt.to.className != 'list-main ant-row' && component == 'Modal') return false;
+          }
+        }
+        return true;
+      };
       return {
         addItem,
         handleDragStart,
         formConfig,
         layoutTag,
+        handleCheck,
       };
     },
   });
