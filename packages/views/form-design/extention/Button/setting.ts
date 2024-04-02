@@ -44,4 +44,56 @@ export default [
       ],
     },
   },
+  {
+    field: 'color',
+    label: '颜色',
+    component: 'RadioButtonGroup',
+    componentProps: {
+      options: [
+        {
+          label: '默认',
+          value: 'default',
+        },
+        {
+          label: 'primary',
+          value: 'primary',
+        },
+        {
+          label: 'success',
+          value: 'success',
+        },
+        {
+          label: 'warning',
+          value: 'warning',
+        },
+        {
+          label: 'error',
+          value: 'error',
+        },
+      ],
+    },
+  },
+  {
+    field: 'preIcon',
+    label: '前图标',
+    component: 'IconPicker',
+    componentProps: {
+      placeholder: '请选择图标',
+    },
+  },
+  {
+    field: 'postIcon',
+    label: '后图标',
+    component: 'IconPicker',
+    componentProps: {
+      placeholder: '请选择图标',
+    },
+  },
+  {
+    field: 'iconSize',
+    label: '图标大小',
+    component: 'InputNumber',
+    componentProps: {},
+    defaultValue: 14,
+  },
 ];

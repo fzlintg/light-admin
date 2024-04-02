@@ -296,7 +296,7 @@ export const schema = [
     componentProps: {
       value: 'primary',
       type: 'primary',
-      size: 'small',
+      size: 'default',
       onClick: () => {
         console.log('点击');
       },

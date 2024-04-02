@@ -6,7 +6,7 @@ import { IconPicker } from '@c/Icon';
  */
 import {
   Input,
-  Button,
+  //Button,
   Select,
   Radio,
   Checkbox,
@@ -24,7 +24,7 @@ import {
   Calendar,
   Transfer,
 } from 'ant-design-vue';
-
+import { Button } from '@c/Button';
 import { comp as customComponents } from '../extention/loader';
 //ant-desing本身的Form控件库
 
