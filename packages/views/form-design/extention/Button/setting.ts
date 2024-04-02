@@ -5,7 +5,7 @@ export default [
     component: 'CodeInput',
     label: 'onClick函数',
     field: 'onClick__func',
-    type: 'showItem',
+
     // field: 'slotsName.extra',
     componentProps: {
       mode: MODE.HTML,

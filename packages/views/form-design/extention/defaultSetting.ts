@@ -56,6 +56,14 @@ const setting = {
     label: '高度',
     component: 'InputNumber',
   },
+  width: {
+    label: '宽度',
+    component: 'InputNumber',
+  },
+  zIndex: {
+    label: '显示层',
+    component: 'InputNumber',
+  },
   buttonText: {
     label: '按钮文本',
     component: 'Input',
