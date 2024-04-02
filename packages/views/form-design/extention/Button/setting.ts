@@ -18,4 +18,30 @@ export default [
     },
     defaultValue: '',
   },
+  {
+    label: '危险',
+    field: 'danger',
+    category: 'control',
+  },
+  {
+    label: '外形',
+    field: 'shape',
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: '圆角',
+          value: 'round',
+        },
+        {
+          label: '圆形',
+          value: 'circle',
+        },
+        {
+          label: '默认',
+          value: 'default',
+        },
+      ],
+    },
+  },
 ];

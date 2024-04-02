@@ -55,6 +55,7 @@
               'TreeSelect',
               'Cascader',
               'AutoComplete',
+              'RadioButtonGroup',
             ].includes(formConfig.currentItem.component)
           "
         >

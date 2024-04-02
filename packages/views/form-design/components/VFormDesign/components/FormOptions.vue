@@ -15,19 +15,21 @@
       </a>
     </div>
 
-    <div v-else v-for="(item, index) of formConfig.currentItem!.componentProps![key]" :key="index">
-      <div class="options-box">
-        <Input v-model:value="item.label" />
-        <Input v-model:value="item.value" class="options-value" />
-        <a class="options-delete" @click="deleteOptions(index)">
-          <Icon icon="ant-design:delete-outlined" />
-        </a>
+    <template v-else>
+      <div v-for="(item, index) of formConfig.currentItem!.componentProps![key]" :key="index">
+        <div class="options-box">
+          <Input v-model:value="item.label" />
+          <Input v-model:value="item.value" class="options-value" />
+          <a class="options-delete" @click="deleteOptions(index)">
+            <Icon icon="ant-design:delete-outlined" />
+          </a>
+        </div>
       </div>
       <a @click="addOptions">
         <Icon icon="ant-design:file-add-outlined" />
         添加选项
       </a>
-    </div>
+    </template>
   </div>
 </template>
 

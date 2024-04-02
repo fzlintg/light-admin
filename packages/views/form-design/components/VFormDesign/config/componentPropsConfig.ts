@@ -1013,12 +1013,16 @@ const componentAttrs: IBaseComponentProps = {
             value: 'primary',
           },
           {
-            label: 'danger',
-            value: 'danger',
+            label: 'text',
+            value: 'text',
           },
           {
             label: 'dashed',
             value: 'dashed',
+          },
+          {
+            label: 'link',
+            value: 'link',
           },
         ],
       },
