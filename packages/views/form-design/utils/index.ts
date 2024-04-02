@@ -1,6 +1,15 @@
 // import { VueConstructor } from 'vue';
 import { IVFormComponent, IFormConfig, IValidationRule } from '../typings/v-form-component';
-import { cloneDeep, isArray, isFunction, isNumber, uniqueId, endsWith, isNil } from 'lodash-es';
+import {
+  cloneDeep,
+  isArray,
+  isFunction,
+  isNumber,
+  uniqueId,
+  endsWith,
+  isNil,
+  isNull,
+} from 'lodash-es';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
 
@@ -200,18 +209,24 @@ export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成
     for (const name in item.componentProps) {
-      if (endsWith(name, '__func') && item.componentProps[name].trim().length > 0) {
+      if (endsWith(name, '__func')) {
+        // if (item.componentProps[name].trim().length > 0) {
         const originName = name.substr(0, name.length - 6);
         const params = item.componentProps[originName + '__params'] || [];
         //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
-        const func = new AsyncFunction(...params, item.componentProps[name]);
+        const func =
+          item.componentProps[name].trim().length > 0
+            ? new AsyncFunction(...params, item.componentProps[name])
+            : () => true; //默认true
         item.componentProps[originName] = async function (...args) {
-          const result = await func.call(this, ...args);
+          let result = await func.call(this, ...args);
+          if (isNull(result)) result = true;
           const { callback } = args?.[0]; //要求第一个参数带callback
           if (callback && isFunction(callback)) {
             callback(result);
           }
         };
+        // }
       }
     }
 

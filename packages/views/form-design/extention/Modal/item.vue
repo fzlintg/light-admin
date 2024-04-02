@@ -31,6 +31,7 @@
   import VFormItem from '../../components/VFormItem/index.vue';
   import { Modal as AModal } from 'ant-design-vue';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
+  import { formatRules } from '../../utils/index';
 
   const open = ref(false);
   const fApi = ref({});
@@ -70,6 +71,9 @@
     emit('cancelButtonClick');
     closeModal();
   };
+  onMounted(() => {
+    // formatRules(schema.value);
+  });
   // const emitPromise=(evt,data)=>{
   //   return new Promise((resolve, reject) => {
   //   const timer = setTimeout(() => reject(new Error('Timeout')), 5000); // 5秒超时

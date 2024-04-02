@@ -83,7 +83,7 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions } from '../../utils';
-  import { omit, isArray, forOwn, isFunction, get } from 'lodash-es';
+  import { omit, isArray, forOwn, isFunction, get, endsWith, startsWith } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
