@@ -12,4 +12,5 @@ export default {
     autoFormat: true,
     readonly: false,
   },
+  defaultValue: '',
 };
