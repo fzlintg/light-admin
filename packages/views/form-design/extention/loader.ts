@@ -11,7 +11,13 @@ const modules = {
 
 const schemaModules = import.meta.glob('./**/schema.ts', { eager: true });
 const expModule = {},
-  schema = [];
+  schemas = {
+    showItem: { name: '展示类', schema: [] },
+    containerItem: { name: '容器组件', schema: [] },
+    custom: { name: '自定义组件', schema: [] },
+    container: { name: '纯容器', schema: [] },
+  };
+
 for (const item in modules) {
   expModule[item] = {};
   for (const path in modules[item]) {
@@ -21,8 +27,12 @@ for (const item in modules) {
 }
 for (const path in schemaModules) {
   const component = path.split('/')[1];
-  schema.push({ component, ...schemaModules[path].default, _type: 'custom' });
+  schemas[schemaModules[path].default.type || 'custom'].schema.push({
+    component,
+    ...schemaModules[path].default,
+    _type: 'custom',
+  });
 }
 const { setting, comp, func, widget, item } = expModule;
 
-export { setting, schema, comp, func, widget, item };
+export { setting, schemas, comp, func, widget, item };

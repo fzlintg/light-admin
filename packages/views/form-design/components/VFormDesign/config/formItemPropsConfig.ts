@@ -185,6 +185,12 @@ export const advanceFormItemColProps: IBaseFormAttrs[] = [
 ];
 // 控件属性面板的配置项
 //baseComponents, customComponents
+const schemaAll = [];
+
+for (const item in formItemConfig) {
+  schemaAll.push(...formItemConfig[item].schema);
+}
+
 export const baseFormItemProps: IBaseFormAttrs[] = [
   {
     // 动态的切换控件的类型
@@ -192,9 +198,7 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
     label: '控件-FormItem',
     component: Select,
     componentProps: {
-      options: formItemConfig.base.schema
-        .concat(formItemConfig.custom.schema)
-        .map((item) => ({ value: item.component, label: item.label })),
+      options: schemaAll.map((item) => ({ value: item.component, label: item.label })),
     },
   },
   {

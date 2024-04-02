@@ -100,7 +100,7 @@
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
   //import customConfig from '../config/custom/index';
   import {
-    schema as customSchema,
+    schemas as customSchema,
     // setting as customSetting,
     func as customFuncs,
   } from '../../../extention/loader';
@@ -178,18 +178,20 @@
       }
       //生成配置  lintg
 
-      for (let schema of customSchema) {
-        customSetting[schema.component] = customSetting[schema.component] || [];
-        for (const propItem in schema.componentProps) {
-          if (customSetting[schema.component].filter((i) => i.field == propItem).length == 0) {
-            if (defaultSetting[propItem])
-              customSetting[schema.component].push({
-                field: propItem,
-                ...defaultSetting[propItem],
-              });
-            else {
-              let setting = getSetting(propItem, schema.componentProps);
-              setting && customSetting[schema.component].push({ field: propItem, ...setting });
+      for (let item in customSchema) {
+        for (let schema of customSchema[item].schema) {
+          customSetting[schema.component] = customSetting[schema.component] || [];
+          for (const propItem in schema.componentProps) {
+            if (customSetting[schema.component].filter((i) => i.field == propItem).length == 0) {
+              if (defaultSetting[propItem])
+                customSetting[schema.component].push({
+                  field: propItem,
+                  ...defaultSetting[propItem],
+                });
+              else {
+                let setting = getSetting(propItem, schema.componentProps);
+                setting && customSetting[schema.component].push({ field: propItem, ...setting });
+              }
             }
           }
         }
