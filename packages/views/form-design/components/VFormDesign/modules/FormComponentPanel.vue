@@ -29,6 +29,7 @@
               class="drag-move"
               :schema="element"
               :data="formConfig"
+              :parent-comp="''"
               :current-item="formConfig.currentItem || {}"
             />
           </template>

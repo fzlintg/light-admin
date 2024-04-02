@@ -148,7 +148,7 @@
       const { formModel: formData1, setFormModel: setFormModel1 } = useFormModelState();
       const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel1;
-      const formItemRefList: any = inject('formItemRefList'); //lintg
+      const formItemRefList: any = inject('formItemRefList', null); //lintg
       const { proxy } = getCurrentInstance();
       formItemRefList && (formItemRefList[props.schema.field!] = proxy);
       const getFormItem = (name) => {
@@ -160,7 +160,7 @@
       const getModal = (name) => {
         return formItemRefList[name].formItemRef;
       };
-      const getFormRef = inject('getFormRef');
+      const getFormRef = inject('getFormRef', () => {});
       forOwn(props.schema.componentProps, (value: any, key) => {
         if (isFunction(value)) {
           props.schema.componentProps![key] = value.bind(proxy);
