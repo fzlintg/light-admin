@@ -1,5 +1,5 @@
 import { MODE } from '@c/CodeEditor';
-import { optionsListApi } from '@/api/demo/select';
+//import { optionsListApi } from '@/api/demo/select';
 
 export default [
   {

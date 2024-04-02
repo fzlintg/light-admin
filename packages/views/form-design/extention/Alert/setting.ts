@@ -2,7 +2,7 @@ export default [
   {
     field: 'type',
     label: '类型',
-    component: 'Select',
+    component: 'RadioButtonGroup',
     componentProps: {
       options: [
         { label: '成功', value: 'success' },

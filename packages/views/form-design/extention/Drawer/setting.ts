@@ -2,7 +2,7 @@ export default [
   {
     field: 'mode',
     label: '位置',
-    component: 'Select',
+    component: 'RadioButtonGroup',
     componentProps: {
       options: [
         { label: '上', value: 'top' },

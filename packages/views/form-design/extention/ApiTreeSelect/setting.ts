@@ -9,7 +9,7 @@ export default [
   },
   {
     field: 'showCheckedStrategy',
-    component: 'Select',
+    component: 'RadioButtonGroup',
     label: '展示方式',
     componentProps: {
       options: [

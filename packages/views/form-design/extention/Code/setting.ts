@@ -8,7 +8,7 @@ export default [
   {
     field: 'mode',
     label: '模式',
-    component: 'Select',
+    component: 'RadioButtonGroup',
     componentProps: {
       options,
     },

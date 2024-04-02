@@ -26,7 +26,7 @@ export default [
   {
     label: '外形',
     field: 'shape',
-    component: 'Select',
+    component: 'RadioButtonGroup',
     componentProps: {
       options: [
         {
