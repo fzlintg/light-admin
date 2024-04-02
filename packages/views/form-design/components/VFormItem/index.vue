@@ -133,7 +133,7 @@
         default: false,
       },
       parentComp: {
-        type: string,
+        type: String,
         default: '',
       },
     },
@@ -321,6 +321,8 @@
         getValue,
         getFormRef,
         getModal,
+        cur_setFormModel,
+        cur_formData,
       };
     },
   });
