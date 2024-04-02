@@ -70,7 +70,11 @@
         if (!!evt.draggedContext && !!evt.draggedContext.element) {
           let { type, component } = evt.draggedContext.element;
           if (evt.to) {
-            if (evt.to.className != 'list-main ant-row' && component == 'Modal') return false;
+            if (
+              evt.to.className != 'list-main ant-row' &&
+              (component == 'Modal' || component == 'Drawer')
+            )
+              return false;
           }
         }
         return true;
