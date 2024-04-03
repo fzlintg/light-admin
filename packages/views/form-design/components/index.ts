@@ -26,6 +26,7 @@ import {
 } from 'ant-design-vue';
 import { Button } from '@c/Button';
 import { comp as customComponents } from '../extention/loader';
+import { QrCode, QrCodeActionType } from '@c/Qrcode';
 //ant-desing本身的Form控件库
 
 const componentMap = new Map<string, Component>();
@@ -34,6 +35,7 @@ for (const compName in customComponents) {
   componentMap.set(compName, customComponents[compName]);
 }
 //componentMap.set('ColorPicker', ColorPicker);
+componentMap.set('QrCode', QrCode);
 componentMap.set('Radio', Radio);
 componentMap.set('Button', Button);
 componentMap.set('Calendar', Calendar);

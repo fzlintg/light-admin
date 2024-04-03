@@ -83,7 +83,7 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions } from '../../utils';
-  import { omit, isArray, forOwn, isFunction, get, endsWith, startsWith } from 'lodash-es';
+  import { omit, isArray, forOwn, isFunction, get, endsWith, startsWith, set } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -156,6 +156,9 @@
       };
       const getValue = () => {
         return get(unref(cur_formData), props.schema.field);
+      };
+      const setValue = (value) => {
+        set(cur_formData.value, props.schema.field, value);
       };
       const getModal = (name) => {
         return formItemRefList[name].formItemRef;
@@ -323,6 +326,7 @@
         getModal,
         cur_setFormModel,
         cur_formData,
+        setValue,
       };
     },
   });
