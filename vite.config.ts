@@ -2,13 +2,14 @@ import { defineApplicationConfig } from '@vben/vite-config';
 import { resolve } from 'path';
 
 import AutoImport from 'unplugin-auto-import/vite';
-
+import VueSetupExtend from 'vite-plugin-vue-setup-extend';
 // import Pages from 'vite-plugin-pages';
 // import Layouts from 'vite-plugin-vue-layouts';
 
 export default defineApplicationConfig({
   overrides: {
     plugins: [
+      VueSetupExtend(),
       AutoImport({
         imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
         eslintrc: {

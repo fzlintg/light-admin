@@ -188,6 +188,7 @@ export const schema = [
     componentProps: {
       placeholder: '请选择月份',
     },
+    defaultValue: null,
   },
   {
     component: 'TimePicker',
@@ -303,17 +304,18 @@ export const schema = [
       onClick__func: '',
     },
   },
-  {
-    component: 'ColorPicker',
-    label: '颜色选择',
-    icon: 'carbon:color-palette',
-    field: '',
-    colProps: { span: 24 },
-    componentProps: {
-      defaultValue: '',
-      value: '',
-    },
-  },
+  // {
+  //   component: 'ColorPicker',
+  //   label: '颜色选择',
+  //   icon: 'carbon:color-palette',
+  //   field: '',
+  //   colProps: { span: 24 },
+  //   componentProps: {
+
+  //     value: '',
+  //   },
+  //   defaultValue:''
+  // },
 
   {
     component: 'slot',

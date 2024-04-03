@@ -97,6 +97,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "showdown": "^2.1.0",
     "sortablejs": "^1.15.1",
+    "tinycolor2": "^1.6.0",
     "tinymce": "^5.10.9",
     "unocss": "0.58.3",
     "vditor": "^3.9.8",
@@ -106,6 +107,7 @@
     "vue-json-pretty": "^2.3.0",
     "vue-router": "^4.2.5",
     "vue-types": "^5.1.1",
+    "vue3-colorpicker": "^2.3.0",
     "vuedraggable": "^4.1.0",
     "vxe-table": "^4.5.17",
     "vxe-table-plugin-export-xlsx": "^3.1.0",
@@ -149,6 +151,7 @@
     "vite-plugin-mock": "^2.9.6",
     "vite-plugin-pages": "^0.32.0",
     "vite-plugin-vue-layouts": "^0.11.0",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^1.8.27"
   },
   "packageManager": "pnpm@8.10.0",

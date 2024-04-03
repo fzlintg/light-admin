@@ -25,6 +25,7 @@ const permission: AppRouteModule = {
       name: 'Example1',
       meta: {
         title: '示例',
+        ignoreKeepAlive: false,
       },
       component: () => import('@views/form-design/examples/baseForm.vue'),
     },

@@ -1057,13 +1057,13 @@ const componentAttrs: IBaseComponentProps = {
       component: 'Input',
     },
   ],
-  // ColorPicker: [
-  //   {
-  //     field: 'defaultValue',
-  //     label: '默认值',
-  //     component: 'AColorPicker',
-  //   },
-  // ],
+  ColorPicker: [
+    {
+      field: 'defaultValue',
+      label: '默认值',
+      component: 'AColorPicker',
+    },
+  ],
   slot: [
     {
       field: 'slotName',
