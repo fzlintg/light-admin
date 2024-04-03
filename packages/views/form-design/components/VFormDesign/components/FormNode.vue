@@ -22,16 +22,17 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, PropType } from 'vue';
+  import { defineComponent, reactive, toRefs, PropType, defineAsyncComponent } from 'vue';
   import { IVFormComponent } from '../../../typings/v-form-component';
   import FormNodeOperate from './FormNodeOperate.vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
-  import VFormItem from '../../VFormItem/index.vue';
+  //import VFormItem from '../../VFormItem/index.vue';
+
   // import VFormItem from '../../VFormItem/vFormItem.vue';
   export default defineComponent({
     name: 'FormNode',
     components: {
-      VFormItem,
+      VFormItem: defineAsyncComponent(() => import('../../VFormItem/index.vue')),
       FormNodeOperate,
     },
     props: {
@@ -47,6 +48,7 @@
       },
     },
     setup(props) {
+      //  const VFormItem = ;
       const { formConfig, formDesignMethods } = useFormDesignState();
       const state = reactive({});
       // 获取 formDesignMethods
@@ -58,6 +60,7 @@
         ...toRefs(state),
         handleSelectItem,
         formConfig,
+        //  VFormItem,
       };
     },
   });

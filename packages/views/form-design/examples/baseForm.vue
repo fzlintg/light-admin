@@ -1,37 +1,12 @@
 <template>
-  <BasicForm @register="register" />
+  <VFormCreate :form-config="formConfig as any" v-model:fApi="fApi" v-model:formModel="formModel" />
 </template>
 <script lang="ts" setup>
-  import { BasicForm, FormSchema, useForm } from '@c/Form';
+  import { formatRules } from '../utils/index';
+  import VFormCreate from '../components/VFormCreate/index.vue';
+  import formConfig from './qrtest.json';
 
-  const schemas: FormSchema[] = [
-    {
-      field: 'field1',
-      component: 'Input',
-      label: '字段1',
-      span: 8,
-      // colProps: {
-      //   span: 8,
-      // },
-      componentProps: {
-        placeholder: '自定义placeholder',
-        onChange: (_e: any) => {
-          //
-        },
-      },
-    },
-    {
-      field: 'field2',
-      component: 'Input',
-      label: '字段2',
-      span: 8,
-      // colProps: {
-      //   span: 8,
-      // },
-    },
-  ];
-
-  const [register] = useForm({
-    schemas,
-  });
+  formatRules(formConfig.schemas);
+  const fApi = reactive({});
+  const formModel = ref({});
 </script>

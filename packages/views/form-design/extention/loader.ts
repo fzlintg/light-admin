@@ -1,4 +1,4 @@
-import { forEach } from '@utils/helper/treeHelper';
+//import { forEach } from '@utils/helper/treeHelper';
 // import { formItemMap } from '../core/loader';
 
 const modules = {

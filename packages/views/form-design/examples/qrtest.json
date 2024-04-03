@@ -1,0 +1,79 @@
+{
+	"schemas": [
+		{
+			"component": "QrCode",
+			"label": "二维码",
+			"formItem": false,
+			"type": "showItem",
+			"componentProps": {
+				"width": 200,
+				"options": {},
+				"style": ""
+			},
+			"_type": "custom",
+			"width": "200px",
+			"colProps": {
+				"span": 24
+			},
+			"field": "qrcode_1",
+			"itemProps": {
+				"labelCol": {},
+				"wrapperCol": {}
+			}
+		},
+		{
+			"component": "InputTextArea",
+			"label": "文本域",
+			"field": "inputtextarea_3",
+			"colProps": {
+				"span": 24
+			},
+			"componentProps": {
+				"placeholder": "",
+				"style": "",
+				"defaultValue": "",
+				"maxlength": 0,
+				"minlength": 0,
+				"cols": 0,
+				"rows": 5
+			},
+			"defaultValue": "",
+			"width": "200px",
+			"itemProps": {
+				"labelCol": {},
+				"wrapperCol": {}
+			}
+		},
+		{
+			"component": "Button",
+			"formItem": false,
+			"type": "showItem",
+			"label": "生成二维码",
+			"field": "button_2",
+			"colProps": {
+				"span": 24
+			},
+			"hiddenLabel": true,
+			"componentProps": {
+				"value": "primary",
+				"type": "primary",
+				"size": "default",
+				"onClick__func": "this.getFormItem(\"qrcode_1\").setValue(this.getFormItem(\"inputtextarea_3\").getValue());",
+				"style": "",
+				"shape": "",
+				"color": "",
+				"iconSize": 14
+			},
+			"width": "200px",
+			"itemProps": {
+				"labelCol": {},
+				"wrapperCol": {}
+			}
+		}
+	],
+	"layout": "horizontal",
+	"labelLayout": "flex",
+	"labelWidth": 100,
+	"labelCol": {},
+	"wrapperCol": {}
+}

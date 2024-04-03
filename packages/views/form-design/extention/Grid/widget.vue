@@ -38,9 +38,12 @@
 <script lang="ts" setup>
   import { useFormDesignState } from '../../hooks/useFormDesignState';
   import { Row, Col } from 'ant-design-vue';
+  import { defineAsyncComponent } from 'vue';
   import draggable from 'vuedraggable';
-  import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
-
+  // import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
+  const LayoutItem = defineAsyncComponent(
+    () => import('@views/form-design/components/VFormDesign/components/LayoutItem.vue'),
+  );
   //const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },

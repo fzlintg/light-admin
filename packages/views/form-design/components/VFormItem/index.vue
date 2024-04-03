@@ -83,12 +83,11 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions } from '../../utils';
-  import { omit, isArray, forOwn, isFunction, get, endsWith, startsWith, set } from 'lodash-es';
+  import { omit, isArray, forOwn, isFunction, get, set } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
   import { widget } from '../../extention/loader';
-  import { string } from 'vue-types';
 
   export default defineComponent({
     name: 'VFormItem',
