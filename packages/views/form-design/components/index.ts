@@ -1,6 +1,7 @@
 import type { Component } from 'vue';
 import { ComponentType } from '@c/Form/src/types';
 import { IconPicker } from '@c/Icon';
+import { CollapseContainer } from '@c/Container/index.ts';
 /**
  * Component list, register here to setting it in the form
  */
@@ -35,6 +36,7 @@ for (const compName in customComponents) {
   componentMap.set(compName, customComponents[compName]);
 }
 //componentMap.set('ColorPicker', ColorPicker);
+componentMap.set('CollapseContainer', CollapseContainer);
 componentMap.set('QrCode', QrCode);
 componentMap.set('Radio', Radio);
 componentMap.set('Button', Button);

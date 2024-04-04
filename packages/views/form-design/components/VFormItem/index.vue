@@ -286,19 +286,16 @@
           disabled,
           [isCheck ? 'checked' : 'value']: cur_formData.value[field!],
         };
-        debugger;
 
         return result;
       });
 
       const handleChange = function (e) {
-        //  if (props.schema.component == 'GridSubForm') return;
-
-        if (['Tabs', 'Card', 'Modal', 'Drawer'].includes(props.schema.component)) return;
+        if (['container'].includes(props.schema.type)) return;
+        // if (['Tabs', 'Card', 'Modal', 'Drawer'].includes(props.schema.component)) return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;
         const value = target ? (isCheck ? target.checked : target.value) : e;
-        //   if (props.schema.component == 'GridSubForm') debugger;
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
 
         cur_setFormModel(props.schema.field!, value, e);
