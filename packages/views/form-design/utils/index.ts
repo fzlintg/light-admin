@@ -221,9 +221,11 @@ export const formatRules = (schemas: IVFormComponent[]) => {
         item.componentProps[originName] = async function (...args) {
           let result = await func.call(this, ...args);
           if (isNull(result)) result = true;
-          const { callback } = args?.[0]; //要求第一个参数带callback
-          if (callback && isFunction(callback)) {
-            callback(result);
+          if (args?.[0]?.callback) {
+            const { callback } = args?.[0]; //要求第一个参数带callback
+            if (callback && isFunction(callback)) {
+              callback(result);
+            }
           }
         };
         // }

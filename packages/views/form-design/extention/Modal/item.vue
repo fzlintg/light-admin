@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-button @click="showModal">打开</a-button>
-    <a-modal
+    <modal
       v-model:open="open"
       v-bind="schema.componentProps"
       :centered="true"
@@ -24,14 +24,15 @@
           </template>
         </VFormItem>
       </Form>
-    </a-modal>
+    </modal>
   </div>
 </template>
 <script setup lang="ts">
   import VFormItem from '../../components/VFormItem/index.vue';
-  import { Modal as AModal, Button as AButton } from 'ant-design-vue';
+  import { Button as AButton, Form } from 'ant-design-vue';
+  import Modal from '@c/Modal/src/BasicModal.vue';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
-  import { formatRules } from '../../utils/index';
+  // import { formatRules } from '../../utils/index';
 
   const open = ref(false);
   const fApi = ref({});
