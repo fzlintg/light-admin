@@ -5,6 +5,7 @@ export default {
   icon: 'ant-design:border-outlined',
   componentProps: {
     title: '对话框',
+    width: 1000,
     slots: {},
     onOkButtonClick__func: '',
     onCancelButtonClick__func: '',
