@@ -1,7 +1,7 @@
 import type { Component } from 'vue';
 import { ComponentType } from '@c/Form/src/types';
 import { IconPicker } from '@c/Icon';
-import { CollapseContainer } from '@c/Container/index.ts';
+//import { CollapseContainer } from '@c/Container/index.ts';
 /**
  * Component list, register here to setting it in the form
  */
@@ -36,7 +36,8 @@ for (const compName in customComponents) {
   componentMap.set(compName, customComponents[compName]);
 }
 //componentMap.set('ColorPicker', ColorPicker);
-componentMap.set('CollapseContainer', CollapseContainer);
+
+//componentMap.set('CollapseContainer', () => import('@c/Container/index')['CollapseContainer']);
 componentMap.set('QrCode', QrCode);
 componentMap.set('Radio', Radio);
 componentMap.set('Button', Button);
@@ -64,8 +65,8 @@ componentMap.set('MonthPicker', DatePicker.MonthPicker);
 componentMap.set('RangePicker', DatePicker.RangePicker);
 componentMap.set('WeekPicker', DatePicker.WeekPicker);
 componentMap.set('TimePicker', TimePicker);
-
 componentMap.set('IconPicker', IconPicker);
+//componentMap.set('IconPicker', () => import('@c/Icon')['IconPicker']);
 componentMap.set('Divider', Divider);
 
 export function add(compName: ComponentType, component: Component) {

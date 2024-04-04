@@ -12,7 +12,7 @@
       }"
       breakpoint="md"
     >
-      <div class="sidebar">
+      <div class="sidebar" style="padding-bottom: 60px">
         <CollapseContainer :title="item.name" v-for="(item, key) in formItemConfig" :key="key">
           <CollapseItem
             :list="item.schema"
