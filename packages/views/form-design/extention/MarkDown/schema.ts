@@ -1,7 +1,7 @@
+import { MarkDown } from '@c/Markdown';
+import { h } from 'vue';
+
 export default {
-  label: 'markdown编辑',
-  formField: true,
-  componentProps: {
-    placeholder: '请输入内容',
-  },
+  label: 'MD编辑',
+  defaultValue: 'defaultValue',
 };

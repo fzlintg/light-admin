@@ -1,4 +1,4 @@
-import type { Component } from 'vue';
+import { defineAsyncComponent, type Component } from 'vue';
 import { ComponentType } from '@c/Form/src/types';
 import { IconPicker } from '@c/Icon';
 //import { CollapseContainer } from '@c/Container/index.ts';
@@ -27,7 +27,7 @@ import {
 } from 'ant-design-vue';
 import { Button } from '@c/Button';
 import { comp as customComponents } from '../extention/loader';
-import { QrCode, QrCodeActionType } from '@c/Qrcode';
+import { QrCode } from '@c/Qrcode';
 //ant-desing本身的Form控件库
 
 const componentMap = new Map<string, Component>();
@@ -35,10 +35,16 @@ const componentMap = new Map<string, Component>();
 for (const compName in customComponents) {
   componentMap.set(compName, customComponents[compName]);
 }
-//componentMap.set('ColorPicker', ColorPicker);
 
-//componentMap.set('CollapseContainer', () => import('@c/Container/index')['CollapseContainer']);
-componentMap.set('QrCode', QrCode);
+componentMap.set(
+  'MarkDown',
+  defineAsyncComponent(() => import('@c/Markdown/src/Markdown.vue')),
+);
+
+componentMap.set(
+  'QrCode',
+  defineAsyncComponent(() => import('@c/Qrcode/src/Qrcode.vue')),
+);
 componentMap.set('Radio', Radio);
 componentMap.set('Button', Button);
 componentMap.set('Calendar', Calendar);
@@ -66,7 +72,7 @@ componentMap.set('RangePicker', DatePicker.RangePicker);
 componentMap.set('WeekPicker', DatePicker.WeekPicker);
 componentMap.set('TimePicker', TimePicker);
 componentMap.set('IconPicker', IconPicker);
-//componentMap.set('IconPicker', () => import('@c/Icon')['IconPicker']);
+
 componentMap.set('Divider', Divider);
 
 export function add(compName: ComponentType, component: Component) {
