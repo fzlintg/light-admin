@@ -25,9 +25,9 @@ import {
   Calendar,
   Transfer,
 } from 'ant-design-vue';
-import { Button } from '@c/Button';
+//import { Button } from '@c/Button';
 import { comp as customComponents } from '../extention/loader';
-import { QrCode } from '@c/Qrcode';
+
 //ant-desing本身的Form控件库
 
 const componentMap = new Map<string, Component>();
@@ -46,7 +46,14 @@ componentMap.set(
   defineAsyncComponent(() => import('@c/Qrcode/src/Qrcode.vue')),
 );
 componentMap.set('Radio', Radio);
-componentMap.set('Button', Button);
+componentMap.set(
+  'Button',
+  defineAsyncComponent(() => import('@c/Button/src/BasicButton.vue')),
+);
+componentMap.set(
+  'Tinymce',
+  defineAsyncComponent(() => import('@c/Tinymce/src/Editor.vue')),
+);
 componentMap.set('Calendar', Calendar);
 componentMap.set('Input', Input);
 componentMap.set('InputGroup', Input.Group);
