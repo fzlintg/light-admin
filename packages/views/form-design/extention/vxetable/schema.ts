@@ -6,6 +6,7 @@ export default {
   icon: 'ant-design:border-bottom-outlined',
   componentProps: {
     height: 600,
+    actions: [],
   },
   children: [],
   options: {

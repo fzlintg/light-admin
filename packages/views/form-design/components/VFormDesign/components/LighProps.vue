@@ -43,6 +43,7 @@
       default: () => ({}),
     },
   });
+
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
   watchEffect(() => {
     const formData = {};
@@ -51,6 +52,7 @@
       if (!formState.value[item]) formState.value[item] = formData[item];
     }
   });
+
   const getComponent = (name) => {
     return componentMap.get(name) || name;
   };

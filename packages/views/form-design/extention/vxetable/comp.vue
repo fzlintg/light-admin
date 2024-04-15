@@ -81,7 +81,7 @@
       },
     },
   });
-  console.log(gridOptions);
+
   // 操作按钮（权限控制）
   const createActions = (record) => {
     const actions: ActionItem[] = [

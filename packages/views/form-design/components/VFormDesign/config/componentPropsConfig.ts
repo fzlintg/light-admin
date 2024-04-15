@@ -300,6 +300,7 @@ const componentAttrs: IBaseComponentProps = {
         type: 'text',
         placeholder: '请输入最大长度',
       },
+      defaultValue: 100,
     },
   ],
 
@@ -438,14 +439,7 @@ const componentAttrs: IBaseComponentProps = {
       },
       defaultValue: 5,
     },
-    {
-      field: 'minlength',
-      label: '最小长度',
-      component: 'InputNumber',
-      componentProps: {
-        placeholder: '请输入最小长度',
-      },
-    },
+
     {
       field: 'autosize',
       label: '自适应内容高度',
