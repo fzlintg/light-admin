@@ -291,7 +291,7 @@
       });
 
       const handleChange = function (e) {
-        if (['container'].includes(props.schema.type)) return;
+        if (['container', 'showItem'].includes(props.schema.type)) return;
         // if (['Tabs', 'Card', 'Modal', 'Drawer'].includes(props.schema.component)) return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;

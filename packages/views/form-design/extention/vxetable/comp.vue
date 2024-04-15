@@ -1,9 +1,11 @@
 <template>
-  <VxeBasicTable ref="tableRef" v-bind="gridOptions">
-    <template #action="{ row }">
-      <TableAction outside :actions="createActions(row)" />
-    </template>
-  </VxeBasicTable>
+  <div :style="{ width: '100%', height: attrs.height + 'px' }">
+    <VxeBasicTable ref="tableRef" v-bind="gridOptions">
+      <template #action="{ row }">
+        <TableAction outside :actions="createActions(row)" />
+      </template>
+    </VxeBasicTable>
+  </div>
 </template>
 <script lang="ts" setup>
   import { reactive, ref } from 'vue';
@@ -13,6 +15,8 @@
   import { vxeTableColumns, vxeTableFormSchema } from './tableData';
   import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';
+
+  const attrs = useAttrs();
 
   const { createMessage } = useMessage();
 
@@ -77,7 +81,7 @@
       },
     },
   });
-
+  console.log(gridOptions);
   // 操作按钮（权限控制）
   const createActions = (record) => {
     const actions: ActionItem[] = [
