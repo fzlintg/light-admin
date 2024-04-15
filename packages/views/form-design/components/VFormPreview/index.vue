@@ -11,7 +11,8 @@
     cancelText="关闭"
     style="top: 20px"
     :destroyOnClose="true"
-    :width="900"
+    width="100%"
+    wrap-class-name="full-modal"
   >
     <VFormCreate
       :form-config="formConfig as any"

@@ -101,7 +101,7 @@ export default defineComponent({
     const { tableClass, tableStyle } = this.$props;
 
     return (
-      <div class={`h-full flex flex-col bg-white ${this.getWrapperClass}`}>
+      <div class={`w100 h-full flex flex-col bg-white ${this.getWrapperClass}`}>
         <VxeGrid
           ref="tableElRef"
           class={`vxe-grid_scrollbar px-6 py-4 ${tableClass}`}
