@@ -13,6 +13,10 @@
             :schema="inputOptions"
             v-model:props="formConfig.currentItem.componentProps"
           />
+          <component
+            v-if="settingComp[formConfig.currentItem.component]"
+            :is="settingComp[formConfig.currentItem.component]"
+          />
           <Divider class="divider_title" dashed>控制属性</Divider>
           <FormItem>
             <Col v-for="item in controlOptions" :key="item.field">
@@ -104,6 +108,7 @@
     schemas as customSchema,
     // setting as customSetting,
     func as customFuncs,
+    settingComp,
   } from '../../../extention/loader';
 
   import defaultSetting, {
@@ -348,6 +353,7 @@
         allOptions,
         getComponent,
         dsOptions,
+        settingComp,
         //   getItemProps
       };
     },

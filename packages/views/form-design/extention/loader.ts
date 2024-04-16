@@ -3,6 +3,7 @@
 
 const modules = {
   setting: import.meta.glob('./**/setting.ts', { eager: true }),
+  settingComp: import.meta.glob('./**/setting.vue', { eager: true }),
   func: import.meta.glob('./**/func.ts', { eager: true }),
   comp: import.meta.glob('./**/comp.vue', { eager: true }),
   widget: import.meta.glob('./**/widget.vue', { eager: true }),
@@ -33,6 +34,6 @@ for (const path in schemaModules) {
     _type: 'custom',
   });
 }
-const { setting, comp, func, widget, item } = expModule;
+const { setting, comp, func, widget, item, settingComp } = expModule;
 
-export { setting, schemas, comp, func, widget, item };
+export { setting, schemas, comp, func, widget, item, settingComp };
