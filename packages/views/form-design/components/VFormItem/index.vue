@@ -153,6 +153,7 @@
       const getFormItem = (name) => {
         return formItemRefList[name];
       };
+      const getFormData = () => unref(cur_formData);
       const getValue = () => {
         return get(unref(cur_formData), props.schema.field);
       };
@@ -163,6 +164,7 @@
         return formItemRefList[name].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
+
       forOwn(props.schema.componentProps, (value: any, key) => {
         if (isFunction(value)) {
           props.schema.componentProps![key] = value.bind(proxy);
@@ -320,6 +322,7 @@
         widget,
         getFormItem,
         getValue,
+        getFormData,
         getFormRef,
         getModal,
         cur_setFormModel,

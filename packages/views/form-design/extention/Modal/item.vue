@@ -40,6 +40,7 @@
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
   };
+  const extraData = ref({});
 
   const { schema, formConfig } = toRefs(useAttrs());
   const emit = defineEmits([
@@ -49,9 +50,10 @@
     'dialogBeforeClose',
   ]);
   formConfig.value.children = schema.value.children;
-  const showModal = () => {
+  const showModal = (data) => {
     open.value = true;
-    emit('dialogOpened');
+    extraData.value = data;
+    emit('dialogOpened', extraData);
   };
   const getFormModel = () => formModelNew.value;
   const handleOk = (e: MouseEvent) => {
@@ -79,5 +81,6 @@
     closeModal,
     getFormModel,
     setFormModel,
+    getExtraData: () => extraData.value,
   });
 </script>

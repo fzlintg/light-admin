@@ -5,7 +5,7 @@
       "formItem": false,
       "type": "showItem",
       "label": "表格工具栏编辑",
-      "field": "button_14",
+      "field": "button_1",
       "colProps": {
         "span": 24
       },
@@ -14,7 +14,7 @@
         "value": "primary",
         "type": "primary",
         "size": "default",
-        "onClick__func": "debugger;this.getModal(\"modal\").showModal()",
+        "onClick__func": "this.getModal(\"modal\").showModal()",
         "style": "",
         "shape": "",
         "color": "",
@@ -35,7 +35,7 @@
         "title": "表格工具栏编辑",
         "width": 1000,
         "slots": {},
-        "onOkButtonClick__func": "",
+        "onOkButtonClick__func": "let modal=this.getModal('modal');\nlet formData=modal.getFormModel();\nlet props=this.getFormData();\nObject.assign(props,formData);return true;",
         "onCancelButtonClick__func": "",
         "onDialogOpened__func": "",
         "onDialogBeforeClose__func": "",
@@ -45,7 +45,7 @@
         {
           "component": "GridSubForm",
           "label": "多行表单",
-          "field": "gridsubform_10",
+          "field": "actions",
           "type": "containerItem",
           "formItem": true,
           "componentProps": {
