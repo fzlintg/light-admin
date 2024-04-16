@@ -14,7 +14,7 @@
         "value": "primary",
         "type": "primary",
         "size": "default",
-        "onClick__func": "this.getModal(\"modal\").showModal()",
+        "onClick__func": "debugger;this.getModal(\"modal\").showModal()",
         "style": "",
         "shape": "",
         "color": "",

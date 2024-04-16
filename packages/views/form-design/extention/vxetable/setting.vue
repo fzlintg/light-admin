@@ -5,11 +5,13 @@
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatRules } from '../../utils/index';
   import { onMounted, ref } from 'vue';
-  import formConfig from '../../json/vxetable.action.json';
+  import action from '../../json/vxetable.action.json';
 
   const fApi = ref();
   const formModel = ref({});
+  const formConfig = ref(action);
+
   onMounted(() => {
-    formatRules(formConfig.schemas);
+    formatRules(formConfig.value.schemas);
   });
 </script>
