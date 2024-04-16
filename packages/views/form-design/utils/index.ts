@@ -220,7 +220,7 @@ export const formatRules = (schemas: IVFormComponent[]) => {
             ? new AsyncFunction(...params, item.componentProps[name])
             : () => true; //默认true
         item.componentProps[originName] = async function (...args) {
-          debugger;
+          //  debugger;
           let result = await func.call(this, ...args);
           if (isNull(result)) result = true;
           if (args?.[0]?.callback) {
