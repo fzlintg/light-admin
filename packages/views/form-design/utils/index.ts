@@ -101,8 +101,8 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
   const traverse = (schemas: IVFormComponent[]) => {
     schemas.forEach((formItem: IVFormComponent) => {
       if (!formItem) return;
-      if (['Grid', 'GridSubForm'].includes(formItem.component)) {
-        // 栅格布局
+      if (['Grid'].includes(formItem.component)) {
+        // 栅格布局，注意不要把GridSubForm加进来
         formItem.columns?.forEach((item) => traverse(item.children));
       } else {
         cb(formItem);

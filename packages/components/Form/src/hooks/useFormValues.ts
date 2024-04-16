@@ -145,6 +145,7 @@ export function useFormValues({
     const obj: Recordable = {};
 
     getInitValue(schemas, obj);
+
     Object.assign(formModel, obj);
     defaultValueRef.value = cloneDeep(obj);
   }

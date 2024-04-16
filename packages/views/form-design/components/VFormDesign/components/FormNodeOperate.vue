@@ -49,7 +49,8 @@
             // 处理栅格和标签页布局
             ['Grid', 'GridSubForm'].includes(component) &&
               formItem.columns?.forEach((item) => traverse(item.children));
-            ['Tabs', 'SubForm'].includes(component) && traverse(formItem.children || []);
+            ['Tabs', 'SubForm', 'Modal', 'Drawer'].includes(component) &&
+              traverse(formItem.children || []);
             if (key === props.currentItem.key) {
               let params: IVFormComponent =
                 schemas.length === 1

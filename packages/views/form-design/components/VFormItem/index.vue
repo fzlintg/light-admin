@@ -296,6 +296,7 @@
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;
         const value = target ? (isCheck ? target.checked : target.value) : e;
+
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
 
         cur_setFormModel(props.schema.field!, value, e);

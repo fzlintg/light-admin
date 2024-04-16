@@ -87,8 +87,11 @@
   }
 
   const subFormDefaultValue = reactive({});
+  //debugger;
   getInitValue([props.schema], subFormDefaultValue);
   const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
+  //const initValue = toRaw(subFormDefaultValue);
+  //debugger;
   watch(
     () => state.value,
     (v) => {
