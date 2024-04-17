@@ -50,10 +50,11 @@
     'dialogBeforeClose',
   ]);
   formConfig.value.children = schema.value.children;
-  const showModal = (data) => {
+  const show = (fData, eData) => {
     open.value = true;
-    extraData.value = data;
-    emit('dialogOpened', extraData);
+    if (fData) formModelNew.value = fData;
+    if (eData) extraData.value = eData;
+    emit('dialogOpened');
   };
   const getFormModel = () => formModelNew.value;
   const handleOk = (e: MouseEvent) => {
@@ -63,7 +64,7 @@
       },
     });
   };
-  const closeModal = () => {
+  const close = () => {
     emit('dialogBeforeClose', {
       callback: (result) => {
         open.value = !result;
@@ -72,13 +73,13 @@
   };
   const handleCancle = () => {
     emit('cancelButtonClick');
-    closeModal();
+    close();
   };
-  onMounted(() => {});
+  // onMounted(() => {});
 
   defineExpose({
-    showModal,
-    closeModal,
+    show,
+    close,
     getFormModel,
     setFormModel,
     getExtraData: () => extraData.value,

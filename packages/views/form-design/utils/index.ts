@@ -1,3 +1,4 @@
+import { schema } from './../core/itemConfig/base';
 // import { VueConstructor } from 'vue';
 import { IVFormComponent, IFormConfig, IValidationRule } from '../typings/v-form-component';
 import {
@@ -9,6 +10,8 @@ import {
   endsWith,
   isNil,
   isNull,
+  forOwn,
+  isObject,
 } from 'lodash-es';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
@@ -206,6 +209,29 @@ export const handleAsyncOptions = async (
  * 格式化表单项校验规则配置
  * @param {IVFormComponent[]} schemas
  */
+export const formatItem = (schemas) => {
+  forOwn(schemas, (value: any, key) => {
+    if (endsWith(key, '__func') && typeof value == 'string') {
+      const func = key.substring(0, key.length - 6);
+      const params = schemas[func + '__params'] || [];
+      schemas![func] = new AsyncFunction(...params, schemas[key]);
+    } else if (isObject(value)) {
+      formatItem(value);
+    }
+  });
+  return schemas;
+};
+
+export const formatItemByContext = (schemas, context) => {
+  forOwn(schemas, (value: any, key) => {
+    if (isFunction(value)) {
+      schemas[key] = value.bind(context);
+    } else if (isObject(value)) {
+      schemas[key] = formatItemByContext(value, context);
+    }
+  });
+  return schemas;
+};
 export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成

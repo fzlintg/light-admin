@@ -15,6 +15,7 @@
   import { vxeTableColumns, vxeTableFormSchema } from './tableData';
   import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';
+  import { formatItem, formatItemByContext } from '../../utils/index';
 
   const attrs = useAttrs();
 
@@ -81,12 +82,18 @@
       },
     },
   });
-
+  //const { actions } = attrs;
+  // let actions = toRaw(attrs.actions);
   // 操作按钮（权限控制）
+  // formatItem(actions);
   const createActions = (record) => {
+    // actions = formatItemByContext(actions, { record, tableRef });
     const actions: ActionItem[] = [
       {
         label: '详情',
+        onClick__func: `
+          console.log(this.record);
+        `,
         onClick: () => {
           console.log(record);
         },

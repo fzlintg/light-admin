@@ -5,7 +5,7 @@
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatRules } from '../../utils/index';
   import { ref } from 'vue';
-  import action from '../../json/vxetable.action.json';
+  import action from '../../json/vxetable.action.ts';
   import { useRuleFormItem } from '@h/component/useFormItem';
 
   const props = defineProps({
