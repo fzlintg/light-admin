@@ -41,7 +41,12 @@
   import { formItemsForEach, generateKey } from '../../../utils';
   import { CodeEditor, MODE } from '@c/CodeEditor';
   import { useMessage } from '@h/web/useMessage';
-  import { Upload, Modal } from 'ant-design-vue';
+  import {
+    Upload,
+    Modal,
+    RadioGroup as ARadioGroup,
+    RadioButton as ARadioButton,
+  } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'ImportJsonModal',
@@ -54,11 +59,12 @@
       const { createMessage } = useMessage();
 
       const state = reactive({
+        //      dataType: 'json',
         visible: false,
         json: `{
   "schemas": [
     {
-      "component": "input",
+      "component": "Input",
       "label": "输入框",
       "field": "input_2",
       "span": 24,
@@ -86,10 +92,12 @@
       const showModal = () => {
         state.visible = true;
       };
+
       const handleImportJson = () => {
         // 导入JSON
         try {
-          const editorJsonData = JSON.parse(state.json) as IFormConfig;
+          const editorJsonData = new Function('return ' + state.json)();
+          //const editorJsonData = JSON.parse(state.json) as IFormConfig;
           editorJsonData.schemas &&
             formItemsForEach(editorJsonData.schemas, (formItem) => {
               generateKey(formItem);
@@ -123,6 +131,7 @@
         showModal,
         ...toRefs(state),
         MODE,
+        handleDataTypeChange,
       };
     },
   });

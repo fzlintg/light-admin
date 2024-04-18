@@ -91,6 +91,7 @@
     return '()=>{' + replacedStr + '}'; // 在开头添加()=>{}，在结尾添加}
   }
   actionsTpl = JSON.stringify(actionsTpl).replace(/"\$_begin(.*?)\$_end"/g, replaceQuotes); //好不容易修改成
+
   const createActions = (record) => {
     return new Function('context', `return ${actionsTpl}`)({ record, tableRef });
   };
