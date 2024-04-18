@@ -11,7 +11,7 @@ export default {
         label: '详情',
         onClick__func: `
  
-          console.log(this.record);
+          console.log(context.record);
         `,
         // onClick__params: ['context'],
       },
@@ -25,7 +25,7 @@ export default {
         popConfirm: {
           title: '是否确认删除',
           confirm__func: `
-            this.tableRef.value?.remove(this.record);
+          context.tableRef.value?.remove(context.record);
           `,
           // confirm__params: ['context'],
         },

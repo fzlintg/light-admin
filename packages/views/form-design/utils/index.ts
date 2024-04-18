@@ -213,8 +213,10 @@ export const formatItem = (schemas) => {
   forOwn(schemas, (value: any, key) => {
     if (endsWith(key, '__func') && typeof value == 'string') {
       const func = key.substring(0, key.length - 6);
-      const params = schemas[func + '__params'] || [];
-      schemas![func] = new AsyncFunction(...params, schemas[key]);
+      //  const params = schemas[func + '__params'] || [];
+      schemas![func] = '$_begin ' + schemas[key] + ' $_end';
+      // schemas![func] = schemas[key];
+      //   schemas![func] = new AsyncFunction(...params, schemas[key]);
     } else if (isObject(value)) {
       formatItem(value);
     }

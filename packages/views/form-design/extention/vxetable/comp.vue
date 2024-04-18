@@ -82,38 +82,18 @@
       },
     },
   });
-  //const { actions } = attrs;
+  let actionsTpl = toRaw(attrs.actions);
+
   // let actions = toRaw(attrs.actions);
   // 操作按钮（权限控制）
-  // formatItem(actions);
+  formatItem(actionsTpl);
+  debugger;
+  actionsTpl = JSON.stringify(actionsTpl)
+    .replace(/"\$_begin/g, '()=>{')
+    .replace(/\$_end"/g, '}')
+    .replace(/\\n/g, '  ')
+    .replace(/\\r/g, '  '); //好不容易修改成
   const createActions = (record) => {
-    // actions = formatItemByContext(actions, { record, tableRef });
-    const actions: ActionItem[] = [
-      {
-        label: '详情',
-        onClick__func: `
-          console.log(this.record);
-        `,
-        onClick: () => {
-          console.log(record);
-        },
-      },
-      {
-        label: '编辑',
-        onClick: () => {},
-      },
-      {
-        label: '删除',
-        color: 'error',
-        popConfirm: {
-          title: '是否确认删除',
-          confirm: () => {
-            tableRef.value?.remove(record);
-          },
-        },
-      },
-    ];
-
-    return actions;
+    return new Function('context', `return ${actionsTpl}`)({ record, tableRef });
   };
 </script>
