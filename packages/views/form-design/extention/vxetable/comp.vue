@@ -16,6 +16,7 @@
   import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';
   import { formatItem, formatItemByContext } from '../../utils/index';
+  import { cloneDeep } from 'lodash-es';
 
   const attrs = useAttrs();
 
@@ -82,17 +83,14 @@
       },
     },
   });
-  let actionsTpl = toRaw(attrs.actions);
-
-  // let actions = toRaw(attrs.actions);
-  // 操作按钮（权限控制）
+  let actionsTpl = cloneDeep(toRaw(attrs.actions));
   formatItem(actionsTpl);
-  debugger;
-  actionsTpl = JSON.stringify(actionsTpl)
-    .replace(/"\$_begin/g, '()=>{')
-    .replace(/\$_end"/g, '}')
-    .replace(/\\n/g, '  ')
-    .replace(/\\r/g, '  '); //好不容易修改成
+
+  function replaceQuotes(match, group) {
+    var replacedStr = group.replace(/\\"/g, '"').replace(/\\n/g, '  '); // 替换含有\"为“
+    return '()=>{' + replacedStr + '}'; // 在开头添加()=>{}，在结尾添加}
+  }
+  actionsTpl = JSON.stringify(actionsTpl).replace(/"\$_begin(.*?)\$_end"/g, replaceQuotes); //好不容易修改成
   const createActions = (record) => {
     return new Function('context', `return ${actionsTpl}`)({ record, tableRef });
   };

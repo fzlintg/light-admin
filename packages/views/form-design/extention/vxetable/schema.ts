@@ -9,10 +9,7 @@ export default {
     actions: [
       {
         label: '详情',
-        onClick__func: `
- 
-          console.log(context.record);
-        `,
+        onClick__func: `console.log(context.record);`,
         // onClick__params: ['context'],
       },
       {
@@ -24,9 +21,7 @@ export default {
         color: 'error',
         popConfirm: {
           title: '是否确认删除',
-          confirm__func: `
-          context.tableRef.value?.remove(context.record);
-          `,
+          confirm__func: `context.tableRef.value?.remove(context.record);`,
           // confirm__params: ['context'],
         },
       },
