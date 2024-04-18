@@ -14,9 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `
-        let formData=this.getFormData()
-        this.getModal("modal").show(formData)`,
+        onClick__func: ` let formData=this.getFormData() 
+         this.getModal("modal").show(formData) `,
         style: '',
         shape: '',
         color: '',
@@ -37,11 +36,14 @@ export default {
         title: '表格工具栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func:
-          "let modal=this.getModal('modal');\nlet formData=modal.getFormModel();\nlet props=this.getFormData();\nObject.assign(props,formData);return true;",
-        onCancelButtonClick__func: '',
-        onDialogOpened__func: '',
-        onDialogBeforeClose__func: '',
+        onOkButtonClick__func: ` let modal=this.getModal('modal'); 
+ let formData=modal.getFormModel(); 
+ let props=this.getFormData(); 
+ Object.assign(props,formData);
+ return true; `,
+        onCancelButtonClick__func: `  `,
+        onDialogOpened__func: `  `,
+        onDialogBeforeClose__func: `  `,
         style: '',
       },
       children: [
@@ -57,10 +59,10 @@ export default {
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
             style: '',
-            onRowDelete__func: '',
-            onRowInsert__func: '',
-            onRowAdd__func: '',
-            onRowChange__func: '',
+            onRowDelete__func: `  `,
+            onRowInsert__func: `  `,
+            onRowAdd__func: `  `,
+            onRowChange__func: `  `,
           },
           columns: [
             {
@@ -172,7 +174,7 @@ export default {
       colProps: {
         span: 24,
       },
-      field: 'modal',
+      field: 'modal_2',
       itemProps: {
         labelCol: {},
         wrapperCol: {},

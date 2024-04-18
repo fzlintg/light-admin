@@ -61,7 +61,7 @@
           replaceQuotes,
         ); //好不容易修改成  lintg
 
-        return jsonData;
+        return 'export default ' + jsonData;
       });
 
       // 关闭弹框

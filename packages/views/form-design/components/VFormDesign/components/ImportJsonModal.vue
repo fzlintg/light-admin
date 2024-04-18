@@ -96,7 +96,8 @@
       const handleImportJson = () => {
         // 导入JSON
         try {
-          const editorJsonData = new Function('return ' + state.json)();
+          const regex = /^export\s+default\s+/;
+          const editorJsonData = new Function('return ' + state.json.replace(regex, ''))();
           //const editorJsonData = JSON.parse(state.json) as IFormConfig;
           editorJsonData.schemas &&
             formItemsForEach(editorJsonData.schemas, (formItem) => {
@@ -131,7 +132,6 @@
         showModal,
         ...toRefs(state),
         MODE,
-        handleDataTypeChange,
       };
     },
   });
