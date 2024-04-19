@@ -26,8 +26,6 @@
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
 
   const fApi = ref();
-  // const formModel = toRefs(useAttrs());
   const formConfig = ref(action);
   formatRules(formConfig.value.schemas);
-  //onMounted(() => {});
 </script>

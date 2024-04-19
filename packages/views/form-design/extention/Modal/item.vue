@@ -1,6 +1,5 @@
 <template>
   <div>
-    <a-button @click="show">打开</a-button>
     <modal
       v-model:open="open"
       v-bind="schema.componentProps"

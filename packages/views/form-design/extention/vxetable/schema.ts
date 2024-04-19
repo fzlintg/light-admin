@@ -10,7 +10,6 @@ export default {
       {
         label: '详情',
         onClick__func: `console.log(context.record);`,
-        // onClick__params: ['context'],
       },
       {
         label: '编辑',
@@ -22,7 +21,6 @@ export default {
         popConfirm: {
           title: '是否确认删除',
           confirm__func: `context.tableRef.value?.remove(context.record);`,
-          // confirm__params: ['context'],
         },
       },
     ],

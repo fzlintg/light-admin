@@ -22,8 +22,6 @@
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
 
   const fApi = ref();
-  // const formModel = toRefs(useAttrs());
   const formConfig = ref(dropmenu);
   formatRules(formConfig.value.schemas);
-  //onMounted(() => {});
 </script>
