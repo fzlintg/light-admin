@@ -35,7 +35,7 @@ import {
  */
 export function generateKey(formItem?: IVFormComponent, flag = true): string | boolean {
   if (formItem && formItem.component) {
-    const key = flag ? uniqueId(`${toLine(formItem.component)}_`) : formItem.key;
+    const key = flag ? uniqueId(`${toLine(formItem.component)}_`) : formItem.field;
     formItem.key = key;
     formItem.field = key;
 

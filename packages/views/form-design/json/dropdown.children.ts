@@ -14,11 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: ` let modal=this.getModal('modal');  
-  let formData=modal.getFormModel();  
-  let props=this.getFormData();  
-  Object.assign(props,formData); 
-  return true; `,
+        onClick__func: `let formData=this.getFormData() 
+        this.getModal("modal").show(formData)`,
         style: '',
         shape: '',
         color: '',
@@ -39,7 +36,11 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `  `,
+        onOkButtonClick__func: ` let modal=this.getModal('modal');  
+        let formData=modal.getFormModel();  
+        let props=this.getFormData();  
+        Object.assign(props,formData); 
+        return true;  `,
         onCancelButtonClick__func: `  `,
         onDialogOpened__func: `  `,
         onDialogBeforeClose__func: `  `,
