@@ -209,7 +209,17 @@ export const handleAsyncOptions = async (
  * 格式化表单项校验规则配置
  * @param {IVFormComponent[]} schemas
  */
+
+export const TransJSonToTs = (schemas) => {
+  formatItemFunc(schemas);
+  function replaceQuotes(match, group) {
+    const replacedStr = group.replace(/\\"/g, '"').replace(/\\n/g, ' \n '); // 替换含有\"为“
+    return '`' + replacedStr + '`';
+  }
+  return JSON.stringify(schemas, null, '\t').replace(/"\$_begin(.*?)\$_end"/g, replaceQuotes);
+};
 export const formatItem = (schemas) => {
+  //生成特殊字符对象
   forOwn(schemas, (value: any, key) => {
     if (endsWith(key, '__func') && typeof value == 'string') {
       const func = key.substring(0, key.length - 6);
@@ -220,7 +230,18 @@ export const formatItem = (schemas) => {
   });
   return schemas;
 };
+
+export const TransObjectToCode = (schemas) => {
+  function replaceQuotes(match, group) {
+    const replacedStr = group.replace(/\\"/g, '"').replace(/\\n/g, '  '); // 替换含有\"为“
+    return '()=>{' + replacedStr + '}'; // 在开头添加()=>{}，在结尾添加}
+  }
+  formatItem(schemas);
+  return JSON.stringify(schemas).replace(/"\$_begin(.*?)\$_end"/g, replaceQuotes); //对特殊字符对象进行替换
+};
+
 export const formatItemFunc = (schemas) => {
+  //针对函数变量用模版字符串
   forOwn(schemas, (value: any, key) => {
     if (endsWith(key, '__func') && typeof value == 'string') {
       schemas![key] = '$_begin ' + schemas[key] + ' $_end';

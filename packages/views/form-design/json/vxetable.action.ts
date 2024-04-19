@@ -174,7 +174,7 @@ export default {
       colProps: {
         span: 24,
       },
-      field: 'modal_2',
+      field: 'modal',
       itemProps: {
         labelCol: {},
         wrapperCol: {},

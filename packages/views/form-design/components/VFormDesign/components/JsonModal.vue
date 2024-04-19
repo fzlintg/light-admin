@@ -19,7 +19,7 @@
   import { computed, defineComponent, reactive, toRefs } from 'vue';
   import PreviewCode from './PreviewCode.vue';
   import { IFormConfig } from '../../../typings/v-form-component';
-  import { formatRules, removeAttrs, formatItemFunc } from '../../../utils';
+  import { formatRules, removeAttrs, TransJSonToTs } from '../../../utils';
   import { Modal } from 'ant-design-vue';
 
   export default defineComponent({
@@ -51,17 +51,7 @@
       const editorJson = computed(() => {
         // @ts-ignore
         let jsonData = removeAttrs(state.jsonData);
-        formatItemFunc(jsonData);
-        function replaceQuotes(match, group) {
-          var replacedStr = group.replace(/\\"/g, '"').replace(/\\n/g, ' \n '); // 替换含有\"为“
-          return '`' + replacedStr + '`';
-        }
-        jsonData = JSON.stringify(jsonData, null, '\t').replace(
-          /"\$_begin(.*?)\$_end"/g,
-          replaceQuotes,
-        ); //好不容易修改成  lintg
-
-        return 'export default ' + jsonData;
+        return 'export default ' + TransJSonToTs(jsonData);
       });
 
       // 关闭弹框
