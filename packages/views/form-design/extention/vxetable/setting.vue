@@ -1,5 +1,9 @@
 <template>
-  <VFormCreate :form-config="formConfig as any" v-model:fApi="fApi" v-model:formModel="formState" />
+  <VFormCreate
+    :form-config="formConfig as any"
+    v-model:fApi="fApi"
+    v-model:formModel="formState.componentProps"
+  />
 </template>
 <script lang="ts" setup>
   import VFormCreate from '../../components/VFormCreate/index.vue';

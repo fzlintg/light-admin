@@ -16,7 +16,7 @@
           <component
             v-if="settingComp[formConfig.currentItem.component]"
             :is="settingComp[formConfig.currentItem.component]"
-            v-model:props="formConfig.currentItem.componentProps"
+            v-model:props="formConfig.currentItem"
           />
           <Divider class="divider_title" dashed>控制属性</Divider>
           <FormItem>
