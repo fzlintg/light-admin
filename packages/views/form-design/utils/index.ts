@@ -33,9 +33,9 @@ import {
  * @param [formItem] 需要生成 key 的控件，可选，如果不传，默认返回一个唯一 key
  * @returns {string|boolean} 返回一个唯一 id 或者 false
  */
-export function generateKey(formItem?: IVFormComponent): string | boolean {
+export function generateKey(formItem?: IVFormComponent, flag = true): string | boolean {
   if (formItem && formItem.component) {
-    const key = uniqueId(`${toLine(formItem.component)}_`);
+    const key = flag ? uniqueId(`${toLine(formItem.component)}_`) : formItem.key;
     formItem.key = key;
     formItem.field = key;
 
@@ -262,34 +262,40 @@ export const formatItemByContext = (schemas, context) => {
   });
   return schemas;
 };
+function formatFunc(item) {
+  for (const name in item) {
+    if (endsWith(name, '__func')) {
+      // if (item.componentProps[name].trim().length > 0) {
+      const originName = name.substr(0, name.length - 6);
+      const params = item[originName + '__params'] || [];
+      //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
+      const func =
+        item[name].trim().length > 0 ? new AsyncFunction(...params, item[name]) : () => true; //默认true
+      item[originName] = async function (...args) {
+        //  debugger;
+        let result = await func.call(this, ...args);
+        if (isNull(result)) result = true;
+        if (args?.[0]?.callback) {
+          const { callback } = args?.[0]; //要求第一个参数带callback
+          if (callback && isFunction(callback)) {
+            callback(result);
+          }
+        }
+      };
+      // }
+    }
+  }
+}
 export const formatRules = (schemas: IVFormComponent[]) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成
-    for (const name in item.componentProps) {
-      if (endsWith(name, '__func')) {
-        // if (item.componentProps[name].trim().length > 0) {
-        const originName = name.substr(0, name.length - 6);
-        const params = item.componentProps[originName + '__params'] || [];
-        //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
-        const func =
-          item.componentProps[name].trim().length > 0
-            ? new AsyncFunction(...params, item.componentProps[name])
-            : () => true; //默认true
-        item.componentProps[originName] = async function (...args) {
-          //  debugger;
-          let result = await func.call(this, ...args);
-          if (isNull(result)) result = true;
-          if (args?.[0]?.callback) {
-            const { callback } = args?.[0]; //要求第一个参数带callback
-            if (callback && isFunction(callback)) {
-              callback(result);
-            }
-          }
-        };
-        // }
+    formatFunc(item.componentProps);
+    if (item.component == 'Dropdown') {
+      //下拉对象菜单
+      for (const childItem of item.children) {
+        formatFunc(childItem);
       }
     }
-
     if ('required' in item) {
       !isArray(item.rules) && (item.rules = []);
       item.rules.push({ required: true, message: item.message });

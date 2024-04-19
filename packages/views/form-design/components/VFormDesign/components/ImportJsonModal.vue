@@ -19,6 +19,7 @@
     </div>
 
     <template #footer>
+      <a-checkbox v-model:checked="ifInitKey">初始化键值</a-checkbox>
       <a-button @click="handleCancel">取消</a-button>
       <Upload
         class="upload-button"
@@ -44,6 +45,7 @@
   import {
     Upload,
     Modal,
+    Checkbox as ACheckbox,
     RadioGroup as ARadioGroup,
     RadioButton as ARadioButton,
   } from 'ant-design-vue';
@@ -54,12 +56,14 @@
       CodeEditor,
       Upload,
       Modal,
+      ACheckbox,
     },
     setup() {
       const { createMessage } = useMessage();
 
       const state = reactive({
         //      dataType: 'json',
+        ifInitKey: true,
         visible: false,
         json: `{
   "schemas": [
@@ -101,7 +105,7 @@
           //const editorJsonData = JSON.parse(state.json) as IFormConfig;
           editorJsonData.schemas &&
             formItemsForEach(editorJsonData.schemas, (formItem) => {
-              generateKey(formItem);
+              generateKey(formItem, state.ifInitKey);
             });
           formDesignMethods.setFormConfig({
             ...editorJsonData,

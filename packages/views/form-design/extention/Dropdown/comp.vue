@@ -16,6 +16,9 @@
 <script setup>
   import { Dropdown as ADropdown, MenuItem as AMenuItem, Menu as AMenu } from 'ant-design-vue';
   import { DownOutlined } from '@ant-design/icons-vue';
+  import { formatRules } from '../../utils/index';
 
   const { schema } = toRefs(useAttrs());
+
+  formatRules([schema.value]);
 </script>
