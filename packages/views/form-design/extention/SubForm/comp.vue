@@ -74,7 +74,7 @@
     formConfig: propTypes.Object,
     setFormModel: propTypes.function,
   });
-  const emit = defineEmits(['update:value']);
+  const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
   const [state] = useRuleFormItem(props, 'value', 'change');
   const rowIds = reactive([]);
   state.value = state.value || [];

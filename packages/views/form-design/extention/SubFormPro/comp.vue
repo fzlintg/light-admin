@@ -1,9 +1,14 @@
 <template>
   <div class="grid-box mx-3 sub-form-container flex-1">
     <Row class="header-row bg-light b-1">
-      <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
-        <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
-      </a-button>
+      <div class="w-20 jc-center d-flex">
+        <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
+          <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
+        </a-button>
+      </div>
+      <div v-for="(item, k) in schema.children" :style="item.width ? { width: item.width } : {}"
+        >{{ item.label }}
+      </div>
     </Row>
 
     <draggable
@@ -13,50 +18,44 @@
       @end="dragend"
     >
       <template #item="{ element: rowId, index: rowIdx }">
-        <Row class="sub-form-row" v-bind="props.schema.componentProps" :key="rowId">
-          <Col :span="1">
-            <span class="d-flex flex-column ai-center">
-              <Icon icon="ant-design:drag-outlined" class="drag-option" />
-              <Icon
-                icon="ant-design:plus-circle-twotone"
-                @click="insertRowId(rowIdx)"
-                color="blue"
-                class="my-3 hand"
-              />
-              <Icon
-                icon="ant-design:minus-circle-twotone"
-                @click="removeRowId(rowIdx)"
-                class="hand"
-                color="red"
-              /> </span
-          ></Col>
-          <Col :span="23">
-            <Row>
-              <Col
-                class="grid-col my-3"
-                v-for="(colItem, colIdx) in props.schema.columns"
-                :key="colIdx"
-                :span="colItem.span"
-              >
-                <VFormItem
-                  isRender
-                  v-for="(item, k) in colItem.children"
-                  :key="k"
-                  :schema="item"
-                  :formData="getRow(rowId)"
-                  :formConfig="props.formConfig"
-                  :setFormModel="setRowData(rowId)"
-                  :inSubForm="true"
-                />
-              </Col> </Row
-          ></Col>
+        <Row class="header-row" v-bind="props.schema.componentProps" :key="rowId">
+          <span class="d-flex ai-center w-20">
+            <Icon icon="ant-design:drag-outlined" class="drag-option" />
+            <Icon
+              icon="ant-design:plus-circle-twotone"
+              @click="insertRowId(rowIdx)"
+              color="blue"
+              class="mr-2 hand"
+            />
+            <Icon
+              icon="ant-design:minus-circle-twotone"
+              @click="removeRowId(rowIdx)"
+              class="hand"
+              color="red"
+            />
+          </span>
+
+          <VFormItem
+            class="form-item-box"
+            isRender
+            hiddenLabel
+            :style="{ width: item.width }"
+            v-for="(item, k) in schema.children"
+            :key="k"
+            :schema="item"
+            :formData="getRow(rowId)"
+            :formConfig="props.formConfig"
+            :setFormModel="setRowData(rowId)"
+            :inSubForm="true"
+            parentComp="SubForm"
+          />
         </Row>
       </template>
     </draggable>
   </div>
 </template>
 <script setup>
-  import { Row, Col, Button as AButton } from 'ant-design-vue';
+  import { Row, Button as AButton } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
   import { h, defineProps } from 'vue';
 
@@ -64,7 +63,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { cloneDeep, isArray, set, uniqueId } from 'lodash-es';
+  import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
   import { getInitValue } from '../../utils';
 
@@ -75,8 +74,7 @@
     formConfig: propTypes.Object,
     setFormModel: propTypes.function,
   });
-
-  const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
+  const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
   const rowIds = reactive([]);
   state.value = state.value || [];
@@ -88,11 +86,8 @@
   }
 
   const subFormDefaultValue = reactive({});
-  //debugger;
   getInitValue([props.schema], subFormDefaultValue);
   const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
-  //const initValue = toRaw(subFormDefaultValue);
-  //debugger;
   watch(
     () => state.value,
     (v) => {
@@ -143,7 +138,31 @@
     cursor: move;
   }
 
+  div.action-header-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    padding: 8px;
+    border: 1px solid #e1e2e3;
+    background: #f1f2f3;
+
+    .action-label {
+      margin-right: 12px;
+    }
+
+    .action-button {
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+  }
+
+  .sub-form-table-column {
+    display: inline-block;
+  }
+
   .sub-form-container {
+    min-height: 120px;
     margin-bottom: 8px;
     text-align: left; //IE浏览器强制居左对齐
 
@@ -161,6 +180,27 @@
       .row-number-span {
         margin-left: 16px;
       }
+    }
+  }
+
+  .form-item-box {
+    position: relative;
+    box-sizing: border-box;
+    word-wrap: break-word;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ant-form-item {
+      // 修改ant form-item的margin为padding
+      margin: 0;
+      padding-bottom: 6px;
     }
   }
 </style>
