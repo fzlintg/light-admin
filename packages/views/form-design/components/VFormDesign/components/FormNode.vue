@@ -3,7 +3,7 @@
 -->
 <template>
   <div
-    class="drag-move-box w100"
+    class="drag-move-box"
     @click.stop="handleSelectItem"
     :class="{ active: schema.key === formConfig.currentItem?.key }"
   >
@@ -26,6 +26,7 @@
   import { IVFormComponent } from '../../../typings/v-form-component';
   import FormNodeOperate from './FormNodeOperate.vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
+  import { Col } from 'ant-design-vue';
   //import VFormItem from '../../VFormItem/index.vue';
 
   // import VFormItem from '../../VFormItem/vFormItem.vue';
@@ -34,6 +35,7 @@
     components: {
       VFormItem: defineAsyncComponent(() => import('../../VFormItem/index.vue')),
       FormNodeOperate,
+      Col,
     },
     props: {
       schema: {
@@ -56,7 +58,12 @@
         // 调用 formDesignMethods
         formDesignMethods.handleSetSelectItem(props.schema);
       };
+      const colPropsComputed = computed(() => {
+        const { colProps = {} } = props.schema;
+        return props.parentComp == 'SubForm' ? {} : colProps; //lintg
+      });
       return {
+        colPropsComputed,
         ...toRefs(state),
         handleSelectItem,
         formConfig,

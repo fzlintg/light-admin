@@ -37,17 +37,18 @@
                 v-for="(colItem, colIdx) in props.schema.columns"
                 :key="colIdx"
                 :span="colItem.span"
-              >
-                <VFormItem
-                  isRender
-                  v-for="(item, k) in colItem.children"
-                  :key="k"
-                  :schema="item"
-                  :formData="getRow(rowId)"
-                  :formConfig="props.formConfig"
-                  :setFormModel="setRowData(rowId)"
-                  :inSubForm="true"
-                />
+                ><Row>
+                  <VFormItem
+                    isRender
+                    v-for="(item, k) in colItem.children"
+                    :key="k"
+                    :schema="item"
+                    :formData="getRow(rowId)"
+                    :formConfig="props.formConfig"
+                    :setFormModel="setRowData(rowId)"
+                    :inSubForm="true"
+                  />
+                </Row>
               </Col> </Row
           ></Col>
         </Row>

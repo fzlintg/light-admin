@@ -4,16 +4,14 @@
 -->
 
 <template>
-  <Col>
-    <FormNode
-      :key="schema.key"
-      :schema="schema"
-      :current-item="currentItem"
-      :parentComp="parentComp"
-      @handle-copy="$emit('handle-copy')"
-      @handle-delete="$emit('handle-delete')"
-    />
-  </Col>
+  <FormNode
+    :key="schema.key"
+    :schema="schema"
+    :current-item="currentItem"
+    :parentComp="parentComp"
+    @handle-copy="$emit('handle-copy')"
+    @handle-delete="$emit('handle-delete')"
+  />
 </template>
 <script lang="ts">
   import { computed, defineComponent, PropType, reactive, toRefs } from 'vue';
