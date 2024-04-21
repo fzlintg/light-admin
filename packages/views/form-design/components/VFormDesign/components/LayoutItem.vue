@@ -4,7 +4,7 @@
 -->
 
 <template>
-  <Col v-bind="colPropsComputed">
+  <Col>
     <FormNode
       :key="schema.key"
       :schema="schema"
