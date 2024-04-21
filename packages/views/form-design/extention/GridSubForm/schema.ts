@@ -15,10 +15,6 @@ export default {
       span: 24,
       children: [],
     },
-    {
-      span: 24,
-      children: [],
-    },
   ],
   colProps: { span: 24 },
   options: {

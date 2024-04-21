@@ -40,7 +40,7 @@
                 ><Row>
                   <VFormItem
                     isRender
-                    v-for="(item, k) in colItem.children"
+                    v-for="(item, k) in showFormItem(colItem.children)"
                     :key="k"
                     :schema="item"
                     :formData="getRow(rowId)"
@@ -48,6 +48,9 @@
                     :setFormModel="setRowData(rowId)"
                     :inSubForm="true"
                   />
+                  <a-select>
+                    <a-select-option mode="multiple" style="width: 100%" placeholder="人口数据" />
+                  </a-select>
                 </Row>
               </Col> </Row
           ></Col>
@@ -87,7 +90,9 @@
       rowIds.push(uniqueId('gsf_'));
     }
   }
-
+  const showFormItem = (formItem) => {
+    return formItem.filter((item) => !item.componentProps.hideSub);
+  };
   const subFormDefaultValue = reactive({});
   //debugger;
   getInitValue([props.schema], subFormDefaultValue);
