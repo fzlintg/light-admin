@@ -6,14 +6,14 @@
     <div class="properties-body" v-if="formConfig.currentItem">
       <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择控件" />
       <Form v-else label-align="left" layout="vertical">
-        <div v-for="item of baseItemColumnProps" :key="item.name">
+        <div v-for="item of baseItemColumnProps" :key="item.field">
           <FormItem :label="item.label" v-if="showProps(item.exclude)">
             <component
               v-if="formConfig.currentItem.colProps && item.component"
               class="component-props"
               v-bind="item.componentProps"
               :is="item.component"
-              v-model:value="formConfig.currentItem.colProps[item.name]"
+              v-model:value="formConfig.currentItem.colProps[item.field]"
             />
           </FormItem>
         </div>
