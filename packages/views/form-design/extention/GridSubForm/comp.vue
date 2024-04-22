@@ -32,41 +32,47 @@
           ></Col>
           <Col :span="23">
             <Row>
-              <Col
+              <!-- <Col
                 class="grid-col my-3"
                 v-for="(colItem, colIdx) in props.schema.columns"
                 :key="colIdx"
                 :span="colItem.span"
-                ><Row>
-                  <VFormItem
-                    isRender
-                    v-for="(item, k) in showFormItem(colItem.children)"
-                    :key="k"
-                    :schema="item"
-                    :formData="getRow(rowId)"
-                    :formConfig="props.formConfig"
-                    :setFormModel="setRowData(rowId)"
-                    :inSubForm="true"
-                  />
-                  <Col span="6" v-if="hideFormItem(colItem.children).length > 0" class="d-flex">
-                    <a-select
-                      mode="multiple"
-                      v-model:value="selectShowItem"
-                      :options="
-                        hideFormItem(colItem.children).map((i) => ({
-                          value: i.field,
-                          label: i.label,
-                        }))
-                      "
-                      style="width: 100%"
-                      placeholder="添加配置"
-                    />
-                    <a-button @click="addShowItem(colItem.children)">确定</a-button>
-                  </Col>
-                </Row>
+                ><Row> -->
+              <VFormItem
+                class="my-3"
+                isRender
+                v-for="(item, k) in showFormItem(props.schema.children, rowIdx)"
+                :key="k"
+                :schema="item"
+                :formData="getRow(rowId)"
+                :formConfig="props.formConfig"
+                :setFormModel="setRowData(rowId)"
+                :inSubForm="true"
+                @sub-item-hide="item.componentProps.hideSub = true"
+              />
+              <Col
+                span="6"
+                v-if="hideFormItem(props.schema.children, rowIdx).length > 0"
+                class="d-flex"
+              >
+                <a-select
+                  mode="multiple"
+                  v-model:value="selectShowItem"
+                  :options="
+                    hideFormItem(props.schema.children, rowIdx).map((i) => ({
+                      value: i.field,
+                      label: i.label,
+                    }))
+                  "
+                  style="width: 100%"
+                  placeholder="添加配置"
+                />
+                <a-button @click="addShowItem(props.schema.children)">确定</a-button>
               </Col>
-            </Row></Col
-          >
+            </Row>
+          </Col>
+          <!-- </Row></Col
+          > -->
         </Row>
       </template>
     </draggable>
@@ -103,24 +109,31 @@
   const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
   const [state] = useRuleFormItem(props, 'value', 'change');
   const rowIds = reactive([]);
+  const showItemRow = reactive([]);
+
   state.value = state.value || [];
   if (Array.isArray(state.value)) {
     //自带初始值，配套提供rowIds
     for (let i = 0; i < state.value.length; i++) {
       rowIds.push(uniqueId('gsf_'));
+      showItemRow.push(Object.keys(state.value[i]));
     }
   }
-  const showFormItem = (formItem) => {
-    return formItem.filter((item) => !item.componentProps.hideSub);
+  const showFormItem = (formItem, idx) => {
+    //let result = computed(() => unref(formItem).filter((item) => !item.componentProps.hideSub));
+    // return result.value;
+    //console.log(result);
+    //debugger;
+    return unref(formItem).filter((item) => !item.componentProps.hideSub);
   };
   const hideFormItem = (formItem) => {
     return formItem.filter((item) => !!item.componentProps.hideSub);
   };
   const addShowItem = (formItem) => {
-    debugger;
     formItem.forEach((item) => {
-      if (selectShowItem.value.includes(item.field)) item.hideSub = false;
+      if (selectShowItem.value.includes(item.field)) item.componentProps.hideSub = false;
     });
+    selectShowItem.value = [];
   };
   const selectShowItem = ref([]);
   const subFormDefaultValue = reactive({});

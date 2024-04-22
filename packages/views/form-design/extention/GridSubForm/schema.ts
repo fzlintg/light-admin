@@ -10,12 +10,13 @@ export default {
     onRowAdd__params: ['{idx,data,row}'],
     onRowChange__params: ['data'],
   },
-  columns: [
-    {
-      span: 24,
-      children: [],
-    },
-  ],
+  // columns: [
+  //   {
+  //     span: 24,
+  //     children: [],
+  //   },
+  // ],
+  children: [],
   colProps: { span: 24 },
   options: {
     gutter: 0,

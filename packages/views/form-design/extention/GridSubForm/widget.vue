@@ -1,38 +1,38 @@
 <template>
   <div class="grid-box">
-    <Row class="grid-row" v-bind="schema.componentProps">
+    <!-- <Row class="grid-row" v-bind="schema.componentProps">
       <Col
         class="grid-col"
         v-for="(colItem, index) in schema.columns"
         :key="index"
         :span="colItem.span"
-      >
-        <draggable
-          class="list-main draggable-box"
-          :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
-          v-bind="{
-            group: 'form-draggable',
-            ghostClass: 'moving',
-            animation: 180,
-            handle: '.drag-move',
-          }"
-          item-key="key"
-          v-model="colItem.children"
-          @start="$emit('dragStart', $event, colItem.children)"
-          @add="$emit('handleColAdd', $event, colItem.children)"
-        >
-          <template #item="{ element }">
-            <LayoutItem
-              class="drag-move"
-              :schema="element"
-              :current-item="currentItem"
-              @handle-copy="$emit('handle-copy')"
-              @handle-delete="$emit('handle-delete')"
-            />
-          </template>
-        </draggable>
-      </Col>
-    </Row>
+      > -->
+    <draggable
+      class="list-main draggable-box"
+      :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
+      v-bind="{
+        group: 'form-draggable',
+        ghostClass: 'moving',
+        animation: 180,
+        handle: '.drag-move',
+      }"
+      item-key="key"
+      v-model="schema.children"
+      @start="$emit('dragStart', $event, schema.children)"
+      @add="$emit('handleColAdd', $event, schema.children)"
+    >
+      <template #item="{ element }">
+        <LayoutItem
+          class="drag-move"
+          :schema="element"
+          :current-item="currentItem"
+          @handle-copy="$emit('handle-copy')"
+          @handle-delete="$emit('handle-delete')"
+        />
+      </template>
+    </draggable>
+    <!-- </Col>
+    </Row> -->
   </div>
 </template>
 <script lang="ts" setup>

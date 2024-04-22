@@ -62,6 +62,7 @@ export const schema = [
     colProps: { span: 24 },
     field: '',
     defaultValue: false,
+    componentProps: {},
   },
   {
     component: 'CheckboxGroup',

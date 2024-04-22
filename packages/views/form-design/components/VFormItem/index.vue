@@ -21,49 +21,61 @@
         >{{ schema.component == 'Button' ? schema.label : '' }}
       </component>
     </div>
-    <FormItem v-else v-bind="{ ...formItemProps }" class="mr-3">
-      <template
-        #label
-        v-if="
-          !hiddenLabel &&
-          !formItemProps.hiddenLabel &&
-          schema.component !== 'Divider' &&
-          parentComp != 'SubForm'
-        "
-      >
-        <Tooltip>
-          <span>{{ schema.label }}</span>
-          <template #title v-if="schema.helpMessage"
-            ><span>{{ schema.helpMessage }}</span></template
-          >
-          <Icon v-if="schema.helpMessage" class="ml-5" icon="ant-design:question-circle-outlined" />
-        </Tooltip>
-      </template>
+    <div v-else class="item-container">
+      <FormItem v-bind="{ ...formItemProps }" style="margin-right: 20px">
+        <template
+          #label
+          v-if="
+            !hiddenLabel &&
+            !formItemProps.hiddenLabel &&
+            schema.component !== 'Divider' &&
+            parentComp != 'SubForm'
+          "
+        >
+          <Tooltip>
+            <span>{{ schema.label }}</span>
+            <template #title v-if="schema.helpMessage"
+              ><span>{{ schema.helpMessage }}</span></template
+            >
+            <Icon
+              v-if="schema.helpMessage"
+              class="ml-5"
+              icon="ant-design:question-circle-outlined"
+            />
+          </Tooltip>
+        </template>
 
-      <slot
-        v-if="schema.componentProps && schema.componentProps?.slotName"
-        :name="schema.componentProps.slotName"
-        v-bind="schema"
-      ></slot>
-      <Divider
-        v-else-if="schema.component == 'Divider' && schema.label && !formItemProps.hiddenLabel"
-        >{{ schema.label }}</Divider
-      >
-      <!-- 部分控件需要一个空div -->
-      <div v-else
-        ><component
-          class="v-form-item-wrapper"
-          :is="componentItem"
-          v-bind="{ ...cmpProps, ...asyncProps }"
-          :schema="schema"
-          :formConfig="formConfig"
-          :formData="cur_formData"
-          :setFormModel="cur_setFormModel"
-          @change="handleChange"
-          @click="handleClick(schema)"
-          ref="formItemRef"
-      /></div>
-    </FormItem>
+        <slot
+          v-if="schema.componentProps && schema.componentProps?.slotName"
+          :name="schema.componentProps.slotName"
+          v-bind="schema"
+        ></slot>
+        <Divider
+          v-else-if="schema.component == 'Divider' && schema.label && !formItemProps.hiddenLabel"
+          >{{ schema.label }}</Divider
+        >
+        <!-- 部分控件需要一个空div -->
+        <div v-else
+          ><component
+            class="v-form-item-wrapper"
+            :is="componentItem"
+            v-bind="{ ...cmpProps, ...asyncProps }"
+            :schema="schema"
+            :formConfig="formConfig"
+            :formData="cur_formData"
+            :setFormModel="cur_setFormModel"
+            @change="handleChange"
+            @click="handleClick(schema)"
+            ref="formItemRef"
+        /></div>
+      </FormItem>
+      <span class="item-icon">
+        <Icon
+          v-if="inSubForm"
+          icon="ant-design:eye-invisible-outlined"
+          @click="$emit('subItemHide')"
+      /></span>
+    </div>
   </Col>
 </template>
 <script lang="ts">
@@ -347,7 +359,20 @@
     margin-bottom: 20px;
   }
 
-  // .w-full {
-  //   width: 100% !important;
-  // }
+  .item-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .item-container .item-icon {
+    display: none; /* 默认隐藏 */
+    position: absolute;
+    top: -5px; /* 调整图标位置 */
+    right: 5px; /* 调整图标位置 */
+    cursor: pointer;
+  }
+
+  .item-container:hover .item-icon {
+    display: block; /* 鼠标悬停时显示 */
+  }
 </style>

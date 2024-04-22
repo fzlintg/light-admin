@@ -8,7 +8,6 @@ type BaseFormAttrs = Omit<IBaseFormAttrs, 'tag'>;
 
 export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
   {
-    // 没有disabled属性的控件不能作为form控件
     field: 'hideSub',
     label: '隐藏(子表单)',
   },
