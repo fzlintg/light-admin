@@ -48,19 +48,38 @@
                     :setFormModel="setRowData(rowId)"
                     :inSubForm="true"
                   />
-                  <a-select>
-                    <a-select-option mode="multiple" style="width: 100%" placeholder="人口数据" />
-                  </a-select>
+                  <Col span="6" v-if="hideFormItem(colItem.children).length > 0" class="d-flex">
+                    <a-select
+                      mode="multiple"
+                      v-model:value="selectShowItem"
+                      :options="
+                        hideFormItem(colItem.children).map((i) => ({
+                          value: i.field,
+                          label: i.label,
+                        }))
+                      "
+                      style="width: 100%"
+                      placeholder="添加配置"
+                    />
+                    <a-button @click="addShowItem(colItem.children)">确定</a-button>
+                  </Col>
                 </Row>
-              </Col> </Row
-          ></Col>
+              </Col>
+            </Row></Col
+          >
         </Row>
       </template>
     </draggable>
   </div>
 </template>
 <script setup>
-  import { Row, Col, Button as AButton } from 'ant-design-vue';
+  import {
+    Row,
+    Col,
+    Button as AButton,
+    Select as ASelect,
+    SelectOption as ASelectOption,
+  } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
   import { h, defineProps } from 'vue';
 
@@ -68,9 +87,10 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { cloneDeep, isArray, set, uniqueId } from 'lodash-es';
+  import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
   import { getInitValue } from '../../utils';
+  import { item } from '../loader';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
@@ -93,6 +113,16 @@
   const showFormItem = (formItem) => {
     return formItem.filter((item) => !item.componentProps.hideSub);
   };
+  const hideFormItem = (formItem) => {
+    return formItem.filter((item) => !!item.componentProps.hideSub);
+  };
+  const addShowItem = (formItem) => {
+    debugger;
+    formItem.forEach((item) => {
+      if (selectShowItem.value.includes(item.field)) item.hideSub = false;
+    });
+  };
+  const selectShowItem = ref([]);
   const subFormDefaultValue = reactive({});
   //debugger;
   getInitValue([props.schema], subFormDefaultValue);
