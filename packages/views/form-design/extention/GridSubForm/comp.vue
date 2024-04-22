@@ -53,7 +53,7 @@
               <Col
                 span="6"
                 v-if="hideFormItem(props.schema.children, rowIdx).length > 0"
-                class="d-flex"
+                class="d-flex my-3"
               >
                 <a-select
                   mode="multiple"
@@ -124,12 +124,12 @@
     // return result.value;
     //console.log(result);
     //debugger;
-    return unref(formItem).filter((item) => !item.componentProps.hideSub);
+    return unref(showItemRow[idx]).filter((item) => !item.componentProps.hideSub);
   };
-  const hideFormItem = (formItem) => {
-    return formItem.filter((item) => !!item.componentProps.hideSub);
+  const hideFormItem = (formItem, idx) => {
+    return showItemRow[idx].filter((item) => !!item.componentProps.hideSub);
   };
-  const addShowItem = (formItem) => {
+  const addShowItem = (formItem, idx) => {
     formItem.forEach((item) => {
       if (selectShowItem.value.includes(item.field)) item.componentProps.hideSub = false;
     });
@@ -140,6 +140,7 @@
   //debugger;
   getInitValue([props.schema], subFormDefaultValue);
   const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
+
   //const initValue = toRaw(subFormDefaultValue);
   //debugger;
   watch(
@@ -157,6 +158,7 @@
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
     state.value.push(cloneDeep(initValue));
+    showItemRow.push(Object.keys(initValue));
     const idx = state.value.length - 1;
     emit('rowAdd', { idx, data: state.value, row: state.value[idx] });
   };
@@ -174,15 +176,18 @@
     emit('rowDelete', { idx, data: state.value, row: state.value[idx] });
     rowIds.splice(idx, 1);
     state.value.splice(idx, 1);
+    showItemRow.splice(idx, 1);
   };
   const insertRowId = (idx) => {
     rowIds.splice(idx, 0, uniqueId('gsf_'));
     state.value.splice(idx, 0, cloneDeep(initValue));
+    showItemRow.splice(idx, 0, Object.keys(initValue));
     emit('rowInsert', { idx, data: state.value, row: state.value[idx] });
   };
   const dragend = ({ oldIndex, newIndex }) => {
     rowIds.splice(newIndex, 0, rowIds.splice(oldIndex, 1)[0]);
     state.value.splice(newIndex, 0, state.value.splice(oldIndex, 1)[0]);
+    showItemRow.splice(newIndex, 0, showItemRow.splice(oldIndex, 1)[0]);
     return true;
   };
   rowIds.length == 0 && addRowId(); //保持至少一行
