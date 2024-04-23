@@ -89,10 +89,10 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { pick, cloneDeep, set, uniqueId } from 'lodash-es';
+  import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
   import { getInitValue } from '../../utils';
-  import { item } from '../loader';
+  //import { item } from '../loader';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
@@ -106,7 +106,9 @@
   const [state] = useRuleFormItem(props, 'value', 'change');
   const rowIds = reactive([]);
   const showItemRow = reactive([]);
-
+  const initKeys = props.schema.children
+    .filter((item) => !item.componentProps.hideSub)
+    .map((item) => item.field);
   state.value = state.value || [];
   if (Array.isArray(state.value)) {
     //自带初始值，配套提供rowIds
@@ -166,7 +168,7 @@
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
     state.value.push(cloneDeep(initValue));
-    showItemRow.push(Object.keys(initValue));
+    showItemRow.push(initKeys);
     const idx = state.value.length - 1;
     emit('rowAdd', { idx, data: state.value, row: state.value[idx] });
   };
