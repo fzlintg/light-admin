@@ -41,25 +41,21 @@
               <VFormItem
                 class="my-3"
                 isRender
-                v-for="(item, k) in showFormItem(props.schema.children, rowIdx)"
+                v-for="(vitem, k) in showFormItem(rowIdx)"
                 :key="k"
-                :schema="item"
+                :schema="vitem"
                 :formData="getRow(rowId)"
                 :formConfig="props.formConfig"
                 :setFormModel="setRowData(rowId)"
                 :inSubForm="true"
-                @sub-item-hide="item.componentProps.hideSub = true"
+                @sub-item-hide="removeItem(rowIdx, vitem.field)"
               />
-              <Col
-                span="6"
-                v-if="hideFormItem(props.schema.children, rowIdx).length > 0"
-                class="d-flex my-3"
-              >
+              <Col span="6" v-if="hideFormItem(rowIdx).length > 0" class="d-flex my-3">
                 <a-select
                   mode="multiple"
                   v-model:value="selectShowItem"
                   :options="
-                    hideFormItem(props.schema.children, rowIdx).map((i) => ({
+                    hideFormItem(rowIdx).map((i) => ({
                       value: i.field,
                       label: i.label,
                     }))
@@ -67,7 +63,7 @@
                   style="width: 100%"
                   placeholder="添加配置"
                 />
-                <a-button @click="addShowItem(props.schema.children)">确定</a-button>
+                <a-button @click="addShowItem(rowIdx)">确定</a-button>
               </Col>
             </Row>
           </Col>
@@ -93,7 +89,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { cloneDeep, set, uniqueId } from 'lodash-es';
+  import { pick, cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
   import { getInitValue } from '../../utils';
   import { item } from '../loader';
@@ -119,19 +115,31 @@
       showItemRow.push(Object.keys(state.value[i]));
     }
   }
-  const showFormItem = (formItem, idx) => {
+  const showFormItem = (idx) => {
     //let result = computed(() => unref(formItem).filter((item) => !item.componentProps.hideSub));
     // return result.value;
     //console.log(result);
     //debugger;
-    return unref(showItemRow[idx]).filter((item) => !item.componentProps.hideSub);
+    return props.schema.children.filter((item) => showItemRow[idx].includes(item.field));
+    // pick(props.schema.children, showItemRow[idx]);
+    // return unref(showItemRow[idx]).filter((item) => !item.componentProps.hideSub);
   };
-  const hideFormItem = (formItem, idx) => {
-    return showItemRow[idx].filter((item) => !!item.componentProps.hideSub);
+  const hideFormItem = (idx) => {
+    return unref(props.schema.children).filter((i) => !showItemRow[idx].includes(i.field));
   };
-  const addShowItem = (formItem, idx) => {
-    formItem.forEach((item) => {
-      if (selectShowItem.value.includes(item.field)) item.componentProps.hideSub = false;
+  const removeItem = (idx, field) => {
+    let targetIdx = showItemRow[idx].indexOf(field);
+    if (targetIdx > -1) {
+      showItemRow[idx].splice(targetIdx, 1);
+      delete state.value[idx][field];
+    }
+  };
+  const addShowItem = (idx) => {
+    props.schema.children.forEach((item) => {
+      if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
+        showItemRow[idx].push(item.field);
+        state.value[idx][item.field] = item.defaultValue || '';
+      }
     });
     selectShowItem.value = [];
   };

@@ -266,12 +266,14 @@
           return true;
         }
         //lintg
-        else if (['Grid', 'GridSubForm'].includes(formItem.component)) {
+        else if (['Grid'].includes(formItem.component)) {
           // 栅格布局
           formItem.columns?.forEach((item) => {
             traverse(item.children);
           });
-        } else if (['Tab', 'SubForm', 'Modal', 'Drawer'].includes(formItem.component)) {
+        } else if (
+          ['Tab', 'SubForm', 'GridSubForm', 'Modal', 'Drawer'].includes(formItem.component)
+        ) {
           // 栅格布局
           traverse(formItem.children || []);
         }

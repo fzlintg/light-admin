@@ -14,8 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: ` let formData=this.getFormData() 
-         this.getModal("modal").show(formData) `,
+        onClick__func: `  let formData=this.getFormData()  
+          this.getModal("modal").show(formData)  `,
         style: '',
         shape: '',
         color: '',
@@ -36,14 +36,14 @@ export default {
         title: '表格工具栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: ` let modal=this.getModal('modal'); 
- let formData=modal.getFormModel(); 
- let props=this.getFormData(); 
- Object.assign(props,formData);
- return true; `,
-        onCancelButtonClick__func: `  `,
-        onDialogOpened__func: `  `,
-        onDialogBeforeClose__func: `  `,
+        onOkButtonClick__func: `  let modal=this.getModal('modal');  
+  let formData=modal.getFormModel();  
+  let props=this.getFormData();  
+  Object.assign(props,formData); 
+  return true;  `,
+        onCancelButtonClick__func: `    `,
+        onDialogOpened__func: `    `,
+        onDialogBeforeClose__func: `    `,
         style: '',
       },
       children: [
@@ -59,99 +59,147 @@ export default {
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
             style: '',
-            onRowDelete__func: `  `,
-            onRowInsert__func: `  `,
-            onRowAdd__func: `  `,
-            onRowChange__func: `  `,
+            onRowDelete__func: `    `,
+            onRowInsert__func: `    `,
+            onRowAdd__func: `    `,
+            onRowChange__func: `    `,
           },
-          columns: [
+          children: [
             {
-              span: '24',
-              children: [
-                {
-                  component: 'Input',
-                  label: '按钮名称',
-                  icon: 'bi:input-cursor-text',
-                  field: 'label',
-                  colProps: {
-                    span: 24,
+              component: 'Input',
+              label: '按钮名称',
+              icon: 'bi:input-cursor-text',
+              field: 'label',
+              colProps: {
+                span: 24,
+              },
+              componentProps: {
+                type: 'text',
+                placeholder: '',
+                style: '',
+                defaultValue: '',
+                prefix: '',
+                suffix: '',
+                addonBefore: '',
+                addonAfter: '',
+                maxLength: 100,
+              },
+              defaultValue: '',
+              width: '200px',
+              key: 'input_2',
+              itemProps: {
+                labelCol: {},
+                wrapperCol: {},
+              },
+            },
+            {
+              component: 'RadioButtonGroup',
+              label: '颜色',
+              icon: 'carbon:radio-button-checked',
+              field: 'color',
+              colProps: {
+                span: 24,
+              },
+              componentProps: {
+                options: [
+                  {
+                    label: '错误',
+                    value: 'error',
                   },
-                  componentProps: {
-                    type: 'text',
-                    placeholder: '',
-                    style: '',
-                    defaultValue: '',
-                    prefix: '',
-                    suffix: '',
-                    addonBefore: '',
-                    addonAfter: '',
-                    maxLength: 100,
+                  {
+                    label: '成功',
+                    value: 'success',
                   },
-                  defaultValue: '',
-                  width: '200px',
-                  key: 'input_2',
-                  itemProps: {
-                    labelCol: {},
-                    wrapperCol: {},
-                  },
-                },
-                {
-                  component: 'RadioButtonGroup',
-                  label: '颜色',
-                  icon: 'carbon:radio-button-checked',
-                  field: 'color',
-                  colProps: {
-                    span: 24,
-                  },
-                  componentProps: {
-                    options: [
-                      {
-                        label: '错误',
-                        value: 'error',
-                      },
-                      {
-                        label: '成功',
-                        value: 'success',
-                      },
-                    ],
-                    style: '',
-                  },
-                  defaultValue: '',
-                  _type: 'custom',
-                  width: '200px',
-                  key: 'radiobuttongroup_6',
-                  itemProps: {
-                    labelCol: {},
-                    wrapperCol: {},
-                  },
-                },
-                {
-                  component: 'CodeInput',
-                  label: '事件函数',
-                  icon: 'ant-design:credit-card-outlined',
-                  componentProps: {
-                    buttonText: '编辑',
-                    mode: 'application/json',
-                    editorTitle: '代码编辑',
-                    bordered: true,
-                    autoFormat: true,
-                    readonly: false,
-                    style: '',
-                  },
-                  defaultValue: '',
-                  _type: 'custom',
-                  width: '200px',
-                  colProps: {
-                    span: 24,
-                  },
-                  key: 'codeinput_3',
-                  field: 'onClick__func',
-                  itemProps: {
-                    labelCol: {},
-                    wrapperCol: {},
-                  },
-                },
-              ],
+                ],
+                style: '',
+              },
+              defaultValue: '',
+              _type: 'custom',
+              width: '200px',
+              key: 'radiobuttongroup_6',
+              itemProps: {
+                labelCol: {},
+                wrapperCol: {},
+              },
+            },
+            {
+              component: 'CodeInput',
+              label: '点击事件',
+              icon: 'ant-design:credit-card-outlined',
+              componentProps: {
+                buttonText: '编辑',
+                mode: 'application/json',
+                editorTitle: '代码编辑',
+                bordered: true,
+                autoFormat: true,
+                readonly: false,
+                style: '',
+              },
+              defaultValue: '',
+              _type: 'custom',
+              width: '200px',
+              colProps: {
+                span: 24,
+              },
+              key: 'codeinput_3',
+              field: 'onClick__func',
+              itemProps: {
+                labelCol: {},
+                wrapperCol: {},
+              },
+            },
+            {
+              component: 'Input',
+              label: '弹框确认信息',
+              icon: 'bi:input-cursor-text',
+              field: 'popConfirm.title',
+              colProps: {
+                span: 12,
+              },
+              componentProps: {
+                type: 'text',
+                placeholder: '',
+                style: '',
+                defaultValue: '',
+                prefix: '',
+                suffix: '',
+                addonBefore: '',
+                addonAfter: '',
+                maxLength: 100,
+              },
+              defaultValue: '',
+              width: '200px',
+              key: 'input_1',
+              itemProps: {
+                labelCol: {},
+                wrapperCol: {},
+              },
+            },
+            {
+              component: 'CodeInput',
+              label: '弹框确认函数',
+              icon: 'ant-design:credit-card-outlined',
+              componentProps: {
+                buttonText: '编辑',
+                mode: 'application/json',
+                editorTitle: '代码编辑',
+                bordered: true,
+                autoFormat: true,
+                readonly: false,
+                style: '',
+              },
+              defaultValue: '',
+              _type: 'custom',
+              width: '200px',
+              colProps: {
+                span: 13,
+              },
+              key: 'codeinput_2',
+              field: 'popConfirm.confirm__func',
+              itemProps: {
+                labelCol: {},
+                wrapperCol: {},
+              },
             },
           ],
           colProps: {

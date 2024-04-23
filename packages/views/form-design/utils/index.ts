@@ -148,12 +148,12 @@ export const getInitValue = (schemas, formData: Object): any => {
       item.columns?.forEach((item) => {
         getInitValue(item.children, formData);
       });
-    } else if (['GridSubForm'].includes(component)) {
-      if (!formData[field!]) formData[field!] = [{}];
-      item.columns?.forEach((item) => {
-        getInitValue(item.children, formData[field!][0]);
-      });
-    } else if (['SubForm'].includes(component)) {
+      // } else if (['GridSubForm'].includes(component)) {
+      //   if (!formData[field!]) formData[field!] = [{}];
+      //   item.columns?.forEach((item) => {
+      //     getInitValue(item.children, formData[field!][0]);
+      //   });
+    } else if (['SubForm', 'GridSubForm'].includes(component)) {
       if (!formData[field!]) formData[field!] = [{}];
       getInitValue(item.children, formData[field!][0]);
     } else {

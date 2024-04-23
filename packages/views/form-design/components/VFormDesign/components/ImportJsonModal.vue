@@ -63,7 +63,7 @@
 
       const state = reactive({
         //      dataType: 'json',
-        ifInitKey: true,
+        ifInitKey: false,
         visible: false,
         json: `{
   "schemas": [

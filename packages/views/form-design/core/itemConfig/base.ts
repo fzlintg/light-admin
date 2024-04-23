@@ -134,15 +134,15 @@ export const schema = [
     defaultValue: '',
   },
 
-  {
-    component: 'Radio',
-    label: '单选框',
-    icon: 'ant-design:check-circle-outlined',
-    field: '',
-    colProps: { span: 24 },
-    componentProps: {},
-    defaultValue: false,
-  },
+  // {
+  //   component: 'Radio',
+  //   label: '单选框',
+  //   icon: 'ant-design:check-circle-outlined',
+  //   field: '',
+  //   colProps: { span: 24 },
+  //   componentProps: {},
+  //   defaultValue: false,
+  // },
   {
     component: 'RadioGroup',
     label: '单选框-组',
