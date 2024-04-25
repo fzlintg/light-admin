@@ -11,7 +11,7 @@ import {
   isNil,
   isNull,
   forOwn,
-  isObject,
+  isObject,set
 } from 'lodash-es';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
@@ -139,14 +139,14 @@ export const findFormItem: (
 };
 
 //基于schema返回组件对象初始值
-export const getInitValue = (schemas, formData: Object): any => {
+export const getInitValue = (schemas, formModel: Object): any => {
   formItemsForEach(schemas, (item) => {
     const { component, field, defaultValue, defaultValueObj } = item;
     // const field = field || name;
     if (['Grid'].includes(component)) {
       // 栅格布局
       item.columns?.forEach((item) => {
-        getInitValue(item.children, formData);
+        getInitValue(item.children, formModel);
       });
       // } else if (['GridSubForm'].includes(component)) {
       //   if (!formData[field!]) formData[field!] = [{}];
@@ -154,24 +154,49 @@ export const getInitValue = (schemas, formData: Object): any => {
       //     getInitValue(item.children, formData[field!][0]);
       //   });
     } else if (['SubForm', 'GridSubForm'].includes(component)) {
-      if (!formData[field!]) formData[field!] = [{}];
-      getInitValue(item.children, formData[field!][0]);
+      if (!formModel[field!]) formModel[field!] = [{}];
+      getInitValue(item.children, formModel[field!][0]);
     } else {
       const fieldKeys = Object.keys(defaultValueObj || {});
       if (fieldKeys.length) {
         fieldKeys.map((field) => {
-          if (formData[field] === undefined) {
-            formData[field] = defaultValueObj![field];
+          if (formModel[field] === undefined) {
+            formModel[field] = defaultValueObj![field];
           }
         });
       }
       if (!isNil(defaultValue)) {
-        formData[field!] = defaultValue;
+        formModel[field!] = defaultValue;
       }
     }
   });
-  return formData;
+  return formModel;
 };
+export const formModelToData=(formModel)=>{
+  const formData={};
+  for(let item in formModel){
+    set(formData,item,formModel[item])
+  }
+  return formData;
+}
+export const flattenJSON= (json)=> {
+  let result = {};
+  function flatten(obj, path = '') {
+    for (let key in obj) {
+      let value = obj[key];
+      let newPath = path? path + '.' + key : key;
+      if (isObject(value)&& value!== null  && !Array.isArray(value)) {
+        flatten(value, newPath);
+      } else {
+        result[newPath] = value;
+      }
+    }
+  }
+  flatten(json);
+  return result;
+}
+
+
 /**
  * 打开json模态框时删除当前项属性
  * @param formConfig {IFormConfig}

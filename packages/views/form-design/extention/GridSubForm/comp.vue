@@ -91,7 +91,7 @@
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
-  import { getInitValue } from '../../utils';
+  import { getInitValue,formModelToData,flattenJSON } from '../../utils';
   //import { item } from '../loader';
 
   const props = defineProps({
@@ -114,17 +114,11 @@
     //自带初始值，配套提供rowIds
     for (let i = 0; i < state.value.length; i++) {
       rowIds.push(uniqueId('gsf_'));
-      showItemRow.push(Object.keys(state.value[i]));
+      showItemRow.push(Object.keys(flattenJSON(state.value[i])));
     }
   }
   const showFormItem = (idx) => {
-    //let result = computed(() => unref(formItem).filter((item) => !item.componentProps.hideSub));
-    // return result.value;
-    //console.log(result);
-    //debugger;
     return props.schema.children.filter((item) => showItemRow[idx].includes(item.field));
-    // pick(props.schema.children, showItemRow[idx]);
-    // return unref(showItemRow[idx]).filter((item) => !item.componentProps.hideSub);
   };
   const hideFormItem = (idx) => {
     return unref(props.schema.children).filter((i) => !showItemRow[idx].includes(i.field));
@@ -146,13 +140,9 @@
     selectShowItem.value = [];
   };
   const selectShowItem = ref([]);
-  const subFormDefaultValue = reactive({});
-  //debugger;
-  getInitValue([props.schema], subFormDefaultValue);
-  const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
-
-  //const initValue = toRaw(subFormDefaultValue);
-  //debugger;
+  const subFormDefaultModel = reactive({});
+  getInitValue([props.schema], subFormDefaultModel);
+  const initValue = toRaw(formModelToData(subFormDefaultModel[props.schema.field][0]));
   watch(
     () => state.value,
     (v) => {
@@ -191,7 +181,7 @@
   const insertRowId = (idx) => {
     rowIds.splice(idx, 0, uniqueId('gsf_'));
     state.value.splice(idx, 0, cloneDeep(initValue));
-    showItemRow.splice(idx, 0, Object.keys(initValue));
+    showItemRow.splice(idx, 0, Object.keys(flattenJSON(initValue)));
     emit('rowInsert', { idx, data: state.value, row: state.value[idx] });
   };
   const dragend = ({ oldIndex, newIndex }) => {
