@@ -94,7 +94,7 @@
   import { componentMap } from '../../core/formItemConfig';
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
-  import { handleAsyncOptions } from '../../utils';
+  import { handleAsyncOptions, formModelToData } from '../../utils';
   import { omit, isArray, forOwn, isFunction, get, set } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
@@ -112,6 +112,10 @@
     },
 
     props: {
+      formModel: {
+        type: Object,
+        default: () => ({}),
+      },
       formData: {
         type: Object,
         default: () => ({}),
@@ -120,9 +124,6 @@
         type: Object as PropType<IVFormComponent>,
         required: true,
       },
-      // currentItem: {
-      //   type: Object,
-      // },
       isRender: {
         type: Boolean,
         default: false,
@@ -156,9 +157,14 @@
         formItemRef: null,
       });
 
-      const { formModel: formData1, setFormModel: setFormModel1 } = useFormModelState();
+      const { formModel, setFormModel } = useFormModelState();
+      const formData1 = computed(() => {
+        return formModelToData(formModel.value);
+      });
+      const cur_formModel = props.inSubForm && !!props.formModel ? props.formModel : formModel;
       const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
-      const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel1;
+      const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel;
+
       const formItemRefList: any = inject('formItemRefList', null); //lintg
       const { proxy } = getCurrentInstance();
       formItemRefList && (formItemRefList[props.schema.field!] = proxy);
@@ -167,10 +173,12 @@
       };
       const getFormData = () => unref(cur_formData);
       const getValue = () => {
-        return get(unref(cur_formData), props.schema.field);
+        return formModel.value[props.schema.field!];
+        //return get(unref(cur_formData), props.schema.field);
       };
       const setValue = (value) => {
-        set(cur_formData.value, props.schema.field, value);
+        cur_setFormModel(props.schema.field!, value);
+        // set(cur_formData.value, props.schema.field, value);
       };
       const getModal = (name) => {
         return formItemRefList[name].formItemRef;
@@ -298,7 +306,7 @@
         let result = {
           ...attrs,
           disabled,
-          [isCheck ? 'checked' : 'value']: cur_formData.value[field!],
+          [isCheck ? 'checked' : 'value']: cur_formModel.value[field!],
         };
 
         return result;
@@ -312,7 +320,7 @@
         const value = target ? (isCheck ? target.checked : target.value) : e;
 
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
-
+        //props.formModel[props.schema.field] = value;
         cur_setFormModel(props.schema.field!, value, e);
 
         // if (props.inSubForm) {

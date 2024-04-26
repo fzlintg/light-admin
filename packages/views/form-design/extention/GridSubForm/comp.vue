@@ -44,6 +44,7 @@
                 v-for="(vitem, k) in showFormItem(rowIdx)"
                 :key="k"
                 :schema="vitem"
+                :form-model="getRowModel(rowId)"
                 :formData="getRow(rowId)"
                 :formConfig="props.formConfig"
                 :setFormModel="setRowData(rowId)"
@@ -89,9 +90,9 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { cloneDeep, set, uniqueId } from 'lodash-es';
+  import { cloneDeep, set, uniqueId, unset } from 'lodash-es';
   import draggable from 'vuedraggable';
-  import { getInitValue,formModelToData,flattenJSON } from '../../utils';
+  import { getInitValue, formModelToData, flattenJSON } from '../../utils';
   //import { item } from '../loader';
 
   const props = defineProps({
@@ -101,9 +102,11 @@
     formConfig: propTypes.Object,
     setFormModel: propTypes.function,
   });
-
+  //模型数据存储formModel，用于实时更新，对于GridSubForm的属性
+  //表单数据需把formModel转换，把json数据展开。
   const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
   const [state] = useRuleFormItem(props, 'value', 'change');
+
   const rowIds = reactive([]);
   const showItemRow = reactive([]);
   const initKeys = props.schema.children
@@ -127,6 +130,10 @@
     let targetIdx = showItemRow[idx].indexOf(field);
     if (targetIdx > -1) {
       showItemRow[idx].splice(targetIdx, 1);
+      // let newData = cloneDeep(state.value[idx]);
+      // unset(newData, field);
+      // debugger;
+      // state.value[idx] = newData;
       delete state.value[idx][field];
     }
   };
@@ -134,7 +141,8 @@
     props.schema.children.forEach((item) => {
       if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
         showItemRow[idx].push(item.field);
-        state.value[idx][item.field] = item.defaultValue || '';
+        set(state.value[idx], item.field, item.defaultValue || '');
+        //  state.value[idx][item.field] = item.defaultValue || '';
       }
     });
     selectShowItem.value = [];
@@ -158,11 +166,14 @@
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
     state.value.push(cloneDeep(initValue));
-    showItemRow.push(initKeys);
+    showItemRow.push(cloneDeep(initKeys));
     const idx = state.value.length - 1;
     emit('rowAdd', { idx, data: state.value, row: state.value[idx] });
   };
   const getRow = (rowId) => {
+    return state.value[rowIds.indexOf(rowId)];
+  };
+  const getRowModel = (rowId) => {
     return state.value[rowIds.indexOf(rowId)];
   };
 
@@ -181,6 +192,7 @@
   const insertRowId = (idx) => {
     rowIds.splice(idx, 0, uniqueId('gsf_'));
     state.value.splice(idx, 0, cloneDeep(initValue));
+
     showItemRow.splice(idx, 0, Object.keys(flattenJSON(initValue)));
     emit('rowInsert', { idx, data: state.value, row: state.value[idx] });
   };
