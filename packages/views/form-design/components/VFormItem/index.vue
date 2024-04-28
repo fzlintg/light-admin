@@ -306,7 +306,7 @@
         let result = {
           ...attrs,
           disabled,
-          [isCheck ? 'checked' : 'value']: cur_formModel.value[field!],
+          [isCheck ? 'checked' : 'value']: unref(cur_formModel)[field!],
         };
 
         return result;

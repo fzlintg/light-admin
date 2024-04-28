@@ -1,3 +1,4 @@
+import { forEach } from '@utils/helper/treeHelper';
 import { schema } from './../core/itemConfig/base';
 // import { VueConstructor } from 'vue';
 import { IVFormComponent, IFormConfig, IValidationRule } from '../typings/v-form-component';
@@ -11,7 +12,8 @@ import {
   isNil,
   isNull,
   forOwn,
-  isObject,set
+  isObject,
+  set,
 } from 'lodash-es';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
@@ -172,30 +174,42 @@ export const getInitValue = (schemas, formModel: Object): any => {
   });
   return formModel;
 };
-export const formModelToData=(formModel)=>{
-  const formData={};
-  for(let item in formModel){
-    set(formData,item,formModel[item])
+export const formModelToData = (formModel) => {
+  const formData = {};
+  for (const item in formModel) {
+    set(formData, item, formModel[item]);
   }
   return formData;
-}
-export const flattenJSON= (json)=> {
-  let result = {};
+};
+export const ArrayToData = (json: Array<any>) => {
+  return json.map((item) => {
+    return formModelToData(item);
+  });
+};
+
+export const flattenArray = (json: Array<any>) => {
+  const result: Array<any> = [];
+  json.forEach((item) => {
+    result.push(flattenObject(item));
+  });
+  return json;
+};
+export const flattenObject = (json) => {
+  const result = {};
   function flatten(obj, path = '') {
-    for (let key in obj) {
-      let value = obj[key];
-      let newPath = path? path + '.' + key : key;
-      if (isObject(value)&& value!== null  && !Array.isArray(value)) {
-        flatten(value, newPath);
-      } else {
+    for (const key in obj) {
+      const value = obj[key];
+      const newPath = path ? path + '.' + key : key;
+      if (value !== null && isArray(value)) result[newPath] = flattenArray(value);
+      else if (value !== null && isObject(value)) flatten(value, newPath);
+      else {
         result[newPath] = value;
       }
     }
   }
   flatten(json);
   return result;
-}
-
+};
 
 /**
  * 打开json模态框时删除当前项属性

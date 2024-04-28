@@ -49,6 +49,7 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
     console.log(_result);
     const data = cloneDeep(toRaw(formdata.value));
     const value = {}; //lintg
+
     for (const item in data) {
       set(value, item, data[item]);
     }

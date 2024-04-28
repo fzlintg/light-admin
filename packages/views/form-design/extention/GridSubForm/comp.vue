@@ -84,7 +84,7 @@
     SelectOption as ASelectOption,
   } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
-  import { h, defineProps } from 'vue';
+  import { defineProps } from 'vue';
 
   import Icon from '@c/Icon/Icon.vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
@@ -92,7 +92,7 @@
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { cloneDeep, set, uniqueId, unset } from 'lodash-es';
   import draggable from 'vuedraggable';
-  import { getInitValue, formModelToData, flattenJSON } from '../../utils';
+  import { getInitValue, formModelToData, flattenArray, flattenObject } from '../../utils';
   //import { item } from '../loader';
 
   const props = defineProps({
@@ -105,19 +105,22 @@
   //模型数据存储formModel，用于实时更新，对于GridSubForm的属性
   //表单数据需把formModel转换，把json数据展开。
   const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
-  const [state] = useRuleFormItem(props, 'value', 'change');
+  const [stateData] = useRuleFormItem(props, 'value', 'change');
+  stateData.value = stateData.value || [];
+  const stateModel = ref(flattenArray(stateData.value));
 
   const rowIds = reactive([]);
   const showItemRow = reactive([]);
   const initKeys = props.schema.children
     .filter((item) => !item.componentProps.hideSub)
     .map((item) => item.field);
-  state.value = state.value || [];
-  if (Array.isArray(state.value)) {
+
+  if (Array.isArray(stateModel.value)) {
     //自带初始值，配套提供rowIds
-    for (let i = 0; i < state.value.length; i++) {
+    for (let i = 0; i < stateModel.value.length; i++) {
       rowIds.push(uniqueId('gsf_'));
-      showItemRow.push(Object.keys(flattenJSON(state.value[i])));
+      showItemRow.push(Object.keys(stateModel.value[i]));
+      //showItemRow.push(Object.keys(flattenJSON(state.value[i])));
     }
   }
   const showFormItem = (idx) => {
@@ -134,15 +137,17 @@
       // unset(newData, field);
       // debugger;
       // state.value[idx] = newData;
-      delete state.value[idx][field];
+      //  unset(stateData.value[idx], field);
+      delete stateModel.value[idx][field];
+      // delete state.value[idx][field];
     }
   };
   const addShowItem = (idx) => {
     props.schema.children.forEach((item) => {
       if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
         showItemRow[idx].push(item.field);
-        set(state.value[idx], item.field, item.defaultValue || '');
-        //  state.value[idx][item.field] = item.defaultValue || '';
+        //   set(stateData.value[idx], item.field, item.defaultValue || '');
+        stateModel.value[idx][item.field] = item.defaultValue || '';
       }
     });
     selectShowItem.value = [];
@@ -150,55 +155,67 @@
   const selectShowItem = ref([]);
   const subFormDefaultModel = reactive({});
   getInitValue([props.schema], subFormDefaultModel);
+  const initModel = toRaw(subFormDefaultModel[props.schema.field][0]);
   const initValue = toRaw(formModelToData(subFormDefaultModel[props.schema.field][0]));
-  watch(
-    () => state.value,
-    (v) => {
-      emit('update:value', v);
-      emit('rowChange', v);
-    },
-    {
-      deep: true,
-      immediate: true,
-    },
-  );
+
+  watchEffect(() => {
+    stateData.value = formModelToData(stateModel.value);
+    emit('update:value', stateData.value);
+    emit('rowChange', stateData.value);
+  });
+  // watch(
+  //   () => state.value,
+  //   (v) => {
+  //     emit('update:value', v);
+  //     emit('rowChange', v);
+  //   },
+  //   {
+  //     deep: true,
+  //     immediate: true,
+  //   },
+  // );
 
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
-    state.value.push(cloneDeep(initValue));
+    //  stateData.value.push(cloneDeep(initValue));
+    stateModel.value.push(cloneDeep(initModel));
     showItemRow.push(cloneDeep(initKeys));
-    const idx = state.value.length - 1;
-    emit('rowAdd', { idx, data: state.value, row: state.value[idx] });
+    const idx = stateData.value.length - 1;
+    emit('rowAdd', { idx, data: stateData.value, row: stateData.value[idx] });
   };
   const getRow = (rowId) => {
-    return state.value[rowIds.indexOf(rowId)];
+    return stateData.value[rowIds.indexOf(rowId)];
   };
   const getRowModel = (rowId) => {
-    return state.value[rowIds.indexOf(rowId)];
+    return stateModel.value[rowIds.indexOf(rowId)];
   };
 
   const setRowData = (rowId) => {
     return (field, value) => {
       const idx = rowIds.indexOf(rowId);
-      set(state.value[idx], field, value);
+      //  set(stateData.value[idx], field, value);
+      stateModel.value[idx][field] = value;
     };
   };
   const removeRowId = (idx) => {
-    emit('rowDelete', { idx, data: state.value, row: state.value[idx] });
+    emit('rowDelete', { idx, data: stateModel.value, row: stateModel.value[idx] });
     rowIds.splice(idx, 1);
-    state.value.splice(idx, 1);
+    // stateData.value.splice(idx, 1);
+    stateModel.value.splice(idx, 1);
+
     showItemRow.splice(idx, 1);
   };
   const insertRowId = (idx) => {
     rowIds.splice(idx, 0, uniqueId('gsf_'));
-    state.value.splice(idx, 0, cloneDeep(initValue));
-
-    showItemRow.splice(idx, 0, Object.keys(flattenJSON(initValue)));
-    emit('rowInsert', { idx, data: state.value, row: state.value[idx] });
+    //  stateData.value.splice(idx, 0, cloneDeep(initValue));
+    stateModel.value.splice(idx, 0, cloneDeep(initModel));
+    showItemRow.splice(idx, 0, Object.keys(initModel));
+    emit('rowInsert', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
   const dragend = ({ oldIndex, newIndex }) => {
     rowIds.splice(newIndex, 0, rowIds.splice(oldIndex, 1)[0]);
-    state.value.splice(newIndex, 0, state.value.splice(oldIndex, 1)[0]);
+    //  stateData.value.splice(newIndex, 0, stateData.value.splice(oldIndex, 1)[0]);
+    stateModel.value.splice(newIndex, 0, stateModel.value.splice(oldIndex, 1)[0]);
     showItemRow.splice(newIndex, 0, showItemRow.splice(oldIndex, 1)[0]);
     return true;
   };
