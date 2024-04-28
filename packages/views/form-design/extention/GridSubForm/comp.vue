@@ -156,7 +156,7 @@
   const subFormDefaultModel = reactive({});
   getInitValue([props.schema], subFormDefaultModel);
   const initModel = toRaw(subFormDefaultModel[props.schema.field][0]);
-  const initValue = toRaw(formModelToData(subFormDefaultModel[props.schema.field][0]));
+  //const initValue = toRaw(formModelToData(subFormDefaultModel[props.schema.field][0]));
 
   watchEffect(() => {
     stateData.value = formModelToData(stateModel.value);
