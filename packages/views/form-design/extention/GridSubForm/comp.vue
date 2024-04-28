@@ -147,7 +147,8 @@
       if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
         showItemRow[idx].push(item.field);
         //   set(stateData.value[idx], item.field, item.defaultValue || '');
-        stateModel.value[idx][item.field] = item.componentProps?.defaultValue || '';
+        stateModel.value[idx][item.field] =
+          item.defaultValue || item.componentProps.defaultValue || '';
       }
     });
     selectShowItem.value = [];

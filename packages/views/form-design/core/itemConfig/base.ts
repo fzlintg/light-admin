@@ -81,8 +81,8 @@ export const schema = [
           value: '2',
         },
       ],
-      defaultValue: [],
     },
+    defaultValue: [],
   },
   {
     component: 'Input',
@@ -128,8 +128,8 @@ export const schema = [
           value: '2',
         },
       ],
-      defaultValue: '',
     },
+    defaultValue: '',
   },
 
   // {
@@ -203,7 +203,8 @@ export const schema = [
     icon: 'vaadin:slider',
     field: '',
     colProps: { span: 24 },
-    componentProps: { defaultValue: 0 },
+    componentProps: {},
+    defaultValue: 0,
   },
   {
     component: 'Rate',
@@ -211,7 +212,8 @@ export const schema = [
     icon: 'ic:outline-star-rate',
     field: '',
     colProps: { span: 24 },
-    componentProps: { defaultValue: 0 },
+    componentProps: {},
+    defaultValue: 0,
   },
   {
     component: 'Switch',
@@ -219,7 +221,8 @@ export const schema = [
     icon: 'entypo:switch',
 
     colProps: { span: 24 },
-    componentProps: { defaultValue: false },
+    componentProps: {},
+    defaultValue: false,
   },
   {
     component: 'TreeSelect',
