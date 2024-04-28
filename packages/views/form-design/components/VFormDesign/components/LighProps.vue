@@ -29,9 +29,9 @@
 <script lang="ts" setup>
   import { Form, FormItem, Divider } from 'ant-design-vue';
   import { componentMap } from '../../../core/formItemConfig';
-  import { watchEffect } from 'vue';
+  import { watchEffect, watch } from 'vue';
   import { useRuleFormItem } from '../../../../../myhooks/component/useFormItem';
-  import { getInitValue } from '../../../utils/index';
+  //import { getInitValue } from '../../../utils/index';
 
   const props = defineProps({
     schema: {
@@ -45,13 +45,16 @@
   });
 
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
-  watchEffect(() => {
-    const formData = {};
-    getInitValue(props.schema, formData);
-    for (const item in formData) {
-      if (!formState.value[item]) formState.value[item] = formData[item];
-    }
-  });
+  // watchEffect(() => {
+  watch(
+    () => props.schema,
+    () => {
+      props.schema.forEach((item) => {
+        if (item.defaultValue && !formState.value[item.field])
+          formState.value[item.field] = item.defaultValue;
+      });
+    },
+  );
 
   const getComponent = (name) => {
     return componentMap.get(name) || name;

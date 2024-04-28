@@ -61,8 +61,8 @@ export const schema = [
     icon: 'ant-design:check-circle-outlined',
     colProps: { span: 24 },
     field: '',
-    defaultValue: false,
-    componentProps: {},
+
+    componentProps: { defaultValue: false },
   },
   {
     component: 'CheckboxGroup',
@@ -81,8 +81,8 @@ export const schema = [
           value: '2',
         },
       ],
+      defaultValue: [],
     },
-    defaultValue: [],
   },
   {
     component: 'Input',
@@ -92,8 +92,8 @@ export const schema = [
     colProps: { span: 24 },
     componentProps: {
       type: 'text',
+      defaultValue: '',
     },
-    defaultValue: '',
   },
   {
     component: 'InputNumber',
@@ -101,8 +101,7 @@ export const schema = [
     icon: 'ant-design:field-number-outlined',
     field: '',
     colProps: { span: 24 },
-    componentProps: { style: 'width:200px' },
-    defaultValue: 0,
+    componentProps: { style: 'width:200px', defaultValue: 0 },
   },
   {
     component: 'InputTextArea',
@@ -110,8 +109,7 @@ export const schema = [
     icon: 'ant-design:file-text-filled',
     field: '',
     colProps: { span: 24 },
-    componentProps: {},
-    defaultValue: '',
+    componentProps: { defaultValue: '' },
   },
   {
     component: 'Select',
@@ -130,8 +128,8 @@ export const schema = [
           value: '2',
         },
       ],
+      defaultValue: '',
     },
-    defaultValue: '',
   },
 
   // {
@@ -188,8 +186,8 @@ export const schema = [
     colProps: { span: 24 },
     componentProps: {
       placeholder: '请选择月份',
+      defaultValue: null,
     },
-    defaultValue: null,
   },
   {
     component: 'TimePicker',
@@ -205,8 +203,7 @@ export const schema = [
     icon: 'vaadin:slider',
     field: '',
     colProps: { span: 24 },
-    componentProps: {},
-    defaultValue: 0,
+    componentProps: { defaultValue: 0 },
   },
   {
     component: 'Rate',
@@ -214,8 +211,7 @@ export const schema = [
     icon: 'ic:outline-star-rate',
     field: '',
     colProps: { span: 24 },
-    componentProps: {},
-    defaultValue: 0,
+    componentProps: { defaultValue: 0 },
   },
   {
     component: 'Switch',
@@ -223,8 +219,7 @@ export const schema = [
     icon: 'entypo:switch',
 
     colProps: { span: 24 },
-    componentProps: {},
-    defaultValue: false,
+    componentProps: { defaultValue: false },
   },
   {
     component: 'TreeSelect',

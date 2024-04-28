@@ -15,8 +15,8 @@ export default [
       autoFormat: true,
       prefix: 'function onClick(){',
       suffix: '}',
+      defaultValue: '',
     },
-    defaultValue: '',
   },
   {
     label: '危险',
@@ -93,7 +93,6 @@ export default [
     field: 'iconSize',
     label: '图标大小',
     component: 'InputNumber',
-    componentProps: {},
-    defaultValue: 14,
+    componentProps: { defaultValue: 14 },
   },
 ];

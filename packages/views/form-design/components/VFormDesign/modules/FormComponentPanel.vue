@@ -133,7 +133,6 @@
 
   .form-panel {
     position: relative;
-    height: 100%;
 
     .empty-text {
       position: absolute;
@@ -145,9 +144,9 @@
     }
 
     .draggable-box {
-      height: calc(100vh - 120px);
-      // width: 100%;
-      overflow: auto;
+      // height: calc(100vh - 120px);
+      // // width: 100%;
+      // overflow: auto;
 
       .drag-move {
         min-height: 62px;
@@ -156,7 +155,9 @@
 
       .list-main {
         // 列表动画
-        height: 100%;
+
+        height: calc(100vh - 120px);
+        overflow: auto;
 
         .list-enter-active {
           transition: all 0.5s;

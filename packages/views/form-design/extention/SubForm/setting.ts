@@ -14,8 +14,8 @@ export default [
       autoFormat: true,
       prefix: 'function onRowDelete({idx,data,row}){',
       suffix: '}',
+      defaultValue: '',
     },
-    defaultValue: '',
   },
   {
     component: 'CodeInput',
@@ -30,8 +30,8 @@ export default [
       autoFormat: true,
       prefix: 'function onRowInsert({idx,data,row}){',
       suffix: '}',
+      defaultValue: '',
     },
-    defaultValue: '',
   },
   {
     component: 'CodeInput',
@@ -46,8 +46,8 @@ export default [
       autoFormat: true,
       prefix: 'function onRowAdd({idx,data,row}){',
       suffix: '}',
+      defaultValue: '',
     },
-    defaultValue: '',
   },
   {
     component: 'CodeInput',
@@ -62,7 +62,7 @@ export default [
       autoFormat: true,
       prefix: 'function onRowChange(data){',
       suffix: '}',
+      defaultValue: '',
     },
-    defaultValue: '',
   },
 ];

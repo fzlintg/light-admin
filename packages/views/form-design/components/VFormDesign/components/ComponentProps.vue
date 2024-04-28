@@ -306,7 +306,7 @@
         let title = '';
         for (let i = 0; i < result.length; i++) {
           if (title != result[i].sortTitle) {
-            title = result[i].sortTitle;
+            title = result[i].sortTitle!;
             // console.log(title);
             result.splice(i, 0, {
               component: 'Divider',

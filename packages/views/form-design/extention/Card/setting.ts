@@ -13,7 +13,7 @@ export default [
       autoFormat: true,
       prefix: '',
       suffix: '',
+      defaultValue: '',
     },
-    defaultValue: '',
   },
 ];

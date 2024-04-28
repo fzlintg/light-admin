@@ -10,26 +10,29 @@ export default [
         { label: '信息', value: 'info' },
         { label: '错误', value: 'error' },
       ],
+      defaultValue: 'success',
     },
-    defaultValue: 'success',
   },
   {
     field: 'message',
     label: '消息',
     component: 'Input',
-    componentProps: {},
-    defaultValue: '',
+    componentProps: { defaultValue: '' },
   },
   {
     field: 'showIcon',
     label: '显示图标',
     category: 'control',
-    defaultValue: true,
+    componentProps: {
+      defaultValue: true,
+    },
   },
   {
     field: 'closable',
     label: '可关闭',
     category: 'control',
-    defaultValue: true,
+    componentProps: {
+      defaultValue: true,
+    },
   },
 ];

@@ -15,24 +15,24 @@
 </template>
 <script lang="ts">
   import { computed, defineComponent, PropType, reactive, toRefs } from 'vue';
-  import draggable from 'vuedraggable';
+  //import draggable from 'vuedraggable';
   import FormNode from './FormNode.vue';
-  import FormNodeOperate from './FormNodeOperate.vue';
+  //import FormNodeOperate from './FormNodeOperate.vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import { IVFormComponent } from '../../../typings/v-form-component';
-  import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
+  // import { Row, Col, Tabs, TabPane, Card } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'LayoutItem',
     components: {
       FormNode,
-      FormNodeOperate,
-      draggable,
-      Row,
-      Col,
-      Tabs,
-      TabPane,
-      Card,
+      // FormNodeOperate,
+      // draggable,
+      // Row,
+      // Col,
+      // Tabs,
+      // TabPane,
+      // Card,
     },
     props: {
       schema: {
@@ -55,10 +55,10 @@
         formConfig,
       } = useFormDesignState();
       const state = reactive({});
-      const colPropsComputed = computed(() => {
-        const { colProps = {} } = props.schema;
-        return colProps;
-      });
+      // const colPropsComputed = computed(() => {
+      //   const { colProps = {} } = props.schema;
+      //   return colProps;
+      // });
 
       const list1 = computed(() => props.schema.columns);
 
@@ -69,7 +69,7 @@
 
       return {
         ...toRefs(state),
-        colPropsComputed,
+        //    colPropsComputed,
         handleSetSelectItem,
         layoutTag,
         list1,

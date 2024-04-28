@@ -303,8 +303,8 @@ const componentAttrs: IBaseComponentProps = {
       componentProps: {
         type: 'text',
         placeholder: '请输入最大长度',
+        defaultValue: 100,
       },
-      defaultValue: 100,
     },
   ],
 
@@ -714,8 +714,8 @@ const componentAttrs: IBaseComponentProps = {
       component: 'InputNumber',
       componentProps: {
         placeholder: '请输入默认值',
+        defaultValue: 1,
       },
-      defaultValue: 1,
     },
     {
       field: 'min',
@@ -723,8 +723,8 @@ const componentAttrs: IBaseComponentProps = {
       component: 'InputNumber',
       componentProps: {
         placeholder: '请输入最小值',
+        defaultValue: 0,
       },
-      defaultValue: 0,
     },
     {
       field: 'max',
@@ -732,8 +732,8 @@ const componentAttrs: IBaseComponentProps = {
       component: 'InputNumber',
       componentProps: {
         placeholder: '请输入最大值',
+        defaultValue: 100,
       },
-      defaultValue: 100,
     },
     {
       field: 'step',
@@ -741,8 +741,8 @@ const componentAttrs: IBaseComponentProps = {
       component: 'InputNumber',
       componentProps: {
         placeholder: '请输入步长',
+        defaultValue: 1,
       },
-      defaultValue: 1,
     },
     {
       field: 'tooltipPlacement',

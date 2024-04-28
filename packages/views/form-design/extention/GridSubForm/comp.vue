@@ -147,7 +147,7 @@
       if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
         showItemRow[idx].push(item.field);
         //   set(stateData.value[idx], item.field, item.defaultValue || '');
-        stateModel.value[idx][item.field] = item.defaultValue || '';
+        stateModel.value[idx][item.field] = item.componentProps?.defaultValue || '';
       }
     });
     selectShowItem.value = [];
@@ -158,10 +158,12 @@
   const initModel = toRaw(subFormDefaultModel[props.schema.field][0]);
   //const initValue = toRaw(formModelToData(subFormDefaultModel[props.schema.field][0]));
 
-  watchEffect(() => {
-    stateData.value = formModelToData(stateModel.value);
-    emit('update:value', stateData.value);
-    emit('rowChange', stateData.value);
+  onMounted(() => {
+    watchEffect(() => {
+      stateData.value = formModelToData(stateModel.value);
+      // emit('update:value', stateData.value);
+      // emit('rowChange', stateData.value);
+    });
   });
   // watch(
   //   () => state.value,

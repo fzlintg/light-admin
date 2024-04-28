@@ -11,6 +11,6 @@ export default {
     height: 10,
     prefix: 'function(){',
     suffix: '}',
+    defaultValue: '',
   },
-  defaultValue: '',
 };

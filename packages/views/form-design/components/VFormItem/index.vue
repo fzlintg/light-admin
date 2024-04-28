@@ -13,7 +13,7 @@
         v-bind="{ ...cmpProps, ...asyncProps }"
         :schema="schema"
         :formConfig="formConfig"
-        :formData="cur_formData"
+        :formData="cur_formModel.value"
         :setFormModel="cur_setFormModel"
         @change="handleChange"
         @click="handleClick(schema)"
@@ -62,7 +62,7 @@
             v-bind="{ ...cmpProps, ...asyncProps }"
             :schema="schema"
             :formConfig="formConfig"
-            :formData="cur_formData"
+            :formData="cur_formModel"
             :setFormModel="cur_setFormModel"
             @change="handleChange"
             @click="handleClick(schema)"
@@ -158,20 +158,21 @@
       });
 
       const { formModel, setFormModel } = useFormModelState();
-      const formData1 = computed(() => {
-        return formModelToData(formModel.value);
-      });
+      // const formData1 = computed(() => {
+      //   return formModelToData(formModel.value);
+      // });
       const cur_formModel = props.inSubForm && !!props.formModel ? props.formModel : formModel;
-      const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
+      //  const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
+      //  const cur_formData =cur_formModel
       const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel;
 
       const formItemRefList: any = inject('formItemRefList', null); //lintg
       const { proxy } = getCurrentInstance();
-      formItemRefList && (formItemRefList[props.schema.field!] = proxy);
+      if (formItemRefList) formItemRefList[props.schema.field!] = proxy;
       const getFormItem = (name) => {
         return formItemRefList[name];
       };
-      const getFormData = () => unref(cur_formData);
+      const getFormData = () => unref(cur_formModel);
       const getValue = () => {
         return formModel.value[props.schema.field!];
         //return get(unref(cur_formData), props.schema.field);
@@ -294,6 +295,7 @@
        * 处理同步属性
        */
       const cmpProps = computed(() => {
+        //   performance.mark('props-start');
         const isCheck =
           props.schema && ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         let { field } = props.schema;
@@ -308,7 +310,8 @@
           disabled,
           [isCheck ? 'checked' : 'value']: unref(cur_formModel)[field!],
         };
-
+        // performance.mark('props-end');
+        // performance.measure('props', 'props-start', 'props-end');
         return result;
       });
 
@@ -346,7 +349,8 @@
         getFormRef,
         getModal,
         cur_setFormModel,
-        cur_formData,
+        cur_formModel,
+        //   cur_formData,
         setValue,
       };
     },

@@ -35,7 +35,7 @@
     components: {
       VFormItem: defineAsyncComponent(() => import('../../VFormItem/index.vue')),
       FormNodeOperate,
-      Col,
+      // Col,
     },
     props: {
       schema: {
@@ -58,12 +58,12 @@
         // 调用 formDesignMethods
         formDesignMethods.handleSetSelectItem(props.schema);
       };
-      const colPropsComputed = computed(() => {
-        const { colProps = {} } = props.schema;
-        return props.parentComp == 'SubForm' ? {} : colProps; //lintg
-      });
+      // const colPropsComputed = computed(() => {
+      //   const { colProps = {} } = props.schema;
+      //   return props.parentComp == 'SubForm' ? {} : colProps; //lintg
+      // });
       return {
-        colPropsComputed,
+        //    colPropsComputed,
         ...toRefs(state),
         handleSelectItem,
         formConfig,
