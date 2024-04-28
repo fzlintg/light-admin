@@ -3,6 +3,7 @@ import { Ref, SetupContext, getCurrentInstance, toRaw, type EmitsOptions } from 
 import { cloneDeep, forOwn, isFunction, set, get } from 'lodash-es';
 import { AForm, IVFormComponent } from '../typings/v-form-component';
 import { Form } from 'ant-design-vue';
+import { formModelToData } from '../utils';
 
 export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
   props: IAnyObject,
@@ -48,11 +49,13 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
     const _result = await validate();
     console.log(_result);
     const data = cloneDeep(toRaw(formdata.value));
-    const value = {}; //lintg
+    const value = formModelToData(data);
+    // const value = {}; //lintg
 
-    for (const item in data) {
-      set(value, item, data[item]);
-    }
+    // for (const item in data) {
+    //   set(value, item, data[item]);
+    // }
+
     emit?.('submit', value);
     props.formConfig.submit?.(value);
     return value;

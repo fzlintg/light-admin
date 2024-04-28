@@ -177,7 +177,7 @@ export const getInitValue = (schemas, formModel: Object): any => {
 export const formModelToData = (formModel) => {
   const formData = {};
   for (const item in formModel) {
-    set(formData, item, formModel[item]);
+    set(formData, item, isArray(formModel[item]) ? ArrayToData(formModel[item]) : formModel[item]);
   }
   return formData;
 };
