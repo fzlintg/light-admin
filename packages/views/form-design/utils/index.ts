@@ -143,8 +143,8 @@ export const findFormItem: (
 //基于schema返回组件对象初始值
 export const getInitValue = (schemas, formModel: Object): any => {
   formItemsForEach(schemas, (item) => {
-    const { component, field, defaultValue, defaultValueObj } = item;
-
+    const { component, field, defaultValueObj } = item;
+    const defaultValue = item.defaultValue || item?.componentProps.defaultValue;
     // const field = field || name;
     if (['Grid'].includes(component)) {
       // 栅格布局

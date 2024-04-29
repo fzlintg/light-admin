@@ -150,7 +150,7 @@
 
       provide<(key: String, value: any) => void>('setFormModelMethod', setFormModel);
       //lintg
-      const toRawUnref = (value) => toRaw(unref(value));
+      //const toRawUnref = (value) => toRaw(unref(value));
       const defaultValueRef = reactive({});
       const getSchema = computed(() => unref(noHiddenList));
       // const formModel=submit
@@ -163,7 +163,7 @@
       onMounted(() => {
         initDefault();
 
-        // emit('update:formModel', formModelNew.value);
+        emit('update:formModel', formModelNew.value);
       });
       // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
       return {
