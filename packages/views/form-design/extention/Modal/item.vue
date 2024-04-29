@@ -14,7 +14,7 @@
           v-for="(item, k) in schema.children"
           :key="k"
           :schema="item"
-          :formData="formModelNew"
+          :formModel="formModelNew"
           :formConfig="formConfig"
           :setFormModel="setFormModel"
         >
@@ -30,6 +30,7 @@
   import VFormItem from '../../components/VFormItem/index.vue';
   import { Button as AButton, Form } from 'ant-design-vue';
   import Modal from '@c/Modal/src/BasicModal.vue';
+  import { flattenArray, flattenObject, formModelToData } from '../../utils';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   // import { formatRules } from '../../utils/index';
 
@@ -48,14 +49,17 @@
     'cancelButtonClick',
     'dialogBeforeClose',
   ]);
+  //schema.value.children = flattenArray(schema.value.children);
   formConfig.value.children = schema.value.children;
   const show = (fData, eData) => {
     open.value = true;
-    if (fData) formModelNew.value = fData;
+    if (fData) {
+      formModelNew.value = flattenObject(fData);
+    }
     if (eData) extraData.value = eData;
     emit('dialogOpened');
   };
-  const getFormModel = () => formModelNew.value;
+
   const handleOk = (e: MouseEvent) => {
     emit('okButtonClick', {
       callback: (result) => {
@@ -74,13 +78,13 @@
     emit('cancelButtonClick');
     close();
   };
-  // onMounted(() => {});
 
   defineExpose({
     show,
     close,
-    getFormModel,
+    getFormModel: () => formModelNew.value,
     setFormModel,
     getExtraData: () => extraData.value,
+    getFormData: () => formModelToData(formModelNew.value),
   });
 </script>

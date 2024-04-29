@@ -45,9 +45,8 @@
                 :key="k"
                 :schema="vitem"
                 :form-model="getRowModel(rowId)"
-                :formData="getRow(rowId)"
                 :formConfig="props.formConfig"
-                :setFormModel="setRowData(rowId)"
+                :setFormModel="setRowModel(rowId)"
                 :inSubForm="true"
                 @sub-item-hide="removeItem(rowIdx, vitem.field)"
               />
@@ -96,7 +95,7 @@
   //import { item } from '../loader';
 
   const props = defineProps({
-    value: propTypes.string || propTypes.function,
+    value: propTypes.Object || propTypes.function,
     schema: propTypes.Object,
     formData: propTypes.Object,
     formConfig: propTypes.Object,
@@ -105,9 +104,10 @@
   //模型数据存储formModel，用于实时更新，对于GridSubForm的属性
   //表单数据需把formModel转换，把json数据展开。
   const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
-  const [stateData] = useRuleFormItem(props, 'value', 'change');
-  stateData.value = stateData.value || [];
-  const stateModel = ref(flattenArray(stateData.value));
+  const [stateModel] = useRuleFormItem(props, 'value', 'change');
+
+  // stateData.value = stateData.value || [];
+  // const stateModel = ref(flattenArray(stateData.value));
 
   const rowIds = reactive([]);
   const showItemRow = reactive([]);
@@ -115,14 +115,26 @@
     .filter((item) => !item.componentProps.hideSub)
     .map((item) => item.field);
 
-  if (Array.isArray(stateModel.value)) {
-    //自带初始值，配套提供rowIds
-    for (let i = 0; i < stateModel.value.length; i++) {
-      rowIds.push(uniqueId('gsf_'));
-      showItemRow.push(Object.keys(stateModel.value[i]));
-      //showItemRow.push(Object.keys(flattenJSON(state.value[i])));
-    }
-  }
+  watch(
+    () => props.value,
+    () => {
+      debugger;
+      if (Array.isArray(stateModel.value)) {
+        rowIds.splice(0, rowIds.length);
+        //自带初始值，配套提供rowIds
+        for (let i = 0; i < stateModel.value.length; i++) {
+          rowIds.push(uniqueId('gsf_'));
+          showItemRow.push(Object.keys(stateModel.value[i]));
+          //showItemRow.push(Object.keys(flattenJSON(state.value[i])));
+        }
+      }
+    },
+    {
+      deep: true,
+      immediate: true,
+    },
+  );
+
   const showFormItem = (idx) => {
     return props.schema.children.filter((item) => showItemRow[idx].includes(item.field));
   };
@@ -161,7 +173,7 @@
 
   onMounted(() => {
     watchEffect(() => {
-      stateData.value = formModelToData(stateModel.value);
+      // stateData.value = formModelToData(stateModel.value);
       // emit('update:value', stateData.value);
       // emit('rowChange', stateData.value);
     });
@@ -183,20 +195,21 @@
     //  stateData.value.push(cloneDeep(initValue));
     stateModel.value.push(cloneDeep(initModel));
     showItemRow.push(cloneDeep(initKeys));
-    const idx = stateData.value.length - 1;
-    emit('rowAdd', { idx, data: stateData.value, row: stateData.value[idx] });
+    const idx = stateModel.value.length - 1;
+    //emit('rowAdd', { idx, data: stateData.value, row: stateData.value[idx] });
+    emit('rowAdd', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
   const getRow = (rowId) => {
-    return stateData.value[rowIds.indexOf(rowId)];
+    //   return stateData.value[rowIds.indexOf(rowId)];
+    return formModelToData(stateModel.value[rowIds.indexOf(rowId)]);
   };
   const getRowModel = (rowId) => {
     return stateModel.value[rowIds.indexOf(rowId)];
   };
 
-  const setRowData = (rowId) => {
+  const setRowModel = (rowId) => {
     return (field, value) => {
       const idx = rowIds.indexOf(rowId);
-      //  set(stateData.value[idx], field, value);
       stateModel.value[idx][field] = value;
     };
   };
@@ -223,6 +236,7 @@
     return true;
   };
   rowIds.length == 0 && addRowId(); //保持至少一行
+  defineExpose({ getRow });
 </script>
 <style lang="scss" scoped>
   .drag-option {

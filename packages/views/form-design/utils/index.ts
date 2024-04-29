@@ -151,11 +151,6 @@ export const getInitValue = (schemas, formModel: Object): any => {
       item.columns?.forEach((item) => {
         getInitValue(item.children, formModel);
       });
-      // } else if (['GridSubForm'].includes(component)) {
-      //   if (!formData[field!]) formData[field!] = [{}];
-      //   item.columns?.forEach((item) => {
-      //     getInitValue(item.children, formData[field!][0]);
-      //   });
     } else if (['SubForm', 'GridSubForm'].includes(component)) {
       if (!formModel[field!]) formModel[field!] = [{}];
       getInitValue(item.children, formModel[field!][0]);
@@ -193,7 +188,7 @@ export const flattenArray = (json: Array<any>) => {
   json.forEach((item) => {
     result.push(flattenObject(item));
   });
-  return json;
+  return result;
 };
 export const flattenObject = (json) => {
   const result = {};
