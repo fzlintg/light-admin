@@ -118,7 +118,7 @@
   watch(
     () => props.value,
     () => {
-      debugger;
+      // debugger;
       if (Array.isArray(stateModel.value)) {
         rowIds.splice(0, rowIds.length);
         //自带初始值，配套提供rowIds
@@ -218,7 +218,6 @@
     rowIds.splice(idx, 1);
     // stateData.value.splice(idx, 1);
     stateModel.value.splice(idx, 1);
-
     showItemRow.splice(idx, 1);
   };
   const insertRowId = (idx) => {

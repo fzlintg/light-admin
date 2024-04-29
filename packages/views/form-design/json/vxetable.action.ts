@@ -36,7 +36,7 @@ export default {
         title: '表格工具栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `   let modal=this.getModal('modal');   
+        onOkButtonClick__func: ` debugger;  let modal=this.getModal('modal');   
    let formData=modal.getFormData();   
    let props=this.getFormData();   
    Object.assign(props,formData);  
