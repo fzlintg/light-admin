@@ -115,25 +115,17 @@
     .filter((item) => !item.componentProps.hideSub)
     .map((item) => item.field);
 
-  watch(
-    () => props.value,
-    () => {
-      // debugger;
-      if (Array.isArray(stateModel.value)) {
-        rowIds.splice(0, rowIds.length);
-        //自带初始值，配套提供rowIds
-        for (let i = 0; i < stateModel.value.length; i++) {
-          rowIds.push(uniqueId('gsf_'));
-          showItemRow.push(Object.keys(stateModel.value[i]));
-          //showItemRow.push(Object.keys(flattenJSON(state.value[i])));
-        }
+  const initData = () => {
+    if (Array.isArray(stateModel.value)) {
+      rowIds.splice(0, rowIds.length);
+      //自带初始值，配套提供rowIds
+      for (let i = 0; i < stateModel.value.length; i++) {
+        rowIds.push(uniqueId('gsf_'));
+        showItemRow.push(Object.keys(stateModel.value[i]));
+        //showItemRow.push(Object.keys(flattenJSON(state.value[i])));
       }
-    },
-    {
-      deep: true,
-      immediate: true,
-    },
-  );
+    }
+  };
 
   const showFormItem = (idx) => {
     return props.schema.children.filter((item) => showItemRow[idx].includes(item.field));
@@ -177,6 +169,7 @@
       // emit('update:value', stateData.value);
       // emit('rowChange', stateData.value);
     });
+    initData();
   });
   // watch(
   //   () => state.value,
@@ -235,7 +228,7 @@
     return true;
   };
   rowIds.length == 0 && addRowId(); //保持至少一行
-  defineExpose({ getRow });
+  defineExpose({ getRow, initData });
 </script>
 <style lang="scss" scoped>
   .drag-option {

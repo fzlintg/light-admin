@@ -13,7 +13,7 @@
         v-bind="{ ...cmpProps, ...asyncProps }"
         :schema="schema"
         :formConfig="formConfig"
-        :formData="cur_formModel.value"
+        :formData="cur_formModel"
         :setFormModel="cur_setFormModel"
         @change="handleChange"
         @click="handleClick(schema)"
