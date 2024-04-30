@@ -8,32 +8,41 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { computed, reactive, ref } from 'vue';
+  import { computed, reactive, ref, unref } from 'vue';
   import { ActionItem, TableAction } from '@c/Table';
 
   import { useMessage } from '@h/web/useMessage';
   import { vxeTableColumns, vxeTableFormSchema } from './tableData';
   import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';
-  import { formatItem, formatItemByContext, TransObjectToCode } from '../../utils/index';
+  import {
+    AsyncFunction,
+    formatItem,
+    formatItemByContext,
+    TransObjectToCode,
+  } from '../../utils/index';
   import { cloneDeep } from 'lodash-es';
 
   const attrs = useAttrs();
   const { createMessage } = useMessage();
-  const tableRef = ref<VxeGridInstance>();
-  const gridProps = ref({});
-  const createActions = ref(() => {});
-  watchEffect(() => {
+  const tableRef = ref<VxeGridInstance>(),
+    gridProps = ref({}),
+    createActions = ref(() => {});
+  watchEffect(async () => {
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-    gridProps.value = new Function('{tableRef,createMessage }', `return ${gridTpl}`)({
+    gridProps.value = new Function('{tableRef,createMessage,demoListApi }', `return ${gridTpl}`)({
       tableRef,
       createMessage,
+      demoListApi,
     });
   });
-  watchEffect(() => {
+  watchEffect(async () => {
     const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
     createActions.value = (record) => {
-      return new Function('{ record, tableRef }', `return ${actionsTpl}`)({ record, tableRef });
+      return new Function('{ record, tableRef }', `return ${actionsTpl}`)({
+        record,
+        tableRef,
+      });
     };
   });
   const gridOptions = computed(() => {
@@ -48,20 +57,20 @@
         items: vxeTableFormSchema,
       },
       height: 'auto',
-      proxyConfig: {
-        ajax: {
-          query: async ({ page, form }) => {
-            return demoListApi({
-              page: page.currentPage,
-              pageSize: page.pageSize,
-              ...form,
-            });
-          },
-          queryAll: async ({ form }) => {
-            return await demoListApi(form);
-          },
-        },
-      },
+      // proxyConfig: {
+      //   ajax: {
+      //     query: async ({ page, form }) => {
+      //       return demoListApi({
+      //         page: page.currentPage,
+      //         pageSize: page.pageSize,
+      //         ...form,
+      //       });
+      //     },
+      //     queryAll: async ({ form }) => {
+      //       return await demoListApi(form);
+      //     },
+      //   },
+      // },
       ...unref(gridProps),
     };
   });

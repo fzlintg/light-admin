@@ -14,6 +14,7 @@ import {
   forOwn,
   isObject,
   set,
+  isString,
 } from 'lodash-es';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
@@ -256,9 +257,11 @@ export const TransJSonToTs = (schemas) => {
 export const formatItem = (schemas) => {
   //生成特殊字符对象
   forOwn(schemas, (value: any, key) => {
+    if (isArray(schemas) && isString(value)) return;
     if (endsWith(key, '__func') && typeof value == 'string') {
       const func = key.substring(0, key.length - 6);
-      schemas![func] = '$_begin ' + schemas[key] + ' $_end';
+      const params = schemas[func + '__params'] || [];
+      schemas![func] = `$_begin:${params.join(',')}: ` + schemas[key] + ' $_end';
     } else if (isObject(value)) {
       formatItem(value);
     }
@@ -267,12 +270,12 @@ export const formatItem = (schemas) => {
 };
 
 export const TransObjectToCode = (schemas) => {
-  function replaceQuotes(match, group) {
-    const replacedStr = group.replace(/\\"/g, '"').replace(/\\n/g, '  '); // 替换含有\"为“
-    return '()=>{' + replacedStr + '}'; // 在开头添加()=>{}，在结尾添加}
-  }
   formatItem(schemas);
-  return JSON.stringify(schemas).replace(/"\$_begin(.*?)\$_end"/g, replaceQuotes); //对特殊字符对象进行替换
+  const regex = /\"\$_begin:(.*?)\:(.*?)\$_end\"/g;
+  return JSON.stringify(schemas).replace(regex, function (match, params, code) {
+    const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
+    return `async (${params}) => {${cleanedCode}}`;
+  });
 };
 
 export const formatItemFunc = (schemas) => {

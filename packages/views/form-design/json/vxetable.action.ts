@@ -4,7 +4,7 @@ export default {
       component: 'Button',
       formItem: false,
       type: 'showItem',
-      label: '表格操作栏',
+      label: '操作栏编辑',
       field: 'button_1',
       colProps: {
         span: 24,
@@ -14,8 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `    let formData=this.getFormData()     
-             this.getModal("modal").show(formData)     `,
+        onClick__func: `       let formData=this.getFormData()        
+                this.getModal("modal").show(formData)        `,
         style: '',
         shape: '',
         color: '',
@@ -36,14 +36,14 @@ export default {
         title: '表格工具栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `     let modal=this.getModal('modal');     
-     let formData=modal.getFormData();     
-     let props=this.getFormData();     
-     Object.assign(props,formData);    
-     return true;     `,
-        onCancelButtonClick__func: `          `,
-        onDialogOpened__func: `          `,
-        onDialogBeforeClose__func: `          `,
+        onOkButtonClick__func: `        let modal=this.getModal('modal');        
+        let formData=modal.getFormData();        
+        let props=this.getFormData();        
+        Object.assign(props,formData);       
+        return true;        `,
+        onCancelButtonClick__func: `                `,
+        onDialogOpened__func: `                `,
+        onDialogBeforeClose__func: `                `,
         style: '',
       },
       children: [
@@ -59,10 +59,10 @@ export default {
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
             style: '',
-            onRowDelete__func: `          `,
-            onRowInsert__func: `          `,
-            onRowAdd__func: `          `,
-            onRowChange__func: `          `,
+            onRowDelete__func: `                `,
+            onRowInsert__func: `                `,
+            onRowAdd__func: `                `,
+            onRowChange__func: `                `,
           },
           children: [
             {
@@ -238,7 +238,7 @@ export default {
       component: 'Button',
       formItem: false,
       type: 'showItem',
-      label: '工具栏',
+      label: '工具栏编辑',
       field: 'button_10',
       colProps: {
         span: 24,
@@ -248,8 +248,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: ` let formData=this.getFormData()     
-             this.getModal("modal_2").show(formData) `,
+        onClick__func: `    let formData=this.getFormData()        
+                this.getModal("modal_2").show(formData)    `,
       },
       width: '200px',
       itemProps: {
@@ -266,14 +266,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `     let modal=this.getModal('modal_2');     
-        let formData=modal.getFormData();     
-        let props=this.getFormData();     
-        Object.assign(props,formData);    
-        return true;     `,
-        onCancelButtonClick__func: `  `,
-        onDialogOpened__func: `  `,
-        onDialogBeforeClose__func: `  `,
+        onOkButtonClick__func: `        let modal=this.getModal('modal_2');        
+           let formData=modal.getFormData();        
+           let props=this.getFormData();        
+           Object.assign(props,formData);       
+           return true;        `,
+        onCancelButtonClick__func: `        `,
+        onDialogOpened__func: `        `,
+        onDialogBeforeClose__func: `        `,
       },
       children: [
         {
@@ -431,6 +431,112 @@ export default {
         span: 24,
       },
       field: 'modal_2',
+      itemProps: {
+        labelCol: {},
+        wrapperCol: {},
+      },
+    },
+    {
+      component: 'Button',
+      formItem: false,
+      type: 'showItem',
+      label: '数据代理编辑',
+      field: 'button_1',
+      colProps: {
+        span: 24,
+      },
+      hiddenLabel: true,
+      componentProps: {
+        value: 'primary',
+        type: 'primary',
+        size: 'default',
+        onClick__func: `   let formData=this.getFormData()        
+                this.getModal("modal_3").show(formData)   `,
+      },
+      width: '200px',
+      itemProps: {
+        labelCol: {},
+        wrapperCol: {},
+      },
+    },
+    {
+      component: 'Modal',
+      label: '对话框',
+      formItem: false,
+      type: 'container',
+      componentProps: {
+        title: '对话框',
+        width: 1000,
+        slots: {},
+        onOkButtonClick__func: `let modal=this.getModal('modal_3');        
+        let formData=modal.getFormData();        
+        let props=this.getFormData();        
+        Object.assign(props,formData);       
+        return true;        `,
+        onCancelButtonClick__func: `      `,
+        onDialogOpened__func: `      `,
+        onDialogBeforeClose__func: `      `,
+      },
+      children: [
+        {
+          component: 'CodeInput',
+          label: '查询全部',
+          componentProps: {
+            buttonText: '编辑',
+            mode: 'application/json',
+            editorTitle: '代码编辑',
+            bordered: true,
+            autoFormat: true,
+            readonly: false,
+            prefix: 'async function(form){',
+            suffix: '}',
+          },
+          defaultValue: '',
+          _type: 'custom',
+          width: '200px',
+          colProps: {
+            span: 24,
+          },
+          field: 'gridOptions.proxyConfig.ajax.queryAll__func',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+          key: 'gridOptions.proxyConfig.ajax.queryAll__func',
+        },
+        {
+          component: 'CodeInput',
+          label: '查询函数',
+          componentProps: {
+            buttonText: '编辑',
+            mode: 'application/json',
+            editorTitle: '代码编辑',
+            bordered: true,
+            autoFormat: true,
+            readonly: false,
+            prefix: 'async function({page,form}){',
+            suffix: '}',
+          },
+          defaultValue: '',
+          _type: 'custom',
+          width: '200px',
+          colProps: {
+            span: 24,
+          },
+          field: 'gridOptions.proxyConfig.ajax.query__func',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+          key: 'gridOptions.proxyConfig.ajax.query__func',
+        },
+      ],
+      _type: 'custom',
+      width: '200px',
+      colProps: {
+        span: 24,
+      },
+      field: 'modal_3',
       itemProps: {
         labelCol: {},
         wrapperCol: {},

@@ -25,6 +25,19 @@ export default {
       },
     ],
     gridOptions: {
+      proxyConfig: {
+        ajax: {
+          query__func: `return demoListApi({
+              page: page.currentPage,
+              pageSize: page.pageSize,
+              ...form})
+            `,
+          query__params: ['page', 'form'],
+          queryAll__func: `return await demoListApi(form);
+          `,
+          queryAll__params: ['form'],
+        },
+      },
       toolbarConfig: {
         buttons: [
           {
