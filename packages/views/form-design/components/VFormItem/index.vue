@@ -13,6 +13,7 @@
         v-bind="{ ...cmpProps, ...asyncProps }"
         :schema="schema"
         :formConfig="formConfig"
+        :formModel="cur_formModel"
         :formData="cur_formModel"
         :setFormModel="cur_setFormModel"
         @change="handleChange"
@@ -172,6 +173,7 @@
       const getFormItem = (name) => {
         return formItemRefList[name];
       };
+      const getFormModel = () => unref(cur_formModel);
       const getFormData = () => unref(cur_formModel);
       const getValue = () => {
         return formModel.value[props.schema.field!];
@@ -346,6 +348,7 @@
         getFormItem,
         getValue,
         getFormData,
+        getFormModel,
         getFormRef,
         getModal,
         cur_setFormModel,

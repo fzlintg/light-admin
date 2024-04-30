@@ -47,9 +47,9 @@
           schemas.some((formItem, index) => {
             const { component, key } = formItem;
             // 处理栅格和标签页布局
-            ['Grid', 'GridSubForm'].includes(component) &&
+            ['Grid'].includes(component) &&
               formItem.columns?.forEach((item) => traverse(item.children));
-            ['Tabs', 'SubForm', 'Modal', 'Drawer'].includes(component) &&
+            ['Tabs', 'GridSubForm', 'SubForm', 'Modal', 'Drawer'].includes(component) &&
               traverse(formItem.children || []);
             if (key === props.currentItem.key) {
               let params: IVFormComponent =

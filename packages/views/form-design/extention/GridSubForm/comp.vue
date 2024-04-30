@@ -97,6 +97,7 @@
   const props = defineProps({
     value: propTypes.Object || propTypes.function,
     schema: propTypes.Object,
+    formModel: propTypes.Object,
     formData: propTypes.Object,
     formConfig: propTypes.Object,
     setFormModel: propTypes.function,
@@ -227,7 +228,10 @@
     showItemRow.splice(newIndex, 0, showItemRow.splice(oldIndex, 1)[0]);
     return true;
   };
-  rowIds.length == 0 && addRowId(); //保持至少一行
+  if (stateModel.value.length == 0) {
+    rowIds.splice(0, rowIds.length);
+    addRowId();
+  } //保持至少一行
   defineExpose({ getRow, initData });
 </script>
 <style lang="scss" scoped>

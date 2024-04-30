@@ -11,6 +11,8 @@ export default {
     bordered: true,
     autoFormat: true,
     readonly: false,
+    prefix: 'function(){',
+    suffix: '}',
   },
   defaultValue: '',
 };

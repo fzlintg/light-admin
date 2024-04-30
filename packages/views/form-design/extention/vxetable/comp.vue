@@ -85,6 +85,6 @@
   });
   const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
   const createActions = (record) => {
-    return new Function('context', `return ${actionsTpl}`)({ record, tableRef });
+    return new Function('{ record, tableRef }', `return ${actionsTpl}`)({ record, tableRef });
   };
 </script>

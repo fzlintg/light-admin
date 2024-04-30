@@ -30,4 +30,14 @@ export default [
     label: '自动格式化',
     component: 'Checkbox',
   },
+  {
+    field: 'prefix',
+    label: '前缀',
+    component: 'Input',
+  },
+  {
+    field: 'suffix',
+    label: '后缀',
+    component: 'Input',
+  },
 ];

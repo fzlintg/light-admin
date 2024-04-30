@@ -56,6 +56,7 @@
       // 获取 formDesignMethods
       const handleSelectItem = () => {
         // 调用 formDesignMethods
+        console.log(formConfig);
         formDesignMethods.handleSetSelectItem(props.schema);
       };
       // const colPropsComputed = computed(() => {

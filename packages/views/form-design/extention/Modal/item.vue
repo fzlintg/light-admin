@@ -7,7 +7,7 @@
       @ok="handleOk"
       @cancel="handleCancle"
     >
-      <Form :form="fApi" :model="formModelNew">
+      <Form :form="fApi" :model="formModelNew" v-if="open">
         <VFormItem
           isRender
           inSubForm
@@ -52,12 +52,12 @@
   //schema.value.children = flattenArray(schema.value.children);
   formConfig.value.children = schema.value.children;
   const show = (fData, eData) => {
-    open.value = true;
     if (fData) {
       formModelNew.value = flattenObject(fData);
     }
     if (eData) extraData.value = eData;
     emit('dialogOpened');
+    open.value = true;
   };
 
   const handleOk = (e: MouseEvent) => {

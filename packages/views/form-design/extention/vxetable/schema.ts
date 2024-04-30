@@ -9,7 +9,7 @@ export default {
     actions: [
       {
         label: '详情',
-        onClick__func: `console.log(context.record);`,
+        onClick__func: `console.log(record);`,
       },
       {
         label: '编辑',
@@ -20,7 +20,7 @@ export default {
         color: 'error',
         popConfirm: {
           title: '是否确认删除',
-          confirm__func: `context.tableRef.value?.remove(context.record);`,
+          confirm__func: `tableRef.value?.remove(record);`,
         },
       },
     ],
