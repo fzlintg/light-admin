@@ -8,7 +8,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue';
+  import { computed, reactive, ref } from 'vue';
   import { ActionItem, TableAction } from '@c/Table';
 
   import { useMessage } from '@h/web/useMessage';
@@ -19,75 +19,53 @@
   import { cloneDeep } from 'lodash-es';
 
   const attrs = useAttrs();
-
   const { createMessage } = useMessage();
-
   const tableRef = ref<VxeGridInstance>();
-
-  const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
-  const createActions = (record) => {
-    return new Function('{ record, tableRef }', `return ${actionsTpl}`)({ record, tableRef });
-  };
-  const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-  const gridProps = new Function('{ }', `return ${gridTpl}`)({});
-  const gridOptions = reactive<BasicTableProps>({
-    id: 'VxeTable',
-    keepSource: true,
-    editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
-    columns: vxeTableColumns,
-    toolbarConfig: {
-      // buttons: [
-      //   {
-      //     content: '在第一行新增',
-      //     buttonRender: {
-      //       name: 'AButton',
-      //       props: {
-      //         type: 'primary',
-      //         preIcon: 'mdi:page-next-outline',
-      //       },
-      //       events: {
-      //         click: () => {
-      //           tableRef.value?.insert({ name: '新增的' });
-      //           createMessage.success('新增成功');
-      //         },
-      //       },
-      //     },
-      //   },
-      //   {
-      //     content: '在最后一行新增',
-      //     buttonRender: {
-      //       name: 'AButton',
-      //       props: {
-      //         type: 'warning',
-      //       },
-      //       events: {
-      //         click: () => {
-      //           tableRef.value?.insertAt({ name: '新增的' }, -1);
-      //         },
-      //       },
-      //     },
-      //   },
-      // ],
-    },
-    formConfig: {
-      enabled: true,
-      items: vxeTableFormSchema,
-    },
-    height: 'auto',
-    proxyConfig: {
-      ajax: {
-        query: async ({ page, form }) => {
-          return demoListApi({
-            page: page.currentPage,
-            pageSize: page.pageSize,
-            ...form,
-          });
-        },
-        queryAll: async ({ form }) => {
-          return await demoListApi(form);
+  const gridProps = ref({});
+  const createActions = ref(() => {});
+  watchEffect(() => {
+    const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
+    gridProps.value = new Function('{tableRef,createMessage }', `return ${gridTpl}`)({
+      tableRef,
+      createMessage,
+    });
+  });
+  watchEffect(() => {
+    const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
+    createActions.value = (record) => {
+      return new Function('{ record, tableRef }', `return ${actionsTpl}`)({ record, tableRef });
+    };
+  });
+  const gridOptions = computed(() => {
+    return {
+      id: 'VxeTable',
+      keepSource: true,
+      editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
+      columns: vxeTableColumns,
+      toolbarConfig: {},
+      formConfig: {
+        enabled: true,
+        items: vxeTableFormSchema,
+      },
+      height: 'auto',
+      proxyConfig: {
+        ajax: {
+          query: async ({ page, form }) => {
+            return demoListApi({
+              page: page.currentPage,
+              pageSize: page.pageSize,
+              ...form,
+            });
+          },
+          queryAll: async ({ form }) => {
+            return await demoListApi(form);
+          },
         },
       },
-    },
-    ...gridProps,
+      ...unref(gridProps),
+    };
   });
+  // const gridOptions = reactive<BasicTableProps>();
+  // const show = ref(true);
+  // const refresh;
 </script>
