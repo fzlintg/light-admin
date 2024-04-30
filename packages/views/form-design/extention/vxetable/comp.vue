@@ -24,44 +24,50 @@
 
   const tableRef = ref<VxeGridInstance>();
 
+  const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
+  const createActions = (record) => {
+    return new Function('{ record, tableRef }', `return ${actionsTpl}`)({ record, tableRef });
+  };
+  const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
+  const gridProps = new Function('{ }', `return ${gridTpl}`)({});
   const gridOptions = reactive<BasicTableProps>({
     id: 'VxeTable',
     keepSource: true,
     editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
     columns: vxeTableColumns,
     toolbarConfig: {
-      buttons: [
-        {
-          content: '在第一行新增',
-          buttonRender: {
-            name: 'AButton',
-            props: {
-              type: 'primary',
-              preIcon: 'mdi:page-next-outline',
-            },
-            events: {
-              click: () => {
-                tableRef.value?.insert({ name: '新增的' });
-                createMessage.success('新增成功');
-              },
-            },
-          },
-        },
-        {
-          content: '在最后一行新增',
-          buttonRender: {
-            name: 'AButton',
-            props: {
-              type: 'warning',
-            },
-            events: {
-              click: () => {
-                tableRef.value?.insertAt({ name: '新增的' }, -1);
-              },
-            },
-          },
-        },
-      ],
+      // buttons: [
+      //   {
+      //     content: '在第一行新增',
+      //     buttonRender: {
+      //       name: 'AButton',
+      //       props: {
+      //         type: 'primary',
+      //         preIcon: 'mdi:page-next-outline',
+      //       },
+      //       events: {
+      //         click: () => {
+      //           tableRef.value?.insert({ name: '新增的' });
+      //           createMessage.success('新增成功');
+      //         },
+      //       },
+      //     },
+      //   },
+      //   {
+      //     content: '在最后一行新增',
+      //     buttonRender: {
+      //       name: 'AButton',
+      //       props: {
+      //         type: 'warning',
+      //       },
+      //       events: {
+      //         click: () => {
+      //           tableRef.value?.insertAt({ name: '新增的' }, -1);
+      //         },
+      //       },
+      //     },
+      //   },
+      // ],
     },
     formConfig: {
       enabled: true,
@@ -82,9 +88,6 @@
         },
       },
     },
+    ...gridProps,
   });
-  const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
-  const createActions = (record) => {
-    return new Function('{ record, tableRef }', `return ${actionsTpl}`)({ record, tableRef });
-  };
 </script>

@@ -24,6 +24,42 @@ export default {
         },
       },
     ],
+    gridOptions: {
+      toolbarConfig: {
+        buttons: [
+          {
+            content: '在第一行新增',
+            buttonRender: {
+              name: 'AButton',
+              props: {
+                type: 'primary',
+                preIcon: 'mdi:page-next-outline',
+              },
+              events: {
+                click__func: `
+                  tableRef.value?.insert({ name: '新增的' });
+                  createMessage.success('新增成功');
+                `,
+              },
+            },
+          },
+          {
+            content: '在最后一行新增',
+            buttonRender: {
+              name: 'AButton',
+              props: {
+                type: 'warning',
+              },
+              events: {
+                click__func: `
+                  tableRef.value?.insertAt({ name: '新增的' }, -1);
+                  `,
+              },
+            },
+          },
+        ],
+      },
+    },
   },
   children: [],
   options: {
