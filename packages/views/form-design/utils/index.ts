@@ -180,7 +180,7 @@ export const formModelToData = (formModel) => {
 };
 export const ArrayToData = (json: Array<any>) => {
   return json.map((item) => {
-    return formModelToData(item);
+    return isObject(item) ? formModelToData(item) : item;
   });
 };
 
