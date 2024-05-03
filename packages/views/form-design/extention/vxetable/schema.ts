@@ -1,5 +1,5 @@
 export default {
-  label: 'vxetable',
+  label: 'vxe表格',
   field: '',
   type: 'showItem',
   formItem: false,
@@ -25,6 +25,7 @@ export default {
       },
     ],
     gridOptions: {
+      editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
       proxyConfig: {
         ajax: {
           query__func: `return demoListApi({
@@ -33,8 +34,7 @@ export default {
               ...form})
             `,
           query__params: ['page', 'form'],
-          queryAll__func: `return await demoListApi(form);
-          `,
+          queryAll__func: `return await demoListApi(form);`,
           queryAll__params: ['form'],
         },
       },
@@ -49,10 +49,8 @@ export default {
                 preIcon: 'mdi:page-next-outline',
               },
               events: {
-                click__func: `
-                  tableRef.value?.insert({ name: '新增的' });
-                  createMessage.success('新增成功');
-                `,
+                click__func: `tableRef.value?.insert({ name: '新增的' });
+createMessage.success('新增成功');`,
               },
             },
           },
@@ -64,9 +62,7 @@ export default {
                 type: 'warning',
               },
               events: {
-                click__func: `
-                  tableRef.value?.insertAt({ name: '新增的' }, -1);
-                  `,
+                click__func: `tableRef.value?.insertAt({ name: '新增的' }, -1);`,
               },
             },
           },

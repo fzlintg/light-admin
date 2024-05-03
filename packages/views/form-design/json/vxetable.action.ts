@@ -14,8 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `       let formData=this.getFormData()        
-                this.getModal("modal").show(formData)        `,
+        onClick__func: `           let formData=this.getFormData()            
+                    this.getModal("modal").show(formData)            `,
         style: '',
         shape: '',
         color: '',
@@ -33,17 +33,18 @@ export default {
       formItem: false,
       type: 'container',
       componentProps: {
-        title: '表格工具栏编辑',
+        title: '操作栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `        let modal=this.getModal('modal');        
-        let formData=modal.getFormData();        
-        let props=this.getFormData();        
-        Object.assign(props,formData);       
-        return true;        `,
-        onCancelButtonClick__func: `                `,
-        onDialogOpened__func: `                `,
-        onDialogBeforeClose__func: `                `,
+        onOkButtonClick__func: `            let modal=this.getModal('modal');            
+            debugger;    
+            let formData=modal.getFormData();            
+            let props=this.getFormData();            
+            Object.assign(props,formData);           
+            return true;            `,
+        onCancelButtonClick__func: `                        `,
+        onDialogOpened__func: `                        `,
+        onDialogBeforeClose__func: `                        `,
         style: '',
       },
       children: [
@@ -59,10 +60,10 @@ export default {
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
             style: '',
-            onRowDelete__func: `                `,
-            onRowInsert__func: `                `,
-            onRowAdd__func: `                `,
-            onRowChange__func: `                `,
+            onRowDelete__func: `                        `,
+            onRowInsert__func: `                        `,
+            onRowAdd__func: `                        `,
+            onRowChange__func: `                        `,
           },
           children: [
             {
@@ -248,8 +249,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `    let formData=this.getFormData()        
-                this.getModal("modal_2").show(formData)    `,
+        onClick__func: `        let formData=this.getFormData()            
+                    this.getModal("modal_2").show(formData)        `,
       },
       width: '200px',
       itemProps: {
@@ -266,14 +267,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `        let modal=this.getModal('modal_2');        
-           let formData=modal.getFormData();        
-           let props=this.getFormData();        
-           Object.assign(props,formData);       
-           return true;        `,
-        onCancelButtonClick__func: `        `,
-        onDialogOpened__func: `        `,
-        onDialogBeforeClose__func: `        `,
+        onOkButtonClick__func: `            let modal=this.getModal('modal_2');            
+               let formData=modal.getFormData();            
+               let props=this.getFormData();            
+               Object.assign(props,formData);           
+               return true;            `,
+        onCancelButtonClick__func: `                `,
+        onDialogOpened__func: `                `,
+        onDialogBeforeClose__func: `                `,
       },
       children: [
         {
@@ -393,7 +394,7 @@ export default {
                 bordered: true,
                 autoFormat: true,
                 readonly: false,
-                prefix: 'function({tableRef}){',
+                prefix: 'function({tableRef,createMessage}){',
                 suffix: '}',
               },
               defaultValue: '',
@@ -450,8 +451,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `   let formData=this.getFormData()        
-                this.getModal("modal_3").show(formData)   `,
+        onClick__func: `  let formData=this.getFormData()            
+                    this.getModal("modal_3").show(formData)  `,
       },
       width: '200px',
       itemProps: {
@@ -468,14 +469,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let modal=this.getModal('modal_3');        
-        let formData=modal.getFormData();        
-        let props=this.getFormData();        
-        Object.assign(props,formData);       
-        return true;        `,
-        onCancelButtonClick__func: `      `,
-        onDialogOpened__func: `      `,
-        onDialogBeforeClose__func: `      `,
+        onOkButtonClick__func: `  let modal=this.getModal('modal_3');            
+            let formData=modal.getFormData();            
+            let props=this.getFormData();            
+            Object.assign(props,formData);           
+            return true;  `,
+        onCancelButtonClick__func: `              `,
+        onDialogOpened__func: `              `,
+        onDialogBeforeClose__func: `              `,
       },
       children: [
         {
@@ -537,6 +538,159 @@ export default {
         span: 24,
       },
       field: 'modal_3',
+      itemProps: {
+        labelCol: {},
+        wrapperCol: {},
+      },
+    },
+    {
+      component: 'Button',
+      formItem: false,
+      type: 'showItem',
+      label: 'vxe基础配置',
+      field: 'button_1',
+      colProps: {
+        span: 24,
+      },
+      hiddenLabel: true,
+      componentProps: {
+        value: 'primary',
+        type: 'primary',
+        size: 'default',
+        onClick__func: `  let formData=this.getFormData()            
+                    this.getModal("modal_4").show(formData)  `,
+      },
+      width: '200px',
+      itemProps: {
+        labelCol: {},
+        wrapperCol: {},
+      },
+    },
+    {
+      component: 'Modal',
+      label: '对话框',
+      formItem: false,
+      type: 'container',
+      componentProps: {
+        title: '对话框',
+        width: 1000,
+        slots: {},
+        onOkButtonClick__func: `  let modal=this.getModal('modal_4');            
+            let formData=modal.getFormData();            
+            let props=this.getFormData();            
+            Object.assign(props,formData);           
+            return true;  `,
+        onCancelButtonClick__func: `      `,
+        onDialogOpened__func: `      `,
+        onDialogBeforeClose__func: `      `,
+      },
+      children: [
+        {
+          component: 'Divider',
+          label: '可编辑项配置',
+          icon: 'radix-icons:divider-horizontal',
+          colProps: {
+            span: 24,
+          },
+          field: 'divider_3',
+          componentProps: {
+            orientation: 'center',
+            dashed: true,
+          },
+          width: '200px',
+          key: 'divider_3',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+        {
+          component: 'RadioButtonGroup',
+          label: '触发方式',
+          icon: 'carbon:radio-button-checked',
+          field: 'gridOptions.editConfig.trigger',
+          colProps: {
+            span: 12,
+          },
+          componentProps: {
+            options: [
+              {
+                label: '点击',
+                value: 'click',
+              },
+              {
+                label: '双击',
+                value: 'dblclick',
+              },
+              {
+                label: '手动',
+                value: 'manual',
+              },
+            ],
+          },
+          defaultValue: '',
+          _type: 'custom',
+          width: '200px',
+          key: 'radiobuttongroup_5',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+        {
+          component: 'RadioButtonGroup',
+          label: '编辑模式',
+          icon: 'carbon:radio-button-checked',
+          field: 'gridOptions.editConfig.mode',
+          colProps: {
+            span: 12,
+          },
+          componentProps: {
+            options: [
+              {
+                label: '单元格',
+                value: 'cell',
+              },
+              {
+                label: '行',
+                value: 'row',
+              },
+            ],
+          },
+          defaultValue: '',
+          _type: 'custom',
+          width: '200px',
+          key: 'radiobuttongroup_6',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+        {
+          component: 'Checkbox',
+          label: '显示修改状态',
+          icon: 'ant-design:check-circle-outlined',
+          colProps: {
+            span: 12,
+          },
+          field: 'gridOptions.editConfig.showStatus',
+          componentProps: {
+            defaultValue: false,
+          },
+          width: '200px',
+          key: 'checkbox_7',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+      ],
+      _type: 'custom',
+      width: '200px',
+      colProps: {
+        span: 24,
+      },
+      field: 'modal_4',
       itemProps: {
         labelCol: {},
         wrapperCol: {},

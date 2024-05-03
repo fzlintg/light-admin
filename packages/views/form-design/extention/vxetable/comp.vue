@@ -15,12 +15,7 @@
   import { vxeTableColumns, vxeTableFormSchema } from './tableData';
   import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';
-  import {
-    AsyncFunction,
-    formatItem,
-    formatItemByContext,
-    TransObjectToCode,
-  } from '../../utils/index';
+  import { TransObjectToCode } from '../../utils/index';
   import { cloneDeep } from 'lodash-es';
 
   const attrs = useAttrs();
@@ -49,7 +44,6 @@
     return {
       id: 'VxeTable',
       keepSource: true,
-      editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
       columns: vxeTableColumns,
       toolbarConfig: {},
       formConfig: {
@@ -57,24 +51,7 @@
         items: vxeTableFormSchema,
       },
       height: 'auto',
-      // proxyConfig: {
-      //   ajax: {
-      //     query: async ({ page, form }) => {
-      //       return demoListApi({
-      //         page: page.currentPage,
-      //         pageSize: page.pageSize,
-      //         ...form,
-      //       });
-      //     },
-      //     queryAll: async ({ form }) => {
-      //       return await demoListApi(form);
-      //     },
-      //   },
-      // },
       ...unref(gridProps),
     };
   });
-  // const gridOptions = reactive<BasicTableProps>();
-  // const show = ref(true);
-  // const refresh;
 </script>

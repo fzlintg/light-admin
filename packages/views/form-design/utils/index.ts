@@ -187,7 +187,8 @@ export const ArrayToData = (json: Array<any>) => {
 export const flattenArray = (json: Array<any>) => {
   const result: Array<any> = [];
   json.forEach((item) => {
-    result.push(flattenObject(item));
+    if (isObject(item)) result.push(flattenObject(item));
+    else result.push(item); //lintg
   });
   return result;
 };
