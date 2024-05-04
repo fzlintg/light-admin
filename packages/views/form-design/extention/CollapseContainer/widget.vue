@@ -34,7 +34,7 @@
 <script lang="ts" setup>
   import { useFormDesignState } from '../../hooks/useFormDesignState';
 
-  import { CollapseContainer } from '@c/container';
+  import { CollapseContainer } from '@c/Container';
   import draggable from 'vuedraggable';
   import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
   // import {Coll} from '@c/container/index.ts';
