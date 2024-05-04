@@ -228,7 +228,7 @@
     showItemRow.splice(newIndex, 0, showItemRow.splice(oldIndex, 1)[0]);
     return true;
   };
-  if (stateModel.value.length == 0) {
+  if (stateModel.value?.length == 0) {
     rowIds.splice(0, rowIds.length);
     addRowId();
   } //保持至少一行

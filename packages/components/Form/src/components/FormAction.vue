@@ -77,6 +77,7 @@
 
   const { t } = useI18n();
   const { resetAction, submitAction } = useFormContext();
+
   const actionColOpt = computed(() => {
     const { showAdvancedButton, actionSpan: span, actionColOptions } = props;
     const actionSpan = 24 - span;

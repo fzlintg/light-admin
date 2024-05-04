@@ -1,7 +1,5 @@
 <template>
-  <Tree v-bind="getAttrs" v-model:selectedKeys="state" 
-  v-model:checkedKeys="state"
-  :treeData="treeData">
+  <Tree v-bind="getAttrs" v-model:selectedKeys="state">
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
@@ -9,11 +7,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { type Recordable, type AnyFunction } from '@vben/types';
+  import { type Recordable } from '@vben/types';
   import { type PropType, computed, watch, ref, onMounted, unref, useAttrs } from 'vue';
   import { Tree, TreeProps } from 'ant-design-vue';
-  import { isArray, isFunction } from '@utils/is';
-  import { get,omit } from 'lodash-es';
+  import { isFunction } from '@utils/is';
+  import { get } from 'lodash-es';
   import { DataNode } from 'ant-design-vue/es/tree';
   import { useRuleFormItem } from '@h/component/useFormItem';
 
@@ -24,11 +22,17 @@
     params: { type: Object },
     immediate: { type: Boolean, default: true },
     resultField: { type: String, default: '' },
-    afterFetch: { type: Function as PropType<AnyFunction> },
+    beforeFetch: {
+      type: Function as PropType<Fn>,
+      default: null,
+    },
+    afterFetch: {
+      type: Function as PropType<Fn>,
+      default: null,
+    },
     value: {
       type: Array as PropType<TreeProps['selectedKeys']>,
     },
-  
   });
 
   const emit = defineEmits(['options-change', 'change', 'update:value']);
@@ -42,11 +46,10 @@
 
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
   const getAttrs = computed(() => {
-    let result={
-      ...attrs, 
-      //...(props.api ? { treeData: unref(treeData) } : {}),  //lintg
+    return {
+      ...(props.api ? { treeData: unref(treeData) } : {}),
+      ...attrs,
     };
-    return result;
   });
 
   watch(
@@ -76,27 +79,29 @@
   });
 
   async function fetch() {
-    const { api, afterFetch } = props;
+    let { api, beforeFetch, afterFetch, params, resultField } = props;
     if (!api || !isFunction(api)) return;
     loading.value = true;
     treeData.value = [];
-    let result;
+    let res;
     try {
-      result = await api(props.params);
+      if (beforeFetch && isFunction(beforeFetch)) {
+        params = (await beforeFetch(params)) || params;
+      }
+      res = await api(params);
+      if (afterFetch && isFunction(afterFetch)) {
+        res = (await afterFetch(res)) || res;
+      }
     } catch (e) {
       console.error(e);
     }
-    if (afterFetch && isFunction(afterFetch)) {
-      result = afterFetch(result);
-    }
     loading.value = false;
-    if (!result) return;
-    if (!isArray(result)) {
-      result = get(result, props.resultField);
+    if (!res) return;
+    if (resultField) {
+      res = get(res, resultField) || [];
     }
-    treeData.value = (result as (Recordable & { key: string | number })[]) || [];
+    treeData.value = (res as (Recordable & { key: string | number })[]) || [];
     isFirstLoaded.value = true;
-
     emit('options-change', treeData.value);
   }
 </script>

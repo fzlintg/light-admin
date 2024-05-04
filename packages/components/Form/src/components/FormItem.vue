@@ -1,7 +1,7 @@
 <script lang="tsx">
   import { type Recordable, type Nullable } from '@vben/types';
   import type { PropType, Ref } from 'vue';
-  import { h, computed, defineComponent, resolveComponent, toRefs, unref } from 'vue';
+  import { computed, defineComponent, toRefs, unref } from 'vue';
   import {
     isComponentFormSchema,
     type FormActionType,
@@ -70,6 +70,12 @@
         schema: Ref<FormSchema>;
         formProps: Ref<FormProps>;
       };
+
+      // 组件 CropperAvatar 的 size 属性类型为 number
+      // 此处补充一个兼容
+      if (schema.value.component === 'CropperAvatar' && typeof formProps.value.size === 'string') {
+        formProps.value.size = undefined;
+      }
 
       const itemLabelWidthProp = useItemLabelWidth(schema, formProps);
 
@@ -365,7 +371,7 @@
       }
 
       function renderItem() {
-        const { itemProps, slot, render, field, suffix, component, componentProps } = props.schema;
+        const { itemProps, slot, render, field, suffix, component } = props.schema;
         const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
         const { colon } = props.formProps;
         const opts = { disabled: unref(getDisable), readonly: unref(getReadonly) };
@@ -386,9 +392,6 @@
               <BasicTitle {...unref(getComponentsProps)}>{renderLabelHelpMessage()}</BasicTitle>
             </Form.Item>
           );
-        } else if (props.schema?.formItem == false) {
-          //lintg,渲染非表单字段
-          return h(resolveComponent(component), { ...componentProps, class: 'm-3' });
         } else {
           const getContent = () => {
             return slot

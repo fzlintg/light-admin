@@ -15,30 +15,60 @@
   import FileList from './FileList.vue';
   import { BasicModal, useModalInner } from '@c/Modal';
   import { previewProps } from '../props';
-  import { PreviewFileItem } from '../types/typing';
+  import { FileBasicColumn, PreviewFileItem } from '../types/typing';
   import { downloadByUrl } from '@utils/file/download';
   import { createPreviewColumns, createPreviewActionColumn } from './data';
   import { useI18n } from '@h/web/useI18n';
-  import { isArray } from '@utils/is';
+  import { isArray, isFunction } from '@utils/is';
+  import { BasicColumn } from '@c/Table';
+
+  import { useMessage } from '@h/web/useMessage';
+
+  const { createMessage } = useMessage();
 
   const props = defineProps(previewProps);
 
   const emit = defineEmits(['list-change', 'register', 'delete']);
 
-  const columns = createPreviewColumns() as any[];
-  const actionColumn = createPreviewActionColumn({ handleRemove, handleDownload }) as any;
+  let columns: BasicColumn[] | FileBasicColumn[] = createPreviewColumns();
+  let actionColumn: any;
 
   const [register] = useModalInner();
   const { t } = useI18n();
 
-  const fileListRef = ref<PreviewFileItem[]>([]);
+  const fileListRef = ref<PreviewFileItem[] | Array<any>>([]);
+  watch(
+    () => props.previewColumns,
+    () => {
+      if (Array.isArray(props.previewColumns) && props.previewColumns.length) {
+        columns = props.previewColumns;
+        actionColumn = null;
+      } else if (isFunction(props.previewColumns)) {
+        columns = props.previewColumns({ handleRemove, handleAdd });
+      } else {
+        columns = createPreviewColumns();
+        actionColumn = createPreviewActionColumn({ handleRemove, handleDownload });
+      }
+    },
+    { immediate: true },
+  );
+
   watch(
     () => props.value,
     (value) => {
       if (!isArray(value)) value = [];
+      if (props.beforePreviewData) {
+        value = props.beforePreviewData(value) as any;
+        fileListRef.value = value;
+        return;
+      }
       fileListRef.value = value
         .filter((item) => !!item)
         .map((item) => {
+          if (typeof item != 'string') {
+            console.error('return value should be string');
+            return;
+          }
           return {
             url: item,
             type: item.split('.').pop() || '',
@@ -50,18 +80,29 @@
   );
 
   // 删除
-  function handleRemove(record: PreviewFileItem) {
-    const index = fileListRef.value.findIndex((item) => item.url === record.url);
+  function handleRemove(record: PreviewFileItem | Record<string, any>, urlKey = 'url') {
+    const index = fileListRef.value.findIndex((item) => item[urlKey] === record[urlKey]);
     if (index !== -1) {
       const removed = fileListRef.value.splice(index, 1);
-      emit('delete', removed[0].url);
+      emit('delete', removed[0][urlKey]);
       emit(
         'list-change',
-        fileListRef.value.map((item) => item.url),
+        fileListRef.value.map((item) => item[urlKey]),
       );
     }
   }
-
+  // 添加
+  function handleAdd(record: PreviewFileItem | Record<string, any>, urlKey = 'url') {
+    const { maxNumber } = props;
+    if (fileListRef.value.length + fileListRef.value.length > maxNumber) {
+      return createMessage.warning(t('component.upload.maxNumber', [maxNumber]));
+    }
+    fileListRef.value = [...fileListRef.value, record];
+    emit(
+      'list-change',
+      fileListRef.value.map((item) => item[urlKey]),
+    );
+  }
   // 下载
   function handleDownload(record: PreviewFileItem) {
     const { url = '' } = record;

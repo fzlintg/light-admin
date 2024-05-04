@@ -129,7 +129,7 @@
   );
 
   const getSchema = computed((): FormSchema[] => {
-    const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
+    const schemas: FormSchema[] = cloneDeep(unref(schemaRef) || (unref(getProps).schemas as any));
     for (const schema of schemas) {
       const {
         defaultValue,
@@ -137,10 +137,6 @@
         componentProps = {},
         isHandleDateDefaultValue = true,
       } = schema;
-
-      // if (componentProps.apiFunc) {
-      //   componentProps.api = new Function(componentProps.apiFunc);
-      // }
       // handle date type
       if (
         isHandleDateDefaultValue &&
@@ -173,11 +169,11 @@
       }
     }
     if (unref(getProps).showAdvancedButton) {
-      return cloneDeep(
-        schemas.filter((schema) => !isIncludeSimpleComponents(schema.component)) as FormSchema[],
-      );
+      return schemas.filter(
+        (schema) => !isIncludeSimpleComponents(schema.component),
+      ) as FormSchema[];
     } else {
-      return cloneDeep(schemas as FormSchema[]);
+      return schemas as FormSchema[];
     }
   });
 
@@ -282,7 +278,6 @@
   }
 
   function setFormModel(key: string, value: any, schema: FormSchema) {
-    //set(formModel,key,value)  //lintg
     formModel[key] = value;
     emit('field-value-change', key, value);
     // TODO 优化验证，这里如果是autoLink=false手动关联的情况下才会再次触发此函数
@@ -296,7 +291,7 @@
     if (!autoSubmitOnEnter) return;
     if (e.key === 'Enter' && e.target && e.target instanceof HTMLElement) {
       const target: HTMLElement = e.target as HTMLElement;
-      if (target && target.tagName && target.tagName.toUpperCase() == 'INPUT') {
+      if (target && target.tagName && target.tagName.toUpperCase() === 'INPUT') {
         handleSubmit();
       }
     }

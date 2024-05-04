@@ -79,12 +79,8 @@ componentMap.set('InputCountDown', CountdownInput);
 componentMap.set('Upload', BasicUpload);
 componentMap.set('Divider', Divider);
 componentMap.set('CropperAvatar', CropperAvatar);
+
 componentMap.set('BasicTitle', BasicTitle);
-//add by lintg
-// debugger;
-// for (const compName in customComponents) {
-//   componentMap.set(compName, customComponents[compName]);
-// }
 
 export function add<T extends string, R extends Component>(
   compName: ComponentType | T,
