@@ -3,7 +3,7 @@ node_modules
 dist
 .cache
 .turbo
-
+.bak
 apps/tests-server/static
 apps/tests-server/static/upload
 
