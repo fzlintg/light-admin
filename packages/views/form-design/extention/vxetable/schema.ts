@@ -6,6 +6,9 @@ export default {
   icon: 'ant-design:border-bottom-outlined',
   componentProps: {
     height: 600,
+    api: {
+      columns: '/table/getVxeColumn',
+    },
     actions: [
       {
         label: '详情',

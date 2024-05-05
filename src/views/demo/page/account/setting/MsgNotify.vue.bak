@@ -1,17 +1,17 @@
 <template>
-  <CollapseContainer title="安全设置" :canExpand="false">
+  <CollapseContainer title="新消息通知" :canExpan="false">
     <List>
-      <template v-for="item in secureSettingList" :key="item.key">
+      <template v-for="item in msgNotifyList" :key="item.key">
         <ListItem>
           <ListItemMeta>
             <template #title>
               {{ item.title }}
-              <div
-                class="float-right mt-10px mr-30px text-blue-500 text-font-normal cursor-pointer"
-                v-if="item.extra"
-              >
-                {{ item.extra }}
-              </div>
+              <Switch
+                class="float-right mt-10px mr-30px"
+                checked-children="开"
+                un-checked-children="关"
+                default-checked
+              />
             </template>
             <template #description>
               <div>{{ item.description }}</div>
@@ -23,9 +23,9 @@
   </CollapseContainer>
 </template>
 <script lang="ts" setup>
-  import { List } from 'ant-design-vue';
+  import { List, Switch } from 'ant-design-vue';
   import { CollapseContainer } from '@c/Container';
-  import { secureSettingList } from './data';
+  import { msgNotifyList } from './data';
 
   const ListItem = List.Item;
   const ListItemMeta = List.Item.Meta;

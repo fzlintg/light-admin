@@ -1,5 +1,5 @@
 <template>
-  <CollapseContainer title="基本设置" :canExpand="false">
+  <CollapseContainer title="基本设置" :canExpan="false">
     <Row :gutter="24">
       <Col :span="14">
         <BasicForm @register="register" />

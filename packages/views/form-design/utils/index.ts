@@ -7,7 +7,7 @@ import {
   isArray,
   isFunction,
   isNumber,
-  uniqueId,
+  // uniqueId,
   endsWith,
   isNil,
   isNull,
@@ -16,9 +16,10 @@ import {
   set,
   isString,
 } from 'lodash-es';
+import { uniqueId, setUniqueId } from './uniqueId';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
-
+import { defHttp } from '@utils/http/axios';
 /**
  * 组件install方法
  * @param comp 需要挂载install方法的组件
@@ -39,6 +40,11 @@ import {
 export function generateKey(formItem?: IVFormComponent, flag = true): string | boolean {
   if (formItem && formItem.component) {
     const key = flag ? uniqueId(`${toLine(formItem.component)}_`) : formItem.field;
+    if (!flag) {
+      const id = formItem.field?.split('_')?.[1];
+      if (id) setUniqueId(`${toLine(formItem.component)}_`, id);
+    }
+
     formItem.key = key;
     formItem.field = key;
 
@@ -309,10 +315,12 @@ function formatFunc(item) {
       const params = item[originName + '__params'] || [];
       //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
       const func =
-        item[name].trim().length > 0 ? new AsyncFunction(...params, item[name]) : () => true; //默认true
+        item[name].trim().length > 0
+          ? new AsyncFunction(...params, 'e', 'context', item[name])
+          : () => true; //默认true
       item[originName] = async function (...args) {
         //  debugger;
-        let result = await func.call(this, ...args);
+        let result = await func.call(this, ...args, { axios: defHttp });
         if (isNull(result)) result = true;
         if (args?.[0]?.callback) {
           const { callback } = args?.[0]; //要求第一个参数带callback

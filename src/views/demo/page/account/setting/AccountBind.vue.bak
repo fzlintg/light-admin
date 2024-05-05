@@ -26,6 +26,8 @@
   import { CollapseContainer } from '@c/Container';
   import Icon from '@c/Icon/Icon.vue';
   import { List } from 'ant-design-vue';
+  import { CollapseContainer } from '@c/Container';
+  import Icon from '@c/Icon/Icon.vue';
 
   import { accountBindList } from './data';
 

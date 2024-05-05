@@ -1,7 +1,7 @@
 import { MockMethod } from 'vite-plugin-mock';
 import { Random } from 'mockjs';
-import { resultPageSuccess } from '../_util';
-
+import { resultPageSuccess,resultSuccess } from '../_util';
+import { VxeFormItemProps, VxeGridPropTypes } from '@c/VxeTable';
 function getRandomPics(count = 10): string[] {
   const arr: string[] = [];
   for (let i = 0; i < count; i++) {
@@ -41,7 +41,73 @@ const demoList = (() => {
   }
   return result;
 })();
-
+ const vxeTableColumns: VxeGridPropTypes.Columns = [
+  {
+    title: '序号',
+    type: 'seq',
+    fixed: 'left',
+    width: '50',
+    align: 'center',
+  },
+  {
+    title: '固定列',
+    field: 'name',
+    width: 150,
+    showOverflow: 'tooltip',
+    fixed: 'left',
+  },
+  {
+    title: '自适应列',
+    field: 'address',
+  },
+  {
+    title: '自定义列(自定义导出)',
+    field: 'no',
+    width: 200,
+    showOverflow: 'tooltip',
+    align: 'center',
+    slots: {
+      // default: ({ row }) => {
+      //   const text = `自定义${row.no}`;
+      //   return [<div class="text-red-500">{text}</div>];
+      // },
+    },
+    // exportMethod: ({ row }) => {
+    //   return `自定义${row.no}导出`;
+    // },
+  },
+  {
+    title: '自定义编辑',
+    width: 150,
+    field: 'name1',
+    align: 'center',
+    editRender: {
+      name: 'AInput',
+      placeholder: '请点击输入',
+    },
+  },
+  {
+    title: '开始时间',
+    width: 150,
+    field: 'beginTime',
+    showOverflow: 'tooltip',
+    align: 'center',
+  },
+  {
+    title: '结束时间',
+    width: 150,
+    field: 'endTime',
+    showOverflow: 'tooltip',
+    align: 'center',
+  },
+  {
+    width: 160,
+    title: '操作',
+    align: 'center',
+    slots: { default: 'action' },
+    fixed: 'right',
+  },
+];
 export default [
   {
     url: '/basic-api/table/getDemoList',
@@ -52,4 +118,14 @@ export default [
       return resultPageSuccess(page, pageSize, demoList);
     },
   },
+  {
+    url: '/basic-api/table/getVxeColumn',
+    timeout: 100,
+    method: 'get',
+    response: () => {
+     // const { page = 1, pageSize = 20 } = query;
+      return resultSuccess(vxeTableColumns);
+    },
+  },
+
 ] as MockMethod[];
