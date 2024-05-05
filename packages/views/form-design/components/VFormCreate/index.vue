@@ -144,6 +144,7 @@
       };
 
       provide('formModel', formModelNew);
+      provide('formMethods', () => fApi.value as IVFormMethods);
       const setFormModel = (key, value) => {
         formModelNew.value[key] = value;
       };

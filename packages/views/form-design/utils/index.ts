@@ -321,13 +321,14 @@ function formatFunc(item) {
       item[originName] = async function (...args) {
         //  debugger;
         let result = await func.call(this, ...args, { axios: defHttp });
-        if (isNull(result)) result = true;
         if (args?.[0]?.callback) {
+          //回调模式
+          if (isNull(result)) result = true;
           const { callback } = args?.[0]; //要求第一个参数带callback
           if (callback && isFunction(callback)) {
             callback(result);
           }
-        }
+        } else return result; //直接返回
       };
       // }
     }

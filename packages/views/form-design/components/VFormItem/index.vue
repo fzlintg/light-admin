@@ -173,6 +173,7 @@
       const getFormItem = (name) => {
         return formItemRefList[name];
       };
+      const getFormMethods = inject('formMethods', () => {});
       const getFormModel = () => unref(cur_formModel);
       const getFormData = () => unref(cur_formModel);
       const getValue = () => {
@@ -183,6 +184,7 @@
         cur_setFormModel(props.schema.field!, value);
         // set(cur_formData.value, props.schema.field, value);
       };
+
       const getModal = (name) => {
         return formItemRefList[name].formItemRef;
       };
@@ -354,6 +356,7 @@
         cur_setFormModel,
         cur_formModel,
         //   cur_formData,
+        getFormMethods,
         setValue,
       };
     },

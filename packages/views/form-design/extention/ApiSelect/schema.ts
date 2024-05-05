@@ -7,7 +7,7 @@ export default {
   field: '',
   componentProps: {
     api: optionsListApi,
-    api__func: `let result= context.axios.get({url:"/select/getDemoOptions"}).result;
+    api__func: `let result=await context.axios.get({url:"/select/getDemoOptions"});
     return result`,
     onChange__func: '',
     params: {
@@ -31,5 +31,5 @@ export default {
   colProps: {
     span: 8,
   },
-  defaultValue: '0',
+  defaultValue: null,
 };
