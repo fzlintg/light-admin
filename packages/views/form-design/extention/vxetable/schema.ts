@@ -29,6 +29,47 @@ export default {
     ],
     gridOptions: {
       editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
+      formConfig: {
+        items: [
+          {
+            field: 'field0',
+            title: 'field0',
+            itemRender: {
+              name: 'AInput',
+            },
+            span: 6,
+          },
+          {
+            field: 'field1',
+            title: 'field1',
+            itemRender: {
+              name: 'AApiSelect',
+              // props: {
+              //   api: optionsListApi,
+              //   resultField: 'list',
+              //   labelField: 'name',
+              //   valueField: 'id',
+              // },
+            },
+            span: 6,
+          },
+          {
+            span: 12,
+            align: 'right',
+            className: '!pr-0',
+            itemRender: {
+              name: 'AButtonGroup',
+              children: [
+                {
+                  props: { type: 'primary', content: '查询', htmlType: 'submit' },
+                  attrs: { class: 'mr-2' },
+                },
+                { props: { type: 'default', htmlType: 'reset', content: '重置' } },
+              ],
+            },
+          },
+        ],
+      },
       proxyConfig: {
         ajax: {
           query__func: `return demoListApi({

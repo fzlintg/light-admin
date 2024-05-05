@@ -49,10 +49,7 @@
       keepSource: true,
       columns,
       toolbarConfig: {},
-      formConfig: {
-        enabled: true,
-        items: vxeTableFormSchema,
-      },
+
       height: 'auto',
       ...unref(gridProps),
     };
