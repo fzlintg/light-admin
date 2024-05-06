@@ -110,6 +110,7 @@ export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
 
 //共用属性
 export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
+
   {
     field: 'size',
     label: '尺寸',
