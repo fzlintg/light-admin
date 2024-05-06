@@ -3,10 +3,10 @@ node_modules
 dist
 .cache
 .turbo
-.bak
+
 apps/tests-server/static
 apps/tests-server/static/upload
-.bak
+
 
 .local
 # local env files
@@ -33,3 +33,5 @@ package-lock.json
 pnpm-lock.yaml
 
 .history
+
+*.bak
