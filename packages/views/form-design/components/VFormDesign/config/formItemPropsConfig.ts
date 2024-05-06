@@ -251,7 +251,6 @@ export const advanceFormItemProps: IBaseFormAttrs[] = [
       type: 'Input',
       placeholder: '请输入条件',
     },
-  
   },
   {
     field: 'labelAlign',

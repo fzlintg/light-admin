@@ -19,7 +19,7 @@
         @change="handleChange"
         @click="handleClick(schema)"
         ref="formItemRef"
-        >{{ schema.component == 'Button' ? schema.label : '' }}
+        >{{ schema.component == 'Button' ? schema.label : ''schema.labelschema.labelschema.label }}
       </component>
     </div>
     <div v-else class="item-container">
@@ -193,6 +193,7 @@
       forOwn(props.schema.componentProps, (value: any, key) => {
         if (isFunction(value)) {
           props.schema.componentProps![key] = value.bind(proxy);
+          
         }
       });
       forOwn(props.schema.on, (value: any, key) => {
@@ -233,7 +234,7 @@
           formConfig.layout === 'horizontal' && formConfig.labelLayout === 'flex'
             ? { display: 'flex' }
             : {};
-
+        itemProps.hidden=eval(itemProps.hideCondition)??itemProps.hidden  //lintg
         /**
          * 将字符串正则格式化成正则表达式
          */
