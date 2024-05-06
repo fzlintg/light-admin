@@ -19,8 +19,7 @@
         @change="handleChange"
         @click="handleClick(schema)"
         ref="formItemRef"
-        >{{ schema.component == 'Button' ? schema.label : ''schema.labelschema.labelschema.labelschema.label }}
-      </component>
+        >{{ schema.component == 'Button' ? schema.label :''schema.label}}</component>
     </div>
     <div v-else class="item-container">
       <FormItem v-bind="{ ...formItemProps }" style="margin-right: 20px">

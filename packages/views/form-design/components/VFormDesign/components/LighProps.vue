@@ -52,6 +52,7 @@
       props.schema.forEach((item) => {
         if (item.defaultValue && !formState.value[item.field])
           formState.value[item.field] = item.defaultValue;
+        
       });
     },
   );
