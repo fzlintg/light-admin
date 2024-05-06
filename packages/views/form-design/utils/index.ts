@@ -315,7 +315,7 @@ function formatFunc(item) {
       const params = item[originName + '__params'] || [];
       //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
       const func =
-        item[name].trim().length > 0
+        item[name]?.trim()?.length > 0
           ? new AsyncFunction(...params, 'e', 'context', item[name])
           : () => true; //默认true
       item[originName] = async function (...args) {

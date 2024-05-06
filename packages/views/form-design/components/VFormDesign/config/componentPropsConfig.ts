@@ -1,4 +1,5 @@
 import { IBaseFormAttrs } from './formItemPropsConfig';
+import { MODE } from '@c/CodeEditor';
 
 interface IBaseComponentProps {
   [key: string]: IBaseFormAttrs[];
@@ -110,7 +111,20 @@ export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
 
 //共用属性
 export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
-
+  {
+    field: 'update__func',
+    label: '回调刷新',
+    component: 'CodeInput',
+    componentProps: {
+      mode: MODE.JS,
+      buttonText: '编辑',
+      editorTitle: '代码编辑',
+      bordered: true,
+      autoFormat: true,
+      prefix: 'function update(){',
+      suffix: '}',
+    },
+  },
   {
     field: 'size',
     label: '尺寸',

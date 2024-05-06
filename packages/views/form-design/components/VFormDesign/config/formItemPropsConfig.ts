@@ -238,15 +238,14 @@ export const baseFormItemProps: IBaseFormAttrs[] = [
     },
     exclude: ['Grid'],
   },
- 
 ];
 
 // 控件属性面板的配置项
 export const advanceFormItemProps: IBaseFormAttrs[] = [
   {
     field: 'hideCondition',
-    label: '隐藏条件',
-    component: "Input",
+    label: '隐藏表达式',
+    component: Input,
     componentProps: {
       type: 'Input',
       placeholder: '请输入条件',

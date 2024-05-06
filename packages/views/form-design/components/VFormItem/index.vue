@@ -19,7 +19,8 @@
         @change="handleChange"
         @click="handleClick(schema)"
         ref="formItemRef"
-        >{{ schema.component == 'Button' ? schema.label :''schema.label}}</component>
+        >{{ schema.component == 'Button' ? schema.label : '' }}</component
+      >
     </div>
     <div v-else class="item-container">
       <FormItem v-bind="{ ...formItemProps }" style="margin-right: 20px">
@@ -95,7 +96,16 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions, formModelToData } from '../../utils';
-  import { omit, isArray, forOwn, isFunction, get, set } from 'lodash-es';
+  import {
+    omit,
+    isArray,
+    forOwn,
+    isFunction,
+    get,
+    set,
+    template,
+    templateSettings,
+  } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -192,7 +202,6 @@
       forOwn(props.schema.componentProps, (value: any, key) => {
         if (isFunction(value)) {
           props.schema.componentProps![key] = value.bind(proxy);
-          
         }
       });
       forOwn(props.schema.on, (value: any, key) => {
@@ -205,6 +214,7 @@
         const { colProps = {} } = props.schema;
         return props.parentComp == 'SubForm' ? {} : colProps; //lintg
       });
+      templateSettings.interpolate = /${([\s\S]+?)}/g;
       const formItemProps = computed(() => {
         const { formConfig } = unref(props);
         let { field, required, rules, labelCol, wrapperCol } = unref(props.schema);
@@ -233,7 +243,11 @@
           formConfig.layout === 'horizontal' && formConfig.labelLayout === 'flex'
             ? { display: 'flex' }
             : {};
-        itemProps.hidden=eval(itemProps.hideCondition)??itemProps.hidden;  //lintg
+        // if (itemProps?.hideCondition) {
+        //   debugger;
+        //   let condition = template(itemProps.hideCondition)(unref(cur_formModel));
+        //   if (condition.indexOf('${') == -1) itemProps.hidden = eval('(' + condition + ')'); //lintg
+        // }
         /**
          * 将字符串正则格式化成正则表达式
          */
@@ -335,7 +349,7 @@
         //   debugger;
         // }
         // debugger;
-        //  if (!props.inSubForm) emit('change', value);
+        if (!props.inSubForm) emit('change', value);
       };
       return {
         ...toRefs(state),
