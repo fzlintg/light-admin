@@ -6,6 +6,7 @@ dist
 .bak
 apps/tests-server/static
 apps/tests-server/static/upload
+.bak
 
 .local
 # local env files
