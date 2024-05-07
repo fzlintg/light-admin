@@ -10,10 +10,9 @@
 <script lang="ts" setup>
   import { computed, onMounted, reactive, ref, unref } from 'vue';
   import { ActionItem, TableAction } from '@c/Table';
-  import { defHttp } from '@utils/http/axios';
+  import { defHttp as axios } from '@utils/http/axios';
   import { useMessage } from '@h/web/useMessage';
-  import { vxeTableColumns, vxeTableFormSchema } from './tableData';
-  import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
+  import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { demoListApi } from '@/api/demo/table';
   import { TransObjectToCode } from '../../utils/index';
   import { cloneDeep } from 'lodash-es';
@@ -54,7 +53,7 @@
     };
   });
   onMounted(async () => {
-    gridOptions.value.columns = await defHttp.get({ url: attrs.api.columns });
+    gridOptions.value.columns = await axios.get({ url: attrs.api.columns });
     ifshow.value = true;
   });
 

@@ -44,12 +44,13 @@ export default {
             title: 'field1',
             itemRender: {
               name: 'AApiSelect',
-              // props: {
-              //   api: optionsListApi,
-              //   resultField: 'list',
-              //   labelField: 'name',
-              //   valueField: 'id',
-              // },
+              props: {
+                api__func: ``,
+                //    api: optionsListApi,
+                resultField: 'list',
+                labelField: 'name',
+                valueField: 'id',
+              },
             },
             span: 6,
           },
