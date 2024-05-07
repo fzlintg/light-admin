@@ -22,26 +22,10 @@
   const { createMessage } = useMessage();
   const tableRef = ref<VxeGridInstance>(),
     gridProps = ref({}),
-    createActions = ref((row) => {});
-  watchEffect(
-    async () => {
-      const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-      gridProps.value = new Function('{tableRef,createMessage,demoListApi }', `return ${gridTpl}`)({
-        tableRef,
-        createMessage,
-        demoListApi,
-      });
-    },
-    {
-      flush: 'post',
-      onTrack(e) {
-        debugger;
-      },
-      onTrigger(e) {
-        debugger;
-      },
-    },
-  );
+    createActions = ref((row) => {}),
+    gridOptions = ref({}),
+    ifshow = ref(false);
+
   watchEffect(async () => {
     const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
     createActions.value = (record) => {
@@ -51,18 +35,26 @@
       });
     };
   });
-  let gridOptions = reactive({});
-  const ifshow = ref(false);
-  onMounted(async () => {
-    const columns = await defHttp.get({ url: attrs.api.columns });
-    gridOptions = {
+
+  watchEffect(async () => {
+    const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
+    gridProps.value = new Function('{tableRef,createMessage,demoListApi }', `return ${gridTpl}`)({
+      tableRef,
+      createMessage,
+      demoListApi,
+    });
+    gridOptions.value = {
       id: 'VxeTable',
       keepSource: true,
-      columns,
       toolbarConfig: {},
       height: 'auto',
-      ...unref(gridProps),
+      columns: gridOptions.value.columns,
+      //  ...gridOptions.value,
+      ...gridProps.value,
     };
+  });
+  onMounted(async () => {
+    gridOptions.value.columns = await defHttp.get({ url: attrs.api.columns });
     ifshow.value = true;
   });
 
