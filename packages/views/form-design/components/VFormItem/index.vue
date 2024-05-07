@@ -186,7 +186,7 @@
       };
 
       const getModal = (name) => {
-        return formItemRefList[name].formItemRef;
+        return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
 
@@ -329,12 +329,6 @@
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
         //props.formModel[props.schema.field] = value;
         cur_setFormModel(props.schema.field!, value, e);
-
-        // if (props.inSubForm) {
-        //   e.stopPropagation();
-        //   debugger;
-        // }
-        // debugger;
         if (!props.inSubForm) emit('change', value);
       };
       return {

@@ -23,14 +23,25 @@
   const tableRef = ref<VxeGridInstance>(),
     gridProps = ref({}),
     createActions = ref((row) => {});
-  watchEffect(async () => {
-    const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-    gridProps.value = new Function('{tableRef,createMessage,demoListApi }', `return ${gridTpl}`)({
-      tableRef,
-      createMessage,
-      demoListApi,
-    });
-  });
+  watchEffect(
+    async () => {
+      const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
+      gridProps.value = new Function('{tableRef,createMessage,demoListApi }', `return ${gridTpl}`)({
+        tableRef,
+        createMessage,
+        demoListApi,
+      });
+    },
+    {
+      flush: 'post',
+      onTrack(e) {
+        debugger;
+      },
+      onTrigger(e) {
+        debugger;
+      },
+    },
+  );
   watchEffect(async () => {
     const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
     createActions.value = (record) => {
@@ -49,7 +60,6 @@
       keepSource: true,
       columns,
       toolbarConfig: {},
-
       height: 'auto',
       ...unref(gridProps),
     };

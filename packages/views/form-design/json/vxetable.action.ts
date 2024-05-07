@@ -36,14 +36,12 @@ export default {
         title: '操作栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `                   let modal=this.getModal('modal');                   
-                   debugger;           
-                   let formData=modal.getFormData();                   
+        onOkButtonClick__func: `let formData=this.getModal().getFormData();                   
                    let props=this.getFormData();                   
                    Object.assign(props,formData);                  
                    return true;                   `,
         onCancelButtonClick__func: `                                      `,
-        onDialogOpened__func: `                                      `,
+        onDialogOpened__func: ``,
         onDialogBeforeClose__func: `                                      `,
         style: '',
       },
@@ -267,8 +265,7 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `                   let modal=this.getModal('modal_2');                   
-                      let formData=modal.getFormData();                   
+        onOkButtonClick__func: `let formData=this.getModal().getFormData();                   
                       let props=this.getFormData();                   
                       Object.assign(props,formData);                  
                       return true;                   `,
