@@ -116,6 +116,8 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
       if (['Grid'].includes(formItem.component)) {
         // 栅格布局，注意不要把GridSubForm加进来
         formItem.columns?.forEach((item) => traverse(item.children));
+      } else if (['CollapseContainer', 'Card'].includes(formItem.component)) {
+        traverse(formItem.children);
       } else {
         cb(formItem);
       }

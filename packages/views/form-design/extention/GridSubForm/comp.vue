@@ -91,7 +91,7 @@
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { cloneDeep, set, uniqueId, unset } from 'lodash-es';
   import draggable from 'vuedraggable';
-  import { getInitValue, formModelToData, flattenArray, flattenObject } from '../../utils';
+  import { getInitValue, formModelToData, formItemsForEach } from '../../utils';
   //import { item } from '../loader';
 
   const props = defineProps({
@@ -112,9 +112,13 @@
 
   const rowIds = reactive([]);
   const showItemRow = reactive([]);
+
   const initKeys = props.schema.children
     .filter((item) => !item.componentProps.hideSub)
     .map((item) => item.field);
+  // formItemsForEach(props.schema.children, (item) => {
+  //   if (!item.componentProps.hideSub) initKeys.push(item.field);
+  // });
 
   const initData = () => {
     if (Array.isArray(stateModel.value)) {
@@ -150,8 +154,9 @@
   const addShowItem = (idx) => {
     props.schema.children.forEach((item) => {
       if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
-        showItemRow[idx].push(item.field);
         //   set(stateData.value[idx], item.field, item.defaultValue || '');
+        if (['container', 'showItem'].includes(item.type)) return;
+        showItemRow[idx].push(item.field);
         stateModel.value[idx][item.field] =
           item.defaultValue || item.componentProps.defaultValue || '';
       }

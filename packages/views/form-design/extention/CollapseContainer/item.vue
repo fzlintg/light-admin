@@ -30,7 +30,7 @@
   const cur_formModel = attrs.inSubForm && !!attrs.formModel ? attrs.formModel : formModel;
 
   const cur_setFormModel = attrs.inSubForm ? attrs.setFormModel : setFormModel;
-  debugger;
+
   const handleChange = function (e) {
     if (['container', 'showItem'].includes(attrs.schema.type)) return;
     // if (['Tabs', 'Card', 'Modal', 'Drawer'].includes(props.schema.component)) return;
