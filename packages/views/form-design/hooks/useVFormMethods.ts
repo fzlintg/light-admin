@@ -163,21 +163,50 @@ export function useVFormMethods<E extends EmitsOptions = EmitsOptions>(
    * 监听表单字段联动时触发
    * @type {ILinkOn}
    */
-  const linkOn: ILinkOn = {};
-  const initLink = (schemas: IVFormComponent[]) => {
-    // 首次遍历，查找需要关联字段的表单
-    formItemsForEach(schemas, (formItem) => {
-      // 如果需要关联，则进行第二层遍历，查找表单中关联的字段，存到Set中
-      formItemsForEach(schemas, (item) => {
-        if (!linkOn[item.field!]) linkOn[item.field!] = new Set<IVFormComponent>();
-        if (formItem.link?.includes(item.field!) && isFunction(formItem.update)) {
-          linkOn[item.field!].add(formItem);
-        }
-      });
-      linkOn[formItem.field!].add(formItem);
+
+  // const initLink = (schemas: IVFormComponent[]) => {
+  //   // 首次遍历，查找需要关联字段的表单
+  //   formItemsForEach(schemas, (formItem) => {
+  //     // 如果需要关联，则进行第二层遍历，查找表单中关联的字段，存到Set中
+  //     formItemsForEach(schemas, (item) => {
+  //       if (!linkOn[item.field!]) linkOn[item.field!] = new Set<IVFormComponent>();
+  //       if (formItem?.componentProps?._link?.includes(item.field!) && isFunction(formItem.update)) {
+  //         linkOn[item.field!].add(formItem);
+  //       }
+  //     });
+  //     linkOn[formItem.field!].add(formItem);
+  //   });
+  // };
+
+  function generateLinkOn(schema) {
+    const linkOn = {};
+
+    // 遍历 schema
+    const schemaMap = {};
+    schema.forEach((item) => {
+      if (isFunction(item?.componentProps._update)) schemaMap[item.field] = item;
     });
-  };
-  initLink(props.formConfig.schemas);
+    schema.forEach((item) => {
+      const field = item.field;
+      const linkedItems = item.componentProps._link;
+
+      // 如果 field 字段存在且关联数组不为空
+      if (field && linkedItems && linkedItems.length > 0) {
+        if (!linkOn[field]) linkOn[field] = [];
+
+        // 将关联数组中的每个元素加入 linkOn 对象中对应的数组中
+        linkedItems.forEach((linkedItem) => {
+          if (schemaMap[linkedItem])
+            // 将完整的 item 对象加入 linkOn 对象中对应的数组中
+            linkOn[field].push(schemaMap[linkedItem]);
+        });
+      }
+    });
+
+    return linkOn;
+  }
+  const linkOn: ILinkOn = generateLinkOn(props.formConfig.schemas);
+  //initLink(props.formConfig.schemas);
 
   return {
     linkOn,

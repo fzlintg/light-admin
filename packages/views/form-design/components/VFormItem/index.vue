@@ -96,16 +96,7 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions, formModelToData } from '../../utils';
-  import {
-    omit,
-    isArray,
-    forOwn,
-    isFunction,
-    get,
-    set,
-    template,
-    templateSettings,
-  } from 'lodash-es';
+  import { omit, isArray, forOwn, isFunction, get, set } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -214,7 +205,6 @@
         const { colProps = {} } = props.schema;
         return props.parentComp == 'SubForm' ? {} : colProps; //lintg
       });
-      templateSettings.interpolate = /${([\s\S]+?)}/g;
       const formItemProps = computed(() => {
         const { formConfig } = unref(props);
         let { field, required, rules, labelCol, wrapperCol } = unref(props.schema);
@@ -243,11 +233,7 @@
           formConfig.layout === 'horizontal' && formConfig.labelLayout === 'flex'
             ? { display: 'flex' }
             : {};
-        // if (itemProps?.hideCondition) {
-        //   debugger;
-        //   let condition = template(itemProps.hideCondition)(unref(cur_formModel));
-        //   if (condition.indexOf('${') == -1) itemProps.hidden = eval('(' + condition + ')'); //lintg
-        // }
+        //  itemProps.hidden = eval(itemProps.hideCondition) ?? itemProps.hidden; //lintg
         /**
          * 将字符串正则格式化成正则表达式
          */

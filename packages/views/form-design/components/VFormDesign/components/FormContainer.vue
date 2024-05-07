@@ -41,6 +41,7 @@
       // 获取 formDesignMethods
       const handleSelectItem = () => {
         // 调用 formDesignMethods
+
         formDesignMethods.handleSetSelectItem(props.schema);
       };
       return {

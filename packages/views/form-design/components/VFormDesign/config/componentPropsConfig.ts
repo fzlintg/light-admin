@@ -112,7 +112,7 @@ export const baseComponentControlAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
 //共用属性
 export const baseComponentCommonAttrs: Omit<IBaseFormAttrs, 'tag'>[] = [
   {
-    field: 'update__func',
+    field: '_update__func',
     label: '回调刷新',
     component: 'CodeInput',
     componentProps: {

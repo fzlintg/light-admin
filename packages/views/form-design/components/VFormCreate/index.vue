@@ -129,7 +129,7 @@
         const { field } = unref(schema);
 
         linkOn[field!]?.forEach((formItem) => {
-          formItem.update?.(value, formItem, fApi.value as IVFormMethods);
+          formItem?.componentProps?._update?.(value, formItem, fApi.value as IVFormMethods);
         });
       };
       /**
