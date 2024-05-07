@@ -107,7 +107,7 @@
   const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
   const [stateModel] = useRuleFormItem(props, 'value', 'change');
 
-  // stateData.value = stateData.value || [];
+  stateModel.value = stateModel.value || [];
   // const stateModel = ref(flattenArray(stateData.value));
 
   const rowIds = reactive([]);

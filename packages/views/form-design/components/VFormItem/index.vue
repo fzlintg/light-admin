@@ -16,6 +16,7 @@
         :formModel="cur_formModel"
         :formData="cur_formModel"
         :setFormModel="cur_setFormModel"
+        :inSubForm="inSubForm"
         @change="handleChange"
         @click="handleClick(schema)"
         ref="formItemRef"
@@ -83,7 +84,6 @@
   import { type Recordable } from '@vben/types';
   import {
     inject,
-    ref,
     defineComponent,
     reactive,
     toRefs,
