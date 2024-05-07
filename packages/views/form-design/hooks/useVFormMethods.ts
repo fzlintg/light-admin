@@ -137,8 +137,8 @@ export function useVFormMethods<E extends EmitsOptions = EmitsOptions>(
    * 隐藏指定表单项
    * @param {string} field 需要隐藏的表单项的field
    */
-  const hidden: IHidden = (field) => {
-    set(field, 'hidden', true);
+  const hidden: IHidden = (field, flag = true) => {
+    set(field, 'hidden', flag);
   };
 
   /**

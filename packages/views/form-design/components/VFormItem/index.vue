@@ -358,6 +358,7 @@
         //   cur_formData,
         getFormMethods,
         setValue,
+        hidden: (flag) => getFormMethods()?.hidden(props.schema.field, flag),
       };
     },
   });
