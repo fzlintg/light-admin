@@ -13,7 +13,6 @@
   import { defHttp as axios } from '@utils/http/axios';
   import { useMessage } from '@h/web/useMessage';
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
-  // import { demoListApi } from '@/api/demo/table';
   import { TransObjectToCode } from '../../utils/index';
   import { cloneDeep } from 'lodash-es';
 
@@ -37,6 +36,7 @@
   });
 
   watchEffect(async () => {
+    gridOptions.value.columns = await axios.get({ url: attrs.api.columns });
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
     gridProps.value = new Function('{tableRef,createMessage,axios }', `return ${gridTpl}`)({
       tableRef,
@@ -51,11 +51,13 @@
       columns: gridOptions.value.columns,
       ...gridProps.value,
     };
-  });
-  onMounted(async () => {
-    gridOptions.value.columns = await axios.get({ url: attrs.api.columns });
     ifshow.value = true;
   });
+  // watchEffect(async () => {
+  //   gridOptions.value.columns = await axios.get({ url: attrs.api.columns });
+  //   ifshow.value = true;
+  // });
+  // onMounted(async () => {});
 
   //});
 </script>
