@@ -30,6 +30,7 @@
   import { LoadingOutlined } from '@ant-design/icons-vue';
   import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@utils/propTypes';
+  import { defHttp as axios } from '@utils/http/axios';
 
   type OptionsItem = { label?: string; value?: string; disabled?: boolean; [name: string]: any };
 
@@ -120,6 +121,7 @@
         params = (await beforeFetch(params)) || params;
       }
       let res = await api(params);
+      // let res = await api({ ...params, context: { axios } });
       if (afterFetch && isFunction(afterFetch)) {
         res = (await afterFetch(res)) || res;
       }

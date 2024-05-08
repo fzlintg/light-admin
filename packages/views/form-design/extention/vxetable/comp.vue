@@ -8,12 +8,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { computed, onMounted, reactive, ref, unref } from 'vue';
+  import { computed, onMounted, reactive, ref, unref, watchEffect } from 'vue';
   import { ActionItem, TableAction } from '@c/Table';
   import { defHttp as axios } from '@utils/http/axios';
   import { useMessage } from '@h/web/useMessage';
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
-  import { demoListApi } from '@/api/demo/table';
+  // import { demoListApi } from '@/api/demo/table';
   import { TransObjectToCode } from '../../utils/index';
   import { cloneDeep } from 'lodash-es';
 
@@ -28,19 +28,20 @@
   watchEffect(async () => {
     const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
     createActions.value = (record) => {
-      return new Function('{ record, tableRef }', `return ${actionsTpl}`)({
+      return new Function('{ record, tableRef,axios }', `return ${actionsTpl}`)({
         record,
         tableRef,
+        axios,
       });
     };
   });
 
   watchEffect(async () => {
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-    gridProps.value = new Function('{tableRef,createMessage,demoListApi }', `return ${gridTpl}`)({
+    gridProps.value = new Function('{tableRef,createMessage,axios }', `return ${gridTpl}`)({
       tableRef,
       createMessage,
-      demoListApi,
+      axios,
     });
     gridOptions.value = {
       id: 'VxeTable',
@@ -48,7 +49,6 @@
       toolbarConfig: {},
       height: 'auto',
       columns: gridOptions.value.columns,
-      //  ...gridOptions.value,
       ...gridProps.value,
     };
   });

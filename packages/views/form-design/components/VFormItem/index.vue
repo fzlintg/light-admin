@@ -28,7 +28,7 @@
       >
       <span class="item-icon">
         <Icon
-          v-if="iconShow"
+          v-if="inSubForm"
           icon="ant-design:eye-invisible-outlined"
           @click="$emit('subItemHide')"
       /></span>
@@ -83,7 +83,7 @@
       </FormItem>
       <span class="item-icon">
         <Icon
-          v-if="iconShow"
+          v-if="inSubForm"
           icon="ant-design:eye-invisible-outlined"
           @click="$emit('subItemHide')"
       /></span>
@@ -397,7 +397,7 @@
     cursor: pointer;
   }
 
-  .item-container .item-icon:hover {
+  .item-container:hover .item-icon {
     //visibility: visible;
     display: block; /* 鼠标悬停时显示 */
   }

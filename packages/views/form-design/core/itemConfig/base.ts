@@ -130,7 +130,7 @@ export const schema = [
         },
       ],
     },
-    defaultValue: '',
+    defaultValue: null,
   },
 
   // {

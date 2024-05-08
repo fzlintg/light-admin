@@ -1,3 +1,4 @@
+import { subscribe } from './../../../../hooks/src/useRequest/utils/cacheSubscribe';
 import { MODE } from '@c/CodeEditor';
 //import { optionsListApi } from '@/api/demo/select';
 
@@ -27,6 +28,8 @@ export default [
       editorTitle: '代码编辑',
       bordered: true,
       autoFormat: true,
+      prefix: 'function({context: {axios}){',
+      surfix: '}',
     },
   },
 ];

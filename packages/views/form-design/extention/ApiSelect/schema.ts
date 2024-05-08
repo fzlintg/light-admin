@@ -7,8 +7,8 @@ export default {
   field: '',
   componentProps: {
     api: optionsListApi,
-    api__func: `let result=await context.axios.get({url:"/select/getDemoOptions"});
-    return result`,
+    api__func: `return await axios.get({url:"/select/getDemoOptions"});
+    `,
     onChange__func: '',
     params: {
       id: 1,

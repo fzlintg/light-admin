@@ -17,7 +17,7 @@ export default {
     // use id as value
     valueField: 'id',
   },
-  defaultValue: '1',
+  defaultValue: null,
   colProps: {
     span: 8,
   },

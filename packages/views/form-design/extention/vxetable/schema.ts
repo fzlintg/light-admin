@@ -45,7 +45,8 @@ export default {
             itemRender: {
               name: 'AApiSelect',
               props: {
-                api__func: ``,
+                api__func: `return await axios.get({url:"/select/getDemoOptions"});
+               `,
                 //    api: optionsListApi,
                 resultField: 'list',
                 labelField: 'name',
@@ -73,13 +74,13 @@ export default {
       },
       proxyConfig: {
         ajax: {
-          query__func: `return demoListApi({
+          query__func: `return await axios.get({params:{
               page: page.currentPage,
               pageSize: page.pageSize,
-              ...form})
+              ...form},url:"/table/getDemoList"})
             `,
           query__params: ['page', 'form'],
-          queryAll__func: `return await demoListApi(form);`,
+          queryAll__func: `return await axios.get({url:"/table/getDemoList"})`,
           queryAll__params: ['form'],
         },
       },

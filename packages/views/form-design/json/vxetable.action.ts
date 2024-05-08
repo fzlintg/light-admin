@@ -14,8 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `          let formData=this.getFormData()                      
-                              this.getModal("modal").show(formData)                      `,
+        onClick__func: `              let formData=this.getFormData()                          
+                                  this.getModal("modal").show(formData)                          `,
         style: '',
         shape: '',
         color: '',
@@ -36,19 +36,19 @@ export default {
         title: '操作栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `   let formData=this.getModal().getFormData();                      
-                      let props=this.getFormData();                      
-                      Object.assign(props,formData);                     
-                      return true;                      `,
-        onCancelButtonClick__func: `                                            `,
-        onDialogOpened__func: `      `,
-        onDialogBeforeClose__func: `                                            `,
+        onOkButtonClick__func: `       let formData=this.getModal().getFormData();                          
+                          let props=this.getFormData();                          
+                          Object.assign(props,formData);                         
+                          return true;                          `,
+        onCancelButtonClick__func: `                                                    `,
+        onDialogOpened__func: `              `,
+        onDialogBeforeClose__func: `                                                    `,
         style: '',
       },
       children: [
         {
           component: 'GridSubForm',
-          label: '多行表单',
+          label: '数据源配置',
           field: 'actions',
           type: 'containerItem',
           formItem: true,
@@ -58,10 +58,11 @@ export default {
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
             style: '',
-            onRowDelete__func: `                                            `,
-            onRowInsert__func: `                                            `,
-            onRowAdd__func: `                                            `,
-            onRowChange__func: `                                            `,
+            onRowDelete__func: `                                                    `,
+            onRowInsert__func: `                                                    `,
+            onRowAdd__func: `                                                    `,
+            onRowChange__func: `                                                    `,
+            hideSub: true,
           },
           children: [
             {
@@ -70,7 +71,7 @@ export default {
               icon: 'bi:input-cursor-text',
               field: 'label',
               colProps: {
-                span: 24,
+                span: 8,
               },
               componentProps: {
                 type: 'text',
@@ -97,7 +98,7 @@ export default {
               icon: 'carbon:radio-button-checked',
               field: 'color',
               colProps: {
-                span: 24,
+                span: 8,
               },
               componentProps: {
                 options: [
@@ -140,7 +141,7 @@ export default {
               _type: 'custom',
               width: '200px',
               colProps: {
-                span: 24,
+                span: 8,
               },
               key: 'codeinput_3',
               field: 'onClick__func',
@@ -247,8 +248,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `                  let formData=this.getFormData()                      
-                              this.getModal("modal_2").show(formData)                  `,
+        onClick__func: `                      let formData=this.getFormData()                          
+                                  this.getModal("modal_2").show(formData)                      `,
       },
       width: '200px',
       itemProps: {
@@ -265,13 +266,13 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `   let formData=this.getModal().getFormData();                      
-                         let props=this.getFormData();                      
-                         Object.assign(props,formData);                     
-                         return true;                      `,
-        onCancelButtonClick__func: `                                    `,
-        onDialogOpened__func: `                                    `,
-        onDialogBeforeClose__func: `                                    `,
+        onOkButtonClick__func: `       let formData=this.getModal().getFormData();                          
+                             let props=this.getFormData();                          
+                             Object.assign(props,formData);                         
+                             return true;                          `,
+        onCancelButtonClick__func: `                                            `,
+        onDialogOpened__func: `                                            `,
+        onDialogBeforeClose__func: `                                            `,
       },
       children: [
         {
@@ -286,6 +287,7 @@ export default {
             onRowInsert__params: ['{idx,data,row}'],
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
+            hideSub: true,
           },
           children: [
             {
@@ -294,7 +296,7 @@ export default {
               icon: 'bi:input-cursor-text',
               field: 'content',
               colProps: {
-                span: 24,
+                span: 12,
               },
               componentProps: {
                 type: 'text',
@@ -313,7 +315,7 @@ export default {
               icon: 'gg:select',
               field: 'buttonRender.name',
               colProps: {
-                span: 24,
+                span: 12,
               },
               componentProps: {
                 options: [
@@ -323,7 +325,7 @@ export default {
                   },
                 ],
               },
-              defaultValue: '',
+              defaultValue: null,
               width: '200px',
               key: 'select_15',
               itemProps: {
@@ -337,7 +339,7 @@ export default {
               icon: 'carbon:radio-button-checked',
               field: 'buttonRender.props.type',
               colProps: {
-                span: 24,
+                span: 12,
               },
               componentProps: {
                 options: [
@@ -369,7 +371,7 @@ export default {
               label: '图标选择',
               icon: 'line-md:iconify2',
               colProps: {
-                span: 24,
+                span: 12,
               },
               field: 'buttonRender.props.preIcon',
               componentProps: {},
@@ -398,7 +400,7 @@ export default {
               _type: 'custom',
               width: '200px',
               colProps: {
-                span: 24,
+                span: 12,
               },
               key: 'codeinput_18',
               field: 'buttonRender.events.click__func',
@@ -448,8 +450,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `            let formData=this.getFormData()                      
-                              this.getModal("modal_3").show(formData)            `,
+        onClick__func: `                let formData=this.getFormData()                          
+                                  this.getModal("modal_3").show(formData)                `,
       },
       width: '200px',
       itemProps: {
@@ -466,14 +468,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `            let modal=this.getModal('modal_3');                      
-                      let formData=modal.getFormData();                      
-                      let props=this.getFormData();                      
-                      Object.assign(props,formData);                     
-                      return true;            `,
-        onCancelButtonClick__func: `                                  `,
-        onDialogOpened__func: `                                  `,
-        onDialogBeforeClose__func: `                                  `,
+        onOkButtonClick__func: `                let modal=this.getModal('modal_3');                          
+                          let formData=modal.getFormData();                          
+                          let props=this.getFormData();                          
+                          Object.assign(props,formData);                         
+                          return true;                `,
+        onCancelButtonClick__func: `                                          `,
+        onDialogOpened__func: `                                          `,
+        onDialogBeforeClose__func: `                                          `,
       },
       children: [
         {
@@ -482,7 +484,7 @@ export default {
           icon: 'bi:input-cursor-text',
           field: 'api.columns',
           colProps: {
-            span: 24,
+            span: 12,
           },
           componentProps: {
             type: 'text',
@@ -512,7 +514,7 @@ export default {
           _type: 'custom',
           width: '200px',
           colProps: {
-            span: 24,
+            span: 12,
           },
           field: 'gridOptions.proxyConfig.ajax.queryAll__func',
           itemProps: {
@@ -538,7 +540,7 @@ export default {
           _type: 'custom',
           width: '200px',
           colProps: {
-            span: 24,
+            span: 12,
           },
           field: 'gridOptions.proxyConfig.ajax.query__func',
           itemProps: {
@@ -573,8 +575,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `        let formData=this.getFormData()                      
-                              this.getModal("modal_5").show(formData)        `,
+        onClick__func: `            let formData=this.getFormData()                          
+                                  this.getModal("modal_5").show(formData)            `,
       },
       width: '200px',
       itemProps: {
@@ -591,14 +593,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `       let modal=this.getModal('modal_5');                      
-                      let formData=modal.getFormData();                      
-                      let props=this.getFormData();                      
-                      Object.assign(props,formData);                     
-                      return true;       `,
-        onCancelButtonClick__func: `                `,
-        onDialogOpened__func: `                `,
-        onDialogBeforeClose__func: `                `,
+        onOkButtonClick__func: `           let modal=this.getModal('modal_5');                          
+                          let formData=modal.getFormData();                          
+                          let props=this.getFormData();                          
+                          Object.assign(props,formData);                         
+                          return true;           `,
+        onCancelButtonClick__func: `                        `,
+        onDialogOpened__func: `                        `,
+        onDialogBeforeClose__func: `                        `,
       },
       children: [
         {
@@ -645,7 +647,7 @@ export default {
               },
               componentProps: {
                 type: 'text',
-                defaultValue: 1,
+                defaultValue: '',
                 max: 100,
                 step: 1,
               },
@@ -684,7 +686,7 @@ export default {
               icon: 'gg:select',
               field: 'itemRender.name',
               colProps: {
-                span: 24,
+                span: 12,
               },
               componentProps: {
                 options: [
@@ -701,10 +703,11 @@ export default {
                     value: 'AButtonGroup',
                   },
                 ],
-                defaultValue: 1,
+                defaultValue: 'AInput',
                 max: 100,
                 step: 1,
                 maxLength: 100,
+                mode: null,
               },
               defaultValue: '',
               width: '200px',
@@ -716,12 +719,13 @@ export default {
             },
             {
               component: 'CollapseContainer',
-              label: '收缩容器',
+              label: '下拉数据源',
               formItem: false,
               type: 'container',
               icon: 'ant-design:border-outlined',
               componentProps: {
-                title: '下拉框属性',
+                title: '数据源',
+                hideSub: true,
               },
               children: [
                 {
@@ -737,12 +741,13 @@ export default {
                     readonly: false,
                     prefix: 'function(){',
                     suffix: '}',
+                    maxLength: 100,
                   },
                   defaultValue: '',
                   _type: 'custom',
                   width: '200px',
                   colProps: {
-                    span: 24,
+                    span: 12,
                   },
                   key: 'codeinput_1',
                   field: 'itemRender.props.api__func',
@@ -823,7 +828,7 @@ export default {
             },
             {
               component: 'GridSubForm',
-              label: '多行表单',
+              label: '按钮组配置',
               field: 'itemRender.children',
               type: 'containerItem',
               formItem: true,
@@ -833,15 +838,45 @@ export default {
                 onRowInsert__params: ['{idx,data,row}'],
                 onRowAdd__params: ['{idx,data,row}'],
                 onRowChange__params: ['data'],
+                hideSub: true,
               },
               children: [
+                {
+                  component: 'RadioGroup',
+                  label: '类型',
+                  icon: 'carbon:radio-button-checked',
+                  field: 'props.htmlType',
+                  colProps: {
+                    span: 12,
+                  },
+                  componentProps: {
+                    options: [
+                      {
+                        label: '提交',
+                        value: 'submit',
+                      },
+                      {
+                        label: '重置',
+                        value: 'reset',
+                      },
+                    ],
+                    optionType: 'button',
+                    maxLength: 100,
+                  },
+                  width: '200px',
+                  key: 'radiogroup_2',
+                  itemProps: {
+                    labelCol: {},
+                    wrapperCol: {},
+                  },
+                },
                 {
                   component: 'RadioGroup',
                   label: '风格',
                   icon: 'carbon:radio-button-checked',
                   field: 'props.type',
                   colProps: {
-                    span: 24,
+                    span: 12,
                   },
                   componentProps: {
                     options: [
@@ -856,6 +891,7 @@ export default {
                     ],
                     optionType: 'button',
                     maxLength: 100,
+                    hideSub: true,
                   },
                   width: '200px',
                   key: 'radiogroup_1',
@@ -870,7 +906,7 @@ export default {
                   icon: 'bi:input-cursor-text',
                   field: 'props.content',
                   colProps: {
-                    span: 24,
+                    span: 12,
                   },
                   componentProps: {
                     type: 'text',
@@ -879,34 +915,6 @@ export default {
                   },
                   width: '200px',
                   key: 'input_2',
-                  itemProps: {
-                    labelCol: {},
-                    wrapperCol: {},
-                  },
-                },
-                {
-                  component: 'RadioGroup',
-                  label: '类型',
-                  icon: 'carbon:radio-button-checked',
-                  field: 'props.htmlType',
-                  colProps: {
-                    span: 24,
-                  },
-                  componentProps: {
-                    options: [
-                      {
-                        label: '提交',
-                        value: 'submit',
-                      },
-                      {
-                        label: '重置',
-                        value: 'reset',
-                      },
-                    ],
-                    optionType: 'button',
-                  },
-                  width: '200px',
-                  key: 'radiogroup_2',
                   itemProps: {
                     labelCol: {},
                     wrapperCol: {},
@@ -968,8 +976,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `            let formData=this.getFormData()                      
-                              this.getModal("modal_4").show(formData)            `,
+        onClick__func: `                let formData=this.getFormData()                          
+                                  this.getModal("modal_4").show(formData)                `,
       },
       width: '200px',
       itemProps: {
@@ -986,14 +994,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `       let modal=this.getModal('modal_4');                      
-                      let formData=modal.getFormData();                      
-                      let props=this.getFormData();                      
-                      Object.assign(props,formData);                     
-                      return true;       `,
-        onCancelButtonClick__func: `                          `,
-        onDialogOpened__func: `                          `,
-        onDialogBeforeClose__func: `                          `,
+        onOkButtonClick__func: `           let modal=this.getModal('modal_4');                          
+                          let formData=modal.getFormData();                          
+                          let props=this.getFormData();                          
+                          Object.assign(props,formData);                         
+                          return true;           `,
+        onCancelButtonClick__func: `                                  `,
+        onDialogOpened__func: `                                  `,
+        onDialogBeforeClose__func: `                                  `,
       },
       children: [
         {
