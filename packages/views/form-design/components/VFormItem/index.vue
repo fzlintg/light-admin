@@ -5,7 +5,11 @@
   <Col v-bind="colPropsComputed" style="width: 100% !important">
     <div
       v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
-      :class="{ 'm-2': true, ['jc-' + (schema.compAlign || 'center')]: true }"
+      :class="{
+        'm-2': true,
+        ['jc-' + (schema.compAlign || 'center')]: true,
+        'item-container': true,
+      }"
     >
       <component
         class="mr-2"
@@ -22,6 +26,12 @@
         ref="formItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}</component
       >
+      <span class="item-icon">
+        <Icon
+          v-if="iconShow"
+          icon="ant-design:eye-invisible-outlined"
+          @click="$emit('subItemHide')"
+      /></span>
     </div>
     <div v-else class="item-container">
       <FormItem v-bind="{ ...formItemProps }" style="margin-right: 20px">
@@ -73,7 +83,7 @@
       </FormItem>
       <span class="item-icon">
         <Icon
-          v-if="inSubForm"
+          v-if="iconShow"
           icon="ant-design:eye-invisible-outlined"
           @click="$emit('subItemHide')"
       /></span>
@@ -166,7 +176,7 @@
       //  const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       //  const cur_formData =cur_formModel
       const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel;
-
+      const iconShow = () => props.inSubForm;
       const formItemRefList: any = inject('formItemRefList', null); //lintg
       const { proxy } = getCurrentInstance();
       if (formItemRefList) formItemRefList[props.schema.field!] = proxy;
@@ -352,6 +362,7 @@
         //   cur_formData,
         getFormMethods,
         setValue,
+        iconShow,
         hidden: (flag) => getFormMethods()?.hidden(props.schema.field, flag),
       };
     },
@@ -378,6 +389,7 @@
   }
 
   .item-container .item-icon {
+    //visibility: hidden;
     display: none; /* 默认隐藏 */
     position: absolute;
     top: -5px; /* 调整图标位置 */
@@ -385,7 +397,8 @@
     cursor: pointer;
   }
 
-  .item-container:hover .item-icon {
+  .item-container .item-icon:hover {
+    //visibility: visible;
     display: block; /* 鼠标悬停时显示 */
   }
 </style>

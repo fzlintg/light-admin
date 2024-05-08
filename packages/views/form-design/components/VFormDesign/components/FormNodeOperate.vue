@@ -45,11 +45,11 @@
       const handleDelete = () => {
         const traverse = (schemas: IVFormComponent[]) => {
           schemas.some((formItem, index) => {
-            const { component, key } = formItem;
+            const { component, key, type } = formItem;
             // 处理栅格和标签页布局
-            ['Grid'].includes(component) &&
-              formItem.columns?.forEach((item) => traverse(item.children));
-            ['Tabs', 'GridSubForm', 'SubForm', 'Modal', 'Drawer'].includes(component) &&
+            if (component == 'Grid') formItem.columns?.forEach((item) => traverse(item.children));
+            else if (type == 'container')
+              //  ['Tabs', 'GridSubForm', 'SubForm', 'Modal', 'Drawer'].includes(component)
               traverse(formItem.children || []);
             if (key === props.currentItem.key) {
               let params: IVFormComponent =

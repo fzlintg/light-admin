@@ -155,8 +155,9 @@
     props.schema.children.forEach((item) => {
       if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
         //   set(stateData.value[idx], item.field, item.defaultValue || '');
-        if (['container', 'showItem'].includes(item.type)) return;
+        // if (['container', 'showItem'].includes(item.type)) return;
         showItemRow[idx].push(item.field);
+        if (['container', 'showItem'].includes(item.type)) return;
         stateModel.value[idx][item.field] =
           item.defaultValue || item.componentProps.defaultValue || '';
       }
@@ -197,7 +198,7 @@
     rowIds.push(uniqueId('gsf_'));
     //  stateData.value.push(cloneDeep(initValue));
     stateModel.value.push(cloneDeep(initModel));
-    debugger;
+
     showItemRow.push(cloneDeep(initKeys));
     const idx = stateModel.value.length - 1;
     //emit('rowAdd', { idx, data: stateData.value, row: stateData.value[idx] });

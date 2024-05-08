@@ -272,7 +272,8 @@
             traverse(item.children);
           });
         } else if (
-          ['Tab', 'SubForm', 'GridSubForm', 'Modal', 'Drawer'].includes(formItem.component)
+          formItem.type == 'container'
+          // ['Tab', 'SubForm', 'GridSubForm', 'Modal', 'Drawer',''].includes(formItem.component)
         ) {
           // 栅格布局
           traverse(formItem.children || []);
