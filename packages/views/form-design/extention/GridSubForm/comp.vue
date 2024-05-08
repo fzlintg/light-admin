@@ -152,20 +152,12 @@
     let targetIdx = showItemRow[idx].indexOf(field);
     if (targetIdx > -1) {
       showItemRow[idx].splice(targetIdx, 1);
-      // let newData = cloneDeep(state.value[idx]);
-      // unset(newData, field);
-      // debugger;
-      // state.value[idx] = newData;
-      //  unset(stateData.value[idx], field);
       delete stateModel.value[idx][field];
-      // delete state.value[idx][field];
     }
   };
   const addShowItem = (idx) => {
     props.schema.children.forEach((item) => {
       if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
-        //   set(stateData.value[idx], item.field, item.defaultValue || '');
-        // if (['container', 'showItem'].includes(item.type)) return;
         showItemRow[idx].push(item.field);
         if (['container', 'showItem'].includes(item.type)) return;
         stateModel.value[idx][item.field] =

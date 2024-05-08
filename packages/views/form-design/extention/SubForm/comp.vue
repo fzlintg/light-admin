@@ -75,60 +75,62 @@
     setFormModel: propTypes.function,
   });
   const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
-  const [state] = useRuleFormItem(props, 'value', 'change');
+  const [stateModel] = useRuleFormItem(props, 'value', 'change');
   const rowIds = reactive([]);
-  state.value = state.value || [];
-  if (Array.isArray(state.value)) {
+  stateModel.value = stateModel.value || [];
+  //const initKeys = props.schema.children.map((item) => item.field);
+  if (Array.isArray(stateModel.value)) {
     //自带初始值，配套提供rowIds
-    for (let i = 0; i < state.value.length; i++) {
+    for (let i = 0; i < stateModel.value.length; i++) {
       rowIds.push(uniqueId('gsf_'));
     }
   }
 
   const subFormDefaultValue = reactive({});
   getInitValue([props.schema], subFormDefaultValue);
-  const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
-  watch(
-    () => state.value,
-    (v) => {
-      emit('update:value', v);
-      emit('rowChange', v);
-    },
-    {
-      deep: true,
-      immediate: true,
-    },
-  );
+  const initModel = toRaw(subFormDefaultModel[props.schema.field][0]);
+  //  const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
+  // watch(
+  //   () => state.value,
+  //   (v) => {
+  //     emit('update:value', v);
+  //     emit('rowChange', v);
+  //   },
+  //   {
+  //     deep: true,
+  //     immediate: true,
+  //   },
+  // );
 
   const addRowId = () => {
     rowIds.push(uniqueId('gsf_'));
-    state.value.push(cloneDeep(initValue));
-    const idx = state.value.length - 1;
-    emit('rowAdd', { idx, data: state.value, row: state.value[idx] });
+    stateModel.value.push(cloneDeep(initModel));
+    const idx = stateModel.value.length - 1;
+    emit('rowAdd', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
   const getRow = (rowId) => {
-    return state.value[rowIds.indexOf(rowId)];
+    return stateModel.value[rowIds.indexOf(rowId)];
   };
 
   const setRowData = (rowId) => {
     return (field, value) => {
       const idx = rowIds.indexOf(rowId);
-      set(state.value[idx], field, value);
+      set(stateModel.value[idx], field, value);
     };
   };
   const removeRowId = (idx) => {
-    emit('rowDelete', { idx, data: state.value, row: state.value[idx] });
+    emit('rowDelete', { idx, data: stateModel.value, row: stateModel.value[idx] });
     rowIds.splice(idx, 1);
-    state.value.splice(idx, 1);
+    stateModel.value.splice(idx, 1);
   };
   const insertRowId = (idx) => {
     rowIds.splice(idx, 0, uniqueId('gsf_'));
-    state.value.splice(idx, 0, cloneDeep(initValue));
-    emit('rowInsert', { idx, data: state.value, row: state.value[idx] });
+    stateModel.value.splice(idx, 0, cloneDeep(initModel));
+    emit('rowInsert', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
   const dragend = ({ oldIndex, newIndex }) => {
     rowIds.splice(newIndex, 0, rowIds.splice(oldIndex, 1)[0]);
-    state.value.splice(newIndex, 0, state.value.splice(oldIndex, 1)[0]);
+    stateModel.value.splice(newIndex, 0, stateModel.value.splice(oldIndex, 1)[0]);
     return true;
   };
   rowIds.length == 0 && addRowId(); //保持至少一行

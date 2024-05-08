@@ -15,7 +15,7 @@ export default {
         type: 'primary',
         size: 'default',
         onClick__func: `let formData=this.getFormData() 
-        this.getModal("modal").show(formData)`,
+        this.getModal('modal').show(formData)`,
         style: '',
         shape: '',
         color: '',
@@ -36,8 +36,7 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: ` let modal=this.getModal('modal');  
-        let formData=modal.getFormModel();  
+        onOkButtonClick__func: `let formData=this.getModal().getFormModel();  
         let props=this.getFormData();  
         Object.assign(props,formData); 
         return true;  `,
