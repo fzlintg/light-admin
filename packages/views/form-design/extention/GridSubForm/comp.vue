@@ -170,12 +170,16 @@
   //const initValue = toRaw(formModelToData(subFormDefaultModel[props.schema.field][0]));
 
   onMounted(() => {
-    watchEffect(() => {
-      // stateData.value = formModelToData(stateModel.value);
-      // emit('update:value', stateData.value);
-      // emit('rowChange', stateData.value);
-    });
+    // watchEffect(() => {
+    //   // stateData.value = formModelToData(stateModel.value);
+    //   // emit('update:value', stateData.value);
+    //   // emit('rowChange', stateData.value);
+    // });
     initData();
+    if (stateModel.value?.length == 0) {
+      rowIds.splice(0, rowIds.length);
+      addRowId();
+    } //保持至少一行
   });
   // watch(
   //   () => state.value,
@@ -193,6 +197,7 @@
     rowIds.push(uniqueId('gsf_'));
     //  stateData.value.push(cloneDeep(initValue));
     stateModel.value.push(cloneDeep(initModel));
+    debugger;
     showItemRow.push(cloneDeep(initKeys));
     const idx = stateModel.value.length - 1;
     //emit('rowAdd', { idx, data: stateData.value, row: stateData.value[idx] });
@@ -223,7 +228,7 @@
     rowIds.splice(idx, 0, uniqueId('gsf_'));
     //  stateData.value.splice(idx, 0, cloneDeep(initValue));
     stateModel.value.splice(idx, 0, cloneDeep(initModel));
-    showItemRow.splice(idx, 0, Object.keys(initModel));
+    showItemRow.splice(idx, 0, cloneDeep(initKeys));
     emit('rowInsert', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
   const dragend = ({ oldIndex, newIndex }) => {
@@ -233,10 +238,7 @@
     showItemRow.splice(newIndex, 0, showItemRow.splice(oldIndex, 1)[0]);
     return true;
   };
-  if (stateModel.value?.length == 0) {
-    rowIds.splice(0, rowIds.length);
-    addRowId();
-  } //保持至少一行
+
   defineExpose({ getRow, initData });
 </script>
 <style lang="scss" scoped>
