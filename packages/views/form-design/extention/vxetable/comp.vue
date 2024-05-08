@@ -36,7 +36,7 @@
   });
 
   watchEffect(async () => {
-    gridOptions.value.columns = await axios.get({ url: attrs.api.columns });
+    let columns = await axios.get({ url: attrs.api.columns });
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
     gridProps.value = new Function('{tableRef,createMessage,axios }', `return ${gridTpl}`)({
       tableRef,
@@ -48,7 +48,7 @@
       keepSource: true,
       toolbarConfig: {},
       height: 'auto',
-      columns: gridOptions.value.columns,
+      columns,
       ...gridProps.value,
     };
     ifshow.value = true;
