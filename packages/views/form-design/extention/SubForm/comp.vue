@@ -86,8 +86,8 @@
     }
   }
 
-  const subFormDefaultValue = reactive({});
-  getInitValue([props.schema], subFormDefaultValue);
+  const subFormDefaultModel = reactive({});
+  getInitValue([props.schema], subFormDefaultModel);
   const initModel = toRaw(subFormDefaultModel[props.schema.field][0]);
   //  const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
   // watch(
@@ -133,7 +133,14 @@
     stateModel.value.splice(newIndex, 0, stateModel.value.splice(oldIndex, 1)[0]);
     return true;
   };
-  rowIds.length == 0 && addRowId(); //保持至少一行
+  onMounted(() => {
+    //initData();
+    if (stateModel.value?.length == 0) {
+      rowIds.splice(0, rowIds.length);
+      addRowId();
+    } //保持至少一行
+  });
+  // rowIds.length == 0 && addRowId(); //保持至少一行
 </script>
 <style lang="scss" scoped>
   .drag-option {
