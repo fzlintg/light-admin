@@ -57,14 +57,14 @@ export default {
   export default defineComponent({
     name: 'CodeModal',
     components: { PreviewCode, Modal },
-    setup() {
+    setup(props,context) {
       const state = reactive({
         visible: false,
         jsonData: {} as IFormConfig,
       });
 
       const showModal = (formConfig: IFormConfig) => {
-        formConfig.schemas && formatRules(formConfig.schemas);
+        formConfig.schemas && formatRules(formConfig.schemas,context);
         state.visible = true;
         state.jsonData = formConfig as any;
       };

@@ -1,12 +1,14 @@
 <template>
   <div>
-    图表类型<Select :options="chartOptions" v-model="chartType" />
+    <a-form-item label="图表">
+      <Select :options="chartOptions" v-model:value="chartType" />
+    </a-form-item>
     <Button @click="openEdit">点击编辑</Button>
-    <VFormCreate :form-config="formConfig" @submit="updateChart" ref="vform" />
+    <VFormCreate :form-config="formConfig" @update-chart="updateChart" ref="vform" />
   </div>
 </template>
 <script lang="ts" setup>
-  import { Button, Select } from 'ant-design-vue';
+  import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatRules } from '../../utils/index';
   import { ref, watchEffect } from 'vue';
@@ -20,9 +22,9 @@
   //     default: () => ({}),
   //   },
   // });
-  debugger;
+  //const emit = defineEmits(['update:props']);
   const vform = ref(null),
-    chartType = ref('lineBar');
+    chartType = ref(chartOptions?.[0].value || 'lineBar');
   //const [formState] = useRuleFormItem(props, 'props', 'update:props');
   //const options;
   const openEdit = () => {
@@ -31,7 +33,8 @@
   const formConfig = ref();
   watchEffect(() => {
     if (chartType.value) formConfig.value = settingMap[chartType.value];
-    if (formConfig.value) formatRules(formConfig.value.schemas);
+    if (vform.value?.context && formConfig.value)
+      formatRules(formConfig.value.schemas, vform.value?.context);
   });
 
   const updateChart = (options) => {

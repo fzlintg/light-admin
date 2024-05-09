@@ -90,7 +90,7 @@
       provide('getFormRef', () => {
         return eFormModel.value;
       });
-      const getFormItem=(field)=>formItemRefList[field];
+      const getFormItem = (field) => formItemRefList[field];
       const noHiddenList = computed(() => {
         return (
           props.formConfig.schemas &&
@@ -182,7 +182,8 @@
         formModelNew,
         wrapperComp,
         noHiddenList,
-        getFormItem
+        getFormItem,
+        context,
       };
     },
   });

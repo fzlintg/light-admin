@@ -20,6 +20,7 @@ import { uniqueId, setUniqueId } from './uniqueId';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
 import { defHttp } from '@utils/http/axios';
+import { emit } from 'vue';
 /**
  * 组件install方法
  * @param comp 需要挂载install方法的组件
@@ -309,7 +310,7 @@ export const formatItemByContext = (schemas, context) => {
   });
   return schemas;
 };
-function formatFunc(item) {
+function formatFunc(item, context) {
   for (const name in item) {
     if (endsWith(name, '__func')) {
       // if (item.componentProps[name].trim().length > 0) {
@@ -318,10 +319,10 @@ function formatFunc(item) {
       //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
       const func =
         item[name]?.trim()?.length > 0
-          ? new AsyncFunction(...params, 'e', '{axios}', item[name])
+          ? new AsyncFunction(...params, 'e', '{axios,context}', item[name])
           : () => true; //默认true
       item[originName] = async function (...args) {
-        let result = await func.call(this, ...args, { axios: defHttp });
+        let result = await func.call(this, ...args, { axios: defHttp, context });
         if (args?.[0]?.callback) {
           //回调模式
           if (isNull(result)) result = true;
@@ -335,14 +336,14 @@ function formatFunc(item) {
     }
   }
 }
-export const formatRules = (schemas: IVFormComponent[]) => {
+export const formatRules = (schemas: IVFormComponent[], context = {}) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成
-    formatFunc(item.componentProps);
+    formatFunc(item.componentProps, context);
     if (item.component == 'Dropdown') {
       //下拉对象菜单
       for (const childItem of item.children) {
-        formatFunc(childItem);
+        formatFunc(childItem, context);
       }
     }
     if ('required' in item) {

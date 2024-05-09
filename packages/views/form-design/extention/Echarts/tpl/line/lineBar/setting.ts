@@ -9,7 +9,7 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: ` debugger; `,
+        onOkButtonClick__func: ` context.emit('update-chart')`,
         onCancelButtonClick__func: `  `,
         onDialogOpened__func: `  `,
         onDialogBeforeClose__func: `  `,
