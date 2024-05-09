@@ -76,7 +76,7 @@ const setting = {
 
 for (const item in extentionSetting) {
   //自定义编辑器配置
-  extentionSetting[item].forEach((item) => {
+  extentionSetting[item]?.forEach((item) => {
     item.defaultValue = item.defaultValue || formItemMap?.[item.component]?.defaultValue;
   });
 }
