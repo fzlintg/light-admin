@@ -2,8 +2,8 @@
 // import { formItemMap } from '../core/loader';
 
 const modules = {
-  setting: import.meta.glob('./**/setting.ts', { eager: true }),
-  settingComp: import.meta.glob('./**/setting.vue', { eager: true }),
+  setting: import.meta.glob(['./**/setting.ts', '!./Echarts/tpl/**/setting.ts'], { eager: true }),
+  settingComp: import.meta.glob(['./**/setting.vue'], { eager: true }),
   func: import.meta.glob('./**/func.ts', { eager: true }),
   comp: import.meta.glob('./**/comp.vue', { eager: true }),
   widget: import.meta.glob('./**/widget.vue', { eager: true }),

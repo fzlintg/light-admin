@@ -65,7 +65,7 @@ export default {
       barGap: '-100%',
       barWidth: 10,
       itemStyle: {
-        color__func: ` new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+        color__func: `new echarts.graphic.LinearGradient(0, 0, 0, 1, [
           { offset: 0, color: 'rgba(20,200,212,0.5)' },
           { offset: 0.2, color: 'rgba(20,200,212,0.2)' },
           { offset: 1, color: 'rgba(20,200,212,0)' },
