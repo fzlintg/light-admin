@@ -43,9 +43,9 @@
             v-for="(item, k) in schema.children"
             :key="k"
             :schema="item"
-            :formData="getRow(rowId)"
+            :form-model="getRowModel(rowId)"
             :formConfig="props.formConfig"
-            :setFormModel="setRowData(rowId)"
+            :setFormModel="setRowModel(rowId)"
             :inSubForm="true"
             parentComp="SubForm"
           />
@@ -108,14 +108,14 @@
     const idx = stateModel.value.length - 1;
     emit('rowAdd', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
-  const getRow = (rowId) => {
+  const getRowModel = (rowId) => {
     return stateModel.value[rowIds.indexOf(rowId)];
   };
 
-  const setRowData = (rowId) => {
+  const setRowModel = (rowId) => {
     return (field, value) => {
       const idx = rowIds.indexOf(rowId);
-      set(stateModel.value[idx], field, value);
+      stateModel.value[idx][field] = value;
     };
   };
   const removeRowId = (idx) => {
