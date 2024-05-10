@@ -203,12 +203,10 @@
       onMounted(() => {
         forOwn(props.schema.componentProps, (value: any, key) => {
           if (isFunction(value)) {
-            console.log(key, value, proxy);
-            props.schema.componentProps![key] = value.bind(proxy);
+            props.schema.componentProps[key] = value.bind(proxy);
           }
         });
         forOwn(props.schema.on, (value: any, key) => {
-          //  debugger;
           if (isFunction(value)) {
             props.schema.componentProps![key] = value.bind(proxy);
           }

@@ -3,6 +3,7 @@
     :form-config="formConfig"
     v-model:fApi="fApi"
     v-model:formModel="formState.componentProps"
+    v-if="formShow"
   />
 </template>
 <script lang="ts" setup>
@@ -24,8 +25,10 @@
   });
 
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
-
+  const formShow = ref(false);
   const fApi = ref();
   const formConfig = ref(action);
   formatRules(formConfig.value.schemas, {}, true);
+  debugger;
+  formShow.value = true;
 </script>

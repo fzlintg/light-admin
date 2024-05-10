@@ -323,7 +323,7 @@ function formatFunc(item, context, flag = false) {
           : () => true; //默认true
 
       item[originName] = async function (...args) {
-        console.log('exec', this);
+        //  console.log('exec', this, args, { axios: defHttp, context });
         let result = await func.call(this, ...args, { axios: defHttp, context });
         if (args?.[0]?.callback) {
           //回调模式
@@ -334,6 +334,10 @@ function formatFunc(item, context, flag = false) {
           }
         } else return result; //直接返回
       };
+      if (flag) {
+        delete item[name];
+        delete item[originName + '__params'];
+      }
       // }
     }
   }

@@ -6,7 +6,7 @@
     <Button @click="openEdit">点击编辑</Button>
     <VFormCreate
       :form-config="formConfig"
-      @form-model="formModel"
+      :form-model="formModel"
       @update-chart="updateChart"
       ref="vform"
       v-if="vformShow"
@@ -43,7 +43,7 @@
   watchEffect(() => {
     if (chartType.value) {
       formConfig.value = settingMap[chartType.value];
-      if (formConfig.value) formatRules(formConfig.value.schemas, vform.value?.context);
+      if (formConfig.value) formatRules(formConfig.value.schemas, vform.value?.context, true);
 
       formItemsForEach(formConfig.value.schemas[0].children, (item) => {
         formModel.value[item.field] = get(chartMap[chartType.value], item.field);

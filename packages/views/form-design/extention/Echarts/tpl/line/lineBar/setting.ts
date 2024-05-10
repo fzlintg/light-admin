@@ -10,8 +10,8 @@ export default {
         width: 1000,
         slots: {},
         onOkButtonClick__func: `debugger;`,
-        onCancelButtonClick__func: `  `,
-        onDialogOpened__func: `  `,
+        onCancelButtonClick__func: ` debugger; `,
+        onDialogOpened__func: ` `,
         onDialogBeforeClose__func: `  `,
       },
       children: [
