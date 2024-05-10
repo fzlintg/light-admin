@@ -101,6 +101,7 @@
     PropType,
     unref,
     getCurrentInstance,
+    onMounted,
   } from 'vue';
   import { componentMap } from '../../core/formItemConfig';
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
@@ -199,18 +200,21 @@
         return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
+      onMounted(() => {
+        forOwn(props.schema.componentProps, (value: any, key) => {
+          if (isFunction(value)) {
+            console.log(key, value, proxy);
+            props.schema.componentProps![key] = value.bind(proxy);
+          }
+        });
+        forOwn(props.schema.on, (value: any, key) => {
+          //  debugger;
+          if (isFunction(value)) {
+            props.schema.componentProps![key] = value.bind(proxy);
+          }
+        });
+      });
 
-      forOwn(props.schema.componentProps, (value: any, key) => {
-        if (isFunction(value)) {
-          props.schema.componentProps![key] = value.bind(proxy);
-        }
-      });
-      forOwn(props.schema.on, (value: any, key) => {
-        //  debugger;
-        if (isFunction(value)) {
-          props.schema.componentProps![key] = value.bind(proxy);
-        }
-      });
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
         return props.parentComp == 'SubForm' ? {} : colProps; //lintg

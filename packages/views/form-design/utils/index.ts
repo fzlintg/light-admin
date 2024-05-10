@@ -310,7 +310,7 @@ export const formatItemByContext = (schemas, context) => {
   });
   return schemas;
 };
-function formatFunc(item, context) {
+function formatFunc(item, context, flag = false) {
   for (const name in item) {
     if (endsWith(name, '__func')) {
       // if (item.componentProps[name].trim().length > 0) {
@@ -321,7 +321,9 @@ function formatFunc(item, context) {
         item[name]?.trim()?.length > 0
           ? new AsyncFunction(...params, 'e', '{axios,context}', item[name])
           : () => true; //默认true
+
       item[originName] = async function (...args) {
+        console.log('exec', this);
         let result = await func.call(this, ...args, { axios: defHttp, context });
         if (args?.[0]?.callback) {
           //回调模式
@@ -336,14 +338,14 @@ function formatFunc(item, context) {
     }
   }
 }
-export const formatRules = (schemas: IVFormComponent[], context = {}) => {
+export const formatRules = (schemas: IVFormComponent[], context = {}, flag = false) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成
-    formatFunc(item.componentProps, context);
+    formatFunc(item.componentProps, context, flag);
     if (item.component == 'Dropdown') {
       //下拉对象菜单
       for (const childItem of item.children) {
-        formatFunc(childItem, context);
+        formatFunc(childItem, context, flag);
       }
     }
     if ('required' in item) {

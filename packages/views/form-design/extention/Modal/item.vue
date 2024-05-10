@@ -31,9 +31,10 @@
   import { Button as AButton, Form } from 'ant-design-vue';
   import Modal from '@c/Modal/src/BasicModal.vue';
   import { flattenArray, flattenObject, formModelToData } from '../../utils';
+  import { getCurrentInstance } from 'vue';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   // import { formatRules } from '../../utils/index';
-
+  const _this = getCurrentInstance();
   const open = ref(false);
   const fApi = ref({});
   const formModelNew = ref({});
@@ -62,6 +63,7 @@
 
   const handleOk = (e: MouseEvent) => {
     emit('okButtonClick', {
+      _this,
       callback: (result) => {
         open.value = !result;
       },

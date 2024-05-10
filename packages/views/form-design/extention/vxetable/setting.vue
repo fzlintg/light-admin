@@ -1,6 +1,6 @@
 <template>
   <VFormCreate
-    :form-config="formConfig as any"
+    :form-config="formConfig"
     v-model:fApi="fApi"
     v-model:formModel="formState.componentProps"
   />
@@ -27,5 +27,5 @@
 
   const fApi = ref();
   const formConfig = ref(action);
-  formatRules(formConfig.value.schemas);
+  formatRules(formConfig.value.schemas, {}, true);
 </script>

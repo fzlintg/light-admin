@@ -2,7 +2,7 @@
   <div ref="chartRef" :style="{ height, width }"></div>
 </template>
 <script lang="ts" setup>
-  import { PropType, ref, Ref, onMounted } from 'vue';
+  import { PropType, ref, Ref, onMounted, watchEffect } from 'vue';
   import { useECharts } from '@h/web/useECharts';
   //import { getLineData } from './data';
   import { chartMap } from './tpl/loader';
@@ -23,7 +23,8 @@
   // const { barData, lineData, category } = getLineData;
 
   const attrs = useAttrs();
-  onMounted(() => {
+  watchEffect(() => {
     setOptions(attrs.chartOptions);
   });
+  //  onMounted(() => {});
 </script>

@@ -9,7 +9,7 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: ` context.emit('update-chart')`,
+        onOkButtonClick__func: `debugger;`,
         onCancelButtonClick__func: `  `,
         onDialogOpened__func: `  `,
         onDialogBeforeClose__func: `  `,
@@ -63,7 +63,7 @@ export default {
             span: 24,
           },
           key: 'codeinput_3',
-          field: 'series[1].itemStyle.data__func',
+          field: 'series[1].data__func',
           itemProps: {
             labelCol: {},
             wrapperCol: {},
