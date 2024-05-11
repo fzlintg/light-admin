@@ -28,7 +28,7 @@
   const formShow = ref(false);
   const fApi = ref();
   const formConfig = ref(action);
-  formatRules(formConfig.value.schemas, {}, true);
-  debugger;
+  formatRules(formConfig.value.schemas, true);
+
   formShow.value = true;
 </script>

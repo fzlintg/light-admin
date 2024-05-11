@@ -9,8 +9,9 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `debugger;`,
-        onCancelButtonClick__func: ` debugger; `,
+        onOkButtonClick__func: `let formData=this.getFormModel();Object.assign(formData,this.getModal().getFormModel())
+        return true;`,
+        onCancelButtonClick__func: `  `,
         onDialogOpened__func: ` `,
         onDialogBeforeClose__func: `  `,
       },
