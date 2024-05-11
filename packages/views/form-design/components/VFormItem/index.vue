@@ -161,7 +161,7 @@
         default: '',
       },
     },
-    emits: ['update:form-data', 'change'],
+    emits: ['update:formModel', 'change'],
 
     setup(props, { emit }) {
       const state = reactive({

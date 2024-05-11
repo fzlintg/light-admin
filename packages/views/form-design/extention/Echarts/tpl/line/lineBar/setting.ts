@@ -9,7 +9,7 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getFormModel();Object.assign(formData,this.getModal().getFormModel())
+        onOkButtonClick__func: `this.$emit('update:formModel',this.getModal().getFormModel());
         return true;`,
         onCancelButtonClick__func: `  `,
         onDialogOpened__func: ` `,
