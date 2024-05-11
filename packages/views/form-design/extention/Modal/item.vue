@@ -1,6 +1,5 @@
 <template>
-  <div
-    ><AButton @click="open = true">测试</AButton>
+  <div>
     <modal
       v-model:open="open"
       v-bind="schema.componentProps"

@@ -312,7 +312,7 @@ export const formatItemByContext = (schemas, context) => {
   });
   return schemas;
 };
-function formatFunc(item, flag = false) {
+export function formatFunc(item, flag = false) {
   for (const name in item) {
     if (endsWith(name, '__func')) {
       // if (item.componentProps[name].trim().length > 0) {
@@ -326,7 +326,8 @@ function formatFunc(item, flag = false) {
 
       item[originName] = async function (...args) {
         console.log('exec', this);
-        let result = await func.call(this, ...args, { axios: defHttp });
+        const argsCall = args.length == 0 ? [{}] : args;
+        let result = await func.call(this, ...argsCall, { axios: defHttp });
         if (args?.[0]?.callback) {
           //回调模式
           if (isNull(result)) result = true;

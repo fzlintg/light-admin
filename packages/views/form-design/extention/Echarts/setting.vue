@@ -22,6 +22,7 @@
     //  flattenObject,
     formItemsForEach,
     TransObjectToCode,
+    formatFunc,
   } from '../../utils/index';
   import { ref, watchEffect } from 'vue';
   //import action from '../../json/vxetable.action.ts';
@@ -47,7 +48,6 @@
   const [chartState] = useRuleFormItem(props, 'props', 'update:props');
   //const options;
   const openEdit = () => {
-    debugger;
     vform.value!.getFormItem('modal').getModal().show(formModel.value);
   };
   const formConfig = ref({});
@@ -55,7 +55,7 @@
     if (chartType.value) {
       formConfig.value = settingMap[chartType.value];
       if (formConfig.value) {
-        formatRules(formConfig.value.schemas, true);
+        formatRules(formConfig.value.schemas, true); //初始化配置组件schemas
         formItemsForEach(formConfig.value.schemas[0].children, (item) => {
           formModel.value[item.field] = get(chartMap[chartType.value], item.field);
         });
@@ -71,7 +71,9 @@
     forOwn(options, (value, key) => {
       set(chartOptions, key, value);
     });
+    formatFunc(chartState.value.componentProps);
     chartState.value.componentProps.chartTpl = TransObjectToCode(chartOptions, true);
+
     // chartState.value.componentProps.chartVar = {
     //   barData,
     //   lineData,

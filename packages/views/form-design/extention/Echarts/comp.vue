@@ -5,6 +5,8 @@
   import { PropType, ref, Ref, onMounted, watchEffect } from 'vue';
   import { useECharts } from '@h/web/useECharts';
   import { isEmpty } from 'lodash-es';
+  import { formatFunc } from '../../utils/index.ts';
+  import echarts from '@utils/lib/echarts';
 
   const props = defineProps({
     width: {
@@ -16,12 +18,8 @@
       default: '50vh',
       //    default: 'calc(100vh - 78px)',
     },
-    // chartOptions: {
-    //   type: Object as PropType<any>,
-    //   default: () => {},
-    // },
     chartTpl: {
-      type: String as PropType<string>,
+      type: String as PropType<String>,
       default: '',
     },
     chartVar: {
@@ -33,10 +31,14 @@
   const chartRef = ref<HTMLDivElement | null>(null);
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
   watchEffect(async () => {
+    // formatFunc(props, true);
     if (props.chartTpl != '') {
       let data = await props.chartVar();
       setOptions(
-        new Function('{barData,lineData,category, echarts}', `return ${props.chartTpl}`)(data),
+        new Function('{barData,lineData,category, echarts}', `return ${props.chartTpl}`)({
+          echarts,
+          ...data,
+        }),
       );
     }
 
