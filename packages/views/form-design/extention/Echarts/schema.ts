@@ -5,7 +5,8 @@ export default {
   componentProps: {
     tpl: 'lineBar',
     chartTpl: '',
-    chartVar__func: `let data = await axios.get({url:"/echart/getLineData"});return data;`,
+    chartVar__func: `let data = await axios.get({url:"/echart/getLineData"});
+return data;`,
     height: '50vh',
     width: '100%',
   },

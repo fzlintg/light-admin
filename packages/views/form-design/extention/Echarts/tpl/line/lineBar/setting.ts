@@ -9,17 +9,16 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `this.$emit('update:formModel',this.getModal().getFormModel());  
-          return true;  `,
-        onCancelButtonClick__func: `      `,
-        onDialogOpened__func: `     `,
-        onDialogBeforeClose__func: `      `,
+        onOkButtonClick__func: `this.$emit('update:formModel',this.getModal().getFormModel());   
+           return true;   `,
+        onCancelButtonClick__func: `        `,
+        onDialogOpened__func: `       `,
+        onDialogBeforeClose__func: `        `,
       },
       children: [
         {
           component: 'CodeInput',
           label: '1.折线数据',
-          icon: 'ant-design:credit-card-outlined',
           componentProps: {
             buttonText: '编辑',
             mode: 'application/json',
@@ -36,7 +35,6 @@ export default {
           colProps: {
             span: 24,
           },
-          key: 'codeinput_1',
           field: 'series[0].data__func',
           itemProps: {
             labelCol: {},
@@ -46,7 +44,6 @@ export default {
         {
           component: 'CodeInput',
           label: '2.柱图数据',
-          icon: 'ant-design:credit-card-outlined',
           componentProps: {
             buttonText: '编辑',
             mode: 'application/json',
@@ -63,7 +60,6 @@ export default {
           colProps: {
             span: 12,
           },
-          key: 'codeinput_3',
           field: 'series[1].data__func',
           itemProps: {
             labelCol: {},
@@ -73,7 +69,6 @@ export default {
         {
           component: 'CodeInput',
           label: '2.柱图颜色',
-          icon: 'ant-design:credit-card-outlined',
           componentProps: {
             buttonText: '编辑',
             mode: 'application/json',
@@ -90,7 +85,6 @@ export default {
           colProps: {
             span: 12,
           },
-          key: 'codeinput_2',
           field: 'series[1].itemStyle.color__func',
           itemProps: {
             labelCol: {},
@@ -100,7 +94,6 @@ export default {
         {
           component: 'CodeInput',
           label: '3.柱图数据',
-          icon: 'ant-design:credit-card-outlined',
           componentProps: {
             buttonText: '编辑',
             mode: 'application/json',
@@ -117,7 +110,6 @@ export default {
           colProps: {
             span: 12,
           },
-          key: 'codeinput_2',
           field: 'series[2].data__func',
           itemProps: {
             labelCol: {},
@@ -127,7 +119,6 @@ export default {
         {
           component: 'CodeInput',
           label: '3.柱形颜色',
-          icon: 'ant-design:credit-card-outlined',
           componentProps: {
             buttonText: '编辑',
             mode: 'application/json',
@@ -144,7 +135,6 @@ export default {
           colProps: {
             span: 12,
           },
-          key: 'codeinput_1',
           field: 'series[2].itemStyle.color__func',
           itemProps: {
             labelCol: {},
@@ -154,7 +144,6 @@ export default {
         {
           component: 'CodeInput',
           label: '4.虚线数据',
-          icon: 'ant-design:credit-card-outlined',
           componentProps: {
             buttonText: '编辑',
             mode: 'application/json',
@@ -171,7 +160,6 @@ export default {
           colProps: {
             span: 12,
           },
-          key: 'codeinput_3',
           field: 'series[3].data__func',
           itemProps: {
             labelCol: {},

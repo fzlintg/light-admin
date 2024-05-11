@@ -19,7 +19,7 @@ export default {
   },
   xAxis: {
     // data: category,
-    data__func: `return category`,
+    data__var: `category`,
     axisLine: {
       lineStyle: {
         color: '#ccc',
@@ -43,7 +43,7 @@ export default {
       symbol: 'emptyCircle',
       symbolSize: 15,
       //data: lineData,
-      data__func: `return lineData`,
+      data__var: `lineData`,
     },
     {
       name: 'bar',
@@ -57,7 +57,7 @@ export default {
         ])`,
       },
       //data: barData,
-      data__func: `return barData`,
+      data__var: `barData`,
     },
     {
       name: 'line',
@@ -72,7 +72,7 @@ export default {
         ])`,
       },
       z: -12,
-      data__func: `return lineData`,
+      data__var: `lineData`,
     },
     {
       name: 'dotted',
@@ -85,7 +85,7 @@ export default {
       symbolSize: [12, 4],
       symbolMargin: 1,
       z: -10,
-      data__func: `return lineData`,
+      data__var: `lineData`,
     },
   ],
 };

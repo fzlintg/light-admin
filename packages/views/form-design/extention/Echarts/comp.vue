@@ -31,17 +31,17 @@
   const chartRef = ref<HTMLDivElement | null>(null);
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
   watchEffect(async () => {
-    // formatFunc(props, true);
     if (props.chartTpl != '') {
       let data = await props.chartVar();
       setOptions(
-        new Function('{barData,lineData,category, echarts}', `return ${props.chartTpl}`)({
+        new Function(
+          '{' + Object.keys(data).concat('echarts').join(',') + '}',
+          `return ${props.chartTpl}`,
+        )({
           echarts,
           ...data,
         }),
       );
     }
-
-    // if (!isEmpty(props.chartOptions)) setOptions(props.chartOptions);
   });
 </script>

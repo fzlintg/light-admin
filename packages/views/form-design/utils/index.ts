@@ -114,10 +114,10 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
   const traverse = (schemas: IVFormComponent[]) => {
     schemas.forEach((formItem: IVFormComponent) => {
       if (!formItem) return;
-      if (['Grid'].includes(formItem.component)) {
+      if (['Grid', 'Tabs'].includes(formItem.component)) {
         // 栅格布局，注意不要把GridSubForm加进来
         formItem.columns?.forEach((item) => traverse(item.children));
-      } else if (['CollapseContainer', 'Card'].includes(formItem.component)) {
+      } else if (formItem.type == 'container') {
         traverse(formItem.children);
       } else {
         cb(formItem);
@@ -271,9 +271,12 @@ export const formatItem = (schemas) => {
     if (endsWith(key, '__func') && typeof value == 'string') {
       const func = key.substring(0, key.length - 6);
       const params = schemas[func + '__params'] || [];
-      schemas![func] = `$_begin:${params.join(',')}: ` + schemas[key] + ' $_end';
+      schemas![func] = `$func_b:${params.join(',')}: ` + schemas[key] + ' $func_e';
       delete schemas[key];
       delete schemas[func + '__params'];
+    } else if (endsWith(key, '__var') && typeof value == 'string') {
+      const v = key.substring(0, key.length - 5);
+      schemas![v] = `$var_b:` + schemas[key] + ':$var_e';
     } else if (isObject(value)) {
       formatItem(value);
     }
@@ -283,11 +286,16 @@ export const formatItem = (schemas) => {
 
 export const TransObjectToCode = (schemas, flag = false) => {
   formatItem(schemas);
-  const regex = /\"\$_begin:(.*?)\:(.*?)\$_end\"/g;
-  return JSON.stringify(schemas).replace(regex, function (match, params, code) {
-    const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
-    return flag ? `((${params}) => {${cleanedCode}})()` : `async (${params}) => {${cleanedCode}}`;
-  });
+  const regex = /\"\$func_b:(.*?)\:(.*?)\$func_e\"/g;
+  const regex2 = /\"\$var_b:(.*?)\:\$var_e\"/g;
+  return JSON.stringify(schemas)
+    .replace(regex, function (match, params, code) {
+      const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
+      return flag ? `((${params}) => {${cleanedCode}})()` : `async (${params}) => {${cleanedCode}}`;
+    })
+    .replace(regex2, function (match, v) {
+      return v;
+    });
 };
 
 export const formatItemFunc = (schemas) => {
