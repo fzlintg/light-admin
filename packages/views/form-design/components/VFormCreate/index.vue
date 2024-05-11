@@ -13,6 +13,7 @@
           :formConfig="formConfig"
           :formData="formModelNew"
           @change="handleChange({ schema, value: $event })"
+          @update:form-model="updateFormModel"
           :setFormModel="setFormModel"
           @submit="handleSubmit"
           @reset="resetFields"
@@ -149,6 +150,9 @@
       const setFormModel = (key, value) => {
         formModelNew.value[key] = value;
       };
+      const updateFormModel = (model) => {
+        emit('update:formModel', model);
+      };
 
       provide<(key: String, value: any) => void>('setFormModelMethod', setFormModel);
       //lintg
@@ -179,6 +183,7 @@
         formModelProps,
         handleSubmit,
         setFormModel,
+        updateFormModel,
         formModelNew,
         wrapperComp,
         noHiddenList,

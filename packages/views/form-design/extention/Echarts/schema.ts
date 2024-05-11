@@ -4,6 +4,9 @@ export default {
   icon: 'ant-design:bar-chart-outlined',
   componentProps: {
     tpl: 'lineBar',
-    chartOptions: {},
+    chartTpl: '',
+    chartVar__func: `let data = await axios.get("/echart/getLineData");return data;`,
+    height: '50vh',
+    width: '100%',
   },
 };

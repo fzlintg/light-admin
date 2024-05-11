@@ -3,7 +3,8 @@
     <a-form-item label="图表">
       <Select :options="chartOptions" v-model:value="chartType" />
     </a-form-item>
-    <Button @click="openEdit">点击编辑</Button>
+
+    <Button @click="openEdit">模版修改</Button>
     <VFormCreate
       :form-config="formConfig"
       :form-model="formModel"
@@ -27,10 +28,10 @@
   import { settingMap, chartOptions, chartMap } from './tpl/loader';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { cloneDeep, get, set, forOwn } from 'lodash-es';
-  import { getLineData } from './data';
-  import echarts from '@utils/lib/echarts';
+  //import { getLineData } from './data';
+  //import echarts from '@utils/lib/echarts';
 
-  const { barData, lineData, category } = getLineData;
+  //const { barData, lineData, category } = getLineData;
   //const { echarts } = useECharts(chartRef);
   const props = defineProps({
     props: {
@@ -43,9 +44,10 @@
     chartType = ref(chartOptions?.[0].value || 'lineBar'),
     vformShow = ref(false);
   const formModel = ref({});
-  const [chartState] = useRuleFormItem(props, 'chartOptions', 'update:chartOptions');
+  const [chartState] = useRuleFormItem(props, 'props', 'update:props');
   //const options;
   const openEdit = () => {
+    debugger;
     vform.value!.getFormItem('modal').getModal().show(formModel.value);
   };
   const formConfig = ref({});
@@ -69,13 +71,22 @@
     forOwn(options, (value, key) => {
       set(chartOptions, key, value);
     });
-    const chartTpl = TransObjectToCode(chartOptions);
-    chartState.value = new Function('{barData,lineData,category, echarts}', `return ${chartTpl}`)({
-      barData,
-      lineData,
-      category,
-      echarts,
-    });
+    chartState.value.componentProps.chartTpl = TransObjectToCode(chartOptions, true);
+    // chartState.value.componentProps.chartVar = {
+    //   barData,
+    //   lineData,
+    //   category,
+    //   echarts,
+    // };
+    // chartState.value.componentProps.chartOptions = new Function(
+    //   '{barData,lineData,category, echarts}',
+    //   `return ${chartTpl}`,
+    // )({
+    //   barData,
+    //   lineData,
+    //   category,
+    //   echarts,
+    // });
     //chartState.value = chartOptions;
   };
 </script>

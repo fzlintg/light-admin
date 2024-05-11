@@ -272,6 +272,8 @@ export const formatItem = (schemas) => {
       const func = key.substring(0, key.length - 6);
       const params = schemas[func + '__params'] || [];
       schemas![func] = `$_begin:${params.join(',')}: ` + schemas[key] + ' $_end';
+      delete schemas[key];
+      delete schemas[func + '__params'];
     } else if (isObject(value)) {
       formatItem(value);
     }
@@ -279,12 +281,12 @@ export const formatItem = (schemas) => {
   return schemas;
 };
 
-export const TransObjectToCode = (schemas) => {
+export const TransObjectToCode = (schemas, flag = false) => {
   formatItem(schemas);
   const regex = /\"\$_begin:(.*?)\:(.*?)\$_end\"/g;
   return JSON.stringify(schemas).replace(regex, function (match, params, code) {
     const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
-    return `async (${params}) => {${cleanedCode}}`;
+    return flag ? `((${params}) => {${cleanedCode}})()` : `async (${params}) => {${cleanedCode}}`;
   });
 };
 

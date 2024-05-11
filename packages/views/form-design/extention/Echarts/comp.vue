@@ -4,27 +4,42 @@
 <script lang="ts" setup>
   import { PropType, ref, Ref, onMounted, watchEffect } from 'vue';
   import { useECharts } from '@h/web/useECharts';
-  //import { getLineData } from './data';
-  import { chartMap } from './tpl/loader';
+  import { isEmpty } from 'lodash-es';
 
-  defineProps({
+  const props = defineProps({
     width: {
       type: String as PropType<string>,
       default: '100%',
     },
     height: {
       type: String as PropType<string>,
-      default: 'calc(100vh - 78px)',
+      default: '50vh',
+      //    default: 'calc(100vh - 78px)',
+    },
+    // chartOptions: {
+    //   type: Object as PropType<any>,
+    //   default: () => {},
+    // },
+    chartTpl: {
+      type: String as PropType<string>,
+      default: '',
+    },
+    chartVar: {
+      type: Function as PropType<any>,
+      default: () => {},
     },
   });
 
   const chartRef = ref<HTMLDivElement | null>(null);
-  const { setOptions, echarts } = useECharts(chartRef as Ref<HTMLDivElement>);
-  // const { barData, lineData, category } = getLineData;
+  const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+  watchEffect(async () => {
+    if (props.chartTpl != '') {
+      let data = await props.chartVar();
+      setOptions(
+        new Function('{barData,lineData,category, echarts}', `return ${props.chartTpl}`)(data),
+      );
+    }
 
-  const attrs = useAttrs();
-  watchEffect(() => {
-    setOptions(attrs.chartOptions);
+    // if (!isEmpty(props.chartOptions)) setOptions(props.chartOptions);
   });
-  //  onMounted(() => {});
 </script>

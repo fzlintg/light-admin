@@ -54,11 +54,11 @@ const setting = {
   },
   height: {
     label: '高度',
-    component: 'InputNumber',
+    component: 'Input',
   },
   width: {
     label: '宽度',
-    component: 'InputNumber',
+    component: 'Input',
   },
   zIndex: {
     label: '显示层',
