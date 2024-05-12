@@ -1,4 +1,5 @@
 export const name = '饼+柱状';
+export const schema = {};
 export default {
   backgroundColor: '#0f375f',
   title: [

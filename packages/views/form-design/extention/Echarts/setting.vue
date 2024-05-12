@@ -83,6 +83,10 @@
           onOk: async () => {
             chartConfig.value = chartMap[chartType.value];
             initSetting(chartType.value);
+            chartState.value.chartVar__func = '';
+            chartState.value.componentProps.chartTpl = JSON.stringify(chartConfig.value);
+            Object.assign(chartState.value, schemaMap[chartType.value]);
+            formatFunc(chartState.value.componentProps);
           },
         });
       }
