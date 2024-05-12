@@ -22,7 +22,7 @@
   import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
-  import { forOwn, get, isNil, set } from 'lodash-es';
+  import { cloneDeep, forOwn, get, isNil, set } from 'lodash-es';
 
   const { createConfirm } = useMessage();
 
@@ -81,7 +81,7 @@
           title: () => '提醒',
           content: () => '是否载入模版数据替换',
           onOk: async () => {
-            chartConfig.value = chartMap[chartType.value];
+            chartConfig.value = cloneDeep(chartMap[chartType.value]);
             initSetting(chartType.value);
             chartState.value.chartVar__func = '';
             chartState.value.componentProps.chartTpl = JSON.stringify(chartConfig.value);
