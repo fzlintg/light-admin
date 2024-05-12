@@ -5,7 +5,7 @@
   import { PropType, ref, Ref, onMounted, watchEffect } from 'vue';
   import { useECharts } from '@h/web/useECharts';
   import { isEmpty } from 'lodash-es';
-  import { formatFunc } from '../../utils/index.ts';
+  import { TransObjectToCode, formatFunc } from '../../utils/index.ts';
   import echarts from '@utils/lib/echarts';
 
   const props = defineProps({
@@ -30,13 +30,20 @@
 
   const chartRef = ref<HTMLDivElement | null>(null);
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
+
   watchEffect(async () => {
     if (props.chartTpl != '') {
       let data = await props.chartVar();
+      const tpl = TransObjectToCode(eval('(' + props.chartTpl + ')'));
+
       setOptions(
         new Function(
-          '{' + Object.keys(data).concat('echarts').join(',') + '}',
-          `return ${props.chartTpl}`,
+          '{' +
+            Object.keys(data || {})
+              .concat('echarts')
+              .join(',') +
+            '}',
+          `return ${tpl}`,
         )({
           echarts,
           ...data,

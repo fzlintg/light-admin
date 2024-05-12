@@ -114,13 +114,12 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
   const traverse = (schemas: IVFormComponent[]) => {
     schemas.forEach((formItem: IVFormComponent) => {
       if (!formItem) return;
+      cb(formItem);
       if (['Grid', 'Tabs'].includes(formItem.component)) {
         // 栅格布局，注意不要把GridSubForm加进来
         formItem.columns?.forEach((item) => traverse(item.children));
       } else if (formItem.type == 'container') {
         traverse(formItem.children);
-      } else {
-        cb(formItem);
       }
     });
   };

@@ -1,4 +1,10 @@
 export const name = '蓝色折线柱';
+export const schema = {
+  componentProps: {
+    chartVar__func: `let data = await axios.get({url:"/echart/getLineData"});
+  return data;`,
+  },
+};
 export default {
   backgroundColor: '#0f375f',
   tooltip: {

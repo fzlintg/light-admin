@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-form-item label="图表">
-      <Select :options="chartOptions" v-model:value="chartType" />
+      <Select :options="chartOptions" v-model:value="chartState.componentProps.tpl" />
     </a-form-item>
 
     <Button @click="openEdit">模版修改</Button>
@@ -10,85 +10,72 @@
       :form-model="formModel"
       @update:form-model="updateChart"
       ref="vform"
-      v-if="vformShow"
+      v-if="formShow"
     />
   </div>
 </template>
 <script lang="ts" setup>
-  import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
-  import {
-    formatRules,
-    //  flattenObject,
-    formItemsForEach,
-    TransObjectToCode,
-    formatFunc,
-  } from '../../utils/index';
-  import { ref, watchEffect } from 'vue';
-  //import action from '../../json/vxetable.action.ts';
-  import { settingMap, chartOptions, chartMap } from './tpl/loader';
+  import { formatRules, formItemsForEach } from '../../utils/index';
+  import { computed, ref, watch, onMounted } from 'vue';
+  import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
-  import { cloneDeep, get, set, forOwn } from 'lodash-es';
-  //import { getLineData } from './data';
-  //import echarts from '@utils/lib/echarts';
+  import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
+  import { forOwn, get, set } from 'lodash-es';
 
-  //const { barData, lineData, category } = getLineData;
-  //const { echarts } = useECharts(chartRef);
+  const { createConfirm } = useMessage();
+
   const props = defineProps({
+    schema: {
+      type: Object,
+      default: () => ({}),
+    },
     props: {
       type: Object,
       default: () => ({}),
     },
   });
-  //const emit = defineEmits(['update:props']);
-  const vform = ref(null),
-    chartType = ref(chartOptions?.[0].value || 'lineBar'),
-    vformShow = ref(false);
-  const formModel = ref({});
+
   const [chartState] = useRuleFormItem(props, 'props', 'update:props');
-  //const options;
-  const openEdit = () => {
-    vform.value!.getFormItem('modal').getModal().show(formModel.value);
-  };
+  const chartType = computed(() => chartState.value.componentProps.tpl);
+  const formShow = ref(false);
+  // const fApi = ref();
   const formConfig = ref({});
-  watchEffect(() => {
-    if (chartType.value) {
-      formConfig.value = settingMap[chartType.value];
-      if (formConfig.value) {
-        formatRules(formConfig.value.schemas, true); //初始化配置组件schemas
-        formItemsForEach(formConfig.value.schemas[0].children, (item) => {
-          formModel.value[item.field] = get(chartMap[chartType.value], item.field);
+  const chartConfig = ref({});
+  const formModel = ref({});
+  const initSetting = (type) => {
+    formConfig.value = settingMap[type];
+    formModel.value = {};
+    formItemsForEach(formConfig.value.schemas[0].children, (item) => {
+      formModel.value[item.field] = get(chartConfig.value, item.field);
+    });
+  };
+  onMounted(() => {
+    chartConfig.value = eval('(' + chartState.value.chartTpl + ')');
+    initSetting(chartType.value);
+  });
+  const updateChart = (options) => {
+    forOwn(options, (value, key) => {
+      set(chartConfig.value, key, value);
+    });
+    chartState.value.componentProps.chartTpl = JSON.stringify(chartConfig.value);
+  };
+  // formatRules(formConfig.value.schemas, {}, true);
+  watch(
+    () => chartType.value,
+    () => {
+      if (chartType.value) {
+        createConfirm({
+          iconType: 'warning',
+          title: () => '提醒',
+          content: () => '是否载入模版数据替换',
+          onOk: async () => {
+            chartConfig.value = chartMap[chartType.value];
+            initSetting(chartType.value);
+          },
         });
       }
-
-      vformShow.value = true;
-    }
-    //formState.chartOptions=
-  });
-
-  const updateChart = (options) => {
-    const chartOptions = cloneDeep(chartMap[chartType.value]);
-    forOwn(options, (value, key) => {
-      set(chartOptions, key, value);
-    });
-    formatFunc(chartState.value.componentProps);
-    chartState.value.componentProps.chartTpl = TransObjectToCode(chartOptions, true);
-
-    // chartState.value.componentProps.chartVar = {
-    //   barData,
-    //   lineData,
-    //   category,
-    //   echarts,
-    // };
-    // chartState.value.componentProps.chartOptions = new Function(
-    //   '{barData,lineData,category, echarts}',
-    //   `return ${chartTpl}`,
-    // )({
-    //   barData,
-    //   lineData,
-    //   category,
-    //   echarts,
-    // });
-    //chartState.value = chartOptions;
-  };
+    },
+  );
+  formShow.value = true;
 </script>
