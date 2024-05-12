@@ -15,13 +15,14 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
-  import { formatRules, formItemsForEach } from '../../utils/index';
+  import { formatFunc, formatRules, formItemsForEach } from '../../utils/index';
   import { computed, ref, watch, onMounted } from 'vue';
   import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
-  import { forOwn, get, set } from 'lodash-es';
+  import { forOwn, get, isNil, set } from 'lodash-es';
 
   const { createConfirm } = useMessage();
 
@@ -35,7 +36,6 @@
       default: () => ({}),
     },
   });
-
   const [chartState] = useRuleFormItem(props, 'props', 'update:props');
   const chartType = computed(() => chartState.value.componentProps.tpl);
   const formShow = ref(false);
@@ -43,22 +43,33 @@
   const formConfig = ref({});
   const chartConfig = ref({});
   const formModel = ref({});
+  const vform = ref(null);
   const initSetting = (type) => {
     formConfig.value = settingMap[type];
+    formatRules(formConfig.value.schemas);
     formModel.value = {};
     formItemsForEach(formConfig.value.schemas[0].children, (item) => {
       formModel.value[item.field] = get(chartConfig.value, item.field);
     });
   };
   onMounted(() => {
-    chartConfig.value = eval('(' + chartState.value.chartTpl + ')');
+    if (chartState.value.chartTpl != '' && !isNil(chartState.value.chartTpl))
+      chartConfig.value = eval('(' + chartState.value.chartTpl + ')');
+    else if (chartType.value) chartConfig.value = chartMap[chartType.value];
     initSetting(chartType.value);
+
+    formShow.value = true;
   });
   const updateChart = (options) => {
     forOwn(options, (value, key) => {
       set(chartConfig.value, key, value);
     });
+    Object.assign(chartState.value, schemaMap[chartType.value]);
+    formatFunc(chartState.value.componentProps);
     chartState.value.componentProps.chartTpl = JSON.stringify(chartConfig.value);
+  };
+  const openEdit = () => {
+    vform.value!.getFormItem('modal').getModal().show(formModel.value);
   };
   // formatRules(formConfig.value.schemas, {}, true);
   watch(
@@ -77,5 +88,4 @@
       }
     },
   );
-  formShow.value = true;
 </script>
