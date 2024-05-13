@@ -25,12 +25,12 @@
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatFunc, formatRules, formItemsForEach } from '../../utils/index';
   import { computed, ref, watch, onMounted, nextTick, watchEffect } from 'vue';
-  import { useMessage } from '@h/web/useMessage';
+  //import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
   import { cloneDeep, forOwn, get, isNil, set, isEmpty, merge } from 'lodash-es';
 
-  const { createConfirm } = useMessage();
+  //const { createConfirm } = useMessage();
 
   const props = defineProps({
     schema: {
@@ -105,20 +105,18 @@
   // formatRules(formConfig.value.schemas, {}, true);
   const loadTpl = () => {
     if (chartType.value) {
-      createConfirm({
-        iconType: 'warning',
-        title: () => '提醒',
-        content: () => '是否载入模版数据替换',
-        onOk: async () => {
-          chartState.value.componentProps.chartTpl = cloneDeep(chartMap[chartType.value]);
-          initSetting(chartType.value);
-          chartState.value.componentProps.chartVar__func = '';
-          //      chartState.value.componentProps.chartTpl = cloneDeep(unref(chartConfig.value));
-          //   Object.assign(chartState.value, schemaMap[chartType.value]);
-          merge(chartState.value, schemaMap[chartType.value]);
-          formatFunc(chartState.value.componentProps);
-        },
-      });
+      // createConfirm({
+      //   iconType: 'warning',
+      //   title: () => '提醒',
+      //   content: () => '是否载入模版数据替换',
+      //   onOk: async () => {
+      chartState.value.componentProps.chartTpl = cloneDeep(chartMap[chartType.value]);
+      initSetting(chartType.value);
+      chartState.value.componentProps.chartVar__func = '';
+      merge(chartState.value, schemaMap[chartType.value]);
+      formatFunc(chartState.value.componentProps);
+      //   },
+      // });
     }
   };
 </script>
