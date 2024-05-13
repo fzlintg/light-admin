@@ -27,6 +27,7 @@ export default {
       return Promise.resolve(guangdong);
     },
     api__func: '',
+    api__params: ['params'],
   },
   defaultValue: ['1'],
   required: true,

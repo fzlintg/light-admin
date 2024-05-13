@@ -302,6 +302,7 @@ export const schema = [
         console.log('点击');
       },
       onClick__func: '',
+      onClick__params: ['e'],
     },
   },
   // {

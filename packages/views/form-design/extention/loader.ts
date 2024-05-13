@@ -28,7 +28,9 @@ for (const item in modules) {
 }
 for (const path in schemaModules) {
   const component = path.split('/')[1];
-  schemas[schemaModules[path].default.type || 'custom'].schema.push({
+  console.log(path);
+  console.log(schemaModules[path].default.type);
+  schemas[schemaModules[path]?.default?.type || 'custom'].schema.push({
     component,
     ...schemaModules[path].default,
     _type: 'custom',

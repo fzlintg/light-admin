@@ -10,8 +10,8 @@
       </div>
     </a-form-item>
 
-    <Button @click="openEdit">配置修改</Button>
-    <Button @click="openJson">预览配置</Button>
+    <Button @click="openEdit">配置修改查看</Button>
+
     <VFormCreate
       :form-config="formConfig"
       :form-model="formModel"
@@ -30,7 +30,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
   import { cloneDeep, forOwn, get, isNil, set, isEmpty, merge } from 'lodash-es';
-
+  import baseSetting from './tpl/setting';
   //const { createConfirm } = useMessage();
 
   const props = defineProps({
@@ -53,13 +53,17 @@
   const vform = ref(null);
   const initSetting = (type) => {
     formShow.value = false;
-    formConfig.value = settingMap[type];
+    formConfig.value = cloneDeep(baseSetting);
+    formConfig.value.schemas[0].children[0].columns[0].children = cloneDeep(
+      settingMap[type].schemas,
+    );
     if (formConfig.value) {
       formatRules(formConfig.value.schemas);
       formModel.value = {};
-      formItemsForEach(formConfig.value.schemas[0].children, (item) => {
+      formItemsForEach(formConfig.value.schemas[0].children[0].columns[0].children, (item) => {
         formModel.value[item.field] = get(chartConfig.value, item.field);
       });
+      formModel.value.chartConfig = chartConfig.value;
     }
     nextTick(() => {
       formShow.value = true;
@@ -100,7 +104,7 @@
   const openEdit = () => {
     vform.value!.getFormItem('modal').getModal().show(formModel.value);
   };
-  const openJson = () => {};
+
   // formatRules(formConfig.value.schemas, {}, true);
   const loadTpl = () => {
     if (chartType.value) {

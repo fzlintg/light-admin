@@ -22,22 +22,4 @@ export const schema = [
       gutter: 0,
     },
   },
-  {
-    component: 'Tabs',
-    label: '标签页',
-    type: 'container',
-    icon: 'gravity-ui:layout-tabs',
-    componentProps: {},
-    columns: [
-      {
-        label: '标签1',
-        children: [],
-      },
-      {
-        label: '标签2',
-        children: [],
-      },
-    ],
-    colProps: { span: 24 },
-  },
 ];

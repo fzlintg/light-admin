@@ -2,6 +2,7 @@ import { MODE } from '@c/CodeEditor';
 //import { endsWith } from 'lodash-es';
 import { setting as extentionSetting } from './loader';
 import { formItemMap } from '../core/loader';
+import { isBoolean } from 'lodash-es';
 
 const setting = {
   api__func: {
@@ -104,8 +105,13 @@ export function getSetting(item, options) {
         prefix: `function ${func}(${params}){`,
       },
     };
-  }
-  return undefined;
+  } else if (isBoolean(options[item])) {
+    return {
+      field: item,
+      label: item,
+      category: 'control',
+    };
+  } else return undefined;
 }
 
 export default setting;

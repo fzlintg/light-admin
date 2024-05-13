@@ -8,6 +8,7 @@ export default {
   componentProps: {
     api: treeOptionsListApi,
     api__func: '',
+    api__params: ['params'],
     resultField: 'list',
     onChange: (e, v) => {
       console.log('ApiTreeSelect====>:', e, v);

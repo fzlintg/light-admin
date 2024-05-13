@@ -8,9 +8,13 @@ export default {
     width: 1000,
     slots: {},
     onOkButtonClick__func: '',
+    onOkButtonClick__params: ['params'],
     onCancelButtonClick__func: '',
+    onCancelButtonClick__params: ['params'],
     onDialogOpened__func: '',
+    onDialogOpened__params: ['params'],
     onDialogBeforeClose__func: '',
+    onDialogBeforeClose__params: ['params'],
   },
   children: [],
 };

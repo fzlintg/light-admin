@@ -11,6 +11,7 @@ export default {
   componentProps: {
     api: areaRecord,
     api__func: '',
+    api__params: ['params'],
     apiParamKey: 'parentCode',
     // dataField: 'data',
     labelField: 'name',

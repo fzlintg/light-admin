@@ -9,7 +9,9 @@ export default {
     api: optionsListApi,
     api__func: `return await axios.get({url:"/select/getDemoOptions"});
     `,
+    api__params: ['params'],
     onChange__func: '',
+    onChange__params: ['e'],
     params: {
       id: 1,
     },

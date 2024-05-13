@@ -8,6 +8,7 @@ export default {
   componentProps: {
     api: treeOptionsListApi,
     api__func: '',
+    api__params: ['params'],
     params: {
       count: 2,
     },
