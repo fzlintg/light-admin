@@ -63,7 +63,7 @@
       formItemsForEach(formConfig.value.schemas[0].children[0].columns[0].children, (item) => {
         formModel.value[item.field] = get(chartConfig.value, item.field);
       });
-      formModel.value.chartConfig = chartConfig.value;
+      // formModel.value.chartConfig = chartConfig.value;
     }
     nextTick(() => {
       formShow.value = true;

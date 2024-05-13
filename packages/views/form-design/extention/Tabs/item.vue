@@ -8,8 +8,11 @@
           :key="k"
           :schema="item"
           :formData="formData"
+          :formModel="formModel"
           :formConfig="formConfig"
           :setFormModel="setFormModel"
+          :getFormItem="getFormItem"
+          @change="handleChange"
         />
       </tab-pane>
     </tabs>
@@ -19,5 +22,6 @@
   import { Tabs, TabPane } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
 
-  const { schema, formData, formConfig, setFormModel } = toRefs(useAttrs());
+  const { schema, formData, formModel, formConfig, setFormModel, getFormItem, handleChange } =
+    toRefs(useAttrs());
 </script>
