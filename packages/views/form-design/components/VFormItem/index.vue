@@ -21,7 +21,6 @@
         :formData="cur_formModel"
         :setFormModel="cur_setFormModel"
         :inSubForm="inSubForm"
-        :vform="proxy"
         @change="handleChange"
         @click="handleClick(schema)"
         ref="formItemRef"
@@ -104,6 +103,7 @@
     unref,
     getCurrentInstance,
     onMounted,
+    watchEffect,
   } from 'vue';
   import { componentMap } from '../../core/formItemConfig';
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
@@ -202,20 +202,33 @@
         return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
+      const watchKey = new Set();
       const bindFunc = () => {
         forOwn(props.schema.componentProps, (value: any, key) => {
           if (isFunction(value)) {
             props.schema.componentProps[key] = value.bind(proxy);
+            watchKey.add(key);
           }
         });
         forOwn(props.schema.on, (value: any, key) => {
           if (isFunction(value)) {
             props.schema.componentProps![key] = value.bind(proxy);
+            watchKey.add(key);
           }
         });
       };
+
       onMounted(() => {
         bindFunc();
+        watchKey.forEach((v) => {
+          watch(
+            () => props.schema.componentProps[v],
+            () => {
+              let value = props.schema.componentProps[v];
+              props.schema.componentProps[v] = value.bind(proxy);
+            },
+          );
+        });
       });
 
       const colPropsComputed = computed(() => {

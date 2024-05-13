@@ -24,7 +24,7 @@
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatFunc, formatRules, formItemsForEach } from '../../utils/index';
-  import { computed, ref, watch, onMounted } from 'vue';
+  import { computed, ref, watch, onMounted, nextTick, watchEffect } from 'vue';
   import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
@@ -48,28 +48,46 @@
   const formShow = ref(false);
   // const fApi = ref();
   const formConfig = ref({});
-  //const chartConfig = ref({});
   const formModel = ref({});
   const vform = ref(null);
   const initSetting = (type) => {
+    formShow.value = false;
     formConfig.value = settingMap[type];
     formatRules(formConfig.value.schemas);
     formModel.value = {};
     formItemsForEach(formConfig.value.schemas[0].children, (item) => {
       formModel.value[item.field] = get(chartConfig.value, item.field);
     });
+    nextTick(() => {
+      formShow.value = true;
+    });
   };
-  onMounted(() => {
-    // if (!isEmpty(chartState.value.componentProps.chartTpl))
-    //   chartConfig.value = chartState.value.componentProps.chartTpl;
-    // else if (chartType.value) chartConfig.value = cloneDeep(chartMap[chartType.value]);
+  const initState = () => {
     if (isEmpty(chartState.value.componentProps.chartTpl) && chartType.value)
       chartState.value.componentProps.chartTpl = unref(cloneDeep(chartMap[chartType.value]));
     initSetting(chartType.value);
     merge(chartState.value, schemaMap[chartType.value]);
     formatFunc(chartState.value.componentProps);
-    formShow.value = true;
+  };
+  onMounted(() => {
+    initState();
+    // if (!isEmpty(chartState.value.componentProps.chartTpl))
+    //   chartConfig.value = chartState.value.componentProps.chartTpl;
+    // else if (chartType.value) chartConfig.value = cloneDeep(chartMap[chartType.value]);
   });
+  watch(
+    () => chartState.value.componentProps.chartVar__func,
+    () => {
+      formatFunc(chartState.value.componentProps);
+    },
+  );
+
+  watch(
+    () => chartState.value.key,
+    () => {
+      initSetting(chartType.value);
+    },
+  );
   const updateChart = (options) => {
     forOwn(options, (value, key) => {
       set(chartState.value.componentProps.chartTpl, key, value);

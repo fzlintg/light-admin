@@ -14,7 +14,20 @@ export const schema = {
       '原因9',
       '原因10',
     ];
-    return {dataAll,yAxisData}
+    const sourceData=[
+      { value: 335, name: '客服电话' },
+      { value: 310, name: '奥迪官网' },
+      { value: 234, name: '媒体曝光' },
+      { value: 135, name: '质检总局' },
+      { value: 105, name: '其他' },
+    ]
+    const  levelData=[
+      { value: 335, name: 'A级' },
+      { value: 310, name: 'B级' },
+      { value: 234, name: 'C级' },
+      { value: 135, name: 'D级' },
+    ]
+    return {dataAll,yAxisData,sourceData,levelData}
     `,
   },
 };
@@ -79,13 +92,7 @@ export default {
       type: 'pie',
       radius: '30%',
       center: ['22%', '25%'],
-      data: [
-        { value: 335, name: '客服电话' },
-        { value: 310, name: '奥迪官网' },
-        { value: 234, name: '媒体曝光' },
-        { value: 135, name: '质检总局' },
-        { value: 105, name: '其他' },
-      ],
+      data__var: `sourceData`,
       labelLine: { show: false },
       label: {
         show: true,
@@ -99,12 +106,7 @@ export default {
       radius: '30%',
       center: ['22%', '75%'],
       labelLine: { show: false },
-      data: [
-        { value: 335, name: 'A级' },
-        { value: 310, name: 'B级' },
-        { value: 234, name: 'C级' },
-        { value: 135, name: 'D级' },
-      ],
+      data__var: `levelData`,
       label: {
         show: true,
         formatter: '{b} \n ({d}%)',

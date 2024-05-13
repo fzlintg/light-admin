@@ -8,11 +8,11 @@ export default [
     componentProps: {
       buttonText: '编辑',
       mode: 'application/json',
-      editorTitle: '代码编辑',
+      editorTitle: '代码编辑(返回的数据对象，可以直接使用在模版上)',
       bordered: true,
       autoFormat: true,
       readonly: false,
-      prefix: 'function(){',
+      prefix: 'async function(){',
       suffix: '}',
     },
   },
