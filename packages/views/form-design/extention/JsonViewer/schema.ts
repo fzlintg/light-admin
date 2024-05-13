@@ -3,7 +3,7 @@ export default {
   type: 'showItem',
   icon: 'ant-design:bell-outlined',
   componentProps: {
-    defaultValue: {},
+    defaultValue: { demo: 1 },
     theme: 'light',
     sort: true,
     boxed: true,
