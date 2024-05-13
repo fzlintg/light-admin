@@ -53,11 +53,13 @@
   const initSetting = (type) => {
     formShow.value = false;
     formConfig.value = settingMap[type];
-    formatRules(formConfig.value.schemas);
-    formModel.value = {};
-    formItemsForEach(formConfig.value.schemas[0].children, (item) => {
-      formModel.value[item.field] = get(chartConfig.value, item.field);
-    });
+    if (formConfig.value) {
+      formatRules(formConfig.value.schemas);
+      formModel.value = {};
+      formItemsForEach(formConfig.value.schemas[0].children, (item) => {
+        formModel.value[item.field] = get(chartConfig.value, item.field);
+      });
+    }
     nextTick(() => {
       formShow.value = true;
     });

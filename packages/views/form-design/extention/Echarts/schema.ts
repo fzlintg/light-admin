@@ -1,10 +1,3 @@
-// import { chartMap } from './tpl/loader';
-// import { cloneDeep } from 'lodash-es';
-// import { TransObjectToCode } from '../../utils/index';
-
-// const chartOptions = cloneDeep(chartMap['lineBar']);
-// const chartTpl = TransObjectToCode(chartOptions, true);
-
 export default {
   label: 'echart图表',
   type: 'showItem',
