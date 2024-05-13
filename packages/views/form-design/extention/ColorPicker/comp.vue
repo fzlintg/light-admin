@@ -13,7 +13,7 @@
     value: propTypes.string,
     defaultValue: propTypes.string,
   });
-  debugger;
+
   const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
   state.value = state.value || props.defaultValue;
