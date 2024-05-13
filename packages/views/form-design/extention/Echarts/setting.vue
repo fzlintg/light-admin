@@ -10,7 +10,8 @@
       </div>
     </a-form-item>
 
-    <Button @click="openEdit">模版修改</Button>
+    <Button @click="openEdit">配置修改</Button>
+    <Button @click="openJson">预览配置</Button>
     <VFormCreate
       :form-config="formConfig"
       :form-model="formModel"
@@ -73,9 +74,6 @@
   };
   onMounted(() => {
     initState();
-    // if (!isEmpty(chartState.value.componentProps.chartTpl))
-    //   chartConfig.value = chartState.value.componentProps.chartTpl;
-    // else if (chartType.value) chartConfig.value = cloneDeep(chartMap[chartType.value]);
   });
   watch(
     () => chartState.value.componentProps.chartVar__func,
@@ -102,6 +100,7 @@
   const openEdit = () => {
     vform.value!.getFormItem('modal').getModal().show(formModel.value);
   };
+  const openJson = () => {};
   // formatRules(formConfig.value.schemas, {}, true);
   const loadTpl = () => {
     if (chartType.value) {
