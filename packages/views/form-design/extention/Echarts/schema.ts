@@ -11,7 +11,7 @@ export default {
   icon: 'ant-design:bar-chart-outlined',
   componentProps: {
     tpl: 'lineBar',
-    chartTpl: ``,
+    chartTpl: {},
     chartVar__func: ``,
     height: '50vh',
     width: '100%',

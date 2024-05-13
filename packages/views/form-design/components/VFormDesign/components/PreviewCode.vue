@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="v-json-box">
-      <CodeEditor :value="editorJson" ref="myEditor" :mode="MODE.JSON" />
+      <CodeEditor :value="editorJson" ref="myEditor" :mode="MODE.JAVACRIPT" />
     </div>
     <div class="copy-btn-box">
       <a-button

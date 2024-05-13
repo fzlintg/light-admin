@@ -71,7 +71,7 @@ export default {
           colProps: {
             span: 12,
           },
-          field: 'series[1].itemStyle.color__func',
+          field: 'series[1].itemStyle.color__var',
           itemProps: {
             labelCol: {},
             wrapperCol: {},
@@ -114,7 +114,7 @@ export default {
           colProps: {
             span: 12,
           },
-          field: 'series[2].itemStyle.color__func',
+          field: 'series[2].itemStyle.color__var',
           itemProps: {
             labelCol: {},
             wrapperCol: {},

@@ -21,6 +21,7 @@
         :formData="cur_formModel"
         :setFormModel="cur_setFormModel"
         :inSubForm="inSubForm"
+        :vform="proxy"
         @change="handleChange"
         @click="handleClick(schema)"
         ref="formItemRef"
@@ -76,6 +77,7 @@
             :formConfig="formConfig"
             :formData="cur_formModel"
             :setFormModel="cur_setFormModel"
+            :getFormItem="getFormItem"
             @change="handleChange"
             @click="handleClick(schema)"
             ref="formItemRef"
@@ -182,7 +184,7 @@
       const { proxy } = getCurrentInstance();
       if (formItemRefList) formItemRefList[props.schema.field!] = proxy;
       const getFormItem = (name) => {
-        return formItemRefList[name];
+        return formItemRefList[name || props.schema.field!];
       };
       const getFormMethods = inject('formMethods', () => {});
       const getFormModel = () => unref(cur_formModel);
@@ -200,7 +202,7 @@
         return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
-      onMounted(() => {
+      const bindFunc = () => {
         forOwn(props.schema.componentProps, (value: any, key) => {
           if (isFunction(value)) {
             props.schema.componentProps[key] = value.bind(proxy);
@@ -211,6 +213,9 @@
             props.schema.componentProps![key] = value.bind(proxy);
           }
         });
+      };
+      onMounted(() => {
+        bindFunc();
       });
 
       const colPropsComputed = computed(() => {
@@ -366,6 +371,7 @@
         setValue,
         iconShow,
         hidden: (flag) => getFormMethods()?.hidden(props.schema.field, flag),
+        bindFunc,
       };
     },
   });

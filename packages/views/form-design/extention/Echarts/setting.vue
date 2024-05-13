@@ -1,7 +1,13 @@
 <template>
   <div>
-    <a-form-item label="图表">
-      <Select :options="chartOptions" v-model:value="chartState.componentProps.tpl" />
+    <a-form-item label="图表"
+      ><div class="d-flex">
+        <Select
+          :options="chartOptions"
+          v-model:value="chartState.componentProps.tpl"
+          class="flex-1"
+        /><Button @click="loadTpl">加载模版</Button>
+      </div>
     </a-form-item>
 
     <Button @click="openEdit">模版修改</Button>
@@ -22,7 +28,7 @@
   import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
-  import { cloneDeep, forOwn, get, isNil, set } from 'lodash-es';
+  import { cloneDeep, forOwn, get, isNil, set, isEmpty, merge } from 'lodash-es';
 
   const { createConfirm } = useMessage();
 
@@ -38,10 +44,11 @@
   });
   const [chartState] = useRuleFormItem(props, 'props', 'update:props');
   const chartType = computed(() => chartState.value.componentProps.tpl);
+  const chartConfig = computed(() => chartState.value.componentProps.chartTpl);
   const formShow = ref(false);
   // const fApi = ref();
   const formConfig = ref({});
-  const chartConfig = ref({});
+  //const chartConfig = ref({});
   const formModel = ref({});
   const vform = ref(null);
   const initSetting = (type) => {
@@ -53,43 +60,45 @@
     });
   };
   onMounted(() => {
-    if (chartState.value.chartTpl != '' && !isNil(chartState.value.chartTpl))
-      chartConfig.value = eval('(' + chartState.value.chartTpl + ')');
-    else if (chartType.value) chartConfig.value = chartMap[chartType.value];
+    // if (!isEmpty(chartState.value.componentProps.chartTpl))
+    //   chartConfig.value = chartState.value.componentProps.chartTpl;
+    // else if (chartType.value) chartConfig.value = cloneDeep(chartMap[chartType.value]);
+    if (isEmpty(chartState.value.componentProps.chartTpl) && chartType.value)
+      chartState.value.componentProps.chartTpl = unref(cloneDeep(chartMap[chartType.value]));
     initSetting(chartType.value);
-
+    merge(chartState.value, schemaMap[chartType.value]);
+    formatFunc(chartState.value.componentProps);
     formShow.value = true;
   });
   const updateChart = (options) => {
     forOwn(options, (value, key) => {
-      set(chartConfig.value, key, value);
+      set(chartState.value.componentProps.chartTpl, key, value);
     });
-    Object.assign(chartState.value, schemaMap[chartType.value]);
+    merge(chartState.value, schemaMap[chartType.value]);
     formatFunc(chartState.value.componentProps);
-    chartState.value.componentProps.chartTpl = JSON.stringify(chartConfig.value);
+    //chartState.value.componentProps.chartTpl = JSON.stringify(chartConfig.value);
+    // chartState.value.componentProps.chartTpl = chartConfig.value;
   };
   const openEdit = () => {
     vform.value!.getFormItem('modal').getModal().show(formModel.value);
   };
   // formatRules(formConfig.value.schemas, {}, true);
-  watch(
-    () => chartType.value,
-    () => {
-      if (chartType.value) {
-        createConfirm({
-          iconType: 'warning',
-          title: () => '提醒',
-          content: () => '是否载入模版数据替换',
-          onOk: async () => {
-            chartConfig.value = cloneDeep(chartMap[chartType.value]);
-            initSetting(chartType.value);
-            chartState.value.chartVar__func = '';
-            chartState.value.componentProps.chartTpl = JSON.stringify(chartConfig.value);
-            Object.assign(chartState.value, schemaMap[chartType.value]);
-            formatFunc(chartState.value.componentProps);
-          },
-        });
-      }
-    },
-  );
+  const loadTpl = () => {
+    if (chartType.value) {
+      createConfirm({
+        iconType: 'warning',
+        title: () => '提醒',
+        content: () => '是否载入模版数据替换',
+        onOk: async () => {
+          chartState.value.componentProps.chartTpl = cloneDeep(chartMap[chartType.value]);
+          initSetting(chartType.value);
+          chartState.value.componentProps.chartVar__func = '';
+          //      chartState.value.componentProps.chartTpl = cloneDeep(unref(chartConfig.value));
+          //   Object.assign(chartState.value, schemaMap[chartType.value]);
+          merge(chartState.value, schemaMap[chartType.value]);
+          formatFunc(chartState.value.componentProps);
+        },
+      });
+    }
+  };
 </script>

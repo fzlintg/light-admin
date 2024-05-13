@@ -276,6 +276,7 @@ export const formatItem = (schemas) => {
     } else if (endsWith(key, '__var') && typeof value == 'string') {
       const v = key.substring(0, key.length - 5);
       schemas![v] = `$var_b:` + schemas[key] + ':$var_e';
+      delete schemas[key];
     } else if (isObject(value)) {
       formatItem(value);
     }
@@ -292,15 +293,15 @@ export const TransObjectToCode = (schemas, flag = false) => {
       const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
       return flag ? `((${params}) => {${cleanedCode}})()` : `async (${params}) => {${cleanedCode}}`;
     })
-    .replace(regex2, function (match, v) {
-      return v;
+    .replace(regex2, function (match, code) {
+      return code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
     });
 };
 
 export const formatItemFunc = (schemas) => {
   //针对函数变量用模版字符串
   forOwn(schemas, (value: any, key) => {
-    if (endsWith(key, '__func') && typeof value == 'string') {
+    if ((endsWith(key, '__func') || endsWith(key, '__var')) && typeof value == 'string') {
       schemas![key] = '$_begin ' + schemas[key] + ' $_end';
     } else if (isObject(value)) {
       formatItemFunc(value);
