@@ -7,38 +7,43 @@
       @ok="handleOk"
       @cancel="handleCancle"
     >
-      <VFormCreate
-        :form-config="formConfigNew"
-        v-model:fApi="fApi"
-        v-model:formModel="formModelNew"
-        ref="formRef"
-    /></modal>
+      <Form :form="fApi" :model="formModelNew" v-if="open">
+        <VFormItem
+          isRender
+          inSubForm
+          v-for="(item, k) in schema.children"
+          :key="k"
+          :schema="item"
+          :formModel="formModelNew"
+          :formConfig="formConfig"
+          :setFormModel="setFormModel"
+        >
+          <template #[key] v-for="(value, key) in item.componentProps?.slots">
+            {{ value }}
+          </template>
+        </VFormItem>
+      </Form>
+    </modal>
   </div>
 </template>
 <script setup lang="ts">
-  import VFormCreate from '../../components/VFormCreate/index.vue';
   import VFormItem from '../../components/VFormItem/index.vue';
   import { Button as AButton, Form } from 'ant-design-vue';
   import Modal from '@c/Modal/src/BasicModal.vue';
   import { flattenArray, flattenObject, formModelToData } from '../../utils';
-  import { computed, getCurrentInstance } from 'vue';
+  import { getCurrentInstance } from 'vue';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   // import { formatRules } from '../../utils/index';
   const _this = getCurrentInstance();
   const open = ref(false);
   const fApi = ref({});
   const formModelNew = ref({});
-  const formRef = ref(null);
-  const extraData = ref({});
-
-  const { schema, formConfig } = toRefs(useAttrs());
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
   };
+  const extraData = ref({});
 
-  const formConfigNew = computed(() => {
-    return { ...formConfig.value, schemas: toRaw(schema.value.children) };
-  });
+  const { schema, formConfig } = toRefs(useAttrs());
   const emit = defineEmits([
     'dialogOpened',
     'okButtonClick',
@@ -46,10 +51,10 @@
     'dialogBeforeClose',
   ]);
   //schema.value.children = flattenArray(schema.value.children);
-  // formConfig.value.children = schema.value.children;
-  const show = (fData, eData, raw = false) => {
+  formConfig.value.children = schema.value.children;
+  const show = (fData, eData) => {
     if (fData) {
-      formModelNew.value = raw ? fData : flattenObject(fData);
+      formModelNew.value = flattenObject(fData);
     }
     if (eData) extraData.value = eData;
     emit('dialogOpened', { fData: formModelNew.value, eData });
@@ -83,6 +88,5 @@
     setFormModel,
     getExtraData: () => extraData.value,
     getFormData: () => formModelToData(formModelNew.value),
-    getForm: () => formRef.value,
   });
 </script>

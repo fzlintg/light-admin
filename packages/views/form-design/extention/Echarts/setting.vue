@@ -10,7 +10,8 @@
       </div>
     </a-form-item>
 
-    <Button @click="openEdit">配置修改查看</Button>
+    <Button @click="openEdit">配置修改</Button>
+    <Button @click="openShow">配置查看</Button>
 
     <VFormCreate
       :form-config="formConfig"
@@ -24,7 +25,7 @@
 <script lang="ts" setup>
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
-  import { formatFunc, formatRules, formItemsForEach } from '../../utils/index';
+  import { formatFunc, formatRules, formItemsForEach, formModelToData } from '../../utils/index';
   import { computed, ref, watch, onMounted, nextTick, watchEffect } from 'vue';
   //import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
@@ -54,16 +55,16 @@
   const initSetting = (type) => {
     formShow.value = false;
     formConfig.value = cloneDeep(baseSetting);
-    formConfig.value.schemas[0].children[0].columns[0].children = cloneDeep(
-      settingMap[type].schemas,
-    );
-    if (formConfig.value) {
-      formatRules(formConfig.value.schemas);
-      formModel.value = {};
-      formItemsForEach(formConfig.value.schemas[0].children[0].columns[0].children, (item) => {
-        formModel.value[item.field] = get(chartConfig.value, item.field);
-      });
-      // formModel.value.chartConfig = chartConfig.value;
+    if (settingMap[type]) {
+      formConfig.value.schemas[0].children = cloneDeep(settingMap[type].schemas);
+      if (formConfig.value) {
+        formatRules(formConfig.value.schemas, true);
+        formModel.value = {};
+        formItemsForEach(formConfig.value.schemas[0].children, (item) => {
+          formModel.value[item.field] = get(chartConfig.value, item.field);
+        });
+        // formModel.value.chartConfig = chartConfig.value;
+      }
     }
     nextTick(() => {
       formShow.value = true;
@@ -104,7 +105,12 @@
   const openEdit = () => {
     vform.value!.getFormItem('modal').getModal().show(formModel.value);
   };
-
+  const openShow = () => {
+    vform
+      .value!.getFormItem('modal_1')
+      .getModal()
+      .show({ formData: chartConfig.value }, null, true);
+  };
   // formatRules(formConfig.value.schemas, {}, true);
   const loadTpl = () => {
     if (chartType.value) {

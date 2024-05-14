@@ -333,7 +333,7 @@ export function formatFunc(item, flag = false) {
           : () => true; //默认true
 
       item[originName] = async function (...args) {
-        console.log('exec', this);
+        // console.log('exec', this);
         // const argsCall = args.length == 0 ? [{}] : args;
         let result = await func.call(this, ...args, { axios: defHttp });
         if (args?.[0]?.callback) {

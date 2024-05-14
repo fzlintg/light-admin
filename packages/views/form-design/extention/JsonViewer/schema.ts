@@ -8,6 +8,11 @@ export default {
     sort: true,
     boxed: true,
     copyable: true,
+    expandDepth: 3,
+    expanded: false,
     onKeyClick__func: ``,
+    timeformat__func: `time => time.toLocaleString()`,
+    showArrayIndex: true,
+    showDoubleQuotes: false,
   },
 };

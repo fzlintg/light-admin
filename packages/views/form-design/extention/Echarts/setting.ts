@@ -12,7 +12,7 @@ export default [
       bordered: true,
       autoFormat: true,
       readonly: false,
-      prefix: 'async function(){',
+      prefix: 'async function({axios}){',
       suffix: '}',
     },
   },

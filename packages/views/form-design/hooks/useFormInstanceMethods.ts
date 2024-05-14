@@ -47,7 +47,7 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
 
   const submit = async () => {
     const _result = await validate();
-    console.log(_result);
+    // console.log(_result);
     const data = cloneDeep(toRaw(formdata.value));
     const value = formModelToData(data);
     // const value = {}; //lintg
