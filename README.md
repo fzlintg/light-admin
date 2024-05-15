@@ -58,4 +58,4 @@ Then you can navigate to `http://localhost:6666`
 
 ## License
 
-[MIT © Vben-2020](./LICENSE)
+[MIT © lintg_2024](./LICENSE)
