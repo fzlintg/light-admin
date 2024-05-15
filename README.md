@@ -56,8 +56,6 @@ Then you can navigate to `http://localhost:6666`
 
 
 
-[![Star History Chart](https://api.star-history.com/svg?repos=vbenjs/vue-vben-admin&type=Date)](https://star-history.com/#vbenjs/vue-vben-admin&Date)
-
 ## License
 
 [MIT © Vben-2020](./LICENSE)
