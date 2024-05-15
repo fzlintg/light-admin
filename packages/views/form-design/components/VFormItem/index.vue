@@ -4,7 +4,7 @@
 <template>
   <Col v-bind="colPropsComputed" style="width: 100% !important">
     <div
-      v-if="['showItem', 'container', 'containerItem'].includes(schema.type)"
+      v-if="['showItem', 'container', 'containerItem', 'gridContainer'].includes(schema.type)"
       :class="{
         'm-2': true,
         ['jc-' + (schema.compAlign || 'center')]: true,
@@ -294,7 +294,8 @@
       }) as Recordable<any>;
 
       const componentItem = computed(() =>
-        props.isRender || !['container', 'containerItem'].includes(props.schema.type)
+        props.isRender ||
+        !['gridContainer', 'container', 'containerItem'].includes(props.schema.type)
           ? componentMap.get(props.schema.component as string)
           : widget[props.schema.component],
       );
@@ -350,7 +351,7 @@
       });
 
       const handleChange = function (e) {
-        if (['container', 'showItem'].includes(props.schema.type)) return;
+        if (['container', 'gridContainer', 'showItem'].includes(props.schema.type)) return;
         // if (['Tabs', 'Card', 'Modal', 'Drawer'].includes(props.schema.component)) return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         const target = e ? e.target : null;

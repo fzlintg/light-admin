@@ -229,7 +229,7 @@
    */
   const copyFormItem = (formItem: IVFormComponent) => {
     const newFormItem = cloneDeep(formItem);
-    if (newFormItem.component === 'Grid') {
+    if (newFormItem.type === 'container') {
       formItemsForEach([formItem], (item) => {
         generateKey(item);
       });
@@ -266,7 +266,7 @@
           return true;
         }
         //lintg
-        else if (['Grid'].includes(formItem.component)) {
+        else if (formItem.type == 'gridContainer') {
           // 栅格布局
           formItem.columns?.forEach((item) => {
             traverse(item.children);

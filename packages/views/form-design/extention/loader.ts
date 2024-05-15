@@ -17,6 +17,7 @@ const expModule = {},
     containerItem: { name: '容器组件', schema: [] },
     custom: { name: '自定义组件', schema: [] },
     container: { name: '纯容器', schema: [] },
+    gridContainer: { name: '布局容器', schema: [] },
   };
 
 for (const item in modules) {
@@ -28,6 +29,7 @@ for (const item in modules) {
 }
 for (const path in schemaModules) {
   const component = path.split('/')[1];
+  // console.log(schemaModules[path]?.default?.type);
   schemas[schemaModules[path]?.default?.type || 'custom'].schema.push({
     component,
     ...schemaModules[path].default,

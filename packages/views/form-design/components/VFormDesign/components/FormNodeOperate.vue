@@ -47,7 +47,8 @@
           schemas.some((formItem, index) => {
             const { component, key, type } = formItem;
             // 处理栅格和标签页布局
-            if (component == 'Grid') formItem.columns?.forEach((item) => traverse(item.children));
+            if (type == 'gridContainer')
+              formItem.columns?.forEach((item) => traverse(item.children));
             else if (type == 'container')
               //  ['Tabs', 'GridSubForm', 'SubForm', 'Modal', 'Drawer'].includes(component)
               traverse(formItem.children || []);

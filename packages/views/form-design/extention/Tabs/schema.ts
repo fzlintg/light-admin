@@ -1,6 +1,6 @@
 export default {
   label: '标签页',
-  type: 'container',
+  type: 'gridContainer',
   icon: 'gravity-ui:layout-tabs',
   componentProps: {
     onChange__func: `  `,

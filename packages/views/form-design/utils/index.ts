@@ -115,7 +115,7 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
     schemas.forEach((formItem: IVFormComponent) => {
       if (!formItem) return;
       cb(formItem);
-      if (['Grid', 'Tabs'].includes(formItem.component)) {
+      if (formItem.type == 'gridContainer') {
         // 栅格布局，注意不要把GridSubForm加进来
         formItem.columns?.forEach((item) => traverse(item.children));
       } else if (formItem.type == 'container') {
@@ -138,7 +138,7 @@ export const findFormItem: (
     return schemas.some((formItem: IVFormComponent) => {
       const { component: type } = formItem;
       // 处理栅格
-      if (['Grid'].includes(type)) {
+      if (type == 'gridContainer') {
         return formItem.columns?.some((item) => traverse(item.children));
       }
       if (cb(formItem)) res = formItem;
@@ -155,10 +155,10 @@ export const getInitValue = (schemas, formModel: Object): any => {
     const { component, field, defaultValueObj } = item;
     const defaultValue = item.defaultValue || item?.componentProps.defaultValue;
     // const field = field || name;
-    if (['Grid'].includes(component)) {
+    if (item.type == 'gridContainer') {
       // 栅格布局
-      item.columns?.forEach((item) => {
-        getInitValue(item.children, formModel);
+      item.columns?.forEach((i) => {
+        getInitValue(i.children, formModel);
       });
     } else if (['SubForm', 'GridSubForm'].includes(component)) {
       if (!formModel[field!]) formModel[field!] = [{}];
@@ -258,7 +258,11 @@ export const handleAsyncOptions = async (
 export const TransJSonToTs = (schemas) => {
   formatItemFunc(schemas);
   function replaceQuotes(match, group) {
-    const replacedStr = group.replace(/\\"/g, '"').replace(/\\n/g, ' \n '); // 替换含有\"为“
+    const replacedStr = group
+      .replace(/\\"/g, '"')
+      .replace(/\\n/g, ' \n ')
+      .replace(/`/g, ' \\` ')
+      .replace(/\${/g, '$\\{'); // 替换含有\"为“
     return '`' + replacedStr + '`';
   }
   return JSON.stringify(schemas, null, '\t').replace(/"\$_begin(.*?)\$_end"/g, replaceQuotes);
