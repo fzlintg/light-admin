@@ -3,4 +3,5 @@ export default {
   componentProps: {
     height: 400,
   },
+  defaultValue: '',
 };
