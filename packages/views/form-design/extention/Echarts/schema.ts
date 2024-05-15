@@ -6,7 +6,8 @@ export default {
     tpl: 'lineBar',
     chartTpl: {},
     chartVar__func: ``,
-
+    refresh: false,
+    refresh_seconds: 5,
     height: '50vh',
     width: '100%',
   },

@@ -16,4 +16,14 @@ export default [
       suffix: '}',
     },
   },
+  {
+    field: 'refresh',
+    label: '自动刷新',
+    category: 'control',
+  },
+  {
+    field: 'refresh_seconds',
+    label: '刷新间隔',
+    component: 'InputNumber',
+  },
 ];

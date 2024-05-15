@@ -34,12 +34,19 @@
       type: Function as PropType<any>,
       default: () => {},
     },
+    refresh: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    refresh_seconds: {
+      type: Number as PropType<number>,
+      default: 5,
+    },
   });
 
   const chartRef = ref<HTMLDivElement | null>(null);
   const { setOptions } = useECharts(chartRef as Ref<HTMLDivElement>);
-
-  watchEffect(async () => {
+  const refreshChart = async () => {
     if (!isEmpty(props.chartTpl)) {
       let data = await props.chartVar();
       // const tpl = TransObjectToCode(eval('(' + props.chartTpl + ')'));
@@ -58,5 +65,13 @@
         }),
       );
     }
+  };
+  watchEffect(async () => {
+    await refreshChart();
+  });
+  onMounted(async () => {
+    setInterval(async () => {
+      if (props.refresh) await refreshChart();
+    }, props.refresh_seconds * 1000);
   });
 </script>
