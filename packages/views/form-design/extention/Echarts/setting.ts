@@ -23,7 +23,7 @@ export default [
   },
   {
     field: 'refresh_seconds',
-    label: '刷新间隔',
+    label: '刷新间隔(秒)',
     component: 'InputNumber',
   },
 ];
