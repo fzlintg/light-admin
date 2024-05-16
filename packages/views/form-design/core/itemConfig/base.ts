@@ -93,7 +93,6 @@ export const schema = [
     componentProps: {
       type: 'text',
       defaultValue: '',
-      ds: '',
     },
   },
   {

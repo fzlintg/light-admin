@@ -44,7 +44,7 @@
   import { defineComponent, computed } from 'vue';
   import { cloneDeep } from 'lodash-es';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
-  import { Form, Empty } from 'ant-design-vue';
+  import { Form, Empty, Row } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'FormComponentPanel',
@@ -52,6 +52,7 @@
       LayoutItem,
       draggable,
       Form,
+      Row,
       Empty,
     },
     emits: ['handleSetSelectItem'],

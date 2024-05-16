@@ -35,15 +35,8 @@
         <FormItem label="关联字段">
           <Select
             mode="multiple"
-            v-model:value="formConfig.currentItem.componentProps['_link']"
+            v-model:value="formConfig.currentItem['link']"
             :options="linkOptions"
-          />
-        </FormItem>
-        <FormItem label="数据源">
-          <Select
-            mode="multiple"
-            v-model:value="formConfig.currentItem.componentProps['ds']"
-            :options="dsOptions"
           />
         </FormItem>
 
@@ -122,7 +115,7 @@
   import ItemOptions from './ItemOptions.vue';
   //import { get, set } from 'lodash-es';
   import LightProps from './LighProps.vue';
-  import ds from '../../../api/index';
+  // import ds from '../../../api/index';
   //console.log(...componentMap);
   export default defineComponent({
     name: 'ComponentProps',
@@ -147,12 +140,12 @@
     },
     setup() {
       // 让computed属性自动更新
-      const dsOptions = ds.map((item) => {
-        return {
-          label: item.label,
-          value: item.field,
-        };
-      });
+      // const dsOptions = ds.map((item) => {
+      //   return {
+      //     label: item.label,
+      //     value: item.field,
+      //   };
+      // });
       const allOptions = ref([] as Omit<IBaseFormAttrs, 'tag'>[]);
       const showControlAttrs = (includes: string[] | undefined) => {
         if (!includes) return true;
@@ -214,18 +207,18 @@
           }
         }
       }
-      watch(
-        () => formConfig.value.currentItem?.field,
-        (_newValue, oldValue) => {
-          formConfig.value.schemas &&
-            formItemsForEach(formConfig.value.schemas, (item) => {
-              if (item.link) {
-                const index = item.link.findIndex((linkItem) => linkItem === oldValue);
-                index !== -1 && remove(item.link, index);
-              }
-            });
-        },
-      );
+      // watch(
+      //   () => formConfig.value.currentItem?.field,
+      //   (_newValue, oldValue) => {
+      //     formConfig.value.schemas &&
+      //       formItemsForEach(formConfig.value.schemas, (item) => {
+      //         if (item.link) {
+      //           const index = item.link.findIndex((linkItem) => linkItem === oldValue);
+      //           index !== -1 && remove(item.link, index);
+      //         }
+      //       });
+      //   },
+      // );
 
       watch(
         () => formConfig.value.currentItem && formConfig.value.currentItem.component,
@@ -357,7 +350,7 @@
         inputOptions,
         allOptions,
         getComponent,
-        dsOptions,
+        //   dsOptions,
         settingComp,
         //   getItemProps
       };

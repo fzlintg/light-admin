@@ -2,24 +2,26 @@
  * @Description: 拖拽节点控件
 -->
 <template>
-  <div
-    class="drag-move-box"
-    @click.stop="handleSelectItem"
-    :class="{ active: schema.key === formConfig.currentItem?.key }"
-  >
-    <div class="form-item-box jc-start d-flex w100">
-      <VFormItem
-        :formConfig="formConfig"
-        :schema="schema"
-        :parentComp="parentComp"
-        :current-item="formConfig.currentItem"
-      />
+  <Col v-bind="colPropsComputed" style="width: 100% !important">
+    <div
+      class="drag-move-box"
+      @click.stop="handleSelectItem"
+      :class="{ active: schema.key === formConfig.currentItem?.key }"
+    >
+      <div class="form-item-box jc-start d-flex w100">
+        <VFormItem
+          :formConfig="formConfig"
+          :schema="schema"
+          :parentComp="parentComp"
+          :current-item="formConfig.currentItem"
+        />
+      </div>
+      <div class="show-key-box">
+        {{ schema.label + (schema.field ? '/' + schema.field : '') }}
+      </div>
+      <FormNodeOperate :schema="schema" :currentItem="formConfig.currentItem" />
     </div>
-    <div class="show-key-box">
-      {{ schema.label + (schema.field ? '/' + schema.field : '') }}
-    </div>
-    <FormNodeOperate :schema="schema" :currentItem="formConfig.currentItem" />
-  </div>
+  </Col>
 </template>
 <script lang="ts">
   import { defineComponent, reactive, toRefs, PropType, defineAsyncComponent } from 'vue';
@@ -35,7 +37,7 @@
     components: {
       VFormItem: defineAsyncComponent(() => import('../../VFormItem/index.vue')),
       FormNodeOperate,
-      // Col,
+      Col,
     },
     props: {
       schema: {
@@ -59,12 +61,16 @@
         // debugger;
         formDesignMethods.handleSetSelectItem(props.schema);
       };
+      const colPropsComputed = computed(() => {
+        const { colProps = {} } = props.schema;
+        return props.parentComp == 'SubForm' ? {} : colProps; //lintg
+      });
       // const colPropsComputed = computed(() => {
       //   const { colProps = {} } = props.schema;
       //   return props.parentComp == 'SubForm' ? {} : colProps; //lintg
       // });
       return {
-        //    colPropsComputed,
+        colPropsComputed,
         ...toRefs(state),
         handleSelectItem,
         formConfig,

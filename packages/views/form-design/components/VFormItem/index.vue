@@ -233,7 +233,7 @@
 
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
-        return props.parentComp == 'SubForm' ? {} : colProps; //lintg
+        return props.parentComp == 'SubForm' || !props.isRender ? {} : colProps; //lintg
       });
       const formItemProps = computed(() => {
         const { formConfig } = unref(props);

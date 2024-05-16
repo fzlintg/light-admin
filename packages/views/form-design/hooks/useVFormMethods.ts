@@ -187,15 +187,16 @@ export function useVFormMethods<E extends EmitsOptions = EmitsOptions>(
       if (isFunction(item?.componentProps._update)) schemaMap[item.field] = item;
     });
     schema.forEach((item) => {
-      const field = item.field;
-      const linkedItems = item.componentProps._link;
+      // const  = item.field;
+      // const linkedItems = item.link;
+      const { field, link } = item;
 
       // 如果 field 字段存在且关联数组不为空
-      if (field && linkedItems && linkedItems.length > 0) {
+      if (field && link && link.length > 0) {
         if (!linkOn[field]) linkOn[field] = [];
 
         // 将关联数组中的每个元素加入 linkOn 对象中对应的数组中
-        linkedItems.forEach((linkedItem) => {
+        link.forEach((linkedItem) => {
           if (schemaMap[linkedItem])
             // 将完整的 item 对象加入 linkOn 对象中对应的数组中
             linkOn[field].push(schemaMap[linkedItem]);
