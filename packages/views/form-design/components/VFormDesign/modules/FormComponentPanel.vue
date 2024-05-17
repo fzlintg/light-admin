@@ -25,7 +25,7 @@
           @start="handleDragStart"
         >
           <template #item="{ element }">
-            <LayoutItem
+            <FormNode
               class="drag-move"
               :schema="element"
               :data="formConfig"
@@ -40,7 +40,8 @@
 </template>
 <script lang="ts">
   import draggable from 'vuedraggable';
-  import LayoutItem from '../components/LayoutItem.vue';
+  //import LayoutItem from '../components/LayoutItem.vue';
+  import FormNode from '../components/FormNode.vue';
   import { defineComponent, computed } from 'vue';
   import { cloneDeep } from 'lodash-es';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
@@ -49,10 +50,11 @@
   export default defineComponent({
     name: 'FormComponentPanel',
     components: {
-      LayoutItem,
+      //    LayoutItem,
+      FormNode,
       draggable,
       Form,
-      Row,
+      //    Row,
       Empty,
     },
     emits: ['handleSetSelectItem'],

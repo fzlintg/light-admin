@@ -49,7 +49,7 @@
             // 处理栅格和标签页布局
             if (type == 'gridContainer')
               formItem.columns?.forEach((item) => traverse(item.children));
-            else if (type == 'container')
+            else if (['container', 'containerItem'].includes(type))
               //  ['Tabs', 'GridSubForm', 'SubForm', 'Modal', 'Drawer'].includes(component)
               traverse(formItem.children || []);
             if (key === props.currentItem.key) {

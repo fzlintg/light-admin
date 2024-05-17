@@ -229,7 +229,7 @@
    */
   const copyFormItem = (formItem: IVFormComponent) => {
     const newFormItem = cloneDeep(formItem);
-    if (newFormItem.type === 'container') {
+    if (['container', 'gridContainer', 'containerItem'].includes(newFormItem.type)) {
       formItemsForEach([formItem], (item) => {
         generateKey(item);
       });
@@ -272,7 +272,7 @@
             traverse(item.children);
           });
         } else if (
-          formItem.type == 'container'
+          ['container', 'containerItem'].includes(formItem.type)
           // ['Tab', 'SubForm', 'GridSubForm', 'Modal', 'Drawer',''].includes(formItem.component)
         ) {
           // 栅格布局

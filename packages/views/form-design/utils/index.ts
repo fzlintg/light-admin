@@ -118,7 +118,7 @@ export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComp
       if (formItem.type == 'gridContainer') {
         // 栅格布局，注意不要把GridSubForm加进来
         formItem.columns?.forEach((item) => traverse(item.children));
-      } else if (formItem.type == 'container') {
+      } else if (['container', 'containerItem'].includes(formItem.type)) {
         traverse(formItem.children);
       }
     });
@@ -140,6 +140,8 @@ export const findFormItem: (
       // 处理栅格
       if (type == 'gridContainer') {
         return formItem.columns?.some((item) => traverse(item.children));
+      } else if (['container', 'containerItem'].includes(type)) {
+        return traverse(formItem.children);
       }
       if (cb(formItem)) res = formItem;
       return cb(formItem);

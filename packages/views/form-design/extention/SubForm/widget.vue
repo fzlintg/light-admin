@@ -16,7 +16,7 @@
         @add="$emit('handleColAdd', $event, schema.children)"
       >
         <template #item="{ element }">
-          <LayoutItem
+          <FormNode
             :style="{ width: element.width }"
             class="drag-move sub-form-table-column"
             :schema="element"
@@ -34,15 +34,15 @@
   import { useFormDesignState } from '../../hooks/useFormDesignState';
   //import { Form as AForm } from 'ant-design-vue';
   import draggable from 'vuedraggable';
-  import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
-
+  //import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
+  import FormNode from '../../components/VFormDesign/components/FormNode.vue';
   //const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },
     // formConfig,
   } = useFormDesignState();
 
-  const { currentItem, schema } = useAttrs();
+  const { currentItem, schema } = toRefs(useAttrs());
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');
