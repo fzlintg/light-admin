@@ -1,5 +1,5 @@
 <template>
-<div class="grid-box" >
+  <div class="grid-box">
     <tabs>
       <tab-pane v-for="(tabItem, index) in schema.columns" :key="index" :tab="tabItem.label">
         <draggable
@@ -17,7 +17,7 @@
           @add="$emit('handleColAdd', $event, tabItem.children)"
         >
           <template #item="{ element }">
-            <LayoutItem
+            <FormNode
               class="drag-move"
               :schema="element"
               :current-item="currentItem"
@@ -28,16 +28,17 @@
         </draggable>
       </tab-pane>
     </tabs>
-
   </div>
 </template>
 <script lang="ts" setup>
-  import FormNodeOperate from '../../components/VFormDesign/components/FormNodeOperate.vue';
+  //import FormNodeOperate from '../../components/VFormDesign/components/FormNodeOperate.vue';
   import { useFormDesignState } from '../../hooks/useFormDesignState';
   import { Tabs, TabPane } from 'ant-design-vue';
   import draggable from 'vuedraggable';
-  import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
-
+  //import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
+  const FormNode = defineAsyncComponent(
+    () => import('../../components/VFormDesign/components/FormNode.vue'),
+  );
   // const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },

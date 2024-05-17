@@ -22,7 +22,7 @@
           @add="$emit('handleColAdd', $event, colItem.children)"
         >
           <template #item="{ element }">
-            <LayoutItem
+            <FormNode
               class="drag-move"
               :schema="element"
               :current-item="currentItem"
@@ -41,9 +41,13 @@
   import { defineAsyncComponent } from 'vue';
   import draggable from 'vuedraggable';
   // import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
-  const LayoutItem = defineAsyncComponent(
-    () => import('@views/form-design/components/VFormDesign/components/LayoutItem.vue'),
+  // const LayoutItem = defineAsyncComponent(
+  //   () => import('@views/form-design/components/VFormDesign/components/LayoutItem.vue'),
+  // );
+  const FormNode = defineAsyncComponent(
+    () => import('../../components/VFormDesign/components/FormNode.vue'),
   );
+  //import FormNode from '../../components/VFormDesign/components/FormNode.vue';
   //const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },

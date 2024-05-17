@@ -19,7 +19,7 @@
         @add="$emit('handleColAdd', $event, schema.children)"
       >
         <template #item="{ element }">
-          <LayoutItem
+          <FormNode
             class="drag-move"
             :schema="element"
             :current-item="currentItem"
@@ -36,7 +36,8 @@
 
   import { CollapseContainer } from '@c/Container';
   import draggable from 'vuedraggable';
-  import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
+  //import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
+  import FormNode from '../../components/VFormDesign/components/FormNode.vue';
   // import {Coll} from '@c/container/index.ts';
   // const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
