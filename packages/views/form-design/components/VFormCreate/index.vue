@@ -129,9 +129,9 @@
       const handleChange = (_event) => {
         const { schema, value } = _event;
         const { field } = unref(schema);
-
-        linkOn[field!]?.forEach((formItem) => {
-          formItem?.componentProps?._update?.(value, formItem, fApi.value as IVFormMethods);
+        console.log('change', field, value);
+        linkOn[field!]?.forEach(async (formItem) => {
+          await formItem?.componentProps?._update?.(value, formItem, fApi.value as IVFormMethods);
         });
       };
       /**

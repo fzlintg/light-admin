@@ -7,7 +7,7 @@ export default {
   field: '',
   componentProps: {
     api: optionsListApi,
-    api__func: `return await axios.get({url:"/select/getDemoOptions"});
+    api__func: `return await axios.get({url:"/select/getDemoOptions?keyword="+params.id});
     `,
     api__params: ['params'],
     onChange__func: '',
@@ -22,6 +22,7 @@ export default {
     valueField: 'id',
     // not request untill to select
     immediate: true,
+    _update__func: `this.getItemRef().fetch()`,
     onChange: (e, v) => {
       console.log('ApiSelect====>:', e, v);
     },

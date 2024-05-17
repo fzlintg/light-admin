@@ -169,6 +169,7 @@
       const state = reactive({
         componentMap,
         formItemRef: null,
+        formItemRef2: null,
       });
 
       const { formModel, setFormModel } = useFormModelState();
@@ -199,6 +200,9 @@
       };
 
       const getModal = (name) => {
+        return formItemRefList[name || props.schema.field!].formItemRef;
+      };
+      const getItemRef = (name) => {
         return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
@@ -386,6 +390,7 @@
         iconShow,
         hidden: (flag) => getFormMethods()?.hidden(props.schema.field, flag),
         bindFunc,
+        getItemRef,
       };
     },
   });

@@ -26,7 +26,7 @@
   import type { SelectValue } from 'ant-design-vue/es/select';
   import { isFunction } from '@utils/is';
   import { useRuleFormItem } from '@h/component/useFormItem';
-  import { get, omit, isEqual } from 'lodash-es';
+  import { get, omit, isEqual, cloneDeep } from 'lodash-es';
   import { LoadingOutlined } from '@ant-design/icons-vue';
   import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@utils/propTypes';
@@ -111,16 +111,24 @@
     { deep: true, immediate: props.immediate },
   );
 
-  async function fetch() {
+  let paramsWait = null;
+
+  async function fetch(v_params: any = null) {
     let { api, beforeFetch, afterFetch, params, resultField } = props;
+    if (loading.value && v_params)
+      paramsWait = cloneDeep(v_params); //缓存
+    else paramsWait = null; //最后一次
+    v_params = v_params || params;
+    //预存
+
     if (!api || !isFunction(api) || loading.value) return;
     optionsRef.value = [];
     try {
       loading.value = true;
       if (beforeFetch && isFunction(beforeFetch)) {
-        params = (await beforeFetch(params)) || params;
+        params = (await beforeFetch(v_params)) || params;
       }
-      let res = await api(params);
+      let res = await api(v_params);
       // let res = await api({ ...params, context: { axios } });
       if (afterFetch && isFunction(afterFetch)) {
         res = (await afterFetch(res)) || res;
@@ -142,6 +150,9 @@
     } finally {
       loading.value = false;
     }
+    if (paramsWait) {
+      await fetch(paramsWait);
+    }
   }
 
   async function handleFetch(visible: boolean) {
@@ -161,4 +172,5 @@
   function handleChange(_, ...args) {
     emitData.value = args;
   }
+  defineExpose({ fetch });
 </script>
