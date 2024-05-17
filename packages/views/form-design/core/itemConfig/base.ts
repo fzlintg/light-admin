@@ -109,7 +109,7 @@ export const schema = [
     icon: 'ant-design:file-text-filled',
     field: '',
     colProps: { span: 24 },
-    componentProps: { defaultValue: '' },
+    componentProps: { defaultValue: '', autosize: { minRows: 2 } },
   },
   {
     component: 'Select',

@@ -356,6 +356,10 @@ export function formatFunc(item, flag = false) {
         delete item[name];
       }
       // }
+    } else if (endsWith(name, '__var')) {
+      const originName = name.substr(0, name.length - 5);
+      item[originName] = eval('(' + item[name] + ')');
+      if (flag) delete item[name];
     }
   }
 }

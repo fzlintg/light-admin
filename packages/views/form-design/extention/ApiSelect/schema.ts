@@ -12,9 +12,9 @@ export default {
     api__params: ['params'],
     onChange__func: '',
     onChange__params: ['e'],
-    params: {
+    params__var: `{
       id: 1,
-    },
+    }`,
     resultField: 'list',
     // use name as label
     labelField: 'name',

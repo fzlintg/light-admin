@@ -19,6 +19,14 @@ export default [
     component: 'Input',
   },
   {
+    field: 'params__var',
+    label: '参数',
+    component: 'InputTextArea',
+    componentProps: {
+      autoSize: { minRows: 2 },
+    },
+  },
+  {
     field: 'api__func',
     label: 'api',
     component: 'CodeInput',
