@@ -109,7 +109,7 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions, formModelToData } from '../../utils';
-  import { omit, isArray, forOwn, isFunction, get, set } from 'lodash-es';
+  import { omit, isArray, forOwn, isFunction, get, set, template } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -220,6 +220,13 @@
             watchKey.add(key);
           }
         });
+      };
+      const formatVar = (param) => {
+        if (!props.schema.componentProps![param + '__var']) return;
+        const formModel = toRaw(unref(cur_formModel));
+        let paramStr = template(props.schema.componentProps![param + '__var'])(formModel);
+        myProps.value[param] = eval('(' + paramStr + ')');
+        return myProps.value[param];
       };
 
       onMounted(() => {
@@ -333,6 +340,7 @@
       /**
        * 处理同步属性
        */
+      const myProps = ref({});
       const cmpProps = computed(() => {
         //   performance.mark('props-start');
         const isCheck =
@@ -348,6 +356,7 @@
           ...attrs,
           disabled,
           [isCheck ? 'checked' : 'value']: unref(cur_formModel)[field!],
+          ...myProps.value,
         };
         // performance.mark('props-end');
         // performance.measure('props', 'props-start', 'props-end');
@@ -391,6 +400,7 @@
         hidden: (flag) => getFormMethods()?.hidden(props.schema.field, flag),
         bindFunc,
         getItemRef,
+        formatVar,
       };
     },
   });

@@ -129,10 +129,11 @@
       const handleChange = (_event) => {
         const { schema, value } = _event;
         const { field } = unref(schema);
-        console.log('change', field, value);
+
         linkOn[field!]?.forEach(async (formItem) => {
           await formItem?.componentProps?._update?.(value, formItem, fApi.value as IVFormMethods);
         });
+        console.log('change', field, value);
       };
       /**
        * 获取表单属性
@@ -149,6 +150,7 @@
       provide('formMethods', () => fApi.value as IVFormMethods);
       const setFormModel = (key, value) => {
         formModelNew.value[key] = value;
+        console.log('changecomplete', key, value);
       };
       const updateFormModel = (model) => {
         Object.assign(formModelNew.value, model);

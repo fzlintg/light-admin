@@ -22,7 +22,7 @@ export default {
     valueField: 'id',
     // not request untill to select
     immediate: true,
-    _update__func: `this.getItemRef().fetch()`,
+    _update__func: `await this.getItemRef().fetch(this.formatVar('params'))`,
     onChange: (e, v) => {
       console.log('ApiSelect====>:', e, v);
     },

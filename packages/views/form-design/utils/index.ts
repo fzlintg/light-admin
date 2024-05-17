@@ -1,6 +1,6 @@
 import { forEach } from '@utils/helper/treeHelper';
 import { schema } from './../core/itemConfig/base';
-// import { VueConstructor } from 'vue';
+import { nextTick, emit } from 'vue';
 import { IVFormComponent, IFormConfig, IValidationRule } from '../typings/v-form-component';
 import {
   cloneDeep,
@@ -20,7 +20,6 @@ import { uniqueId, setUniqueId } from './uniqueId';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
 import { defHttp } from '@utils/http/axios';
-import { emit } from 'vue';
 /**
  * 组件install方法
  * @param comp 需要挂载install方法的组件
@@ -335,13 +334,13 @@ export function formatFunc(item, flag = false) {
       //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
       const func =
         item[name]?.trim()?.length > 0
-          ? new AsyncFunction(...params, '{axios}', item[name])
+          ? new AsyncFunction(...params, '{axios,nextTick}', item[name])
           : () => true; //默认true
 
       item[originName] = async function (...args) {
         // console.log('exec', this);
         // const argsCall = args.length == 0 ? [{}] : args;
-        let result = await func.call(this, ...args, { axios: defHttp });
+        let result = await func.call(this, ...args, { axios: defHttp, nextTick });
         if (args?.[0]?.callback) {
           //回调模式
           if (isNull(result)) result = true;
@@ -359,7 +358,7 @@ export function formatFunc(item, flag = false) {
     } else if (endsWith(name, '__var')) {
       const originName = name.substr(0, name.length - 5);
       item[originName] = eval('(' + item[name] + ')');
-      if (flag) delete item[name];
+      //   if (flag) delete item[name];
     }
   }
 }
