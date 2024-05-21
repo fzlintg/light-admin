@@ -20,7 +20,7 @@ export default [
   },
   {
     field: 'params__tpl',
-    label: '参数',
+    label: '参数模版',
     component: 'InputTextArea',
     componentProps: {
       autoSize: { minRows: 2 },
