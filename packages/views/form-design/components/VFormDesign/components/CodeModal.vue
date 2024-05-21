@@ -64,7 +64,7 @@ export default {
       });
 
       const showModal = (formConfig: IFormConfig) => {
-        formConfig.schemas && formatRules(formConfig.schemas,context);
+        formConfig.schemas && formatRules(formConfig.schemas);
         state.visible = true;
         state.jsonData = formConfig as any;
       };

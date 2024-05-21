@@ -19,8 +19,16 @@ export default [
     component: 'Input',
   },
   {
-    field: 'params__var',
+    field: 'params__tpl',
     label: '参数',
+    component: 'InputTextArea',
+    componentProps: {
+      autoSize: { minRows: 2 },
+    },
+  },
+  {
+    field: 'defaultContext__var',
+    label: '默认值',
     component: 'InputTextArea',
     componentProps: {
       autoSize: { minRows: 2 },

@@ -15,6 +15,7 @@ import {
   isObject,
   set,
   isString,
+  template,
 } from 'lodash-es';
 import { uniqueId, setUniqueId } from './uniqueId';
 // import { del } from '@vue/composition-api';
@@ -326,7 +327,11 @@ export const formatItemByContext = (schemas, context) => {
   return schemas;
 };
 export function formatFunc(item, flag = false) {
+  if (item['defaultContext__var']) {
+    item['defaultContext'] = eval('(' + item['defaultContext__var'] + ')');
+  }
   for (const name in item) {
+    if (name == 'defaultContext__var') continue;
     if (endsWith(name, '__func')) {
       // if (item.componentProps[name].trim().length > 0) {
       const originName = name.substr(0, name.length - 6);
@@ -359,6 +364,10 @@ export function formatFunc(item, flag = false) {
       const originName = name.substr(0, name.length - 5);
       item[originName] = eval('(' + item[name] + ')');
       //   if (flag) delete item[name];
+    } else if (endsWith(name, '__tpl')) {
+      const originName = name.substr(0, name.length - 5);
+      const paramStr = template(item[name])(item['defaultContext'] || {});
+      item[originName] = eval('(' + paramStr + ')');
     }
   }
 }

@@ -221,10 +221,11 @@
           }
         });
       };
-      const formatVar = (param) => {
-        if (!props.schema.componentProps![param + '__var']) return;
+      const formatTpl = (param) => {
+        if (!props.schema.componentProps![param + '__tpl']) return;
         const formModel = toRaw(unref(cur_formModel));
-        let paramStr = template(props.schema.componentProps![param + '__var'])(formModel);
+        const context = { ...props.schema.componentProps!['defaultContext'], ...formModel };
+        let paramStr = template(props.schema.componentProps![param + '__tpl'])(context);
         myProps.value[param] = eval('(' + paramStr + ')');
         return myProps.value[param];
       };
@@ -400,7 +401,7 @@
         hidden: (flag) => getFormMethods()?.hidden(props.schema.field, flag),
         bindFunc,
         getItemRef,
-        formatVar,
+        formatTpl,
       };
     },
   });
