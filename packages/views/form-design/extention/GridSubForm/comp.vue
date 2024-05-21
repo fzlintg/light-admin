@@ -83,7 +83,6 @@
     SelectOption as ASelectOption,
   } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
-  import { defineProps } from 'vue';
 
   import Icon from '@c/Icon/Icon.vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
