@@ -1,4 +1,4 @@
-import { areaRecord } from '@/api/demo/cascader';
+//import { areaRecord } from '@/api/demo/cascader';
 
 export default {
   component: 'ApiCascader',
@@ -9,8 +9,8 @@ export default {
   },
   icon: 'ant-design:check-outlined',
   componentProps: {
-    api: areaRecord,
-    api__func: '',
+    //   api: areaRecord,
+    api__func: `return await axios.post({url:'/cascader/getAreaRecord',data:params});`,
     api__params: ['params'],
     apiParamKey: 'parentCode',
     // dataField: 'data',
@@ -19,12 +19,11 @@ export default {
     initFetchParams: {
       parentCode: '',
     },
-    isLeaf: (record) => {
-      return !(record.levelType < 3);
-    },
-    onChange: (e, ...v) => {
-      console.log('ApiCascader====>:', e, v);
-    },
+    // isLeaf: (record) => {
+    //   return !(record.levelType < 3);
+    // },
+    isLeaf__func: `return !(record.levelType < 3)`,
+    isLeaf__params: ['record'],
     onChange__func: `console.log('ApiCascader====>:', e, v);`,
     onChange__params: ['e', '...v'],
   },

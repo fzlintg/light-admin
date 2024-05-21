@@ -1,4 +1,3 @@
-import { subscribe } from './../../../../hooks/src/useRequest/utils/cacheSubscribe';
 import { MODE } from '@c/CodeEditor';
 //import { optionsListApi } from '@/api/demo/select';
 

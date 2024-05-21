@@ -1,5 +1,3 @@
-//import { chartOptions } from './tpl/loader';
-
 export default [
   {
     component: 'CodeInput',

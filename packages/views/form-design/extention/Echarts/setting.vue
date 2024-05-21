@@ -31,7 +31,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
   import { cloneDeep, forOwn, get, isNil, set, isEmpty, merge } from 'lodash-es';
-  import baseSetting from './tpl/setting.ts';
+  import baseSetting from './tpl/setting';
   //const { createConfirm } = useMessage();
 
   const props = defineProps({

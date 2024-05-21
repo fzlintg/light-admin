@@ -337,24 +337,42 @@ export function formatFunc(item, flag = false) {
       const originName = name.substr(0, name.length - 6);
       const params = item[originName + '__params'] || [];
       //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
+      const funcType = item[name].indexOf('await ') > -1 ? 'async' : 'sync';
       const func =
         item[name]?.trim()?.length > 0
-          ? new AsyncFunction(...params, '{axios,nextTick}', item[name])
+          ? funcType
+            ? new AsyncFunction('{axios,nextTick}', ...params, item[name])
+            : new Function(...params, item[name])
           : () => true; //默认true
 
-      item[originName] = async function (...args) {
-        // console.log('exec', this);
-        // const argsCall = args.length == 0 ? [{}] : args;
-        let result = await func.call(this, ...args, { axios: defHttp, nextTick });
-        if (args?.[0]?.callback) {
-          //回调模式
-          if (isNull(result)) result = true;
-          const { callback } = args?.[0]; //要求第一个参数带callback
-          if (callback && isFunction(callback)) {
-            callback(result);
-          }
-        } else return result; //直接返回
-      };
+      if (funcType == 'async') {
+        item[originName] = async function (...args) {
+          // console.log('exec', this);
+          // const argsCall = args.length == 0 ? [{}] : args;
+          let result = await func.call(this, { axios: defHttp, nextTick }, ...args);
+          if (args?.[0]?.callback) {
+            //回调模式
+            if (isNull(result)) result = true;
+            const { callback } = args?.[0]; //要求第一个参数带callback
+            if (callback && isFunction(callback)) {
+              callback(result);
+            }
+          } else return result; //直接返回
+        };
+      } else {
+        item[originName] = function (...args) {
+          let result = func.call(this, ...args);
+          if (args?.[0]?.callback) {
+            //回调模式
+            if (isNull(result)) result = true;
+            const { callback } = args?.[0]; //要求第一个参数带callback
+            if (callback && isFunction(callback)) {
+              callback(result);
+            }
+          } else return result; //直接返回
+        };
+      }
+
       if (flag) {
         delete item[originName + '__params'];
         delete item[name];
