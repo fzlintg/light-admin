@@ -26,6 +26,7 @@
 
   watchEffect(async () => {
     const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
+
     createActions.value = (record) => {
       return new Function('{ record, tableRef,axios }', `return ${actionsTpl}`)({
         record,

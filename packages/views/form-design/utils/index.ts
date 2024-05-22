@@ -290,14 +290,16 @@ export const formatItem = (schemas) => {
   return schemas;
 };
 
-export const TransObjectToCode = (schemas, flag = false) => {
+export const TransObjectToCode = (schemas) => {
   formatItem(schemas);
   const regex = /\"\$func_b:(.*?)\:(.*?)\$func_e\"/g;
   const regex2 = /\"\$var_b:(.*?)\:\$var_e\"/g;
   return JSON.stringify(schemas)
     .replace(regex, function (match, params, code) {
       const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
-      return flag ? `((${params}) => {${cleanedCode}})()` : `async (${params}) => {${cleanedCode}}`;
+      return cleanedCode.indexOf('await ') > -1
+        ? `async (${params}) => {${cleanedCode}}`
+        : `((${params}) => {${cleanedCode}})`;
     })
     .replace(regex2, function (match, code) {
       return code.replace(/\\"/g, '"').replace(/\\n/g, '  ');

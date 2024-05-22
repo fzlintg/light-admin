@@ -29,9 +29,7 @@ export default {
       roseType: 'radius',
       animationType: 'scale',
       animationEasing: 'exponentialInOut',
-      animationDelay: function () {
-        return Math.random() * 400;
-      },
+      animationDelay__func: `return Math.random() * 400;`,
     },
   ],
 };
