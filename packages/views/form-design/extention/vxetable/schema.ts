@@ -9,6 +9,8 @@ export default {
     api: {
       columns: '/table/getVxeColumn',
     },
+    tpl: 'default',
+    chartVar__func: ``,
     actions: [
       {
         label: '详情',
