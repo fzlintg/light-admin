@@ -1147,7 +1147,7 @@ export const baseComponentAttrs: IBaseComponentProps = componentAttrs;
 //在所有的选项中查找需要配置项
 export const findComponentProps = (props, name) => {
   const idx = props.findIndex((value: BaseFormAttrs) => {
-    return value.name === name;
+    return value.field === name;
   });
   if (props[idx] && props[idx].componentProps) {
     return props[idx].componentProps;

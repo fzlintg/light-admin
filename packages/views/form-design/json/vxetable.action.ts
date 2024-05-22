@@ -14,8 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `              let formData=this.getFormData()                          
-                                  this.getModal("modal").show(formData)                          `,
+        onClick__func: `debugger;let formData=this.getFormData()                          
+this.getModal("modal").show(formData)                          `,
         style: '',
         shape: '',
         color: '',

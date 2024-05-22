@@ -1,4 +1,3 @@
-//import { MODE } from '@c/CodeEditor';
 import { TreeSelect } from 'ant-design-vue';
 
 export default [

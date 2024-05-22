@@ -12,7 +12,7 @@ export default {
     api__func: `return await axios.get({url:"/select/getDemoOptions?count="+params.count});`,
     api__params: ['params'],
     defaultContext__var: `{
-      input_1: 2,
+      input_1: 3,
 }`,
     params__tpl: `{
       count: $\{input_1},

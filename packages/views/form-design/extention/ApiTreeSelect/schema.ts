@@ -1,4 +1,5 @@
-import { treeOptionsListApi } from '@/api/demo/tree';
+//import { treeOptionsListApi } from '@/api/demo/tree';
+import { TreeSelect } from 'ant-design-vue';
 
 export default {
   label: 'API下拉树',
@@ -6,17 +7,15 @@ export default {
   required: true,
   icon: 'clarity:tree-view-line',
   componentProps: {
-    api: treeOptionsListApi,
-    api__func: '',
+    api__func: `return await axios.get({url:"/tree/getDemoOptions",params})`,
     api__params: ['params'],
     resultField: 'list',
-    onChange: (e, v) => {
-      console.log('ApiTreeSelect====>:', e, v);
-    },
-    treeCheckable: false,
+    onChange__func: `console.log('ApiTreeSelect====>:', e, v)`,
+    onChange__params: ['e', 'v'],
+    treeCheckable: true,
+    showCheckedStrategy: TreeSelect.SHOW_ALL,
     allowClear: true,
     placeholder: '请选择',
-    onChange__params: ['e', 'v'],
   },
   colProps: {
     span: 8,

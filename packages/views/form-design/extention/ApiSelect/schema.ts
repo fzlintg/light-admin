@@ -6,12 +6,11 @@ export default {
   icon: 'wpf:password1',
   field: '',
   componentProps: {
-    // api: optionsListApi,
     api__func: `return await axios.get({url:"/select/getDemoOptions?keyword="+params.id});
     `,
     api__params: ['params'],
-    onChange__func: '',
-    onChange__params: ['e'],
+    onChange__func: `console.log('ApiSelect====>:', e, v)`,
+    onChange__params: ['e', 'v'],
     defaultContext__var: `{
       apiselect_1: '1',
 }`,
@@ -19,20 +18,12 @@ export default {
       id: $\{apiselect_1},
 }`,
     resultField: 'list',
-    // use name as label
     labelField: 'name',
-    // use id as value
     valueField: 'id',
-    // not request untill to select
     immediate: true,
     _update__func: `await this.getItemRef().fetch(this.formatTpl('params'))`,
-    onChange: (e, v) => {
-      console.log('ApiSelect====>:', e, v);
-    },
-    // atfer request callback
-    onOptionsChange: (options) => {
-      console.log('get options', options.length, options);
-    },
+    onOptionsChange__func: `console.log('get options', options.length, options);`,
+    onOptionsChange__params: ['options'],
   },
   colProps: {
     span: 8,

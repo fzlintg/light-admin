@@ -4,76 +4,27 @@ import { setting as extentionSetting } from './loader';
 import { formItemMap } from '../core/loader';
 import { isBoolean } from 'lodash-es';
 
-const setting = {
-  api__func: {
-    label: '获取数据api',
-    component: 'CodeInput',
-    componentProps: {
-      mode: MODE.JS,
-      buttonText: '编辑',
-      editorTitle: '代码编辑',
-      bordered: true,
-      autoFormat: true,
-      prefix: 'function api(){',
-    },
-  },
-  title: {
-    label: '标题',
-    component: 'Input',
-  },
-  resultField: {
-    label: '结果字段',
-    component: 'Input',
-  },
-  labelField: {
-    label: '标签字段',
-    component: 'Input',
-  },
-  valueField: {
-    label: '值字段',
-    component: 'Input',
-  },
-  allowClear: {
-    category: 'control',
-    label: '允许清除',
-  },
-  checkable: {
-    category: 'control',
-    label: '多选',
-  },
-  onChange__func: {
-    label: 'onChange',
-    component: 'CodeInput',
-    componentProps: {
-      mode: MODE.JS,
-      buttonText: '编辑',
-      editorTitle: '代码编辑',
-      bordered: true,
-      autoFormat: true,
-      prefix: 'function onChange(e,v){',
-    },
-  },
-  height: {
-    label: '高度',
-    component: 'Input',
-  },
-  width: {
-    label: '宽度',
-    component: 'Input',
-  },
-  zIndex: {
-    label: '显示层',
-    component: 'InputNumber',
-  },
-  buttonText: {
-    label: '按钮文本',
-    component: 'Input',
-  },
-  bordered: {
-    category: 'control',
-    label: '边框',
-  },
+const t = {
+  params: '参数',
+  api: '获取数据',
+  resultField: '结果字段',
+  labelField: '标签字段',
+  valueField: '值字段',
+  defaultContext: '默认值',
+  initFetchParams: '初始参数',
+  apiParamKey: 'api参数名称',
+  afterFetch: '获取数据后处理',
+  _update: '回调刷新',
+  allowClear: '允许清除',
+  checkable: '多选',
+  title: '标题',
+  height: '高度',
+  width: '宽度',
+  zIndex: '显示层',
+  buttonText: '按钮文本',
+  bordered: '边框',
 };
+const setting = {};
 
 for (const item in extentionSetting) {
   //自定义编辑器配置
@@ -94,7 +45,7 @@ export function getSetting(item, options) {
     const func = item.substr(0, item.length - 6);
     const params = options[`${func}__params`] || [];
     return {
-      label: func,
+      label: t[func] || func,
       component: 'CodeInput',
       componentProps: {
         mode: MODE.JS,
@@ -104,12 +55,32 @@ export function getSetting(item, options) {
         autoFormat: true,
         prefix: `function ${func}(${params}){`,
       },
+      defaultValue: '',
     };
   } else if (isBoolean(options[item])) {
     return {
       field: item,
       label: item,
       category: 'control',
+    };
+  } else if (item?.endsWith('__tpl') || item?.endsWith('__var')) {
+    const param = item.substr(0, item.indexOf('__'));
+    return {
+      label: `${t[param] || param}模版`,
+      component: 'InputTextArea',
+      componentProps: {
+        autoSize: { minRows: 2 },
+      },
+    };
+  } else if (typeof options[item] == 'string') {
+    return {
+      label: t[item],
+      component: 'Input',
+    };
+  } else if (typeof options[item] == 'number') {
+    return {
+      label: t[item],
+      component: 'InputNumber',
     };
   } else return undefined;
 }

@@ -12,11 +12,10 @@ export default {
     params__tpl: `{
       keyword: 'a',
     }`,
-    afterFetch__func: 'return v',
+    afterFetch__func: `return v`,
     afterFetch__params: ['v'],
     resultField: 'list',
     checkable: false,
-
     //  treeData:[]
   },
   colProps: {
