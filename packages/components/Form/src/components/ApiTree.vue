@@ -78,17 +78,18 @@
     props.immediate && fetch();
   });
 
-  async function fetch() {
+  async function fetch(v_params: any = null) {
     let { api, beforeFetch, afterFetch, params, resultField } = props;
+    v_params = v_params || params;
     if (!api || !isFunction(api)) return;
     loading.value = true;
     treeData.value = [];
     let res;
     try {
       if (beforeFetch && isFunction(beforeFetch)) {
-        params = (await beforeFetch(params)) || params;
+        v_params = (await beforeFetch(v_params)) || v_params;
       }
-      res = await api(params);
+      res = await api(v_params);
       if (afterFetch && isFunction(afterFetch)) {
         res = (await afterFetch(res)) || res;
       }

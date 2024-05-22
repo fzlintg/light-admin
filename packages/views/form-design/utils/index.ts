@@ -327,25 +327,21 @@ export const formatItemByContext = (schemas, context) => {
   return schemas;
 };
 export function formatFunc(item, flag = false) {
-  if (item['defaultContext__var']) {
-    item['defaultContext'] = eval('(' + item['defaultContext__var'] + ')');
-  }
   for (const name in item) {
-    if (name == 'defaultContext__var') continue;
     if (endsWith(name, '__func')) {
       // if (item.componentProps[name].trim().length > 0) {
       const originName = name.substr(0, name.length - 6);
       const params = item[originName + '__params'] || [];
       //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
-      const funcType = item[name].indexOf('await ') > -1 ? 'async' : 'sync';
+      const funcAsync = item[name].indexOf('await ') > -1 ? true : false;
       const func =
         item[name]?.trim()?.length > 0
-          ? funcType
+          ? funcAsync
             ? new AsyncFunction('{axios,nextTick}', ...params, item[name])
             : new Function(...params, item[name])
           : () => true; //默认true
 
-      if (funcType == 'async') {
+      if (funcAsync) {
         item[originName] = async function (...args) {
           // console.log('exec', this);
           // const argsCall = args.length == 0 ? [{}] : args;
@@ -384,7 +380,10 @@ export function formatFunc(item, flag = false) {
       //   if (flag) delete item[name];
     } else if (endsWith(name, '__tpl')) {
       const originName = name.substr(0, name.length - 5);
-      const paramStr = template(item[name])(item['defaultContext'] || {});
+      const context =
+        item['defaultContext'] ??
+        (item['defaultContext__tpl'] ? eval('(' + item['defaultContext__tpl'] + ')') : {});
+      const paramStr = template(item[name])(context);
       item[originName] = eval('(' + paramStr + ')');
     }
   }

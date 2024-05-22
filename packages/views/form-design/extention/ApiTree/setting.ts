@@ -14,4 +14,12 @@ export default [
       prefix: 'function afterFetch(v){',
     },
   },
+  {
+    field: 'params__tpl',
+    label: '参数模版',
+    component: 'InputTextArea',
+    componentProps: {
+      autoSize: { minRows: 2 },
+    },
+  },
 ];

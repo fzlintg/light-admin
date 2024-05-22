@@ -25,7 +25,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { useAttrs } from '@vben/hooks';
   import { propTypes } from '@utils/propTypes';
-  import { get, omit, isEqual } from 'lodash-es';
+  import { get, omit, isEqual, cloneDeep } from 'lodash-es';
 
   type OptionsItem = {
     label?: string;
@@ -75,7 +75,7 @@
   const attrs = useAttrs();
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
-
+  let paramsWait = null;
   // Processing options value
   const getOptions = computed(() => {
     const { labelField, valueField, numberToString } = props;
@@ -102,8 +102,13 @@
     { deep: true, immediate: props.immediate },
   );
 
-  async function fetch() {
+  async function fetch(v_params: any = null) {
     let { api, beforeFetch, afterFetch, params, resultField } = props;
+    if (loading.value && v_params)
+      paramsWait = cloneDeep(v_params); //缓存
+    else paramsWait = null; //最后一次
+    v_params = v_params || params;
+
     if (!api || !isFunction(api)) return;
     options.value = [];
     try {
@@ -128,6 +133,9 @@
       console.warn(error);
     } finally {
       loading.value = false;
+    }
+    if (paramsWait) {
+      await fetch(paramsWait);
     }
   }
 

@@ -16,12 +16,9 @@ export default {
     // dataField: 'data',
     labelField: 'name',
     valueField: 'code',
-    initFetchParams: {
+    initFetchParams__var: `{
       parentCode: '',
-    },
-    // isLeaf: (record) => {
-    //   return !(record.levelType < 3);
-    // },
+}`,
     isLeaf__func: `return !(record.levelType < 3)`,
     isLeaf__params: ['record'],
     onChange__func: `console.log('ApiCascader====>:', e, v);`,
