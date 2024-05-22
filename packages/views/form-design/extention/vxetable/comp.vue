@@ -28,7 +28,7 @@
     const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
 
     createActions.value = (record) => {
-      return new Function('{ record, tableRef,axios }', `return ${actionsTpl}`)({
+      return new Function('{ record, tableRef,axios }', `debugger;return ${actionsTpl}`)({
         record,
         tableRef,
         axios,
@@ -39,11 +39,13 @@
   watchEffect(async () => {
     let columns = await axios.get({ url: attrs.api.columns });
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-    gridProps.value = new Function('{tableRef,createMessage,axios }', `return ${gridTpl}`)({
-      tableRef,
-      createMessage,
-      axios,
-    });
+    gridProps.value = new Function('{tableRef,createMessage,axios }', `debugger;return ${gridTpl}`)(
+      {
+        tableRef,
+        createMessage,
+        axios,
+      },
+    );
     gridOptions.value = {
       id: 'VxeTable',
       keepSource: true,

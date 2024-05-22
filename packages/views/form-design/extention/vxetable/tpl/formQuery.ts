@@ -30,7 +30,9 @@ export default {
     return true;`,
     checkMethod__params: ['{column}'],
   },
-  printConfig__var: `{printColumns}`,
+  printConfig: {
+    columns__var: `{printColumns}`,
+  },
   sortConfig: {
     trigger: 'cell',
     remote: true,
@@ -40,7 +42,7 @@ export default {
   },
   pagerConfig: {
     enabled: true,
-    // currentPage: 1,
+
     pageSize: 10,
     pageSizes: [5, 10, 15, 20, 50, 100, 200, 500, 1000],
   },
@@ -154,16 +156,14 @@ export default {
         filters.forEach(({ field, values }) => {
           queryParams[field] = values.join(',');
         });
-        return axios.post({url:'/api/pub/page/list/',{params:{queryParams,page}}}\`,
-        ).then((response) => response.json());
+        return axios.post({url:'/basic-api/vxe/getTableData',{params:{queryParams,page}}});
       `,
       // 当点击工具栏删除按钮或者手动提交指令 delete 时会被触发
-      delete__func: `return await axios.post({url:'/api/pub/delete/',{params:{body}}}\`,
-        )`,
+      delete__func: `return await axios.post({url:'/basic-api/vxe/delete',{params:{body}}})`,
       delete__params: ['{body}'],
 
       // 当点击工具栏保存按钮或者手动提交指令 save 时会被触发
-      save__func: `return await axios.post({url:'/api/pub/save',params:{body}})`,
+      save__func: `return await axios.post({url:'/basic-api/vxe/save',params:{body}})`,
       save__params: ['{body}'],
     },
   },
