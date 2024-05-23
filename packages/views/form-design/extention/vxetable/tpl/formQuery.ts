@@ -5,7 +5,7 @@ export const name = '完整表格';
 export const schema = {
   componentProps: {
     chartVar__func: `const config=await axios.get({url:"/table/getVxeColumn"});
-    return config`,
+return config`,
   },
 };
 export default {
@@ -31,7 +31,7 @@ export default {
     checkMethod__params: ['{column}'],
   },
   printConfig: {
-    columns__var: `{printColumns}`,
+    //columns__var: `{printColumns}`,
   },
   sortConfig: {
     trigger: 'cell',
@@ -66,9 +66,7 @@ export default {
         span: 8,
         titlePrefix: {
           useHTML: true,
-          message:
-            '点击链接：<a class="link" href="https://vxetable.cn" target="_blank">vxe-table官网</a>',
-          icon: 'vxe-icon-question-circle-fill',
+          message: `点击链接`,
         },
         itemRender: { name: 'VxeInput', props: { placeholder: '请输入邮件' } },
       },
@@ -145,25 +143,23 @@ export default {
     ajax: {
       // 当点击工具栏查询按钮或者手动提交指令 query或reload 时会被触发
       query__params: ['{ page, sorts, filters, form }'],
-      query__func: `const queryParams: any = Object.assign({}, form);
-        // 处理排序条件
+      query__func: `const queryParams = Object.assign({}, form);
         const firstSort = sorts[0];
         if (firstSort) {
           queryParams.sort = firstSort.field;
           queryParams.order = firstSort.order;
         }
-        // 处理筛选条件
         filters.forEach(({ field, values }) => {
           queryParams[field] = values.join(',');
         });
-        return axios.post({url:'/basic-api/vxe/getTableData',{params:{queryParams,page}}});
+        return await axios.post({url:'/vxe/getTableData',data:{queryParams,page}});
       `,
       // 当点击工具栏删除按钮或者手动提交指令 delete 时会被触发
-      delete__func: `return await axios.post({url:'/basic-api/vxe/delete',{params:{body}}})`,
+      delete__func: `return await axios.post({url:'/vxe/delete',data:{body}})`,
       delete__params: ['{body}'],
 
       // 当点击工具栏保存按钮或者手动提交指令 save 时会被触发
-      save__func: `return await axios.post({url:'/basic-api/vxe/save',params:{body}})`,
+      save__func: `return await axios.post({url:'/vxe/save',params:{body}})`,
       save__params: ['{body}'],
     },
   },
@@ -182,8 +178,7 @@ export default {
       sortable: true,
       titlePrefix: {
         useHTML: true,
-        content:
-          '点击链接：<a class="link" href="https://vxetable.cn" target="_blank">vxe-table官网</a>',
+        content: `vxe`,
       },
       filters: [
         { label: '前端开发', value: '前端' },
@@ -226,7 +221,7 @@ export default {
       title: 'Amount',
       formatter__params: ['{ cellValue }'],
       formatter__func: `
-        return cellValue ? \`￥$\{XEUtils.commafy(XEUtils.toNumber(cellValue), { digits: 2 })}\` : '';
+        return cellValue;
       `,
       editRender: {
         name: 'VxeInput',

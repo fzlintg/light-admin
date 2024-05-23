@@ -540,8 +540,10 @@ export default [
   {
     url: '/basic-api/vxe/getTableData',
     timeout: 1000,
-    method: 'get',
-    response: ({ query }) => {
+    method: 'post',
+    response: ({ body }) => {
+      //return resultSuccess({});
+      // console.log(body);
       return resultSuccess(tableData);
     },
   },
@@ -549,7 +551,7 @@ export default [
     url: '/basic-api/vxe/delete',
     timeout: 1000,
     method: 'post',
-    response: ({ query }) => {
+    response: ({ body }) => {
       return resultSuccess(removeData);
     },
   },

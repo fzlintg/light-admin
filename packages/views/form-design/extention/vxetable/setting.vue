@@ -46,10 +46,11 @@
     formState.value.componentProps.gridOptions = cloneDeep(
       optionsMap[formState.value.componentProps.tpl],
     );
-    formState.value.componentProps.actions = cloneDeep(
-      actionsMap[formState.value.componentProps.tpl],
-    );
-    formatRules([formState.value], true);
+    if (actionsMap[formState.value.componentProps.tpl])
+      formState.value.componentProps.actions = cloneDeep(
+        actionsMap[formState.value.componentProps.tpl],
+      );
+    //   formatRules([formState.value], true);
   };
   formShow.value = true;
 </script>
