@@ -75,13 +75,7 @@
   </div>
 </template>
 <script setup>
-  import {
-    Row,
-    Col,
-    Button as AButton,
-    Select as ASelect,
-    SelectOption as ASelectOption,
-  } from 'ant-design-vue';
+  import { Row, Col, Button as AButton, Select as ASelect } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
 
   import Icon from '@c/Icon/Icon.vue';

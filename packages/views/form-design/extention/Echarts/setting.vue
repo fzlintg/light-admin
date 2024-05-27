@@ -23,6 +23,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import baseSetting from './tpl/setting';
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatFunc, formatRules, formItemsForEach, formModelToData } from '../../utils/index';
@@ -30,8 +31,8 @@
   //import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
-  import { cloneDeep, forOwn, get, isNil, set, isEmpty, merge } from 'lodash-es';
-  import baseSetting from './tpl/setting';
+  import { cloneDeep, forOwn, get, set, isEmpty, merge } from 'lodash-es';
+
   //const { createConfirm } = useMessage();
 
   const props = defineProps({
