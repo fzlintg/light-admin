@@ -523,7 +523,7 @@ export default {
 						"bordered": true,
 						"autoFormat": true,
 						"readonly": false,
-						"prefix": "async function({page,form}){",
+						"prefix": "async function({ page, sorts, filters, form }){",
 						"suffix": "}"
 					},
 					"defaultValue": "",
@@ -548,7 +548,7 @@ export default {
 						"bordered": true,
 						"autoFormat": true,
 						"readonly": false,
-						"prefix": "async function({page,form}){",
+						"prefix": "async function({ page, sorts, filters, form }){",
 						"suffix": "}"
 					},
 					"defaultValue": "",
@@ -573,7 +573,7 @@ export default {
 						"bordered": true,
 						"autoFormat": true,
 						"readonly": false,
-						"prefix": "async function({page,form}){",
+						"prefix": "async function({ page, sorts, filters, form }){",
 						"suffix": "}"
 					},
 					"defaultValue": "",
@@ -1156,6 +1156,6 @@ export default {
 	"layout": "horizontal",
 	"labelLayout": "flex",
 	"labelWidth": 100,
-	"labelCol": {},
+	"labelCol": {}, 
 	"wrapperCol": {}
 }
