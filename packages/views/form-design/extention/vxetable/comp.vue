@@ -1,6 +1,6 @@
 <template>
-  <div :style="{ width: '100%', height: attrs.height + 'px' }">
-    <VxeBasicTable ref="tableRef" v-bind="gridOptions" v-if="ifshow">
+  <div :style="{ width: '100%', height: props.height + 'px' }">
+    <VxeBasicTable ref="tableRef" v-bind="gOptions" v-if="ifshow">
       <template #action="{ row }">
         <TableAction outside :actions="createActions(row)" />
       </template>
@@ -8,7 +8,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { computed, onMounted, reactive, ref, unref, watchEffect } from 'vue';
+  import { PropType, computed, onMounted, reactive, ref, unref, watchEffect } from 'vue';
   import { ActionItem, TableAction } from '@c/Table';
   import { defHttp as axios } from '@utils/http/axios';
   import { useMessage } from '@h/web/useMessage';
@@ -16,12 +16,30 @@
   import { TransObjectToCode, formatFunc } from '../../utils/index';
   import { cloneDeep, isNil } from 'lodash-es';
 
-  const attrs = useAttrs();
+  const props = defineProps({
+    height: {
+      type: String as PropType<string>,
+      default: '50vh',
+    },
+    custom: {
+      type: Object as PropType<Object>,
+      default: () => {},
+    },
+    gridVar: {
+      type: Object as PropType<Object>,
+      default: () => {},
+    },
+    gridOptions: {
+      type: Object as PropType<Object>,
+      default: () => {},
+    },
+  });
+  //const attrs = useAttrs();
   const { createMessage } = useMessage();
   const tableRef = ref<VxeGridInstance>(),
     gridProps = ref({}),
     createActions = ref((row) => {}),
-    gridOptions = ref({}),
+    gOptions = ref({}),
     ifshow = ref(false);
 
   //   const refreshGrid = async () => {
@@ -46,7 +64,8 @@
   // };
 
   watchEffect(async () => {
-    const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.custom.actions)));
+    if (props.custom.actions == '' || isNil(props.custom.actions)) return;
+    const actionsTpl = TransObjectToCode(cloneDeep(toRaw(props.custom.actions)));
     createActions.value = (record) => {
       return new Function('{ record, tableRef,axios }', `return ${actionsTpl}`)({
         record,
@@ -57,14 +76,14 @@
   });
 
   watchEffect(async () => {
-    const data = attrs.gridVar ? await attrs.gridVar() : {};
+    const data = props.gridVar ? await props.gridVar() : {};
     const columns =
-      isNil(attrs.custom.api.columns) || attrs.custom.api.columns == ''
+      isNil(props.custom.api.columns) || props.custom.api.columns == ''
         ? []
-        : await axios.get({ url: attrs.custom.api.columns });
+        : await axios.get({ url: props.custom.api.columns });
 
-    const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-    gridProps.value = new Function(
+    const gridTpl = TransObjectToCode(cloneDeep(toRaw(props.gridOptions)));
+    const gridData = new Function(
       '{tableRef,createMessage,axios,' + Object.keys(data || {}).join(',') + '}',
       `return ${gridTpl}`,
     )({
@@ -73,13 +92,13 @@
       axios,
       ...data,
     });
-    gridOptions.value = {
+    gOptions.value = {
       id: 'VxeTable',
       keepSource: true,
       toolbarConfig: {},
       height: 'auto',
       columns,
-      ...gridProps.value,
+      ...gridData,
     };
     ifshow.value = true;
   });

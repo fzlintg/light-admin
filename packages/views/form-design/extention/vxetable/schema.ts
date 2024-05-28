@@ -1,7 +1,7 @@
 import { merge } from 'lodash-es';
 import gridOptions, { schema } from './tpl/default';
 
-export const mergeSchema = (gridOptions, schema) => {
+export const mergeSchema = (gridOptions, schema, tpl) => {
   const result = {
     label: 'vxe表格',
     field: '',
@@ -11,7 +11,7 @@ export const mergeSchema = (gridOptions, schema) => {
     componentProps: {
       height: 600,
       gridVar__func: '',
-      tpl: 'default',
+      tpl,
       gridOptions,
     },
     children: [],
@@ -21,6 +21,6 @@ export const mergeSchema = (gridOptions, schema) => {
   };
   return merge(result, schema);
 };
-const options = mergeSchema(gridOptions, schema);
+const options = mergeSchema(gridOptions, schema, 'default');
 
 export default options;

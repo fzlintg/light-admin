@@ -43,7 +43,10 @@
   const formShow = ref(false);
   const fApi = ref();
   const formConfig = ref(action);
-  formatRules(formConfig.value.schemas, true);
+  onMounted(() => {
+    formatRules(formConfig.value.schemas, true);
+  });
+
   // const initState = () => {
   //   // if (isEmpty(formType.value) && formState.value.componentProps.tpl)
   //   //   formState.value.componentProps.chartTpl = unref(cloneDeep(optionsMap[formType.value]));
@@ -51,11 +54,20 @@
 
   // };
   const loadTpl = () => {
-    formState.value = mergeSchema(optionsMap[formType.value], schemaMap[formType.value]);
-    // formState.value.componentProps.gridOptions = cloneDeep(
-    //   optionsMap[formState.value.componentProps.tpl],
+    // formState.value = mergeSchema(
+    //   optionsMap[formType.value],
+    //   schemaMap[formType.value],
+    //   formType.value,
     // );
-    // merge(formState.value, schemaMap[formType.value]);
+    const gridOptions = cloneDeep(optionsMap[formType.value]);
+    formState.value.componentProps = {
+      height: 600,
+      gridVar__func: '',
+      tpl: formType.value,
+      gridOptions,
+    };
+    // formState.value.componentProps.gridOptions = cloneDeep(optionsMap[formType.value]);
+    merge(formState.value, schemaMap[formType.value]);
     formatFunc(formState.value.componentProps);
     // initState();
     // if (customMap[formState.value.componentProps.tpl])
