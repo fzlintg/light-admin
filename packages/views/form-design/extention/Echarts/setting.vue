@@ -23,7 +23,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import baseSetting from './tpl/setting';
+  import { baseSetting } from './tpl/setting';
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatFunc, formatRules, formItemsForEach, formModelToData } from '../../utils/index';
@@ -32,6 +32,8 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { settingMap, chartOptions, chartMap, schemaMap } from './tpl/loader';
   import { cloneDeep, forOwn, get, set, isEmpty, merge } from 'lodash-es';
+
+  //const baseSetting = () => import('./tpl/setting.ts');
 
   //const { createConfirm } = useMessage();
 
