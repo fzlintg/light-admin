@@ -1,10 +1,21 @@
-import { VXETable, VxeGridInstance, VxeGridListeners, VxeGridProps } from 'vxe-table';
-import XEUtils from 'xe-utils';
+// import { VXETable, VxeGridInstance, VxeGridListeners, VxeGridProps } from 'vxe-table';
+// import XEUtils from 'xe-utils';
 
 export const name = '完整表格';
+// export const schema = {
+//   componentProps: {
+//     chartVar__func: `const config=await axios.get({url:"/table/getVxeColumn"});
+// return config`,
+//   },
+// };
 export const schema = {
   componentProps: {
-    chartVar__func: `const config=await axios.get({url:"/table/getVxeColumn"});
+    custom: {
+      api: {
+        columns: '/vxe/fullColumn',
+      },
+    },
+    gridVar__func: `const config=await axios.get({url:"/table/getGridVar"});
 return config`,
   },
 };
@@ -163,86 +174,6 @@ export default {
       save__params: ['{body}'],
     },
   },
-  columns: [
-    { type: 'checkbox', title: 'ID', width: 120 },
-    {
-      field: 'name',
-      title: 'Name',
-      sortable: true,
-      titlePrefix: { message: '名称必须填写！' },
-      editRender: { name: 'input', attrs: { placeholder: '请输入名称' } },
-    },
-    {
-      field: 'role',
-      title: 'Role',
-      sortable: true,
-      titlePrefix: {
-        useHTML: true,
-        content: `vxe`,
-      },
-      filters: [
-        { label: '前端开发', value: '前端' },
-        { label: '后端开发', value: '后端' },
-        { label: '测试', value: '测试' },
-        { label: '程序员鼓励师', value: '程序员鼓励师' },
-      ],
-      filterMultiple: false,
-      editRender: { name: 'input', attrs: { placeholder: '请输入角色' } },
-    },
-    {
-      field: 'email',
-      title: 'Email',
-      width: 160,
-      editRender: { name: 'VxeInput', props: { placeholder: '请输入邮件' } },
-    },
-    {
-      field: 'nickname',
-      title: 'Nickname',
-      editRender: { name: 'input', attrs: { placeholder: '请输入昵称' } },
-    },
-    {
-      field: 'sex',
-      title: 'Sex',
-      filters: [
-        { label: '男', value: '1' },
-        { label: '女', value: '0' },
-      ],
-      editRender: { name: 'VxeSelect', options: [], props: { placeholder: '请选择性别' } },
-    },
-    {
-      field: 'age',
-      title: 'Age',
-      visible: false,
-      sortable: true,
-      editRender: { name: 'VxeInput', props: { type: 'number', min: 1, max: 120 } },
-    },
-    {
-      field: 'amount',
-      title: 'Amount',
-      formatter__params: ['{ cellValue }'],
-      formatter__func: `
-        return cellValue;
-      `,
-      editRender: {
-        name: 'VxeInput',
-        props: { type: 'float', digits: 2, placeholder: '请输入数值' },
-      },
-    },
-    {
-      field: 'updateDate',
-      title: 'Update Date',
-      width: 160,
-      visible: false,
-      sortable: true,
-    },
-    {
-      field: 'createDate',
-      title: 'Create Date',
-      width: 160,
-      visible: false,
-      sortable: true,
-    },
-  ],
 
   checkboxConfig: {
     labelField: 'id',

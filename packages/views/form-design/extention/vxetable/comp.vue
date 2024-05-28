@@ -14,7 +14,7 @@
   import { useMessage } from '@h/web/useMessage';
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { TransObjectToCode } from '../../utils/index';
-  import { cloneDeep } from 'lodash-es';
+  import { cloneDeep, isNil } from 'lodash-es';
 
   const attrs = useAttrs();
   const { createMessage } = useMessage();
@@ -25,8 +25,7 @@
     ifshow = ref(false);
 
   watchEffect(async () => {
-    const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.actions)));
-
+    const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.custom.actions)));
     createActions.value = (record) => {
       return new Function('{ record, tableRef,axios }', `return ${actionsTpl}`)({
         record,
@@ -37,9 +36,10 @@
   });
 
   watchEffect(async () => {
-    let columns = await axios.get({ url: attrs.api.columns });
+    if(isNil(attrs.custom.api.columns)||attrs.custom.api.columns=='') return;
+    let columns = await axios.get({ url: attrs.custom.api.columns });
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-    gridProps.value = new Function('{tableRef,createMessage,axios }', `return ${gridTpl}`)({
+    gridProps.value = new Function('{tableRef,createMessage,axios}', `return ${gridTpl}`)({
       tableRef,
       createMessage,
       axios,

@@ -1,22 +1,35 @@
 export const name = '默认表格';
-export const actions = [
-  {
-    label: '详情',
-    onClick__func: `console.log(record);`,
-  },
-  {
-    label: '编辑',
-    onClick__func: ``,
-  },
-  {
-    label: '删除',
-    color: 'error',
-    popConfirm: {
-      title: '是否确认删除',
-      confirm__func: `tableRef.value?.remove(record);`,
+export const schema = {
+  componentProps: {
+    gridVar__func: `const config=await axios.get({url:"/table/getGridVar"});
+    return config`,
+    custom: {
+      api: {
+        columns: '/table/getVxeColumn',
+      },
+
+      actions: [
+        {
+          label: '详情',
+          onClick__func: `console.log(record);`,
+        },
+        {
+          label: '编辑',
+          onClick__func: ``,
+        },
+        {
+          label: '删除',
+          color: 'error',
+          popConfirm: {
+            title: '是否确认删除',
+            confirm__func: `tableRef.value?.remove(record);`,
+          },
+        },
+      ],
     },
   },
-];
+};
+
 export default {
   editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
   formConfig: {

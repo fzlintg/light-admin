@@ -19,12 +19,12 @@
 <script lang="ts" setup>
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
-  import { formatRules } from '../../utils/index';
-  import { ref } from 'vue';
+  import { formatFunc, formatRules } from '../../utils/index';
+  import { computed, ref, unref, watch } from 'vue';
   import action from '../../json/vxetable.action.ts';
   import { useRuleFormItem } from '@h/component/useFormItem';
-  import { tplOptions, optionsMap, schemaMap, actionsMap } from './loader';
-  import { cloneDeep } from 'lodash-es';
+  import { tplOptions, optionsMap, schemaMap } from './loader';
+  import { cloneDeep, merge, isEmpty } from 'lodash-es';
 
   const props = defineProps({
     schema: {
@@ -38,19 +38,34 @@
   });
 
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
+  const formType = computed(() => formState.value.componentProps.tpl);
   const formShow = ref(false);
   const fApi = ref();
   const formConfig = ref(action);
   formatRules(formConfig.value.schemas, true);
+  const initState = () => {
+    // if (isEmpty(formType.value) && formState.value.componentProps.tpl)
+    //   formState.value.componentProps.chartTpl = unref(cloneDeep(optionsMap[formType.value]));
+    // initSetting(formType.value);
+    merge(formState.value, schemaMap[formType.value]);
+    formatFunc(formState.value.componentProps);
+  };
   const loadTpl = () => {
     formState.value.componentProps.gridOptions = cloneDeep(
       optionsMap[formState.value.componentProps.tpl],
     );
-    if (actionsMap[formState.value.componentProps.tpl])
-      formState.value.componentProps.actions = cloneDeep(
-        actionsMap[formState.value.componentProps.tpl],
-      );
-    //   formatRules([formState.value], true);
+    initState();
+    // if (customMap[formState.value.componentProps.tpl])
+    //   formState.value.componentProps.actions = cloneDeep(
+    //     customMap[formState.value.componentProps.tpl].actions,
+    //   );
   };
+  watch(
+    () => formState.value.componentProps.gridVar__func,
+    () => {
+      formatFunc(formState.value.componentProps);
+    },
+  );
+
   formShow.value = true;
 </script>

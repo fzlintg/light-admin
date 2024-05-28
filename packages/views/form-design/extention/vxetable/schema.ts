@@ -1,23 +1,24 @@
-import gridOptions, { actions } from './tpl/default';
+import { merge } from 'lodash-es';
+import gridOptions, { schema } from './tpl/default';
 
-export default {
-  label: 'vxe表格',
-  field: '',
-  type: 'showItem',
-  formItem: false,
-  icon: 'ant-design:border-bottom-outlined',
-  componentProps: {
-    height: 600,
-    api: {
-      columns: '/table/getVxeColumn',
+const options = merge(
+  {
+    label: 'vxe表格',
+    field: '',
+    type: 'showItem',
+    formItem: false,
+    icon: 'ant-design:border-bottom-outlined',
+    componentProps: {
+      height: 600,
+      gridVar__func: '',
+      tpl: 'default',
+      gridOptions,
     },
-    tpl: 'default',
-    chartVar__func: ``,
-    actions,
-    gridOptions,
+    children: [],
+    options: {
+      gutter: 0,
+    },
   },
-  children: [],
-  options: {
-    gutter: 0,
-  },
-};
+  schema,
+);
+export default options;
