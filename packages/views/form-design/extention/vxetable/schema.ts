@@ -1,8 +1,8 @@
 import { merge } from 'lodash-es';
 import gridOptions, { schema } from './tpl/default';
 
-const options = merge(
-  {
+export const mergeSchema = (gridOptions, schema) => {
+  const result = {
     label: 'vxe表格',
     field: '',
     type: 'showItem',
@@ -18,7 +18,9 @@ const options = merge(
     options: {
       gutter: 0,
     },
-  },
-  schema,
-);
+  };
+  return merge(result, schema);
+};
+const options = mergeSchema(gridOptions, schema);
+
 export default options;

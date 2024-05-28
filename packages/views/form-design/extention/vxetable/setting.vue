@@ -25,6 +25,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { tplOptions, optionsMap, schemaMap } from './loader';
   import { cloneDeep, merge, isEmpty } from 'lodash-es';
+  import { mergeSchema } from './schema.ts';
 
   const props = defineProps({
     schema: {
@@ -43,18 +44,20 @@
   const fApi = ref();
   const formConfig = ref(action);
   formatRules(formConfig.value.schemas, true);
-  const initState = () => {
-    // if (isEmpty(formType.value) && formState.value.componentProps.tpl)
-    //   formState.value.componentProps.chartTpl = unref(cloneDeep(optionsMap[formType.value]));
-    // initSetting(formType.value);
-    merge(formState.value, schemaMap[formType.value]);
-    formatFunc(formState.value.componentProps);
-  };
+  // const initState = () => {
+  //   // if (isEmpty(formType.value) && formState.value.componentProps.tpl)
+  //   //   formState.value.componentProps.chartTpl = unref(cloneDeep(optionsMap[formType.value]));
+  //   // initSetting(formType.value);
+
+  // };
   const loadTpl = () => {
-    formState.value.componentProps.gridOptions = cloneDeep(
-      optionsMap[formState.value.componentProps.tpl],
-    );
-    initState();
+    formState.value = mergeSchema(optionsMap[formType.value], schemaMap[formType.value]);
+    // formState.value.componentProps.gridOptions = cloneDeep(
+    //   optionsMap[formState.value.componentProps.tpl],
+    // );
+    // merge(formState.value, schemaMap[formType.value]);
+    formatFunc(formState.value.componentProps);
+    // initState();
     // if (customMap[formState.value.componentProps.tpl])
     //   formState.value.componentProps.actions = cloneDeep(
     //     customMap[formState.value.componentProps.tpl].actions,

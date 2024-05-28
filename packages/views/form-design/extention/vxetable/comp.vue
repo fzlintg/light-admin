@@ -57,10 +57,12 @@
   });
 
   watchEffect(async () => {
-    if (isNil(attrs.custom.api.columns) || attrs.custom.api.columns == '') return;
-
     const data = attrs.gridVar ? await attrs.gridVar() : {};
-    const columns = await axios.get({ url: attrs.custom.api.columns });
+    const columns =
+      isNil(attrs.custom.api.columns) || attrs.custom.api.columns == ''
+        ? []
+        : await axios.get({ url: attrs.custom.api.columns });
+
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
     gridProps.value = new Function(
       '{tableRef,createMessage,axios,' + Object.keys(data || {}).join(',') + '}',
