@@ -13,7 +13,7 @@
   import { defHttp as axios } from '@utils/http/axios';
   import { useMessage } from '@h/web/useMessage';
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
-  import { TransObjectToCode } from '../../utils/index';
+  import { TransObjectToCode, formatFunc } from '../../utils/index';
   import { cloneDeep, isNil } from 'lodash-es';
 
   const attrs = useAttrs();
@@ -23,6 +23,27 @@
     createActions = ref((row) => {}),
     gridOptions = ref({}),
     ifshow = ref(false);
+
+  //   const refreshGrid = async () => {
+  //   if (!isEmpty(props.chartTpl)) {
+  //     let data = await props.gridVar();
+  //     // const tpl = TransObjectToCode(eval('(' + props.chartTpl + ')'));
+  //     const tpl = TransObjectToCode(cloneDeep(props.chartTpl));
+  //     setOptions(
+  //       new Function(
+  //         '{' +
+  //           Object.keys(data || {})
+  //             .concat('echarts')
+  //             .join(',') +
+  //           '}',
+  //         `return ${tpl}`,
+  //       )({
+  //         echarts,
+  //         ...data,
+  //       }),
+  //     );
+  //   }
+  // };
 
   watchEffect(async () => {
     const actionsTpl = TransObjectToCode(cloneDeep(toRaw(attrs.custom.actions)));
@@ -36,13 +57,19 @@
   });
 
   watchEffect(async () => {
-    if(isNil(attrs.custom.api.columns)||attrs.custom.api.columns=='') return;
-    let columns = await axios.get({ url: attrs.custom.api.columns });
+    if (isNil(attrs.custom.api.columns) || attrs.custom.api.columns == '') return;
+
+    const data = attrs.gridVar ? await attrs.gridVar() : {};
+    const columns = await axios.get({ url: attrs.custom.api.columns });
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(attrs.gridOptions)));
-    gridProps.value = new Function('{tableRef,createMessage,axios}', `return ${gridTpl}`)({
+    gridProps.value = new Function(
+      '{tableRef,createMessage,axios,' + Object.keys(data || {}).join(',') + '}',
+      `return ${gridTpl}`,
+    )({
       tableRef,
       createMessage,
       axios,
+      ...data,
     });
     gridOptions.value = {
       id: 'VxeTable',

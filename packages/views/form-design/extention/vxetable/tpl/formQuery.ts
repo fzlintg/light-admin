@@ -15,7 +15,7 @@ export const schema = {
         columns: '/vxe/fullColumn',
       },
     },
-    gridVar__func: `const config=await axios.get({url:"/table/getGridVar"});
+    gridVar__func: `const config=await axios.get({url:"/vxe/getGridVar"});
 return config`,
   },
 };

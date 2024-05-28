@@ -24,6 +24,7 @@ const t = {
   buttonText: '按钮文本',
   bordered: '边框',
   chartVar: '初始变量',
+  gridVar: '初始变量',
 };
 const setting = {};
 

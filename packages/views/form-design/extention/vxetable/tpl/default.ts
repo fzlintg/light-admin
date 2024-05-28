@@ -1,7 +1,7 @@
 export const name = '默认表格';
 export const schema = {
   componentProps: {
-    gridVar__func: `const config=await axios.get({url:"/table/getGridVar"});
+    gridVar__func: `const config=await axios.get({url:"/vxe/getGridVar"});
     return config`,
     custom: {
       api: {
