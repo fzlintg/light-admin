@@ -490,24 +490,7 @@ export default {
           },
           helpMessage: '设置模版，通过表格初始变量赋值',
         },
-        {
-          component: 'Input',
-          label: '数据模版变量',
-          field: 'gridOptions.data__var',
-          colProps: {
-            span: 12,
-          },
-          componentProps: {
-            type: 'text',
-            defaultValue: '',
-          },
-          width: '200px',
-          itemProps: {
-            labelCol: {},
-            wrapperCol: {},
-          },
-          helpMessage: '设置模版，通过表格初始变量赋值',
-        },
+
         {
           component: 'CodeInput',
           label: '查询全部',
