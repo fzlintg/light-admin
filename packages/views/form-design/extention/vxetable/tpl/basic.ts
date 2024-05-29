@@ -4,8 +4,8 @@ export const schema = {
     custom: {
       api: {
         columns: '',
-        actions: [],
       },
+      actions: [],
     },
     gridVar__func: `const columns=[
       { type: 'seq', width: 50 },
