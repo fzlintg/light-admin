@@ -8,7 +8,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { PropType, computed, onMounted, reactive, ref, unref, watchEffect } from 'vue';
+  import { PropType, computed, nextTick, onMounted, reactive, ref, unref, watchEffect } from 'vue';
   import { ActionItem, TableAction } from '@c/Table';
   import { defHttp as axios } from '@utils/http/axios';
   import { useMessage } from '@h/web/useMessage';
@@ -76,6 +76,7 @@
   });
 
   watchEffect(async () => {
+    ifshow.value = false;
     const data = props.gridVar ? await props.gridVar() : {};
     const columns =
       isNil(props.custom.api.columns) || props.custom.api.columns == ''
@@ -100,7 +101,9 @@
       columns,
       ...gridData,
     };
-    ifshow.value = true;
+    nextTick(() => {
+      ifshow.value = true;
+    });
   });
   // watchEffect(async () => {
   //   gridOptions.value.columns = await axios.get({ url: attrs.api.columns });

@@ -60,7 +60,7 @@
     //   schemaMap[formType.value],
     //   formType.value,
     // );
-    formShow.value = false;
+    //  formShow.value = false;
     const gridOptions = cloneDeep(optionsMap[formType.value]);
     formState.value.componentProps = {
       height: 600,
@@ -76,9 +76,9 @@
     //   formState.value.componentProps.actions = cloneDeep(
     //     customMap[formState.value.componentProps.tpl].actions,
     //   );
-    nextTick(() => {
-      formShow.value = true;
-    });
+    // nextTick(() => {
+    //   formShow.value = true;
+    // });
   };
   watch(
     () => formState.value.componentProps.gridVar__func,

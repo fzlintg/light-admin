@@ -170,7 +170,7 @@ export default {
       delete__params: ['{body}'],
 
       // 当点击工具栏保存按钮或者手动提交指令 save 时会被触发
-      save__func: `return await axios.post({url:'/vxe/save',params:{body}})`,
+      save__func: `return await axios.post({url:'/vxe/save',data:{body}})`,
       save__params: ['{body}'],
     },
   },
