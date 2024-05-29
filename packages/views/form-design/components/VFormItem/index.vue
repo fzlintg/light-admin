@@ -169,7 +169,7 @@
       const state = reactive({
         componentMap,
         formItemRef: null,
-        formItemRef2: null,
+        //   formItemRef2: null,
       });
 
       const { formModel, setFormModel } = useFormModelState();

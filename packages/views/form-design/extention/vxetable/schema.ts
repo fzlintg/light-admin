@@ -13,6 +13,7 @@ export const mergeSchema = (gridOptions, schema, tpl) => {
       gridVar__func: '',
       tpl,
       gridOptions,
+      custom: {},
     },
     children: [],
     options: {

@@ -45,6 +45,7 @@
   const formConfig = ref(action);
   onMounted(() => {
     formatRules(formConfig.value.schemas, true);
+    formShow.value = true;
   });
 
   // const initState = () => {
@@ -59,6 +60,7 @@
     //   schemaMap[formType.value],
     //   formType.value,
     // );
+    formShow.value = false;
     const gridOptions = cloneDeep(optionsMap[formType.value]);
     formState.value.componentProps = {
       height: 600,
@@ -74,6 +76,7 @@
     //   formState.value.componentProps.actions = cloneDeep(
     //     customMap[formState.value.componentProps.tpl].actions,
     //   );
+    formShow.value = true;
   };
   watch(
     () => formState.value.componentProps.gridVar__func,
@@ -81,6 +84,4 @@
       formatFunc(formState.value.componentProps);
     },
   );
-
-  formShow.value = true;
 </script>

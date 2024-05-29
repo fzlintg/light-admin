@@ -4,6 +4,7 @@ export const schema = {
     custom: {
       api: {
         columns: '',
+        actions: [],
       },
     },
     gridVar__func: `const columns=[
