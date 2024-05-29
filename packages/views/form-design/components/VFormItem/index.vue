@@ -104,6 +104,7 @@
     getCurrentInstance,
     onMounted,
     watchEffect,
+    ref,
   } from 'vue';
   import { componentMap } from '../../core/formItemConfig';
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
@@ -168,10 +169,11 @@
     setup(props, { emit }) {
       const state = reactive({
         componentMap,
-        formItemRef: null,
-        //   formItemRef2: null,
+        // formItemRef: null,
+        // formItemRef2: null,
       });
-
+      const formItemRef = ref(null);
+      // const formItemRef2 = ref(null);
       const { formModel, setFormModel } = useFormModelState();
       // const formData1 = computed(() => {
       //   return formModelToData(formModel.value);
@@ -200,10 +202,13 @@
       };
 
       const getModal = (name) => {
-        return formItemRefList[name || props.schema.field!].formItemRef;
+        let item = formItemRefList[name || props.schema.field!];
+        return item.formItemRef;
       };
       const getItemRef = (name) => {
-        return formItemRefList[name || props.schema.field!].formItemRef;
+        let item = formItemRefList[name || props.schema.field!];
+        return item.formItemRef;
+        //   return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
       const watchKey = new Set();
@@ -378,6 +383,8 @@
       };
       return {
         ...toRefs(state),
+        formItemRef,
+        formItemRefList,
         componentItem,
         formItemProps,
         handleClick,

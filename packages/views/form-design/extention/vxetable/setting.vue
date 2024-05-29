@@ -20,7 +20,7 @@
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatFunc, formatRules } from '../../utils/index';
-  import { computed, ref, unref, watch } from 'vue';
+  import { computed, ref, unref, watch, nextTick } from 'vue';
   import action from '../../json/vxetable.action.ts';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { tplOptions, optionsMap, schemaMap } from './loader';
@@ -76,7 +76,9 @@
     //   formState.value.componentProps.actions = cloneDeep(
     //     customMap[formState.value.componentProps.tpl].actions,
     //   );
-    formShow.value = true;
+    nextTick(() => {
+      formShow.value = true;
+    });
   };
   watch(
     () => formState.value.componentProps.gridVar__func,
