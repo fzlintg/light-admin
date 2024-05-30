@@ -202,13 +202,10 @@
       };
 
       const getModal = (name) => {
-        let item = formItemRefList[name || props.schema.field!];
-        return item.formItemRef;
+        return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getItemRef = (name) => {
-        let item = formItemRefList[name || props.schema.field!];
-        return item.formItemRef;
-        //   return formItemRefList[name || props.schema.field!].formItemRef;
+        return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
       const watchKey = new Set();

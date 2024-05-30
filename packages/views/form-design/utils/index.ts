@@ -335,7 +335,7 @@ export function formatFunc(item, flag = false) {
       const originName = name.substr(0, name.length - 6);
       const params = item[originName + '__params'] || [];
       //item.componentProps[originName] = new AsyncFunction(...params, item.componentProps[name]);
-      const funcAsync = item[name].indexOf('await ') > -1 ? true : false;
+      const funcAsync = item[name]?.indexOf('await ') > -1 ? true : false;
       const func =
         item[name]?.trim()?.length > 0
           ? funcAsync
@@ -390,13 +390,12 @@ export function formatFunc(item, flag = false) {
     }
   }
 }
-export const formatObject=(obj,flag=false)=>{
-  if(isObject(obj)){
-    for(const item in obj){
-      
+export const formatObject = (obj, flag = false) => {
+  if (isObject(obj)) {
+    for (const item in obj) {
     }
   }
-}
+};
 export const formatRules = (schemas: IVFormComponent[], flag = false) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成

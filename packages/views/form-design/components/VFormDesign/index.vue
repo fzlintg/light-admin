@@ -31,6 +31,7 @@
         @handle-preview2="handleOpenModal(eFormPreview2!)"
         @handle-open-code-modal="handleOpenModal(codeModal!)"
         @handle-clear-form-items="handleClearFormItems"
+        @handle-save-form-items="handleSaveFormItems"
       />
       <FormComponentPanel
         :current-item="formConfig.currentItem"
@@ -84,7 +85,7 @@
 
   import 'codemirror/mode/javascript/javascript';
 
-  import { ref, provide, Ref, computed } from 'vue';
+  import { ref, provide, Ref, computed, onMounted } from 'vue';
   import { Layout, LayoutContent, LayoutSider } from 'ant-design-vue';
 
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
@@ -98,7 +99,9 @@
   import { useDesign } from '@h/web/useDesign';
 
   import { CollapseContainer } from '@c/Container';
+  import { useMessage } from '@h/web/useMessage';
 
+  const { createMessage } = useMessage();
   defineProps({
     title: {
       type: String,
@@ -320,6 +323,11 @@
     handleSetSelectItem({ component: '' });
   };
 
+  const handleSaveFormItems = () => {
+    window.localStorage.setItem('light_form_widget', JSON.stringify(formConfig.value));
+    createMessage.success('保存成功');
+  };
+
   const setFormModel = (key, value) => (formModel.value[key] = value);
   provide('formModel', formModel);
   // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
@@ -341,6 +349,11 @@
     handleSetSelectItem,
     handleAddAttrs,
     setFormConfig,
+  });
+  onMounted(() => {
+    //自动读取本地缓存
+    let formWidget = JSON.parse(window.localStorage.getItem('light_form_widget'));
+    if (formWidget) formConfig.value = formWidget;
   });
 
   // endregion

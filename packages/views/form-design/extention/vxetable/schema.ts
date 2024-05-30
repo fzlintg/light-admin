@@ -14,6 +14,10 @@ export const mergeSchema = (gridOptions, schema, tpl) => {
       tpl,
       gridOptions,
       custom: {},
+      ds: {
+        sourceType: 'model', //类型model/logic
+        logic: '',
+      },
     },
     children: [],
     options: {

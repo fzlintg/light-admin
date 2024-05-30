@@ -1,11 +1,10 @@
 <!--
  * @Description: 工具栏
 -->
-<template>   
+<template>
   <div class="operating-area">
     <!-- 头部操作按钮区域 start -->
     <!-- 操作左侧区域 start -->
-  
 
     <div class="left-btn-box">
       <Tooltip v-for="item in toolbarsConfigs" :title="item.title" :key="item.icon">
@@ -89,6 +88,12 @@
             type: 'reset',
             event: 'handleClearFormItems',
             icon: 'ant-design:clear-outlined',
+          },
+          {
+            title: '保存',
+            type: 'save',
+            event: 'handleSaveFormItems',
+            icon: 'ant-design:save-outlined',
           },
         ],
       });
