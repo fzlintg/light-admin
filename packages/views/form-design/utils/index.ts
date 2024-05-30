@@ -1,3 +1,4 @@
+import { name } from './../extention/Echarts/tpl/pie/pieBar/options';
 import { forEach } from '@utils/helper/treeHelper';
 import { schema } from './../core/itemConfig/base';
 import { nextTick, emit } from 'vue';
@@ -427,7 +428,14 @@ export const strToReg = (rules: IValidationRule[]) => {
     return item;
   });
 };
-
+function getQuery(href, name) {
+  const reg = new RegExp('([&|?])' + name + '=([^&]*)');
+  const result = href.match(reg);
+  return result ? result[2] : void 0;
+}
+export function getQueryParam(variable) {
+  return getQuery(window.location.href, variable);
+}
 /**
  * 执行一段字符串代码，并返回执行结果，如果执行出错，则返回该参数
  * @param code

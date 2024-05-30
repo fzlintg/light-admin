@@ -89,7 +89,7 @@
   import { Layout, LayoutContent, LayoutSider } from 'ant-design-vue';
 
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
-  import { formItemsForEach, generateKey } from '../../utils';
+  import { formItemsForEach, generateKey, getQueryParam } from '../../utils';
   import { cloneDeep } from 'lodash-es';
   //import { baseComponents, customComponents, layoutComponents } from '../../core/formItemConfig';
   import { formItemConfig } from '../../core/formItemConfig';
@@ -324,7 +324,8 @@
   };
 
   const handleSaveFormItems = () => {
-    window.localStorage.setItem('light_form_widget', JSON.stringify(formConfig.value));
+    let cache = getQueryParam('cache') || '';
+    window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
     createMessage.success('保存成功');
   };
 
@@ -352,7 +353,8 @@
   });
   onMounted(() => {
     //自动读取本地缓存
-    let formWidget = JSON.parse(window.localStorage.getItem('light_form_widget'));
+    let cache = getQueryParam('cache') || '';
+    let formWidget = JSON.parse(window.localStorage.getItem(`light_form_widget${cache}`));
     if (formWidget) formConfig.value = formWidget;
   });
 
