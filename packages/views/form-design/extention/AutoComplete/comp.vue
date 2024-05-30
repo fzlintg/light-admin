@@ -1,11 +1,5 @@
 <template>
-  <a-auto-complete
-    v-bind="$attrs"
-    v-model:value="state"
-    :options="getOptions"
-    style="width: 200px"
-    @search="onSearch"
-  />
+  <a-auto-complete v-bind="$attrs" v-model:value="state" :options="getOptions" @search="onSearch" />
 </template>
 <script lang="ts" setup>
   import { PropType, ref, computed, unref, watch } from 'vue';

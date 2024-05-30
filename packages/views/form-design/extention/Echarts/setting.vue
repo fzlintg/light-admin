@@ -23,7 +23,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { baseSetting } from './tpl/setting';
+  import { baseSetting } from './tpl/set';
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatFunc, formatRules, formItemsForEach, formModelToData } from '../../utils/index';
