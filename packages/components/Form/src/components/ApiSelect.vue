@@ -120,7 +120,7 @@
     //预存
 
     if (!api || !isFunction(api) || loading.value) return;
-    optionsRef.value = [];
+    // optionsRef.value.slice(0, 0);
     try {
       loading.value = true;
       if (beforeFetch && isFunction(beforeFetch)) {
@@ -136,8 +136,7 @@
         optionsRef.value = res;
         emitChange();
         return;
-      }
-      if (resultField) {
+      } else if (resultField) {
         optionsRef.value = get(res, resultField) || [];
       }
       emitChange();
