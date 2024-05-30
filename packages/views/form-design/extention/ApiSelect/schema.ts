@@ -24,6 +24,12 @@ export default {
     _update__func: `await this.getItemRef().fetch(this.formatTpl('params'))`,
     onOptionsChange__func: `console.log('get options', options.length, options);`,
     onOptionsChange__params: ['options'],
+    onSearch__func: 'debugger;await this.getItemRef().fetch({id:keyword})',
+    onSearch__params: ['keyword'],
+    showSearch: false,
+    defaultActiveFirstOption: false,
+    notFoundContent: '暂无数据',
+    showArrow: true,
   },
   colProps: {
     span: 8,

@@ -27,6 +27,11 @@ const t = {
   gridVar: '初始变量',
   onSearch: '搜索事件',
   onSelect: '选择事件',
+  showSearch: '允许搜索',
+  defaultActiveFirstOption: '默认选第一个',
+  showArrow: '显示箭头',
+  notFoundContent: '无数据文本',
+  onOptionsChange: '选项改变事件',
 };
 const setting = {};
 
@@ -64,7 +69,7 @@ export function getSetting(item, options) {
   } else if (isBoolean(options[item])) {
     return {
       field: item,
-      label: item,
+      label: t[item] || item,
       category: 'control',
     };
   } else if (item?.endsWith('__tpl') || item?.endsWith('__var')) {
