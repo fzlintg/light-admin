@@ -115,9 +115,9 @@
 
   async function fetch(v_params: any = null) {
     let { api, beforeFetch, afterFetch, params, resultField } = props;
-    if (loading.value && v_params)
-      paramsWait = cloneDeep(v_params); //缓存
-    else paramsWait = null; //最后一次
+    // if (loading.value && v_params)
+    //   paramsWait = cloneDeep(v_params); //缓存
+    // else paramsWait = null; //最后一次
     v_params = v_params || params;
     //预存
 
@@ -150,9 +150,9 @@
     } finally {
       loading.value = false;
     }
-    if (paramsWait) {
-      await fetch(paramsWait);
-    }
+    // if (paramsWait) {
+    //   await fetch(paramsWait);
+    // }
   }
 
   async function handleFetch(visible: boolean) {
