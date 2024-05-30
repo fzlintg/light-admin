@@ -79,7 +79,7 @@
   });
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
-  let paramsWait = null;
+
   const getOptions = computed(() => {
     const { labelField, valueField, numberToString } = props;
 
