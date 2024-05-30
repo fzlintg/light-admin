@@ -25,4 +25,13 @@ export default [
       return resultSuccess(demoList(keyword, count));
     },
   },
+  {
+    url: '/basic-api/autoComplete/getOptions',
+    timeout: 1000,
+    method: 'get',
+    response: ({ query }) => {
+      const { keyword } = query;
+      return resultSuccess(demoList(keyword, 10).list);
+    },
+  },
 ] as MockMethod[];

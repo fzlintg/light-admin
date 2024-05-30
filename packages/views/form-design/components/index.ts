@@ -11,7 +11,7 @@ import {
   Select,
   Radio,
   Checkbox,
-  AutoComplete,
+  //AutoComplete,
   Cascader,
   DatePicker,
   InputNumber,
@@ -61,7 +61,7 @@ componentMap.set('InputPassword', Input.Password);
 componentMap.set('InputSearch', Input.Search);
 componentMap.set('InputTextArea', Input.TextArea);
 componentMap.set('InputNumber', InputNumber);
-componentMap.set('AutoComplete', AutoComplete);
+//componentMap.set('AutoComplete', AutoComplete);
 
 componentMap.set('Select', Select);
 componentMap.set('TreeSelect', TreeSelect);

@@ -6,7 +6,7 @@ import type { ComponentType } from './types';
  * Component list, register here to setting it in the form
  */
 import {
-  AutoComplete,
+  //AutoComplete,
   Cascader,
   Checkbox,
   DatePicker,
@@ -46,7 +46,7 @@ componentMap.set('InputPassword', Input.Password);
 componentMap.set('InputSearch', Input.Search);
 componentMap.set('InputTextArea', Input.TextArea);
 componentMap.set('InputNumber', InputNumber);
-componentMap.set('AutoComplete', AutoComplete);
+//componentMap.set('AutoComplete', AutoComplete);
 componentMap.set('ImageUpload', ImageUpload);
 componentMap.set('Select', Select);
 componentMap.set('ApiSelect', ApiSelect);

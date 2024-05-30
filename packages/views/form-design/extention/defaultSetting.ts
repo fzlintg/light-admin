@@ -25,6 +25,8 @@ const t = {
   bordered: '边框',
   chartVar: '初始变量',
   gridVar: '初始变量',
+  onSearch: '搜索事件',
+  onSelect: '选择事件',
 };
 const setting = {};
 
