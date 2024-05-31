@@ -31,6 +31,7 @@
   import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@utils/propTypes';
   import { defHttp as axios } from '@utils/http/axios';
+  import { useRequest } from '@vben/hooks';
 
   type OptionsItem = { label?: string; value?: string; disabled?: boolean; [name: string]: any };
 
@@ -77,7 +78,11 @@
 
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
-  let paramsWait = null;
+  const { run } = useRequest(async (params = null) => fetch(params), {
+    debounceWait: 100,
+    manual: true,
+  });
+  // let paramsWait = null;
   const getOptions = computed(() => {
     const { labelField, valueField, numberToString } = props;
 
@@ -113,9 +118,9 @@
 
   async function fetch(v_params: any = null) {
     let { api, beforeFetch, afterFetch, params, resultField } = props;
-    if (loading.value && v_params)
-      paramsWait = cloneDeep(v_params); //缓存
-    else paramsWait = null; //最后一次
+    // if (loading.value && v_params)
+    //   paramsWait = cloneDeep(v_params); //缓存
+    // else paramsWait = null; //最后一次
     v_params = v_params || params;
     //预存
 
@@ -147,17 +152,20 @@
     } finally {
       loading.value = false;
     }
-    if (paramsWait) {
-      await fetch(paramsWait);
-    }
+
+    // if (paramsWait) {
+    //   await fetch(paramsWait);
+    // }
   }
 
   async function handleFetch(visible: boolean) {
     if (visible) {
       if (props.alwaysLoad) {
-        await fetch();
+        await run();
+        //  await fetch();
       } else if (!props.immediate && !unref(isFirstLoaded)) {
-        await fetch();
+        await run();
+        //await fetch();
       }
     }
   }
@@ -169,5 +177,5 @@
   function handleChange(_, ...args) {
     emitData.value = args;
   }
-  defineExpose({ fetch });
+  defineExpose({ fetch, run });
 </script>

@@ -16,7 +16,7 @@ export const mergeSchema = (gridOptions, schema, tpl) => {
       custom: {},
       ds: {
         sourceType: 'model', //类型model/logic
-        logic: '',
+        service: '',
       },
     },
     children: [],
