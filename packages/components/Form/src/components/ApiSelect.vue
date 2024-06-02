@@ -161,11 +161,11 @@
   async function handleFetch(visible: boolean) {
     if (visible) {
       if (props.alwaysLoad) {
-        await run();
-        //  await fetch();
+        //await run();
+        await fetch();
       } else if (!props.immediate && !unref(isFirstLoaded)) {
-        await run();
-        //await fetch();
+        //await run();
+        await fetch();
       }
     }
   }

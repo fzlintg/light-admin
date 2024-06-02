@@ -334,14 +334,15 @@
           deep: true,
         },
       );
-      const linkOptions = computed(() => {
-        return (
-          formConfig.value.schemas &&
-          formConfig.value.schemas
-            .filter((item) => item.key !== formConfig.value.currentItem!.key)
-            .map(({ label, field }) => ({ label: label + '/' + field, value: field }))
-        );
-      });
+      const linkOptions = computed(() => {});
+      // const linkOptions = computed(() => {
+      //   return (
+      //     formConfig.value.schemas &&
+      //     formConfig.value.schemas
+      //       .filter((item) => item.key !== formConfig.value.currentItem!.key)
+      //       .map(({ label, field }) => ({ label: label + '/' + field, value: field }))
+      //   );
+      // });
       return {
         formConfig,
         showControlAttrs,
