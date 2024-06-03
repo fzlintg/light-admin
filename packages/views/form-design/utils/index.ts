@@ -110,6 +110,17 @@ export function toLine(str: string) {
  * @param array
  * @param cb
  */
+export function findSiblingsByName(obj, targetName, siblings = []) {
+  if (obj.children && obj.type === 'grid') {
+    obj.children.forEach((child) => {
+      if (child.name !== targetName) {
+        siblings.push(child);
+      }
+      findSiblingsByName(child, targetName, siblings);
+    });
+  }
+  return siblings;
+}
 export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComponent) => void) {
   if (!isArray(array)) return;
   const traverse = (schemas: IVFormComponent[]) => {
