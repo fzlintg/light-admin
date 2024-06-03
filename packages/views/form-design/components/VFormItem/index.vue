@@ -163,6 +163,10 @@
         type: String,
         default: '',
       },
+      parent: {
+        type: Object,
+        default: () => ({}),
+      },
     },
     emits: ['update:formModel', 'change'],
 
@@ -406,6 +410,7 @@
         bindFunc,
         getItemRef,
         formatTpl,
+        getParent: () => props.parent,
       };
     },
   });

@@ -84,17 +84,18 @@ export const schema = [
     },
     defaultValue: [],
   },
-  {
-    component: 'Input',
-    label: '输入框',
-    icon: 'bi:input-cursor-text',
-    field: '',
-    colProps: { span: 24 },
-    componentProps: {
-      type: 'text',
-      defaultValue: '',
-    },
-  },
+  // {
+  //   component: 'Input',
+  //   label: '输入框',
+  //   icon: 'bi:input-cursor-text',
+  //   field: '',
+  //   colProps: { span: 24 },
+  //   componentProps: {
+  //     type: 'text',
+  //     defaultValue: '',
+  //     onChange__func: '',
+  //   },
+  // },
   {
     component: 'InputNumber',
     label: '数字输入',

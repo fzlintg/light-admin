@@ -32,6 +32,8 @@ const t = {
   showArrow: '显示箭头',
   notFoundContent: '无数据文本',
   onOptionsChange: '选项改变事件',
+  filterOption: '',
+  defaultValue: '默认值',
 };
 const setting = {};
 
@@ -83,12 +85,12 @@ export function getSetting(item, options) {
     };
   } else if (typeof options[item] == 'string') {
     return {
-      label: t[item],
+      label: t[item] || item,
       component: 'Input',
     };
   } else if (typeof options[item] == 'number') {
     return {
-      label: t[item],
+      label: t[item] || item,
       component: 'InputNumber',
     };
   } else return undefined;

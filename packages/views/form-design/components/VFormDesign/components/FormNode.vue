@@ -6,20 +6,21 @@
     <div
       class="drag-move-box"
       @click.stop="handleSelectItem"
-      :class="{ active: schema.key === formConfig.currentItem?.key }"
+      :class="{ active: schema.key === formConfigParent.currentItem?.key }"
     >
       <div class="form-item-box jc-start d-flex w100">
         <VFormItem
-          :formConfig="formConfig"
+          :formConfig="vformConfig"
           :schema="schema"
           :parentComp="parentComp"
-          :current-item="formConfig.currentItem"
+          :parent="parent"
+          :current-item="formConfigParent.currentItem"
         />
       </div>
       <div class="show-key-box">
         {{ schema.label + (schema.field ? '/' + schema.field : '') }}
       </div>
-      <FormNodeOperate :schema="schema" :currentItem="formConfig.currentItem" />
+      <FormNodeOperate :schema="schema" :currentItem="formConfigParent.currentItem" />
     </div>
   </Col>
 </template>
@@ -50,10 +51,21 @@
           return '';
         },
       },
+
+      formConfig: {
+        type: Object,
+        default: () => {
+          return {};
+        },
+      },
+      parent: {
+        type: Object,
+        default: () => {},
+      },
     },
     setup(props) {
       //  const VFormItem = ;
-      const { formConfig, formDesignMethods } = useFormDesignState();
+      const { formDesignMethods, formConfig: formConfigParent } = useFormDesignState();
       const state = reactive({});
       // 获取 formDesignMethods
       const handleSelectItem = () => {
@@ -69,11 +81,14 @@
       //   const { colProps = {} } = props.schema;
       //   return props.parentComp == 'SubForm' ? {} : colProps; //lintg
       // });
+      const vformConfig = props.formConfig ? props.formConfig : formConfigParent;
       return {
         colPropsComputed,
         ...toRefs(state),
         handleSelectItem,
-        formConfig,
+        vformConfig,
+        formConfigParent,
+        // vformConfig: props.formConfig ? props.formConfig : formConfigParent,
         //  VFormItem,
       };
     },

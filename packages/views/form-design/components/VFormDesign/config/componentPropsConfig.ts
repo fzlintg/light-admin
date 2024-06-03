@@ -266,15 +266,15 @@ const componentAttrs: IBaseComponentProps = {
         ],
       },
     },
-    {
-      field: 'defaultValue',
-      label: '默认值',
-      component: 'Input',
-      componentProps: {
-        type: 'text',
-        placeholder: '请输入默认值',
-      },
-    },
+    // {
+    //   field: 'defaultValue',
+    //   label: '默认值',
+    //   component: 'Input',
+    //   componentProps: {
+    //     type: 'text',
+    //     placeholder: '请输入默认值',
+    //   },
+    // },
     {
       field: 'prefix',
       label: '前缀',
