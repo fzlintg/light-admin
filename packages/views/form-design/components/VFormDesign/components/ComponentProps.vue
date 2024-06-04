@@ -96,7 +96,7 @@
     componentPropsFuncs,
   } from '../../VFormDesign/config/componentPropsConfig';
   import FormOptions from './FormOptions.vue';
-  import { formItemsForEach, remove } from '../../../utils';
+  import { findSiblingsByName, formItemsForEach, remove } from '../../../utils';
   import { IBaseFormAttrs } from '../config/formItemPropsConfig';
   //import customConfig from '../config/custom/index';
   import {
@@ -336,12 +336,13 @@
       );
 
       const linkOptions = computed(() => {
-        return (
-          formConfig.value.schemas &&
-          formConfig.value.schemas
-            .filter((item) => item.key !== formConfig.value.currentItem!.key)
-            .map(({ label, field }) => ({ label: label + '/' + field, value: field }))
-        );
+        return findSiblingsByName(formConfig.value.schemas, formConfig.value.currentItem!.key);
+        // return (
+        //   formConfig.value.schemas &&
+        //   formConfig.value.schemas
+        //     .filter((item) => item.key !== formConfig.value.currentItem!.key)
+        //     .map(({ label, field }) => ({ label: label + '/' + field, value: field }))
+        // );
       });
       return {
         formConfig,

@@ -110,26 +110,30 @@ export function toLine(str: string) {
  * @param array
  * @param cb
  */
-export function findSiblingsByName(obj, targetName, siblings = []) {
-  if (obj.children && obj.type === 'grid') {
-    obj.children.forEach((child) => {
-      if (child.name !== targetName) {
-        siblings.push(child);
-      }
-      findSiblingsByName(child, targetName, siblings);
-    });
-  }
-  return siblings;
+export function findSiblingsByName(schemas: IVFormComponent[], targetName) {
+  let formItems: any = findFormItem(schemas, (item: IVFormComponent) => {
+    if (['Modal', 'Drawer'].includes(item.component)) {
+      if (findFormItem(item.children, (i) => i.field == targetName)) return true;
+    }
+  });
+  formItems = formItems ? formItems.children : schemas;
+  const result: any[] = [];
+  formItemsForEach(formItems, (item) => {
+    if (['Modal', 'Drawer'].includes(item.component)) return false;
+    if (item.field != targetName)
+      result.push({ label: item.label + '/' + item.field, value: item.field });
+  });
+  return result;
 }
-export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComponent) => void) {
+
+export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComponent) => boolean) {
   if (!isArray(array)) return;
-  const traverse = (schemas: IVFormComponent[]) => {
+  const traverse = (schemas: IVFormComponent[], parent?: IVFormComponent) => {
     schemas.forEach((formItem: IVFormComponent) => {
-      if (!formItem) return;
-      cb(formItem);
+      if (!formItem || cb(formItem) == false) return; //不往下遍历
       if (formItem.type == 'gridContainer') {
         // 栅格布局，注意不要把GridSubForm加进来
-        formItem.columns?.forEach((item) => traverse(item.children));
+        formItem.columns?.forEach((item) => traverse(item.children, formItem));
       } else if (['container', 'containerItem'].includes(formItem.type)) {
         traverse(formItem.children);
       }

@@ -355,7 +355,13 @@
     //自动读取本地缓存
     let cache = getQueryParam('cache') || '';
     let formWidget = JSON.parse(window.localStorage.getItem(`light_form_widget${cache}`));
-    if (formWidget) formConfig.value = formWidget;
+
+    if (formWidget) {
+      formItemsForEach(formWidget.schemas, (formItem) => {
+        generateKey(formItem, false);
+      });
+      formConfig.value = formWidget;
+    }
   });
 
   // endregion

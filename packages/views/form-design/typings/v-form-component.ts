@@ -77,6 +77,7 @@ export interface IVFormComponent {
   defaultValueObj?: any;
   compAlign?: string;
   name?: string; //lintg
+  parent?: IVFormComponent;
 }
 
 declare type namesType = string | string[];
