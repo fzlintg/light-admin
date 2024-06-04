@@ -105,11 +105,6 @@ export function toLine(str: string) {
   return str.replace(/([A-Z])/g, '$1').toLowerCase();
 }
 
-/**
- * 遍历表单项
- * @param array
- * @param cb
- */
 export function findSiblingsByName(schemas: IVFormComponent[], targetName) {
   let formItems: any = findFormItem(schemas, (item: IVFormComponent) => {
     if (['Modal', 'Drawer'].includes(item.component)) {
@@ -125,7 +120,11 @@ export function findSiblingsByName(schemas: IVFormComponent[], targetName) {
   });
   return result;
 }
-
+/**
+ * 遍历表单项
+ * @param array
+ * @param cb
+ */
 export function formItemsForEach(array: IVFormComponent[], cb: (item: IVFormComponent) => boolean) {
   if (!isArray(array)) return;
   const traverse = (schemas: IVFormComponent[], parent?: IVFormComponent) => {

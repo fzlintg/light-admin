@@ -17,40 +17,37 @@
     >
       <template #item="{ element }">
         <FormNode
-          :formConfig="formConfigNew"
           class="drag-move"
           :schema="element"
-          :current-item="currentItem"
           @handle-copy="$emit('handle-copy')"
           @handle-delete="$emit('handle-delete')"
-          :parent="proxy"
         />
       </template>
     </draggable>
   </div>
 </template>
 <script lang="ts" setup>
-  import { getCurrentInstance, onMounted } from 'vue';
-  import { useFormDesignState } from '../../hooks/useFormDesignState';
-
+  // import { getCurrentInstance, onMounted } from 'vue';
+  //import { useFormDesignState } from '../../hooks/useFormDesignState';
   import draggable from 'vuedraggable';
   //  import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
   const FormNode = defineAsyncComponent(
     () => import('../../components/VFormDesign/components/FormNode.vue'),
   );
-  const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
-  const {
-    formDesignMethods: { handleSetSelectItem },
-    formConfig,
-  } = useFormDesignState();
+  //const emit =
+  defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
+  // const {
+  //   formDesignMethods: { handleSetSelectItem },
+  //   // formConfig,
+  // } = useFormDesignState();
 
   //const { formConfig } = toRefs(useAttrs());
-  const formConfigNew = computed(() => {
-    return { ...formConfig.value, schemas: toRaw(schema.value.children) };
-  });
-  const { currentItem, schema } = toRefs(useAttrs());
+  // const formConfigNew = computed(() => {
+  //   return { ...formConfig.value, schemas: toRaw(schema.value.children) };
+  // });
+  const { schema } = toRefs(useAttrs());
 
-  const { proxy } = getCurrentInstance();
+  // const { proxy } = getCurrentInstance();
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');

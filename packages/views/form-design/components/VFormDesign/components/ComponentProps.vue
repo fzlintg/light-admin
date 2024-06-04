@@ -183,13 +183,16 @@
         for (let schema of customSchema[item].schema) {
           customSetting[schema.component] = customSetting[schema.component] || [];
           for (const propItem in schema.componentProps) {
-            if (customSetting[schema.component].filter((i) => i.field == propItem).length == 0) {
+            //    if (customSetting[schema.component].filter((i) => i.field == propItem).length == 0) {
+            if (!customSetting[schema.component].some((i) => i.field == propItem)) {
               if (defaultSetting[propItem])
+                //默认值
                 customSetting[schema.component].push({
                   field: propItem,
                   ...defaultSetting[propItem],
                 });
               else {
+                //动态生成
                 let setting = getSetting(propItem, schema.componentProps);
                 setting && customSetting[schema.component].push({ field: propItem, ...setting });
               }
@@ -286,9 +289,7 @@
       );
       // 控制性的选项
       const controlOptions = computed(() => {
-        return allOptions.value.filter((item) => {
-          return item.category == 'control';
-        });
+        return allOptions.value.filter((item) => item.category == 'control');
       });
 
       // 非控制性选择
@@ -337,12 +338,6 @@
 
       const linkOptions = computed(() => {
         return findSiblingsByName(formConfig.value.schemas, formConfig.value.currentItem!.key);
-        // return (
-        //   formConfig.value.schemas &&
-        //   formConfig.value.schemas
-        //     .filter((item) => item.key !== formConfig.value.currentItem!.key)
-        //     .map(({ label, field }) => ({ label: label + '/' + field, value: field }))
-        // );
       });
       return {
         formConfig,

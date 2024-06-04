@@ -29,7 +29,7 @@
 <script lang="ts" setup>
   import { Form, FormItem, Divider } from 'ant-design-vue';
   import { componentMap } from '../../../core/formItemConfig';
-  import { watchEffect, watch } from 'vue';
+  import { watch } from 'vue';
   import { useRuleFormItem } from '../../../../../myhooks/component/useFormItem';
   //import { getInitValue } from '../../../utils/index';
 
@@ -52,7 +52,6 @@
       props.schema.forEach((item) => {
         if (item.defaultValue && !formState.value[item.field])
           formState.value[item.field] = item.defaultValue;
-        
       });
     },
   );

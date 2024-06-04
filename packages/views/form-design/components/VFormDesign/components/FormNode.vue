@@ -6,21 +6,21 @@
     <div
       class="drag-move-box"
       @click.stop="handleSelectItem"
-      :class="{ active: schema.key === formConfigParent.currentItem?.key }"
+      :class="{ active: schema.key === formConfig.currentItem?.key }"
     >
       <div class="form-item-box jc-start d-flex w100">
         <VFormItem
-          :formConfig="vformConfig"
+          :formConfig="formConfig"
           :schema="schema"
           :parentComp="parentComp"
           :parent="parent"
-          :current-item="formConfigParent.currentItem"
+          :current-item="formConfig.currentItem"
         />
       </div>
       <div class="show-key-box">
         {{ schema.label + (schema.field ? '/' + schema.field : '') }}
       </div>
-      <FormNodeOperate :schema="schema" :currentItem="formConfigParent.currentItem" />
+      <FormNodeOperate :schema="schema" :currentItem="formConfig.currentItem" />
     </div>
   </Col>
 </template>
@@ -52,20 +52,16 @@
         },
       },
 
-      formConfig: {
-        type: Object,
-        default: () => {
-          return {};
-        },
-      },
-      parent: {
-        type: Object,
-        default: () => {},
-      },
+      // formConfig: {
+      //   type: Object,
+      //   default: () => {
+      //     return {};
+      //   },
+      // },
     },
     setup(props) {
       //  const VFormItem = ;
-      const { formDesignMethods, formConfig: formConfigParent } = useFormDesignState();
+      const { formDesignMethods, formConfig } = useFormDesignState();
       const state = reactive({});
       // 获取 formDesignMethods
       const handleSelectItem = () => {
@@ -81,13 +77,13 @@
       //   const { colProps = {} } = props.schema;
       //   return props.parentComp == 'SubForm' ? {} : colProps; //lintg
       // });
-      const vformConfig = props.formConfig ? props.formConfig : formConfigParent;
+      // const vformConfig = props.formConfig ? props.formConfig : formConfigParent;
       return {
         colPropsComputed,
         ...toRefs(state),
         handleSelectItem,
-        vformConfig,
-        formConfigParent,
+        formConfig,
+        //formConfigParent,
         // vformConfig: props.formConfig ? props.formConfig : formConfigParent,
         //  VFormItem,
       };

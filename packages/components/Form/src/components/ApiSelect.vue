@@ -84,8 +84,9 @@
   });
   // let paramsWait = null;
   const getOptions = computed(() => {
-    const { labelField, valueField, numberToString } = props;
-
+    let { labelField, valueField, numberToString } = props;
+    labelField = labelField == '' ? 'label' : labelField;
+    valueField = valueField == '' ? 'value' : valueField;
     let data = unref(optionsRef).reduce((prev, next: any) => {
       if (next) {
         const value = get(next, valueField);
