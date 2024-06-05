@@ -6,6 +6,7 @@
       :mode="mode"
       :readonly="readonly"
       :bordered="bordered"
+      ref="codeMirrorRef"
     />
   </div>
 </template>
@@ -31,7 +32,7 @@
   });
 
   const emit = defineEmits(['change', 'update:value', 'format-error']);
-
+  const codeMirrorRef = ref(null);
   const getValue = computed(() => {
     const { value, mode, autoFormat } = props;
     if (!autoFormat || mode !== MODE.JSON) {

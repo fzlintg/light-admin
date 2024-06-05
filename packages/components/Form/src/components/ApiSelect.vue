@@ -5,6 +5,7 @@
     @change="handleChange"
     :options="getOptions"
     v-model:value="state"
+    @search="search"
   >
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data || {}"></slot>
@@ -21,7 +22,7 @@
   </Select>
 </template>
 <script lang="ts" setup>
-  import { PropType, ref, computed, unref, watch } from 'vue';
+  import { PropType, ref, computed, unref, watch, onMounted, getCurrentInstance } from 'vue';
   import { Select } from 'ant-design-vue';
   import type { SelectValue } from 'ant-design-vue/es/select';
   import { isFunction } from '@utils/is';
@@ -64,7 +65,20 @@
       type: Function as PropType<Fn>,
       default: null,
     },
+    onSearch: {
+      type: Function as PropType<Fn>,
+      default: null,
+    },
+    getParent: {
+      type: Function as PropType<Fn>,
+      default: null,
+    },
   });
+
+  // const search = props?.onSearch?.bind(props.parent) || (() => {});
+  const search = (...args) => {
+    props?.onSearch.call(props.getParent(), ...args);
+  };
 
   const emit = defineEmits(['options-change', 'change', 'update:value']);
 
@@ -179,4 +193,7 @@
     emitData.value = args;
   }
   defineExpose({ fetch, run });
+  // onMounted(() => {
+  //   emit('loaded');
+  // });
 </script>

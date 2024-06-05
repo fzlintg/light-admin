@@ -27,10 +27,19 @@
   import './codemirror.css';
   import 'codemirror/theme/idea.css';
   import 'codemirror/theme/material-palenight.css';
+  import 'codemirror/addon/selection/active-line.js'; // 选中行高亮 add by lintg
   // modes
   import 'codemirror/mode/javascript/javascript';
   import 'codemirror/mode/css/css';
   import 'codemirror/mode/htmlmixed/htmlmixed';
+  import '@codemirror/commands';
+
+  import 'codemirror/addon/fold/foldgutter.css';
+  import 'codemirror/addon/fold/foldcode';
+  import 'codemirror/addon/fold/foldgutter';
+  import 'codemirror/addon/fold/brace-fold';
+  import 'codemirror/addon/fold/comment-fold';
+  import format from './format';
 
   const props = defineProps({
     mode: {
@@ -90,13 +99,24 @@
   function refresh() {
     editor?.refresh();
   }
-
+  const formatCode = () => {
+    editor.execCommand('selectAll');
+    editor.autoFormatRange(editor.getCursor(true), editor.getCursor(false));
+  };
   async function init() {
     const addonOptions = {
       autoCloseBrackets: true,
       autoCloseTags: true,
+      indentUnit: 4, //缩进单位
       foldGutter: true,
-      gutters: ['CodeMirror-linenumbers'],
+      lint: true,
+      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      styleActiveLine: true,
+      extraKeys: {
+        'Alt-F': (cm) => {
+          formatCode();
+        },
+      },
     };
 
     editor = CodeMirror(el.value!, {
@@ -114,6 +134,7 @@
     editor?.on('change', () => {
       emit('change', editor?.getValue());
     });
+    format(CodeMirror);
   }
 
   onMounted(async () => {
@@ -125,4 +146,5 @@
   onUnmounted(() => {
     editor = null;
   });
+  defineExpose({ formatCode });
 </script>

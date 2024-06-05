@@ -14,8 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `   let formData=this.getFormData()                                 
-       this.getModal("modal").show(formData)                                 `,
+        onClick__func: `    let formData=this.getFormData()                                  
+        this.getModal("modal").show(formData)                                  `,
         style: '',
         shape: '',
         color: '',
@@ -36,13 +36,13 @@ export default {
         title: '操作栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `              let formData=this.getModal().getFormData();                                 
-                                 let props=this.getFormData();                                 
-                                 Object.assign(props,formData);                                
-                                 return true;                                 `,
-        onCancelButtonClick__func: `                                                                  `,
-        onDialogOpened__func: `                            `,
-        onDialogBeforeClose__func: `                                                                  `,
+        onOkButtonClick__func: `               let formData=this.getModal().getFormData();                                  
+                                  let props=this.getFormData();                                  
+                                  Object.assign(props,formData);                                 
+                                  return true;                                  `,
+        onCancelButtonClick__func: `                                                                    `,
+        onDialogOpened__func: `                              `,
+        onDialogBeforeClose__func: `                                                                    `,
         style: '',
       },
       children: [
@@ -58,10 +58,10 @@ export default {
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
             style: '',
-            onRowDelete__func: `                                                                  `,
-            onRowInsert__func: `                                                                  `,
-            onRowAdd__func: `                                                                  `,
-            onRowChange__func: `                                                                  `,
+            onRowDelete__func: `                                                                    `,
+            onRowInsert__func: `                                                                    `,
+            onRowAdd__func: `                                                                    `,
+            onRowChange__func: `                                                                    `,
             hideSub: true,
           },
           children: [
@@ -237,8 +237,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `                             let formData=this.getFormData()                                 
-                                         this.getModal("modal_2").show(formData)                             `,
+        onClick__func: `                              let formData=this.getFormData()                                  
+                                          this.getModal("modal_2").show(formData)                              `,
       },
       width: '200px',
       itemProps: {
@@ -255,13 +255,13 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `              let formData=this.getModal().getFormData();                                 
-                                    let props=this.getFormData();                                 
-                                    Object.assign(props,formData);                                
-                                    return true;                                 `,
-        onCancelButtonClick__func: `                                                          `,
-        onDialogOpened__func: `                                                          `,
-        onDialogBeforeClose__func: `                                                          `,
+        onOkButtonClick__func: `               let formData=this.getModal().getFormData();                                  
+                                     let props=this.getFormData();                                  
+                                     Object.assign(props,formData);                                 
+                                     return true;                                  `,
+        onCancelButtonClick__func: `                                                            `,
+        onDialogOpened__func: `                                                            `,
+        onDialogBeforeClose__func: `                                                            `,
       },
       children: [
         {
@@ -427,8 +427,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `let formData=this.getFormData()                                 
-   this.getItemRef("modal_6").show(formData)   `,
+        onClick__func: ` debugger;let formData=this.getFormData()                                  
+    this.getItemRef("modal_6").show(formData)    `,
         onClick__params: ['e'],
       },
       width: '200px',
@@ -446,12 +446,16 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `      `,
+        onOkButtonClick__func: ` let modal=this.getModal('modal_6');                                  
+                                  let formData=modal.getFormData();                                  
+                                  let props=this.getFormData();                                  
+                                  Object.assign(props,formData);                                 
+                                  return true; `,
         onOkButtonClick__params: ['{_this,callback}'],
-        onCancelButtonClick__func: `      `,
-        onDialogOpened__func: `      `,
+        onCancelButtonClick__func: `        `,
+        onDialogOpened__func: `        `,
         onDialogOpened__params: ['{fData,eData}'],
-        onDialogBeforeClose__func: `      `,
+        onDialogBeforeClose__func: `        `,
         onDialogBeforeClose__params: ['{callback}'],
         maxLength: 100,
       },
@@ -487,22 +491,22 @@ export default {
           label: '服务',
           field: 'ds.service',
           componentProps: {
-            api__func: `  return await axios.get({url:"/api/model/getList/"+params.keyword||'base'});  `,
+            api__func: `   return await axios.get({url:"/api/model/getList/"+params.keyword||'base'});   `,
             api__params: ['params'],
-            onChange__func: `  console.log('ApiSelect====>:', e, v)  `,
+            onChange__func: `   console.log('ApiSelect====>:', e, v)   `,
             onChange__params: ['e', 'v'],
-            defaultContext__var: `  {  
-        apiselect_1: '1',  
-  }  `,
+            defaultContext__var: `   {   
+         apiselect_1: '1',   
+   }   `,
             params__tpl: '{\n      id: ${apiselect_1},\n}',
             resultField: '',
             labelField: '',
             valueField: '',
             immediate: true,
-            _update__func: `  await this.getItemRef().run(this.formatTpl('params'))  `,
-            onOptionsChange__func: `  console.log('get options', options.length, options);  `,
+            _update__func: `   await this.getItemRef().run(this.formatTpl('params'))   `,
+            onOptionsChange__func: `   console.log('get options', options.length, options);   `,
             onOptionsChange__params: ['options'],
-            onSearch__func: `  await this.getItemRef().run({keyword})  `,
+            onSearch__func: `  debugger; await this.getItemRef().run({keyword})   `,
             onSearch__params: ['keyword'],
             showSearch: true,
             defaultActiveFirstOption: false,
@@ -546,7 +550,7 @@ export default {
             value: 'primary',
             type: 'primary',
             size: 'default',
-            onClick__func: `    `,
+            onClick__func: `      `,
             onClick__params: ['e'],
           },
           width: '200px',
@@ -579,7 +583,7 @@ export default {
               componentProps: {
                 type: 'text',
                 defaultValue: '',
-                onChange__func: `    `,
+                onChange__func: `      `,
               },
               _type: 'custom',
               width: '200px',
@@ -598,7 +602,7 @@ export default {
               componentProps: {
                 type: 'text',
                 defaultValue: '',
-                onChange__func: `    `,
+                onChange__func: `      `,
               },
               _type: 'custom',
               width: '200px',
@@ -647,8 +651,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `                       let formData=this.getFormData()                                 
-                                         this.getModal("modal_3").show(formData)                       `,
+        onClick__func: `                        let formData=this.getFormData()                                  
+                                          this.getModal("modal_3").show(formData)                        `,
       },
       width: '200px',
       itemProps: {
@@ -665,14 +669,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `                       let modal=this.getModal('modal_3');                                 
-                                 let formData=modal.getFormData();                                 
-                                 let props=this.getFormData();                                 
-                                 Object.assign(props,formData);                                
-                                 return true;                       `,
-        onCancelButtonClick__func: `                                                        `,
-        onDialogOpened__func: `                                                        `,
-        onDialogBeforeClose__func: `                                                        `,
+        onOkButtonClick__func: `                        let modal=this.getModal('modal_3');                                  
+                                  let formData=modal.getFormData();                                  
+                                  let props=this.getFormData();                                  
+                                  Object.assign(props,formData);                                 
+                                  return true;                        `,
+        onCancelButtonClick__func: `                                                          `,
+        onDialogOpened__func: `                                                          `,
+        onDialogBeforeClose__func: `                                                          `,
       },
       children: [
         {
@@ -837,8 +841,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `                   let formData=this.getFormData()                                 
-                                         this.getModal("modal_5").show(formData)                   `,
+        onClick__func: `                    let formData=this.getFormData()                                  
+                                          this.getModal("modal_5").show(formData)                    `,
       },
       width: '200px',
       itemProps: {
@@ -855,14 +859,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `                  let modal=this.getModal('modal_5');                                 
-                                 let formData=modal.getFormData();                                 
-                                 let props=this.getFormData();                                 
-                                 Object.assign(props,formData);                                
-                                 return true;                  `,
-        onCancelButtonClick__func: `                                      `,
-        onDialogOpened__func: `                                      `,
-        onDialogBeforeClose__func: `                                      `,
+        onOkButtonClick__func: `                   let modal=this.getModal('modal_5');                                  
+                                  let formData=modal.getFormData();                                  
+                                  let props=this.getFormData();                                  
+                                  Object.assign(props,formData);                                 
+                                  return true;                   `,
+        onCancelButtonClick__func: `                                        `,
+        onDialogOpened__func: `                                        `,
+        onDialogBeforeClose__func: `                                        `,
       },
       children: [
         {
@@ -1228,8 +1232,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `                       let formData=this.getFormData()                                 
-                                         this.getModal("modal_4").show(formData)                       `,
+        onClick__func: `                        let formData=this.getFormData()                                  
+                                          this.getModal("modal_4").show(formData)                        `,
       },
       width: '200px',
       itemProps: {
@@ -1246,14 +1250,14 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `                  let modal=this.getModal('modal_4');                                 
-                                 let formData=modal.getFormData();                                 
-                                 let props=this.getFormData();                                 
-                                 Object.assign(props,formData);                                
-                                 return true;                  `,
-        onCancelButtonClick__func: `                                                `,
-        onDialogOpened__func: `                                                `,
-        onDialogBeforeClose__func: `                                                `,
+        onOkButtonClick__func: `                   let modal=this.getModal('modal_4');                                  
+                                  let formData=modal.getFormData();                                  
+                                  let props=this.getFormData();                                  
+                                  Object.assign(props,formData);                                 
+                                  return true;                   `,
+        onCancelButtonClick__func: `                                                  `,
+        onDialogOpened__func: `                                                  `,
+        onDialogBeforeClose__func: `                                                  `,
       },
       children: [
         {

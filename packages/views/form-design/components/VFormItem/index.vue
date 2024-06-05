@@ -23,6 +23,7 @@
         :inSubForm="inSubForm"
         @change="handleChange"
         @click="handleClick(schema)"
+        :getParent="() => proxy"
         ref="formItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}</component
       >
@@ -79,6 +80,7 @@
             :getFormItem="getFormItem"
             @change="handleChange"
             @click="handleClick(schema)"
+            :getParent="() => proxy"
             ref="formItemRef"
         /></div>
       </FormItem>
@@ -163,10 +165,6 @@
         type: String,
         default: '',
       },
-      parent: {
-        type: Object,
-        default: () => ({}),
-      },
     },
     emits: ['update:formModel', 'change'],
 
@@ -214,6 +212,7 @@
       const getFormRef = inject('getFormRef', () => {});
       const watchKey = new Set();
       const bindFunc = () => {
+        //     console.log('bind:', props.schema.componentProps);
         forOwn(props.schema.componentProps, (value: any, key) => {
           if (isFunction(value)) {
             props.schema.componentProps[key] = value.bind(proxy);
@@ -235,19 +234,6 @@
         myProps.value[param] = eval('(' + paramStr + ')');
         return myProps.value[param];
       };
-
-      onMounted(() => {
-        bindFunc();
-        watchKey.forEach((v) => {
-          watch(
-            () => props.schema.componentProps[v],
-            () => {
-              let value = props.schema.componentProps[v];
-              props.schema.componentProps[v] = value.bind(proxy);
-            },
-          );
-        });
-      });
 
       const colPropsComputed = computed(() => {
         const { colProps = {} } = props.schema;
@@ -382,7 +368,23 @@
         cur_setFormModel(props.schema.field!, value, e);
         if (!props.inSubForm) emit('change', value);
       };
+      onMounted(() => {
+        bindFunc();
+        watchKey.forEach((v) => {
+          watch(
+            () => props.schema.componentProps[v],
+            () => {
+              let value = props.schema.componentProps[v];
+              props.schema.componentProps[v] = value.bind(proxy);
+            },
+          );
+        });
+      });
+      // const handleLoaded = () => {
+      //   bindFunc();
+      // };
       return {
+        //     handleLoaded,
         ...toRefs(state),
         formItemRef,
         formItemRefList,
@@ -410,7 +412,7 @@
         bindFunc,
         getItemRef,
         formatTpl,
-        getParent: () => props.parent,
+        proxy,
       };
     },
   });

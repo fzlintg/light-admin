@@ -8,6 +8,7 @@
     @ok="handleOk"
   >
     <BasicForm @register="registerForm" />
+    <template #insertFooter> <a-button @click="formatCode"> 格式化</a-button> </template>
   </BasicModal>
 </template>
 <script setup>
@@ -16,6 +17,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   import { BasicForm, useForm } from '@c/Form';
+  import { Button as AButton } from 'ant-design-vue';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
@@ -72,5 +74,9 @@
     const data = await getFieldsValue();
     state.value = data.code_input;
     closeModal();
+  };
+  const formatCode = async () => {
+    const data = await getFieldsValue();
+    state.value = data.code_input;
   };
 </script>
