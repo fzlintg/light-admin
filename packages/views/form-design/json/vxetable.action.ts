@@ -446,7 +446,7 @@ return true;                                  `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getItemRef('modal_6').getFormData();                                  
+        onOkButtonClick__func: `let formData=this.itemRef().getFormData();                                  
 let props=this.getFormData();                                  
 Object.assign(props,formData);                                 
 return true; `,
@@ -462,7 +462,7 @@ return true; `,
         {
           component: 'RadioGroup',
           label: 'CRUD类型',
-          field: 'ds.sourceType',
+          field: 'ds.column.sourceType',
           colProps: {
             span: 12,
           },
@@ -476,6 +476,10 @@ return true; `,
                 label: '逻辑',
                 value: 'logic',
               },
+              {
+                label: '服务',
+                value: 'serv',
+              },
             ],
             optionType: 'button',
           },
@@ -488,7 +492,7 @@ return true; `,
         {
           component: 'ApiSelect',
           label: '服务',
-          field: 'ds.service',
+          field: 'ds.column.service',
           componentProps: {
             api__func: `   return await axios.get({url:"/api/model/getList/"+params.keyword||'base'});   `,
             api__params: ['params'],
@@ -549,7 +553,12 @@ return true; `,
             value: 'primary',
             type: 'primary',
             size: 'default',
-            onClick__func: `      `,
+            onClick__func: `let sourceType=this.getFormItem("ds.column.sourceType").getValue();
+            let service=this.getFormItem("ds.column.service").getValue();
+       
+            let result=await axios.get({url:'/api/'+sourceType+'/tableColumn/'+service});
+            this.getFormItem("gridOptions.columns").setValue(result);
+            `,
             onClick__params: ['e'],
           },
           width: '200px',
@@ -668,8 +677,7 @@ this.getItemRef("modal_3").show(formData)                        `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let modal=this.getModal('modal_3');                                  
-let formData=modal.getFormData();                                  
+        onOkButtonClick__func: `let formData=this.getItemRef('modal_3').getFormData();                                  
 let props=this.getFormData();                                  
 Object.assign(props,formData);                                 
 return true;                        `,
@@ -858,7 +866,7 @@ this.getItemRef("modal_5").show(formData)                    `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getModal('modal_5').getFormData();                                  
+        onOkButtonClick__func: `let formData=this.getItemRef('modal_5').getFormData();                                  
 let props=this.getFormData();                                  
 Object.assign(props,formData);                                 
 return true;                   `,
@@ -1248,7 +1256,7 @@ this.getItemRef("modal_4").show(formData)                        `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getModal('modal_4').getFormData();                                  
+        onOkButtonClick__func: `let formData=this.getItemRef('modal_4').getFormData();                                  
 let props=this.getFormData();                                  
 Object.assign(props,formData);                                 
 return true;                   `,

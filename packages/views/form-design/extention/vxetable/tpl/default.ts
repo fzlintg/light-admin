@@ -3,11 +3,13 @@ export const schema = {
   componentProps: {
     gridVar__func: `const config=await axios.get({url:"/vxe/getGridVar"});
     return config`,
-    custom: {
-      api: {
-        columns: '/table/getVxeColumn',
+    ds: {
+      column: {
+        sourceType: 'serv',
+        service: '/table/getVxeColumn',
       },
-
+    },
+    custom: {
       actions: [
         {
           label: '详情',

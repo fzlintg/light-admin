@@ -10,13 +10,16 @@ export const mergeSchema = (gridOptions, schema, tpl) => {
     icon: 'ant-design:border-bottom-outlined',
     componentProps: {
       height: 600,
+      gridVar: () => {},
       gridVar__func: '',
       tpl,
       gridOptions,
       custom: {},
       ds: {
-        sourceType: 'model', //类型model/logic
-        service: '',
+        column: {
+          sourceType: 'model', //类型model/logic
+          service: '',
+        },
       },
     },
     children: [],

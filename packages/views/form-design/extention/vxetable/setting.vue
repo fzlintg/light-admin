@@ -71,6 +71,7 @@
     // formState.value.componentProps.gridOptions = cloneDeep(optionsMap[formType.value]);
     merge(formState.value, schemaMap[formType.value]);
     formatFunc(formState.value.componentProps);
+
     // initState();
     // if (customMap[formState.value.componentProps.tpl])
     //   formState.value.componentProps.actions = cloneDeep(
@@ -79,6 +80,7 @@
     // nextTick(() => {
     //   formShow.value = true;
     // });
+    // emit('update:props', formState.value);
   };
   watch(
     () => formState.value.componentProps.gridVar__func,

@@ -10,9 +10,10 @@ export const name = '完整表格';
 // };
 export const schema = {
   componentProps: {
-    custom: {
-      api: {
-        columns: '/vxe/fullColumn',
+    ds: {
+      column: {
+        sourceType: 'serv',
+        service: '/vxe/fullColumn',
       },
     },
     gridVar__func: `const config=await axios.get({url:"/vxe/getGridVar"});

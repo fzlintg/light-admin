@@ -33,6 +33,10 @@
       type: Object as PropType<Object>,
       default: () => {},
     },
+    ds: {
+      type: Object as PropType<Object>,
+      default: () => {},
+    },
   });
   //const attrs = useAttrs();
   const { createMessage } = useMessage();
@@ -78,11 +82,6 @@
   watchEffect(async () => {
     ifshow.value = false;
     const data = props.gridVar ? await props.gridVar() : {};
-    const columns =
-      isNil(props.custom.api.columns) || props.custom.api.columns == ''
-        ? []
-        : await axios.get({ url: props.custom.api.columns });
-
     const gridTpl = TransObjectToCode(cloneDeep(toRaw(props.gridOptions)));
     const gridData = new Function(
       '{tableRef,createMessage,axios,' + Object.keys(data || {}).join(',') + '}',
@@ -93,12 +92,18 @@
       axios,
       ...data,
     });
+    if (
+      (!gridData.columns || gridData.columns?.length == 0) &&
+      props.ds?.column?.sourceType == 'serv'
+    ) {
+      gridData.columns = await axios.get({ url: props.ds.column.service });
+    }
     gOptions.value = {
       id: 'VxeTable',
       keepSource: true,
       toolbarConfig: {},
       height: 'auto',
-      columns,
+      //columns,
       ...gridData,
     };
     nextTick(() => {
