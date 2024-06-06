@@ -464,3 +464,5 @@ export const runCode = <T>(code: any): T => {
 };
 
 export const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+export const isAsyncFunction = (v) =>
+  Object.prototype.toString.call(v) === '[object AsyncFunction]';

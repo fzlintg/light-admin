@@ -3,7 +3,7 @@ import { Ref, SetupContext, getCurrentInstance, toRaw, type EmitsOptions } from 
 import { cloneDeep, forOwn, isFunction, set, get } from 'lodash-es';
 import { AForm, IVFormComponent } from '../typings/v-form-component';
 import { Form } from 'ant-design-vue';
-import { formModelToData } from '../utils';
+import { formItemsForEach, formModelToData, isAsyncFunction } from '../utils';
 
 export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
   props: IAnyObject,
@@ -17,25 +17,46 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
    */
   const bindContext = () => {
     const instance = getCurrentInstance();
-    const vm = instance?.parent;
-    if (!vm) return;
 
-    (props.formConfig.schemas as IVFormComponent[]).forEach((item) => {
-      // 绑定 props 中的上下文  lintg
-      // forOwn(item.componentProps, (value: any, key) => {
-      //   if (isFunction(value)) {
-      //     // const context = formItemRefList[item.field] || vm; //lintg
-      //     item.componentProps![key] = value.bind(vm);
-      //   }
-      // });
-      // 绑定事件监听（v-on）的上下文
-      forOwn(item.on, (value: any, key) => {
-        //  debugger;
-        if (isFunction(value)) {
-          item.componentProps![key] = value.bind(vm);
+    const vm = instance?.proxy;
+    if (!vm) return;
+    formItemsForEach(props.formConfig.schemas as IVFormComponent[], (item) => {
+      forOwn(item.componentProps, (value: any, key) => {
+        if (isAsyncFunction(value)) {
+          // item.componentProps[key] = value.bind(vm);
+          item.componentProps[key] = async function (...args) {
+            vm.item = () => vm.getFormItem(item.field);
+            vm.itemRef = () => vm.getFormItem(item.field).formItemRef;
+            return await value.apply(vm, args);
+          };
+        } else if (isFunction(value)) {
+          item.componentProps[key] = function (...args) {
+            vm.item = () => vm.getFormItem(item.field);
+            vm.itemRef = () => vm.getFormItem(item.field).formItemRef;
+            return value.apply(vm, args);
+          };
         }
       });
+      if (['Modal', 'Drawer'].includes(item.component)) return false;
+      else return true;
     });
+
+    // (props.formConfig.schemas as IVFormComponent[]).forEach((item) => {
+    //   // 绑定 props 中的上下文  lintg
+    //   // forOwn(item.componentProps, (value: any, key) => {
+    //   //   if (isFunction(value)) {
+    //   //     // const context = formItemRefList[item.field] || vm; //lintg
+    //   //     item.componentProps![key] = value.bind(vm);
+    //   //   }
+    //   // });
+    //   // 绑定事件监听（v-on）的上下文
+    //   forOwn(item.on, (value: any, key) => {
+    //     //  debugger;
+    //     if (isFunction(value)) {
+    //       item.componentProps![key] = value.bind(vm);
+    //     }
+    //   });
+    // });
   };
   bindContext();
 

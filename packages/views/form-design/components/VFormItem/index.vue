@@ -369,16 +369,16 @@
         if (!props.inSubForm) emit('change', value);
       };
       onMounted(() => {
-        bindFunc();
-        watchKey.forEach((v) => {
-          watch(
-            () => props.schema.componentProps[v],
-            () => {
-              let value = props.schema.componentProps[v];
-              props.schema.componentProps[v] = value.bind(proxy);
-            },
-          );
-        });
+        //   bindFunc();
+        // watchKey.forEach((v) => {
+        //   watch(
+        //     () => props.schema.componentProps[v],
+        //     () => {
+        //       let value = props.schema.componentProps[v];
+        //       props.schema.componentProps[v] = value.bind(proxy);
+        //     },
+        //   );
+        // });
       });
       // const handleLoaded = () => {
       //   bindFunc();

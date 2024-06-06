@@ -40,6 +40,7 @@
     ref,
     unref,
     reactive,
+    defineExpose,
   } from 'vue';
   //import FormRender from './components/FormRender.vue';
   import { IFormConfig, AForm } from '../../typings/v-form-component';
@@ -92,6 +93,9 @@
         return eFormModel.value;
       });
       const getFormItem = (field) => formItemRefList[field];
+      const getItemRef = (field) => {
+        return formItemRefList[field].formItemRef;
+      };
       const noHiddenList = computed(() => {
         return (
           props.formConfig.schemas &&
@@ -171,11 +175,7 @@
       });
       onMounted(() => {
         initDefault();
-
-        // debugger;
-        // emit('update:formModel', formModelNew.value);
       });
-      // 把祖先组件的方法项注入到子组件中，子组件可通过inject获取
       return {
         eFormModel,
         submit,
@@ -192,7 +192,11 @@
         wrapperComp,
         noHiddenList,
         getFormItem,
+        getItemRef,
         context,
+        formItemRefList,
+        getFormData: () => unref(formModelNew),
+        getFormModel: () => unref(formModelNew),
       };
     },
   });
