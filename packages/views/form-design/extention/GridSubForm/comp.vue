@@ -84,7 +84,13 @@
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { cloneDeep, set, uniqueId, unset } from 'lodash-es';
   import draggable from 'vuedraggable';
-  import { getInitValue, formModelToData, formItemsForEach } from '../../utils';
+  import {
+    getInitValue,
+    formModelToData,
+    formItemsForEach,
+    getChildFieldList,
+    getChildItemList,
+  } from '../../utils';
   //import { item } from '../loader';
 
   const props = defineProps({
@@ -143,22 +149,33 @@
   const hideFormItem = (idx) => {
     return unref(props.schema.children).filter((i) => !showItemRow[idx].includes(i.field));
   };
+
   const removeItem = (idx, field) => {
     let targetIdx = showItemRow[idx].indexOf(field);
     if (targetIdx > -1) {
       showItemRow[idx].splice(targetIdx, 1);
-      delete stateModel.value[idx][field];
+      const fieldList = getChildFieldList(props.schema.children, field);
+      fieldList.forEach((field) => {
+        delete stateModel.value[idx][field];
+      });
     }
   };
   const addShowItem = (idx) => {
-    props.schema.children.forEach((item) => {
-      if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
-        showItemRow[idx].push(item.field);
-        if (['container', 'showItem'].includes(item.type)) return;
+    selectShowItem.value.forEach((field) => {
+      const itemList = getChildItemList(props.schema.children, field);
+      itemList.forEach((item) => {
         stateModel.value[idx][item.field] =
           item.defaultValue || item.componentProps.defaultValue || '';
-      }
+      });
     });
+    // props.schema.children.forEach((item) => {
+    //   if (selectShowItem.value.includes(item.field) && showItemRow[idx].indexOf(item.field) == -1) {
+    //     showItemRow[idx].push(item.field);
+    //     if (['container', 'showItem'].includes(item.type)) return;
+    //     stateModel.value[idx][item.field] =
+    //       item.defaultValue || item.componentProps.defaultValue || '';
+    //   }
+    // });
     selectShowItem.value = [];
   };
   const selectShowItem = ref([]);

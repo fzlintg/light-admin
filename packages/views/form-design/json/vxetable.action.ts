@@ -14,8 +14,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `    let formData=this.getFormData()                                  
-        this.getItemRef("modal").show(formData)                                  `,
+        onClick__func: `       let formData=this.getFormData()                                     
+           this.getItemRef("modal").show(formData)                                     `,
         style: '',
         shape: '',
         color: '',
@@ -36,13 +36,13 @@ export default {
         title: '操作栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `               let formData=this.itemRef().getFormData();                                  
-                                  let props=this.getFormData();                                  
-                                  Object.assign(props,formData);                                 
-                                  return true;                                  `,
-        onCancelButtonClick__func: `                                                                    `,
-        onDialogOpened__func: `                              `,
-        onDialogBeforeClose__func: `                                                                    `,
+        onOkButtonClick__func: `                  let formData=this.itemRef().getFormData();                                     
+                                     let props=this.getFormData();                                     
+                                     Object.assign(props,formData);                                    
+                                     return true;                                     `,
+        onCancelButtonClick__func: `                                                                          `,
+        onDialogOpened__func: `                                    `,
+        onDialogBeforeClose__func: `                                                                          `,
         style: '',
       },
       children: [
@@ -58,10 +58,10 @@ export default {
             onRowAdd__params: ['{idx,data,row}'],
             onRowChange__params: ['data'],
             style: '',
-            onRowDelete__func: `                                                                    `,
-            onRowInsert__func: `                                                                    `,
-            onRowAdd__func: `                                                                    `,
-            onRowChange__func: `                                                                    `,
+            onRowDelete__func: `                                                                          `,
+            onRowInsert__func: `                                                                          `,
+            onRowAdd__func: `                                                                          `,
+            onRowChange__func: `                                                                          `,
             hideSub: true,
           },
           children: [
@@ -237,8 +237,8 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `                              let formData=this.getFormData()                                  
-                                          this.getItemRef("modal_2").show(formData)                              `,
+        onClick__func: `                                 let formData=this.getFormData()                                     
+                                             this.getItemRef("modal_2").show(formData)                                 `,
       },
       width: '200px',
       itemProps: {
@@ -255,13 +255,13 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.itemRef().getFormData();                                  
-let props=this.getFormData();                                  
-Object.assign(props,formData);                                 
-return true;                                  `,
-        onCancelButtonClick__func: `                                                            `,
-        onDialogOpened__func: `                                                            `,
-        onDialogBeforeClose__func: `                                                            `,
+        onOkButtonClick__func: `   let formData=this.itemRef().getFormData();                                     
+   let props=this.getFormData();                                     
+   Object.assign(props,formData);                                    
+   return true;                                     `,
+        onCancelButtonClick__func: `                                                                  `,
+        onDialogOpened__func: `                                                                  `,
+        onDialogBeforeClose__func: `                                                                  `,
       },
       children: [
         {
@@ -427,8 +427,8 @@ return true;                                  `,
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: ` ;let formData=this.getFormData()                                  
-    this.getItemRef("modal_6").show(formData)    `,
+        onClick__func: `    ;let formData=this.getFormData()                                     
+       this.getItemRef("modal_6").show(formData)       `,
         onClick__params: ['e'],
       },
       width: '200px',
@@ -446,15 +446,15 @@ return true;                                  `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.itemRef().getFormData();                                  
-let props=this.getFormData();                                  
-Object.assign(props,formData);                                 
-return true; `,
+        onOkButtonClick__func: `   let formData=this.itemRef().getFormData();                                     
+   let props=this.getFormData();                                     
+   Object.assign(props,formData);                                    
+   return true;    `,
         onOkButtonClick__params: ['{_this,callback}'],
-        onCancelButtonClick__func: `        `,
-        onDialogOpened__func: `        `,
+        onCancelButtonClick__func: `              `,
+        onDialogOpened__func: `              `,
         onDialogOpened__params: ['{fData,eData}'],
-        onDialogBeforeClose__func: `        `,
+        onDialogBeforeClose__func: `              `,
         onDialogBeforeClose__params: ['{callback}'],
         maxLength: 100,
       },
@@ -466,6 +466,7 @@ return true; `,
           colProps: {
             span: 12,
           },
+          buttonStyle: 'solid',
           componentProps: {
             options: [
               {
@@ -494,24 +495,23 @@ return true; `,
           label: '服务',
           field: 'ds.column.service',
           componentProps: {
-            api__func: `   return await axios.get({url:"/api/model/getList/"+params.keyword||'base'});   `,
+            api__func: `      return await axios.get({url:"/api/model/getList/"+params.keyword||'base'});      `,
             api__params: ['params'],
-            onChange__func: `   console.log('ApiSelect====>:', e, v)   `,
+            onChange__func: `      console.log('ApiSelect====>:', e, v)      `,
             onChange__params: ['e', 'v'],
-            defaultContext__var: `   {   
-         apiselect_1: '1',   
-   }   `,
+            defaultContext__var: `      {      
+            apiselect_1: '1',      
+      }      `,
             params__tpl: '{\n      id: ${apiselect_1},\n}',
             resultField: '',
             labelField: '',
             valueField: '',
             immediate: true,
-            _update__func: `   await this.itemRef().run(this.item().formatTpl('params'))   `,
-            onOptionsChange__func: `   console.log('get options', options.length, options);   `,
+            _update__func: `      await this.itemRef().run(this.item().formatTpl('params'))      `,
+            onOptionsChange__func: `      console.log('get options', options.length, options);      `,
             onOptionsChange__params: ['options'],
-            onSearch__func: `await this.itemRef().run({keyword})   `,
+            onSearch__func: `   await this.itemRef().run({keyword})      `,
             onSearch__params: ['keyword'],
-            onSearch: () => {},
             showSearch: true,
             defaultActiveFirstOption: false,
             notFoundContent: '暂无数据',
@@ -554,13 +554,13 @@ return true; `,
             value: 'primary',
             type: 'primary',
             size: 'default',
-            onClick__func: `let sourceType=this.getFormItem("ds.column.sourceType").getValue();
-            let service=this.getFormItem("ds.column.service").getValue();
-            
-            let result=sourceType=='serv'?(await axios.get({url:service})):
-            (await axios.get({url:'/api/'+sourceType+'/tableColumn/'+service}));
-            this.getFormItem("gridOptions.columns").setValue(result);
-            `,
+            onClick__func: `   let sourceType=this.getFormItem("ds.column.sourceType").getValue();   
+               let service=this.getFormItem("ds.column.service").getValue();   
+                  
+               let result=sourceType=='serv'?(await axios.get({url:service})):   
+               (await axios.get({url:'/api/'+sourceType+'/tableColumn/'+service}));   
+               this.getFormItem("gridOptions.columns").setValue(result);   
+                  `,
             onClick__params: ['e'],
           },
           width: '200px',
@@ -593,7 +593,7 @@ return true; `,
               componentProps: {
                 type: 'text',
                 defaultValue: '',
-                onChange__func: `      `,
+                onChange__func: `            `,
               },
               _type: 'custom',
               width: '200px',
@@ -612,7 +612,7 @@ return true; `,
               componentProps: {
                 type: 'text',
                 defaultValue: '',
-                onChange__func: `      `,
+                onChange__func: `            `,
               },
               _type: 'custom',
               width: '200px',
@@ -661,8 +661,8 @@ return true; `,
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `let formData=this.getFormData()                                  
-this.getItemRef("modal_3").show(formData)                        `,
+        onClick__func: `   let formData=this.getFormData()                                     
+   this.getItemRef("modal_3").show(formData)                           `,
       },
       width: '200px',
       itemProps: {
@@ -679,13 +679,14 @@ this.getItemRef("modal_3").show(formData)                        `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getItemRef('modal_3').getFormData();                                  
-let props=this.getFormData();                                  
-Object.assign(props,formData);                                 
-return true;                        `,
-        onCancelButtonClick__func: `                                                          `,
-        onDialogOpened__func: `                                                          `,
-        onDialogBeforeClose__func: `                                                          `,
+        onOkButtonClick__func: `   let formData=this.getItemRef('modal_3').getFormData();                                     
+   let props=this.getFormData();                                     
+   Object.assign(props,formData);                                    
+  
+   return true;                           `,
+        onCancelButtonClick__func: `                                                                `,
+        onDialogOpened__func: `                                                                `,
+        onDialogBeforeClose__func: `                                                                `,
       },
       children: [
         {
@@ -815,8 +816,8 @@ return true;                        `,
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `let formData=this.getFormData()                                  
-this.getItemRef("modal_5").show(formData)                    `,
+        onClick__func: `   let formData=this.getFormData()                                     
+   this.getItemRef("modal_5").show(formData)                       `,
       },
       width: '200px',
       itemProps: {
@@ -833,13 +834,13 @@ this.getItemRef("modal_5").show(formData)                    `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getItemRef('modal_5').getFormData();                                  
-let props=this.getFormData();                                  
-Object.assign(props,formData);                                 
-return true;                   `,
-        onCancelButtonClick__func: `                                        `,
-        onDialogOpened__func: `                                        `,
-        onDialogBeforeClose__func: `                                        `,
+        onOkButtonClick__func: `let formData=this.getItemRef('modal_5').getFormData();                                     
+   let props=this.getFormData();                                    
+   Object.assign(props,formData);                                    
+   return true; `,
+        onCancelButtonClick__func: `                                              `,
+        onDialogOpened__func: `                                              `,
+        onDialogBeforeClose__func: `                                              `,
       },
       children: [
         {
@@ -966,6 +967,57 @@ return true;                   `,
               },
             },
             {
+              component: 'Input',
+              label: '展示类',
+              field: 'className',
+              colProps: {
+                span: 12,
+              },
+              componentProps: {
+                type: 'text',
+                defaultValue: '',
+                onChange__func: `  `,
+                hideSub: true,
+              },
+              _type: 'custom',
+              width: '200px',
+              itemProps: {
+                labelCol: {},
+                wrapperCol: {},
+              },
+            },
+            {
+              component: 'RadioGroup',
+              label: '位置',
+              field: 'align',
+              colProps: {
+                span: 24,
+              },
+              componentProps: {
+                options: [
+                  {
+                    label: '右',
+                    value: 'right',
+                  },
+                  {
+                    label: '左',
+                    value: 'left',
+                  },
+                  {
+                    label: '中',
+                    value: 'center',
+                  },
+                ],
+                optionType: 'button',
+                buttonStyle: 'solid',
+              },
+              width: '200px',
+              itemProps: {
+                labelCol: {},
+                wrapperCol: {},
+              },
+            },
+            {
               component: 'CollapseContainer',
               label: '下拉数据源',
               formItem: false,
@@ -973,6 +1025,7 @@ return true;                   `,
               componentProps: {
                 title: '数据源',
                 hideSub: true,
+                maxLength: 100,
               },
               children: [
                 {
@@ -1112,6 +1165,7 @@ return true;                   `,
                   colProps: {
                     span: 12,
                   },
+                  buttonStyle: 'solid',
                   componentProps: {
                     options: [
                       {
@@ -1205,8 +1259,8 @@ return true;                   `,
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `let formData=this.getFormData()                                  
-this.getItemRef("modal_4").show(formData)                        `,
+        onClick__func: `   let formData=this.getFormData()                                     
+   this.getItemRef("modal_4").show(formData)                           `,
       },
       width: '200px',
       itemProps: {
@@ -1223,13 +1277,13 @@ this.getItemRef("modal_4").show(formData)                        `,
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getItemRef('modal_4').getFormData();                                  
-let props=this.getFormData();                                  
-Object.assign(props,formData);                                 
-return true;                   `,
-        onCancelButtonClick__func: `                                                  `,
-        onDialogOpened__func: `                                                  `,
-        onDialogBeforeClose__func: `                                                  `,
+        onOkButtonClick__func: `   let formData=this.getItemRef('modal_4').getFormData();                                     
+   let props=this.getFormData();                                     
+   Object.assign(props,formData);                                    
+   return true;                      `,
+        onCancelButtonClick__func: `                                                        `,
+        onDialogOpened__func: `                                                        `,
+        onDialogBeforeClose__func: `                                                        `,
       },
       children: [
         {
@@ -1323,6 +1377,23 @@ return true;                   `,
             wrapperCol: {},
           },
         },
+        {
+          component: 'InputNumber',
+          label: '表格高度',
+          field: 'gridOptions.height',
+          colProps: {
+            span: 8,
+          },
+          componentProps: {
+            style: 'width:200px',
+            defaultValue: 600,
+          },
+          width: '200px',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
       ],
       _type: 'custom',
       width: '200px',
@@ -1330,23 +1401,6 @@ return true;                   `,
         span: 24,
       },
       field: 'modal_4',
-      itemProps: {
-        labelCol: {},
-        wrapperCol: {},
-      },
-    },
-    {
-      component: 'Input',
-      label: '输入框',
-      field: 'input_1',
-      colProps: {
-        span: 24,
-      },
-      componentProps: {
-        type: 'text',
-        defaultValue: '',
-      },
-      width: '200px',
       itemProps: {
         labelCol: {},
         wrapperCol: {},

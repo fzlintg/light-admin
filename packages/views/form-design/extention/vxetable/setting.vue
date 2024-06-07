@@ -25,7 +25,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { tplOptions, optionsMap, schemaMap } from './loader';
   import { cloneDeep, merge, isEmpty } from 'lodash-es';
-  import { mergeSchema } from './schema.ts';
+  //import { mergeSchema } from './schema.ts';
 
   const props = defineProps({
     schema: {

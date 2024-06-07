@@ -18,6 +18,7 @@ import {
   isString,
   template,
 } from 'lodash-es';
+import * as _ from 'lodash-es';
 import { uniqueId, setUniqueId } from './uniqueId';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
@@ -152,18 +153,35 @@ export const findFormItem: (
   const traverse = (schemas: IVFormComponent[]): boolean => {
     return schemas.some((formItem: IVFormComponent) => {
       const { component: type } = formItem;
+      if (cb(formItem)) {
+        res = formItem;
+        return true;
+      }
       // 处理栅格
       if (type == 'gridContainer') {
         return formItem.columns?.some((item) => traverse(item.children));
       } else if (['container', 'containerItem'].includes(type)) {
         return traverse(formItem.children);
       }
-      if (cb(formItem)) res = formItem;
-      return cb(formItem);
+      return false;
     });
   };
   traverse(schemas);
   return res;
+};
+export const getChildFieldList = (schemas, field) => {
+  const itemList = getChildItemList(schemas, field);
+  return itemList.map((item) => item.field);
+};
+export const getChildItemList = (schemas, field) => {
+  const formItem = findFormItem(schemas, (item) => item.field === field);
+  const itemList: any[] = [];
+  if (['containerItem', 'gridContainer', 'container'].includes(formItem.type)) {
+    formItemsForEach([formItem], (item) => {
+      itemList.push(item);
+    });
+  } else itemList.push(formItem);
+  return itemList;
 };
 
 //基于schema返回组件对象初始值
@@ -354,15 +372,15 @@ export function formatFunc(item, flag = false) {
       const func =
         item[name]?.trim()?.length > 0
           ? funcAsync
-            ? new AsyncFunction('{axios,nextTick}', ...params, item[name])
-            : new Function(...params, item[name])
+            ? new AsyncFunction('{axios,nextTick,_}', ...params, item[name])
+            : new Function('{_}', ...params, item[name])
           : () => true; //默认true
 
       if (funcAsync) {
         item[originName] = async function (...args) {
           // console.log('exec', this);
           // const argsCall = args.length == 0 ? [{}] : args;
-          let result = await func.call(this, { axios: defHttp, nextTick }, ...args);
+          let result = await func.call(this, { axios: defHttp, nextTick, _ }, ...args);
           if (args?.[0]?.callback) {
             //回调模式
             if (isNull(result)) result = true;
@@ -374,7 +392,7 @@ export function formatFunc(item, flag = false) {
         };
       } else {
         item[originName] = function (...args) {
-          let result = func.call(this, ...args);
+          let result = func.call(this, { _ }, ...args);
           if (args?.[0]?.callback) {
             //回调模式
             if (isNull(result)) result = true;
@@ -405,12 +423,12 @@ export function formatFunc(item, flag = false) {
     }
   }
 }
-export const formatObject = (obj, flag = false) => {
-  if (isObject(obj)) {
-    for (const item in obj) {
-    }
-  }
-};
+// export const formatObject = (obj, flag = false) => {
+//   if (isObject(obj)) {
+//     for (const item in obj) {
+//     }
+//   }
+// };
 export const formatRules = (schemas: IVFormComponent[], flag = false) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成
@@ -429,7 +447,14 @@ export const formatRules = (schemas: IVFormComponent[], flag = false) => {
     }
   });
 };
-
+export const getFieldList = (schemas, field) => {
+  const result = [];
+  formItemsForEach(schemas, (item) => {
+    if (item.field == field) {
+      result.push(item);
+    }
+  });
+};
 /**
  * 将校验规则中的正则字符串转换为正则对象
  * @param {IValidationRule[]} rules
