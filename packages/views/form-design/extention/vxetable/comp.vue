@@ -15,6 +15,7 @@
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { TransObjectToCode, formatFunc } from '../../utils/index';
   import { cloneDeep, isNil } from 'lodash-es';
+  import { Fn } from '@vueuse/core';
 
   const props = defineProps({
     height: {
@@ -26,7 +27,7 @@
       default: () => {},
     },
     gridVar: {
-      type: Object as PropType<Object>,
+      type: Function as PropType<Fn>,
       default: () => {},
     },
     gridOptions: {
@@ -41,8 +42,8 @@
   //const attrs = useAttrs();
   const { createMessage } = useMessage();
   const tableRef = ref<VxeGridInstance>(),
-    gridProps = ref({}),
-    createActions = ref((row) => {}),
+    // gridProps = ref({}),
+    createActions = ref(() => {}),
     gOptions = ref({}),
     ifshow = ref(false);
 
@@ -79,37 +80,46 @@
     };
   });
 
-  watchEffect(async () => {
-    ifshow.value = false;
-    const data = props.gridVar ? await props.gridVar() : {};
-    const gridTpl = TransObjectToCode(cloneDeep(toRaw(props.gridOptions)));
-    const gridData = new Function(
-      '{tableRef,createMessage,axios,' + Object.keys(data || {}).join(',') + '}',
-      `return ${gridTpl}`,
-    )({
-      tableRef,
-      createMessage,
-      axios,
-      ...data,
-    });
-    if (
-      (!gridData.columns || gridData.columns?.length == 0) &&
-      props.ds?.column?.sourceType == 'serv'
-    ) {
-      gridData.columns = await axios.get({ url: props.ds.column.service });
-    }
-    gOptions.value = {
-      id: 'VxeTable',
-      keepSource: true,
-      toolbarConfig: {},
-      height: 'auto',
-      //columns,
-      ...gridData,
-    };
-    nextTick(() => {
-      ifshow.value = true;
-    });
-  });
+  watch(
+    [() => props.gridOptions, () => props.gridVar],
+    async () => {
+      ifshow.value = false;
+      const data = props.gridVar ? await props.gridVar() : {};
+      const gridTpl = TransObjectToCode(cloneDeep(toRaw(props.gridOptions)));
+      const gridData = new Function(
+        '{tableRef,createMessage,axios,' + Object.keys(data || {}).join(',') + '}',
+        `return ${gridTpl}`,
+      )({
+        tableRef,
+        createMessage,
+        axios,
+        ...data,
+      });
+      if (
+        (!props.gridOptions.columns || props.gridOptions.columns.length == 0) &&
+        props.ds?.column?.sourceType == 'serv' &&
+        !!props.ds?.column?.service
+      ) {
+        gridData.columns = await axios.get({ url: props.ds.column.service });
+        //   props.gridOptions.columns = gridData.columns;
+      }
+      gOptions.value = {
+        id: 'VxeTable',
+        keepSource: true,
+        toolbarConfig: {},
+        height: 'auto',
+        //columns,
+        ...gridData,
+      };
+      nextTick(() => {
+        ifshow.value = true;
+      });
+    },
+    {
+      deep: true,
+      immediate: true,
+    },
+  );
   // watchEffect(async () => {
   //   gridOptions.value.columns = await axios.get({ url: attrs.api.columns });
   //   ifshow.value = true;

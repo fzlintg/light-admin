@@ -2,21 +2,15 @@ export const name = '简单表格';
 export const schema = {
   componentProps: {
     custom: {
-      api: {
-        columns: '',
-      },
       actions: [],
     },
-    gridVar__func: `const columns=[
-      { type: 'seq', width: 50 },
-      { field: 'name', title: 'name' },
-      { field: 'sex', title: 'sex' },
-      { field: 'address', title: 'Address' },
-    ]
-  
-    return {
-      columns
-    }`,
+    gridVar__func: ``,
+    ds: {
+      column: {
+        sourceType: 'serv',
+        service: '/vxe/simpleColumns',
+      },
+    },
   },
 };
 export default {
@@ -26,7 +20,7 @@ export default {
   columnConfig: {
     resizable: true,
   },
-  columns__var: `columns`,
+  columns: [],
   toolbarConfig: {
     slots: {
       buttons: 'toolbar_buttons',

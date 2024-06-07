@@ -555,8 +555,9 @@ return true; `,
             size: 'default',
             onClick__func: `let sourceType=this.getFormItem("ds.column.sourceType").getValue();
             let service=this.getFormItem("ds.column.service").getValue();
-       
-            let result=await axios.get({url:'/api/'+sourceType+'/tableColumn/'+service});
+            
+            let result=sourceType=='serv'?(await axios.get({url:service})):
+            (await axios.get({url:'/api/'+sourceType+'/tableColumn/'+service}));
             this.getFormItem("gridOptions.columns").setValue(result);
             `,
             onClick__params: ['e'],
@@ -686,41 +687,6 @@ return true;                        `,
         onDialogBeforeClose__func: `                                                          `,
       },
       children: [
-        {
-          component: 'Input',
-          label: '获取列API',
-          field: 'custom.api.columns',
-          colProps: {
-            span: 12,
-          },
-          componentProps: {
-            type: 'text',
-            defaultValue: '',
-          },
-          width: '200px',
-          itemProps: {
-            labelCol: {},
-            wrapperCol: {},
-          },
-        },
-        {
-          component: 'Input',
-          label: '列模版变量',
-          field: 'gridOptions.columns__var',
-          colProps: {
-            span: 12,
-          },
-          componentProps: {
-            type: 'text',
-            defaultValue: '',
-          },
-          width: '200px',
-          itemProps: {
-            labelCol: {},
-            wrapperCol: {},
-          },
-          helpMessage: '设置模版，通过表格初始变量赋值',
-        },
         {
           component: 'CodeInput',
           label: '查询全部',

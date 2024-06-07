@@ -13,7 +13,6 @@
           :formConfig="formConfig"
           :schema="schema"
           :parentComp="parentComp"
-          :parent="parent"
           :current-item="formConfig.currentItem"
         />
       </div>

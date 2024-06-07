@@ -681,6 +681,13 @@ const fullColumn = [
     sortable: true,
   },
 ];
+const simpleColumns = [
+  { type: 'seq', width: 50 },
+  { field: 'name', title: 'name' },
+  { field: 'sex', title: 'sex' },
+  { field: 'address', title: 'Address' },
+];
+
 export default [
   {
     url: '/basic-api/vxe/getGridVar',
@@ -698,7 +705,14 @@ export default [
       return resultSuccess(fullColumn);
     },
   },
-
+  {
+    url: '/basic-api/vxe/simpleColumns',
+    timeout: 1000,
+    method: 'get',
+    response: ({ query }) => {
+      return resultSuccess(simpleColumns);
+    },
+  },
   {
     url: '/basic-api/vxe/getTableData',
     timeout: 1000,
