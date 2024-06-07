@@ -8,7 +8,7 @@ export default {
     bordered: true,
     autoFormat: true,
     readonly: false,
-    height: 10,
+    height: '10em',
     prefix: 'function(){',
     suffix: '}',
     defaultValue: '',

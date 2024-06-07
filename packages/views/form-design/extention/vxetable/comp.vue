@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ width: '100%', height: props.height + 'px' }">
+  <div :style="{ width: '100%', height: gOptions.height + 'px' }">
     <VxeBasicTable ref="tableRef" v-bind="gOptions" v-if="ifshow">
       <template #action="{ row }">
         <TableAction outside :actions="createActions(row)" />

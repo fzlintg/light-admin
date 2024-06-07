@@ -9,7 +9,7 @@ export const mergeSchema = (gridOptions, schema, tpl) => {
     formItem: false,
     icon: 'ant-design:border-bottom-outlined',
     componentProps: {
-      height: 600,
+      // height: '600px',
       gridVar: () => {},
       gridVar__func: '',
       tpl,

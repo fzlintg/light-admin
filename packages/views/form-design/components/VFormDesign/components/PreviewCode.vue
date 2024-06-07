@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="v-json-box">
-      <CodeEditor :value="editorJson" ref="myEditor" :mode="MODE.JAVACRIPT" />
-    </div>
     <div class="copy-btn-box">
       <a-button
         @click="handleCopyJson"
@@ -15,6 +12,9 @@
       </a-button>
       <a-button @click="handleExportJson" class="copy-btn" type="primary">导出代码</a-button>
       <a-button @click="handleClose" type="primary">关闭</a-button>
+    </div>
+    <div class="v-json-box">
+      <CodeEditor :value="editorJson" ref="myEditor" :mode="MODE.JAVACRIPT" />
     </div>
   </div>
 </template>

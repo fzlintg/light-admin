@@ -63,7 +63,7 @@
     //  formShow.value = false;
     const gridOptions = cloneDeep(optionsMap[formType.value]);
     formState.value.componentProps = {
-      height: 600,
+      height: '600px',
       gridVar__func: '',
       tpl: formType.value,
       gridOptions,

@@ -5,7 +5,7 @@
     type="info"
     class="code-prefix"
   />
-  <div :style="{ height: props.height + 'em' }">
+  <div :style="{ height: props.height }">
     <CodeEditor v-bind="attrs" v-model:value="state" />
   </div>
   <a-alert
@@ -22,7 +22,7 @@
   import { Alert as AAlert } from 'ant-design-vue';
 
   const props = defineProps({
-    height: propTypes.number,
+    height: propTypes.string,
     prefix: propTypes.string,
     suffix: propTypes.string,
     value: propTypes.string,
