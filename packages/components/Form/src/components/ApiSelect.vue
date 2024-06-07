@@ -5,6 +5,7 @@
     @change="handleChange"
     :options="getOptions"
     v-model:value="state"
+    :mode="allowInput ? 'SECRET_COMBOBOX_MODE_DO_NOT_USE' : ''"
     @search="search"
   >
     <template #[item]="data" v-for="item in Object.keys($slots)">
@@ -23,7 +24,7 @@
 </template>
 <script lang="ts" setup>
   import { PropType, ref, computed, unref, watch, onMounted, getCurrentInstance } from 'vue';
-  import { Select } from 'ant-design-vue';
+  import { Select, Input } from 'ant-design-vue';
   import type { SelectValue } from 'ant-design-vue/es/select';
   import { isFunction } from '@utils/is';
   import { useRuleFormItem } from '@h/component/useFormItem';
@@ -72,6 +73,10 @@
     getParent: {
       type: Function as PropType<Fn>,
       default: null,
+    },
+    allowInput: {
+      type: Boolean,
+      default: false,
     },
   });
 

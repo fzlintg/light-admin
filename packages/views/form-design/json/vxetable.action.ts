@@ -14,7 +14,7 @@ export default {
         value: 'primary',
         type: 'primary',
         size: 'default',
-        onClick__func: `       let formData=this.getFormData()                                     
+        onClick__func: `      let formData=this.getFormData()                                     
            this.getItemRef("modal").show(formData)                                     `,
         style: '',
         shape: '',
@@ -466,8 +466,9 @@ export default {
           colProps: {
             span: 12,
           },
-          buttonStyle: 'solid',
+
           componentProps: {
+            buttonStyle: 'solid',
             options: [
               {
                 label: '模型',
@@ -517,6 +518,7 @@ export default {
             notFoundContent: '暂无数据',
             showArrow: true,
             filterOption: false,
+            allowInput: true,
             defaultContext: {
               apiselect_1: '1',
             },
@@ -1165,8 +1167,8 @@ export default {
                   colProps: {
                     span: 12,
                   },
-                  buttonStyle: 'solid',
                   componentProps: {
+                    buttonStyle: 'solid',
                     options: [
                       {
                         label: 'primary',

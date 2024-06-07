@@ -31,6 +31,7 @@ export default {
     notFoundContent: '暂无数据',
     showArrow: true,
     filterOption: false,
+    allowInput: false,
   },
   colProps: {
     span: 8,

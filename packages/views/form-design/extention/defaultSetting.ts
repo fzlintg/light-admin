@@ -34,6 +34,7 @@ const t = {
   onOptionsChange: '选项改变事件',
   filterOption: '',
   defaultValue: '默认值',
+  allowInput: '允许输入',
 };
 const setting = {};
 
