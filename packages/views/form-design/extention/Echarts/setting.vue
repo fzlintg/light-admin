@@ -106,10 +106,10 @@
     // chartState.value.componentProps.chartTpl = chartConfig.value;
   };
   const openEdit = () => {
-    vform.value!.getItemRef('modal').show(formModel.value);
+    vform.value?.getItemRef('modal').show(formModel.value);
   };
   const openShow = () => {
-    vform.value!.getItemRef('modal_1').show({ formData: chartConfig.value }, null, true);
+    vform.value?.getItemRef('modal_1').show({ formData: chartConfig.value }, null, true);
   };
   // formatRules(formConfig.value.schemas, {}, true);
   const loadTpl = () => {

@@ -14,7 +14,7 @@
             v-model:props="formConfig.currentItem.componentProps"
           />
           <component
-            v-if="settingComp[formConfig.currentItem.component]"
+            v-if="ifCustSetting"
             :is="settingComp[formConfig.currentItem.component]"
             v-model:props="formConfig.currentItem"
           />
@@ -115,6 +115,7 @@
   import ItemOptions from './ItemOptions.vue';
   //import { get, set } from 'lodash-es';
   import LightProps from './LighProps.vue';
+
   // import ds from '../../../api/index';
   //console.log(...componentMap);
   export default defineComponent({
@@ -146,6 +147,8 @@
       //     value: item.field,
       //   };
       // });
+      const ifCustSetting = ref(false);
+
       const allOptions = ref([] as Omit<IBaseFormAttrs, 'tag'>[]);
       const showControlAttrs = (includes: string[] | undefined) => {
         if (!includes) return true;
@@ -226,6 +229,8 @@
       watch(
         () => formConfig.value.currentItem && formConfig.value.currentItem.component,
         () => {
+          ifCustSetting.value = false;
+
           allOptions.value = [];
           baseComponentControlAttrs.forEach((item) => {
             item.category = 'control';
@@ -282,6 +287,9 @@
               })),
             );
           }
+          nextTick(() => {
+            ifCustSetting.value = !!settingComp[formConfig.value.currentItem.component];
+          });
         },
         {
           immediate: true,
@@ -349,6 +357,7 @@
         getComponent,
         //   dsOptions,
         settingComp,
+        ifCustSetting,
         //   getItemProps
       };
     },

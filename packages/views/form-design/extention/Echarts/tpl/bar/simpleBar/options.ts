@@ -30,6 +30,9 @@ export default {
       data__var: `data`,
       type: 'bar',
       barMaxWidth: 80,
+      itemStyle: {
+        color: '',
+      },
     },
   ],
 };
