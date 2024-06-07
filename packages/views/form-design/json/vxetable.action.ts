@@ -36,7 +36,7 @@ export default {
         title: '操作栏编辑',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `                  let formData=this.itemRef().getFormData();                                     
+        onOkButtonClick__func: `let formData=this.itemRef().getFormData();                                     
                                      let props=this.getFormData();                                     
                                      Object.assign(props,formData);                                    
                                      return true;                                     `,

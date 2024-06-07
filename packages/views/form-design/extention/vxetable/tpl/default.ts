@@ -34,6 +34,7 @@ export const schema = {
 
 export default {
   height: 600,
+  columns: [],
   editConfig: { trigger: 'click', mode: 'cell', showStatus: true },
   formConfig: {
     items: [
