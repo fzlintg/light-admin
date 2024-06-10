@@ -24,7 +24,7 @@
         @change="handleChange"
         @click="handleClick(schema)"
         :getParent="() => proxy"
-        ref="formItemRef"
+        @init="setItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}</component
       >
       <span class="item-icon">
@@ -81,7 +81,6 @@
             @change="handleChange"
             @click="handleClick(schema)"
             :getParent="() => proxy"
-            ref="formItemRef"
         /></div>
       </FormItem>
       <span class="item-icon">
@@ -174,8 +173,8 @@
         // formItemRef: null,
         // formItemRef2: null,
       });
-      const formItemRef = ref(null);
-      // const formItemRef2 = ref(null);
+      let formItemRef;
+      //     const formItemRef2 = ref(null);
       const { formModel, setFormModel } = useFormModelState();
       // const formData1 = computed(() => {
       //   return formModelToData(formModel.value);
@@ -204,9 +203,13 @@
       };
 
       const getModal = (name) => {
+        //   const formItem = getFormItem(name);
+        //   return formItem.formItemRef || formItem.formItemRef2;
         return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getItemRef = (name) => {
+        //const formItem = getFormItem(name);
+        // return formItem.formItemRef || formItem.formItemRef2;
         return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
@@ -383,10 +386,14 @@
       // const handleLoaded = () => {
       //   bindFunc();
       // };
+      const setItemRef = (ref) => {
+        formItemRef = ref;
+      };
       return {
         //     handleLoaded,
         ...toRefs(state),
         formItemRef,
+        setItemRef,
         formItemRefList,
         componentItem,
         formItemProps,

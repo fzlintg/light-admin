@@ -44,6 +44,7 @@
     'okButtonClick',
     'cancelButtonClick',
     'dialogBeforeClose',
+    'init',
   ]);
   //schema.value.children = flattenArray(schema.value.children);
   // formConfig.value.children = schema.value.children;
@@ -75,14 +76,17 @@
     emit('cancelButtonClick');
     close();
   };
-
-  defineExpose({
-    show,
-    close,
-    getFormModel: () => formModelNew.value,
-    setFormModel,
-    getExtraData: () => extraData.value,
-    getFormData: () => formModelToData(formModelNew.value),
-    getForm: () => formRef.value,
-  });
+  onMounted(() => {
+    const { proxy } = getCurrentInstance();
+    emit('init', proxy);
+  }),
+    defineExpose({
+      show,
+      close,
+      getFormModel: () => formModelNew.value,
+      setFormModel,
+      getExtraData: () => extraData.value,
+      getFormData: () => formModelToData(formModelNew.value),
+      getForm: () => formRef.value,
+    });
 </script>
