@@ -1279,7 +1279,7 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `   let formData=this.getItemRef('modal_4').getFormData();                                     
+        onOkButtonClick__func: `let formData=this.getItemRef('modal_4').getFormData();                                     
    let props=this.getFormData();                                     
    Object.assign(props,formData);                                    
    return true;                      `,

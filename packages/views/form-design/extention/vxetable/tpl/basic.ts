@@ -25,6 +25,7 @@ export default {
     slots: {
       buttons: 'toolbar_buttons',
     },
+    buttons: [],
   },
   proxyConfig: {
     ajax: {
