@@ -25,6 +25,7 @@
         @click="handleClick(schema)"
         :getParent="() => proxy"
         @init="setItemRef"
+        ref="formItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}</component
       >
       <span class="item-icon">
@@ -80,6 +81,8 @@
             :getFormItem="getFormItem"
             @change="handleChange"
             @click="handleClick(schema)"
+            @init="setItemRef"
+            ref="formItemRef"
             :getParent="() => proxy"
         /></div>
       </FormItem>
@@ -170,10 +173,12 @@
     setup(props, { emit }) {
       const state = reactive({
         componentMap,
-        // formItemRef: null,
+        formItemRef: null,
         // formItemRef2: null,
       });
-      let formItemRef;
+      //const myState = reactive({ formItemRef: null });
+
+      // let formItemRef;
       //     const formItemRef2 = ref(null);
       const { formModel, setFormModel } = useFormModelState();
       // const formData1 = computed(() => {
@@ -203,14 +208,17 @@
       };
 
       const getModal = (name) => {
+        return getFormItem(name).formItemRef;
         //   const formItem = getFormItem(name);
         //   return formItem.formItemRef || formItem.formItemRef2;
-        return formItemRefList[name || props.schema.field!].formItemRef;
+        //   return myState.formItemRef.$.exposed;
+        //  return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getItemRef = (name) => {
+        return getFormItem(name).formItemRef;
         //const formItem = getFormItem(name);
         // return formItem.formItemRef || formItem.formItemRef2;
-        return formItemRefList[name || props.schema.field!].formItemRef;
+        //  return formItemRefList[name || props.schema.field!].formItemRef;
       };
       const getFormRef = inject('getFormRef', () => {});
       const watchKey = new Set();
@@ -371,29 +379,9 @@
         cur_setFormModel(props.schema.field!, value, e);
         if (!props.inSubForm) emit('change', value);
       };
-      onMounted(() => {
-        //   bindFunc();
-        // watchKey.forEach((v) => {
-        //   watch(
-        //     () => props.schema.componentProps[v],
-        //     () => {
-        //       let value = props.schema.componentProps[v];
-        //       props.schema.componentProps[v] = value.bind(proxy);
-        //     },
-        //   );
-        // });
-      });
-      // const handleLoaded = () => {
-      //   bindFunc();
-      // };
-      const setItemRef = (ref) => {
-        formItemRef = ref;
-      };
+
       return {
-        //     handleLoaded,
         ...toRefs(state),
-        formItemRef,
-        setItemRef,
         formItemRefList,
         componentItem,
         formItemProps,

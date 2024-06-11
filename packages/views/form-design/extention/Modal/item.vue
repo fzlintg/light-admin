@@ -17,10 +17,9 @@
 </template>
 <script setup lang="ts">
   import VFormCreate from '../../components/VFormCreate/index.vue';
-  import VFormItem from '../../components/VFormItem/index.vue';
-  import { Button as AButton, Form } from 'ant-design-vue';
+
   import Modal from '@c/Modal/src/BasicModal.vue';
-  import { flattenArray, flattenObject, formModelToData } from '../../utils';
+  import { flattenObject, formModelToData } from '../../utils';
   import { computed, getCurrentInstance } from 'vue';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   // import { formatRules } from '../../utils/index';
@@ -44,7 +43,6 @@
     'okButtonClick',
     'cancelButtonClick',
     'dialogBeforeClose',
-    'init',
   ]);
   //schema.value.children = flattenArray(schema.value.children);
   // formConfig.value.children = schema.value.children;
@@ -76,17 +74,14 @@
     emit('cancelButtonClick');
     close();
   };
-  onMounted(() => {
-    const { proxy } = getCurrentInstance();
-    emit('init', proxy);
-  }),
-    defineExpose({
-      show,
-      close,
-      getFormModel: () => formModelNew.value,
-      setFormModel,
-      getExtraData: () => extraData.value,
-      getFormData: () => formModelToData(formModelNew.value),
-      getForm: () => formRef.value,
-    });
+  defineExpose({
+    show,
+    close,
+    getFormModel: () => formModelNew.value,
+    setFormModel,
+    getExtraData: () => extraData.value,
+    getFormData: () => formModelToData(formModelNew.value),
+    getForm: () => formRef.value,
+  });
+  const { proxy } = getCurrentInstance();
 </script>

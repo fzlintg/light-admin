@@ -94,7 +94,8 @@
       });
       const getFormItem = (field) => formItemRefList[field];
       const getItemRef = (field) => {
-        return formItemRefList[field].formItemRef;
+        return formItemRefList[field].getItemRef();
+        //return formItemRefList[field].formItemRef;
       };
       const noHiddenList = computed(() => {
         return (

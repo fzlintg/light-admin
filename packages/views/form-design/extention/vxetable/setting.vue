@@ -14,13 +14,14 @@
     v-model:fApi="fApi"
     v-model:formModel="formState.componentProps"
     v-if="formShow"
+    ref="vform"
   />
 </template>
 <script lang="ts" setup>
   import { Button, Select, FormItem as AFormItem } from 'ant-design-vue';
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import { formatFunc, formatRules } from '../../utils/index';
-  import { computed, ref, unref, watch, nextTick } from 'vue';
+  import { computed, ref, unref, watch, nextTick, onMounted } from 'vue';
   import action from '../../json/vxetable.action.ts';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { tplOptions, optionsMap, schemaMap } from './loader';
@@ -41,26 +42,22 @@
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
   const formType = computed(() => formState.value.componentProps.tpl);
   const formShow = ref(false);
+  const vform = ref(null);
   const fApi = ref();
-  const formConfig = ref(action);
-  onMounted(() => {
+  const formConfig = ref(null);
+
+  const showVform = () => {
+    formConfig.value = cloneDeep(action); //耗费了我几天
     formatRules(formConfig.value.schemas, true);
     formShow.value = true;
-  });
+  };
 
-  // const initState = () => {
-  //   // if (isEmpty(formType.value) && formState.value.componentProps.tpl)
-  //   //   formState.value.componentProps.chartTpl = unref(cloneDeep(optionsMap[formType.value]));
-  //   // initSetting(formType.value);
+  onMounted(() => {
+    showVform();
+  });
 
   // };
   const loadTpl = () => {
-    // formState.value = mergeSchema(
-    //   optionsMap[formType.value],
-    //   schemaMap[formType.value],
-    //   formType.value,
-    // );
-    //  formShow.value = false;
     const gridOptions = cloneDeep(optionsMap[formType.value]);
     formState.value.componentProps = {
       height: '600px',
@@ -71,16 +68,6 @@
     // formState.value.componentProps.gridOptions = cloneDeep(optionsMap[formType.value]);
     merge(formState.value, schemaMap[formType.value]);
     formatFunc(formState.value.componentProps);
-
-    // initState();
-    // if (customMap[formState.value.componentProps.tpl])
-    //   formState.value.componentProps.actions = cloneDeep(
-    //     customMap[formState.value.componentProps.tpl].actions,
-    //   );
-    // nextTick(() => {
-    //   formShow.value = true;
-    // });
-    // emit('update:props', formState.value);
   };
   watch(
     () => formState.value.componentProps.gridVar__func,
