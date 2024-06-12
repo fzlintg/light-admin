@@ -2,8 +2,9 @@
   <div id="myDiagramDiv" ref="diagram" class="flowChart"></div>
 </template>
 <script setup lang="ts">
-  //import go from '@/assets/js/go.js';  
-  import go from 'gojs';
+
+  import  go from '@/assets/js/go.js';  
+  //import go from 'gojs';
   import { defHttp as axios } from '@utils/http/axios';
 
   const diagram = ref(null);
