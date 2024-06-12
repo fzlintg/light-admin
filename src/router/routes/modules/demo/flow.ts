@@ -22,6 +22,14 @@ const charts: AppRouteModule = {
         title: t('routes.demo.flow.flowChart'),
       },
     },
+    {
+      path: 'dbTable',
+      name: 'dbTableDemo',
+      component: () => import('@/views/demo/db/table.vue'),
+      meta: {
+        title: '数据库表',
+      },
+    },
   ],
 };
 
