@@ -15,7 +15,7 @@
     wrap-class-name="full-modal"
   >
     <VFormCreate
-      :form-config="formConfig as any"
+      :form-config="formConfig"
       v-model:fApi="fApi"
       v-model:formModel="formModel"
       @submit="onSubmit"

@@ -2232,7 +2232,8 @@ this.mouseUpTools);this.gb("TextEditing",new Pg,this.mouseUpTools);this.gb("Clic
 var Ju=x.go,Ku={get licenseKey(){return Q.licenseKey},set licenseKey(a){Q.licenseKey=a},get version(){return Q.version},Group:qf,EnumValue:D,List:E,Set:G,Map:pb,Point:I,Size:K,Rect:M,Margin:ic,Spot:N,Geometry:O,PathFigure:Xd,PathSegment:Yd,InputEvent:$d,DiagramEvent:be,ChangedEvent:ce,Model:Z,GraphLinksModel:Ar,TreeModel:Fr,Binding:wi,Transaction:he,UndoManager:ie,CommandHandler:Rk,Tool:ke,DraggingTool:Be,DraggingInfo:Te,DraggingOptions:Ce,LinkingBaseTool:Bf,LinkingTool:Uf,RelinkingTool:Se,LinkReshapingTool:ag,
 ResizingTool:hg,RotatingTool:og,ClickSelectingTool:pg,ActionTool:qg,ClickCreatingTool:rg,HTMLInfo:ze,ContextMenuTool:Eg,DragSelectingTool:Bg,PanningTool:Cg,TextEditingTool:Pg,ToolManager:La,Animation:kh,AnimationManager:gh,AnimationTrigger:Zh,Layer:di,Diagram:Q,Palette:Kk,Overview:Nk,Brush:nl,GraphObject:Y,Panel:W,RowColumnDefinition:Oj,Shape:Cf,TextBlock:Qg,Picture:Wj,Part:U,Adornment:ue,Node:V,Link:T,Placeholder:jg,Layout:qi,LayoutNetwork:eq,LayoutVertex:sq,LayoutEdge:tq,GridLayout:Mk,PanelLayout:Ll,
 CircularLayout:Gr,CircularNetwork:Xr,CircularVertex:ks,CircularEdge:ls,ForceDirectedLayout:ms,ForceDirectedNetwork:ns,ForceDirectedVertex:zs,ForceDirectedEdge:As,LayeredDigraphLayout:Bs,LayeredDigraphNetwork:Gs,LayeredDigraphVertex:wt,LayeredDigraphEdge:xt,TreeLayout:yt,TreeNetwork:Et,TreeVertex:Ft,TreeEdge:Iu};"object"===typeof Ju&&Ju.version&&C("WARNING: a `go` object on the root object is already defined.  "+("Debug"in Ju?"debug ":"")+"version: "+Ju.version+", replaced with version: "+Ku.version);
-Q.prototype.go=Ku;x.go=Ku; 'undefined'!==typeof module&&'object'===typeof module.exports&&(module.exports='undefined'!==typeof global?global.go:self.go); })();
-
-  "function"===typeof define&&define.amd&&define("undefined"!==typeof global?global.go:self.go);
+Q.prototype.go=Ku;x.go=Ku;
+ })();
+ export default 'undefined'!==typeof global?global.go:self.go;
+  //"function"===typeof define&&define.amd&&define("undefined"!==typeof global?global.go:self.go);
   

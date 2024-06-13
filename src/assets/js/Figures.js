@@ -1,0 +1,1 @@
+go.Shape.defineFigureGenerator('Decision', 'Diamond');

@@ -8,7 +8,7 @@ class TableNodeView extends RectNode {
     const { x, y, width, height, radius } = model;
     // 获取XxxNodeModel中定义的样式属性
     const style = model.getNodeStyle();
-
+   
     return h('g', {}, [
       h('rect', {
         ...style,
