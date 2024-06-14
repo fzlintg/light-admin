@@ -1,20 +1,19 @@
-<template><div>
-<div id="myDiagramDiv" ref="diagram" class="dbDiagram"></div>
-<vform
-      logic="dbtable.edit"
-   />
-</div>
+<template>
+  <div>
+    <div id="myDiagramDiv" ref="diagram" class="dbDiagram"></div>
+    <vform logic="dbtable.edit" ref="vformRef" />
+  </div>
 </template>
 <script lang="ts">
   import go from '@/assets/js/go3.js';
   import { defHttp as axios } from '@utils/http/axios';
- import vform from "@c/Vform/index.vue"
- 
+  import vform from '@c/Vform/index.vue';
+
   // import VabJsonViewer from 'vue-json-viewer';
 
   export default defineComponent({
-    name: 'dbDiagram',
-    components: {vform},
+    name: 'DbDiagram',
+    components: { vform },
     setup() {
       let myDiagram: any = {};
       const state = reactive({
@@ -26,7 +25,12 @@
         node: null,
         formEdit: null,
         formData: {},
+        vformRef: null,
       });
+      const openEditForm = (node) => {
+        debugger;
+        state.vformRef.vformRef.getItemRef('modal').show({ fields: [] });
+      };
       go.Shape.defineFigureGenerator('Decision', 'Diamond');
       // const reload = async () => {
       //   const formData = await (state.queryForm as any).getFormData();
@@ -129,6 +133,12 @@
             fromSpot: go.Spot.LeftRightSides,
             toSpot: go.Spot.LeftRightSides,
           },
+          {
+            doubleClick: (e: any, node: any) => {
+              console.log(e, node);
+              openEditForm(node);
+            },
+          },
           new go.Binding('location', 'location').makeTwoWay(),
           // whenever the PanelExpanderButton changes the visible property of the "LIST" panel,
           // clear out any desiredSize set by the ResizingTool.
@@ -168,7 +178,7 @@
               go.Panel,
               'Table',
               { name: 'LIST', row: 1, alignment: go.Spot.TopLeft },
-             
+
               $(
                 go.Panel,
                 'Vertical',
@@ -176,7 +186,7 @@
                   row: 1,
                   name: 'NonInherited',
                   alignment: go.Spot.TopLeft,
-                  margin: new go.Margin(10),//留点空间
+                  margin: new go.Margin(10), //留点空间
                   defaultAlignment: go.Spot.Left,
                   itemTemplate: itemTempl,
                 },
