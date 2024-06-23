@@ -29,7 +29,8 @@
       });
       const openEditForm = (node) => {
         debugger;
-        state.vformRef.vformRef.getItemRef('modal').show({ fields: [] });
+        const items=node.data.items;
+        state.vformRef.vformRef.getItemRef('modal').show({ fields: [],items });
       };
       go.Shape.defineFigureGenerator('Decision', 'Diamond');
       // const reload = async () => {
