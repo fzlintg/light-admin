@@ -4,12 +4,14 @@
 </template>
 
 <script setup lang="ts">
-  import { uploadApi } from '@api/sys/upload';
+  import { uploadApi } from '@/api/sys/upload';
   import { useMessage } from '@h/web/useMessage';
-  const { createMessage } = useMessage();
   import { BasicForm, FormSchema, useForm } from '@c/Form';
   import { Alert, Button } from 'ant-design-vue';
   import { createVNode } from 'vue';
+
+  const { createMessage } = useMessage();
+
   const schemasPreview: FormSchema[] = [
     {
       field: 'field5',
@@ -82,8 +84,8 @@
       component: 'Upload',
       label: '字段6',
       componentProps: {
-        maxNumber:2,
-        previewColumns: ({ handleRemove, handleAdd}) => {
+        maxNumber: 2,
+        previewColumns: ({ handleRemove, handleAdd }) => {
           return [
             {
               title: 'url6',
@@ -101,8 +103,8 @@
                   createVNode(
                     Button,
                     {
-                      type:"primary",
-                      style:"margin:4px",
+                      type: 'primary',
+                      style: 'margin:4px',
                       onclick: () => {
                         handleAdd(
                           { url6: 'https://vebn.oss-cn-beijing.aliyuncs.com/vben/logo.png' },
@@ -115,7 +117,7 @@
                   createVNode(
                     Button,
                     {
-                      danger:true,
+                      danger: true,
                       onclick: () => {
                         handleRemove({ url6: record.url6 }, 'url6');
                       },
@@ -125,7 +127,6 @@
                 ]);
               },
             },
-            
           ];
         },
         beforePreviewData: (arg) => {
@@ -158,7 +159,6 @@
           });
         },
       },
-      
     },
   ];
   const [registerPreview, { getFieldsValue: getFieldsValuePreview }] = useForm({
