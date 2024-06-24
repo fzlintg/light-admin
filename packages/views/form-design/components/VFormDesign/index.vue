@@ -32,6 +32,7 @@
         @handle-open-code-modal="handleOpenModal(codeModal!)"
         @handle-clear-form-items="handleClearFormItems"
         @handle-save-form-items="handleSaveFormItems"
+        @handle-settings="handleSettings"
       />
       <FormComponentPanel
         :current-item="formConfig.currentItem"
@@ -327,6 +328,9 @@
     let cache = getQueryParam('cache') || '';
     window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
     createMessage.success('保存成功');
+  };
+  const handleSettings = () => {
+    createMessage.success('设置成功');
   };
 
   const setFormModel = (key, value) => (formModel.value[key] = value);

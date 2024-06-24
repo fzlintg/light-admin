@@ -35,6 +35,7 @@ const t = {
   filterOption: '',
   defaultValue: '默认值',
   allowInput: '允许输入',
+  readonly: '只读',
 };
 const setting = {};
 

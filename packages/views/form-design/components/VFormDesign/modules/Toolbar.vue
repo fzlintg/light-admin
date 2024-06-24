@@ -95,6 +95,12 @@
             event: 'handleSaveFormItems',
             icon: 'ant-design:save-outlined',
           },
+          {
+            title: '设置',
+            type: 'setting',
+            event: 'handleSettings',
+            icon: 'ant-design:setting-outlined',
+          },
         ],
       });
       const historyRef = inject('historyReturn') as UseRefHistoryReturn<IFormConfig, IFormConfig>;

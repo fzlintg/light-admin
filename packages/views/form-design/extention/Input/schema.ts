@@ -1,3 +1,5 @@
+import { readonly } from 'vue';
+
 export default {
   component: 'Input',
   label: '输入框',
@@ -8,5 +10,6 @@ export default {
     type: 'text',
     defaultValue: '',
     onChange__func: '',
+    readonly: false,
   },
 };
