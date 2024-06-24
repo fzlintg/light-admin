@@ -25,7 +25,7 @@
   import { CollapseContainer } from '@c/Container';
   import { PageWrapper } from '@c/Page';
 
-  import { useMessage } from '@/hooks/web/useMessage';
+  import { useMessage } from '@h/web/useMessage';
 
   const { createMessage } = useMessage();
   const count = ref(0);

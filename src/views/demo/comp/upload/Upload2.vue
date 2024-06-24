@@ -4,11 +4,13 @@
 </template>
 
 <script setup lang="ts">
-  import { uploadApi } from '@api/sys/upload';
+  import { uploadApi } from '@/api/sys/upload';
   import { useMessage } from '@h/web/useMessage';
-  const { createMessage } = useMessage();
   import { BasicForm, FormSchema, useForm } from '@c/Form';
   import { Alert } from 'ant-design-vue';
+
+  const { createMessage } = useMessage();
+
   const schemasValiate: FormSchema[] = [
     {
       field: 'field1',
