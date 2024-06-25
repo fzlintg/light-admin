@@ -24,6 +24,9 @@
         </a>
       </Tooltip>
     </div>
+    <span style="margin-right: 40px">
+      <a-tag color="pink">id </a-tag> <edit-text defaultValue="测试"
+    /></span>
   </div>
   <!-- 操作区域 start -->
 </template>
@@ -31,8 +34,10 @@
   import { defineComponent, inject, reactive, toRefs } from 'vue';
   import { UseRefHistoryReturn } from '@vueuse/core';
   import { IFormConfig } from '../../../typings/v-form-component';
-  import { Tooltip, Divider } from 'ant-design-vue';
+  import { Tooltip, Divider, Tag as ATag } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
+  //import vform from '@c/Vform/index.vue';
+  import EditText from '../../../extention/EditText/comp.vue';
 
   interface IToolbarsConfig {
     type: string;
@@ -47,6 +52,8 @@
       Tooltip,
       Icon,
       Divider,
+      ATag,
+      EditText,
     },
     setup() {
       const state = reactive<{

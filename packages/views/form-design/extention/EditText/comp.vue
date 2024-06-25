@@ -27,7 +27,6 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
 
   const props = defineProps({
-    tagText: propTypes.String,
     value: propTypes.string,
     width: propTypes.String,
     defaultValue: propTypes.string,
@@ -35,11 +34,15 @@
   const editing = ref(false),
     mouseHover = ref(false);
   // const attrs = useAttrs();
-  //const emit = defineEmits(['update:value']);
+  const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
-
   state.value = props.defaultValue;
-
+  watch(
+    () => state.value,
+    (v) => {
+      emit('update:value', v);
+    },
+  );
   const handleMouseEnter = () => {
     mouseHover.value = true;
   };
