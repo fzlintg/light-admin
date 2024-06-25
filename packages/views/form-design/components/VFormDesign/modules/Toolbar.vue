@@ -24,9 +24,10 @@
         </a>
       </Tooltip>
     </div>
-    <span style="margin-right: 40px">
-      <a-tag color="pink">id </a-tag> <edit-text defaultValue="测试"
-    /></span>
+    <span style="margin-right: 40px" class="d-flex ai-center">
+      <a-tag color="pink">id </a-tag> <a-input v-model:value="logic.title" />
+      <edit-text value="试试" />
+    </span>
   </div>
   <!-- 操作区域 start -->
 </template>
@@ -34,7 +35,7 @@
   import { defineComponent, inject, reactive, toRefs } from 'vue';
   import { UseRefHistoryReturn } from '@vueuse/core';
   import { IFormConfig } from '../../../typings/v-form-component';
-  import { Tooltip, Divider, Tag as ATag } from 'ant-design-vue';
+  import { Tooltip, Divider, Tag as ATag, Input as AInput } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   //import vform from '@c/Vform/index.vue';
   import EditText from '../../../extention/EditText/comp.vue';
@@ -58,6 +59,9 @@
     setup() {
       const state = reactive<{
         toolbarsConfigs: IToolbarsConfig[];
+        logic: {
+          title: 'test';
+        };
       }>({
         toolbarsConfigs: [
           {
