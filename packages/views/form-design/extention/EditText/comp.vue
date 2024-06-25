@@ -6,7 +6,12 @@
   >
     <span v-if="!editing" :style="{ width: `${props.width}` }">{{ state }}</span>
     <Icon v-if="!editing && mouseHover" icon="ant-design:edit-outlined" @click="startEditing" />
-    <a-input v-model:value="state" v-if="editing" ref="input" />
+    <a-input
+      v-model:value="state"
+      v-if="editing"
+      ref="input"
+      :style="{ width: `${props.width}` }"
+    />
     <a-button-group v-if="editing" size="small" class="mt-2 ml-2 d-flex">
       <a-button type="dashed" @click="saveEdit">保存</a-button>
       <a-button type="dashed" @click="cancelEdit">取消</a-button>
