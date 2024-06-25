@@ -25,8 +25,8 @@
       </Tooltip>
     </div>
     <span style="margin-right: 40px" class="d-flex ai-center">
-      <a-tag color="pink">id </a-tag> <a-input v-model:value="logic.title" />
-      <edit-text value="试试" />
+      <a-tag color="pink">id </a-tag>
+      <edit-text :value="logic.title" />
     </span>
   </div>
   <!-- 操作区域 start -->
@@ -59,10 +59,9 @@
     setup() {
       const state = reactive<{
         toolbarsConfigs: IToolbarsConfig[];
-        logic: {
-          title: 'test';
-        };
+        logic: Object;
       }>({
+        logic: { title: '测试' },
         toolbarsConfigs: [
           {
             title: '预览-支持布局',
