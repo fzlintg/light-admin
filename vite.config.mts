@@ -2,7 +2,11 @@ import { defineApplicationConfig } from '@vben/vite-config';
 import { resolve } from 'path';
 
 import AutoImport from 'unplugin-auto-import/vite';
+//import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+// import styleImport, { AndDesignVueResolve } from 'vite-plugin-style-import';
+//import Components from 'unplugin-vue-components/vite';
 import VueSetupExtend from 'vite-plugin-vue-setup-extend';
+// import { createStyleImportPlugin, AndDesignVueResolve } from 'vite-plugin-style-import';
 // import Pages from 'vite-plugin-pages';
 // import Layouts from 'vite-plugin-vue-layouts';
 
@@ -10,6 +14,10 @@ export default defineApplicationConfig({
   overrides: {
     plugins: [
       VueSetupExtend(),
+
+      // styleImport({
+      //   resolves: [AndDesignVueResolve()],
+      // }),
       AutoImport({
         imports: ['vue', 'vue-router'], // 自动导入vue和vue-router相关函数
         eslintrc: {
@@ -19,6 +27,7 @@ export default defineApplicationConfig({
         },
         dts: 'types/auto-import.d.ts', // 生成 `auto-import.d.ts` 全局声明
       }),
+
       // Pages({
       //   // 需要生成路由的文件目录，默认就是识别src下面的pages文件
       //   pagesDir: resolve(__dirname, 'src') + '/pages',

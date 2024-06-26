@@ -25,8 +25,8 @@
       </Tooltip>
     </div>
     <span style="margin-right: 40px" class="d-flex ai-center">
-      <a-tag color="pink">id </a-tag>
-      <edit-text :value="logic.title" />
+      <a-tag v-if="logic.id" color="pink">{{ logic.id }}</a-tag>
+      <edit-text v-if="logic.title" :value="logic.title" defaultValue="test" />
     </span>
   </div>
   <!-- 操作区域 start -->
@@ -37,7 +37,6 @@
   import { IFormConfig } from '../../../typings/v-form-component';
   import { Tooltip, Divider, Tag as ATag, Input as AInput } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
-  //import vform from '@c/Vform/index.vue';
   import EditText from '../../../extention/EditText/comp.vue';
 
   interface IToolbarsConfig {
@@ -59,9 +58,9 @@
     setup() {
       const state = reactive<{
         toolbarsConfigs: IToolbarsConfig[];
-        logic: Object;
+        logic: { id: Number; title: String };
       }>({
-        logic: { title: '测试' },
+        logic: { id: null, title: '' },
         toolbarsConfigs: [
           {
             title: '预览-支持布局',

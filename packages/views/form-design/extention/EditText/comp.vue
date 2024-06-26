@@ -3,25 +3,35 @@
     class="editable-tag ml-3 jc-start"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
+    :style="{ width: `${props.width || '200px'}` }"
   >
     <span v-if="!editing" :style="{ width: `${props.width}` }">{{ state }}</span>
-    <Icon v-if="!editing && mouseHover" icon="ant-design:edit-outlined" @click="startEditing" />
-    <a-input
-      v-model:value="state"
-      v-if="editing"
-      ref="input"
-      :style="{ width: `${props.width}` }"
+    <Icon
+      class="ml-2 hand"
+      v-if="!editing && mouseHover"
+      icon="ant-design:edit-outlined"
+      @click="startEditing"
     />
-    <a-button-group v-if="editing" size="small" class="mt-2 ml-2 d-flex">
-      <a-button type="dashed" @click="saveEdit">保存</a-button>
-      <a-button type="dashed" @click="cancelEdit">取消</a-button>
-    </a-button-group>
+    <a-dropdown v-if="editing" placement="bottom" :arrow="{ pointAtCenter: true }">
+      <a-input v-model:value="state" ref="input" class="w100" />
+      <template #overlay>
+        <a-button-group size="small" class="mt-2 ml-2 d-flex jc-center">
+          <a-button type="dashed" @click="saveEdit">保存</a-button>
+          <a-button type="dashed" @click="cancelEdit">取消</a-button>
+        </a-button-group>
+      </template>
+    </a-dropdown>
   </div>
 </template>
 
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { Input as AInput, Button as AButton, ButtonGroup as AButtonGroup } from 'ant-design-vue';
+  import {
+    Input as AInput,
+    Button as AButton,
+    ButtonGroup as AButtonGroup,
+    Dropdown as ADropdown,
+  } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { propTypes } from '@utils/propTypes';
   import { useRuleFormItem } from '@h/component/useFormItem';
@@ -63,17 +73,13 @@
   };
 
   const saveEdit = () => {
-    // Save the edited value
+    emit('update:value', state.value);
     editing.value = false;
-    emit('update:value', v);
-    // You can perform save operation here if needed
   };
 
   const cancelEdit = () => {
     editing.value = false;
     state.value = oldValue.value;
-    // Reset input value to original
-    // state.value = props.tagText;
   };
 </script>
 

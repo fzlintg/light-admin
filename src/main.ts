@@ -1,7 +1,8 @@
 import 'uno.css';
 import '@design/index.less';
 import '@c/VxeTable/src/css/index.scss';
-import '@design/tools.scss'
+import '@design/tools.scss';
+
 import 'ant-design-vue/dist/reset.css';
 // Register icon sprite
 import 'virtual:svg-icons-register';
@@ -16,14 +17,15 @@ import { initAppConfigStore } from '@logics/initAppConfig';
 import { router, setupRouter } from '@/router';
 import { setupRouterGuard } from '@router/guard';
 import { setupStore } from '@/store';
-
+// import { setupComponents } from './plugin';
 import App from './App.vue';
 
 async function bootstrap() {
   const app = createApp(App);
-
+  //app.use(Antd);
   // Configure store
   // 配置 store
+
   setupStore(app);
 
   // Initialize internal system configuration
@@ -58,8 +60,9 @@ async function bootstrap() {
 
   // https://next.router.vuejs.org/api/#isready
   // await router.isReady();
-
+  //setupComponents(app);
   app.mount('#app');
+  //app.config.globalProperties.$message = message;
 }
 
 bootstrap();
