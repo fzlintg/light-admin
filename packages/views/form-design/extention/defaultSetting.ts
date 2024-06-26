@@ -36,6 +36,12 @@ const t = {
   defaultValue: '默认值',
   allowInput: '允许输入',
   readonly: '只读',
+  isDetail: '是否详情',
+  showDetailBack: '显示返回',
+  maskClosable: '遮罩可关闭',
+  showCancelBtn: '显示取消按钮',
+  showOkBtn: '显示确定按钮',
+  showFooter: '显示底块',
 };
 const setting = {};
 

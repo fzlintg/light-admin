@@ -1,70 +1,71 @@
 <template>
   <div>
-    <a-button type="primary" @click="showModal">打开</a-button>
-    <a-drawer
+    <a-button @click="open = true">测试</a-button>
+    <Drawer
       v-model:open="open"
       v-bind="schema.componentProps"
       :centered="true"
-      @close="closeModal"
+      @ok="handleOk"
+      @cancel="handleCancle"
     >
-      <Form :form="fApi" :model="formModelNew">
-        <VFormItem
-          isRender
-          inSubForm
-          v-for="(item, k) in schema.children"
-          :key="k"
-          :schema="item"
-          :formData="formModelNew"
-          :formConfig="formConfig"
-          :setFormModel="setFormModel"
-        >
-          <template #[key] v-for="(value, key) in item.componentProps?.slots">
-            {{ value }}
-          </template>
-        </VFormItem>
-      </Form>
-      <template #footer>
-        <a-button style="margin-right: 8px" @click="handleCancle">取消</a-button>
-        <a-button type="primary" @click="handleOk">提交</a-button>
-      </template>
-    </a-drawer>
+      <VFormCreate
+        :form-config="formConfigNew"
+        v-model:fApi="fApi"
+        v-model:formModel="formModelNew"
+        ref="formRef"
+      />
+    </Drawer>
   </div>
 </template>
 <script setup lang="ts">
-  import VFormItem from '../../components/VFormItem/index.vue';
-  import { Drawer as ADrawer, Button as AButton } from 'ant-design-vue';
+  import VFormCreate from '../../components/VFormCreate/index.vue';
+  import Drawer from '@c/Drawer/src/BasicDrawer.vue';
+  import { flattenObject, formModelToData } from '../../utils';
+  import { computed, getCurrentInstance } from 'vue';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
-
+  // import { formatRules } from '../../utils/index';
+  const _this = getCurrentInstance();
   const open = ref(false);
   const fApi = ref({});
   const formModelNew = ref({});
+  const formRef = ref(null);
+  const extraData = ref({});
+
+  const { schema, formConfig } = toRefs(useAttrs());
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
   };
 
-  const { schema, formConfig } = toRefs(useAttrs());
+  const formConfigNew = computed(() => {
+    return { ...formConfig.value, schemas: toRaw(schema.value.children) };
+  });
   const emit = defineEmits([
-    'drawerOpened',
+    'dialogOpened',
     'okButtonClick',
     'cancelButtonClick',
-    'drawerBeforeClose',
+    'dialogBeforeClose',
   ]);
-  formConfig.value.children = schema.value.children;
-  const showModal = () => {
-    //为了简化，modal和drawer的打开关闭事件一致
+  //schema.value.children = flattenArray(schema.value.children);
+  // formConfig.value.children = schema.value.children;
+  const show = (fData, eData, raw = false) => {
+    if (fData) {
+      formModelNew.value = raw ? fData : flattenObject(fData);
+    }
+    if (eData) extraData.value = eData;
+    emit('dialogOpened', { fData: formModelNew.value, eData });
     open.value = true;
-    emit('drawerOpened');
   };
-  const getFormModel = () => formModelNew.value;
+
   const handleOk = (e: MouseEvent) => {
     emit('okButtonClick', {
+      _this,
       callback: (result) => {
         open.value = !result;
       },
     });
   };
-  const closeModal = () => {
-    emit('drawerBeforeClose', {
+  const close = () => {
+    emit('dialogBeforeClose', {
       callback: (result) => {
         open.value = !result;
       },
@@ -72,14 +73,16 @@
   };
   const handleCancle = () => {
     emit('cancelButtonClick');
-    closeModal();
+    close();
   };
-  onMounted(() => {});
-
   defineExpose({
-    showModal,
-    closeModal,
-    getFormModel,
+    show,
+    close,
+    getFormModel: () => formModelNew.value,
     setFormModel,
+    getExtraData: () => extraData.value,
+    getFormData: () => formModelToData(formModelNew.value),
+    getForm: () => formRef.value,
   });
+  const { proxy } = getCurrentInstance();
 </script>

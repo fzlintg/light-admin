@@ -17,6 +17,12 @@ export default {
     onDialogBeforeClose__params: ['params'],
     width: 378,
     zIndex: 1000,
+    isDetail: false,
+    showDetailBack: false,
+    maskClosable: true,
+    showCancelBtn: true,
+    showOkBtn: true,
+    showFooter: true,
   },
   children: [],
 };

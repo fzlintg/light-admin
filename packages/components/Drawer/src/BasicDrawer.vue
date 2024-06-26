@@ -125,7 +125,8 @@
   watch(
     () => props.open,
     (newVal, oldVal) => {
-      if (newVal !== oldVal) openRef.value = newVal;
+      openRef.value = newVal;
+      //  if (newVal !== oldVal) openRef.value = newVal;
     },
     { deep: true },
   );
@@ -145,12 +146,14 @@
   // Cancel event
   async function onClose(e) {
     const { closeFunc } = unref(getProps);
-    emit('close', e);
+    emit('cancel', e);
     if (closeFunc && isFunction(closeFunc)) {
       const res = await closeFunc();
       openRef.value = !res;
+      // emit('update:open', !res);
       return;
     }
+    // emit('update:open', false);
     openRef.value = false;
   }
 
