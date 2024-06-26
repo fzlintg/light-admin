@@ -21,7 +21,7 @@
 
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { Input as AInput, Button as AButton } from 'ant-design-vue';
+  import { Input as AInput, Button as AButton, ButtonGroup as AButtonGroup } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { propTypes } from '@utils/propTypes';
   import { useRuleFormItem } from '@h/component/useFormItem';
@@ -37,12 +37,13 @@
   const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
   state.value = props.defaultValue;
-  watch(
-    () => state.value,
-    (v) => {
-      emit('update:value', v);
-    },
-  );
+  const oldValue = ref(state.value);
+  // watch(
+  //   () => state.value,
+  //   (v) => {
+  //     emit('update:value', v);
+  //   },
+  // );
   const handleMouseEnter = () => {
     mouseHover.value = true;
   };
@@ -53,6 +54,7 @@
 
   const startEditing = () => {
     editing.value = true;
+    oldValue.value = state.value;
     setTimeout(() => {
       // Focus on the input when editing starts
       const input = document.querySelector('.editable-tag .ant-input');
@@ -63,13 +65,15 @@
   const saveEdit = () => {
     // Save the edited value
     editing.value = false;
+    emit('update:value', v);
     // You can perform save operation here if needed
   };
 
   const cancelEdit = () => {
     editing.value = false;
+    state.value = oldValue.value;
     // Reset input value to original
-    inputValue.value = props.tagText;
+    // state.value = props.tagText;
   };
 </script>
 
