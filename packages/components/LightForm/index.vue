@@ -11,7 +11,7 @@
   import { cloneDeep } from 'lodash-es';
   import VFormCreate from '@views/form-design/components/VFormCreate/index.vue';
   import logicJson from '@/loader.ts';
-  import { onMounted } from 'vue';
+  //import { onMounted } from 'vue';
   import { formatRules } from '@views/form-design/utils/index.ts';
 
   const props = defineProps({

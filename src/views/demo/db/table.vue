@@ -13,7 +13,7 @@
 
   export default defineComponent({
     name: 'DbDiagram',
-    components: { vform },
+    // components: { vform },
     setup() {
       let myDiagram: any = {};
       const state = reactive({
