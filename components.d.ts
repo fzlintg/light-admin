@@ -204,7 +204,7 @@ declare module 'vue' {
     UploadPreviewModal: typeof import('./packages/components/Upload/src/components/UploadPreviewModal.vue')['default']
     UseForm: typeof import('./packages/views/form-design/components/VFormPreview/useForm.vue')['default']
     UserDropdown: typeof import('./packages/layouts/default/header/components/user-dropdown/index.vue')['default']
-    Vform: typeof import('./packages/components/Vform/index.vue')['default']
+   // Vform: typeof import('./packages/components/Vform/index.vue')['default']
     VFormCreate: typeof import('./packages/views/form-design/components/VFormCreate/index.vue')['default']
     VFormDesign: typeof import('./packages/views/form-design/components/VFormDesign/index.vue')['default']
     VFormItem: typeof import('./packages/views/form-design/components/VFormItem/index.vue')['default']

@@ -1,13 +1,13 @@
 <template>
   <div>
     <div id="myDiagramDiv" ref="diagram" class="dbDiagram"></div>
-    <vform logic="dbtable.edit" ref="vformRef" />
+    <light-form logic="dbtable.edit" ref="vformRef" />
   </div>
 </template>
 <script lang="ts">
   import go from '@/assets/js/go3.js';
   import { defHttp as axios } from '@utils/http/axios';
-  import vform from '@c/Vform/index.vue';
+  //import vform from '@c/Vform/index.vue';
 
   // import VabJsonViewer from 'vue-json-viewer';
 
