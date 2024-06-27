@@ -11,6 +11,7 @@ interface UseFormValuesContext {
   getSchema: ComputedRef<FormSchema[]>;
   getProps?: ComputedRef<FormProps>;
   formModel: Recordable;
+  //formModel: Ref<any>;
 }
 
 /**
@@ -137,7 +138,7 @@ export function useFormValues({
     const obj: Recordable = {};
 
     getInitValue(schemas, obj);
-    formModel = { ...obj, ...formModel };
+    formModel.value = { ...obj, ...formModel.value };
     defaultValueRef.value = cloneDeep(obj);
   }
   // function initDefault2() {

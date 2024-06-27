@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-button @click="open = true">测试</a-button>
+    <a-button v-if="false" @click="open = true">测试</a-button>
     <Drawer
       v-model:open="open"
       v-bind="schema.componentProps"
@@ -84,5 +84,5 @@
     getFormData: () => formModelToData(formModelNew.value),
     getForm: () => formRef.value,
   });
-  const { proxy } = getCurrentInstance();
+  //const { proxy } = getCurrentInstance();
 </script>

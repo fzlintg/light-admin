@@ -9,7 +9,7 @@ export default {
         title: '抽屉',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: ` window.localStorage.setItem("light_form_mode",params); 
+        onOkButtonClick__func: `debugger; window.localStorage.setItem("light_form_mode",params); 
  debugger; `,
         onOkButtonClick__params: ['params'],
         onCancelButtonClick__func: `    `,
@@ -51,7 +51,7 @@ export default {
       colProps: {
         span: 24,
       },
-      field: 'drawer_1',
+      field: 'drawer',
       itemProps: {
         labelCol: {},
         wrapperCol: {},

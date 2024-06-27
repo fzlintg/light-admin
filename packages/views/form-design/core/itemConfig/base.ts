@@ -220,7 +220,6 @@ export const schema = [
     component: 'Switch',
     label: '开关',
     icon: 'entypo:switch',
-
     colProps: { span: 24 },
     componentProps: {},
     defaultValue: false,

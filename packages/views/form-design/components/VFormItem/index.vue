@@ -24,7 +24,6 @@
         @change="handleChange"
         @click="handleClick(schema)"
         :getParent="() => proxy"
-        @init="setItemRef"
         ref="formItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}</component
       >
@@ -81,7 +80,6 @@
             :getFormItem="getFormItem"
             @change="handleChange"
             @click="handleClick(schema)"
-            @init="setItemRef"
             ref="formItemRef"
             :getParent="() => proxy"
         /></div>

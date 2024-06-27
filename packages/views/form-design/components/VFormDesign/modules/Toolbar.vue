@@ -58,9 +58,11 @@
     },
     setup() {
       const state = reactive<{
+        settingFormRef: any;
         toolbarsConfigs: IToolbarsConfig[];
         logic: { id: Number; title: String };
       }>({
+        settingFormRef: null,
         logic: { id: null, title: '' },
         toolbarsConfigs: [
           {
@@ -114,9 +116,11 @@
         ],
       });
       const historyRef = inject('historyReturn') as UseRefHistoryReturn<IFormConfig, IFormConfig>;
-
+      const openSetting = () => {
+        state.settingFormRef.getFormRef().getItemRef('drawer').show();
+      };
       const { undo, redo, canUndo, canRedo } = historyRef;
-      return { ...toRefs(state), undo, redo, canUndo, canRedo };
+      return { ...toRefs(state), undo, redo, canUndo, canRedo, openSetting };
     },
   });
 </script>

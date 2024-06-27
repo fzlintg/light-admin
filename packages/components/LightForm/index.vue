@@ -28,5 +28,5 @@
   const jsonData = cloneDeep(logicJson[props.logic]);
   formatRules(jsonData.schemas);
   formConfig.value = jsonData;
-  defineExpose({ vformRef });
+  defineExpose({ vformRef, getFormRef: () => vformRef.value });
 </script>

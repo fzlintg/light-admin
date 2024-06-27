@@ -33,6 +33,7 @@
         @handle-clear-form-items="handleClearFormItems"
         @handle-save-form-items="handleSaveFormItems"
         @handle-settings="handleSettings"
+        ref="toolbarRef"
       />
       <FormComponentPanel
         :current-item="formConfig.currentItem"
@@ -118,7 +119,7 @@
   const eFormPreview2 = ref<null | IToolbarMethods>(null);
 
   const codeModal = ref<null | IToolbarMethods>(null);
-
+  const toolbarRef = ref();
   //add by lintg
 
   // const baseComponentsOrigin = computed(() =>
@@ -330,7 +331,8 @@
     createMessage.success('保存成功');
   };
   const handleSettings = () => {
-    createMessage.success('设置成功');
+    toolbarRef.value.openSetting();
+    // createMessage.success('设置成功');
   };
 
   const setFormModel = (key, value) => (formModel.value[key] = value);
