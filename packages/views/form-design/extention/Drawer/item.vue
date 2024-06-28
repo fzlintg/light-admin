@@ -82,7 +82,8 @@
   defineExpose({
     show,
     close,
-    getFormModel: () => formModelNew.value,
+    //getFormModel: () => formModelNew.value,
+    getFormModel,
     setFormModel,
     getExtraData: () => extraData.value,
     getFormData: () => formModelToData(formModelNew.value),
