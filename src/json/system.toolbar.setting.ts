@@ -10,7 +10,8 @@ export default {
         slots: {},
         placement: 'right',
         onOkButtonClick__func: `window.localStorage.setItem("light_form_mode",JSON.stringify(this.getFormModel())); 
-        retrun true;
+        debugger;
+        return true;
   `,
         onOkButtonClick__params: ['params'],
         onCancelButtonClick__func: `    `,

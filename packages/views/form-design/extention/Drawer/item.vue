@@ -75,6 +75,10 @@
     emit('cancelButtonClick');
     close();
   };
+  const getFormModel = async () => {
+    const data = await fApi.submit?.();
+    return data;
+  };
   defineExpose({
     show,
     close,

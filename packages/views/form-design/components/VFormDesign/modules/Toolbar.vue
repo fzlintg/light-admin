@@ -117,7 +117,13 @@
       });
       const historyRef = inject('historyReturn') as UseRefHistoryReturn<IFormConfig, IFormConfig>;
       const openSetting = () => {
-        let data=JSON.parse(window.localStorage.getItem("light_form_mode"));
+        let data = {};
+        try {
+          data = JSON.parse(window.localStorage.getItem('light_form_mode'));
+        } catch (e) {
+          console.log(e);
+        }
+
         state.settingFormRef.getFormRef().getItemRef('drawer').show(data);
       };
       const { undo, redo, canUndo, canRedo } = historyRef;
