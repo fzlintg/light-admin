@@ -1,3 +1,4 @@
+import { forEach } from '@utils/helper/treeHelper';
 import { isArray, isFunction, isEmpty, isObject, isString, isNil } from '@utils/is';
 import { dateUtil } from '@utils/dateUtil';
 import { unref } from 'vue';
@@ -138,7 +139,11 @@ export function useFormValues({
     const obj: Recordable = {};
 
     getInitValue(schemas, obj);
-    formModel.value = { ...obj, ...formModel.value };
+    for(const item in obj)
+    {
+      formModel[item]=formModel[item]??obj[item];
+    }
+   // formModel = { ...obj, ...formModel };
     defaultValueRef.value = cloneDeep(obj);
   }
   // function initDefault2() {

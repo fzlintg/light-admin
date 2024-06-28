@@ -9,8 +9,9 @@ export default {
         title: '抽屉',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `debugger; window.localStorage.setItem("light_form_mode",params); 
- debugger; `,
+        onOkButtonClick__func: `window.localStorage.setItem("light_form_mode",JSON.stringify(this.getFormModel())); 
+        retrun true;
+  `,
         onOkButtonClick__params: ['params'],
         onCancelButtonClick__func: `    `,
         onCancelButtonClick__params: ['params'],
