@@ -11,7 +11,13 @@ import { defineStore } from 'pinia';
 import { store } from '@/store';
 
 import { ThemeEnum } from '@enums/appEnum';
-import { APP_DARK_MODE_KEY, PROJ_CFG_KEY, API_ADDRESS } from '@enums/cacheEnum';
+import {
+  APP_DARK_MODE_KEY,
+  PROJ_CFG_KEY,
+  API_ADDRESS,
+  LIGHT_CFG_KEY,
+  LIGHT_CACHE_KEY,
+} from '@enums/cacheEnum';
 import { Persistent } from '@utils/cache/persistent';
 import { darkMode } from '@settings/designSetting';
 import { resetRouter } from '@/router';
@@ -25,6 +31,8 @@ interface AppState {
   projectConfig: ProjectConfig | null;
   // When the window shrinks, remember some states, and restore these states when the window is restored
   beforeMiniInfo: BeforeMiniState;
+  lightFormConfig: Object;
+  lightFormCache: Object;
 }
 let timeId: TimeoutHandle;
 export const useAppStore = defineStore({
@@ -34,7 +42,10 @@ export const useAppStore = defineStore({
     pageLoading: false,
     projectConfig: Persistent.getLocal(PROJ_CFG_KEY),
     beforeMiniInfo: {},
+    lightFormConfig: Persistent.getLocal(LIGHT_CFG_KEY) || { mode: false },
+    //   lightFormCache: Persistent.getLocal(LIGHT_CACHE_KEY) || {},
   }),
+
   getters: {
     getPageLoading(state): boolean {
       return state.pageLoading;
@@ -66,8 +77,23 @@ export const useAppStore = defineStore({
     getApiAddress() {
       return JSON.parse(localStorage.getItem(API_ADDRESS) || '{}');
     },
+    getLightFormConfig() {
+      return this.lightFormConfig;
+    },
+    // getLightFormCache() {
+    //   return this.lightFormCache;
+    // },
   },
   actions: {
+    // setLightFormCache(schemas) {
+    //   this.lightFormCache = schemas;
+    //   Persistent.setLocal(LIGHT_CACHE_KEY, schemas);
+    // },
+    setLightFormConfig(config): void {
+      //  this.lightFormConfig = config;
+      Object.assign(this.lightFormConfig, config);
+      Persistent.setLocal(LIGHT_CFG_KEY, this.lightFormConfig);
+    },
     setPageLoading(loading: boolean): void {
       this.pageLoading = loading;
     },

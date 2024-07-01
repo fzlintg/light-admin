@@ -24,8 +24,10 @@ import { uniqueId, setUniqueId } from './uniqueId';
 // import { withInstall } from '@utils';
 import { defHttp } from '@utils/http/axios';
 import { useMessage } from '@h/web/useMessage';
+import { useAppStore } from '@store/modules/app';
 
 const { createMessage } = useMessage();
+const appStore = useAppStore();
 /**
  * 组件install方法
  * @param comp 需要挂载install方法的组件
@@ -376,8 +378,8 @@ export function formatFunc(item, flag = false) {
       const func =
         item[name]?.trim()?.length > 0
           ? funcAsync
-            ? new AsyncFunction('{axios,nextTick,_,createMessage}', ...params, item[name])
-            : new Function('{_,createMessage}', ...params, item[name])
+            ? new AsyncFunction('{axios,nextTick,_,createMessage,appStore}', ...params, item[name])
+            : new Function('{_,createMessage,appStore}', ...params, item[name])
           : () => true; //默认true
 
       if (funcAsync) {
@@ -386,7 +388,7 @@ export function formatFunc(item, flag = false) {
           // const argsCall = args.length == 0 ? [{}] : args;
           let result = await func.call(
             this,
-            { axios: defHttp, nextTick, _, createMessage },
+            { axios: defHttp, nextTick, _, createMessage, appStore },
             ...args,
           );
           if (args?.[0]?.callback) {
@@ -400,7 +402,7 @@ export function formatFunc(item, flag = false) {
         };
       } else {
         item[originName] = function (...args) {
-          let result = func.call(this, { _, createMessage }, ...args);
+          let result = func.call(this, { _, createMessage, appStore }, ...args);
           if (args?.[0]?.callback) {
             //回调模式
             if (isNull(result)) result = true;

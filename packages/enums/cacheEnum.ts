@@ -33,3 +33,6 @@ export enum CacheTypeEnum {
   SESSION,
   LOCAL,
 }
+
+export const LIGHT_CFG_KEY = 'LIGHT_CFG_KEY__';
+//export const LIGHT_CACHE_KEY = 'LIGHT_CACHE_KEY__';

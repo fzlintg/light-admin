@@ -8,7 +8,7 @@
 
     <div class="left-btn-box">
       <Tooltip v-for="item in toolbarsConfigs" :title="item.title" :key="item.icon">
-        <a @click="$emit(item.event)" class="toolbar-text">
+        <a @click="itemEmit(item)" class="toolbar-text" v-if="!item.mode || (item.mode && mode)">
           <Icon :icon="item.icon" />
         </a>
       </Tooltip>
@@ -33,18 +33,21 @@
   <!-- 操作区域 start -->
 </template>
 <script lang="ts">
-  import { defineComponent, inject, reactive, toRefs } from 'vue';
+  import { defineComponent, defineEmits, inject, reactive, toRefs } from 'vue';
   import { UseRefHistoryReturn } from '@vueuse/core';
   import { IFormConfig } from '../../../typings/v-form-component';
   import { Tooltip, Divider, Tag as ATag, Input as AInput } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import EditText from '../../../extention/EditText/comp.vue';
+  import { useAppStore } from '@store/modules/app';
+  import { useMessage } from '@h/web/useMessage';
 
   interface IToolbarsConfig {
     type: string;
     title: string;
     icon: string;
     event: string;
+    mode?: boolean;
   }
 
   export default defineComponent({
@@ -57,13 +60,26 @@
       EditText,
     },
     setup() {
+      const { createMessage } = useMessage();
+      const appStore = useAppStore();
+      const mode = computed(() => {
+        return appStore.getLightFormConfig.mode;
+      });
+      const emit = defineEmits([
+        'handlePreview',
+        'handlePreview2',
+        'importJson',
+        'exportJson',
+        'exportCode',
+        'reset',
+      ]);
       const state = reactive<{
         settingFormRef: any;
         toolbarsConfigs: IToolbarsConfig[];
         logic: { id: Number; title: String };
       }>({
         settingFormRef: null,
-        logic: { id: null, title: '' },
+        logic: { id: null, name: '', title: '' },
         toolbarsConfigs: [
           {
             title: '预览-支持布局',
@@ -102,32 +118,64 @@
             icon: 'ant-design:clear-outlined',
           },
           {
+            title: '载入服务',
+            type: 'localEvent',
+            event: 'openLogic',
+            mode: true,
+            icon: 'ant-design:folder-open-outlined',
+          },
+          {
             title: '保存',
-            type: 'save',
-            event: 'handleSaveFormItems',
+            type: 'localEvent',
+            event: 'saveLogic',
             icon: 'ant-design:save-outlined',
           },
           {
             title: '设置',
-            type: 'setting',
-            event: 'handleSettings',
+            type: 'localEvent',
+            event: 'openSetting',
             icon: 'ant-design:setting-outlined',
           },
         ],
       });
-      const historyRef = inject('historyReturn') as UseRefHistoryReturn<IFormConfig, IFormConfig>;
-      const openSetting = () => {
-        let data = {};
-        try {
-          data = JSON.parse(window.localStorage.getItem('light_form_setting'));
-        } catch (e) {
-          console.log(e);
-        }
 
-        state.settingFormRef.getFormRef().getItemRef('drawer').show(data);
+      const historyRef = inject('historyReturn') as UseRefHistoryReturn<IFormConfig, IFormConfig>;
+      const itemEmit = (item) => {
+        if (item.type == 'localEvent') localEvent[item.event]();
+        else emit(item.event);
       };
+      const localEvent = {
+        openSetting: () => {
+          let data = unref(appStore.getLightFormConfig);
+          state.settingFormRef.getFormRef().getItemRef('drawer').show(data);
+        },
+        openLogic: () => {
+          state.settingFormRef.getFormRef().getItemRef('drawer_1').show(state.logic);
+        },
+        saveLogic: () => {
+          let cache = getQueryParam('cache') || '';
+          window.localStorage.setItem(
+            `light_form_widget${cache}`,
+            JSON.stringify(formConfig.value),
+          );
+          if (appStore.getLightFormConfig.mode) {
+            state.settingFormRef.getFormRef().getItemRef('drawer_2').show(state.logic);
+          }
+          createMessage.success('保存成功');
+        },
+      };
+
       const { undo, redo, canUndo, canRedo } = historyRef;
-      return { ...toRefs(state), undo, redo, canUndo, canRedo, openSetting };
+      return {
+        ...toRefs(state),
+        undo,
+        redo,
+        canUndo,
+        canRedo,
+        localEvent,
+        itemEmit,
+        mode,
+      };
     },
   });
 </script>

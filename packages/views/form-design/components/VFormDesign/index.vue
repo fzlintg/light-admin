@@ -31,8 +31,6 @@
         @handle-preview2="handleOpenModal(eFormPreview2!)"
         @handle-open-code-modal="handleOpenModal(codeModal!)"
         @handle-clear-form-items="handleClearFormItems"
-        @handle-save-form-items="handleSaveFormItems"
-        @handle-settings="handleSettings"
         ref="toolbarRef"
       />
       <FormComponentPanel
@@ -101,9 +99,7 @@
   import { useDesign } from '@h/web/useDesign';
 
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@h/web/useMessage';
 
-  const { createMessage } = useMessage();
   defineProps({
     title: {
       type: String,
@@ -325,15 +321,17 @@
     handleSetSelectItem({ component: '' });
   };
 
-  const handleSaveFormItems = () => {
-    let cache = getQueryParam('cache') || '';
-    window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
-    createMessage.success('保存成功');
-  };
-  const handleSettings = () => {
-    toolbarRef.value.openSetting();
-    // createMessage.success('设置成功');
-  };
+  // const handleSaveFormItems = () => {
+  //   let cache = getQueryParam('cache') || '';
+  //   window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
+  //   createMessage.success('保存成功');
+  // };
+  // const handleSettings = () => {
+  //   toolbarRef.value.openSetting();
+  // };
+  // const handleOpenLogic = () => {
+  //   toolbarRef.value.openLogic();
+  // };
 
   const setFormModel = (key, value) => (formModel.value[key] = value);
   provide('formModel', formModel);

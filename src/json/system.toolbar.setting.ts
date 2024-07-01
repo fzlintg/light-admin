@@ -2,24 +2,24 @@ export default {
   schemas: [
     {
       component: 'Drawer',
-      label: '抽屉',
+      label: '设置',
       formItem: false,
       type: 'container',
       componentProps: {
-        title: '抽屉',
+        title: '设置',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `let data=await this.itemRef("drawer").getFormModel();
-        window.localStorage.setItem("light_form_setting",JSON.stringify(data)); 
-        createMessage.success('保存成功');
-        return true;
-  `,
+        onOkButtonClick__func: `  let data=await this.itemRef("drawer").getFormModel();  
+          appStore.setLightFormConfig(data)  
+          createMessage.success('保存成功');  
+          return true;  
+      `,
         onOkButtonClick__params: ['params'],
-        onCancelButtonClick__func: `    `,
+        onCancelButtonClick__func: `        `,
         onCancelButtonClick__params: ['params'],
-        onDialogOpened__func: `    `,
+        onDialogOpened__func: `        `,
         onDialogOpened__params: ['params'],
-        onDialogBeforeClose__func: `    `,
+        onDialogBeforeClose__func: `        `,
         onDialogBeforeClose__params: ['params'],
         width: 378,
         zIndex: 1000,
@@ -36,9 +36,9 @@ export default {
           },
           componentProps: {
             checkedChildren: '服务',
-            checkedValue: 'true',
+            checkedValue: true,
             unCheckedChildren: '本地',
-            unCheckedValue: 'false',
+            unCheckedValue: false,
           },
           defaultValue: false,
           width: '200px',
@@ -55,6 +55,180 @@ export default {
         span: 24,
       },
       field: 'drawer',
+      itemProps: {
+        labelCol: {},
+        wrapperCol: {},
+      },
+    },
+    {
+      component: 'Drawer',
+      label: '抽屉',
+      formItem: false,
+      type: 'container',
+      componentProps: {
+        title: '加载服务端逻辑',
+        slots: {},
+        placement: 'right',
+        onOkButtonClick__func: `    `,
+        onOkButtonClick__params: ['params'],
+        onCancelButtonClick__func: `    `,
+        onCancelButtonClick__params: ['params'],
+        onDialogOpened__func: `    `,
+        onDialogOpened__params: ['params'],
+        onDialogBeforeClose__func: `    `,
+        onDialogBeforeClose__params: ['params'],
+        width: 378,
+        zIndex: 1000,
+        isDetail: false,
+        showDetailBack: false,
+        maskClosable: true,
+        showCancelBtn: true,
+        showOkBtn: true,
+        showFooter: true,
+      },
+      children: [
+        {
+          component: 'AutoComplete',
+          label: '逻辑编码',
+          colProps: {
+            span: 24,
+          },
+          field: 'logic',
+          componentProps: {
+            placeholder: '请输入关键字',
+            valueField: 'value',
+            labelField: 'label',
+            api__func: ` return await axios.get({url:'/api/model/list/'+params.keyword}); `,
+            api__params: ['params'],
+            defaultContext__var: `  {  
+        key_input: '1',  
+  }  `,
+            params__tpl: '{\n      keyword: ${key_input},\n}',
+            resultField: '',
+            onSelect__func: ` debugger; `,
+            immediate: true,
+            maxLength: 100,
+            defaultContext: {
+              key_input: '1',
+            },
+            params: {
+              keyword: 1,
+            },
+          },
+          _type: 'custom',
+          width: '200px',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+      ],
+      _type: 'custom',
+      width: '200px',
+      colProps: {
+        span: 24,
+      },
+      field: 'drawer_1',
+      itemProps: {
+        labelCol: {},
+        wrapperCol: {},
+      },
+    },
+    {
+      component: 'Drawer',
+      label: '抽屉',
+      formItem: false,
+      type: 'container',
+      componentProps: {
+        title: '抽屉',
+        slots: {},
+        placement: 'right',
+        onOkButtonClick__func: `  `,
+        onOkButtonClick__params: ['params'],
+        onCancelButtonClick__func: `  `,
+        onCancelButtonClick__params: ['params'],
+        onDialogOpened__func: `  `,
+        onDialogOpened__params: ['params'],
+        onDialogBeforeClose__func: `  `,
+        onDialogBeforeClose__params: ['params'],
+        width: 378,
+        zIndex: 1000,
+        isDetail: false,
+        showDetailBack: false,
+        maskClosable: true,
+        showCancelBtn: true,
+        showOkBtn: true,
+        showFooter: true,
+        maxLength: 100,
+      },
+      children: [
+        {
+          component: 'Input',
+          label: 'id',
+          field: 'id',
+          colProps: {
+            span: 24,
+          },
+          componentProps: {
+            type: 'text',
+            defaultValue: '',
+            onChange__func: `  `,
+            readonly: true,
+          },
+          _type: 'custom',
+          width: '200px',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+        {
+          component: 'Input',
+          label: '逻辑编码',
+          field: 'name',
+          colProps: {
+            span: 24,
+          },
+          componentProps: {
+            type: 'text',
+            defaultValue: '',
+            onChange__func: `  `,
+            readonly: false,
+          },
+          _type: 'custom',
+          width: '200px',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+        {
+          component: 'Input',
+          label: '中文名称',
+          field: 'title',
+          colProps: {
+            span: 24,
+          },
+          componentProps: {
+            type: 'text',
+            defaultValue: '',
+            onChange__func: `  `,
+            readonly: false,
+          },
+          _type: 'custom',
+          width: '200px',
+          itemProps: {
+            labelCol: {},
+            wrapperCol: {},
+          },
+        },
+      ],
+      _type: 'custom',
+      width: '200px',
+      colProps: {
+        span: 24,
+      },
+      field: 'drawer_2',
       itemProps: {
         labelCol: {},
         wrapperCol: {},
