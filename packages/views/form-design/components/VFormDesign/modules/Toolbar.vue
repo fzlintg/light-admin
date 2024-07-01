@@ -119,7 +119,7 @@
       const openSetting = () => {
         let data = {};
         try {
-          data = JSON.parse(window.localStorage.getItem('light_form_mode'));
+          data = JSON.parse(window.localStorage.getItem('light_form_setting'));
         } catch (e) {
           console.log(e);
         }

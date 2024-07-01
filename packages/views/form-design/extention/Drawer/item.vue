@@ -76,7 +76,7 @@
     close();
   };
   const getFormModel = async () => {
-    const data = await fApi.submit?.();
+    const data = await fApi.value.submit?.();
     return data;
   };
   defineExpose({

@@ -23,6 +23,9 @@ import { uniqueId, setUniqueId } from './uniqueId';
 // import { del } from '@vue/composition-api';
 // import { withInstall } from '@utils';
 import { defHttp } from '@utils/http/axios';
+import { useMessage } from '@h/web/useMessage';
+
+const { createMessage } = useMessage();
 /**
  * 组件install方法
  * @param comp 需要挂载install方法的组件
@@ -373,15 +376,19 @@ export function formatFunc(item, flag = false) {
       const func =
         item[name]?.trim()?.length > 0
           ? funcAsync
-            ? new AsyncFunction('{axios,nextTick,_}', ...params, item[name])
-            : new Function('{_}', ...params, item[name])
+            ? new AsyncFunction('{axios,nextTick,_,createMessage}', ...params, item[name])
+            : new Function('{_,createMessage}', ...params, item[name])
           : () => true; //默认true
 
       if (funcAsync) {
         item[originName] = async function (...args) {
           // console.log('exec', this);
           // const argsCall = args.length == 0 ? [{}] : args;
-          let result = await func.call(this, { axios: defHttp, nextTick, _ }, ...args);
+          let result = await func.call(
+            this,
+            { axios: defHttp, nextTick, _, createMessage },
+            ...args,
+          );
           if (args?.[0]?.callback) {
             //回调模式
             if (isNull(result)) result = true;
@@ -393,7 +400,7 @@ export function formatFunc(item, flag = false) {
         };
       } else {
         item[originName] = function (...args) {
-          let result = func.call(this, { _ }, ...args);
+          let result = func.call(this, { _, createMessage }, ...args);
           if (args?.[0]?.callback) {
             //回调模式
             if (isNull(result)) result = true;

@@ -9,8 +9,9 @@ export default {
         title: '抽屉',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `window.localStorage.setItem("light_form_mode",JSON.stringify(this.getFormModel())); 
-        debugger;
+        onOkButtonClick__func: `let data=await this.itemRef("drawer").getFormModel();
+        window.localStorage.setItem("light_form_setting",JSON.stringify(data)); 
+        createMessage.success('保存成功');
         return true;
   `,
         onOkButtonClick__params: ['params'],
