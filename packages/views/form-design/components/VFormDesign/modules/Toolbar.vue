@@ -41,6 +41,7 @@
   import EditText from '../../../extention/EditText/comp.vue';
   import { useAppStore } from '@store/modules/app';
   import { useMessage } from '@h/web/useMessage';
+  // import { getQueryParam } from '../../../utils';
 
   interface IToolbarsConfig {
     type: string;
@@ -59,20 +60,21 @@
       ATag,
       EditText,
     },
-    setup() {
+    setup(props, { emit }) {
       const { createMessage } = useMessage();
       const appStore = useAppStore();
       const mode = computed(() => {
         return appStore.getLightFormConfig.mode;
       });
-      const emit = defineEmits([
-        'handlePreview',
-        'handlePreview2',
-        'importJson',
-        'exportJson',
-        'exportCode',
-        'reset',
-      ]);
+      // const emit = defineEmits([
+      //   'handlePreview',
+      //   'handlePreview2',
+      //   'importJson',
+      //   'exportJson',
+      //   'exportCode',
+      //   'reset',
+      // ]);
+
       const state = reactive<{
         settingFormRef: any;
         toolbarsConfigs: IToolbarsConfig[];
@@ -126,8 +128,8 @@
           },
           {
             title: '保存',
-            type: 'localEvent',
-            event: 'saveLogic',
+            type: 'save',
+            event: 'handleSaveFormItems',
             icon: 'ant-design:save-outlined',
           },
           {
@@ -152,17 +154,11 @@
         openLogic: () => {
           state.settingFormRef.getFormRef().getItemRef('drawer_1').show(state.logic);
         },
-        saveLogic: () => {
-          let cache = getQueryParam('cache') || '';
-          window.localStorage.setItem(
-            `light_form_widget${cache}`,
-            JSON.stringify(formConfig.value),
-          );
-          if (appStore.getLightFormConfig.mode) {
-            state.settingFormRef.getFormRef().getItemRef('drawer_2').show(state.logic);
-          }
-          createMessage.success('保存成功');
-        },
+      };
+      const saveLogic = (schemas) => {
+        if (appStore.getLightFormConfig.mode) {
+          state.settingFormRef.getFormRef().getItemRef('drawer_2').show(state.logic, schemas);
+        } else createMessage.success('保存成功');
       };
 
       const { undo, redo, canUndo, canRedo } = historyRef;
@@ -175,6 +171,7 @@
         localEvent,
         itemEmit,
         mode,
+        saveLogic,
       };
     },
   });

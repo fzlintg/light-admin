@@ -85,6 +85,7 @@ export default {
         showCancelBtn: true,
         showOkBtn: true,
         showFooter: true,
+        maxLength: 100,
       },
       children: [
         {
@@ -136,14 +137,19 @@ export default {
     },
     {
       component: 'Drawer',
-      label: '抽屉',
+      label: '逻辑库',
       formItem: false,
       type: 'container',
       componentProps: {
-        title: '抽屉',
+        title: '逻辑库',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `  `,
+        onOkButtonClick__func: `let data=await this.itemRef("drawer_2").getFormModel();
+        let config=this.itemRef("drawer_2").getExtraData();
+        let result=await axios.post({url:"/api/crud/update/base/page",data:{config,...data}});
+        createMessage.success("保存成功")
+        return true;
+        `,
         onOkButtonClick__params: ['params'],
         onCancelButtonClick__func: `  `,
         onCancelButtonClick__params: ['params'],
@@ -174,6 +180,7 @@ export default {
             defaultValue: '',
             onChange__func: `  `,
             readonly: true,
+            disabled: true,
           },
           _type: 'custom',
           width: '200px',
@@ -204,7 +211,7 @@ export default {
         },
         {
           component: 'Input',
-          label: '中文名称',
+          label: '名称',
           field: 'title',
           colProps: {
             span: 24,

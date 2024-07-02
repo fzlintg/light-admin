@@ -31,6 +31,7 @@
         @handle-preview2="handleOpenModal(eFormPreview2!)"
         @handle-open-code-modal="handleOpenModal(codeModal!)"
         @handle-clear-form-items="handleClearFormItems"
+        @handle-save-form-items="handleSaveFormItems"
         ref="toolbarRef"
       />
       <FormComponentPanel
@@ -99,11 +100,12 @@
   import { useDesign } from '@h/web/useDesign';
 
   import { CollapseContainer } from '@c/Container';
+  import { useMessage } from '@h/web/useMessage';
 
   defineProps({
     title: {
       type: String,
-      default: 'v-form-antd表单设计器',
+      default: 'light-form表单设计器',
     },
   });
   const { prefixCls } = useDesign('form-design');
@@ -116,6 +118,7 @@
 
   const codeModal = ref<null | IToolbarMethods>(null);
   const toolbarRef = ref();
+  const { createMessage } = useMessage();
   //add by lintg
 
   // const baseComponentsOrigin = computed(() =>
@@ -321,11 +324,11 @@
     handleSetSelectItem({ component: '' });
   };
 
-  // const handleSaveFormItems = () => {
-  //   let cache = getQueryParam('cache') || '';
-  //   window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
-  //   createMessage.success('保存成功');
-  // };
+  const handleSaveFormItems = () => {
+    let cache = getQueryParam('cache') || '';
+    window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
+    toolbarRef.value.saveLogic(formConfig.value);
+  };
   // const handleSettings = () => {
   //   toolbarRef.value.openSetting();
   // };
