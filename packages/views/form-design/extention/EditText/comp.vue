@@ -73,7 +73,6 @@
   };
 
   const saveEdit = () => {
-    debugger;
     emit('update:value', state.value);
     editing.value = false;
   };

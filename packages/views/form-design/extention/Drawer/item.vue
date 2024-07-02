@@ -30,7 +30,7 @@
   const formModelNew = ref({});
   const formRef = ref(null);
   const extraData = ref({});
-
+  const openData = ref({});
   const { schema, formConfig } = toRefs(useAttrs());
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
@@ -49,6 +49,7 @@
   // formConfig.value.children = schema.value.children;
   const show = (fData, eData, raw = false) => {
     if (fData) {
+      openData.value = fData;
       formModelNew.value = raw ? fData : flattenObject(fData);
     }
     if (eData) extraData.value = eData;
@@ -60,10 +61,15 @@
     emit('okButtonClick', {
       _this,
       callback: (result) => {
+        if (result) {
+          //lintg.待进一步修改
+          Object.assign(openData.value, formModelNew.value);
+        }
         open.value = !result;
       },
     });
   };
+
   const close = () => {
     emit('dialogBeforeClose', {
       callback: (result) => {

@@ -144,9 +144,11 @@ export default {
         title: '逻辑库',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `let data=await this.itemRef("drawer_2").getFormModel();
-        let config=this.itemRef("drawer_2").getExtraData();
+        onOkButtonClick__func: `let drawer=this.itemRef("drawer_2");
+        let data=await drawer.getFormModel();
+        let config=drawer.getExtraData();
         let result=await axios.post({url:"/api/crud/update/base/page",data:{config,...data}});
+        if(result.id) drawer.setFormModel("id",result.id)
         createMessage.success("保存成功")
         return true;
         `,
