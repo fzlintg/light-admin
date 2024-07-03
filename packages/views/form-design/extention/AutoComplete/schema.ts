@@ -12,8 +12,8 @@ export default {
     labelField: 'name',
     api__func: `return await axios.get({url:'/autoComplete/getOptions?keyword='+params.keyword});`,
     api__params: ['params'],
-    tplRender__func: `return h('span',data.id)`,
-    tplRender__params: ['{h,r}'],
+    tplRender__func: `return h('span',data.value)`,
+    tplRender__params: ['{h,r}', 'data'],
     defaultContext__var: `{
       key_input: '1',
 }`,

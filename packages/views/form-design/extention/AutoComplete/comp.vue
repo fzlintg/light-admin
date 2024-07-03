@@ -84,8 +84,8 @@
     return {
       render() {
         let result = [h('span', data.value)];
-        if (props.tplRender) {
-          result = props.tplRender.call(null, { h, r: resolveComponent });
+        if (isFunction(props.tplRender)) {
+          result = props.tplRender.call(null, { h, r: resolveComponent }, data);
         }
         return result;
       },

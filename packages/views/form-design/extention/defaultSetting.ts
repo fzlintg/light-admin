@@ -42,6 +42,7 @@ const t = {
   showCancelBtn: '显示取消按钮',
   showOkBtn: '显示确定按钮',
   showFooter: '显示底块',
+  tplRender: '模版渲染',
 };
 const setting = {};
 
