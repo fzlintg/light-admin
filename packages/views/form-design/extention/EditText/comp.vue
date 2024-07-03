@@ -16,7 +16,7 @@
       <a-input v-model:value="state" ref="input" class="w100" />
       <template #overlay>
         <a-button-group size="small" class="mt-2 ml-2 d-flex jc-center">
-          <a-button type="dashed" @click="saveEdit">保存</a-button>
+          <a-button type="dashed" @click="saveEdit">确定</a-button>
           <a-button type="dashed" @click="cancelEdit">取消</a-button>
         </a-button-group>
       </template>

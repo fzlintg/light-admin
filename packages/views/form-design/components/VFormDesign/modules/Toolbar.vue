@@ -26,7 +26,7 @@
     </div>
     <span style="margin-right: 40px" class="d-flex ai-center">
       <a-tag v-if="logic.id" color="pink">{{ logic.id }}</a-tag>
-      <edit-text v-if="logic.title" :value="logic.title" defaultValue="test" />
+      <edit-text v-if="logic.title" v-model:value="logic.title" defaultValue="test" />
       <light-form logic="system.toolbar.setting" ref="settingFormRef" />
     </span>
   </div>
@@ -66,14 +66,6 @@
       const mode = computed(() => {
         return appStore.getLightFormConfig.mode;
       });
-      // const emit = defineEmits([
-      //   'handlePreview',
-      //   'handlePreview2',
-      //   'importJson',
-      //   'exportJson',
-      //   'exportCode',
-      //   'reset',
-      // ]);
 
       const state = reactive<{
         settingFormRef: any;

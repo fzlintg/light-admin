@@ -1,8 +1,10 @@
 <template>
-  <a-auto-complete v-bind="$attrs" v-model:value="state" :options="getOptions" @search="onSearch" />
+  <a-auto-complete v-bind="$attrs" v-model:value="state" :options="getOptions" @search="onSearch">
+    <template #option="item"> <component :is="renderContent(item)" /> </template>
+  </a-auto-complete>
 </template>
 <script lang="ts" setup>
-  import { PropType, ref, computed, unref, watch } from 'vue';
+  import { PropType, ref, computed, unref, watch, h, resolveComponent } from 'vue';
   import { AutoComplete as AAutoComplete } from 'ant-design-vue';
   import type { SelectValue } from 'ant-design-vue/es/select';
   import { isFunction } from '@utils/is';
@@ -23,6 +25,10 @@
     numberToString: propTypes.bool,
     api: {
       type: Function as PropType<(arg?: any) => Promise<OptionsItem[] | Recordable<any>>>,
+      default: null,
+    },
+    tplRender: {
+      type: Function as PropType<(item: OptionsItem) => Object>,
       default: null,
     },
     // api params
@@ -74,6 +80,17 @@
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
 
+  const renderContent = (data) => {
+    return {
+      render() {
+        let result = [h('span', data.value)];
+        if (props.tplRender) {
+          result = props.tplRender.call(null, { h, r: resolveComponent });
+        }
+        return result;
+      },
+    };
+  };
   const getOptions = computed(() => {
     const { labelField, valueField, numberToString } = props;
 

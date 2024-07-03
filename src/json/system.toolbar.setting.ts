@@ -99,18 +99,18 @@ export default {
             placeholder: '请输入关键字',
             valueField: 'value',
             labelField: 'label',
-            api__func: ` return await axios.get({url:'/api/model/list/'+params.keyword}); `,
+            api__func: ` if(!!params.keyword) return await axios.post({url:'/api/logic/getPageList/'+params.keyword}); `,
             api__params: ['params'],
             defaultContext__var: `  {  
-        key_input: '1',  
+        key_input: '',  
   }  `,
-            params__tpl: '{\n      keyword: ${key_input},\n}',
+            params__tpl: '{\n      keyword: "${key_input}",\n}',
             resultField: '',
-            onSelect__func: ` debugger; `,
+            onSelect__func: ` `,
             immediate: true,
             maxLength: 100,
             defaultContext: {
-              key_input: '1',
+              key_input: '',
             },
             params: {
               keyword: 1,
