@@ -72,7 +72,10 @@ export default {
         title: '加载服务端逻辑',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `      `,
+        onOkButtonClick__func: `  let data=await this.itemRef("drawer_1").getFormModel();   
+        debugger;
+        
+        `,
         onOkButtonClick__params: ['params'],
         onCancelButtonClick__func: `      `,
         onCancelButtonClick__params: ['params'],
