@@ -32,8 +32,8 @@ for (const path in schemaModules) {
   // console.log(schemaModules[path]?.default?.type);
   schemas[schemaModules[path]?.default?.type || 'custom'].schema.push({
     component,
+    type: 'custom',
     ...schemaModules[path].default,
-    _type: 'custom',
   });
 }
 const { setting, comp, func, widget, item, settingComp } = expModule;

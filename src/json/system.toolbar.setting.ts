@@ -9,22 +9,25 @@ export default {
         title: '设置',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `  let data=await this.itemRef("drawer").getFormModel();  
-          appStore.setLightFormConfig(data)  
-          createMessage.success('保存成功');  
-          return true;  
-      `,
+        onOkButtonClick__func: `   let data=await this.itemRef("drawer").getFormModel();   
+           appStore.setLightFormConfig(data)   
+           createMessage.success('保存成功');   
+           return true;   
+        `,
         onOkButtonClick__params: ['params'],
-        onCancelButtonClick__func: `        `,
+        onCancelButtonClick__func: `          `,
         onCancelButtonClick__params: ['params'],
-        onDialogOpened__func: `        `,
+        onDialogOpened__func: `          `,
         onDialogOpened__params: ['params'],
-        onDialogBeforeClose__func: `        `,
+        onDialogBeforeClose__func: `          `,
         onDialogBeforeClose__params: ['params'],
         width: 378,
         zIndex: 1000,
-        showOkBtn: true,
+        isDetail: false,
+        showDetailBack: false,
+        maskClosable: true,
         showCancelBtn: true,
+        showOkBtn: true,
         showFooter: true,
       },
       children: [
@@ -69,13 +72,13 @@ export default {
         title: '加载服务端逻辑',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `    `,
+        onOkButtonClick__func: `      `,
         onOkButtonClick__params: ['params'],
-        onCancelButtonClick__func: `    `,
+        onCancelButtonClick__func: `      `,
         onCancelButtonClick__params: ['params'],
-        onDialogOpened__func: `    `,
+        onDialogOpened__func: `      `,
         onDialogOpened__params: ['params'],
-        onDialogBeforeClose__func: `    `,
+        onDialogBeforeClose__func: `      `,
         onDialogBeforeClose__params: ['params'],
         width: 378,
         zIndex: 1000,
@@ -99,21 +102,26 @@ export default {
             placeholder: '请输入关键字',
             valueField: 'value',
             labelField: 'label',
-            api__func: ` if(!!params.keyword) return await axios.post({url:'/api/logic/getPageList/'+params.keyword}); `,
+            api__func: `  if(!!params.keyword) return await axios.post({url:'/api/logic/getPageList/'+params.keyword});  `,
             api__params: ['params'],
-            defaultContext__var: `  {  
-        key_input: '',  
-  }  `,
+            tplRender__func: ` return h('div',{class:'d-flex jc-between'},
+            [h('span',data.value),h('span',data.label)]
+          )
+            `,
+            tplRender__params: ['{h,r}', 'data'],
+            defaultContext__var: `   {   
+         key_input: '',   
+   }   `,
             params__tpl: '{\n      keyword: "${key_input}",\n}',
             resultField: '',
-            onSelect__func: ` `,
+            onSelect__func: `   `,
             immediate: true,
             maxLength: 100,
             defaultContext: {
               key_input: '',
             },
             params: {
-              keyword: 1,
+              keyword: '',
             },
           },
           _type: 'custom',
@@ -144,20 +152,20 @@ export default {
         title: '逻辑库',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `let drawer=this.itemRef("drawer_2");
-        let data=await drawer.getFormModel();
-        let config=drawer.getExtraData();
-        let result=await axios.post({url:"/api/crud/update/base/page",data:{config,...data}});
-        if(result.id) drawer.setFormModel("id",result.id)
-        createMessage.success("保存成功")
-        return true;
-        `,
+        onOkButtonClick__func: ` let drawer=this.itemRef("drawer_2"); 
+         let data=await drawer.getFormModel(); 
+         let config=drawer.getExtraData(); 
+         let result=await axios.post({url:"/api/crud/update/base/page",data:{config,...data}}); 
+         if(result.id) drawer.setFormModel("id",result.id) 
+         createMessage.success("保存成功") 
+         return true; 
+          `,
         onOkButtonClick__params: ['params'],
-        onCancelButtonClick__func: `  `,
+        onCancelButtonClick__func: `    `,
         onCancelButtonClick__params: ['params'],
-        onDialogOpened__func: `  `,
+        onDialogOpened__func: `    `,
         onDialogOpened__params: ['params'],
-        onDialogBeforeClose__func: `  `,
+        onDialogBeforeClose__func: `    `,
         onDialogBeforeClose__params: ['params'],
         width: 378,
         zIndex: 1000,
@@ -180,7 +188,7 @@ export default {
           componentProps: {
             type: 'text',
             defaultValue: '',
-            onChange__func: `  `,
+            onChange__func: `    `,
             readonly: true,
             disabled: true,
           },
@@ -201,7 +209,7 @@ export default {
           componentProps: {
             type: 'text',
             defaultValue: '',
-            onChange__func: `  `,
+            onChange__func: `    `,
             readonly: false,
           },
           _type: 'custom',
@@ -221,7 +229,7 @@ export default {
           componentProps: {
             type: 'text',
             defaultValue: '',
-            onChange__func: `  `,
+            onChange__func: `    `,
             readonly: false,
           },
           _type: 'custom',

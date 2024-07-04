@@ -29,7 +29,7 @@ async function bootstrap() {
   setupStore(app);
 
   await setupI18n(app);
-
+  console.log('i18n init ok');
   // Initialize internal system configuration
   // 初始化内部系统配置
   initAppConfigStore();

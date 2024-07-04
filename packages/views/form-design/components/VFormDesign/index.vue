@@ -121,12 +121,6 @@
   const { createMessage } = useMessage();
   //add by lintg
 
-  // const baseComponentsOrigin = computed(() =>
-  //   baseComponents.filter((item) => item._type == undefined),
-  // );
-  // const baseComponentsCustom = computed(() =>
-  //   baseComponents.filter((item) => item._type == 'custom'),
-  // );
   const formModel = ref({});
   // endregion
   const formConfig = ref<IFormConfig>({

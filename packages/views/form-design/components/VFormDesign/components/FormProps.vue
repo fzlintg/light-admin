@@ -75,6 +75,7 @@
         <Col><Checkbox v-model:checked="formConfig.hideRequiredMark">隐藏必选标记</Checkbox></Col>
       </FormItem>
     </Form>
+    <a-button type="link" @click="patchSchemas">组件修复</a-button>
   </div>
 </template>
 <script lang="ts" setup name="FormProps">
@@ -91,8 +92,12 @@
     RadioButton,
     RadioGroup,
   } from 'ant-design-vue';
+  import { formItemsForEach } from '@views/form-design/utils';
+  import { schemas } from '../../../extention/loader';
+  import { useMessage } from '@h/web/useMessage';
 
   const { formConfig } = useFormDesignState();
+  const { createMessage } = useMessage();
 
   formConfig.value = formConfig.value || {
     labelCol: { span: 24 },
@@ -111,4 +116,15 @@
     }
     return 0;
   });
+  const patchSchemas = () => {
+    formItemsForEach(formConfig.value.schemas, (schema) => {
+      let originSchema = schemas[schema.type || 'custom'].schema.find(
+        (item) => item.component == schema.component,
+      );
+      if (originSchema) {
+        schema.componentProps = { ...originSchema.componentProps, ...schema.componentProps };
+      }
+    });
+    createMessage.success('修正完成');
+  };
 </script>
