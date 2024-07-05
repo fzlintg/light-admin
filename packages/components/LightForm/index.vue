@@ -11,9 +11,10 @@
   import { cloneDeep } from 'lodash-es';
   import VFormCreate from '@views/form-design/components/VFormCreate/index.vue';
   import logicJson from '@/loader.ts';
-  //import { onMounted } from 'vue';
+
   import { formatRules } from '@views/form-design/utils/index.ts';
   import { onMounted } from 'vue';
+  import { defHttp as axios } from '@utils/http/axios';
 
   const props = defineProps({
     logic: {
@@ -30,11 +31,16 @@
     formModel = ref({}),
     vformRef = ref(null);
   const onSubmit = () => {};
-  // onMounted(() => {
-  const jsonData = cloneDeep(logicJson[props.logic]);
-  formatRules(jsonData.schemas);
-  formConfig.value = jsonData;
-  //});
+  onMounted(() => {
+    let jsonData;
+    // if(props.remote){
+    //   jsonData=await axios.post({url:"/api/logic/getLogicData/system.toolbar.setting"});
+    // }
+    // else
+    jsonData = cloneDeep(logicJson[props.logic]);
+    formatRules(jsonData.schemas);
+    formConfig.value = jsonData;
+  });
 
   defineExpose({ vformRef, getFormRef: () => vformRef.value });
 </script>
