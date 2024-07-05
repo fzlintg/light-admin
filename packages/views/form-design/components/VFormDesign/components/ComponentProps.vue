@@ -208,8 +208,8 @@
       for (const item in customSetting) {
         for (let comp of customSetting[item]) {
           if (!comp.sortTitle) {
-            if (comp.name?.endsWith('Field')) comp.sortTitle = '字段设置';
-            else if (comp.name?.endsWith('__func')) comp.sortTitle = '函数';
+            if (comp.field?.endsWith('Field')) comp.sortTitle = '字段设置';
+            else if (comp.field?.endsWith('__func')) comp.sortTitle = '函数';
           }
         }
       }
@@ -297,23 +297,25 @@
       );
       // 控制性的选项
       const controlOptions = computed(() => {
-        return allOptions.value.filter((item) => item.category == 'control');
+        return toRaw(allOptions.value).filter((item) => item.category == 'control');
       });
 
       // 非控制性选择
       const inputOptions = computed(() => {
-        let result = allOptions.value
+        let result = toRaw(allOptions.value)
           .filter((item) => {
             return item.category == 'input' && !item?.hidden;
           })
           .sort(function (a, b) {
-            return a.sortTitle > b.sortTitle ? -1 : a.sortTitle < b.sortTitle ? 1 : 0;
+            if (a.sortTitle > b.sortTitle) return 1;
+            if (a.sortTitle < b.sortTitle) return -1;
+            return 0;
           }); //lintg  添加了hidden)
+
         let title = '';
         for (let i = 0; i < result.length; i++) {
           if (title != result[i].sortTitle) {
             title = result[i].sortTitle!;
-            // console.log(title);
             result.splice(i, 0, {
               component: 'Divider',
               componentProps: {
