@@ -37,7 +37,7 @@
   };
 
   const formConfigNew = computed(() => {
-    return { ...formConfig.value, schemas: toRaw(schema.value.children) };
+    return { ...formConfig, schemas: toRaw(schema.children) };
   });
   const emit = defineEmits([
     'dialogOpened',

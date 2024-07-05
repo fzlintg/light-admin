@@ -113,6 +113,13 @@
             icon: 'ant-design:clear-outlined',
           },
           {
+            title: '新增',
+            type: 'localEvent',
+            event: 'handleNewFormItems',
+            mode: true,
+            icon: 'ant-design:plus-outlined',
+          },
+          {
             title: '载入服务',
             type: 'localEvent',
             event: 'openLogic',
@@ -151,6 +158,12 @@
             .getItemRef('drawer_1')
             .show(pick(state.logic, ['name']), state.logic);
         },
+        handleNewFormItems:()=>{
+          emit('handleClearFormItems');
+          state.logic={
+            id:null,title:'',name:''
+          }
+        }
       };
       const saveLogic = (schemas) => {
         if (appStore.getLightFormConfig.mode) {
