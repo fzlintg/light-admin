@@ -46,7 +46,7 @@
   // const attrs = useAttrs();
   const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
-  state.value = props.defaultValue;
+  state.value = state.value || props.defaultValue;
   const oldValue = ref(state.value);
   // watch(
   //   () => state.value,

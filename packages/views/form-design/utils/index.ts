@@ -1,7 +1,7 @@
-import { name } from './../extention/Echarts/tpl/pie/pieBar/options';
-import { forEach } from '@utils/helper/treeHelper';
-import { schema } from './../core/itemConfig/base';
-import { nextTick, emit } from 'vue';
+// import { name } from './../extention/Echarts/tpl/pie/pieBar/options';
+// import { forEach } from '@utils/helper/treeHelper';
+// import { schema } from './../core/itemConfig/base';
+import { nextTick } from 'vue';
 import { IVFormComponent, IFormConfig, IValidationRule } from '../typings/v-form-component';
 import {
   cloneDeep,
@@ -386,6 +386,7 @@ export function formatFunc(item, flag = false) {
         item[originName] = async function (...args) {
           // console.log('exec', this);
           // const argsCall = args.length == 0 ? [{}] : args;
+
           let result = await func.call(
             this,
             { axios: defHttp, nextTick, _, createMessage, appStore },

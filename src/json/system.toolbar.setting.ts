@@ -72,9 +72,15 @@ export default {
         title: '加载服务端逻辑',
         slots: {},
         placement: 'right',
-        onOkButtonClick__func: `  let data=await this.itemRef("drawer_1").getFormModel();   
-        debugger;
-        
+        onOkButtonClick__func: `let drawer=this.itemRef("drawer_1")
+        let formModel=await drawer.getFormModel();   
+        let extraData= drawer.getExtraData();
+        let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:{contains:formModel.name}}}});
+       if(result.data&&result.data.length>0) {
+          this.context.emit("loadSchemas",result.data[0].config);
+          Object.assign(extraData,{id:result.data[0].id,name:result.data[0].name,title:result.data[0].title})
+      }
+       return true;
         `,
         onOkButtonClick__params: ['params'],
         onCancelButtonClick__func: `      `,
@@ -100,7 +106,7 @@ export default {
           colProps: {
             span: 24,
           },
-          field: 'logic',
+          field: 'name',
           componentProps: {
             placeholder: '请输入关键字',
             valueField: 'value',

@@ -352,6 +352,7 @@
     handleAddAttrs,
     setFormConfig,
   });
+
   onMounted(() => {
     //自动读取本地缓存
     let cache = getQueryParam('cache') || '';

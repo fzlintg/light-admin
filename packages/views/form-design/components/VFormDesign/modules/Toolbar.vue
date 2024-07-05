@@ -27,7 +27,7 @@
     <span style="margin-right: 40px" class="d-flex ai-center">
       <a-tag v-if="logic.id" color="pink">{{ logic.id }}</a-tag>
       <edit-text v-if="logic.title" v-model:value="logic.title" defaultValue="test" />
-      <light-form logic="system.toolbar.setting" ref="settingFormRef" />
+      <light-form logic="system.toolbar.setting" ref="settingFormRef" @load-schemas="loadSchemas" />
     </span>
   </div>
   <!-- 操作区域 start -->
@@ -41,6 +41,7 @@
   import EditText from '../../../extention/EditText/comp.vue';
   import { useAppStore } from '@store/modules/app';
   import { useMessage } from '@h/web/useMessage';
+  import { pick } from 'lodash-es';
   // import { getQueryParam } from '../../../utils';
 
   interface IToolbarsConfig {
@@ -134,6 +135,7 @@
       });
 
       const historyRef = inject('historyReturn') as UseRefHistoryReturn<IFormConfig, IFormConfig>;
+      const formConfig = inject('formConfig') as Ref<IFormConfig>;
       const itemEmit = (item) => {
         if (item.type == 'localEvent') localEvent[item.event]();
         else emit(item.event);
@@ -144,13 +146,19 @@
           state.settingFormRef.getFormRef().getItemRef('drawer').show(data);
         },
         openLogic: () => {
-          state.settingFormRef.getFormRef().getItemRef('drawer_1').show(state.logic);
+          state.settingFormRef
+            .getFormRef()
+            .getItemRef('drawer_1')
+            .show(pick(state.logic, ['name']), state.logic);
         },
       };
       const saveLogic = (schemas) => {
         if (appStore.getLightFormConfig.mode) {
           state.settingFormRef.getFormRef().getItemRef('drawer_2').show(state.logic, schemas);
         } else createMessage.success('保存成功');
+      };
+      const loadSchemas = (schemas) => {
+        formConfig.value = schemas;
       };
 
       const { undo, redo, canUndo, canRedo } = historyRef;
@@ -164,6 +172,7 @@
         itemEmit,
         mode,
         saveLogic,
+        loadSchemas,
       };
     },
   });
