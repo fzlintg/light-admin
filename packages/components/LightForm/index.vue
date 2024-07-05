@@ -5,6 +5,7 @@
     v-model:formModel="formModel"
     ref="vformRef"
     @submit="onSubmit"
+    v-if="loaded"
   />
 </template>
 <script setup>
@@ -16,6 +17,7 @@
   import { onMounted } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
 
+  const loaded = ref(false);
   const props = defineProps({
     logic: {
       type: String,
@@ -31,15 +33,16 @@
     formModel = ref({}),
     vformRef = ref(null);
   const onSubmit = () => {};
-  onMounted(() => {
+  onMounted(async () => {
     let jsonData;
-    // if(props.remote){
-    //   jsonData=await axios.post({url:"/api/logic/getLogicData/system.toolbar.setting"});
-    // }
-    // else
-    jsonData = cloneDeep(logicJson[props.logic]);
+    if (!props.remote && logicJson[props.logic]) {
+      jsonData = cloneDeep(logicJson[props.logic]);
+    } else {
+      jsonData = await axios.post({ url: `/api/logic/getLogicData/${props.logic}` });
+    }
     formatRules(jsonData.schemas);
     formConfig.value = jsonData;
+    loaded.value = true;
   });
 
   defineExpose({ vformRef, getFormRef: () => vformRef.value });
