@@ -12,7 +12,7 @@
       item-key="key"
       v-model="schema.children"
       @start="$emit('dragStart', $event, schema.children)"
-      :move="handleCheck"
+
       @add="$emit('handleColAdd', event, schema.children)"
     >
       <template #item="{ element }">
@@ -40,7 +40,8 @@
     // formConfig,
   } = useFormDesignState();
 
-  const { currentItem, schema } = toRefs(useAttrs());
+ // const { currentItem, schema } = toRefs(useAttrs());
+ const { currentItem, schema } = useAttrs();
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');

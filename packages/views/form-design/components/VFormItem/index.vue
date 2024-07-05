@@ -347,7 +347,7 @@
         //   performance.mark('props-start');
         let omitObj=[];
         for (let item in props.schema.componentProps) {
-          if (item.endsWith('__func')) omitObj.push(item);
+          if (item.endsWith('__func')||item.endsWith('__params')||item.endsWith('__tpl')) omitObj.push(item);
         }
         let result=omit(toRaw(props.schema.componentProps),omitObj)
         const isCheck =

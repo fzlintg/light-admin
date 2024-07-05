@@ -31,7 +31,7 @@
   const formRef = ref(null);
   const extraData = ref({});
   const openData = ref({});
-  const { schema, formConfig } = toRefs(useAttrs());
+  const { schema, formConfig } = useAttrs();
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
   };
