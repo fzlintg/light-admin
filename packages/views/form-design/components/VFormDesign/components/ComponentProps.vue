@@ -210,6 +210,7 @@
           if (!comp.sortTitle) {
             if (comp.field?.endsWith('Field')) comp.sortTitle = '字段设置';
             else if (comp.field?.endsWith('__func')) comp.sortTitle = '函数';
+            else comp.sortTitle = '通用属性';
           }
         }
       }
@@ -305,6 +306,9 @@
         let result = toRaw(allOptions.value)
           .filter((item) => {
             return item.category == 'input' && !item?.hidden;
+          })
+          .map((item) => {
+            return { sortTitle: '通用属性', ...item };
           })
           .sort(function (a, b) {
             if (a.sortTitle > b.sortTitle) return 1;
