@@ -13,11 +13,16 @@
   import logicJson from '@/loader.ts';
   //import { onMounted } from 'vue';
   import { formatRules } from '@views/form-design/utils/index.ts';
+  import { onMounted } from 'vue';
 
   const props = defineProps({
     logic: {
       type: String,
       default: '',
+    },
+    remote: {
+      type: Boolean,
+      default: false,
     },
   });
   const formConfig = ref(null),
@@ -25,8 +30,11 @@
     formModel = ref({}),
     vformRef = ref(null);
   const onSubmit = () => {};
+  // onMounted(() => {
   const jsonData = cloneDeep(logicJson[props.logic]);
   formatRules(jsonData.schemas);
   formConfig.value = jsonData;
+  //});
+
   defineExpose({ vformRef, getFormRef: () => vformRef.value });
 </script>
