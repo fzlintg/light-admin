@@ -7,6 +7,7 @@
       ref="vformRef"
       @submit="onSubmit"
       v-if="loaded"
+      v-bind="$attrs"
     />
     <div class="refresh-icon" v-if="isMouseOver" @click="handleRefresh">
       <Icon icon="ant-design:reload-outlined" :size="10" />

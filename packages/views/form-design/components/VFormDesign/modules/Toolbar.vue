@@ -27,12 +27,7 @@
     <span style="margin-right: 40px" class="d-flex ai-center">
       <a-tag v-if="logic.id" color="pink">{{ logic.id }}</a-tag>
       <edit-text v-if="logic.title" v-model:value="logic.title" defaultValue="test" />
-      <light-form
-        logic="system.toolbar.setting"
-        ref="settingFormRef"
-        remote
-        @load-schemas="loadSchemas"
-      />
+      <light-form logic="system.toolbar.setting" ref="settingFormRef" @load-schemas="loadSchemas" />
     </span>
   </div>
   <!-- 操作区域 start -->
@@ -74,7 +69,11 @@
         return appStore.getLightFormConfig.mode;
       });
       let cache = getQueryParam('cache') || '';
-      let logic = JSON.parse(localStorage.getItem(`light_form_logic${cache}`))||{ id: null, name: '', title: '' };
+      let logic = JSON.parse(localStorage.getItem(`light_form_logic${cache}`)) || {
+        id: null,
+        name: '',
+        title: '',
+      };
 
       const state = reactive<{
         settingFormRef: any;
