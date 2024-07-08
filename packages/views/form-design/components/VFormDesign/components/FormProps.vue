@@ -76,6 +76,7 @@
       </FormItem>
     </Form>
     <a-button type="link" @click="patchSchemas">组件修复</a-button>
+    <light-form logic="system.tab.ai" @load-schemas="loadSchemas" />
   </div>
 </template>
 <script lang="ts" setup name="FormProps">
@@ -126,5 +127,8 @@
       }
     });
     createMessage.success('修正完成');
+  };
+  const loadSchemas = (schemas) => {
+    formConfig.value = schemas;
   };
 </script>

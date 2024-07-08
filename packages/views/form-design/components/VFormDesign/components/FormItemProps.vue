@@ -68,6 +68,7 @@
           <RuleProps />
         </FormItem>
       </Form>
+      <light-form logic="system.tab.ai" />
     </div>
   </div>
 </template>

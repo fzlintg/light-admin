@@ -321,7 +321,8 @@
   const handleSaveFormItems = () => {
     let cache = getQueryParam('cache') || '';
     window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
-    toolbarRef.value.saveLogic(formConfig.value);
+
+    toolbarRef.value.saveLogic(formConfig.value, cache);
   };
   // const handleSettings = () => {
   //   toolbarRef.value.openSetting();

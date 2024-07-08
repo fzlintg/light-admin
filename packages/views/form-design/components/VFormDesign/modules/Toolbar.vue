@@ -38,7 +38,7 @@
   <!-- 操作区域 start -->
 </template>
 <script lang="ts">
-  import { defineComponent, defineEmits, inject, reactive, toRefs } from 'vue';
+  import { defineComponent, inject, reactive, toRefs } from 'vue';
   import { UseRefHistoryReturn } from '@vueuse/core';
   import { IFormConfig } from '../../../typings/v-form-component';
   import { Tooltip, Divider, Tag as ATag, Input as AInput } from 'ant-design-vue';
@@ -47,6 +47,7 @@
   import { useAppStore } from '@store/modules/app';
   import { useMessage } from '@h/web/useMessage';
   import { pick } from 'lodash-es';
+  import { getQueryParam } from '../../../utils';
   // import { getQueryParam } from '../../../utils';
 
   interface IToolbarsConfig {
@@ -72,6 +73,8 @@
       const mode = computed(() => {
         return appStore.getLightFormConfig.mode;
       });
+      let cache = getQueryParam('cache') || '';
+      let logic = JSON.parse(localStorage.getItem(`light_form_logic${cache}`))||{ id: null, name: '', title: '' };
 
       const state = reactive<{
         settingFormRef: any;
@@ -79,7 +82,7 @@
         logic: { id: Number; title: String };
       }>({
         settingFormRef: null,
-        logic: { id: null, name: '', title: '' },
+        logic,
         toolbarsConfigs: [
           {
             title: '预览-支持布局',
@@ -172,7 +175,8 @@
           };
         },
       };
-      const saveLogic = (schemas) => {
+      const saveLogic = (schemas, cache) => {
+        window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(state.logic));
         if (appStore.getLightFormConfig.mode) {
           state.settingFormRef.getFormRef().getItemRef('drawer_2').show(state.logic, schemas);
         } else createMessage.success('保存成功');

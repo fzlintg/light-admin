@@ -1,12 +1,18 @@
 <template>
-  <VFormCreate
-    :form-config="formConfig"
-    v-model:fApi="fApi"
-    v-model:formModel="formModel"
-    ref="vformRef"
-    @submit="onSubmit"
-    v-if="loaded"
-  />
+  <div class="component-container" @mouseover="showRefreshIcon" @mouseleave="hideRefreshIcon">
+    <VFormCreate
+      :form-config="formConfig"
+      v-model:fApi="fApi"
+      v-model:formModel="formModel"
+      ref="vformRef"
+      @submit="onSubmit"
+      v-if="loaded"
+    />
+    <div class="refresh-icon" v-if="isMouseOver" @click="handleRefresh">
+      <Icon icon="ant-design:reload-outlined" :size="10" />
+      <!-- 使用Font Awesome图标库中的刷新图标 -->
+    </div>
+  </div>
 </template>
 <script setup>
   import { cloneDeep } from 'lodash-es';
@@ -14,7 +20,7 @@
   import logicJson from '@/loader.ts';
 
   import { formatRules } from '@views/form-design/utils/index.ts';
-  import { onMounted } from 'vue';
+  import { nextTick, onMounted } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
 
   const loaded = ref(false);
@@ -31,9 +37,13 @@
   const formConfig = ref(null),
     fApi = ref(null),
     formModel = ref({}),
-    vformRef = ref(null);
+    vformRef = ref(null),
+    isMouseOver = ref(false);
   const onSubmit = () => {};
   onMounted(async () => {
+    await loadData();
+  });
+  const loadData = async () => {
     let jsonData;
     if (!props.remote && logicJson[props.logic]) {
       jsonData = cloneDeep(logicJson[props.logic]);
@@ -43,7 +53,34 @@
     formatRules(jsonData.schemas);
     formConfig.value = jsonData;
     loaded.value = true;
-  });
-
+  };
+  const showRefreshIcon = () => {
+    isMouseOver.value = true;
+  };
+  const hideRefreshIcon = () => {
+    isMouseOver.value = false;
+  };
+  const handleRefresh = () => {
+    // 处理刷新逻辑
+    loaded.value = false;
+    nextTick(async () => {
+      await loadData();
+      //loaded.value = true;
+    });
+  };
   defineExpose({ vformRef, getFormRef: () => vformRef.value });
 </script>
+<style scoped>
+  .component-container {
+    position: relative;
+
+    /* 其他样式 */
+  }
+
+  .refresh-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+</style>

@@ -16,7 +16,6 @@
       <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
       <ComponentProps />
     </TabPane>
-    <TabPane :key="5" tab="AI" />
   </Tabs>
 </template>
 <script lang="ts">
