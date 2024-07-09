@@ -31,7 +31,6 @@
 </template>
 <script lang="ts">
   import {
-    toRaw,
     onMounted,
     computed,
     defineComponent,
@@ -40,7 +39,6 @@
     ref,
     unref,
     reactive,
-    defineExpose,
   } from 'vue';
   //import FormRender from './components/FormRender.vue';
   import { IFormConfig, AForm } from '../../typings/v-form-component';

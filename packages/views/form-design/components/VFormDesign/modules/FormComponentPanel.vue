@@ -12,7 +12,8 @@
     <Form v-bind="formConfig">
       <div class="draggable-box">
         <draggable
-          class="list-main ant-row"
+          class="ant-row d-flex list-main"
+          style="flex-wrap: wrap"
           group="form-draggable"
           :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
           ghostClass="moving"
@@ -54,7 +55,7 @@
       FormNode,
       draggable,
       Form,
-      //    Row,
+      Row,
       Empty,
     },
     emits: ['handleSetSelectItem'],
