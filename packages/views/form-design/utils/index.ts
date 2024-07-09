@@ -367,6 +367,19 @@ export const formatItemByContext = (schemas, context) => {
   });
   return schemas;
 };
+export function importJSON(json, ifInitKey = false) {
+  const regex = /^export\s+default\s+/;
+  const editorJsonData = new Function('return ' + json.replace(regex, ''))();
+  editorJsonData.schemas &&
+    formItemsForEach(editorJsonData.schemas, (formItem) => {
+      generateKey(formItem, ifInitKey);
+    });
+  return {
+    ...editorJsonData,
+    activeKey: 1,
+    currentItem: { component: '' },
+  };
+}
 export function formatFunc(item, flag = false) {
   for (const name in item) {
     if (endsWith(name, '__func')) {

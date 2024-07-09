@@ -75,7 +75,9 @@
         <Col><Checkbox v-model:checked="formConfig.hideRequiredMark">隐藏必选标记</Checkbox></Col>
       </FormItem>
     </Form>
-    <a-button type="link" @click="patchSchemas">组件修复</a-button>
+
+    <Icon @click="patchSchemas" icon="ion:construct-outline" :size="15" class="text-gray" />
+
     <light-form logic="system.tab.ai" @load-schemas="loadSchemas" />
   </div>
 </template>
@@ -93,7 +95,7 @@
     RadioButton,
     RadioGroup,
   } from 'ant-design-vue';
-  import { formItemsForEach } from '@views/form-design/utils';
+  import { formItemsForEach, importJSON } from '@views/form-design/utils';
   import { schemas } from '../../../extention/loader';
   import { useMessage } from '@h/web/useMessage';
 
@@ -129,6 +131,7 @@
     createMessage.success('修正完成');
   };
   const loadSchemas = (schemas) => {
-    formConfig.value = schemas;
+    let schemaData = importJSON(JSON.stringify(schemas), true);
+    formConfig.value = schemaData;
   };
 </script>

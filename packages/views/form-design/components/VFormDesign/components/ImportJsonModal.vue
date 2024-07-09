@@ -38,8 +38,8 @@
   // import message from '../../../utils/message';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   // import { codemirror } from 'vue-codemirror-lite';
-  import { IFormConfig } from '../../../typings/v-form-component';
-  import { formItemsForEach, generateKey } from '../../../utils';
+  // import { IFormConfig } from '../../../typings/v-form-component';
+  import { importJSON } from '../../../utils';
   import { CodeEditor, MODE } from '@c/CodeEditor';
   import { useMessage } from '@h/web/useMessage';
   import {
@@ -100,18 +100,19 @@
       const handleImportJson = () => {
         // 导入JSON
         try {
-          const regex = /^export\s+default\s+/;
-          const editorJsonData = new Function('return ' + state.json.replace(regex, ''))();
-          //const editorJsonData = JSON.parse(state.json) as IFormConfig;
-          editorJsonData.schemas &&
-            formItemsForEach(editorJsonData.schemas, (formItem) => {
-              generateKey(formItem, state.ifInitKey);
-            });
-          formDesignMethods.setFormConfig({
-            ...editorJsonData,
-            activeKey: 1,
-            currentItem: { component: '' },
-          });
+          // const regex = /^export\s+default\s+/;
+          // const editorJsonData = new Function('return ' + state.json.replace(regex, ''))();
+          // //const editorJsonData = JSON.parse(state.json) as IFormConfig;
+          // editorJsonData.schemas &&
+          //   formItemsForEach(editorJsonData.schemas, (formItem) => {
+          //     generateKey(formItem, state.ifInitKey);
+          //   });
+          // formDesignMethods.setFormConfig({
+          //   ...editorJsonData,
+          //   activeKey: 1,
+          //   currentItem: { component: '' },
+          // });
+          importJSON(state.json, state.ifInitKey);
           handleCancel();
           createMessage.success('导入成功');
         } catch {
