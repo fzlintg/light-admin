@@ -13,7 +13,7 @@
       <div class="draggable-box">
         <draggable
           class="ant-row d-flex list-main"
-          style="flex-wrap: wrap"
+          style="flex-wrap: wrap; align-content: flex-start"
           group="form-draggable"
           :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
           ghostClass="moving"
@@ -148,7 +148,6 @@
     }
 
     .draggable-box {
-      // height: calc(100vh - 120px);
       // // width: 100%;
       // overflow: auto;
 
@@ -159,8 +158,8 @@
 
       .list-main {
         // 列表动画
-
         height: calc(100vh - 120px);
+        min-height: 120px;
         overflow: auto;
 
         .list-enter-active {
