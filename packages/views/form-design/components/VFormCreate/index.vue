@@ -4,7 +4,7 @@
 <template>
   <div class="v-form-container">
     <Form class="v-form-model" ref="eFormModel" :model="formModel" v-bind="formModelProps">
-      <Row>
+      <Row class="ai-end">
         <VFormItem
           isRender
           v-for="(schema, index) of noHiddenList"
