@@ -12,7 +12,7 @@
       }"
       item-key="type"
       @start="handleStart($event, list)"
-      @add="handleAdd"
+      @end="handleAdd"
       :move="handleCheck"
     >
       <template #item="{ element, index }">
@@ -66,15 +66,22 @@
       const cloneItem = (one) => {
         return props.handleListPush(one);
       };
+
       const handleCheck = (evt) => {
         if (!!evt.draggedContext && !!evt.draggedContext.element) {
-          let { type, component } = evt.draggedContext.element;
+          let { component } = evt.draggedContext.element;
           if (evt.to) {
             if (
-              evt.to.className != 'list-main ant-row' &&
+              evt.to.className != 'ant-row d-flex list-main' &&
               (component == 'Modal' || component == 'Drawer')
             )
               return false;
+            console.log(evt);
+            if (evt.relatedContext.list.length > 0) {
+              let colSpan =
+                evt.relatedContext?.list[evt.relatedContext.index]?.colProps?.span || 24;
+              evt.draggedContext.element.colProps.span = colSpan;
+            }
           }
         }
         return true;

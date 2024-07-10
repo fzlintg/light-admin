@@ -180,8 +180,8 @@
   };
 
   const setGlobalConfigState = (formItem: IVFormComponent) => {
-    formItem.colProps = formItem.colProps || {};
-    formItem.colProps.span = globalConfigState.span;
+    formItem.colProps = formItem.colProps || { span: globalConfigState.span };
+    //   formItem.colProps.span = globalConfigState.span;
     // console.log('setGlobalConfigState', formItem);
   };
 
@@ -196,6 +196,8 @@
     const formItem = cloneDeep(item);
     formItem.width = formItem.width || '200px'; //lintg
     setGlobalConfigState(formItem);
+    //    formItem.colProps.span = colSpan;
+    //    console.log('drag,colspan', colSpan);
     generateKey(formItem);
 
     return formItem;
@@ -207,8 +209,11 @@
   const handleListPush = (item: IVFormComponent) => {
     // console.log('handleListPush', item);
     const formItem = cloneDeep(item);
+
     formItem.width = formItem.width || '200px'; //lintg
     setGlobalConfigState(formItem);
+    //formItem.colProps.span = colSpan;
+    //console.log('colspan!!', colSpan);
     generateKey(formItem);
     if (!formConfig.value.currentItem?.key) {
       handleSetSelectItem(formItem);
