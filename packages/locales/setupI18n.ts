@@ -1,3 +1,4 @@
+import { i18n } from '@locales/setupI18n';
 import type { App } from 'vue';
 import type { I18nOptions } from 'vue-i18n';
 
@@ -37,8 +38,12 @@ async function createI18nOptions(): Promise<I18nOptions> {
 }
 
 // setup i18n instance with glob
-export async function setupI18n(app: App) {
+export async function getI18n() {
   const options = await createI18nOptions();
   i18n = createI18n(options);
+  return i18n;
+}
+export async function setupI18n(app: App) {
+  const i18n = await getI18n();
   app.use(i18n);
 }

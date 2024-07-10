@@ -9,10 +9,12 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend';
 // import { createStyleImportPlugin, AndDesignVueResolve } from 'vite-plugin-style-import';
 // import Pages from 'vite-plugin-pages';
 // import Layouts from 'vite-plugin-vue-layouts';
+//import { getI18n } from './packages/locales/setupI18n';
 
 export default defineApplicationConfig({
   overrides: {
     plugins: [
+      //getI18n(),
       VueSetupExtend(),
 
       // styleImport({
