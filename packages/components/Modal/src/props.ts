@@ -5,6 +5,7 @@ import { useI18n } from '@h/web/useI18n';
 
 const { t } = useI18n();
 console.log('modal init');
+
 export const modalProps = {
   open: { type: Boolean },
   scrollTop: { type: Boolean, default: true },
@@ -13,8 +14,8 @@ export const modalProps = {
   // open drag
   draggable: { type: Boolean, default: true },
   centered: { type: Boolean },
-  cancelText: { type: String, default: t('common.cancelText') },
-  okText: { type: String, default: t('common.okText') },
+  cancelText: { type: String, default: '取消' },
+  okText: { type: String, default: '确定' },
 
   closeFunc: Function as PropType<() => Promise<boolean>>,
 };

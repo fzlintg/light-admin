@@ -20,6 +20,8 @@ import { setupStore } from '@/store';
 // import { setupComponents } from './plugin';
 import App from './App.vue';
 
+console.log('begin');
+
 async function bootstrap() {
   const app = createApp(App);
   //app.use(Antd);
@@ -63,6 +65,7 @@ async function bootstrap() {
   // await router.isReady();
   //setupComponents(app);
   app.mount('#app');
+  console.log('app mount');
   //app.config.globalProperties.$message = message;
 }
 

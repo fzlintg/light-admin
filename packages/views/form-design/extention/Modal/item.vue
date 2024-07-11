@@ -17,10 +17,10 @@
 </template>
 <script setup lang="ts">
   import VFormCreate from '../../components/VFormCreate/index.vue';
-
   import Modal from '@c/Modal/src/BasicModal.vue';
   import { flattenObject, formModelToData } from '../../utils';
   import { computed, getCurrentInstance } from 'vue';
+
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   // import { formatRules } from '../../utils/index';
   const _this = getCurrentInstance();

@@ -14,7 +14,7 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend';
 export default defineApplicationConfig({
   overrides: {
     plugins: [
-      //getI18n(),
+      //    getI18n(),
       VueSetupExtend(),
 
       // styleImport({
