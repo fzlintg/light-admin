@@ -204,6 +204,7 @@ export const getInitValue = (schemas, formModel: Object): any => {
     } else if (['SubForm', 'GridSubForm'].includes(component)) {
       if (!formModel[field!]) formModel[field!] = [{}];
       getInitValue(item.children, formModel[field!][0]);
+      return false; //一层即可不再往下遍历.lintg.2024
     } else {
       const fieldKeys = Object.keys(defaultValueObj || {});
       if (fieldKeys.length) {

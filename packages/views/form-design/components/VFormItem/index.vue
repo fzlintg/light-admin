@@ -345,17 +345,17 @@
       const myProps = ref({});
       const cmpProps = computed(() => {
         //   performance.mark('props-start');
-        let omitObj=[];
+        let omitObj = [];
         for (let item in props.schema.componentProps) {
-          if (item.endsWith('__func')||item.endsWith('__params')||item.endsWith('__tpl')) omitObj.push(item);
+          if (item.endsWith('__func') || item.endsWith('__params') || item.endsWith('__tpl'))
+            omitObj.push(item);
         }
-        let result=omit(toRaw(props.schema.componentProps),omitObj)
+        let result = omit(toRaw(props.schema.componentProps), omitObj);
         const isCheck =
           props.schema && ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         let { field } = props.schema;
 
-        let { disabled, ...attrs } =
-          omit(result, ['options', 'treeData']) ?? {};
+        let { disabled, ...attrs } = omit(result, ['options', 'treeData']) ?? {};
 
         disabled = props.formConfig.disabled || disabled;
 

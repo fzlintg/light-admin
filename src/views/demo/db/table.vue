@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="myDiagramDiv" ref="diagram" class="dbDiagram"></div>
-    <light-form logic="dbtable.edit" ref="vformRef" />
+    <light-form logic="dbtable.edit" ref="lightFormRef" />
   </div>
 </template>
 <script lang="ts">
@@ -25,57 +25,13 @@
         node: null,
         formEdit: null,
         formData: {},
-        vformRef: null,
+        lightFormRef: null,
       });
       const openEditForm = (node) => {
         const items = node.data.items;
-        state.vformRef.vformRef.getItemRef('modal').show({ items });
+        state.lightFormRef.vformRef.getItemRef('modal').show({ items });
       };
       go.Shape.defineFigureGenerator('Decision', 'Diamond');
-      // const reload = async () => {
-      //   const formData = await (state.queryForm as any).getFormData();
-      //   await loadData(formData.db);
-      // };
-      // const getCacheChart = async () => {
-      //   const formData = await (state.queryForm as any).getFormData();
-      //   const chart = await request.get(`/api/getTableChart/${formData.db}`);
-      //   myDiagram.model = go.Model.fromJson(chart.data);
-      // };
-      // const save = async () => {
-      //   const formData = await (state.queryForm as any).getFormData();
-      //   const chart = myDiagram.model.toJson();
-      //   const result: any = await request.post(`/api/tableChart/${formData.db}`, {
-      //     chart,
-      //   });
-      //   $baseMessage(result.message);
-      //   myDiagram.model = go.Model.fromJSON(chart);
-      //   //     myDiagram.model.toJSON()
-      //   //   )
-      // };
-      // const openEditForm = async (node: any) => {
-      //   state.node = node;
-      //   const formData = await (state.queryForm as any).getFormData();
-      //   const data = await request.post('/api/getTable/base/sys_table', {
-      //     include: { db: true },
-      //     rawquery: { name: node.data.key, db: { name: formData.db } },
-      //   });
-      //   state.formData = data.data?.[0];
-      //   state.showEditForm = true;
-      //   // state.formEdit.setFormData(formData);
-      // };
-      // const saveData = async () => {
-      //   const formData = await (state.formEdit as any).getFormData();
-      //   const result: any = await request.post(
-      //     `/api/tableData/base/sys_table/${(state.node as any).data.id}`,
-      //     formData,
-      //   );
-      //   $baseMessage(result.message);
-      //   return result;
-      // };
-      // const submitData = async () => {
-      //   const result = await saveData();
-      //   if (result.code == 200) state.showEditForm = false;
-      // };
 
       const init = async () => {
         const $ = go.GraphObject.make; // for conciseness in defining templates

@@ -9,7 +9,11 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `      `,
+        onOkButtonClick__func: ` let data=await this.itemRef('modal').getFormModel();
+        let result=await axios.post({url:'/api/crud/updateByUnique/base/sys_table',data:{data:{config:data,title:'sys_table'}
+          ,where:{name:'sys_table',db_id:2}
+        }});
+        `,
         onOkButtonClick__params: ['{_this,callback}'],
         onCancelButtonClick__func: `      `,
         onDialogOpened__func: `      `,
