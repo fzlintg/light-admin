@@ -76,12 +76,12 @@
               (component == 'Modal' || component == 'Drawer')
             )
               return false;
-            console.log(evt);
-            if (evt.relatedContext.list.length > 0) {
-              let colSpan =
-                evt.relatedContext?.list[evt.relatedContext.index]?.colProps?.span || 24;
-              evt.draggedContext.element.colProps.span = colSpan;
-            }
+            // console.log(evt);
+            // if (evt.relatedContext.list.length > 0) {
+            //   let colSpan =
+            //     evt.relatedContext?.list[evt.relatedContext.index]?.colProps?.span || 24;
+            //   evt.draggedContext.element.colProps.span = colSpan;
+            // }
           }
         }
         return true;
