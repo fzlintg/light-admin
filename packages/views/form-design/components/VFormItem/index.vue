@@ -29,7 +29,7 @@
       >
       <span class="item-icon">
         <Icon
-          v-if="inSubForm"
+          v-if="inSubForm == 'gridSubForm'"
           icon="ant-design:eye-invisible-outlined"
           @click="$emit('subItemHide')"
       /></span>
@@ -86,7 +86,7 @@
       </FormItem>
       <span class="item-icon">
         <Icon
-          v-if="inSubForm"
+          v-if="inSubForm == 'gridSubForm'"
           icon="ant-design:eye-invisible-outlined"
           @click="$emit('subItemHide')"
       /></span>

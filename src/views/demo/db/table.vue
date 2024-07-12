@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="myDiagramDiv" ref="diagram" class="dbDiagram"></div>
-    <light-form logic="dbtable.edit" ref="lightFormRef" />
+    <light-form logic="dbtable.edit" remote ref="lightFormRef" />
   </div>
 </template>
 <script lang="ts">
@@ -27,9 +27,11 @@
         formData: {},
         lightFormRef: null,
       });
-      const openEditForm = (node) => {
-        const items = node.data.items;
-        state.lightFormRef.vformRef.getItemRef('modal').show({ items });
+      const openEditForm = async (node) => {
+        const { db, key, db_id } = node.data;
+        // const items = node.data.items;
+        let config = await axios.get({ url: `/api/model/tableModel/${db}/${key}` });
+        state.lightFormRef.vformRef.getItemRef('modal').show(config, { db, table: key, db_id });
       };
       go.Shape.defineFigureGenerator('Decision', 'Diamond');
 
@@ -90,9 +92,9 @@
             toSpot: go.Spot.LeftRightSides,
           },
           {
-            doubleClick: (e: any, node: any) => {
+            doubleClick: async (e: any, node: any) => {
               console.log(e, node);
-              openEditForm(node);
+              await openEditForm(node);
             },
           },
           new go.Binding('location', 'location').makeTwoWay(),

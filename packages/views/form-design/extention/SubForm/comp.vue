@@ -46,7 +46,7 @@
             :form-model="getRowModel(rowId)"
             :formConfig="props.formConfig"
             :setFormModel="setRowModel(rowId)"
-            :inSubForm="true"
+            inSubForm="subForm"
             parentComp="SubForm"
           />
         </Row>
@@ -78,17 +78,27 @@
   const [stateModel] = useRuleFormItem(props, 'value', 'change');
   const rowIds = reactive([]);
   stateModel.value = stateModel.value || [];
-  //const initKeys = props.schema.children.map((item) => item.field);
-  if (Array.isArray(stateModel.value)) {
-    //自带初始值，配套提供rowIds
-    for (let i = 0; i < stateModel.value.length; i++) {
-      rowIds.push(uniqueId('gsf_'));
+  const initRowIds = () => {
+    rowIds.splice(0, rowIds.length);
+    if (Array.isArray(stateModel.value)) {
+      //自带初始值，配套提供rowIds
+      for (let i = 0; i < stateModel.value.length; i++) {
+        rowIds.push(uniqueId('gsf_'));
+      }
     }
-  }
+  };
+
+  //const initKeys = props.schema.children.map((item) => item.field);
 
   const subFormDefaultModel = reactive({});
   getInitValue([props.schema], subFormDefaultModel);
   const initModel = toRaw(subFormDefaultModel[props.schema.field][0]);
+  watch(
+    () => props.value,
+    () => {
+      initRowIds();
+    },
+  );
   //  const initValue = toRaw(subFormDefaultValue[props.schema.field][0]);
   // watch(
   //   () => state.value,
@@ -135,6 +145,7 @@
   };
   onMounted(() => {
     //initData();
+    initRowIds();
     if (stateModel.value?.length == 0) {
       rowIds.splice(0, rowIds.length);
       addRowId();
