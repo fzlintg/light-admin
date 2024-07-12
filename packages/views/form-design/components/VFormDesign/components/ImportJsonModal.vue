@@ -112,7 +112,8 @@
           //   activeKey: 1,
           //   currentItem: { component: '' },
           // });
-          importJSON(state.json, state.ifInitKey);
+          const config = importJSON(state.json, state.ifInitKey);
+          formDesignMethods.setFormConfig(config);
           handleCancel();
           createMessage.success('导入成功');
         } catch {
