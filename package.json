@@ -114,7 +114,8 @@
     "vue3-colorpicker": "^2.3.0",
     "vue3-json-viewer": "^2.2.2",
     "vuedraggable": "^4.1.0",
-    "vxe-table": "^4.6.3",
+    "vxe-pc-ui": "^4.0.67",
+    "vxe-table": "next",
     "vxe-table-plugin-export-xlsx": "^4.0.1",
     "xe-utils": "^3.5.25",
     "xlsx": "^0.18.5"

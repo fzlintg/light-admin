@@ -194,7 +194,8 @@ export const getInitValue = (schemas, formModel: Object): any => {
   formItemsForEach(schemas, (item) => {
     const { component, field, defaultValueObj } = item;
     if (item.type == 'showItem') return;
-    const defaultValue = item.defaultValue ?? item?.componentProps.defaultValue;
+
+    const defaultValue = item.defaultValue ?? item?.componentProps?.defaultValue;
     // const field = field || name;
     if (item.type == 'gridContainer') {
       // 栅格布局
