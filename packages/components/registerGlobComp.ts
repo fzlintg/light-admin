@@ -4,9 +4,6 @@ import { Input, Layout, Alert } from 'ant-design-vue';
 
 import VxeTable from 'vxe-table';
 import 'vxe-table/lib/style.css';
-// ...
-
-// ...可选 UI
 import VxeUI from 'vxe-pc-ui';
 import 'vxe-pc-ui/lib/style.css';
 import LightForm from './LightForm/index.vue';
