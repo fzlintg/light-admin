@@ -42,7 +42,7 @@
     isMouseOver = ref(false);
   const onSubmit = () => {};
   onMounted(async () => {
-    await loadData();
+    if (!loaded.value) await loadData();
   });
   const loadData = async () => {
     let jsonData;
@@ -51,6 +51,7 @@
     } else {
       jsonData = await axios.post({ url: `/api/logic/getLogicData/${props.logic}` });
     }
+    debugger;
     formatRules(jsonData.schemas);
     formConfig.value = jsonData;
     loaded.value = true;
@@ -66,7 +67,6 @@
     loaded.value = false;
     nextTick(async () => {
       await loadData();
-      //loaded.value = true;
     });
   };
   defineExpose({ vformRef, getFormRef: () => vformRef.value });
