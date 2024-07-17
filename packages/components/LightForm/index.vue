@@ -42,8 +42,17 @@
     isMouseOver = ref(false);
   const onSubmit = () => {};
   onMounted(async () => {
-    if (!loaded.value) await loadData();
+    if (!loaded.value) {
+      await loadData();
+      loaded.value = true;
+    }
   });
+  watch(
+    () => props.logic,
+    async () => {
+      await loadData();
+    },
+  );
   const loadData = async () => {
     let jsonData;
     if (!props.remote && logicJson[props.logic]) {
@@ -51,10 +60,8 @@
     } else {
       jsonData = await axios.post({ url: `/api/logic/getLogicData/${props.logic}` });
     }
-    debugger;
     formatRules(jsonData.schemas);
     formConfig.value = jsonData;
-    loaded.value = true;
   };
   const showRefreshIcon = () => {
     isMouseOver.value = true;

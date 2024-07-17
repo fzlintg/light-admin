@@ -346,11 +346,12 @@
       const cmpProps = computed(() => {
         //   performance.mark('props-start');
         let omitObj = [];
-        for (let item in props.schema.componentProps) {
-          if (item.endsWith('__func') || item.endsWith('__params') || item.endsWith('__tpl'))
-            omitObj.push(item);
-        }
-        let result = omit(toRaw(props.schema.componentProps), omitObj);
+        // for (let item in props.schema.componentProps) {
+        //   if (item.endsWith('__func') || item.endsWith('__params') || item.endsWith('__tpl'))
+        //     omitObj.push(item);
+        // }
+        // let result = omit(toRaw(props.schema.componentProps), omitObj);
+        let result = toRaw(props.schema.componentProps);
         const isCheck =
           props.schema && ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         let { field } = props.schema;
@@ -363,7 +364,7 @@
           ...attrs,
           disabled,
           [isCheck ? 'checked' : 'value']: unref(cur_formModel)[field!],
-          ...myProps.value,
+          //   ...myProps.value,
         };
         // performance.mark('props-end');
         // performance.measure('props', 'props-start', 'props-end');

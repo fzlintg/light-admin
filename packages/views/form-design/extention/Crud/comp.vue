@@ -1,7 +1,11 @@
 <template>
-  <light-form :logic="`crud.${db}.${table}.detail`" />
+  <div
+    >{{ state }},{{ props.table }},{{ schema.componentProps.table }}
+    <light-form :logic="`crud.${props.db}.${state}.form`" />
+  </div>
 </template>
 <script lang="ts" setup>
+  import { useRuleFormItem } from '@h/component/useFormItem';
   import { PropType, ref, useAttrs } from 'vue';
 
   const props = defineProps({
@@ -10,8 +14,10 @@
       default: '50vh',
     },
     table: {
-      type: Object as PropType<Object>,
-      default: () => {},
+      type: String as PropType<string>,
+      default: '',
     },
   });
+  const [state] = useRuleFormItem(props, 'table', 'change');
+  const { schema } = toRefs(useAttrs());
 </script>
