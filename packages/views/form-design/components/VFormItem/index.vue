@@ -24,6 +24,7 @@
         @change="handleChange"
         @click="handleClick(schema)"
         :getParent="() => proxy"
+        :debug="debug"
         ref="formItemRef"
         >{{ schema.component == 'Button' ? schema.label : '' }}</component
       >
@@ -80,6 +81,7 @@
             :getFormItem="getFormItem"
             @change="handleChange"
             @click="handleClick(schema)"
+            :debug="debug"
             ref="formItemRef"
             :getParent="() => proxy"
         /></div>
@@ -104,8 +106,6 @@
     PropType,
     unref,
     getCurrentInstance,
-    onMounted,
-    watchEffect,
     ref,
   } from 'vue';
   import { componentMap } from '../../core/formItemConfig';
@@ -164,6 +164,10 @@
       parentComp: {
         type: String,
         default: '',
+      },
+      debug: {
+        type: Boolean,
+        default: false,
       },
     },
     emits: ['update:formModel', 'change'],
@@ -333,10 +337,6 @@
           result.treeData = treeData;
         }
         return result;
-        // return {
-        //   options,
-        //   treeData,
-        // };
       });
 
       /**
@@ -345,13 +345,12 @@
       const myProps = ref({});
       const cmpProps = computed(() => {
         //   performance.mark('props-start');
-        let omitObj = [];
-        // for (let item in props.schema.componentProps) {
-        //   if (item.endsWith('__func') || item.endsWith('__params') || item.endsWith('__tpl'))
-        //     omitObj.push(item);
-        // }
-        // let result = omit(toRaw(props.schema.componentProps), omitObj);
-        let result = toRaw(props.schema.componentProps);
+        let omitObj: any[] = [];
+        for (let item in props.schema.componentProps) {
+          if (item.endsWith('__func') || item.endsWith('__params') || item.endsWith('__tpl'))
+            omitObj.push(item);
+        }
+        let result = omit(props.schema.componentProps, omitObj);
         const isCheck =
           props.schema && ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         let { field } = props.schema;
@@ -364,11 +363,8 @@
           ...attrs,
           disabled,
           [isCheck ? 'checked' : 'value']: unref(cur_formModel)[field!],
-          //   ...myProps.value,
+          ...myProps.value,
         };
-        // performance.mark('props-end');
-        // performance.measure('props', 'props-start', 'props-end');
-        //return result;
       });
 
       const handleChange = function (e) {

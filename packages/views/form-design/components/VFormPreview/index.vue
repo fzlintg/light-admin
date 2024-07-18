@@ -19,6 +19,7 @@
       v-model:fApi="fApi"
       v-model:formModel="formModel"
       @submit="onSubmit"
+      :debug="true"
     >
       <template #slotName="{ formModel, field }">
         <a-input v-model:value="formModel[field]" placeholder="我是插槽传递的输入框" />

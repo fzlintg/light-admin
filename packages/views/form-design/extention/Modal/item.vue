@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a-button v-if="debug" @click="open = true">测试</a-button>
     <modal
       v-model:open="open"
       v-bind="schema.componentProps"
@@ -12,6 +13,7 @@
         v-model:fApi="fApi"
         v-model:formModel="formModelNew"
         ref="formRef"
+        :debug="debug"
     /></modal>
   </div>
 </template>
@@ -30,7 +32,8 @@
   const formRef = ref(null);
   const extraData = ref({});
 
-  const { schema, formConfig } = toRefs(useAttrs());
+  const { schema, formConfig, debug } = toRefs(useAttrs());
+
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
   };

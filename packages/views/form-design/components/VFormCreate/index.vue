@@ -17,6 +17,7 @@
           :setFormModel="setFormModel"
           @submit="handleSubmit"
           @reset="resetFields"
+          :debug="debug"
         >
           <template v-if="schema && schema.componentProps" #[`schema.componentProps!.slotName`]>
             <slot
@@ -68,6 +69,10 @@
       formConfig: {
         type: Object as PropType<IFormConfig>,
         required: true,
+      },
+      debug: {
+        type: Boolean,
+        default: false,
       },
     },
     emits: ['submit', 'change', 'update:fApi', 'update:formModel'],

@@ -46,14 +46,15 @@ const appStore = useAppStore();
  * @returns {string|boolean} 返回一个唯一 id 或者 false
  */
 export function generateKey(formItem?: IVFormComponent, flag = true): string | boolean {
+  const uid = uniqueId(`${toLine(formItem.component)}_`);
   if (formItem && formItem.component) {
-    const key = flag ? uniqueId(`${toLine(formItem.component)}_`) : formItem.field;
+    const key = flag ? uid : formItem.field;
     if (!flag) {
       const id = formItem.field?.split('_')?.[1];
       if (id) setUniqueId(`${toLine(formItem.component)}_`, id);
     }
 
-    formItem.key = key;
+    formItem.key = uid;
     formItem.field = key;
 
     return true;
@@ -441,9 +442,9 @@ export function formatFunc(item, flag = false) {
       //   if (flag) delete item[name];
     } else if (endsWith(name, '__tpl')) {
       const originName = name.substr(0, name.length - 5);
-      const context =
-        item['defaultContext'] ??
-        (item['defaultContext__tpl'] ? eval('(' + item['defaultContext__tpl'] + ')') : {});
+      const context = item['defaultContext__var']
+        ? eval('(' + item['defaultContext__var'] + ')')
+        : {};
       const paramStr = template(item[name])(context);
       item[originName] = eval('(' + paramStr + ')');
     }
