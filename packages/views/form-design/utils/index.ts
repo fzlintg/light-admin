@@ -115,14 +115,15 @@ export function toLine(str: string) {
 export function findSiblingsByName(schemas: IVFormComponent[], targetName) {
   let formItems: any = findFormItem(schemas, (item: IVFormComponent) => {
     if (['Modal', 'Drawer'].includes(item.component)) {
-      if (findFormItem(item.children, (i) => i.field == targetName)) return true;
+      if (findFormItem(item.children, (i) => i.key == targetName)) return true;
     }
   });
   formItems = formItems ? formItems.children : schemas;
   const result: any[] = [];
   formItemsForEach(formItems, (item) => {
-    if (['Modal', 'Drawer'].includes(item.component)) return false;
-    if (item.field != targetName)
+    // if (['Modal', 'Drawer'].includes(item.component)) return false;
+    if (['container', 'gridContainer'].includes(item.type)) return false;
+    if (item.key != targetName)
       result.push({ label: item.label + '/' + item.field, value: item.field });
   });
   return result;
