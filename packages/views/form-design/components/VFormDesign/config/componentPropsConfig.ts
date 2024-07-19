@@ -321,6 +321,11 @@ const componentAttrs: IBaseComponentProps = {
       },
       defaultValue: 100,
     },
+    {
+      field: 'readonly',
+      label: '是否只读',
+      component: 'Checkbox',
+    },
   ],
 
   InputNumber: [

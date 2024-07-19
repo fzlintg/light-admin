@@ -1,10 +1,8 @@
-import { forEach } from '@utils/helper/treeHelper';
-import { Slots, Component } from 'vue';
+import { Component } from 'vue';
 /**
  * @description：表单配置
  */
-import { IVFormComponent } from '../typings/v-form-component';
-import { isArray } from 'lodash-es';
+
 import { componentMap as VbenCmp, add } from '@c/Form/src/componentMap';
 import { ComponentType } from '@c/Form/src/types';
 
