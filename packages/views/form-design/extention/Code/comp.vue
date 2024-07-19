@@ -16,7 +16,7 @@
   />
 </template>
 <script setup>
-  import { CodeEditor, MODE } from '@c/CodeEditor';
+  import { CodeEditor } from '@c/CodeEditor';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { Alert as AAlert } from 'ant-design-vue';
