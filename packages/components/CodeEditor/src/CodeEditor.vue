@@ -6,7 +6,7 @@
       :mode="mode"
       :readonly="readonly"
       :bordered="bordered"
-      ref="codeMirrorRef"
+      :config="config"
     />
   </div>
 </template>
@@ -15,6 +15,7 @@
   import CodeMirrorEditor from './codemirror/CodeMirror.vue';
   import { isString } from '@utils/is';
   import { MODE } from './typing';
+  import type { EditorConfiguration } from 'codemirror';
 
   const props = defineProps({
     value: { type: [Object, String] as PropType<Record<string, any> | string> },
@@ -29,10 +30,11 @@
     readonly: { type: Boolean },
     autoFormat: { type: Boolean, default: true },
     bordered: { type: Boolean, default: false },
+    config: { type: Object as PropType<EditorConfiguration>, default: () => {} },
   });
 
   const emit = defineEmits(['change', 'update:value', 'format-error']);
-  const codeMirrorRef = ref(null);
+
   const getValue = computed(() => {
     const { value, mode, autoFormat } = props;
     if (!autoFormat || mode !== MODE.JSON) {

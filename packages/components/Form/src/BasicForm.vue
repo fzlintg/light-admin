@@ -54,7 +54,7 @@
 
   import { useFormValues } from './hooks/useFormValues';
   import useAdvanced from './hooks/useAdvanced';
-  import { useFormEvents } from './hooks/useFormEvents';
+  import { itemIsUploadComponent, useFormEvents } from './hooks/useFormEvents';
   import { createFormContext } from './hooks/useFormContext';
   import { useAutoFocus } from './hooks/useAutoFocus';
   import { useModalContext } from '@c/Modal';
@@ -64,6 +64,7 @@
   import { useDesign } from '@h/web/useDesign';
   import { cloneDeep, set } from 'lodash-es';
   import { TableActionType } from '@c/Table';
+  import { isArray, isFunction } from '@utils/is';
 
   defineOptions({ name: 'BasicForm' });
 
@@ -124,9 +125,7 @@
     return toRaw(unref(val));
   };
   //const getBindValue = computed(() => ({ ...attrs, ...props, ...unref(getProps) }) as AntFormProps);
-  const getBindValue = computed(
-    () => ({ ...toRawUnref(attrs), ...toRawUnref(props), ...toRawUnref(getProps) }) as AntFormProps,
-  );
+  const getBindValue = computed(() => ({ ...attrs, ...props, ...unref(getProps) }) as AntFormProps);
 
   const getSchema = computed((): FormSchema[] => {
     const schemas: FormSchema[] = cloneDeep(unref(schemaRef) || (unref(getProps).schemas as any));
@@ -136,6 +135,9 @@
         component,
         componentProps = {},
         isHandleDateDefaultValue = true,
+        field,
+        isHandleDefaultValue = true,
+        valueFormat,
       } = schema;
       // handle date type
       if (
@@ -167,6 +169,24 @@
           schema.defaultValue = def;
         }
       }
+      // handle upload type
+      if (defaultValue && itemIsUploadComponent(schema?.component)) {
+        if (isArray(defaultValue)) {
+          schema.defaultValue = defaultValue;
+        } else if (typeof defaultValue == 'string') {
+          schema.defaultValue = [defaultValue];
+        }
+      }
+
+      // handle schema.valueFormat
+      if (isHandleDefaultValue && defaultValue && component && isFunction(valueFormat)) {
+        schema.defaultValue = valueFormat({
+          value: defaultValue,
+          schema,
+          model: formModel,
+          field,
+        });
+      }
     }
     if (unref(getProps).showAdvancedButton) {
       return schemas.filter(
@@ -190,7 +210,7 @@
     getProps,
     defaultValueRef,
     getSchema,
-    formModel, //lintg
+    formModel,
   });
 
   useAutoFocus({
@@ -213,6 +233,7 @@
     removeSchemaByField,
     resetFields,
     scrollToField,
+    resetDefaultField,
   } = useFormEvents({
     emit,
     getProps,
@@ -311,6 +332,7 @@
     validate,
     submit: handleSubmit,
     scrollToField: scrollToField,
+    resetDefaultField,
   };
 
   const getFormActionBindProps = computed(
@@ -343,9 +365,18 @@
       //   margin-bottom: 20px;
       // }
 
-      &.suffix-item {
+      &.suffix-item,
+      &.prefix-item {
         .ant-form-item-children {
           display: flex;
+        }
+
+        .prefix {
+          display: inline-flex;
+          align-items: center;
+          margin-top: 1px;
+          padding-right: 6px;
+          line-height: 1;
         }
 
         .suffix {

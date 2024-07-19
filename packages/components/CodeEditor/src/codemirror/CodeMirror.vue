@@ -22,9 +22,10 @@
   import { useDebounceFn } from '@vueuse/core';
   import { useAppStore } from '@store/modules/app';
   import CodeMirror from 'codemirror';
-  import { MODE } from './../typing';
+  import type { EditorConfiguration } from 'codemirror';
+  import { MODE, parserDynamicImport } from './../typing';
   // css
-  import './codemirror.css';
+  import 'codemirror/lib/codemirror.css';
   import 'codemirror/theme/idea.css';
   import 'codemirror/theme/material-palenight.css';
   import 'codemirror/addon/selection/active-line.js'; // 选中行高亮 add by lintg
@@ -34,12 +35,15 @@
   import 'codemirror/mode/htmlmixed/htmlmixed';
   import '@codemirror/commands';
 
+  // 代码段折叠功能
   import 'codemirror/addon/fold/foldgutter.css';
-  import 'codemirror/addon/fold/foldcode';
+  import 'codemirror/addon/fold/foldcode.js';
   import 'codemirror/addon/fold/foldgutter';
   import 'codemirror/addon/fold/brace-fold';
   import 'codemirror/addon/fold/comment-fold';
-  import format from './format';
+  import 'codemirror/addon/fold/markdown-fold';
+  import 'codemirror/addon/fold/xml-fold';
+  import 'codemirror/addon/fold/indent-fold';
 
   const props = defineProps({
     mode: {
@@ -53,6 +57,7 @@
     value: { type: String, default: '' },
     readonly: { type: Boolean, default: false },
     bordered: { type: Boolean, default: false },
+    config: { type: Object as PropType<EditorConfiguration>, default: () => {} },
   });
 
   const emit = defineEmits(['change']);
@@ -75,7 +80,8 @@
     { flush: 'post' },
   );
 
-  watchEffect(() => {
+  watchEffect(async () => {
+    await parserDynamicImport(props.mode)();
     editor?.setOption('mode', props.mode);
   });
 
@@ -107,10 +113,8 @@
     const addonOptions = {
       autoCloseBrackets: true,
       autoCloseTags: true,
-      indentUnit: 4, //缩进单位
       foldGutter: true,
-      lint: true,
-      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       styleActiveLine: true,
       extraKeys: {
         'Alt-F': (cm) => {
@@ -128,6 +132,7 @@
       lineWrapping: true,
       lineNumbers: true,
       ...addonOptions,
+      ...props.config,
     });
     editor?.setValue(props.value);
     setTheme();

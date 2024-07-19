@@ -1,4 +1,3 @@
-import { forEach } from '@utils/helper/treeHelper';
 import type { Component } from 'vue';
 import type { ComponentType } from './types';
 
@@ -6,7 +5,7 @@ import type { ComponentType } from './types';
  * Component list, register here to setting it in the form
  */
 import {
-  //AutoComplete,
+  AutoComplete,
   Cascader,
   Checkbox,
   DatePicker,
@@ -35,8 +34,6 @@ import { IconPicker } from '@c/Icon';
 import { CountdownInput } from '@c/CountDown';
 import { BasicTitle } from '@c/Basic';
 import { CropperAvatar } from '@c/Cropper';
-//import customComponents from './custom/index';
-//import { comp as customComponents } from '@views/form-design/extention/loader';
 
 const componentMap = new Map<ComponentType | string, Component>();
 
@@ -46,7 +43,7 @@ componentMap.set('InputPassword', Input.Password);
 componentMap.set('InputSearch', Input.Search);
 componentMap.set('InputTextArea', Input.TextArea);
 componentMap.set('InputNumber', InputNumber);
-//componentMap.set('AutoComplete', AutoComplete);
+componentMap.set('AutoComplete', AutoComplete);
 componentMap.set('ImageUpload', ImageUpload);
 componentMap.set('Select', Select);
 componentMap.set('ApiSelect', ApiSelect);
