@@ -31,7 +31,9 @@
         const { db, key, db_id } = node.data;
         // const items = node.data.items;
         let config = await axios.get({ url: `/api/model/tableModel/${db}/${key}` });
-        state.lightFormRef.vformRef.getItemRef('modal').show(config, { db, table: key, db_id });
+        state.lightFormRef.vformRef
+          .getItemRef('modal')
+          .show({ ...config, db, table: key }, { db, table: key, db_id });
       };
       go.Shape.defineFigureGenerator('Decision', 'Diamond');
 

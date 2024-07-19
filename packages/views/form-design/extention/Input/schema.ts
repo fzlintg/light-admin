@@ -1,5 +1,3 @@
-import { readonly } from 'vue';
-
 export default {
   component: 'Input',
   label: '输入框',

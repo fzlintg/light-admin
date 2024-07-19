@@ -113,7 +113,7 @@
   import { formItemMap } from '../../../core/loader';
   import { componentMap } from '../../../core/formItemConfig';
   import ItemOptions from './ItemOptions.vue';
-  //import { get, set } from 'lodash-es';
+  import { uniqBy } from 'lodash-es';
   import LightProps from './LighProps.vue';
 
   // import ds from '../../../api/index';
@@ -288,6 +288,7 @@
               })),
             );
           }
+          allOptions.value = uniqBy(allOptions.value, 'field');
           nextTick(() => {
             ifCustSetting.value = !!settingComp[formConfig.value.currentItem.component];
           });
