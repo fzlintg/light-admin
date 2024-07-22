@@ -58,6 +58,7 @@
     readonly: { type: Boolean, default: false },
     bordered: { type: Boolean, default: false },
     config: { type: Object as PropType<EditorConfiguration>, default: () => {} },
+    height: { type: Number, default: 300 },
   });
 
   const emit = defineEmits(['change']);
@@ -89,6 +90,15 @@
     () => appStore.getDarkMode,
     async () => {
       setTheme();
+    },
+    {
+      immediate: true,
+    },
+  );
+  watch(
+    () => props.height,
+    async () => {
+      editor?.setSize(null, props.height);
     },
     {
       immediate: true,
@@ -134,6 +144,7 @@
       ...addonOptions,
       ...props.config,
     });
+    editor?.setSize(null, props.height);
     editor?.setValue(props.value);
     setTheme();
     editor?.on('change', () => {

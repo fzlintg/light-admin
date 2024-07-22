@@ -15,7 +15,7 @@
       <a-button @click="handleClose" type="primary">关闭</a-button>
     </div>
     <div class="v-json-box">
-      <CodeEditor :value="editorJson" ref="myEditor" :mode="MODE.JAVACRIPT" />
+      <CodeEditor :value="editorJson" ref="myEditor" :mode="MODE.JAVACRIPT" :height="500" />
     </div>
   </div>
 </template>

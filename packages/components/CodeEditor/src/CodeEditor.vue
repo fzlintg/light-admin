@@ -7,6 +7,7 @@
       :readonly="readonly"
       :bordered="bordered"
       :config="config"
+      :height="height"
     />
   </div>
 </template>
@@ -31,6 +32,7 @@
     autoFormat: { type: Boolean, default: true },
     bordered: { type: Boolean, default: false },
     config: { type: Object as PropType<EditorConfiguration>, default: () => {} },
+    height: { type: Number, default: 300 },
   });
 
   const emit = defineEmits(['change', 'update:value', 'format-error']);
