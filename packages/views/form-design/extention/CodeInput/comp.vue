@@ -41,7 +41,7 @@
         bordered: true,
         autoFormat: true,
         readonly: false,
-        height: '20em',
+        height: 400,
         prefix: props.prefix ?? 'function(){',
         suffix: props.suffix ?? '}',
       },

@@ -74,6 +74,10 @@
         type: Boolean,
         default: false,
       },
+      formContext: {
+        type: Object,
+        default: () => ({}),
+      },
     },
     emits: ['submit', 'change', 'update:fApi', 'update:formModel'],
     setup(props, context) {

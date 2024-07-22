@@ -150,7 +150,7 @@
     editor?.on('change', () => {
       emit('change', editor?.getValue());
     });
-    format(CodeMirror);
+    //format(CodeMirror);
   }
 
   onMounted(async () => {

@@ -24,7 +24,8 @@
   import { computed, getCurrentInstance } from 'vue';
 
   //import VFormCreate from '../../components/VFormCreate/v.vue';
-  // import { formatRules } from '../../utils/index';
+  import { formatRules } from '../../utils/index';
+
   const _this = getCurrentInstance();
   const open = ref(false);
   const fApi = ref({});
@@ -53,6 +54,7 @@
     if (fData) {
       formModelNew.value = raw ? fData : flattenObject(fData);
     }
+    formatRules(schema.value.children, false, eData);
     if (eData) extraData.value = eData;
     emit('dialogOpened', { fData: formModelNew.value, eData });
     open.value = true;

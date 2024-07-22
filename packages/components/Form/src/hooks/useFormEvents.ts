@@ -2,15 +2,16 @@ import type { ComputedRef, Ref } from 'vue';
 import type { FormProps, FormSchemaInner as FormSchema, FormActionType } from '../types/form';
 import type { NamePath } from 'ant-design-vue/lib/form/interface';
 import { unref, toRaw, nextTick } from 'vue';
-import { isArray, isFunction, isObject, isString, isDef, isNil } from '@utils/is';
+import { isArray, isFunction, isObject, isString, isNil } from '@utils/is';
 import { deepMerge } from '@utils';
 import {
   dateItemType,
   defaultValueComponents,
   isIncludeSimpleComponents,
+  uploadItemType,
 } from '../helper';
 import { dateUtil } from '@utils/dateUtil';
-import { cloneDeep, has, uniqBy, get } from 'lodash-es';
+import { cloneDeep, has, uniqBy, get, set } from 'lodash-es';
 import { error } from '@utils/log';
 import { ComponentProps } from '../types';
 

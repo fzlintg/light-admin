@@ -32,7 +32,7 @@
   import { LoadingOutlined } from '@ant-design/icons-vue';
   import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@utils/propTypes';
-  import { defHttp as axios } from '@utils/http/axios';
+  //import { defHttp as axios } from '@utils/http/axios';
   import { useRequest } from '@vben/hooks';
 
   type OptionsItem = { label?: string; value?: string; disabled?: boolean; [name: string]: any };
@@ -97,6 +97,7 @@
 
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
+
   const { run } = useRequest(async (params = null) => fetch(params), {
     debounceWait: 100,
     manual: true,
@@ -123,6 +124,7 @@
   watch(
     () => state.value,
     (v) => {
+      if (state.value) loading.value = true;
       emit('update:value', v);
     },
   );

@@ -384,7 +384,7 @@ export function importJSON(json, ifInitKey = false) {
     currentItem: { component: '' },
   };
 }
-export function formatFunc(item, flag = false) {
+export function formatFunc(item, flag = false, formContext = {}) {
   for (const name in item) {
     if (endsWith(name, '__func')) {
       // if (item.componentProps[name].trim().length > 0) {
@@ -443,9 +443,10 @@ export function formatFunc(item, flag = false) {
       //   if (flag) delete item[name];
     } else if (endsWith(name, '__tpl')) {
       const originName = name.substr(0, name.length - 5);
-      const context = item['defaultContext__var']
-        ? eval('(' + item['defaultContext__var'] + ')')
-        : {};
+      const context = {
+        ...(item['defaultContext__var'] ? eval('(' + item['defaultContext__var'] + ')') : {}),
+        ...formContext,
+      };
       const paramStr = template(item[name])(context);
       item[originName] = eval('(' + paramStr + ')');
     }
@@ -457,14 +458,14 @@ export function formatFunc(item, flag = false) {
 //     }
 //   }
 // };
-export const formatRules = (schemas: IVFormComponent[], flag = false) => {
+export const formatRules = (schemas: IVFormComponent[], flag = false, formContext = {}) => {
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成
-    formatFunc(item.componentProps, flag);
+    formatFunc(item.componentProps, flag, formContext);
     if (item.component == 'Dropdown') {
       //下拉对象菜单
       for (const childItem of item.children) {
-        formatFunc(childItem, flag);
+        formatFunc(childItem, flag, formContext);
       }
     }
     if ('required' in item) {
