@@ -11,15 +11,6 @@
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
-    <template #suffixIcon v-if="loading">
-      <LoadingOutlined spin />
-    </template>
-    <template #notFoundContent v-if="loading">
-      <span>
-        <LoadingOutlined spin class="mr-1" />
-        {{ t('component.form.apiSelectNotFound') }}
-      </span>
-    </template>
   </Select>
 </template>
 <script lang="ts" setup>
@@ -29,7 +20,7 @@
   import { isFunction } from '@utils/is';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { get, omit, isEqual, cloneDeep } from 'lodash-es';
-  import { LoadingOutlined } from '@ant-design/icons-vue';
+  //import { LoadingOutlined } from '@ant-design/icons-vue';
   import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@utils/propTypes';
   //import { defHttp as axios } from '@utils/http/axios';
@@ -97,7 +88,7 @@
 
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
-
+  if (state.value) loading.value = true;
   const { run } = useRequest(async (params = null) => fetch(params), {
     debounceWait: 100,
     manual: true,
@@ -133,27 +124,20 @@
     () => props.params,
     (value, oldValue) => {
       if (isEqual(value, oldValue)) return;
-      fetch();
+      run();
     },
     { deep: true, immediate: props.immediate },
   );
 
-  async function fetch(v_params: any = null) {
+  async function fetch() {
     let { api, beforeFetch, afterFetch, params, resultField } = props;
-    // if (loading.value && v_params)
-    //   paramsWait = cloneDeep(v_params); //缓存
-    // else paramsWait = null; //最后一次
-    v_params = v_params || params;
-    //预存
-
-    if (!api || !isFunction(api) || loading.value) return;
+    if (!api || !isFunction(api)) return;
     // optionsRef.value.slice(0, 0);
     try {
-      loading.value = true;
       if (beforeFetch && isFunction(beforeFetch)) {
-        params = (await beforeFetch(v_params)) || params;
+        params = (await beforeFetch(params)) || params;
       }
-      let res = await api(v_params);
+      let res = await api(params);
       // let res = await api({ ...params, context: { axios } });
       if (afterFetch && isFunction(afterFetch)) {
         res = (await afterFetch(res)) || res;
@@ -172,7 +156,7 @@
       // reset status
       isFirstLoaded.value = false;
     } finally {
-      loading.value = false;
+      //  loading.value = false;
     }
 
     // if (paramsWait) {
@@ -198,6 +182,7 @@
 
   function handleChange(_, ...args) {
     emitData.value = args;
+    loading.value = true;
   }
   defineExpose({ fetch, run });
   // onMounted(() => {
