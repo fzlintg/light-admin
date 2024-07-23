@@ -84,7 +84,7 @@
   // 首次是否加载过了
   const isFirstLoaded = ref(false);
   const emitData = ref<OptionsItem[]>([]);
-  const { t } = useI18n();
+  //const { t } = useI18n();
 
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
@@ -153,25 +153,19 @@
       emitChange();
     } catch (error) {
       console.warn(error);
-      // reset status
       isFirstLoaded.value = false;
     } finally {
-      //  loading.value = false;
     }
-
-    // if (paramsWait) {
-    //   await fetch(paramsWait);
-    // }
   }
 
   async function handleFetch(visible: boolean) {
     if (visible) {
       if (props.alwaysLoad) {
-        //await run();
-        await fetch();
+        await run();
+        //  await fetch();
       } else if (!props.immediate && !unref(isFirstLoaded)) {
-        //await run();
-        await fetch();
+        await run();
+        // await fetch();
       }
     }
   }
@@ -184,7 +178,7 @@
     emitData.value = args;
     loading.value = true;
   }
-  defineExpose({ fetch, run });
+  defineExpose({ fetch, run, run });
   // onMounted(() => {
   //   emit('loaded');
   // });
