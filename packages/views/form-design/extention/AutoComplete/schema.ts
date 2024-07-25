@@ -21,7 +21,7 @@ export default {
       keyword: $\{key_input},
 }`,
     resultField: '',
-    onSelect__func: 'debugger;',
+    onSelect__func: '',
     // onSearch__params: ['key'],
     // onSearch__func: '',
     immediate: true,

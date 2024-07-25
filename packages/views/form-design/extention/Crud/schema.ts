@@ -6,7 +6,7 @@ export default {
   componentProps: {
     title: 'CRUD',
     db: 'base',
-    table: 'sys_user',
+    table: 'page',
   },
   children: [],
 };
