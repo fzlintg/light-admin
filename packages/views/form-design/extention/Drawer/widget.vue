@@ -1,7 +1,8 @@
 <template>
   <div class="grid-box">
     <draggable
-      class="list-main draggable-box"
+      class="list-main draggable-box d-flex ant-row"
+      style="flex-wrap: wrap; align-content: flex-start"
       :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
       v-bind="{
         group: 'form-draggable',
@@ -12,7 +13,6 @@
       item-key="key"
       v-model="schema.children"
       @start="$emit('dragStart', $event, schema.children)"
-
       @add="$emit('handleColAdd', event, schema.children)"
     >
       <template #item="{ element }">
@@ -40,8 +40,8 @@
     // formConfig,
   } = useFormDesignState();
 
- // const { currentItem, schema } = toRefs(useAttrs());
- const { currentItem, schema } = useAttrs();
+  // const { currentItem, schema } = toRefs(useAttrs());
+  const { currentItem, schema } = useAttrs();
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');

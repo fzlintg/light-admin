@@ -1,7 +1,8 @@
 <template>
   <div class="grid-box">
     <draggable
-      class="list-main draggable-box"
+      class="list-main draggable-box d-flex ant-row"
+      style="flex-wrap: wrap; align-content: flex-start"
       :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
       v-bind="{
         group: 'form-draggable',

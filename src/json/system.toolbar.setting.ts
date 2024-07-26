@@ -138,10 +138,10 @@ export default {
         onOkButtonClick__func: ` let drawer=this.itemRef("drawer_1") 
          let formModel=await drawer.getFormModel();    
          let extraData= drawer.getExtraData(); 
-         let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:{contains:formModel.name}}}}); 
-        if(result.data&&result.data.length>0) { 
-           this.context.emit("loadSchemas",result.data[0].config); 
-           Object.assign(extraData,{id:result.data[0].id,name:result.data[0].name,title:result.data[0].title}) 
+         let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:formModel.name}}}); 
+        if(result.items&&result.items.length>0) { 
+           this.context.emit("loadSchemas",result.items[0].config); 
+           Object.assign(extraData,{id:result.items[0].id,name:result.items[0].name,title:result.items[0].title}) 
        } 
         return true; 
           `,
