@@ -82,7 +82,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
-  import { cloneDeep, set, uniqueId, unset } from 'lodash-es';
+  import { cloneDeep, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
   import {
     getInitValue,
