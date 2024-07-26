@@ -13,7 +13,7 @@
       item-key="key"
       v-model="schema.children"
       @start="$emit('dragStart', $event, schema.children)"
-      @add="$emit('handleColAdd', event, schema.children)"
+      @add="$emit('handleColAdd', $event, schema.children)"
     >
       <template #item="{ element }">
         <FormNode
