@@ -39,6 +39,11 @@
     formModelNew.value[key] = value;
   };
 
+  const getFormModel = async () => {
+    let data = await fApi.value.submit();
+    return data;
+  };
+
   const formConfigNew = computed(() => {
     return { ...formConfig.value, schemas: toRaw(schema.value.children) };
   });
@@ -82,7 +87,7 @@
   defineExpose({
     show,
     close,
-    getFormModel: () => formModelNew.value,
+    getFormModel,
     setFormModel,
     getExtraData: () => extraData.value,
     getFormData: () => formModelToData(formModelNew.value),
