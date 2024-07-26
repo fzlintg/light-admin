@@ -65,7 +65,7 @@
   //import { useFormModelState } from '../../hooks/useFormDesignState.ts';
   import { cloneDeep, set, uniqueId } from 'lodash-es';
   import draggable from 'vuedraggable';
-  import { getInitValue } from '../../utils';
+  import { getInitValue, assignAdd } from '../../utils';
 
   const props = defineProps({
     value: propTypes.string || propTypes.function,
@@ -83,6 +83,7 @@
     if (Array.isArray(stateModel.value)) {
       //自带初始值，配套提供rowIds
       for (let i = 0; i < stateModel.value.length; i++) {
+        assignAdd(stateModel.value[i], initModel);
         rowIds.push(uniqueId('gsf_'));
       }
     }

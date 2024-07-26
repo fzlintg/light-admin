@@ -90,6 +90,7 @@
     formItemsForEach,
     getChildFieldList,
     getChildItemList,
+    assignAdd,
   } from '../../utils';
   //import { item } from '../loader';
 
@@ -126,6 +127,7 @@
         //自带初始值，配套提供rowIds
         for (let i = 0; i < stateModel.value.length; i++) {
           rowIds.push(uniqueId('gsf_'));
+          assignAdd(stateModel.value[i], initModel);
           let modelKeys = Object.keys(stateModel.value[i]);
           showItemRow[i] = props.schema.children //lintg 202405-09
             .filter((item) => {
