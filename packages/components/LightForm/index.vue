@@ -1,5 +1,9 @@
 <template>
-  <div class="component-container" @mouseover="showRefreshIcon" @mouseleave="hideRefreshIcon">
+  <div
+    :class="{ componentContainer: true, hide: hide }"
+    @mouseover="showRefreshIcon"
+    @mouseleave="hideRefreshIcon"
+  >
     <VFormCreate
       :form-config="formConfig"
       v-model:fApi="fApi"
@@ -31,6 +35,10 @@
       default: '',
     },
     remote: {
+      type: Boolean,
+      default: false,
+    },
+    hide: {
       type: Boolean,
       default: false,
     },
@@ -90,5 +98,9 @@
     top: 0;
     right: 0;
     cursor: pointer;
+  }
+
+  .hide {
+    width: 0;
   }
 </style>

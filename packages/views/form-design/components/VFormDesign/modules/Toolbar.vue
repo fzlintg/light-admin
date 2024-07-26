@@ -24,10 +24,15 @@
         </a>
       </Tooltip>
     </div>
-    <span style="margin-right: 40px" class="d-flex ai-center">
+    <span class="d-flex ai-center">
       <a-tag v-if="logic.id" color="pink">{{ logic.id }}</a-tag>
       <edit-text v-if="logic.title" v-model:value="logic.title" defaultValue="test" />
-      <light-form logic="system.toolbar.setting" ref="settingFormRef" @load-schemas="loadSchemas" />
+      <light-form
+        logic="system.toolbar.setting"
+        ref="settingFormRef"
+        @load-schemas="loadSchemas"
+        hide
+      />
     </span>
   </div>
   <!-- 操作区域 start -->

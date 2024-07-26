@@ -43,6 +43,7 @@ const t = {
   showOkBtn: '显示确定按钮',
   showFooter: '显示底块',
   tplRender: '模版渲染',
+  db: '数据源',
 };
 const setting = {};
 

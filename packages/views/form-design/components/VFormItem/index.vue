@@ -36,7 +36,7 @@
       /></span>
     </div>
     <div v-else class="item-container">
-      <FormItem v-bind="{ ...formItemProps }" style="margin-right: 20px">
+      <FormItem v-bind="{ ...formItemProps }" style="margin-right: 5px">
         <template
           #label
           v-if="
@@ -429,7 +429,7 @@
 
   .item-container {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 
   .item-container .item-icon {

@@ -87,7 +87,8 @@
   .editable-tag {
     display: flex;
     position: relative;
-    padding-right: 30px; /* Space for edit icon */
+
+    /* Space for edit icon */
   }
 
   .edit-icon {
