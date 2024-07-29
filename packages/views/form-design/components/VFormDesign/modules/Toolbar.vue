@@ -25,7 +25,14 @@
       </Tooltip>
     </div>
     <span class="d-flex ai-center">
-      <a-tag v-if="logic.id" color="pink">{{ logic.id }}</a-tag>
+      <a-tag
+        v-if="logic.id"
+        :title="logic.name"
+        color="pink"
+        class="hand"
+        @click="copyText(logic.name)"
+        >{{ logic.id }}</a-tag
+      >
       <edit-text v-if="logic.title" v-model:value="logic.title" defaultValue="test" />
       <light-form
         logic="system.toolbar.setting"
@@ -48,6 +55,7 @@
   import { useMessage } from '@h/web/useMessage';
   import { pick } from 'lodash-es';
   import { getQueryParam } from '../../../utils';
+  import { copyText } from '@utils/copyTextToClipboard';
   // import { getQueryParam } from '../../../utils';
 
   interface IToolbarsConfig {
@@ -83,7 +91,7 @@
       const state = reactive<{
         settingFormRef: any;
         toolbarsConfigs: IToolbarsConfig[];
-        logic: { id: Number; title: String };
+        logic: { id: Number; title: String; name: String };
       }>({
         settingFormRef: null,
         logic,
@@ -190,7 +198,9 @@
       };
 
       const { undo, redo, canUndo, canRedo } = historyRef;
+
       return {
+        copyText,
         ...toRefs(state),
         undo,
         redo,

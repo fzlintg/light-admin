@@ -7,7 +7,7 @@
     <VFormCreate
       :form-config="formConfig"
       v-model:fApi="fApi"
-      v-model:formModel="formModel"
+      v-model:formModel="vformModel"
       ref="vformRef"
       @submit="onSubmit"
       v-if="loaded"
@@ -42,10 +42,14 @@
       type: Boolean,
       default: false,
     },
+    formModel: {
+      type: Object,
+      default: () => {},
+    },
   });
   const formConfig = ref(null),
     fApi = ref(null),
-    formModel = ref({}),
+    vformModel = ref(props.formModel),
     vformRef = ref(null),
     isMouseOver = ref(false);
   const onSubmit = () => {};

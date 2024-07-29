@@ -1,6 +1,6 @@
 <template>
   <div>
-    <light-form :logic="`crud.${props.db}.${state}.form`" @submit="loadData" />
+    <light-form :logic="`crud.${state}.form`" @submit="loadData" />
     <VxeBasicTable ref="tableRef" v-bind="gOptions" v-if="ifshow">
       <template #action="{ row }">
         <TableAction outside :actions="createActions(row)" />
@@ -19,17 +19,13 @@
   import { useMessage } from '@h/web/useMessage';
 
   const props = defineProps({
-    db: {
-      type: String as PropType<string>,
-      default: '50vh',
-    },
-    table: {
+    dbTable: {
       type: String as PropType<string>,
       default: '',
     },
   });
   const createMessage = useMessage();
-  const [state] = useRuleFormItem(props, 'table', 'change');
+  const [state] = useRuleFormItem(props, 'dbTable', 'change');
   const { schema } = toRefs(useAttrs());
   const gOptions = ref({}),
     tableRef = ref(),
@@ -38,7 +34,7 @@
 
   onMounted(async () => {
     let gridOptions = await axios.get({
-      url: `/api/crud/getGridOptions/${props.db}/${props.table}`,
+      url: `/api/crud/getGridOptions/${props.dbTable.replace('.', '/')}`,
     });
     const gridTpl = TransObjectToCode(cloneDeep(gridOptions));
     const gridData = new Function('{tableRef,createMessage,axios}', `return ${gridTpl}`)({

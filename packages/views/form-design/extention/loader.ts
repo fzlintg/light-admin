@@ -10,6 +10,8 @@ const modules = {
   item: import.meta.glob('./**/item.vue', { eager: true }),
 };
 
+const settingExclude = {};
+
 const schemaModules = import.meta.glob('./**/schema.ts', { eager: true });
 const expModule = {},
   schemas = {
@@ -25,8 +27,12 @@ for (const item in modules) {
   for (const path in modules[item]) {
     const name = path.split('/')[1];
     expModule[item][name] = modules[item][path].default;
+    if (item == 'setting') {
+      settingExclude[name] = modules[item][path].exclude || [];
+    }
   }
 }
+
 for (const path in schemaModules) {
   const component = path.split('/')[1];
   // console.log(schemaModules[path]?.default?.type);
@@ -38,4 +44,4 @@ for (const path in schemaModules) {
 }
 const { setting, comp, func, widget, item, settingComp } = expModule;
 
-export { setting, schemas, comp, func, widget, item, settingComp };
+export { setting, schemas, comp, func, widget, item, settingComp, settingExclude };

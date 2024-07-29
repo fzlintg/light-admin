@@ -5,8 +5,8 @@ export default {
   icon: 'ant-design:border-outlined',
   componentProps: {
     title: 'CRUD',
-    db: 'base',
-    table: 'page',
+    dbTable: 'base.page',
   },
+  autoSetting: false,
   children: [],
 };

@@ -2,7 +2,7 @@
 
 export default {
   label: 'API选择',
-  required: true,
+
   icon: 'wpf:password1',
   field: '',
   componentProps: {

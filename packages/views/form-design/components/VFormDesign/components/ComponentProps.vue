@@ -104,6 +104,7 @@
     // setting as customSetting,
     func as customFuncs,
     settingComp,
+    settingExclude,
   } from '../../../extention/loader';
 
   import defaultSetting, {
@@ -186,7 +187,7 @@
         for (let schema of customSchema[item].schema) {
           customSetting[schema.component] = customSetting[schema.component] || [];
           for (const propItem in schema.componentProps) {
-            //    if (customSetting[schema.component].filter((i) => i.field == propItem).length == 0) {
+            if (settingExclude?.[schema.component]?.includes(propItem)) continue; //lintg.2024.7
             if (!customSetting[schema.component].some((i) => i.field == propItem)) {
               if (defaultSetting[propItem])
                 //默认值
