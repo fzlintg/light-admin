@@ -6,6 +6,7 @@ export default {
   componentProps: {
     title: 'CRUD',
     dbTable: 'base.page',
+    checkbox: true,
   },
   autoSetting: false,
   children: [],

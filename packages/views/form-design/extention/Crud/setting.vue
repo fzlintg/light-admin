@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { ref, watch } from 'vue';
 
   //import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
@@ -20,4 +20,10 @@
     },
   });
   const [state] = useRuleFormItem(props, 'props', 'update:props');
+  watch(
+    () => state.componentProps,
+    () => {
+      debugger;
+    },
+  );
 </script>
