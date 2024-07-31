@@ -11,7 +11,7 @@
 </template>
 <script lang="ts" setup>
   import { useRuleFormItem } from '@h/component/useFormItem';
-  import { PropType, ref, useAttrs, toRefs, onMounted, watchEffect, watch } from 'vue';
+  import { PropType, ref, useAttrs, toRefs, onMounted, watchEffect, watch, computed } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
   import { TableAction } from '@c/Table';
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
@@ -42,6 +42,9 @@
   const jsonPath = {
     checkbox: { path: '/columns/0', value: { type: 'checkbox', width: 50 } },
   };
+  const editForm = computed(() => {
+    return insertFormRef.value.vformRef.getItemRef('modal_1');
+  });
   const jsonAct = (json, path, op) => {
     jsonpatch.applyPatch(json, [{ op, ...jsonPath[path] }]);
   };
@@ -52,15 +55,14 @@
 
     const actionsTpl = TransObjectToCode(cloneDeep(actionOptions));
     createActions.value = (record) => {
-      return new Function('{ record, tableRef,axios }', `return ${actionsTpl}`)({
+      return new Function('{ record, tableRef,axios,editForm }', `return ${actionsTpl}`)({
         record,
         tableRef,
         axios,
+        editForm,
       });
     };
     if (props.checkbox) jsonAct(gridOptions, 'checkbox', 'add');
-    // else jsonAct(gridOptions, 'checkbox', 'remove');
-    //  else jsonpatch.applyPatch(gridOptions, [{ path: '/columns/0', op: 'remove' }]);
     const gridTpl = TransObjectToCode(cloneDeep(gridOptions));
     const gridData = new Function('{tableRef,createMessage,axios}', `return ${gridTpl}`)({
       tableRef,
@@ -81,7 +83,7 @@
     tableRef.value.commitProxy('query', { form });
   };
   const insertForm = () => {
-    insertFormRef.value.vformRef.getItemRef('modal_1').show({});
+    editForm.value.show({});
   };
   const saveData = (data) => {
     tableRef.value.insert(data);

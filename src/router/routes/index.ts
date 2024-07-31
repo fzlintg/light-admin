@@ -37,11 +37,20 @@ export const LoginRoute: AppRouteRecordRaw = {
     title: t('routes.basic.login'),
   },
 };
+export const FormDesign: AppRouteRecordRaw = {
+  path: '/formDesign',
+  name: 'FormDesign',
+  component: () => import('@views/form-design/index.vue'),
+  meta: {
+    title: '表单',
+  },
+};
 
 // Basic routing without permission
 // 未经许可的基本路由
 export const basicRoutes = [
   LoginRoute,
+  FormDesign,
   RootRoute,
   ...mainOutRoutes,
   REDIRECT_ROUTE,

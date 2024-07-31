@@ -22,8 +22,6 @@
   const [state] = useRuleFormItem(props, 'props', 'update:props');
   watch(
     () => state.componentProps,
-    () => {
-      debugger;
-    },
+    () => {},
   );
 </script>

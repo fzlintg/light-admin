@@ -35,6 +35,7 @@
             />
           </template>
         </draggable>
+        <div style="height: 120px"></div>
       </div>
     </Form>
   </div>
@@ -150,6 +151,7 @@
     .draggable-box {
       // // width: 100%;
       // overflow: auto;
+      height: 100vh;
 
       .drag-move {
         min-height: 62px;
@@ -158,7 +160,8 @@
 
       .list-main {
         // 列表动画
-        height: calc(100vh - 120px);
+        // height: calc(100vh - 50px);
+        // height: 100vh;
         min-height: 120px;
         overflow: auto;
 

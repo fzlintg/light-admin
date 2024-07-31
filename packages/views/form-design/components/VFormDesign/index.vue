@@ -21,6 +21,7 @@
             @handle-list-push="handleListPush"
           />
         </CollapseContainer>
+        <div style="height: 20px"></div>
       </div>
     </LayoutSider>
     <LayoutContent>
@@ -60,8 +61,10 @@
               :name="`${item.component}Props`"
               v-bind="{ formItem: data, props: data.componentProps }"
             ></slot>
-          </template> </PropsPanel
-      ></div>
+          </template>
+        </PropsPanel>
+        <div style="height: 60px"></div>
+      </div>
     </LayoutSider>
   </Layout>
 
@@ -391,7 +394,8 @@
   }
 
   .sidebar {
-    height: calc(100vh - 78px);
+    // height: calc(100vh - 78px);
+    height: 100vh;
     overflow: auto;
     overflow-x: hidden;
   }
