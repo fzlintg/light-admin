@@ -104,6 +104,7 @@
 
   import { CollapseContainer } from '@c/Container';
   import { useMessage } from '@h/web/useMessage';
+  import { defHttp as axios } from '@utils/http/axios';
 
   defineProps({
     title: {
@@ -362,10 +363,20 @@
     setFormConfig,
   });
 
-  onMounted(() => {
+  onMounted(async () => {
+    let name = getQueryParam('name');
+    let formWidget;
+    if (name) {
+      let result = await axios.post({
+        url: '/api/crud/query/base/page',
+        data: { where: { name } },
+      });
+      formWidget = result?.items?.[0]?.config;
+    } else {
+      let cache = getQueryParam('cache') || '';
+      formWidget = JSON.parse(window.localStorage.getItem(`light_form_widget${cache}`));
+    }
     //自动读取本地缓存
-    let cache = getQueryParam('cache') || '';
-    let formWidget = JSON.parse(window.localStorage.getItem(`light_form_widget${cache}`));
 
     if (formWidget) {
       formItemsForEach(formWidget.schemas, (formItem) => {
