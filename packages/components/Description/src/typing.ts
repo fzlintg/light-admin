@@ -16,6 +16,7 @@ export interface DescItem {
     val: any,
     data: Recordable,
   ) => VNode | undefined | JSX.Element | Element | string | number;
+  formatter: string;
 }
 
 export interface DescriptionProps extends DescriptionsProps {

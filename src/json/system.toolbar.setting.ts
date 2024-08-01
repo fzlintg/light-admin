@@ -141,7 +141,7 @@ export default {
          let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:formModel.name}}}); 
         if(result.items&&result.items.length>0) { 
            this.context.emit("loadSchemas",result.items[0].config); 
-           Object.assign(extraData,{id:result.items[0].id,name:result.items[0].name,title:result.items[0].title}) 
+           Object.assign(extraData,_.pick(result.items[0],['id','name','title']));
        } 
         return true; 
           `,

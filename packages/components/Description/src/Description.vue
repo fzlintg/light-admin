@@ -18,6 +18,7 @@
   import { isFunction } from '@utils/is';
   import { getSlot } from '@utils/helper/tsxHelper';
   import { useAttrs } from '@vben/hooks';
+  import { JsonViewer } from 'vue3-json-viewer';
 
   const props = {
     useCollapse: { type: Boolean, default: true },
@@ -119,7 +120,7 @@
         const { schema, data } = unref(getProps);
         return unref(schema)
           .map((item) => {
-            const { render, field, span, show, contentMinWidth } = item;
+            const { render, field, span, show, contentMinWidth, formatter } = item;
 
             if (show && isFunction(show) && !show(data)) {
               return null;
@@ -131,6 +132,12 @@
                 return null;
               }
               const getField = get(_data, field);
+              if (formatter) {
+                switch (formatter) {
+                  case 'json':
+                    return <JsonViewer value={getField} expandDepth={3}></JsonViewer>;
+                }
+              }
               // eslint-disable-next-line
               if (getField && !toRefs(_data).hasOwnProperty(field)) {
                 return isFunction(render) ? render('', _data) : '';

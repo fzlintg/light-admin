@@ -95,7 +95,6 @@
           },
           {
             doubleClick: async (e: any, node: any) => {
-              console.log(e, node);
               await openEditForm(node);
             },
           },
