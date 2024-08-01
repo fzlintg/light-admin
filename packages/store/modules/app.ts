@@ -42,7 +42,8 @@ export const useAppStore = defineStore({
     pageLoading: false,
     projectConfig: Persistent.getLocal(PROJ_CFG_KEY),
     beforeMiniInfo: {},
-    lightFormConfig: Persistent.getLocal(LIGHT_CFG_KEY) || { mode: false },
+    lightFormConfig: Persistent.getLocal(LIGHT_CFG_KEY) || { mode: true },
+    logic: {},
     //   lightFormCache: Persistent.getLocal(LIGHT_CACHE_KEY) || {},
   }),
 
@@ -80,6 +81,9 @@ export const useAppStore = defineStore({
     getLightFormConfig() {
       return this.lightFormConfig;
     },
+    getLogic() {
+      return this.logic;
+    },
     // getLightFormCache() {
     //   return this.lightFormCache;
     // },
@@ -89,9 +93,12 @@ export const useAppStore = defineStore({
     //   this.lightFormCache = schemas;
     //   Persistent.setLocal(LIGHT_CACHE_KEY, schemas);
     // },
+    setLogic(logic) {
+      this.logic = logic;
+    },
     setLightFormConfig(config): void {
-      //  this.lightFormConfig = config;
-      Object.assign(this.lightFormConfig, config);
+      this.lightFormConfig = deepMerge(this.lightFormConfig || {}, config);
+      //Object.assign(this.lightFormConfig, config);
       Persistent.setLocal(LIGHT_CFG_KEY, this.lightFormConfig);
     },
     setPageLoading(loading: boolean): void {

@@ -45,7 +45,7 @@
   <!-- 操作区域 start -->
 </template>
 <script lang="ts">
-  import { defineComponent, inject, reactive, toRefs } from 'vue';
+  import { defineComponent, inject, onMounted, reactive, toRefs } from 'vue';
   import { UseRefHistoryReturn } from '@vueuse/core';
   import { IFormConfig } from '../../../typings/v-form-component';
   import { Tooltip, Divider, Tag as ATag, Input as AInput } from 'ant-design-vue';
@@ -81,20 +81,23 @@
       const mode = computed(() => {
         return appStore.getLightFormConfig.mode;
       });
+
       let cache = getQueryParam('cache') || '';
-      let logic = JSON.parse(localStorage.getItem(`light_form_logic${cache}`)) || {
-        id: null,
-        name: '',
-        title: '',
-      };
+      const logic = inject('logic');
+      logic.value = logic.value ||
+        JSON.parse(localStorage.getItem(`light_form_logic${cache}`)) || {
+          id: null,
+          name: '',
+          title: '',
+        };
 
       const state = reactive<{
         settingFormRef: any;
         toolbarsConfigs: IToolbarsConfig[];
-        logic: { id: Number; title: String; name: String };
+        //   logic: { id: Number; title: String; name: String };
       }>({
         settingFormRef: null,
-        logic,
+        //      logic: logic.value,
         toolbarsConfigs: [
           {
             title: '预览-支持布局',
@@ -176,11 +179,11 @@
           state.settingFormRef
             .getFormRef()
             .getItemRef('drawer_1')
-            .show(pick(state.logic, ['name']), state.logic);
+            .show(pick(logic.value, ['name']), logic.value);
         },
         handleNewFormItems: () => {
           emit('handleClearFormItems');
-          state.logic = {
+          logic.value = {
             id: null,
             title: '',
             name: '',
@@ -188,9 +191,10 @@
         },
       };
       const saveLogic = (schemas, cache) => {
-        window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(state.logic));
+        window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(logic.value));
+
         if (appStore.getLightFormConfig.mode) {
-          state.settingFormRef.getFormRef().getItemRef('drawer_2').show(state.logic, schemas);
+          state.settingFormRef.getFormRef().getItemRef('drawer_2').show(logic.value, schemas);
         } else createMessage.success('保存成功');
       };
       const loadSchemas = (schemas) => {
@@ -201,6 +205,7 @@
 
       return {
         copyText,
+        logic,
         ...toRefs(state),
         undo,
         redo,

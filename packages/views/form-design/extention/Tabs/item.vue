@@ -1,7 +1,12 @@
 <template>
   <div class="grid-box mx-3 flex-1">
     <tabs v-bind="schema.componentProps">
-      <tab-pane v-for="(tabItem, index) in schema.columns" :key="index" :tab="tabItem.label">
+      <tab-pane
+        class="d-flex"
+        v-for="(tabItem, index) in schema.columns"
+        :key="index"
+        :tab="tabItem.label"
+      >
         <VFormItem
           isRender
           v-for="(item, k) in tabItem.children"

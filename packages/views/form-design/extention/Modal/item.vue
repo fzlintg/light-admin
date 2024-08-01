@@ -9,6 +9,7 @@
       @cancel="handleCancle"
     >
       <VFormCreate
+        v-if="open"
         :form-config="formConfigNew"
         v-model:fApi="fApi"
         v-model:formModel="formModelNew"

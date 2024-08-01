@@ -81,20 +81,18 @@
   import JsonModal from './components/JsonModal.vue';
   import VFormPreview from '../VFormPreview/index.vue';
   import VFormPreview2 from '../VFormPreview/useForm.vue';
-
-  import Toolbar from './modules/Toolbar.vue';
   import PropsPanel from './modules/PropsPanel.vue';
   import ImportJsonModal from './components/ImportJsonModal.vue';
   import CodeModal from './components/CodeModal.vue';
 
   import 'codemirror/mode/javascript/javascript';
 
-  import { ref, provide, Ref, computed, onMounted } from 'vue';
+  import { ref, provide, Ref, computed, onMounted, defineAsyncComponent } from 'vue';
   import { Layout, LayoutContent, LayoutSider } from 'ant-design-vue';
 
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
   import { formItemsForEach, generateKey, getQueryParam } from '../../utils';
-  import { cloneDeep } from 'lodash-es';
+  import { cloneDeep, pick } from 'lodash-es';
   //import { baseComponents, customComponents, layoutComponents } from '../../core/formItemConfig';
   import { formItemConfig } from '../../core/formItemConfig';
   import { useRefHistory, UseRefHistoryReturn } from '@vueuse/core';
@@ -106,6 +104,8 @@
   import { useMessage } from '@h/web/useMessage';
   import { defHttp as axios } from '@utils/http/axios';
 
+  import Toolbar from './modules/Toolbar.vue';
+  //const Toolbar = defineAsyncComponent(async () => import('./modules/Toolbar.vue'));
   defineProps({
     title: {
       type: String,
@@ -122,7 +122,8 @@
 
   const codeModal = ref<null | IToolbarMethods>(null);
   const toolbarRef = ref();
-  const { createMessage } = useMessage();
+  // const { createMessage } = useMessage();
+  const logic = ref(null);
   //add by lintg
 
   const formModel = ref({});
@@ -330,7 +331,6 @@
   const handleSaveFormItems = () => {
     let cache = getQueryParam('cache') || '';
     window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
-
     toolbarRef.value.saveLogic(formConfig.value, cache);
   };
   // const handleSettings = () => {
@@ -362,18 +362,23 @@
     handleAddAttrs,
     setFormConfig,
   });
-
+  provide('logic', logic);
   onMounted(async () => {
     let name = getQueryParam('name');
+    let cache = getQueryParam('cache') || '';
     let formWidget;
     if (name) {
       let result = await axios.post({
         url: '/api/crud/query/base/page',
         data: { where: { name } },
       });
+      if (!result) return;
       formWidget = result?.items?.[0]?.config;
+      logic.value = pick(result?.items?.[0], ['id', 'title', 'name']);
+
+      //    console.log('logic provide', logic);
+      //window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(logic));
     } else {
-      let cache = getQueryParam('cache') || '';
       formWidget = JSON.parse(window.localStorage.getItem(`light_form_widget${cache}`));
     }
     //自动读取本地缓存

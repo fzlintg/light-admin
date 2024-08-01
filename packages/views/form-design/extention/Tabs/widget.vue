@@ -3,7 +3,8 @@
     <tabs>
       <tab-pane v-for="(tabItem, index) in schema.columns" :key="index" :tab="tabItem.label">
         <draggable
-          class="list-main draggable-box"
+          class="list-main draggable-box d-flex"
+          style="flex-wrap: wrap; align-content: flex-start"
           :component-data="{ name: 'list', tag: 'div', type: 'transition-group' }"
           v-bind="{
             group: 'form-draggable',
