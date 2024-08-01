@@ -62,7 +62,13 @@
         editForm,
       });
     };
-    if (props.checkbox) jsonAct(gridOptions, 'checkbox', 'add');
+    if (props.checkbox) {
+      jsonAct(gridOptions, 'checkbox', 'add');
+    } else
+      gridOptions.toolbarConfig.buttons = gridOptions.toolbarConfig.buttons.filter(
+        (item) => item.code != 'delete',
+      );
+
     const gridTpl = TransObjectToCode(cloneDeep(gridOptions));
     const gridData = new Function('{tableRef,createMessage,axios}', `return ${gridTpl}`)({
       tableRef,

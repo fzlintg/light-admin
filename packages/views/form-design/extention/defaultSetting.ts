@@ -44,6 +44,7 @@ const t = {
   showFooter: '显示底块',
   tplRender: '模版渲染',
   db: '数据源',
+  checkbox: '选择框',
 };
 const setting = {};
 
