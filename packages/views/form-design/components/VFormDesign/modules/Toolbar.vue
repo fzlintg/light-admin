@@ -23,6 +23,11 @@
           <Icon icon="ant-design:redo-outlined" />
         </a>
       </Tooltip>
+      <Tooltip title="新窗口" v-if="ifShowIcon">
+        <a @click="openNew">
+          <Icon icon="ant-design:send-outlined" />
+        </a>
+      </Tooltip>
     </div>
     <span class="d-flex ai-center">
       <a-tag
@@ -94,8 +99,10 @@
       const state = reactive<{
         settingFormRef: any;
         toolbarsConfigs: IToolbarsConfig[];
+        ifShowIcon: Boolean;
         //   logic: { id: Number; title: String; name: String };
       }>({
+        ifShowIcon: true,
         settingFormRef: null,
         //      logic: logic.value,
         toolbarsConfigs: [
@@ -202,8 +209,18 @@
       };
 
       const { undo, redo, canUndo, canRedo } = historyRef;
+      const href = window.location.href.split('?');
+      const host = href[0].split('#');
+      const openNew = () => {
+        let target = `${host[0]}#/formDesign?` + href?.[1];
+        window.open(target);
+      };
 
+      onMounted(() => {
+        if (host[1] == '/formDesign') state.ifShowIcon = false;
+      });
       return {
+        openNew,
         copyText,
         logic,
         ...toRefs(state),
