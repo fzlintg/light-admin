@@ -45,6 +45,7 @@ const t = {
   tplRender: '模版渲染',
   db: '数据源',
   checkbox: '选择框',
+  footerBtnText: '底部按钮文本',
 };
 const setting = {};
 

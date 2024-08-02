@@ -15,8 +15,12 @@
         v-model:formModel="formModelNew"
         ref="formRef"
         :debug="debug"
-        @init="initConfig"
-    /></modal>
+      />
+
+      <template #insertFooter v-if="!!schema.componentProps.footerBtnText">
+        <a-button @click="footerBtnClick"> 保存</a-button>
+      </template>
+    </modal>
   </div>
 </template>
 <script setup lang="ts">
@@ -37,8 +41,8 @@
   const extraData = ref({});
 
   const { schema, formConfig, debug } = toRefs(useAttrs());
-  const initConfig = () => {
-    debugger;
+  const footerBtnClick = () => {
+    emit('footerBtnClick');
   };
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
@@ -57,6 +61,7 @@
     'okButtonClick',
     'cancelButtonClick',
     'dialogBeforeClose',
+    'footerBtnClick',
   ]);
   //schema.value.children = flattenArray(schema.value.children);
   // formConfig.value.children = schema.value.children;
