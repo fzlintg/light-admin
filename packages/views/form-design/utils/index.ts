@@ -159,7 +159,7 @@ export const findFormItem: (
   let res;
   const traverse = (schemas: IVFormComponent[]): boolean => {
     return schemas.some((formItem: IVFormComponent) => {
-      const { component: type } = formItem;
+      const { type } = formItem;
       if (cb(formItem)) {
         res = formItem;
         return true;
@@ -305,10 +305,10 @@ export const TransJSonToTs = (schemas) => {
   function replaceQuotes(match, group) {
     const replacedStr = group
       .replace(/\\"/g, '"')
-      .replace(/\\n/g, ' \n ')
-      .replace(/`/g, ' \\` ')
+      .replace(/\\n/g, '\n')
+      .replace(/`\s*/g, '\\`')
       .replace(/\${/g, '$\\{'); // 替换含有\"为“
-    return '`' + replacedStr + '`';
+    return '`' + replacedStr.trim() + '`';
   }
   return JSON.stringify(schemas, null, '\t').replace(/"\$_begin(.*?)\$_end"/g, replaceQuotes);
 };
@@ -319,7 +319,7 @@ export const formatItem = (schemas) => {
     if (endsWith(key, '__func') && typeof value == 'string') {
       const func = key.substring(0, key.length - 6);
       const params = schemas[func + '__params'] || [];
-      schemas![func] = `$func_b:${params.join(',')}: ` + schemas[key] + ' $func_e';
+      schemas![func] = `$func_b:${params.join(',')}: ` + schemas[key] + '$func_e';
       delete schemas[key];
       delete schemas[func + '__params'];
     } else if (endsWith(key, '__var') && typeof value == 'string') {
@@ -339,13 +339,13 @@ export const TransObjectToCode = (schemas) => {
   const regex2 = /\"\$var_b:(.*?)\:\$var_e\"/g;
   return JSON.stringify(schemas)
     .replace(regex, function (match, params, code) {
-      const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
+      const cleanedCode = code.replace(/\\"/g, '"').replace(/\\n/g, ' ');
       return cleanedCode.indexOf('await ') > -1
         ? `async (${params}) => {${cleanedCode}}`
         : `((${params}) => {${cleanedCode}})`;
     })
     .replace(regex2, function (match, code) {
-      return code.replace(/\\"/g, '"').replace(/\\n/g, '  ');
+      return code.replace(/\\"/g, '"').replace(/\\n/g, ' ');
     });
 };
 
@@ -403,7 +403,6 @@ export function formatFunc(item, flag = false, formContext = {}) {
         item[originName] = async function (...args) {
           // console.log('exec', this);
           // const argsCall = args.length == 0 ? [{}] : args;
-
           let result = await func.call(
             this,
             { axios: defHttp, nextTick, _, createMessage, appStore },
@@ -496,6 +495,46 @@ export const strToReg = (rules: IValidationRule[]) => {
     return item;
   });
 };
+export function replaceUrlParam(url, param) {
+  // 解析当前 URL 的参数部分
+  const urlParts = url.split('?');
+  if (urlParts.length < 2) {
+    // 如果没有参数部分，则直接返回原始 URL
+    return url + '?' + param;
+  }
+
+  const baseUrl = urlParts[0]; // URL 的基础部分
+  const params = urlParts[1].split('&'); // 分割参数部分为数组
+
+  // 遍历参数数组，查找并替换指定参数的值
+  const paramKey = param.split('=')[0];
+  const paramValue = param.split('=')[1];
+  let paramUpdated = false; // 用于标记是否已经更新了参数值
+
+  for (let i = 0; i < params.length; i++) {
+    const keyValue = params[i].split('=');
+    const key = keyValue[0];
+
+    if (key === paramKey) {
+      // 找到匹配的参数，替换其值
+      keyValue[1] = paramValue;
+      params[i] = keyValue.join('=');
+      paramUpdated = true;
+      break;
+    }
+  }
+
+  // 如果没有找到对应的参数，则直接追加到末尾
+  if (!paramUpdated) {
+    params.push(param);
+  }
+
+  // 重新构建 URL
+  const updatedParams = params.join('&');
+  const updatedUrl = baseUrl + '?' + updatedParams;
+
+  return updatedUrl;
+}
 function getQuery(href, name) {
   const reg = new RegExp('([&|?])' + name + '=([^&]*)');
   const result = href.match(reg);

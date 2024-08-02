@@ -135,18 +135,21 @@ export default {
         showCancelBtn: true,
         showDetailBack: false,
         onDialogOpened__func: `        `,
-        onOkButtonClick__func: ` let drawer=this.itemRef("drawer_1") 
+        onOkButtonClick__func: ` 
+         let drawer=this.itemRef("drawer_1") 
          let formModel=await drawer.getFormModel();    
          let extraData= drawer.getExtraData(); 
          let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:formModel.name}}}); 
         if(result.items&&result.items.length>0) { 
            this.context.emit("loadSchemas",result.items[0].config); 
            Object.assign(extraData,_.pick(result.items[0],['id','name','title']));
-       } 
+         } 
+           let href=utils.replaceUrlParam(window.location.href,"name="+formModel.name);
+        window.location.href=href
         return true; 
           `,
         onDialogOpened__params: ['params'],
-        onOkButtonClick__params: ['params'],
+        onOkButtonClick__params: ['{_this,callback,utils}'],
         onCancelButtonClick__func: `        `,
         onDialogBeforeClose__func: `        `,
         onCancelButtonClick__params: ['params'],

@@ -21,7 +21,7 @@
 <script setup lang="ts">
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import Drawer from '@c/Drawer/src/BasicDrawer.vue';
-  import { flattenObject, formModelToData } from '../../utils';
+  import { flattenObject, formModelToData, replaceUrlParam } from '../../utils';
   import { computed, getCurrentInstance } from 'vue';
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   // import { formatRules } from '../../utils/index';
@@ -61,6 +61,7 @@
   const handleOk = (e: MouseEvent) => {
     emit('okButtonClick', {
       _this,
+      utils: { replaceUrlParam },
       callback: (result) => {
         if (result) {
           //lintg.待进一步修改

@@ -7,7 +7,7 @@
         <TableAction outside :actions="createActions(row)" />
       </template>
     </VxeBasicTable>
-    <Modal v-model:open="detailOpen" :width="900" title="数据详情">
+    <Modal v-model:open="detailOpen" :width="900" title="数据详情" @ok="detailOpen = false">
       <Description
         size="middle"
         :bordered="false"

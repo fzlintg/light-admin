@@ -15,13 +15,15 @@
         v-model:formModel="formModelNew"
         ref="formRef"
         :debug="debug"
+        @init="initConfig"
     /></modal>
   </div>
 </template>
 <script setup lang="ts">
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import Modal from '@c/Modal/src/BasicModal.vue';
-  import { flattenObject, formModelToData } from '../../utils';
+  import { findFormItem, flattenObject, formModelToData, replaceUrlParam } from '../../utils';
+  //import * as utils from '../../utils/index';
   import { computed, getCurrentInstance } from 'vue';
 
   //import VFormCreate from '../../components/VFormCreate/v.vue';
@@ -35,7 +37,9 @@
   const extraData = ref({});
 
   const { schema, formConfig, debug } = toRefs(useAttrs());
-
+  const initConfig = () => {
+    debugger;
+  };
   const setFormModel = (key, value) => {
     formModelNew.value[key] = value;
   };
@@ -62,13 +66,14 @@
     }
     formatRules(schema.value.children, false, eData);
     if (eData) extraData.value = eData;
-    emit('dialogOpened', { fData: formModelNew.value, eData });
     open.value = true;
+    emit('dialogOpened', { schema, fData: formModelNew.value, eData, findFormItem });
   };
 
   const handleOk = (e: MouseEvent) => {
     emit('okButtonClick', {
       _this,
+      utils: { replaceUrlParam },
       callback: (result) => {
         open.value = !result;
       },
