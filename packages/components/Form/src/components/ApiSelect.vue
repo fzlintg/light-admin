@@ -93,8 +93,10 @@
     debounceWait: 100,
     manual: true,
   });
+
   // let paramsWait = null;
   const getOptions = computed(() => {
+  
     let { labelField, valueField, numberToString } = props;
     labelField = labelField == '' ? 'label' : labelField;
     valueField = valueField == '' ? 'value' : valueField;

@@ -9,7 +9,6 @@
       v-model:fApi="fApi"
       v-model:formModel="vformModel"
       ref="vformRef"
-      
       @submit="onSubmit"
       v-if="loaded"
       v-bind="$attrs"
@@ -63,6 +62,7 @@
       await loadData();
       loaded.value = true;
     }
+    debugger;
   });
   watch(
     () => props.logic,
