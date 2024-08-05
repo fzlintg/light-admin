@@ -9,6 +9,7 @@
       v-model:fApi="fApi"
       v-model:formModel="vformModel"
       ref="vformRef"
+      
       @submit="onSubmit"
       v-if="loaded"
       v-bind="$attrs"
@@ -43,6 +44,10 @@
       default: false,
     },
     formModel: {
+      type: Object,
+      default: () => {},
+    },
+    options: {
       type: Object,
       default: () => {},
     },

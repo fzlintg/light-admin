@@ -25,6 +25,14 @@ VxeUI.formats.add('json', {
     return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
   },
 });
+VxeUI.formats.add('dict', {
+  cellFormatMethod: ({ cellValue, column }) => {
+    if (!cellValue) return '';
+
+    return cellValue[column.params.labelField];
+    // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
+  },
+});
 VxeUI.commands.add('insert_form', {
   commandMethod: (params) => {
     const { $grid } = params;
