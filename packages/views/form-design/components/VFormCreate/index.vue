@@ -16,7 +16,7 @@
           @update:form-model="updateFormModel"
           :setFormModel="setFormModel"
           @submit="handleSubmit"
-          :options="getOptions(schema.field)"
+          :options="getOptions(schema.field)" 
           @reset="resetFields"
           :debug="debug"
         >
@@ -90,7 +90,8 @@
       const { emit } = context;
       const eFormModel = ref<AForm | null>(null);
       const getOptions=(field)=>{
-        return props?.options?.[field]||[] 
+    
+        return props?.options?.[field]||[]   
       }; 
       const formModelNew = computed({
         get: () => props.formModel,

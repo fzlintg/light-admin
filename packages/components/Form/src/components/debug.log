@@ -1,2 +1,6 @@
 [0805/162654.755:ERROR:registration_protocol_win.cc(108)] CreateFile: 系统找不到指定的文件。 (0x2)
 [0805/162827.697:ERROR:registration_protocol_win.cc(108)] CreateFile: 系统找不到指定的文件。 (0x2)
+[0805/181315.060:ERROR:registration_protocol_win.cc(108)] CreateFile: 系统找不到指定的文件。 (0x2)
+[0805/181315.607:ERROR:registration_protocol_win.cc(108)] CreateFile: 系统找不到指定的文件。 (0x2)
+[0805/181316.479:ERROR:registration_protocol_win.cc(108)] CreateFile: 系统找不到指定的文件。 (0x2)
+[0805/181317.781:ERROR:registration_protocol_win.cc(108)] CreateFile: 系统找不到指定的文件。 (0x2)
