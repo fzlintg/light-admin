@@ -14,7 +14,16 @@
   </Select>
 </template>
 <script lang="ts" setup>
-  import { PropType, ref, computed, unref, watch, onMounted, getCurrentInstance } from 'vue';
+  import {
+    PropType,
+    ref,
+    computed,
+    unref,
+    watch,
+    onMounted,
+    getCurrentInstance,
+    inject,
+  } from 'vue';
   import { Select, Input } from 'ant-design-vue';
   import type { SelectValue } from 'ant-design-vue/es/select';
   import { isFunction } from '@utils/is';
@@ -77,9 +86,23 @@
   };
 
   const emit = defineEmits(['options-change', 'change', 'update:value']);
-
+  const attrs = useAttrs();
+  //const optionsRef = ref<OptionsItem[]>([]);
+  let injectOptions = inject('options');
   const optionsRef = ref<OptionsItem[]>([]);
+  //const optionsRef = inject('options')
 
+  if (injectOptions?.value?.[attrs.schema.field]) {
+    optionsRef.value = injectOptions?.value?.[attrs.schema.field];
+  }
+  watch(
+    () => injectOptions?.value,
+    () => {
+      if (injectOptions?.value?.[attrs.schema.field]) {
+        optionsRef.value = injectOptions?.value?.[attrs.schema.field];
+      }
+    },
+  );
   const loading = ref(false);
   // 首次是否加载过了
   const isFirstLoaded = ref(false);
@@ -96,7 +119,6 @@
 
   // let paramsWait = null;
   const getOptions = computed(() => {
-  
     let { labelField, valueField, numberToString } = props;
     labelField = labelField == '' ? 'label' : labelField;
     valueField = valueField == '' ? 'value' : valueField;

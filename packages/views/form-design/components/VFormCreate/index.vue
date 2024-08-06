@@ -16,7 +16,6 @@
           @update:form-model="updateFormModel"
           :setFormModel="setFormModel"
           @submit="handleSubmit"
-          :options="getOptions(schema.field)" 
           @reset="resetFields"
           :debug="debug"
         >
@@ -79,20 +78,20 @@
         type: Object,
         default: () => ({}),
       },
-      options:{
-        type:Object,
-        default:()=>{}
-      }
+      options: {
+        type: Object,
+        default: () => {},
+      },
     },
     emits: ['submit', 'change', 'update:fApi', 'update:formModel'],
     setup(props, context) {
       const wrapperComp = props.formConfig.layout == 'vertical' ? Col : Row;
       const { emit } = context;
       const eFormModel = ref<AForm | null>(null);
-      const getOptions=(field)=>{
-    
-        return props?.options?.[field]||[]   
-      }; 
+      // const getOptions=(field)=>{
+
+      //   return props?.options?.[field]||[]
+      // };
       const formModelNew = computed({
         get: () => props.formModel,
         set: (value) => {
@@ -215,7 +214,7 @@
         formItemRefList,
         getFormData: () => unref(formModelNew),
         getFormModel: () => unref(formModelNew),
-        getOptions
+        //       getOptions
       };
     },
   });

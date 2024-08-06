@@ -212,7 +212,8 @@
       const href = window.location.href.split('?');
       const host = href[0].split('#');
       const openNew = () => {
-        let target = `${host[0]}#/formDesign?` + href?.[1];
+        let target = `${host[0]}#/formDesign`;
+        if (href.length > 1) target += `?${href?.[1]}`;
         window.open(target);
       };
 

@@ -62,7 +62,6 @@
       await loadData();
       loaded.value = true;
     }
-    debugger;
   });
   watch(
     () => props.logic,
