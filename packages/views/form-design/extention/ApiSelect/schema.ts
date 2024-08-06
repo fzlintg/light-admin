@@ -32,6 +32,7 @@ export default {
     showArrow: true,
     filterOption: false,
     allowInput: false,
+    allowClear: true,
   },
   colProps: {
     span: 8,
