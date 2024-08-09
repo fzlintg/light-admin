@@ -182,5 +182,6 @@
     ".eslintrc.cjs": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*"
   },
   "terminal.integrated.scrollback": 10000,
-  "nuxt.isNuxtApp": false
+  "nuxt.isNuxtApp": false,
+  "vue.codeActions.enabled": false
 }

@@ -7,9 +7,30 @@
     "types": ["vite/client"],
     "paths": {
       "@/*": ["src/*"],
-      "#/*": ["types/*"]
+      "#/*": ["types/*"],
+      "@c/*":["packages/components/*"],
+      "@h/*":["packages/myhooks/*"],
+      "@utils/*":["packages/utils/*"],
+      "@hooks/*":["packages/hooks/*"],
+      "@layouts/*":["packages/layouts/*"],
+      "@directives/*":["packages/directives/*"],
+      "@logics/*":["packages/logics/*"],
+      "@design/*":["packages/design/*"],
+      "@enums/*":["packages/enums/*"],
+      "@locales/*":["packages/locales/*"],
+      "@settings/*":["packages/settings/*"],
+      "@store/*":["packages/store/*"],
+      "@router/*":["packages/router/*"],
+      "@views/*":["packages/views/*"],
     }
   },
+  // "references": [
+  //   {
+  //     "path": "./tsconfig.node.json"
+  //   }
+
+  
+ 
   "include": [
     "tests/**/*.ts",
     "src/**/*.ts",
