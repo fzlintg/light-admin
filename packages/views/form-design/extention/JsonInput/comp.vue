@@ -1,5 +1,5 @@
 <template>
-  <a-input v-model:value="jsonValue" allow-clear>
+  <a-input v-model:value="jsonValue">
     <template #prefix
       ><Icon icon="ant-design:profile" class="hand" @click="visible = true"
     /></template>
