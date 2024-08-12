@@ -106,6 +106,7 @@
     "tinycolor2": "^1.6.0",
     "tinymce": "^5.10.9",
     "unocss": "^0.59.4",
+    "url-search-params-polyfill": "^8.2.5",
     "vditor": "^3.10.4",
     "vue": "^3.4.25",
     "vue-i18n": "^9.13.1",

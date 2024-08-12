@@ -46,6 +46,7 @@ const t = {
   db: '数据源',
   checkbox: '选择框',
   footerBtnText: '底部按钮文本',
+  isBtn: '是否按钮',
 };
 const setting = {};
 

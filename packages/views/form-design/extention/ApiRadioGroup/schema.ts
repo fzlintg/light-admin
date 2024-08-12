@@ -14,6 +14,7 @@ export default {
     defaultContext__var: `{
       input_1: 3,
 }`,
+    isBtn: true,
     params__tpl: `{
       count: $\{input_1},
 }`,
