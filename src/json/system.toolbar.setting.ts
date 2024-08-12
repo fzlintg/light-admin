@@ -138,16 +138,19 @@ export default {
         onOkButtonClick__func: ` 
          let drawer=this.itemRef("drawer_1") 
          let formModel=await drawer.getFormModel();    
-        //  let extraData= drawer.getExtraData(); 
-        //  let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:formModel.name}}}); 
-        // if(result.items&&result.items.length>0) { 
-        //    this.context.emit("loadSchemas",result.items[0].config); 
-        //    Object.assign(extraData,_.pick(result.items[0],['id','name','title']));
-        //  } 
-        //   utils.closeCurrent();
-        //   utils.clearUrlParam("name");
-        let path=utils.setUrlParam("name",formModel.name,false).split("#")[1]
-        utils.updatePath(path)
+         if(location.href.split("#")[1].indexOf("/formDesign")==0){
+           let extraData= drawer.getExtraData(); 
+           let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:formModel.name}}}); 
+            if(result.items&&result.items.length>0) { 
+              this.context.emit("loadSchemas",result.items[0].config); 
+              Object.assign(extraData,_.pick(result.items[0],['id','name','title']));
+            } 
+         }
+            else
+            {
+                let path=utils.setUrlParam("name",formModel.name,false).split("#")[1];
+                utils.updatePath(path);
+            }
         utils.setUrlParam("name",formModel.name);
         return true; 
           `,
