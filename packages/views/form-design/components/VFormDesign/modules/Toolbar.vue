@@ -61,6 +61,8 @@
   import { pick } from 'lodash-es';
   import { getQueryParam } from '../../../utils';
   import { copyText } from '@utils/copyTextToClipboard';
+
+  import 'url-search-params-polyfill';
   // import { getQueryParam } from '../../../utils';
 
   interface IToolbarsConfig {
@@ -190,6 +192,9 @@
         },
         handleNewFormItems: () => {
           emit('handleClearFormItems');
+          const search = new URLSearchParams(window.location.search);
+          search.delete('name');
+          window.location.search = search.toString();
           logic.value = {
             id: null,
             title: '',

@@ -25,6 +25,7 @@ import { uniqueId, setUniqueId } from './uniqueId';
 import { defHttp } from '@utils/http/axios';
 import { useMessage } from '@h/web/useMessage';
 import { useAppStore } from '@store/modules/app';
+import URLSearchParams from 'url-search-params-polyfill';
 
 const { createMessage } = useMessage();
 const appStore = useAppStore();
@@ -495,6 +496,11 @@ export const strToReg = (rules: IValidationRule[]) => {
     return item;
   });
 };
+
+export function setUrlParam(url, param, value) {
+  const search = new URLSearchParams(url);
+  search.set(param, value);
+}
 export function replaceUrlParam(url, param) {
   // 解析当前 URL 的参数部分
   const urlParts = url.split('?');
