@@ -26,7 +26,13 @@
 <script setup lang="ts">
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import Modal from '@c/Modal/src/BasicModal.vue';
-  import { findFormItem, flattenObject, formModelToData, setUrlParam } from '../../utils';
+  import {
+    findFormItem,
+    flattenObject,
+    formModelToData,
+    setUrlParam,
+    clearUrlParam,
+  } from '../../utils';
   //import * as utils from '../../utils/index';
   import { computed, getCurrentInstance } from 'vue';
 
@@ -86,7 +92,7 @@
   const handleOk = (e: MouseEvent) => {
     emit('okButtonClick', {
       _this,
-      utils: { setUrlParam },
+      utils: { setUrlParam, clearUrlParam },
       callback: (result) => {
         open.value = !result;
       },

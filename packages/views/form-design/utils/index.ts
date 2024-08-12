@@ -497,13 +497,16 @@ export const strToReg = (rules: IValidationRule[]) => {
   });
 };
 
-export function setUrlParam(param, value) {
+export function setUrlParam(param, value, flag = true) {
   const urlParts = window.location.href.split('?');
+  let result = '';
   if (urlParts.length > 1) {
     const search = new URLSearchParams(urlParts[1]);
     search.set(param, value);
-    window.location.href = urlParts[0] + '?' + search.toString();
-  } else window.location.href = urlParts[0] + '?' + param + '=' + value;
+    result = urlParts[0] + '?' + search.toString();
+  } else result = urlParts[0] + '?' + param + '=' + value;
+  if (flag) window.location.href = result;
+  return result;
 }
 export function clearUrlParam(param) {
   const urlParts = window.location.href.split('?');
