@@ -4,7 +4,8 @@
       ><Icon icon="ant-design:profile" class="hand" @click="visible = true"
     /></template>
   </a-input>
-  <modal title="json编辑" :open="visible" @cancel="visible = false" @ok="handleGetData">
+
+  <Modal title="json编辑" :open="visible" @cancel="visible = false" @ok="handleGetData">
     <template #title>
       <div>
         <Icon icon="ant-design:profile" />
@@ -13,31 +14,42 @@
     </template>
 
     <CodeEditor
-      :value="jsonValue"
+      :value="editJsonValue"
       ref="jsonEditor"
       :mode="MODE.JAVACRIPT"
       :height="500"
-      @change="jsonValue = $event"
+      @change="editJsonValue = $event"
     />
-  </modal>
+  </Modal>
 </template>
 <script setup>
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   import Modal from '@c/Modal/src/BasicModal.vue';
   import { CodeEditor, MODE } from '@c/CodeEditor';
+  import { useMessage } from '@h/web/useMessage';
 
+  const { createMessage } = useMessage();
   const props = defineProps({
-    value: propTypes.string,
-    defaultValue: propTypes.string,
+    value: propTypes.object,
+    defaultValue: propTypes.object,
   });
+  // const attrs = useAttrs();
   const [state] = useRuleFormItem(props, 'value', 'change');
   const jsonValue = ref(JSON.stringify(state.value || props.defaultValue, null, 2));
+  const emit = defineEmits(['update:value']);
+  const editJsonValue = ref('');
+  editJsonValue.value = jsonValue.value;
   const visible = ref(false);
   //if (!state.value) state.value = props.defaultValue;
   const handleGetData = () => {
-    state.value = eval(`(${jsonValue.value})`);
-    visible.value = false;
-    emit('update:value', state.value);
+    try {
+      state.value = eval(`(${editJsonValue.value})`);
+      editJsonValue.value = jsonValue.value = JSON.stringify(state.value);
+      visible.value = false;
+      emit('update:value', state.value);
+    } catch (e) {
+      createMessage.error(e.message);
+    }
   };
 </script>

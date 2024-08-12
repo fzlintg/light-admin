@@ -3,7 +3,7 @@
     <a-button v-if="debug" @click="open = true">测试</a-button>
     <modal
       v-model:open="open"
-      v-bind="schema.componentProps"
+      v-bind="compProps"
       :centered="true"
       @ok="handleOk"
       @cancel="handleCancle"
@@ -41,6 +41,10 @@
   const extraData = ref({});
 
   const { schema, formConfig, debug } = toRefs(useAttrs());
+  const myProps = ref({});
+  const compProps = computed(() => {
+    return { ...schema.value.componentProps, ...myProps.value };
+  });
   const footerBtnClick = () => {
     emit('footerBtnClick');
   };
@@ -63,6 +67,10 @@
     'dialogBeforeClose',
     'footerBtnClick',
   ]);
+  const setProps = (callback) => {
+    if (callback) callback({ myProps });
+    console.log(myProps.value);
+  };
   //schema.value.children = flattenArray(schema.value.children);
   // formConfig.value.children = schema.value.children;
   const show = (fData, eData, raw = false) => {
@@ -103,6 +111,7 @@
     getExtraData: () => extraData.value,
     getFormData: () => formModelToData(formModelNew.value),
     getForm: () => formRef.value,
+    setProps,
   });
   const { proxy } = getCurrentInstance();
 </script>

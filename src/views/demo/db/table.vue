@@ -1,5 +1,9 @@
 <template>
   <div>
+    <a-radio-group v-model:value="db" @change="loadData(db)">
+      <a-radio-button value="base">base</a-radio-button>
+      <a-radio-button value="main">main</a-radio-button>
+    </a-radio-group>
     <div id="myDiagramDiv" ref="diagram" class="dbDiagram"></div>
     <light-form logic="dbtable.edit" remote ref="lightFormRef" />
   </div>
@@ -7,14 +11,17 @@
 <script lang="ts">
   import go from '@/assets/js/go3.js';
   import { defHttp as axios } from '@utils/http/axios';
+  import { RadioGroup as ARadioGroup, RadioButton as ARadioButton } from 'ant-design-vue';
   //import vform from '@c/Vform/index.vue';
 
   // import VabJsonViewer from 'vue-json-viewer';
 
   export default defineComponent({
     name: 'DbDiagram',
+    components: { ARadioGroup, ARadioButton },
     // components: { vform },
     setup() {
+      const db = ref('base');
       let myDiagram: any = {};
       const state = reactive({
         diagram: null,
@@ -253,10 +260,12 @@
       };
       onMounted(async () => {
         await init();
-        await loadData('base');
+        await loadData(db.value);
       });
       return {
         ...toRefs(state),
+        db,
+        loadData,
         // reload,
         // save,
         // getCacheChart,

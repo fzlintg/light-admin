@@ -136,7 +136,10 @@
     tableRef.value.commitProxy('query', { form });
   };
   const insertForm = () => {
-    editForm.value.show({});
+    editForm.value.setProps(({ myProps }) => {
+      myProps.value = { title: '新增数据' };
+    });
+    editForm.value.show({}, { type: 'insert' });
   };
   const openDetail = (data) => {
     // let showData = cloneDeep(data);
@@ -146,8 +149,8 @@
     detailData.value = data;
     detailOpen.value = true;
   };
-  const saveData = (data) => {
-    tableRef.value.insert(data);
+  const saveData = (data, type = 'insert') => {
+    tableRef.value[type](data);
     tableRef.value.commitProxy('save');
   };
 </script>
