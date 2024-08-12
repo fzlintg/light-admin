@@ -12,7 +12,7 @@
           <Icon :icon="item.icon" />
         </a>
       </Tooltip>
-      <Divider type="vertical" />
+
       <Tooltip title="撤销">
         <a :class="{ disabled: !canUndo }" :disabled="!canUndo" @click="undo">
           <Icon icon="ant-design:undo-outlined" />
@@ -59,10 +59,10 @@
   import { useAppStore } from '@store/modules/app';
   import { useMessage } from '@h/web/useMessage';
   import { pick } from 'lodash-es';
-  import { getQueryParam } from '../../../utils';
+  import { getQueryParam, clearUrlParam } from '../../../utils';
   import { copyText } from '@utils/copyTextToClipboard';
 
-  import 'url-search-params-polyfill';
+  // import 'url-search-params-polyfill';
   // import { getQueryParam } from '../../../utils';
 
   interface IToolbarsConfig {
@@ -192,9 +192,7 @@
         },
         handleNewFormItems: () => {
           emit('handleClearFormItems');
-          const search = new URLSearchParams(window.location.search);
-          search.delete('name');
-          window.location.search = search.toString();
+          clearUrlParam('name');
           logic.value = {
             id: null,
             title: '',

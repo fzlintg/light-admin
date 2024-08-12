@@ -144,8 +144,7 @@ export default {
            this.context.emit("loadSchemas",result.items[0].config); 
            Object.assign(extraData,_.pick(result.items[0],['id','name','title']));
          } 
-           let href=utils.replaceUrlParam(window.location.href,"name="+formModel.name);
-        window.location.href=href
+        utils.setUrlParam("name",formModel.name);
         return true; 
           `,
         onDialogOpened__params: ['params'],

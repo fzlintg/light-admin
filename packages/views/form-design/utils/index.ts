@@ -25,7 +25,7 @@ import { uniqueId, setUniqueId } from './uniqueId';
 import { defHttp } from '@utils/http/axios';
 import { useMessage } from '@h/web/useMessage';
 import { useAppStore } from '@store/modules/app';
-import URLSearchParams from 'url-search-params-polyfill';
+import 'url-search-params-polyfill';
 
 const { createMessage } = useMessage();
 const appStore = useAppStore();
@@ -497,50 +497,63 @@ export const strToReg = (rules: IValidationRule[]) => {
   });
 };
 
-export function setUrlParam(url, param, value) {
-  const search = new URLSearchParams(url);
-  search.set(param, value);
+export function setUrlParam(param, value) {
+  const urlParts = window.location.href.split('?');
+  if (urlParts.length > 1) {
+    const search = new URLSearchParams(urlParts[1]);
+    search.set(param, value);
+    window.location.href = urlParts[0] + '?' + search.toString();
+  } else window.location.href = urlParts[0] + '?' + param + '=' + value;
 }
-export function replaceUrlParam(url, param) {
-  // 解析当前 URL 的参数部分
-  const urlParts = url.split('?');
-  if (urlParts.length < 2) {
-    // 如果没有参数部分，则直接返回原始 URL
-    return url + '?' + param;
-  }
-
-  const baseUrl = urlParts[0]; // URL 的基础部分
-  const params = urlParts[1].split('&'); // 分割参数部分为数组
-
-  // 遍历参数数组，查找并替换指定参数的值
-  const paramKey = param.split('=')[0];
-  const paramValue = param.split('=')[1];
-  let paramUpdated = false; // 用于标记是否已经更新了参数值
-
-  for (let i = 0; i < params.length; i++) {
-    const keyValue = params[i].split('=');
-    const key = keyValue[0];
-
-    if (key === paramKey) {
-      // 找到匹配的参数，替换其值
-      keyValue[1] = paramValue;
-      params[i] = keyValue.join('=');
-      paramUpdated = true;
-      break;
-    }
-  }
-
-  // 如果没有找到对应的参数，则直接追加到末尾
-  if (!paramUpdated) {
-    params.push(param);
-  }
-
-  // 重新构建 URL
-  const updatedParams = params.join('&');
-  const updatedUrl = baseUrl + '?' + updatedParams;
-
-  return updatedUrl;
+export function clearUrlParam(param) {
+  const urlParts = window.location.href.split('?');
+  if (urlParts.length > 1) {
+    const search = new URLSearchParams(urlParts[1]);
+    search.delete(param);
+    const query = search.toString();
+    window.location.href = urlParts[0] + (query ? '?' : '') + query;
+  } else window.location.href = urlParts[0];
 }
+// export function replaceUrlParam(url, param) {
+//   // 解析当前 URL 的参数部分
+//   const urlParts = url.split('?');
+//   if (urlParts.length < 2) {
+//     // 如果没有参数部分，则直接返回原始 URL
+//     return url + '?' + param;
+//   }
+
+//   const baseUrl = urlParts[0]; // URL 的基础部分
+//   const params = urlParts[1].split('&'); // 分割参数部分为数组
+
+//   // 遍历参数数组，查找并替换指定参数的值
+//   const paramKey = param.split('=')[0];
+//   const paramValue = param.split('=')[1];
+//   let paramUpdated = false; // 用于标记是否已经更新了参数值
+
+//   for (let i = 0; i < params.length; i++) {
+//     const keyValue = params[i].split('=');
+//     const key = keyValue[0];
+
+//     if (key === paramKey) {
+//       // 找到匹配的参数，替换其值
+//       keyValue[1] = paramValue;
+//       params[i] = keyValue.join('=');
+//       paramUpdated = true;
+//       break;
+//     }
+//   }
+
+//   // 如果没有找到对应的参数，则直接追加到末尾
+//   if (!paramUpdated) {
+//     params.push(param);
+//   }
+
+//   // 重新构建 URL
+//   const updatedParams = params.join('&');
+//   const updatedUrl = baseUrl + '?' + updatedParams;
+
+//   return updatedUrl;
+// }
 function getQuery(href, name) {
   const reg = new RegExp('([&|?])' + name + '=([^&]*)');
   const result = href.match(reg);

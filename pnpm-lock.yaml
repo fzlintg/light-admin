@@ -119,6 +119,9 @@ importers:
       unocss:
         specifier: ^0.59.4
         version: 0.59.4(postcss@8.4.33)(rollup@3.29.4)(vite@5.2.11(@types/node@20.10.6)(less@4.2.0)(sass@1.69.7)(terser@5.26.0))
+      url-search-params-polyfill:
+        specifier: ^8.2.5
+        version: 8.2.5
       vditor:
         specifier: ^3.10.4
         version: 3.10.4
@@ -7538,6 +7541,9 @@ packages:
 
   url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
+
+  url-search-params-polyfill@8.2.5:
+    resolution: {integrity: sha512-FOEojW4XReTmtZOB7xqSHmJZhrNTmClhBriwLTmle4iA7bwuCo6ldSfbtsFSb8bTf3E0a3XpfonAdaur9vqq8A==}
 
   use@3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
@@ -16463,6 +16469,8 @@ snapshots:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+
+  url-search-params-polyfill@8.2.5: {}
 
   use@3.1.1: {}
 
