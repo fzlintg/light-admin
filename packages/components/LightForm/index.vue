@@ -13,7 +13,7 @@
       v-if="loaded"
       v-bind="$attrs"
     />
-    <div class="refresh-icon" v-if="isMouseOver" @click="handleRefresh">
+    <div class="refresh-icon" v-if="isMouseOver && debug" @click="handleRefresh">
       <Icon icon="ant-design:reload-outlined" :size="10" />
       <!-- 使用Font Awesome图标库中的刷新图标 -->
     </div>
@@ -49,6 +49,10 @@
     options: {
       type: Object,
       default: () => {},
+    },
+    debug: {
+      type: Boolean,
+      default: false,
     },
   });
   const formConfig = ref(null),
@@ -90,6 +94,7 @@
     loaded.value = false;
     nextTick(async () => {
       await loadData();
+      loaded.value = true;
     });
   };
   defineExpose({ vformRef, getFormRef: () => vformRef.value });

@@ -47,6 +47,7 @@ const t = {
   checkbox: '选择框',
   footerBtnText: '底部按钮文本',
   isBtn: '是否按钮',
+  onChange: '改变事件',
 };
 const setting = {};
 

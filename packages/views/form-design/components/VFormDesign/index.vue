@@ -323,8 +323,12 @@
   /**
    * 清空表单项列表
    */
-  const handleClearFormItems = () => {
+  const handleClearFormItems = ({ cache, logic }) => {
     formConfig.value.schemas = [];
+    if (logic) {
+      window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
+      window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(logic.value));
+    }
     handleSetSelectItem({ component: '' });
   };
 
@@ -332,6 +336,9 @@
     let cache = getQueryParam('cache') || '';
     window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
     toolbarRef.value.saveLogic(formConfig.value, cache);
+  };
+  const handleNewFormItems = () => {
+    toolbarRef.value.newForm(formConfig.value, cache);
   };
   // const handleSettings = () => {
   //   toolbarRef.value.openSetting();

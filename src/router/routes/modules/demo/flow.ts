@@ -24,7 +24,7 @@ const charts: AppRouteModule = {
     },
     {
       path: 'dbTable',
-      name: 'dbTableDemo',
+      name: 'DbTableDemo',
       component: () => import('@/views/demo/db/table.vue'),
       meta: {
         title: '数据库表',

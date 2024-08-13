@@ -65,7 +65,9 @@
 
   const el = ref();
   let editor: Nullable<CodeMirror.Editor>;
-
+  const refresh = () => {
+    editor?.refresh();
+  };
   const debounceRefresh = useDebounceFn(refresh, 100);
   const appStore = useAppStore();
 
@@ -112,9 +114,6 @@
     );
   }
 
-  function refresh() {
-    editor?.refresh();
-  }
   const formatCode = () => {
     editor.execCommand('selectAll');
     editor.autoFormatRange(editor.getCursor(true), editor.getCursor(false));
@@ -124,13 +123,14 @@
       autoCloseBrackets: true,
       autoCloseTags: true,
       foldGutter: true,
-      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      //  gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      gutters: ['CodeMirror-linenumbers'],
       styleActiveLine: true,
-      extraKeys: {
-        'Alt-F': (cm) => {
-          formatCode();
-        },
-      },
+      // extraKeys: {
+      //   'Alt-F': (cm) => {
+      //     formatCode();
+      //   },
+      // },
     };
 
     editor = CodeMirror(el.value!, {
@@ -139,6 +139,7 @@
       readOnly: props.readonly,
       tabSize: 2,
       theme: 'material-palenight',
+
       lineWrapping: true,
       lineNumbers: true,
       ...addonOptions,
@@ -150,12 +151,17 @@
     editor?.on('change', () => {
       emit('change', editor?.getValue());
     });
+    setTimeout(() => {
+      refresh();
+    }, 200);
+
     //format(CodeMirror);
   }
 
   onMounted(async () => {
     await nextTick();
-    init();
+    await init();
+
     useWindowSizeFn(debounceRefresh);
   });
 

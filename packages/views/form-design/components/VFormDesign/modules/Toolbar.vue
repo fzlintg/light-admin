@@ -191,13 +191,13 @@
             .show(pick(logic.value, ['name']), logic.value);
         },
         handleNewFormItems: () => {
-          emit('handleClearFormItems');
           clearUrlParam('name');
           logic.value = {
             id: null,
             title: '',
             name: '',
           };
+          emit('handleClearFormItems', { cache, logic });
         },
       };
       const saveLogic = (schemas, cache) => {

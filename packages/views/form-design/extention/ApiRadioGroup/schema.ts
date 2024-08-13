@@ -5,12 +5,14 @@ export default {
   label: 'API单选',
   icon: 'ant-design:check-circle-outlined',
   //  helpMessage: ['ApiRadioGroup组件', '使用接口提供的数据生成选项'],
-  required: true,
+
   componentProps: {
     // api: optionsListApi,
     _update__func: `await this.getItemRef().fetch(this.formatTpl('params'))`,
     api__func: `return await axios.get({url:"/select/getDemoOptions?count="+params.count});`,
     api__params: ['params'],
+    onChange__func: `console.log('ApiRadioGroup====>:', e)`,
+    onChange__params: ['e'],
     defaultContext__var: `{
       input_1: 3,
 }`,

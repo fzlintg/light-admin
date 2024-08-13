@@ -12,5 +12,6 @@ export default {
     prefix: 'function(){',
     suffix: '}',
     defaultValue: '',
+    config: {},
   },
 };
