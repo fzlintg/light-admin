@@ -5,19 +5,18 @@
     /></template>
   </a-input>
 
-  <Modal title="json编辑" :open="visible" @cancel="visible = false" @ok="handleGetData">
-    <template #title>
-      <div>
-        <Icon icon="ant-design:profile" />
-        <span>JSON编辑</span>
-      </div>
-    </template>
-
+  <Modal
+    title="json编辑"
+    :open="visible"
+    @cancel="visible = false"
+    @ok="handleGetData"
+    min-height="300"
+  >
     <CodeEditor
       :value="editJsonValue"
       ref="jsonEditor"
       :mode="MODE.JAVACRIPT"
-      :height="500"
+      :height="300"
       @change="editJsonValue = $event"
     />
   </Modal>
