@@ -12,7 +12,7 @@
     toRefs,
   } from 'vue';
   import { get } from 'lodash-es';
-  import { Descriptions } from 'ant-design-vue';
+  import { Descriptions, Tag } from 'ant-design-vue';
   import { CollapseContainer } from '@c/Container';
   import { useDesign } from '@h/web/useDesign';
   import { isFunction } from '@utils/is';
@@ -139,6 +139,15 @@
                     break;
                   case 'dict':
                     return <div>{getField[item.dictKey]}</div>;
+                    break;
+                  case 'dicts':
+                    return (
+                      <div>
+                        {getField.map((field) => {
+                          return <Tag color="success">{field[item.dictKey]}</Tag>;
+                        })}
+                      </div>
+                    );
                     break;
                 }
               }

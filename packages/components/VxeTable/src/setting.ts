@@ -28,8 +28,17 @@ VxeUI.formats.add('json', {
 VxeUI.formats.add('dict', {
   cellFormatMethod: ({ cellValue, column }) => {
     if (!cellValue) return '';
-
     return cellValue[column.params.labelField];
+    // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
+  },
+});
+VxeUI.formats.add('dicts', {
+  cellFormatMethod: ({ cellValue, column }) => {
+    if (!cellValue) return '';
+    if (Array.isArray(cellValue)) {
+      return cellValue.map((item) => item[column.params.labelField]).join(',');
+    }
+
     // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
   },
 });
