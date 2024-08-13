@@ -38,6 +38,7 @@
 
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   import { formatRules } from '../../utils/index';
+  import { cloneDeep } from 'lodash-es';
 
   const _this = getCurrentInstance();
   const open = ref(false);
@@ -81,7 +82,7 @@
   // formConfig.value.children = schema.value.children;
   const show = (fData, eData, raw = false) => {
     if (fData) {
-      formModelNew.value = raw ? fData : flattenObject(fData);
+      formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
     }
     formatRules(schema.value.children, false, eData);
     if (eData) extraData.value = eData;

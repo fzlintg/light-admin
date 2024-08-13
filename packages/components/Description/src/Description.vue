@@ -135,7 +135,11 @@
               if (formatter) {
                 switch (formatter) {
                   case 'json':
-                    return <JsonViewer value={getField} expandDepth={3}></JsonViewer>;
+                    return <JsonViewer value={getField} expandDepth={0}></JsonViewer>;
+                    break;
+                  case 'dict':
+                    return <div>{getField[item.dictKey]}</div>;
+                    break;
                 }
               }
               // eslint-disable-next-line

@@ -17,6 +17,7 @@ export interface DescItem {
     data: Recordable,
   ) => VNode | undefined | JSX.Element | Element | string | number;
   formatter: string;
+  dictKey:string;//lintg
 }
 
 export interface DescriptionProps extends DescriptionsProps {

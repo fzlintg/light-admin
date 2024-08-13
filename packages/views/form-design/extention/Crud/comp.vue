@@ -7,19 +7,19 @@
       ref="insertFormRef"
       :options="tableDict"
     />
-    <VxeBasicTable ref="tableRef" v-bind="gOptions" v-if="ifshow" @insert-form="insertForm">
+    <VxeBasicTable
+      ref="tableRef"
+      v-bind="gOptions"
+      keep-source
+      v-if="ifshow"
+      @insert-form="insertForm"
+    >
       <template #action="{ row }">
         <TableAction outside :actions="createActions(row)" />
       </template>
     </VxeBasicTable>
     <Modal v-model:open="detailOpen" :width="900" title="数据详情" @ok="detailOpen = false">
-      <Description
-        size="middle"
-        :bordered="false"
-        :column="2"
-        :data="detailData"
-        :schema="detailSchema"
-      />
+      <Description :column="2" :data="detailData" :schema="detailSchema" />
     </Modal>
   </div>
 </template>
@@ -149,8 +149,10 @@
     detailData.value = data;
     detailOpen.value = true;
   };
-  const saveData = (data, type = 'insert') => {
-    tableRef.value[type](data);
+  const saveData = ({ data, row, type = 'insert' }) => {
+    if (type == 'insert') tableRef.value.insert(data);
+    else Object.assign(row, data);
+
     tableRef.value.commitProxy('save');
   };
 </script>
