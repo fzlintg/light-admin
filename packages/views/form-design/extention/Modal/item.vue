@@ -46,7 +46,7 @@
   const formModelNew = ref({});
   const formRef = ref(null);
   const extraData = ref({});
-
+  const state = reactive({});
   const { schema, formConfig, debug } = toRefs(useAttrs());
   const myProps = ref({});
   const compProps = computed(() => {
@@ -80,7 +80,12 @@
   };
   //schema.value.children = flattenArray(schema.value.children);
   // formConfig.value.children = schema.value.children;
+  const getState = () => {
+    return state;
+  };
   const show = (fData, eData, raw = false) => {
+    state.fData = fData;
+    state.eData = eData;
     if (fData) {
       formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
     }
@@ -90,7 +95,8 @@
     emit('dialogOpened', { schema, fData: formModelNew.value, eData, findFormItem });
   };
 
-  const handleOk = (e: MouseEvent) => {
+  const handleOk = async (e: MouseEvent) => {
+    await state.eData?.cb?.ok();
     emit('okButtonClick', {
       _this,
       utils: { setUrlParam, clearUrlParam },
@@ -119,6 +125,7 @@
     getFormData: () => formModelToData(formModelNew.value),
     getForm: () => formRef.value,
     setProps,
+    getState,
   });
   const { proxy } = getCurrentInstance();
 </script>

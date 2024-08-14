@@ -40,6 +40,7 @@
     ref,
     unref,
     reactive,
+    getCurrentInstance,
   } from 'vue';
   //import FormRender from './components/FormRender.vue';
   import { IFormConfig, AForm } from '../../typings/v-form-component';
@@ -86,6 +87,7 @@
     emits: ['submit', 'change', 'update:fApi', 'update:formModel'],
     setup(props, context) {
       const wrapperComp = props.formConfig.layout == 'vertical' ? Col : Row;
+      const { proxy } = getCurrentInstance();
       const { emit } = context;
       const eFormModel = ref<AForm | null>(null);
       // const getOptions=(field)=>{
@@ -104,8 +106,10 @@
       });
       provide('formItemRefList', formItemRefList);
       provide('getFormRef', () => {
-        return eFormModel.value;
+        return proxy;
+        // return eFormModel.value;
       });
+
       const getFormItem = (field) => formItemRefList[field];
       const getItemRef = (field) => {
         return formItemRefList[field].getItemRef();

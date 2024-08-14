@@ -3,6 +3,9 @@
     <template #prefix
       ><Icon icon="ant-design:profile" class="hand" @click="visible = true"
     /></template>
+    <template #suffix
+      ><Icon icon="ant-design:form-outlined" class="hand" @click="openForm" v-if="formModel"
+    /></template>
   </a-input>
 
   <Modal
@@ -32,11 +35,13 @@
   const props = defineProps({
     value: propTypes.object,
     defaultValue: propTypes.object,
+    formModel: propTypes.string,
   });
   // const attrs = useAttrs();
   const [state] = useRuleFormItem(props, 'value', 'change');
   const jsonValue = ref(JSON.stringify(state.value || props.defaultValue, null, 2));
   const emit = defineEmits(['update:value']);
+  const vformRef = inject('getFormRef', () => {})();
   const editJsonValue = ref('');
   editJsonValue.value = jsonValue.value;
   const visible = ref(false);
@@ -56,5 +61,14 @@
     } catch (e) {
       createMessage.error(e.message);
     }
+  };
+  const formFinish = async () => {
+    const modelRef = vformRef.getItemRef(props.formModel);
+    state.value = await modelRef.getFormModel();
+    editJsonValue.value = jsonValue.value = JSON.stringify(state.value);
+    emit('update:value', state.value);
+  };
+  const openForm = () => {
+    vformRef.getItemRef(props.formModel).show(state.value, { cb: { ok: formFinish } });
   };
 </script>
