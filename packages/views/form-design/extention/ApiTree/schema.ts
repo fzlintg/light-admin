@@ -16,6 +16,11 @@ export default {
     afterFetch__params: ['v'],
     resultField: 'list',
     checkable: false,
+    fieldNames: {
+      children: 'children',
+      title: 'title',
+      key: 'key',
+    },
     //  treeData:[]
   },
   colProps: {

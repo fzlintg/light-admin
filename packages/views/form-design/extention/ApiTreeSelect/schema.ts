@@ -16,6 +16,11 @@ export default {
     showCheckedStrategy: TreeSelect.SHOW_ALL,
     allowClear: true,
     placeholder: '请选择',
+    fieldNames: {
+      children: 'children',
+      label: 'title',
+      value: 'key',
+    },
   },
   colProps: {
     span: 8,

@@ -48,6 +48,7 @@ const t = {
   footerBtnText: '底部按钮文本',
   isBtn: '是否按钮',
   onChange: '改变事件',
+  fieldNames: '字段映射',
 };
 const setting = {};
 
@@ -106,6 +107,12 @@ export function getSetting(item, options) {
     return {
       label: t[item] || item,
       component: 'InputNumber',
+    };
+  } else if (typeof options[item] == 'object') {
+    if (item.endsWith('__params')) return undefined;
+    return {
+      label: t[item] || item,
+      component: 'JsonInput',
     };
   } else return undefined;
 }

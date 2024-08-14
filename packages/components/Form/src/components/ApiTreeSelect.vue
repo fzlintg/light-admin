@@ -1,10 +1,5 @@
 <template>
-  <TreeSelect
-    v-bind="getAttrs"
-    @change="handleChange"
-    :field-names="fieldNames"
-    :load-data="async ? onLoadData : undefined"
-  >
+  <TreeSelect v-bind="getAttrs" @change="handleChange" :load-data="async ? onLoadData : undefined">
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
@@ -31,9 +26,9 @@
     immediate: { type: Boolean, default: true },
     async: { type: Boolean, default: false },
     resultField: propTypes.string.def(''),
-    labelField: propTypes.string.def('title'),
-    valueField: propTypes.string.def('value'),
-    childrenField: propTypes.string.def('children'),
+    // labelField: propTypes.string.def('title'),
+    // valueField: propTypes.string.def('value'),
+    // childrenField: propTypes.string.def('children'),
     beforeFetch: {
       type: Function as PropType<Fn>,
       default: null,
@@ -47,20 +42,35 @@
   const emit = defineEmits(['options-change', 'change', 'load-data']);
 
   const attrs = useAttrs();
+  let injectOptions = inject('options');
   const treeData = ref<Recordable<any>[]>([]);
+  // const optionsRef = ref<OptionsItem[]>([]);
+  //const optionsRef = inject('options')
+  watch(
+    () => injectOptions.value,
+    () => {
+      if (injectOptions?.value?.[attrs.schema.field]) {
+        treeData.value = injectOptions?.value?.[attrs.schema.field];
+      }
+    },
+  );
+  if (injectOptions?.value?.[attrs.schema.field]) {
+    treeData.value = injectOptions?.value?.[attrs.schema.field];
+  }
+
   const isFirstLoaded = ref<Boolean>(false);
   const loading = ref(false);
   const getAttrs = computed(() => {
     return {
-      ...(props.api ? { treeData: unref(treeData) } : {}),
+      ...(props.api || treeData.value ? { treeData: unref(treeData) } : {}),
       ...attrs,
     };
   });
-  const fieldNames = {
-    children: props.childrenField,
-    value: props.valueField,
-    label: props.labelField,
-  };
+  // const fieldNames = {
+  //   children: props.childrenField,
+  //   value: props.valueField,
+  //   label: props.labelField,
+  // };
 
   function handleChange(...args) {
     emit('change', ...args);

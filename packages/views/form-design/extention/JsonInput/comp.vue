@@ -40,6 +40,12 @@
   const editJsonValue = ref('');
   editJsonValue.value = jsonValue.value;
   const visible = ref(false);
+  watch(
+    () => state.value,
+    () => {
+      jsonValue.value = JSON.stringify(state.value);
+    },
+  );
   //if (!state.value) state.value = props.defaultValue;
   const handleGetData = () => {
     try {

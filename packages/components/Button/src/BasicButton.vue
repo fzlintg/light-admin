@@ -1,5 +1,10 @@
 <template>
-  <Button v-bind="getBindValue" :class="getButtonClass" @click="onClick">
+  <Button
+    v-bind="getBindValue"
+    :class="getButtonClass"
+    @click="onClick"
+    style="margin-bottom: 20px"
+  >
     <template #icon>
       <slot name="icon"></slot>
     </template>
