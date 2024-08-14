@@ -69,6 +69,9 @@
     emit('update:value', state.value);
   };
   const openForm = () => {
+    vformRef.getItemRef(props.formModel).setProps(({ myProps }) => {
+      myProps.value['title'] = '数据编辑';
+    });
     vformRef.getItemRef(props.formModel).show(state.value, { cb: { ok: formFinish } });
   };
 </script>
