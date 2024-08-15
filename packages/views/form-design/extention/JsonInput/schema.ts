@@ -4,5 +4,6 @@ export default {
   componentProps: {
     defaultValue: {},
     formModel: '',
+    alowClear: true,
   },
 };
