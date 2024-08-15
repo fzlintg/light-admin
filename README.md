@@ -53,8 +53,7 @@ Then you can navigate to `http://localhost:6666`
 ## Project
 
 本项目是来源于vben-vue-admin，并做了大量的修改，特别是可视化表单，把几乎所有的组件都进行了可视化，并设计了一个非常完美通用的组件化架构，把vxe-table和echarts进行任意的模板化配置。
-
-
+后端部分暂未开源，因此前端代码功能可能会不完整。
 
 ## License
 
