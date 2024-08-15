@@ -41,8 +41,8 @@
   const [state] = useRuleFormItem(props, 'value', 'change');
   const jsonValue = ref(JSON.stringify(state.value || props.defaultValue, null, 2));
   const emit = defineEmits(['update:value']);
-  const vformRef = inject('getFormRef', () => {})();
-  const topVformRef = vformRef.getTopFormRef();
+  const formRef = inject('getFormRef', () => {})();
+  const topFormRef = formRef?.getTopFormRef();
   const editJsonValue = ref('');
   editJsonValue.value = jsonValue.value;
   const visible = ref(false);
@@ -64,13 +64,13 @@
     }
   };
   const formFinish = async () => {
-    const modelRef = topVformRef.getItemRef(props.formModel);
+    const modelRef = topFormRef?.getItemRef(props.formModel);
     state.value = await modelRef.getFormModel();
     editJsonValue.value = jsonValue.value = JSON.stringify(state.value);
     emit('update:value', state.value);
   };
   const openForm = () => {
-    const modelRef = topVformRef.getItemRef(props.formModel);
+    const modelRef = topFormRef?.getItemRef(props.formModel);
     modelRef.setProps(({ myProps }) => {
       myProps.value['title'] = '数据编辑';
     });
