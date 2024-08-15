@@ -15,6 +15,7 @@
         v-model:formModel="formModelNew"
         ref="formRef"
         :debug="debug"
+        :parentForm="parentFormRef"
       />
 
       <template #insertFooter v-if="!!schema.componentProps.footerBtnText">
@@ -34,7 +35,7 @@
     clearUrlParam,
   } from '../../utils';
   //import * as utils from '../../utils/index';
-  import { computed, getCurrentInstance } from 'vue';
+  import { computed, getCurrentInstance, inject } from 'vue';
 
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   import { formatRules } from '../../utils/index';
@@ -52,6 +53,7 @@
   const compProps = computed(() => {
     return { ...schema.value.componentProps, ...myProps.value };
   });
+  const parentFormRef = inject('getFormRef', () => {})();
   const footerBtnClick = () => {
     emit('footerBtnClick');
   };

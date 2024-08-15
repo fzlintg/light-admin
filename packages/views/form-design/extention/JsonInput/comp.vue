@@ -42,6 +42,7 @@
   const jsonValue = ref(JSON.stringify(state.value || props.defaultValue, null, 2));
   const emit = defineEmits(['update:value']);
   const vformRef = inject('getFormRef', () => {})();
+  const topVformRef = vformRef.getTopFormRef();
   const editJsonValue = ref('');
   editJsonValue.value = jsonValue.value;
   const visible = ref(false);
@@ -63,15 +64,16 @@
     }
   };
   const formFinish = async () => {
-    const modelRef = vformRef.getItemRef(props.formModel);
+    const modelRef = topVformRef.getItemRef(props.formModel);
     state.value = await modelRef.getFormModel();
     editJsonValue.value = jsonValue.value = JSON.stringify(state.value);
     emit('update:value', state.value);
   };
   const openForm = () => {
-    vformRef.getItemRef(props.formModel).setProps(({ myProps }) => {
+    const modelRef = topVformRef.getItemRef(props.formModel);
+    modelRef.setProps(({ myProps }) => {
       myProps.value['title'] = '数据编辑';
     });
-    vformRef.getItemRef(props.formModel).show(state.value, { cb: { ok: formFinish } });
+    modelRef.show(state.value, { cb: { ok: formFinish } });
   };
 </script>

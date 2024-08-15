@@ -83,6 +83,10 @@
         type: Object,
         default: () => {},
       },
+      parentForm: {
+        type: Object,
+        default: () => {},
+      },
     },
     emits: ['submit', 'change', 'update:fApi', 'update:formModel'],
     setup(props, context) {
@@ -197,7 +201,16 @@
         //   debugger;
         // emit('update:formModel', formModel.value);
       });
+      const getParentFormRef = () => {
+        return props.parentForm;
+      };
+      const getTopFormRef = () => {
+        if (!getParentFormRef()) return proxy;
+        else return getParentFormRef()?.getTopFormRef();
+      };
       return {
+        getTopFormRef,
+        getParentFormRef,
         eFormModel,
         submit,
         validate,
