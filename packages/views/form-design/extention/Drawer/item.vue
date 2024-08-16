@@ -24,7 +24,7 @@
   import { flattenObject, formModelToData, setUrlParam, clearUrlParam } from '../../utils';
   import { computed, getCurrentInstance } from 'vue';
   import { useTabs } from '@h/web/useTabs';
-
+  import { cloneDeep } from 'lodash-es';
   const {
     closeAll,
     closeLeft,
@@ -63,7 +63,7 @@
   const show = (fData, eData, raw = false) => {
     if (fData) {
       openData.value = fData;
-      formModelNew.value = raw ? fData : flattenObject(fData);
+      formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
     }
     if (eData) extraData.value = eData;
     emit('dialogOpened', { fData: formModelNew.value, eData });

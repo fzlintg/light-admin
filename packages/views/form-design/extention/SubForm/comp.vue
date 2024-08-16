@@ -79,6 +79,7 @@
   const rowIds = reactive([]);
   stateModel.value = stateModel.value || [];
   const initRowIds = () => {
+
     rowIds.splice(0, rowIds.length);
     if (Array.isArray(stateModel.value)) {
       //自带初始值，配套提供rowIds
