@@ -1,17 +1,12 @@
 <script lang="tsx">
-
-
   import CollapseHeader from './CollapseHeader.vue';
-    import { useDesign } from '@h/web/useDesign';
-      import { triggerWindowResize } from '@utils/event';
+  import { useDesign } from '@h/web/useDesign';
+  import { triggerWindowResize } from '@utils/event';
   import { useTimeoutFn } from '@vben/hooks';
   import { CollapseTransition } from '@c/Transition';
-    import { Skeleton } from 'ant-design-vue';
+  import { Skeleton } from 'ant-design-vue';
   import { isNil } from 'lodash-es';
   import { defineComponent, ref, unref, type ExtractPropTypes, type PropType } from 'vue';
-
-
-
 
   const collapseContainerProps = {
     title: { type: String, default: '' },
@@ -36,6 +31,7 @@
      * Delayed loading time
      */
     lazyTime: { type: Number, default: 0 },
+    show: { type: Boolean, default: true },
   };
 
   export type CollapseContainerProps = ExtractPropTypes<typeof collapseContainerProps>;
@@ -48,7 +44,7 @@
     setup(props, { expose, slots }) {
       const { prefixCls } = useDesign('collapse-container');
 
-      const show = ref(true);
+      const show = ref(props.show);
 
       const handleExpand = (val: boolean) => {
         show.value = isNil(val) ? !show.value : val;

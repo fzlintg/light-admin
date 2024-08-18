@@ -25,7 +25,7 @@
       const { prefixCls } = useDesign('collapse-container');
       const _prefixCls = computed(() => props.prefixCls || unref(prefixCls));
       return () => (
-        <div class={[`${unref(_prefixCls)}__header px-2 py-5`, attrs.class]}>
+        <div class={[`${unref(_prefixCls)}__header px-1 py-4 text-blue bg-gray-100`, attrs.class]}>
           <BasicTitle helpMessage={props.helpMessage} normal>
             {slots.title?.() || props.title}
           </BasicTitle>
