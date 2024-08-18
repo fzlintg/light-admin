@@ -77,7 +77,7 @@
     </Form>
 
     <Icon @click="patchSchemas" icon="ant-design:tool-outlined" :size="15" class="text-gray hand" />
-
+    <light-form logic="system.ds.edit" />
     <light-form logic="system.tab.ai" @load-schemas="loadSchemas" />
   </div>
 </template>
