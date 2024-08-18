@@ -2,11 +2,14 @@
   <div class="grid-box mx-3 sub-form-container flex-1">
     <Row class="header-row bg-light b-1">
       <div class="w-20 jc-center d-flex">
-        <a-button @click="addRowId" type="primary" shape="circle" class="my-2">
-          <template #icon> <Icon icon="ant-design:plus-outlined" /> </template>
+        <a-button @click="addRowId" type="primary" shape="circle" class="my-2" size="small">
+          <template #icon> <Icon :size="16" icon="ant-design:plus-outlined" /> </template>
         </a-button>
       </div>
-      <div v-for="(item, k) in schema.children" :style="item.width ? { width: item.width } : {}"
+      <div
+        class="ac-center"
+        v-for="(item, k) in schema.children"
+        :style="item.width ? { width: item.width } : {}"
         >{{ item.label }}
       </div>
     </Row>
@@ -25,7 +28,7 @@
               icon="ant-design:plus-circle-twotone"
               @click="insertRowId(rowIdx)"
               color="blue"
-              class="mr-2 hand"
+              class="mx-1 hand"
             />
             <Icon
               icon="ant-design:minus-circle-twotone"
@@ -79,7 +82,6 @@
   const rowIds = reactive([]);
   stateModel.value = stateModel.value || [];
   const initRowIds = () => {
-
     rowIds.splice(0, rowIds.length);
     if (Array.isArray(stateModel.value)) {
       //自带初始值，配套提供rowIds

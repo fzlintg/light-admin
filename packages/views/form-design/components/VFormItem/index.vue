@@ -36,7 +36,7 @@
       /></span>
     </div>
     <div v-else class="item-container">
-      <FormItem v-bind="{ ...formItemProps }" style="margin-right: 5px">
+      <FormItem v-bind="{ ...formItemProps }" style="margin-right: 5px" class="mt-3">
         <template
           #label
           v-if="
@@ -351,7 +351,7 @@
             omitObj.push(item);
         }
         let result = omit(props.schema.componentProps, omitObj);
-       //   reuslt.options=props?.options?[props.schema.field]||[]
+        //   reuslt.options=props?.options?[props.schema.field]||[]
         const isCheck =
           props.schema && ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
         let { field } = props.schema;
