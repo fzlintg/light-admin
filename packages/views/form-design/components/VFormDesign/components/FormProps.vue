@@ -3,6 +3,13 @@
 -->
 <template>
   <div class="properties-content">
+    <Icon
+      @click="patchSchemas"
+      icon="ant-design:tool-outlined"
+      :size="15"
+      title="组件修复"
+      class="text-gray hand"
+    />
     <Form class="properties-body" label-align="left" layout="vertical">
       <!--      <e-upload v-model="fileList"></e-upload>-->
 
@@ -76,8 +83,12 @@
       </FormItem>
     </Form>
 
-    <Icon @click="patchSchemas" icon="ant-design:tool-outlined" :size="15" class="text-gray hand" />
-    <light-form logic="system.ds.edit" />
+    <light-form
+      logic="system.ds.edit"
+      :formModel="formConfig.ds"
+      debug
+      @update:form-model="updateFormModel"
+    />
     <light-form logic="system.tab.ai" @load-schemas="loadSchemas" />
   </div>
 </template>
@@ -128,10 +139,16 @@
         schema.componentProps = { ...originSchema.componentProps, ...schema.componentProps };
       }
     });
+    formConfig.value = { ds: [], ...formConfig.value };
+
     createMessage.success('修正完成');
   };
   const loadSchemas = (schemas) => {
     let schemaData = importJSON(JSON.stringify(schemas), true);
     formConfig.value = schemaData;
+  };
+  const updateFormModel = (value) => {
+    debugger;
+    formConfig.value.ds = value;
   };
 </script>

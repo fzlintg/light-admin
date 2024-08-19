@@ -7,7 +7,7 @@
     <VFormCreate
       :form-config="formConfig"
       v-model:fApi="fApi"
-      v-model:formModel="vformModel"
+      v-model:formModel="state"
       ref="vformRef"
       @submit="onSubmit"
       v-if="loaded"
@@ -27,6 +27,7 @@
   import { formatRules } from '@views/form-design/utils/index.ts';
   import { nextTick, onMounted } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
+  import { useRuleFormItem } from '@h/component/useFormItem';
 
   const loaded = ref(false);
   const props = defineProps({
@@ -57,9 +58,17 @@
   });
   const formConfig = ref(null),
     fApi = ref(null),
-    vformModel = ref(props.formModel),
+    // vformModel = ref(props.formModel),
     vformRef = ref(null),
     isMouseOver = ref(false);
+  const [state] = useRuleFormItem(props, 'formModel', 'update:formModel');
+
+  // watch(
+  //   () => state.value,
+  //   (newValue) => {
+  //     debugger;
+  //   },
+  // );
   const onSubmit = () => {};
   onMounted(async () => {
     if (!loaded.value) {

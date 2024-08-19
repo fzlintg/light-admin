@@ -104,6 +104,7 @@ export interface IFormConfig extends PickAntFormConfig {
   schemas: IVFormComponent[];
   currentItem?: IVFormComponent;
   activeKey?: PropsTabKey;
+  ds?: Array<object>;
 }
 
 export interface AForm {

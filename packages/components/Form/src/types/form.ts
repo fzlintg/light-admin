@@ -125,6 +125,7 @@ export interface FormProps {
   submitFunc?: () => Promise<void>;
   transformDateFunc?: (date: any) => string;
   colon?: boolean;
+  ds?: Object; //add by lintg
 }
 export type RenderOpts = {
   disabled: boolean;

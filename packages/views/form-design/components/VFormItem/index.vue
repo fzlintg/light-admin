@@ -6,7 +6,7 @@
     <div
       v-if="['showItem', 'container', 'containerItem', 'gridContainer'].includes(schema.type)"
       :class="{
-        'm-2': true,
+        'm-1': true,
         ['jc-' + (schema.compAlign || 'center')]: true,
         'item-container': true,
       }"

@@ -141,6 +141,7 @@
       componentProps: {},
     },
     activeKey: 1,
+    ds: [],
   });
 
   const setFormConfig = (config: IFormConfig) => {
@@ -394,7 +395,7 @@
       formItemsForEach(formWidget.schemas, (formItem) => {
         generateKey(formItem, false);
       });
-      formConfig.value = formWidget;
+      formConfig.value = { ...formConfig.value, ...formWidget };
     }
   });
 
