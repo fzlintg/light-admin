@@ -42,7 +42,7 @@
   import { TableAction } from '@c/Table';
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { TransObjectToCode, formatFunc } from '../../utils/index';
-  import { cloneDeep } from 'lodash-es';
+  import { cloneDeep, merge } from 'lodash-es';
   import { useMessage } from '@h/web/useMessage';
   import * as jsonpatch from 'fast-json-patch/index.mjs';
 
@@ -84,6 +84,7 @@
     tableDict.value = await axios.get({
       url: `/api/crud/getQueryDict/${props.dbTable.replace('.', '/')}`,
     });
+    merge(gOptions.value, { formConfig: { dict: tableDict.value } });
   };
 
   const loadOptions = async () => {
@@ -142,11 +143,12 @@
     editForm.value.show({}, { type: 'insert' });
   };
   const openDetail = (data) => {
-    // let showData = cloneDeep(data);
-    // for (let item in showData) {
-    //   if (isObject(showData[item])) showData[item] = JSON.stringify(showData[item]);
-    // }
-    detailData.value = data;
+    detailData.value = cloneDeep(data);
+    for (const name in tableDict.value) {
+      detailData.value[name] = tableDict.value[name].find(
+        (v) => v.value == detailData.value[name],
+      ).label;
+    }
     detailOpen.value = true;
   };
   const saveData = ({ data, row, type = 'insert' }) => {

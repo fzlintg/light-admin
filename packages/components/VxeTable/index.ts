@@ -4,7 +4,7 @@ import { VxeUI } from 'vxe-table';
 import VXETablePluginAntd from './src/components';
 import VXETablePluginExportXLSX from 'vxe-table-plugin-export-xlsx';
 import ExcelJS from 'exceljs';
-import './src/setting';
+import './src/setting.tsx';
 
 export const VxeBasicTable = withInstall(vxeBasicTable);
 export * from 'vxe-table';

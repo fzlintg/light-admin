@@ -25,6 +25,40 @@ VxeUI.formats.add('json', {
     return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
   },
 });
+
+VxeUI.renderer.add('myDict', {
+  renderDefault(renderOpts, params) {
+    const { row, column, $table } = params;
+    const dict = $table.xegrid.props.formConfig.dict;
+    const value = row[column.field];
+    return toRaw(dict)[column.field].find((v) => v.value == value).label;
+    // return [<span>{dict[column.field][value] ?? value}</span>];
+    // return dict[column.field];
+    // if (!dict?.[dictName || column.field]) return;
+
+    // if (Array.isArray(value)) {
+    //   return value.map((item) => {
+    //     return [
+    //       <el-tag class="ml-2">
+    //         {dict[dictName || column.field][item] ?? item}
+    //       </el-tag>,
+    //     ];
+    //   });
+    // } else {
+    //   return [
+    //     <span>{dict[dictName || column.field][value] ?? value}</span>,
+    //   ];
+    // }
+  },
+});
+// VxeUI.formats.add('myDict', {
+//   cellFormatMethod: (params) => {
+//     debugger;
+//     // if (!params.cellValue) return '';
+//     // return params.cellValue;
+//     // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
+//   },
+// });
 VxeUI.formats.add('dict', {
   cellFormatMethod: ({ cellValue, column }) => {
     if (!cellValue) return '';

@@ -49,4 +49,9 @@ export const basicProps = {
     type: Object as PropType<CSSProperties>,
     default: () => ({}),
   },
+  // dict: {
+  //   //lintg
+  //   type: Object,
+  //   default: () => ({}),
+  // },
 };
