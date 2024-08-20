@@ -48,9 +48,11 @@
   import { useFormInstanceMethods } from '../../hooks/useFormInstanceMethods';
   import { IProps, IVFormMethods, useVFormMethods } from '../../hooks/useVFormMethods';
   import { useVModel } from '@vueuse/core';
-  import { omit } from 'lodash-es';
+  import { omit, template } from 'lodash-es';
   import { useFormValues } from '../../../../components/Form/src/hooks/useFormValues';
   import VFormItem from '../VFormItem/index.vue';
+  import { AsyncFunction } from '../../utils';
+  import { defHttp as axios } from '@utils/http/axios';
 
   export default defineComponent({
     name: 'VFormCreate',
@@ -196,8 +198,20 @@
         getSchema,
         formModel: formModelNew.value,
       });
-      onMounted(() => {
+      const dataSource = reactive({});
+      const initDs = async () => {
+        //  for (let item of props.formConfig?.ds) {
+        props.formConfig?.ds?.forEach(async (item) => {
+          let func = template(item.func)(props.formContext);
+          let dsFunc = new AsyncFunction('{axios}', func);
+          dataSource[item.dsName] = await dsFunc.call(proxy, { axios });
+        });
+      };
+
+      onMounted(async () => {
         initDefault();
+        await initDs();
+
         //   debugger;
         // emit('update:formModel', formModel.value);
       });
@@ -231,6 +245,7 @@
         formItemRefList,
         getFormData: () => unref(formModelNew),
         getFormModel: () => unref(formModelNew),
+        dataSource,
         //       getOptions
       };
     },

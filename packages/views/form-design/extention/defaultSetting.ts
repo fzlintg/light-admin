@@ -49,6 +49,8 @@ const t = {
   isBtn: '是否按钮',
   onChange: '改变事件',
   fieldNames: '字段映射',
+  chartTpl:"图表模板",
+  tpl:"模板" 
 };
 const setting = {};
 

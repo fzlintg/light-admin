@@ -101,9 +101,9 @@
   import { useDesign } from '@h/web/useDesign';
 
   import { CollapseContainer } from '@c/Container';
-  import { useMessage } from '@h/web/useMessage';
+  //import { useMessage } from '@h/web/useMessage';
   import { defHttp as axios } from '@utils/http/axios';
-
+  import formJson from '../../json/formConfig';
   import Toolbar from './modules/Toolbar.vue';
   //const Toolbar = defineAsyncComponent(async () => import('./modules/Toolbar.vue'));
   defineProps({
@@ -128,21 +128,7 @@
 
   const formModel = ref({});
   // endregion
-  const formConfig = ref<IFormConfig>({
-    // 表单配置
-    schemas: [],
-    layout: 'horizontal',
-    labelLayout: 'flex',
-    labelWidth: 100,
-    labelCol: {},
-    wrapperCol: {},
-    currentItem: {
-      component: '',
-      componentProps: {},
-    },
-    activeKey: 1,
-    ds: [],
-  });
+  const formConfig = ref<IFormConfig>(formJson);
 
   const setFormConfig = (config: IFormConfig) => {
     //外部导入时，可能会缺少必要的信息。
@@ -338,9 +324,9 @@
     window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
     toolbarRef.value.saveLogic(formConfig.value, cache);
   };
-  const handleNewFormItems = () => {
-    toolbarRef.value.newForm(formConfig.value, cache);
-  };
+  // const handleNewFormItems = () => {
+  //   toolbarRef.value.newForm(formConfig.value, cache);
+  // };
   // const handleSettings = () => {
   //   toolbarRef.value.openSetting();
   // };

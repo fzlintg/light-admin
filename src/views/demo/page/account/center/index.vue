@@ -55,10 +55,9 @@
 <script lang="ts" setup>
   import { Tag, Tabs, Row, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
-  import { Col, Row, Tabs, Tag } from 'ant-design-vue';
+  // import { Col, Row, Tabs, Tag } from 'ant-design-vue';
   import { computed } from 'vue';
   import { CollapseContainer } from '@c/Container';
-  import Icon from '@c/Icon/Icon.vue';
   import Article from './Article.vue';
   import Application from './Application.vue';
   import Project from './Project.vue';

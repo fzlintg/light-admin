@@ -123,8 +123,8 @@
       autoCloseBrackets: true,
       autoCloseTags: true,
       foldGutter: true,
-      //  gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-      gutters: ['CodeMirror-linenumbers'],
+      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      //gutters: ['CodeMirror-linenumbers'],
       styleActiveLine: true,
       // extraKeys: {
       //   'Alt-F': (cm) => {

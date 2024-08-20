@@ -14,6 +14,7 @@
         v-model:fApi="fApi"
         v-model:formModel="formModelNew"
         ref="formRef"
+        :formContext="extraData"
         :debug="debug"
         :parentForm="parentFormRef"
       />
@@ -67,7 +68,12 @@
   };
 
   const formConfigNew = computed(() => {
-    return { ...formConfig.value, schemas: toRaw(schema.value.children) };
+    const result = {
+      ...formConfig.value,
+      ...(compProps.value?.ds?.length > 0 ? { ds: compProps.value?.ds } : {}),
+      schemas: toRaw(schema.value.children),
+    };
+    return result;
   });
   const emit = defineEmits([
     'dialogOpened',
@@ -85,11 +91,12 @@
   const getState = () => {
     return state.value;
   };
-  const show = (fData, eData, { raw = false, syn = false, ...attrs }) => {
-    state.value={fData,eData,raw,syn,...attrs};
+  const show = (fData, eData, { raw = false, syn = false, ...attrs } = {}) => {
+    state.value = { fData, eData, raw, syn, ...attrs };
     if (fData) {
       formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
     }
+    console.log(formConfigNew.value);
     formatRules(schema.value.children, false, eData);
     if (eData) extraData.value = eData;
     open.value = true;
@@ -131,5 +138,5 @@
     setProps,
     getState,
   });
- // const { proxy } = getCurrentInstance();
+  // const { proxy } = getCurrentInstance();
 </script>

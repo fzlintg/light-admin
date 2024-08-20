@@ -85,7 +85,7 @@
 
     <light-form
       logic="system.ds.edit"
-      :formModel="formConfig.ds"
+      :formModel="formConfig"
       debug
       @update:form-model="updateFormModel"
     />
@@ -147,8 +147,7 @@
     let schemaData = importJSON(JSON.stringify(schemas), true);
     formConfig.value = schemaData;
   };
-  const updateFormModel = (value) => {
-    debugger;
-    formConfig.value.ds = value;
+  const updateFormModel = (ds) => {
+    Object.assign(formConfig.value, ds);
   };
 </script>

@@ -59,7 +59,7 @@ function defineApplicationConfig(defineOptions: DefineOptions = {}) {
       },
       define: defineData,
       build: {
-        target: 'es2015',
+        target: 'es2022', //lintg
         cssTarget: 'chrome80',
         rollupOptions: {
           output: {

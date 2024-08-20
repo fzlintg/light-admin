@@ -202,7 +202,7 @@
     emitData.value = args;
     loading.value = true;
   }
-  defineExpose({ fetch, run, run });
+  defineExpose({ fetch, run });
   // onMounted(() => {
   //   emit('loaded');
   // });

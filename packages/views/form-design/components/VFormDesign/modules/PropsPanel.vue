@@ -3,7 +3,7 @@
 -->
 <template>
   <Tabs v-model:activeKey="formConfig.activeKey" :tabBarStyle="{ 'margin-left': '10px' }">
-    <TabPane :key="4" tab="控件">
+    <TabPane :key="3" tab="控件">
       <ComponentColumnProps />
       <FormItemProps />
     </TabPane>
@@ -14,7 +14,6 @@
     <TabPane :key="1" tab="表单">
       <FormProps />
     </TabPane>
-    <TabPane :key="3" tab="数据源" />
   </Tabs>
 </template>
 <script lang="ts">
