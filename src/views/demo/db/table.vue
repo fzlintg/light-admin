@@ -40,7 +40,7 @@
         let config = await axios.get({ url: `/api/model/tableModel/${db}/${key}` });
         state.lightFormRef.vformRef
           .getItemRef('modal')
-          .show({ ...config, db, table: key }, { db, table: key, db_id },true);
+          .show({ ...config, db, table: key }, { db, table: key, db_id }, { raw: true });
       };
       go.Shape.defineFigureGenerator('Decision', 'Diamond');
 

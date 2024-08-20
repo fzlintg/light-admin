@@ -98,7 +98,7 @@
   );
   const updateChart = (options) => {
     forOwn(options, (value, key) => {
-      set(chartState.value.componentProps.chartTpl, key, value);
+      set(chartState.value.componentProps.chartTpl, key, value); 
     });
     merge(chartState.value, schemaMap[chartType.value]);
     formatFunc(chartState.value.componentProps);
@@ -106,10 +106,10 @@
     // chartState.value.componentProps.chartTpl = chartConfig.value;
   };
   const openEdit = () => {
-    vform.value?.getItemRef('modal').show(formModel.value);
+    vform.value?.getItemRef('modal').show(formModel.value,null,{syn:true}); 
   };
   const openShow = () => {
-    vform.value?.getItemRef('modal_1').show({ formData: chartConfig.value }, null, true);
+    vform.value?.getItemRef('modal_1').show({ formData: chartConfig.value }, null, {raw:true});
   };
   // formatRules(formConfig.value.schemas, {}, true);
   const loadTpl = () => {

@@ -74,6 +74,6 @@
     modelRef.setProps(({ myProps }) => {
       myProps.value['title'] = '数据编辑';
     });
-    modelRef.show(state.value, { cb: { ok: formFinish } });
+    modelRef.show(state.value, {}, { cb: { ok: formFinish } });
   };
 </script>

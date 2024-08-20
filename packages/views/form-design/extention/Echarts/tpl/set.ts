@@ -9,7 +9,7 @@ export const baseSetting = {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: ` this.$emit('update:formModel',this.itemRef().getFormModel());     
+        onOkButtonClick__func: ` this.$emit('update:formModel',await this.itemRef().getFormModel());     
          return true;      `,
         onCancelButtonClick__func: `    `,
         onDialogOpened__func: `    `,
