@@ -33,6 +33,7 @@ export default {
     filterOption: false,
     allowInput: false,
     allowClear: true,
+    mode: 'tags',
   },
   colProps: {
     span: 8,

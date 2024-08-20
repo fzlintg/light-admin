@@ -5,7 +5,6 @@
     @change="handleChange"
     :options="getOptions"
     v-model:value="state"
-    :mode="allowInput ? 'SECRET_COMBOBOX_MODE_DO_NOT_USE' : ''"
     @search="search"
   >
     <template #[item]="data" v-for="item in Object.keys($slots)">
