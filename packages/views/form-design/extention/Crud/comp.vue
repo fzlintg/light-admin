@@ -1,11 +1,11 @@
 <template>
   <div>
-    <light-form :logic="`crud.${state}.form`" @submit="loadData" :options="tableDict" />
+    <light-form :logic="`crud.${state}.form`" @submit="loadData" :options="tableOptions" />
     <light-form
       :logic="`crud.${state}.insert`"
       @submit="saveData"
       ref="insertFormRef"
-      :options="tableDict"
+      :options="tableOptions"
     />
     <VxeBasicTable
       ref="tableRef"
@@ -30,6 +30,7 @@
   import {
     PropType,
     ref,
+    unref,
     useAttrs,
     toRefs,
     onMounted,
@@ -72,8 +73,10 @@
   const jsonPath = {
     checkbox: { path: '/columns/0', value: { type: 'checkbox', width: 50 } },
   };
-  const tableDict = ref({});
-  provide('options', tableDict);
+  //const tableDict = ref({ options: [], map: {} });
+  const tableOptions = ref([]);
+  const tableMap = ref({});
+  provide('options', tableOptions);
   const editForm = computed(() => {
     return insertFormRef.value.vformRef.getItemRef('modal_1');
   });
@@ -81,10 +84,12 @@
     jsonpatch.applyPatch(json, [{ op, ...jsonPath[path] }]);
   };
   const loadDict = async () => {
-    tableDict.value = await axios.get({
+    let { options, map } = await axios.get({
       url: `/api/crud/getQueryDict/${props.dbTable.replace('.', '/')}`,
     });
-    merge(gOptions.value, { formConfig: { dict: tableDict.value } });
+    tableOptions.value = options;
+    tableMap.value = map;
+    merge(gOptions.value, { formConfig: { dict: { options, map } } });
   };
   // const fixEditRecord = (record) => {
   //   let result = cloneDeep(record);
@@ -158,18 +163,21 @@
   };
   const openDetail = (data) => {
     detailData.value = cloneDeep(data);
-    for (const name in tableDict.value) {
+    let mapData = unref(tableMap);
+    for (const name in mapData) {
       if (columnAttr.value[name]?.cellRender?.name == 'dict') {
         if (Array.isArray(detailData.value[name])) {
-          detailData.value[name] = tableDict.value[name]
-            .filter((item) => {
-              return detailData.value[name].includes(item.value);
-            })
-            .map((item) => item.label);
+          detailData.value[name] = detailData.value[name].map((item) => mapData[name][item]);
+          // detailData.value[name] = tableDict.value[name]
+          //   .filter((item) => {
+          //     return detailData.value[name].includes(item.value);
+          //   })
+          //   .map((item) => item.label);
         } else {
-          detailData.value[name] = tableDict.value[name].find(
-            (v) => v.value == detailData.value[name],
-          ).label;
+          detailData.value[name] = mapData[name][detailData.value[name]];
+          // detailData.value[name] = tableDict.value[name].find(
+          //   (v) => v.value == detailData.value[name],
+          // ).label;
         }
       }
     }

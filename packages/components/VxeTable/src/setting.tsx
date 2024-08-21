@@ -1,6 +1,7 @@
 import { VxeUI } from '..';
 import XEUtils from 'xe-utils';
 import componentSetting from '@settings/componentSetting';
+import { Tag } from 'ant-design-vue';
 
 VxeUI.setConfig(componentSetting.vxeTable);
 //add by lintg.
@@ -29,7 +30,7 @@ VxeUI.formats.add('json', {
 VxeUI.renderer.add('dict', {
   renderDefault(renderOpts, params) {
     const { row, column, $table } = params;
-    const dict = $table.xegrid.props.formConfig.dict;
+    const mapData = $table.xegrid.props.formConfig.dict.map;
     const value = row[column.field];
 
     //return toRaw(dict)[column.field].find((v) => v.value == value).label;
@@ -39,14 +40,10 @@ VxeUI.renderer.add('dict', {
 
     if (Array.isArray(value)) {
       return value.map((item) => {
-        return [
-          <el-tag class="ml-2">
-            {toRaw(dict)[column.field]?.find((v) => v.value == item)?.label}
-          </el-tag>,
-        ];
+        return [<Tag color="success">{mapData?.[column.field]?.[item]}</Tag>];
       });
     } else {
-      return [<span>{toRaw(dict)[column.field]?.find((v) => v.value == value)?.label}</span>];
+      return [<span>{mapData?.[column.field]?.[value]}</span>];
     }
   },
 });
