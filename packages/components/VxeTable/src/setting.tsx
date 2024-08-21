@@ -26,29 +26,28 @@ VxeUI.formats.add('json', {
   },
 });
 
-VxeUI.renderer.add('myDict', {
+VxeUI.renderer.add('dict', {
   renderDefault(renderOpts, params) {
     const { row, column, $table } = params;
     const dict = $table.xegrid.props.formConfig.dict;
     const value = row[column.field];
-    return toRaw(dict)[column.field].find((v) => v.value == value).label;
+
+    //return toRaw(dict)[column.field].find((v) => v.value == value).label;
     // return [<span>{dict[column.field][value] ?? value}</span>];
     // return dict[column.field];
     // if (!dict?.[dictName || column.field]) return;
 
-    // if (Array.isArray(value)) {
-    //   return value.map((item) => {
-    //     return [
-    //       <el-tag class="ml-2">
-    //         {dict[dictName || column.field][item] ?? item}
-    //       </el-tag>,
-    //     ];
-    //   });
-    // } else {
-    //   return [
-    //     <span>{dict[dictName || column.field][value] ?? value}</span>,
-    //   ];
-    // }
+    if (Array.isArray(value)) {
+      return value.map((item) => {
+        return [
+          <el-tag class="ml-2">
+            {toRaw(dict)[column.field]?.find((v) => v.value == item)?.label}
+          </el-tag>,
+        ];
+      });
+    } else {
+      return [<span>{toRaw(dict)[column.field]?.find((v) => v.value == value)?.label}</span>];
+    }
   },
 });
 // VxeUI.formats.add('myDict', {
@@ -59,23 +58,23 @@ VxeUI.renderer.add('myDict', {
 //     // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
 //   },
 // });
-VxeUI.formats.add('dict', {
-  cellFormatMethod: ({ cellValue, column }) => {
-    if (!cellValue) return '';
-    return cellValue[column.params.labelField];
-    // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
-  },
-});
-VxeUI.formats.add('dicts', {
-  cellFormatMethod: ({ cellValue, column }) => {
-    if (!cellValue) return '';
-    if (Array.isArray(cellValue)) {
-      return cellValue.map((item) => item[column.params.labelField]).join(',');
-    }
+// VxeUI.formats.add('dict', {
+//   cellFormatMethod: ({ cellValue, column }) => {
+//     if (!cellValue) return '';
+//     return cellValue[column.params.labelField];
+//     // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
+//   },
+// });
+// VxeUI.formats.add('dicts', {
+//   cellFormatMethod: ({ cellValue, column }) => {
+//     if (!cellValue) return '';
+//     if (Array.isArray(cellValue)) {
+//       return cellValue.map((item) => item[column.params.labelField]).join(',');
+//     }
 
-    // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
-  },
-});
+//     // return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
+//   },
+// });
 VxeUI.commands.add('insert_form', {
   commandMethod: (params) => {
     const { $grid } = params;

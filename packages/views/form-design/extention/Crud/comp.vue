@@ -42,7 +42,7 @@
   import { TableAction } from '@c/Table';
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
   import { TransObjectToCode, formatFunc } from '../../utils/index';
-  import { cloneDeep, merge } from 'lodash-es';
+  import { cloneDeep, merge, isNil } from 'lodash-es';
   import { useMessage } from '@h/web/useMessage';
   import * as jsonpatch from 'fast-json-patch/index.mjs';
 
@@ -67,8 +67,8 @@
     createActions = ref((row) => {}),
     detailOpen = ref(false),
     detailSchema = ref([]),
-    detailData = ref({});
-
+    detailData = ref({}),
+    columnAttr = ref({});
   const jsonPath = {
     checkbox: { path: '/columns/0', value: { type: 'checkbox', width: 50 } },
   };
@@ -86,7 +86,18 @@
     });
     merge(gOptions.value, { formConfig: { dict: tableDict.value } });
   };
-
+  // const fixEditRecord = (record) => {
+  //   let result = cloneDeep(record);
+  //   for (const name in result) {
+  //     if (isNil(result[name]) || !columnAttr.value[name]?.formatter) continue;
+  //     if (columnAttr.value[name]?.formatter == 'dict') {
+  //       result[name] = result[name].id;
+  //     } else if (columnAttr.value[name]?.formatter == 'dicts') {
+  //       result[name] = result[name].map((i) => i.id);
+  //     }
+  //   }
+  //   return result;
+  // };
   const loadOptions = async () => {
     let { gridOptions, actionOptions } = await axios.get({
       url: `/api/crud/getGridOptions/${props.dbTable.replace('.', '/')}`,
@@ -118,6 +129,9 @@
       axios,
     });
     gOptions.value = gridData;
+    gridData.columns.forEach((item) => {
+      columnAttr.value[item.field] = item;
+    });
   };
   watch([() => props.checkbox, state], async () => {
     await loadOptions();
@@ -145,10 +159,29 @@
   const openDetail = (data) => {
     detailData.value = cloneDeep(data);
     for (const name in tableDict.value) {
-      detailData.value[name] = tableDict.value[name].find(
-        (v) => v.value == detailData.value[name],
-      ).label;
+      if (columnAttr.value[name]?.cellRender?.name == 'dict') {
+        if (Array.isArray(detailData.value[name])) {
+          detailData.value[name] = tableDict.value[name]
+            .filter((item) => {
+              return detailData.value[name].includes(item.value);
+            })
+            .map((item) => item.label);
+        } else {
+          detailData.value[name] = tableDict.value[name].find(
+            (v) => v.value == detailData.value[name],
+          ).label;
+        }
+      }
     }
+
+    //     case 'dict':
+    //       detailData.value[name] = detailData.value[name]?.id;
+    //       break;
+    //     case 'dicts':
+    //       detailData.value[name] = detailData.value[name]?.map((item) => item.id);
+    //       break;
+    //   }
+    // }
     detailOpen.value = true;
   };
   const saveData = ({ data, row, type = 'insert' }) => {

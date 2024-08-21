@@ -137,17 +137,20 @@
                   case 'json':
                     return <JsonViewer value={getField} expandDepth={0}></JsonViewer>;
                     break;
+
+                  // case 'dict':
+                  //   return <div>{getField?.[item.dictKey]}</div>;
+                  //   break;
                   case 'dict':
-                    return <div>{getField[item.dictKey]}</div>;
-                    break;
-                  case 'dicts':
-                    return (
-                      <div>
-                        {getField.map((field) => {
-                          return <Tag color="success">{field[item.dictKey]}</Tag>;
-                        })}
-                      </div>
-                    );
+                    if (Array.isArray(getField))
+                      return (
+                        <div>
+                          {getField?.map((field) => {
+                            return <Tag color="success">{field}</Tag>;
+                          })}
+                        </div>
+                      );
+                    else return <Tag color="success">{getField}</Tag>;
                     break;
                 }
               }
