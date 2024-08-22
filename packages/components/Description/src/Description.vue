@@ -11,7 +11,7 @@
     unref,
     toRefs,
   } from 'vue';
-  import { get } from 'lodash-es';
+  import { get, isBoolean } from 'lodash-es';
   import { Descriptions, Tag } from 'ant-design-vue';
   import { CollapseContainer } from '@c/Container';
   import { useDesign } from '@h/web/useDesign';
@@ -132,11 +132,14 @@
                 return null;
               }
               const getField = get(_data, field);
+              if (isBoolean(getField))
+                return <Tag color="processing">{getField ? '是' : '否'}</Tag>;
               if (formatter) {
                 switch (formatter) {
                   case 'json':
-                    return <JsonViewer value={getField} expandDepth={0}></JsonViewer>;
-                    break;
+                    return (
+                      <JsonViewer value={getField} expandDepth={1} copyable boxed sort></JsonViewer>
+                    );
 
                   // case 'dict':
                   //   return <div>{getField?.[item.dictKey]}</div>;
@@ -151,7 +154,6 @@
                         </div>
                       );
                     else return <Tag color="success">{getField}</Tag>;
-                    break;
                 }
               }
               // eslint-disable-next-line

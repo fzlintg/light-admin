@@ -71,7 +71,7 @@
     const result = {
       ...formConfig.value,
       ...(compProps.value?.ds?.length > 0 ? { ds: compProps.value?.ds } : {}),
-      schemas: toRaw(schema.value.children),
+      schemas: schema.value.children,
     };
     return result;
   });

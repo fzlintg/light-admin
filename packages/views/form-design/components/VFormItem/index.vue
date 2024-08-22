@@ -405,6 +405,10 @@
         setValue,
         iconShow,
         hidden: (flag) => getFormMethods()?.hidden(props.schema.field, flag),
+        // hidden: (flag) => {
+        //   debugger;
+        //   props.schema.itemProps.hidden = flag;
+        // },
         bindFunc,
         getItemRef,
         formatTpl,

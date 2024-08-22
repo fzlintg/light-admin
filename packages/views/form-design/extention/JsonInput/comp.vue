@@ -44,13 +44,12 @@
   const formRef = inject('getFormRef', () => {})();
   const topFormRef = formRef?.getTopFormRef();
   const editJsonValue = ref('');
-
+  editJsonValue.value = jsonValue.value = JSON.stringify(state.value);
   const visible = ref(false);
   watch(
     () => state.value,
     () => {
-      jsonValue.value = JSON.stringify(state.value);
-        editJsonValue.value = jsonValue.value;
+      editJsonValue.value = jsonValue.value = JSON.stringify(state.value);
     },
   );
   //if (!state.value) state.value = props.defaultValue;

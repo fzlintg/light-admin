@@ -47,7 +47,7 @@
   // const optionsRef = ref<OptionsItem[]>([]);
   //const optionsRef = inject('options')
   watch(
-    () => injectOptions.value,
+    () => injectOptions?.value,
     () => {
       if (injectOptions?.value?.[attrs.schema.field]) {
         treeData.value = injectOptions?.value?.[attrs.schema.field];

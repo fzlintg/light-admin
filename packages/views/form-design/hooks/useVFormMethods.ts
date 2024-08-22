@@ -1,7 +1,7 @@
 import { Ref, SetupContext, type EmitsOptions } from 'vue';
 import { IVFormComponent, IFormConfig, AForm } from '../typings/v-form-component';
 import { findFormItem, formItemsForEach } from '../utils';
-import { cloneDeep, isFunction } from 'lodash-es';
+import { cloneDeep, isFunction, set as lodSet } from 'lodash-es';
 import { IAnyObject } from '../typings/base-type';
 
 interface IFormInstanceMethods extends AForm {
@@ -74,7 +74,8 @@ export function useVFormMethods<E extends EmitsOptions = EmitsOptions>(
    */
   const set: ISet = (field, key, value) => {
     const formItem = get(field);
-    if (formItem) formItem[key] = value;
+    if (formItem) formItem['itemProps'][key] = value;
+    //if (formItem) formItem?.itemProps?.[key] = value;
   };
 
   /**

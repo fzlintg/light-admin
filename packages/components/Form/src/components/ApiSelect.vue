@@ -110,7 +110,10 @@
 
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
-  if (state.value) loading.value = true;
+  if (state.value) {
+    loading.value = true;
+  }
+
   const { run } = useRequest(async (params = null) => fetch(params), {
     debounceWait: 100,
     manual: true,
@@ -139,6 +142,7 @@
     () => state.value,
     (v) => {
       if (state.value) loading.value = true;
+      emit('change', v);
       emit('update:value', v);
     },
   );
@@ -202,7 +206,7 @@
     loading.value = true;
   }
   defineExpose({ fetch, run });
-  // onMounted(() => {
-  //   emit('loaded');
-  // });
+  onMounted(() => {
+    emit('change', state.value);
+  });
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="ifShowAll">
     <light-form :logic="`crud.${state}.form`" @submit="loadData" :options="tableOptions" />
     <light-form
       :logic="`crud.${state}.insert`"
@@ -38,6 +38,8 @@
     watch,
     computed,
     provide,
+    nextTick,
+    defineExpose,
   } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
   import { TableAction } from '@c/Table';
@@ -70,6 +72,7 @@
     detailSchema = ref([]),
     detailData = ref({}),
     columnAttr = ref({});
+  const ifShowAll = ref(true);
   const jsonPath = {
     checkbox: { path: '/columns/0', value: { type: 'checkbox', width: 50 } },
   };
@@ -144,13 +147,17 @@
     tableRef.value.commitProxy('query');
   });
   onMounted(async () => {
+    await loadAll();
+  });
+
+  const loadAll = async () => {
     await loadOptions();
     await loadDict();
     ifshow.value = true;
     detailSchema.value = await axios.get({
       url: `/api/crud/getDescSchema/${state.value.split('.').join('/')}`,
     });
-  });
+  };
 
   const loadData = (form) => {
     tableRef.value.commitProxy('query', { form });
@@ -198,4 +205,12 @@
 
     tableRef.value.commitProxy('save');
   };
+  const refresh = async () => {
+    ifShowAll.value = false;
+    nextTick(async () => {
+      await loadAll();
+      ifShowAll.value = true;
+    });
+  };
+  defineExpose({ refresh });
 </script>
