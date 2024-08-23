@@ -1,5 +1,11 @@
 <template>
   <light-form
+    logic="system.config.modal"
+    :formModel="formState.componentProps"
+    debug
+    @update:form-model="updateFormModel"
+  />
+  <light-form
     logic="system.ds.edit"
     :formModel="formState.componentProps"
     debug

@@ -27,10 +27,9 @@ async function bootstrap() {
   //app.use(Antd);
   // Configure store
   // 配置 store
-
+  await setupI18n(app);
   setupStore(app);
 
-  await setupI18n(app);
   console.log('i18n init ok');
   // Initialize internal system configuration
   // 初始化内部系统配置

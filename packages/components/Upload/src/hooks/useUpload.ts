@@ -1,7 +1,6 @@
 import { Ref, unref, computed } from 'vue';
 import { useI18n } from '@h/web/useI18n';
 
-const { t } = useI18n();
 export function useUploadType({
   acceptRef,
   helpTextRef,
@@ -35,6 +34,7 @@ export function useUploadType({
 
   // 支持jpg、jpeg、png格式，不超过2M，最多可选择10张图片，。
   const getHelpText = computed(() => {
+    const { t } = useI18n();
     const helpText = unref(helpTextRef);
     if (helpText) {
       return helpText;

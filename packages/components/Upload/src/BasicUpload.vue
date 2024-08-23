@@ -66,6 +66,7 @@
 
   const attrs = useAttrs();
   const { t } = useI18n();
+
   // 上传modal
   const [registerUploadModal, { openModal: openUploadModal }] = useModal();
 

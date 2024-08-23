@@ -5,6 +5,7 @@ export default {
   icon: 'ant-design:border-outlined',
   componentProps: {
     title: '对话框',
+    type: 'Modal',
     width: 1000,
     slots: {},
     footerBtnText: '',
@@ -18,6 +19,12 @@ export default {
     onDialogOpened__params: ['{fData,eData,schema,findFormItem}'],
     onDialogBeforeClose__func: '',
     onDialogBeforeClose__params: ['{callback}'],
+    isDetail: false,
+    showDetailBack: false,
+    maskClosable: true,
+    showCancelBtn: true,
+    showOkBtn: true,
+    showFooter: true,
   },
   children: [],
 };

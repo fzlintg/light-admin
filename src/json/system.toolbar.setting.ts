@@ -50,16 +50,15 @@ export default {
         maskClosable: true,
         showCancelBtn: true,
         showDetailBack: false,
-        onDialogOpened__func: `            `,
-        onOkButtonClick__func: `    let data=await this.itemRef("drawer").getFormModel();    
+        onDialogOpened__func: ``,
+        onOkButtonClick__func: `let data=await this.itemRef("drawer").getFormModel();    
             appStore.setLightFormConfig(data)    
             createMessage.success('保存成功');    
-            return true;    
-          `,
+            return true;`,
         onDialogOpened__params: ['params'],
         onOkButtonClick__params: ['params'],
-        onCancelButtonClick__func: `            `,
-        onDialogBeforeClose__func: `            `,
+        onCancelButtonClick__func: ``,
+        onDialogBeforeClose__func: ``,
         onCancelButtonClick__params: ['params'],
         onDialogBeforeClose__params: ['params'],
       },
@@ -88,7 +87,7 @@ export default {
             params: {
               keyword: '',
             },
-            api__func: `   if(!!params.keyword) return await axios.post({url:'/api/logic/getPageList/'+params.keyword});   `,
+            api__func: `if(!!params.keyword) return await axios.post({url:'/api/logic/getPageList/'+params.keyword});`,
             immediate: true,
             maxLength: 100,
             labelField: 'label',
@@ -100,15 +99,14 @@ export default {
             defaultContext: {
               key_input: '',
             },
-            onSelect__func: `     `,
-            tplRender__func: `  return h('div',{class:'d-flex jc-between'}, 
+            onSelect__func: ``,
+            tplRender__func: `return h('div',{class:'d-flex jc-between'}, 
              [h('span',data.value),h('span',data.label)] 
-           ) 
-              `,
+           )`,
             tplRender__params: ['{h,r}', 'data'],
-            defaultContext__var: `    {    
+            defaultContext__var: `{    
           key_input: '',    
-    }    `,
+    }`,
           },
         },
       ],
@@ -134,9 +132,8 @@ export default {
         maskClosable: true,
         showCancelBtn: true,
         showDetailBack: false,
-        onDialogOpened__func: `        `,
-        onOkButtonClick__func: ` 
-         let drawer=this.itemRef("drawer_1") 
+        onDialogOpened__func: ``,
+        onOkButtonClick__func: `let drawer=this.itemRef("drawer_1") 
          let formModel=await drawer.getFormModel();    
          if(location.href.split("#")[1].indexOf("/formDesign")==0){
            let extraData= drawer.getExtraData(); 
@@ -146,18 +143,17 @@ export default {
               Object.assign(extraData,_.pick(result.items[0],['id','name','title']));
             } 
          }
-            else
+         else
             {
                 let path=utils.setUrlParam("name",formModel.name,false).split("#")[1];
                 utils.updatePath(path);
             }
         utils.setUrlParam("name",formModel.name);
-        return true; 
-          `,
+        return true;`,
         onDialogOpened__params: ['params'],
         onOkButtonClick__params: ['{_this,callback,utils}'],
-        onCancelButtonClick__func: `        `,
-        onDialogBeforeClose__func: `        `,
+        onCancelButtonClick__func: ``,
+        onDialogBeforeClose__func: ``,
         onCancelButtonClick__params: ['params'],
         onDialogBeforeClose__params: ['params'],
       },
@@ -187,7 +183,7 @@ export default {
             disabled: true,
             readonly: true,
             defaultValue: '',
-            onChange__func: `      `,
+            onChange__func: ``,
           },
         },
         {
@@ -207,7 +203,7 @@ export default {
             type: 'text',
             readonly: false,
             defaultValue: '',
-            onChange__func: `      `,
+            onChange__func: ``,
           },
         },
         {
@@ -227,7 +223,7 @@ export default {
             type: 'text',
             readonly: false,
             defaultValue: '',
-            onChange__func: `      `,
+            onChange__func: ``,
           },
         },
       ],
@@ -253,21 +249,36 @@ export default {
         maskClosable: true,
         showCancelBtn: true,
         showDetailBack: false,
-        onDialogOpened__func: `      `,
-        onOkButtonClick__func: `  let drawer=this.itemRef("drawer_2");  
+        onDialogOpened__func: ``,
+        onOkButtonClick__func: `let drawer=this.itemRef("drawer_2");  
           let data=await drawer.getFormModel();  
           let config=drawer.getExtraData();  
           let result=await axios.post({url:"/api/crud/update/base/page",data:{config,...data}});  
           if(result.id) drawer.setFormModel("id",result.id)  
           createMessage.success("保存成功")  
-          return true;  
-            `,
+          return true;`,
         onDialogOpened__params: ['params'],
         onOkButtonClick__params: ['params'],
-        onCancelButtonClick__func: `      `,
-        onDialogBeforeClose__func: `      `,
+        onCancelButtonClick__func: ``,
+        onDialogBeforeClose__func: ``,
         onCancelButtonClick__params: ['params'],
         onDialogBeforeClose__params: ['params'],
+        footerBtnText: '另存为',
+        onFooterBtnClick__func: `
+        let drawer=this.itemRef("drawer_2");  
+          let data=await drawer.getFormModel();  
+          let state=drawer.getState();
+          let config=drawer.getExtraData();  
+          delete data.id;
+          let result=await axios.post({url:"/api/crud/update/base/page",data:{config,...data}});  
+          if(result.id) {
+            drawer.setFormModel("id",result.id)  ;
+            data.id=result.id;
+          }
+          Object.assign(state.fData,data)
+          createMessage.success("另存成功")  
+          drawer.utils.setUrlParam("name",data.name);
+          return true;`,
       },
     },
   ],

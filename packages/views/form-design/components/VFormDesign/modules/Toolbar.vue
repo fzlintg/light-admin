@@ -114,12 +114,12 @@
             event: 'handlePreview',
             icon: 'ant-design:chrome-filled',
           },
-          {
-            title: '预览-不支持布局',
-            type: 'preview',
-            event: 'handlePreview2',
-            icon: 'ant-design:chrome-filled',
-          },
+          // {
+          //   title: '预览-不支持布局',
+          //   type: 'preview',
+          //   event: 'handlePreview2',
+          //   icon: 'ant-design:chrome-filled',
+          // },
           {
             title: '导入JSON',
             type: 'importJson',
@@ -177,7 +177,7 @@
       const formConfig = inject('formConfig') as Ref<IFormConfig>;
       const itemEmit = (item) => {
         if (item.type == 'localEvent') localEvent[item.event]();
-        else emit(item.event);
+        else emit(item.event, { cache, logic });
       };
       const localEvent = {
         openSetting: () => {
@@ -204,7 +204,10 @@
         window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(logic.value));
 
         if (appStore.getLightFormConfig.mode) {
-          state.settingFormRef.getFormRef().getItemRef('drawer_2').show(logic.value, schemas);
+          state.settingFormRef
+            .getFormRef()
+            .getItemRef('drawer_2')
+            .show(logic.value, schemas, { syn: true });
         } else createMessage.success('保存成功');
       };
       const loadSchemas = (schemas) => {

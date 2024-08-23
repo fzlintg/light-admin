@@ -47,6 +47,7 @@
     ...omit(uploadContainerProps, ['previewColumns', 'beforePreviewData']),
   });
   const { t } = useI18n();
+
   const { createMessage } = useMessage();
   const { accept, helpText, maxNumber, maxSize } = toRefs(props);
   const isInnerOperate = ref<boolean>(false);
@@ -63,7 +64,7 @@
   const fileList = ref<UploadProps['fileList']>([]);
   const isLtMsg = ref<boolean>(true);
   const isActMsg = ref<boolean>(true);
-  const isFirstRender = ref<boolean>(true)
+  const isFirstRender = ref<boolean>(true);
 
   watch(
     () => props.value,
@@ -95,13 +96,13 @@
         }) as UploadProps['fileList'];
       }
       emit('update:value', value);
-      if(!isFirstRender.value){
+      if (!isFirstRender.value) {
         emit('change', value);
-        isFirstRender.value = false
+        isFirstRender.value = false;
       }
     },
-    { 
-      immediate: true, 
+    {
+      immediate: true,
       deep: true,
     },
   );

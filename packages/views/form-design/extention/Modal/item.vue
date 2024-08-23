@@ -1,12 +1,13 @@
 <template>
   <div>
     <a-button v-if="debug" @click="open = true">测试</a-button>
-    <modal
+    <component
       v-model:open="open"
       v-bind="compProps"
       :centered="true"
       @ok="handleOk"
       @cancel="handleCancle"
+      :is="compProps.type == 'Drawer' ? Drawer : Modal"
     >
       <VFormCreate
         v-if="open"
@@ -20,14 +21,15 @@
       />
 
       <template #insertFooter v-if="!!schema.componentProps.footerBtnText">
-        <a-button @click="footerBtnClick"> 保存</a-button>
+        <a-button @click="footerBtnClick"> {{ schema.componentProps.footerBtnText }}</a-button>
       </template>
-    </modal>
+    </component>
   </div>
 </template>
 <script setup lang="ts">
   import VFormCreate from '../../components/VFormCreate/index.vue';
   import Modal from '@c/Modal/src/BasicModal.vue';
+  import Drawer from '@c/Drawer/src/BasicDrawer.vue';
   import {
     findFormItem,
     flattenObject,
