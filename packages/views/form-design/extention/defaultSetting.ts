@@ -49,8 +49,11 @@ const t = {
   isBtn: '是否按钮',
   onChange: '改变事件',
   fieldNames: '字段映射',
-  chartTpl:"图表模板",
-  tpl:"模板" 
+  chartTpl: '图表模板',
+  tpl: '模板',
+  showPreviewNumber: '预览照片数',
+  name: '名称',
+  filename: '文件名',
 };
 const setting = {};
 
