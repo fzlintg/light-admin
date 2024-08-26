@@ -185,7 +185,7 @@ export function useVFormMethods<E extends EmitsOptions = EmitsOptions>(
     // 遍历 schema
     const schemaMap = {};
     schema.forEach((item) => {
-      if (isFunction(item?.componentProps._update)) schemaMap[item.field] = item;
+      if (isFunction(item?.componentProps?._update)) schemaMap[item.field] = item;
     });
     schema.forEach((item) => {
       // const  = item.field;
