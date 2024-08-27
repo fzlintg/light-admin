@@ -93,13 +93,13 @@
   const getState = () => {
     return state.value;
   };
-  const show = (fData, eData, { raw = false, syn = false, ...attrs } = {}) => {
+  const show = (fData, eData, { raw = false, syn = false, refresh = false, ...attrs } = {}) => {
     state.value = { fData, eData, raw, syn, ...attrs };
     if (fData) {
       formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
     }
     console.log(formConfigNew.value);
-    formatRules(schema.value.children, false, eData);
+    if (!refresh) formatRules(schema.value.children, false, eData);
     if (eData) extraData.value = eData;
     open.value = true;
     emit('dialogOpened', { schema, fData: formModelNew.value, eData, findFormItem });
