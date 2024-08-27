@@ -45,10 +45,19 @@ export const FormDesign: AppRouteRecordRaw = {
     title: '表单',
   },
 };
+export const LogicEdit: AppRouteRecordRaw = {
+  path: '/logicEdit',
+  name: 'LogicEdit',
+  component: () => import('@/views/demo/logic/logicEdit.vue'),
+  meta: {
+    title: '逻辑编辑',
+  },
+};
 
 // Basic routing without permission
 // 未经许可的基本路由
 export const basicRoutes = [
+  LogicEdit,
   LoginRoute,
   FormDesign,
   RootRoute,

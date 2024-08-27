@@ -12,6 +12,7 @@ const demoTreeList = (keyword) => {
         title: `${keyword ?? ''}选项${index}-${j}`,
         value: `${index}-${j}`,
         key: `${index}-${j}`,
+        isLeaf: false,
       });
     }
     result.list.push({

@@ -9,6 +9,8 @@ export default {
     _update__func: `await this.getItemRef().fetch(this.formatTpl('params'))`,
     api__func: `return await axios.get({url:"/tree/getDemoOptions",params})`,
     api__params: ['params'],
+    loadData__func: ``,
+    loadData__params: ['node'],
     params__tpl: `{
       keyword: 'a',
     }`,
