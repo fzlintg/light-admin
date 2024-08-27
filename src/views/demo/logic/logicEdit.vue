@@ -14,7 +14,6 @@
         url: '/api/crud/query/base/page',
         data: { where: { name } },
       });
-
       state.value = result.items?.[0];
     }
   });
