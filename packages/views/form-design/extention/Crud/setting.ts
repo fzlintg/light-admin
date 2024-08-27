@@ -1,2 +1,2 @@
 export default [];
-export const exclude = ['dbTable'];
+export const exclude = ['db', 'dbTable'];

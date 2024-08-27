@@ -12,7 +12,7 @@
     toRefs,
   } from 'vue';
   import { get, isBoolean } from 'lodash-es';
-  import { Descriptions, Tag } from 'ant-design-vue';
+  import { Descriptions, Tag, Image } from 'ant-design-vue';
   import { CollapseContainer } from '@c/Container';
   import { useDesign } from '@h/web/useDesign';
   import { isFunction } from '@utils/is';
@@ -136,6 +136,8 @@
                 return <Tag color="processing">{getField ? '是' : '否'}</Tag>;
               if (formatter) {
                 switch (formatter) {
+                  case 'image':
+                    return <Image width={100} src={getField.url}></Image>;
                   case 'json':
                     return (
                       <JsonViewer value={getField} expandDepth={1} copyable boxed sort></JsonViewer>

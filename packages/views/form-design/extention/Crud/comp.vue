@@ -141,10 +141,13 @@
       columnAttr.value[item.field] = item;
     });
   };
-  watch([() => props.checkbox, state], async () => {
-    await loadOptions();
-    ifshow.value = true;
-    tableRef.value.commitProxy('query');
+  watch([() => props.checkbox, () => state.value], async () => {
+    ifshow.value = false;
+    await loadAll();
+    // await loadOptions();
+    // await loadDict();
+    // ifshow.value = true;
+    // tableRef.value.commitProxy('query');
   });
   onMounted(async () => {
     await loadAll();

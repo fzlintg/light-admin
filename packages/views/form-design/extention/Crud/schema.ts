@@ -5,6 +5,7 @@ export default {
   icon: 'ant-design:border-outlined',
   componentProps: {
     title: 'CRUD',
+    db: 'base',
     dbTable: 'base.page',
     checkbox: true,
   },
