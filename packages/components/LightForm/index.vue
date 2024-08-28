@@ -25,7 +25,7 @@
   import logicJson from '@/loader.ts';
 
   import { formatRules } from '@views/form-design/utils/index.ts';
-  import { nextTick, onMounted } from 'vue';
+  import { nextTick, onMounted, ref } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
   import { useRuleFormItem } from '@h/component/useFormItem';
 
@@ -69,8 +69,12 @@
   //     debugger;
   //   },
   // );
+  //const firstLoad = ref(true);
   const onSubmit = () => {};
+
   onMounted(async () => {
+    //handleRefresh();
+
     if (!loaded.value) {
       await loadData();
       loaded.value = true;
@@ -80,9 +84,13 @@
     () => props.logic,
     async () => {
       await loadData();
+      //   handleRefresh();
     },
   );
+  // const lock = ref(false);
   const loadData = async () => {
+    if (props.logic == '') return;
+
     let jsonData;
     if (!props.remote && logicJson[props.logic]) {
       jsonData = cloneDeep(logicJson[props.logic]);
@@ -103,10 +111,9 @@
     loaded.value = false;
     nextTick(async () => {
       await loadData();
-      loaded.value = true;
     });
   };
-  defineExpose({ vformRef, getFormRef: () => vformRef.value });
+  defineExpose({ vformRef, getFormRef: () => vformRef.value, handleRefresh });
 </script>
 <style scoped>
   .component-container {

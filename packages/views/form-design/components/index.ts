@@ -27,7 +27,7 @@ import {
 } from 'ant-design-vue';
 //import { Button } from '@c/Button';
 import { comp as customComponents } from '../extention/loader';
-
+//import LightForm from '@c/LightForm/index.vue';
 //ant-desing本身的Form控件库
 
 const componentMap = new Map<string, Component>();
@@ -35,7 +35,11 @@ const componentMap = new Map<string, Component>();
 for (const compName in customComponents) {
   componentMap.set(compName, customComponents[compName]);
 }
-
+componentMap.set(
+  'LightForm',
+  // LightForm,
+  defineAsyncComponent(() => import('@c/LightForm/index.vue')),
+);
 componentMap.set(
   'MarkDown',
   defineAsyncComponent(() => import('@c/Markdown/src/Markdown.vue')),

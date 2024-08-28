@@ -134,7 +134,8 @@ export default {
         showDetailBack: false,
         onDialogOpened__func: ``,
         onOkButtonClick__func: `let drawer=this.itemRef("drawer_1") 
-         let formModel=await drawer.getFormModel();    
+         let formModel=await drawer.getFormModel();   
+
          if(location.href.split("#")[1].indexOf("/formDesign")==0){
            let extraData= drawer.getExtraData(); 
            let result=await axios.post({url:"/api/crud/query/base/page",data:{where:{name:formModel.name}}}); 
@@ -252,9 +253,14 @@ export default {
         onDialogOpened__func: ``,
         onOkButtonClick__func: `let drawer=this.itemRef("drawer_2");  
           let data=await drawer.getFormModel();  
+           let state=drawer.getState();
           let config=drawer.getExtraData();  
           let result=await axios.post({url:"/api/crud/update/base/page",data:{config,...data}});  
-          if(result.id) drawer.setFormModel("id",result.id)  
+          if(result.id) {
+           drawer.setFormModel("id",result.id)  
+           data.id=result.id;
+          }
+            Object.assign(state.fData,data)
           createMessage.success("保存成功")  
           return true;`,
         onDialogOpened__params: ['params'],

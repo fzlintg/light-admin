@@ -34,6 +34,7 @@ import { IconPicker } from '@c/Icon';
 import { CountdownInput } from '@c/CountDown';
 import { BasicTitle } from '@c/Basic';
 import { CropperAvatar } from '@c/Cropper';
+//import LightForm from '@c/LightForm/index.vue';
 
 const componentMap = new Map<ComponentType | string, Component>();
 
@@ -78,7 +79,7 @@ componentMap.set('Divider', Divider);
 componentMap.set('CropperAvatar', CropperAvatar);
 
 componentMap.set('BasicTitle', BasicTitle);
-
+//componentMap.set('LightForm', LightForm);
 export function add<T extends string, R extends Component>(
   compName: ComponentType | T,
   component: R,
