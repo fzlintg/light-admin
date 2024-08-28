@@ -20,23 +20,31 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
 
     const vm = instance?.proxy;
     if (!vm) return;
-    formItemsForEach(props.formConfig.schemas as IVFormComponent[], (item) => {
-      forOwn(item.componentProps, (value: any, key) => {
+    const setContext = (obj) => {
+      forOwn(obj, (value: any, key) => {
         if (isAsyncFunction(value)) {
           // item.componentProps[key] = value.bind(vm);
-          item.componentProps[key] = async function (...args) {
+          obj[key] = async function (...args) {
             vm.item = () => vm.getFormItem(item.field);
             vm.itemRef = () => vm.getFormItem(item.field).formItemRef;
             return await value.apply(vm, args);
           };
         } else if (isFunction(value)) {
-          item.componentProps[key] = function (...args) {
+          obj[key] = function (...args) {
             vm.item = () => vm.getFormItem(item.field);
             vm.itemRef = () => vm.getFormItem(item.field).formItemRef;
             return value.apply(vm, args);
           };
         }
       });
+    };
+    formItemsForEach(props.formConfig.schemas as IVFormComponent[], (item) => {
+      setContext(item.componentProps);
+      if (['Toolbar', 'Dropdown'].includes(item.component)) {
+        item.children?.forEach((child) => {
+          setContext(child);
+        });
+      }
       if (['Modal', 'Drawer'].includes(item.component)) return false;
       else return true;
     });

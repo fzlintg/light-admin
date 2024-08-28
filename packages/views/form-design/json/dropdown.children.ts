@@ -36,10 +36,7 @@ export default {
         title: '对话框',
         width: 1000,
         slots: {},
-        onOkButtonClick__func: `let formData=this.getModal().getFormModel();  
-        let props=this.getFormData();  
-        Object.assign(props,formData); 
-        return true;  `,
+        onOkButtonClick__func: ``,
         onCancelButtonClick__func: `  `,
         onDialogOpened__func: `  `,
         onDialogBeforeClose__func: `  `,

@@ -97,7 +97,7 @@
     return state.value;
   };
 
-  const show = (fData, eData, { raw = false, syn = false, refresh = false, ...attrs } = {}) => {
+  const show = (fData, eData, { raw = false, syn = true, refresh = false, ...attrs } = {}) => {
     state.value = { fData, eData, raw, syn, ...attrs };
     if (fData) {
       formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
