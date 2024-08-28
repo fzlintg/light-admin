@@ -3,7 +3,7 @@ import { Ref, SetupContext, getCurrentInstance, toRaw, type EmitsOptions } from 
 import { cloneDeep, forOwn, isFunction, set, get } from 'lodash-es';
 import { AForm, IVFormComponent } from '../typings/v-form-component';
 import { Form } from 'ant-design-vue';
-import { formItemsForEach, formModelToData, isAsyncFunction } from '../utils';
+import { formItemsForEach, formModelToData, isAsyncFunction, setContext } from '../utils';
 
 export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
   props: IAnyObject,
@@ -17,32 +17,14 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
    */
   const bindContext = () => {
     const instance = getCurrentInstance();
-
     const vm = instance?.proxy;
     if (!vm) return;
-    const setContext = (obj) => {
-      forOwn(obj, (value: any, key) => {
-        if (isAsyncFunction(value)) {
-          // item.componentProps[key] = value.bind(vm);
-          obj[key] = async function (...args) {
-            vm.item = () => vm.getFormItem(item.field);
-            vm.itemRef = () => vm.getFormItem(item.field).formItemRef;
-            return await value.apply(vm, args);
-          };
-        } else if (isFunction(value)) {
-          obj[key] = function (...args) {
-            vm.item = () => vm.getFormItem(item.field);
-            vm.itemRef = () => vm.getFormItem(item.field).formItemRef;
-            return value.apply(vm, args);
-          };
-        }
-      });
-    };
+
     formItemsForEach(props.formConfig.schemas as IVFormComponent[], (item) => {
-      setContext(item.componentProps);
+      setContext(item.componentProps, item.field, vm);
       if (['Toolbar', 'Dropdown'].includes(item.component)) {
         item.children?.forEach((child) => {
-          setContext(child);
+          setContext(child, item.field, vm);
         });
       }
       if (['Modal', 'Drawer'].includes(item.component)) return false;

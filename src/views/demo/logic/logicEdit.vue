@@ -5,9 +5,8 @@
   import { getQueryParam } from '@views/form-design/utils';
   import { defHttp as axios } from '@utils/http/axios';
 
-  const state = ref({ type: 'sql' });
+  const state = ref({ type: 'sql', data: '', name: '', title: '' });
   const name = getQueryParam('name');
-
   onMounted(async () => {
     if (name) {
       let result = await axios.post({

@@ -587,3 +587,22 @@ export const assignAdd = (obj, src) => {
   }
   return _.assignWith(obj, src, customizer);
 };
+
+export const setContext = (obj, field, vm) => {
+  forOwn(obj, (value: any, key) => {
+    if (isAsyncFunction(value)) {
+      // item.componentProps[key] = value.bind(vm);
+      obj[key] = async function (...args) {
+        vm.item = () => vm.getFormItem(field);
+        vm.itemRef = () => vm.getFormItem(field).formItemRef;
+        return await value.apply(vm, args);
+      };
+    } else if (isFunction(value)) {
+      obj[key] = function (...args) {
+        vm.item = () => vm.getFormItem(field);
+        vm.itemRef = () => vm.getFormItem(field).formItemRef;
+        return value.apply(vm, args);
+      };
+    }
+  });
+};
