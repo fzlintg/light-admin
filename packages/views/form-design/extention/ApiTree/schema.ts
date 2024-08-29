@@ -22,6 +22,7 @@ export default {
       children: 'children',
       title: 'title',
       key: 'key',
+      isLeaf: 'isleaf',
     },
     //  treeData:[]
   },

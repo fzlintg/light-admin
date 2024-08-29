@@ -31,6 +31,7 @@
   import 'codemirror/addon/selection/active-line.js'; // 选中行高亮 add by lintg
   // modes
   import 'codemirror/mode/javascript/javascript';
+  import 'codemirror/mode/sql/sql';
   import 'codemirror/mode/css/css';
   import 'codemirror/mode/htmlmixed/htmlmixed';
   import '@codemirror/commands';

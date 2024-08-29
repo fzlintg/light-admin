@@ -59,7 +59,7 @@
   import { useAppStore } from '@store/modules/app';
   import { useMessage } from '@h/web/useMessage';
   import { pick } from 'lodash-es';
-  import { getQueryParam, clearUrlParam } from '../../../utils';
+  import { getQueryParam, clearUrlParam, removeAttrs } from '../../../utils';
   import { copyText } from '@utils/copyTextToClipboard';
 
   // import 'url-search-params-polyfill';
@@ -200,14 +200,14 @@
           emit('handleClearFormItems', { cache, logic });
         },
       };
-      const saveLogic = (schemas, cache) => {
+      const saveLogic = (formConfig, cache) => {
         window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(logic.value));
 
         if (appStore.getLightFormConfig.mode) {
           state.settingFormRef
             .getFormRef()
             .getItemRef('drawer_2')
-            .show(logic.value, schemas, { syn: true });
+            .show(logic.value, removeAttrs(formConfig), { syn: true });
         } else createMessage.success('保存成功');
       };
       const loadSchemas = (schemas) => {

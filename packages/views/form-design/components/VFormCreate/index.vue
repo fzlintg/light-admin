@@ -51,7 +51,7 @@
   import { omit, template } from 'lodash-es';
   import { useFormValues } from '../../../../components/Form/src/hooks/useFormValues';
   import VFormItem from '../VFormItem/index.vue';
-  import { AsyncFunction } from '../../utils';
+  import { AsyncFunction, formModelToData } from '../../utils';
   import { defHttp as axios } from '@utils/http/axios';
 
   export default defineComponent({
@@ -243,7 +243,7 @@
         getItemRef,
         context,
         formItemRefList,
-        getFormData: () => unref(formModelNew),
+        getFormData: () => formModelToData(unref(formModelNew)),
         getFormModel: () => unref(formModelNew),
         dataSource,
         //       getOptions

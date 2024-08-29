@@ -5,15 +5,15 @@
     @mouseleave="hideRefreshIcon"
   >
     <VFormCreate
+      v-bind="$attrs"
       :form-config="formConfig"
       v-model:fApi="fApi"
       v-model:formModel="state"
       ref="vformRef"
       @submit="onSubmit"
       v-if="loaded"
-      v-bind="$attrs"
     />
-    <div class="refresh-icon" v-if="isMouseOver && debug" @click="handleRefresh">
+    <div class="refresh-icon" v-if="isMouseOver && debug" @click="refresh">
       <Icon icon="ant-design:reload-outlined" :size="10" />
       <!-- 使用Font Awesome图标库中的刷新图标 -->
     </div>
@@ -62,7 +62,7 @@
     vformRef = ref(null),
     isMouseOver = ref(false);
   const [state] = useRuleFormItem(props, 'formModel', 'update:formModel');
-
+  const [logic] = useRuleFormItem(props, 'logic', 'update:logic');
   // watch(
   //   () => state.value,
   //   (newValue) => {
@@ -73,8 +73,6 @@
   const onSubmit = () => {};
 
   onMounted(async () => {
-    //handleRefresh();
-
     if (!loaded.value) {
       await loadData();
       loaded.value = true;
@@ -83,21 +81,22 @@
   watch(
     () => props.logic,
     async () => {
-      await loadData();
+      await handleRefresh();
       //   handleRefresh();
     },
   );
   // const lock = ref(false);
   const loadData = async () => {
-    if (props.logic == '') return;
+    if (logic.value == '') return;
 
     let jsonData;
-    if (!props.remote && logicJson[props.logic]) {
-      jsonData = cloneDeep(logicJson[props.logic]);
+    if (!props.remote && logicJson[logic.value]) {
+      jsonData = cloneDeep(logicJson[logic.value]);
     } else {
-      jsonData = await axios.post({ url: `/api/logic/getLogicData/${props.logic}` });
+      jsonData = await axios.post({ url: `/api/logic/getLogicConfig/${logic.value}` });
     }
     formatRules(jsonData.schemas);
+
     formConfig.value = jsonData;
   };
   const showRefreshIcon = () => {
@@ -106,14 +105,18 @@
   const hideRefreshIcon = () => {
     isMouseOver.value = false;
   };
-  const handleRefresh = () => {
+  const refresh = (logicValue) => {
+    if (logicValue) logic.value = logicValue;
     // 处理刷新逻辑
     loaded.value = false;
     nextTick(async () => {
       await loadData();
+      loaded.value = true;
+
+      //   console.log(state.value);
     });
   };
-  defineExpose({ vformRef, getFormRef: () => vformRef.value, handleRefresh });
+  defineExpose({ vformRef, getFormRef: () => vformRef.value, refresh });
 </script>
 <style scoped>
   .component-container {

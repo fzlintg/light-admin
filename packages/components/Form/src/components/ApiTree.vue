@@ -77,7 +77,10 @@
   onMounted(() => {
     props.immediate && fetch();
   });
-
+  const refresh = () => {
+    treeData.value = [...treeData.value];
+  };
+  defineExpose({ refresh });
   async function fetch(v_params: any = null) {
     let { api, beforeFetch, afterFetch, params, resultField } = props;
     v_params = v_params || params;
