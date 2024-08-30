@@ -90,7 +90,7 @@
         default: () => {},
       },
     },
-    emits: ['submit', 'change', 'update:fApi', 'update:formModel'],
+    emits: ['submit', 'change', 'update:fApi', 'update:formModel', 'formLoaded'],
     setup(props, context) {
       const wrapperComp = props.formConfig.layout == 'vertical' ? Col : Row;
       const { proxy } = getCurrentInstance();
@@ -211,7 +211,7 @@
       onMounted(async () => {
         initDefault();
         await initDs();
-
+        emit('formLoaded');
         //   debugger;
         // emit('update:formModel', formModel.value);
       });

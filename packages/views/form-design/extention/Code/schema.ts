@@ -13,5 +13,6 @@ export default {
     suffix: '}',
     defaultValue: '',
     config: {},
+    placeholder: '',
   },
 };

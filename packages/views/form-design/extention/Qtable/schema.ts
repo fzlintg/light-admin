@@ -5,7 +5,7 @@ export default {
   icon: 'ant-design:border-outlined',
   componentProps: {
     title: '查询表格',
-    logic: '',
+    logic: 'test.sqlTable.sys_table',
   },
   autoSetting: false,
   children: [],

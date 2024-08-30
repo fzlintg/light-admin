@@ -1,17 +1,14 @@
 <template>
-  <div>
-    <light-form logic="config.dbTable" :formModel="state.componentProps" />
-    <light-form logic="dbtable.edit" remote ref="lightFormRef" />
-    <AButton type="link" @click="openConfig">打开配置</AButton>
-  </div>
+  <light-form logic="system.loadPage" :formModel="state" @update:form-model="updateFormModel" />
+  <Button @click="loadForm">确定</Button>
 </template>
 <script lang="ts" setup>
-  import { ref, watch } from 'vue';
-  import { defHttp as axios } from '@utils/http/axios';
-  //import { useMessage } from '@h/web/useMessage';
+  import { onMounted, ref } from 'vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
+  import { Button } from 'ant-design-vue';
+  //import { cloneDeep } from 'lodash-es';
+  //import { mergeSchema } from './schema.ts';
 
-  const lightFormRef = ref(null);
   const props = defineProps({
     schema: {
       type: Object,
@@ -22,18 +19,18 @@
       default: () => ({}),
     },
   });
-  const [state] = useRuleFormItem(props, 'props', 'update:props');
-  watch(
-    () => state.componentProps,
-    () => {},
-  );
-  const openConfig = async () => {
-    let [db, key] = state.value.componentProps.dbTable.split('.');
 
-    let config = await axios.get({ url: `/api/model/tableModel/${db}/${key}` });
+  const [formState] = useRuleFormItem(props, 'props', 'update:props');
 
-    lightFormRef.value?.vformRef
-      ?.getItemRef('modal')
-      ?.show({ ...config, db, table: key }, { db, table: key, db_id: config.db_id }, { raw: true });
+  const state = ref({ logic: formState.value.componentProps.logic });
+  const updateFormModel = (value) => {
+    Object.assign(state.value, value);
   };
+  const loadForm = () => {
+    console.log(formState.value);
+    formState.value.componentProps.logic = state.value.logic;
+
+    //Object.assign(formState.value.componentProps, state.value);
+  };
+  onMounted(() => {});
 </script>

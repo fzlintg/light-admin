@@ -1,12 +1,11 @@
 <template>
-  <div v-if="ifShowAll">
-    <light-form :logic="`query.${state}.form`" @submit="loadData" :options="tableOptions" />
+  <div>
     <VxeBasicTable ref="tableRef" v-bind="gOptions" keep-source v-if="ifshow" />
   </div>
 </template>
 <script lang="ts" setup>
   import { useRuleFormItem } from '@h/component/useFormItem';
-  import { PropType } from 'vue';
+  import { PropType, onMounted, ref, watch } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
 
   import { VxeBasicTable, VxeGridInstance } from '@c/VxeTable';
@@ -21,9 +20,46 @@
       default: '',
     },
   });
+  const createMessage = useMessage();
   const [state] = useRuleFormItem(props, 'logic', 'update:logic');
   const ifshow = ref(false);
   const gOptions = ref({});
-  const loadData = () => {};
+  const tableRef = ref(null);
+  const columnAttr = ref({});
+
+  const loadOptions = async () => {
+    if (!state.value || state.value == '') return;
+    let { gridOptions } = await axios.get({
+      url: `/api/logic/getGridOptions/${state.value}`,
+    });
+    const gridTpl = TransObjectToCode(cloneDeep(gridOptions));
+    const gridData = new Function('{tableRef,createMessage,axios}', `return ${gridTpl}`)({
+      tableRef,
+      createMessage,
+      axios,
+    });
+    gOptions.value = gridData;
+    gridData.columns.forEach((item) => {
+      columnAttr.value[item.field] = item;
+    });
+    ifshow.value = true;
+  };
+  const loadDict = async () => {};
+  const setLogic = (v) => {
+    state.value = v;
+  };
+
+  const loadAll = async () => {
+    await loadOptions();
+    await loadDict();
+  };
+  watch([() => state.value], async () => {
+    ifshow.value = false;
+    await loadAll();
+  });
+  onMounted(async () => {
+    await loadAll();
+  });
+  defineExpose({ setLogic, refresh: loadAll });
   const tableOptions = ref({});
 </script>

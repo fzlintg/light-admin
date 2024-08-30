@@ -18,6 +18,7 @@
         :formContext="extraData"
         :debug="debug"
         :parentForm="parentFormRef"
+        @form-loaded="handleFormLoaded"
       />
 
       <template #insertFooter v-if="!!schema.componentProps.footerBtnText">
@@ -53,6 +54,7 @@
   const state = ref({});
   const { schema, formConfig, debug } = toRefs(useAttrs());
   const myProps = ref({});
+  const ifLoaded = ref(false);
   const compProps = computed(() => {
     return { ...schema.value.componentProps, ...myProps.value };
   });
@@ -64,9 +66,10 @@
     formModelNew.value[key] = value;
   };
 
-  const getFormModel = async () => {
+  const getFormModel = async (flatten = true) => {
     let data = await fApi.value.submit();
-    return data;
+    if (flatten) return flattenObject(data);
+    else return data;
   };
 
   const formConfigNew = computed(() => {
@@ -108,7 +111,8 @@
   const handleOk = async (e: MouseEvent) => {
     await state.value?.cb?.ok();
     if (state.value.syn) {
-      merge(state.value.fData, formModelNew.value);
+      if (state.value.raw) Object.assign(state.value.fData, formModelNew.value);
+      else merge(state.value.fData, formModelToData(formModelNew.value));
     }
     emit('okButtonClick', {
       _this,
@@ -125,11 +129,26 @@
       },
     });
   };
+  const handleFormLoaded = () => {
+    ifLoaded.value = true;
+    if (callBack.value.length > 0) {
+      callBack.value.forEach((f) => f.call(formRef.value));
+      callBack.value = [];
+    }
+  };
+
   const handleCancle = () => {
     emit('cancelButtonClick');
     close();
   };
+  const callBack = ref([]);
+  const addCallback = (f) => {
+    if (ifLoaded.value) return f.call(formRef.value);
+    else callBack.value.push(f);
+  };
   defineExpose({
+    addCallback,
+    handleFormLoaded,
     show,
     close,
     getFormModel,
@@ -140,5 +159,5 @@
     setProps,
     getState,
   });
-  // const { proxy } = getCurrentInstance();
+  const { proxy } = getCurrentInstance();
 </script>

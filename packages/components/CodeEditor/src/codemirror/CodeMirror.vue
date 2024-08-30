@@ -140,7 +140,6 @@
       readOnly: props.readonly,
       tabSize: 2,
       theme: 'material-palenight',
-
       lineWrapping: true,
       lineNumbers: true,
       ...addonOptions,
