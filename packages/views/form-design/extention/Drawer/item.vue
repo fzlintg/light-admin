@@ -116,7 +116,7 @@
     }
     emit('okButtonClick', {
       _this,
-      utils: { setUrlParam, clearUrlParam, closeCurrent, updatePath },
+      utils: { setUrlParam, clearUrlParam, closeCurrent, updatePath, flattenObject },
       callback: (result) => {
         open.value = !result;
       },

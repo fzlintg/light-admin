@@ -8,7 +8,7 @@ export default [
 
     // field: 'slotsName.extra',
     componentProps: {
-      mode: MODE.HTML,
+      mode: MODE.HTMLMIXED,
       buttonText: '编辑',
       editorTitle: '点击事件',
       bordered: true,

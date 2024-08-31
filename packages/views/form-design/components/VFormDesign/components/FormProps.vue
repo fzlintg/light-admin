@@ -137,6 +137,11 @@
       );
       if (originSchema) {
         schema.componentProps = { ...originSchema.componentProps, ...schema.componentProps };
+        for (const name in originSchema.componentProps) {
+          if (name.endsWith('__params'))
+            //params以配置为准
+            schema.componentProps[name] = originSchema.componentProps[name];
+        }
       }
     });
     formConfig.value = { ds: [], ...formConfig.value };

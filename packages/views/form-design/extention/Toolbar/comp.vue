@@ -1,7 +1,7 @@
 <template>
   <div class="operating-area" :style="{ width: schema.width }">
     <div class="left-btn-box">
-      <Tooltip v-for="item in schema.children" :title="item.title" :key="item.icon">
+      <Tooltip v-for="item in schema.children" :title="item.title" :key="item.title">
         <a @click="item.click" class="toolbar-text">
           <Icon :icon="item.icon" />
         </a> </Tooltip></div

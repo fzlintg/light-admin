@@ -81,7 +81,7 @@
   watch(
     () => props.logic,
     async () => {
-      await handleRefresh();
+      await refresh();
       //   handleRefresh();
     },
   );

@@ -11,7 +11,7 @@ export default {
     onFooterBtnClick__func: '',
     onFooterBtnClick__params: [''],
     onOkButtonClick__func: '',
-    onOkButtonClick__params: ['params'],
+    onOkButtonClick__params: ['{_this,callback,utils}'],
     onCancelButtonClick__func: '',
     onCancelButtonClick__params: ['params'],
     onDialogOpened__func: '',
