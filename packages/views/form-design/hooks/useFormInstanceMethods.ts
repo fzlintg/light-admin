@@ -22,7 +22,7 @@ export function useFormInstanceMethods<E extends EmitsOptions = EmitsOptions>(
 
     formItemsForEach(props.formConfig.schemas as IVFormComponent[], (item) => {
       setContext(item.componentProps, item.field, vm);
-      if (['Toolbar', 'Dropdown'].includes(item.component)) {
+      if (['Toolbar', 'Dropdown', 'ButtonGroup'].includes(item.component)) {
         item.children?.forEach((child) => {
           setContext(child, item.field, vm);
         });

@@ -18,6 +18,13 @@
             :is="settingComp[formConfig.currentItem.component]"
             v-model:props="formConfig.currentItem"
           />
+          <Setting
+            v-for="item in settingLogics[formConfig.currentItem.component]"
+            :logic="item"
+            :key="item"
+            v-model:props="formConfig.currentItem"
+          />
+
           <Divider class="divider_title" dashed>控制属性</Divider>
           <FormItem>
             <Col v-for="item in controlOptions" :key="item.field">
@@ -87,7 +94,7 @@
     Divider,
   } from 'ant-design-vue';
   import RadioButtonGroup from '@c/Form/src/components/RadioButtonGroup.vue';
-  import { computed, defineComponent, ref, watch } from 'vue';
+  import { computed, defineComponent, nextTick, ref, watch } from 'vue';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   import {
     baseComponentControlAttrs,
@@ -105,6 +112,7 @@
     func as customFuncs,
     settingComp,
     settingExclude,
+    settingLogics,
   } from '../../../extention/loader';
 
   import defaultSetting, {
@@ -117,6 +125,7 @@
   import { uniqBy } from 'lodash-es';
   import LightProps from './LighProps.vue';
 
+  import Setting from './setting.vue';
   // import ds from '../../../api/index';
   //console.log(...componentMap);
   export default defineComponent({
@@ -138,6 +147,7 @@
       Divider,
       ItemOptions,
       LightProps,
+      Setting,
       //Code: componentMap['Code'],
     },
     setup() {
@@ -149,6 +159,7 @@
       //   };
       // });
       const ifCustSetting = ref(false);
+      const ifLogicSetting = ref(false);
 
       const allOptions = ref([] as Omit<IBaseFormAttrs, 'tag'>[]);
       const showControlAttrs = (includes: string[] | undefined) => {
@@ -232,7 +243,7 @@
         () => formConfig.value.currentItem && formConfig.value.currentItem.component,
         () => {
           ifCustSetting.value = false;
-
+          ifLogicSetting.value = false;
           allOptions.value = [];
           baseComponentControlAttrs.forEach((item) => {
             item.category = 'control';
@@ -291,7 +302,9 @@
           }
           allOptions.value = uniqBy(allOptions.value, 'field');
           nextTick(() => {
+            ifLogicSetting.value = !!settingLogics?.[formConfig.value.currentItem.component];
             ifCustSetting.value = !!settingComp[formConfig.value.currentItem.component];
+            console.log(ifLogicSetting.value, ifCustSetting.value);
           });
         },
         {
@@ -366,6 +379,7 @@
         //   dsOptions,
         settingComp,
         ifCustSetting,
+        settingLogics,
         //   getItemProps
       };
     },

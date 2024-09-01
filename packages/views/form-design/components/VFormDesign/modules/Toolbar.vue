@@ -59,7 +59,7 @@
   import { useAppStore } from '@store/modules/app';
   import { useMessage } from '@h/web/useMessage';
   import { pick } from 'lodash-es';
-  import { getQueryParam, clearUrlParam, removeAttrs } from '../../../utils';
+  import { getQueryParam, clearUrlParam, removeAttrs, importJSON } from '../../../utils';
   import { copyText } from '@utils/copyTextToClipboard';
 
   // import 'url-search-params-polyfill';
@@ -211,7 +211,8 @@
         } else createMessage.success('保存成功');
       };
       const loadSchemas = (schemas) => {
-        formConfig.value = schemas;
+        let schemaData = importJSON(JSON.stringify(schemas), true);
+        formConfig.value = schemaData;
       };
 
       const { undo, redo, canUndo, canRedo } = historyRef;

@@ -462,7 +462,7 @@ export const formatRules = (schemas: IVFormComponent[], flag = false, formContex
   formItemsForEach(schemas, (item) => {
     //lintg  函数自动生成
     formatFunc(item.componentProps, flag, formContext);
-    if (['Dropdown', 'Toolbar'].includes(item.component)) {
+    if (['Dropdown', 'Toolbar', 'ButtonGroup'].includes(item.component)) {
       //下拉对象菜单
       for (const childItem of item.children) {
         formatFunc(childItem, flag, formContext);

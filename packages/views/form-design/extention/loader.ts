@@ -11,6 +11,7 @@ const modules = {
 };
 
 const settingExclude = {};
+const settingLogics = {};
 
 const schemaModules = import.meta.glob('./**/schema.ts', { eager: true });
 const expModule = {},
@@ -26,9 +27,10 @@ for (const item in modules) {
   expModule[item] = {};
   for (const path in modules[item]) {
     const name = path.split('/')[1];
-    expModule[item][name] = modules[item][path].default;
+    expModule[item][name] = modules[item][path].default || [];
     if (item == 'setting') {
       settingExclude[name] = modules[item][path].exclude || [];
+      settingLogics[name] = modules[item][path]?.logics || [];
     }
   }
 }
@@ -44,4 +46,4 @@ for (const path in schemaModules) {
 }
 const { setting, comp, func, widget, item, settingComp } = expModule;
 
-export { setting, schemas, comp, func, widget, item, settingComp, settingExclude };
+export { setting, schemas, comp, func, widget, item, settingComp, settingExclude, settingLogics };

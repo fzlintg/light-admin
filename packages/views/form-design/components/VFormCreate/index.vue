@@ -199,12 +199,15 @@
         formModel: formModelNew.value,
       });
       const dataSource = reactive({});
+      props.formConfig?.ds?.forEach((item) => {
+        dataSource[item.dsName] = [];
+      });
       const initDs = async () => {
         //  for (let item of props.formConfig?.ds) {
         props.formConfig?.ds?.forEach(async (item) => {
           let func = template(item.func)(props.formContext);
           let dsFunc = new AsyncFunction('{axios}', func);
-          dataSource[item.dsName] = await dsFunc.call(proxy, { axios });
+          dataSource[item.dsName].push(...(await dsFunc.call(proxy, { axios })));
         });
       };
 

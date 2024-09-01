@@ -1,6 +1,6 @@
 <template>
   <light-form
-    logic="system.config.buttonGroup"
+    :logic="props.logic"
     :formModel="formState"
     debug
     @update:form-model="updateFormModel"
@@ -20,6 +20,10 @@
     props: {
       type: Object,
       default: () => ({}),
+    },
+    logic: {
+      type: String || null,
+      default: null,
     },
   });
 
