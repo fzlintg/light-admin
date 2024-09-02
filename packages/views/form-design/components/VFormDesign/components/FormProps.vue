@@ -149,8 +149,8 @@
     createMessage.success('修正完成');
   };
   const loadSchemas = (schemas) => {
-    let schemaData = importJSON(JSON.stringify(schemas), true);
-    formConfig.value = schemaData;
+    // let schemaData = importJSON(JSON.stringify(schemas), true);
+    formConfig.value = schemas;
   };
   const updateFormModel = (ds) => {
     Object.assign(formConfig.value, ds);

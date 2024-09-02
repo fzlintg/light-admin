@@ -211,7 +211,7 @@
         } else createMessage.success('保存成功');
       };
       const loadSchemas = (schemas) => {
-        let schemaData = importJSON(JSON.stringify(schemas), true);
+        let schemaData = importJSON(JSON.stringify(schemas), false);
         formConfig.value = schemaData;
       };
 
