@@ -36,7 +36,13 @@
       clickByIdx(idx);
     }
   };
-  defineExpose({ clickByIdx, clickByName });
+  const click = (name) => {
+    typeof name == 'number' ? clickByIdx(name) : clickByName(name);
+    // if (typeof name == 'string') clickByName(name);
+    // else if (typeof name == 'number') clickByIdx(name);
+  };
+  defineExpose({ click });
+  //defineExpose({ clickByIdx, clickByName });
   onBeforeUnmount(() => {
     itemRefs.value = [];
   });

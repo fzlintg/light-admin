@@ -1,13 +1,8 @@
 <template>
   <div class="operating-area" :style="{ width: schema.width }">
     <div class="left-btn-box">
-      <Tooltip
-        v-for="(item, index) in schema.children"
-        :title="item.title"
-        :key="item.title"
-        :ref="setItemRef(index)"
-      >
-        <a @click="item.click" class="toolbar-text">
+      <Tooltip v-for="(item, index) in schema.children" :title="item.title" :key="item.title">
+        <a class="toolbar-text" @click="item.click" :ref="setItemRef(index)">
           <Icon :icon="item.icon" />
         </a> </Tooltip></div
   ></div>
@@ -29,7 +24,7 @@
     };
   };
   const clickByIdx = (index) => {
-    itemRefs.value[index].$el.click();
+    itemRefs.value[index].click();
   };
   const clickByName = (name) => {
     const idx = findIndex(schema.value.children, { title: name });
@@ -37,7 +32,12 @@
       clickByIdx(idx);
     }
   };
-  defineExpose({ clickByIdx, clickByName });
+  const click = (name) => {
+    typeof name == 'number' ? clickByIdx(name) : clickByName(name);
+    // if (typeof name == 'string') clickByName(name);
+    // else if (typeof name == 'number') clickByIdx(name);
+  };
+  defineExpose({ click });
   onBeforeUnmount(() => {
     itemRefs.value = [];
   });

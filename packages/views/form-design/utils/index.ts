@@ -238,21 +238,26 @@ export const ArrayToData = (json: Array<any>) => {
   });
 };
 
-export const flattenArray = (json: Array<any>) => {
+export const flattenArray = (json: Array<any>, end_flag = '_json') => {
   const result: Array<any> = [];
   json.forEach((item) => {
-    if (isObject(item)) result.push(flattenObject(item));
+    if (isObject(item)) result.push(flattenObject(item, end_flag));
     else result.push(item); //lintg
   });
   return result;
 };
-export const flattenObject = (json) => {
+export const flattenObject = (json, end_flag = '_json') => {
   const result = {};
   function flatten(obj, path = '') {
     for (const key in obj) {
       const value = obj[key];
       const newPath = path ? path + '.' + key : key;
-      if (value !== null && isArray(value)) result[newPath] = flattenArray(value);
+      if (key.endsWith(end_flag)) {
+        //终结符
+        result[newPath] = value;
+        continue;
+      }
+      if (value !== null && isArray(value)) result[newPath] = flattenArray(value, end_flag);
       else if (value !== null && isObject(value)) flatten(value, newPath);
       else {
         result[newPath] = value;

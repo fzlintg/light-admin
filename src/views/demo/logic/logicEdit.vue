@@ -18,7 +18,7 @@
       });
       state.value = flattenObject(result.items?.[0]);
       setTimeout(
-        // 解决表单组件初始化问题
+        // 临时解决表单组件初始化问题
         () =>
           lightFormRef.value
             .getFormRef()

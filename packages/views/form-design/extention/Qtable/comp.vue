@@ -1,6 +1,6 @@
 <template>
   <div v-if="ifshow">
-    <light-form :logic="`queryForm.${state}`" />
+    <light-form :logic="`queryForm.${state}`" @submit="loadData" />
     <VxeBasicTable ref="tableRef" v-bind="gOptions" keep-source />
   </div>
 </template>
@@ -62,5 +62,9 @@
     await loadAll();
   });
   defineExpose({ setLogic, refresh: loadAll });
-  const tableOptions = ref({});
+  //const tableOptions = ref({});
+
+  const loadData = (form) => {
+    tableRef.value.commitProxy('query', { form });
+  };
 </script>
