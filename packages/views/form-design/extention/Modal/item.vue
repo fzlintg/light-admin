@@ -43,7 +43,8 @@
 
   //import VFormCreate from '../../components/VFormCreate/v.vue';
   import { formatRules } from '../../utils/index';
-  import { cloneDeep, merge } from 'lodash-es';
+  import { cloneDeep } from 'lodash-es';
+  import { deepMerge } from '@utils';
 
   const _this = getCurrentInstance();
   const open = ref(false);
@@ -112,7 +113,12 @@
     await state.value?.cb?.ok();
     if (state.value.syn) {
       if (state.value.raw) Object.assign(state.value.fData, formModelNew.value);
-      else merge(state.value.fData, formModelToData(formModelNew.value));
+      //else state.value.fData = formModelToData(formModelNew.value);
+      else
+        Object.assign(
+          state.value.fData,
+          deepMerge(state.value.fData, formModelToData(formModelNew.value)),
+        );
     }
     emit('okButtonClick', {
       _this,

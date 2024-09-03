@@ -21,7 +21,7 @@ export default {
     onDialogBeforeClose__params: ['{callback}'],
     isDetail: false,
     showDetailBack: false,
-    maskClosable: true,
+    maskClosable: false,
     showCancelBtn: true,
     showOkBtn: true,
     showFooter: true,

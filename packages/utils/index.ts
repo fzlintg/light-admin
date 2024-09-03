@@ -50,7 +50,7 @@ export function setObjToUrlParams(baseUrl: string, obj: any): string {
 export function deepMerge<T extends object | null | undefined, U extends object | null | undefined>(
   source: T,
   target: U,
-  mergeArrays: 'union' | 'intersection' | 'concat' | 'replace' = 'replace',
+  mergeArrays: 'src' | 'union' | 'intersection' | 'concat' | 'replace' = 'replace',
 ): T & U {
   if (!target) {
     return source as T & U;
@@ -69,6 +69,8 @@ export function deepMerge<T extends object | null | undefined, U extends object 
           return sourceValue.concat(targetValue);
         case 'replace':
           return targetValue;
+        case 'src':
+          return sourceValue;
         default:
           throw new Error(`Unknown merge array strategy: ${mergeArrays as string}`);
       }

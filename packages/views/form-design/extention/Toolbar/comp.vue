@@ -1,7 +1,12 @@
 <template>
   <div class="operating-area" :style="{ width: schema.width }">
     <div class="left-btn-box">
-      <Tooltip v-for="item in schema.children" :title="item.title" :key="item.title">
+      <Tooltip
+        v-for="(item, index) in schema.children"
+        :title="item.title"
+        :key="item.title"
+        :ref="setItemRef(index)"
+      >
         <a @click="item.click" class="toolbar-text">
           <Icon :icon="item.icon" />
         </a> </Tooltip></div
@@ -9,8 +14,33 @@
 </template>
 <script setup lang="ts">
   import { Tooltip } from 'ant-design-vue';
+  import { findIndex } from 'lodash-es';
+  import { onBeforeUnmount, toRefs } from 'vue';
 
   const { schema } = toRefs(useAttrs());
+  const itemRefs = ref([]);
+  const setItemRef = (index) => {
+    return (el) => {
+      if (el) {
+        if (!itemRefs.value[index]) {
+          itemRefs.value[index] = el;
+        }
+      }
+    };
+  };
+  const clickByIdx = (index) => {
+    itemRefs.value[index].$el.click();
+  };
+  const clickByName = (name) => {
+    const idx = findIndex(schema.value.children, { title: name });
+    if (idx > -1) {
+      clickByIdx(idx);
+    }
+  };
+  defineExpose({ clickByIdx, clickByName });
+  onBeforeUnmount(() => {
+    itemRefs.value = [];
+  });
 </script>
 <style lang="less" scoped>
   //noinspection CssUnknownTarget

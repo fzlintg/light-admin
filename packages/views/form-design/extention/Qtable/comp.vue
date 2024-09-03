@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <VxeBasicTable ref="tableRef" v-bind="gOptions" keep-source v-if="ifshow" />
+  <div v-if="ifshow">
+    <light-form :logic="`queryForm.${state}`" />
+    <VxeBasicTable ref="tableRef" v-bind="gOptions" keep-source />
   </div>
 </template>
 <script lang="ts" setup>
@@ -12,7 +13,7 @@
   import { TransObjectToCode, formatFunc } from '../../utils/index';
   import { cloneDeep, merge, isNil } from 'lodash-es';
   import { useMessage } from '@h/web/useMessage';
-  import * as jsonpatch from 'fast-json-patch/index.mjs';
+  // import * as jsonpatch from 'fast-json-patch/index.mjs';
 
   const props = defineProps({
     logic: {
@@ -50,11 +51,11 @@
   };
 
   const loadAll = async () => {
+    ifshow.value = false;
     await loadOptions();
     await loadDict();
   };
   watch([() => state.value], async () => {
-    ifshow.value = false;
     await loadAll();
   });
   onMounted(async () => {
