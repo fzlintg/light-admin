@@ -22,13 +22,13 @@
 
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
 
-  const state = ref({ logic: formState.value.componentProps.logic });
+  const state = ref({ name: formState.value.componentProps.logic });
   const updateFormModel = (value) => {
     Object.assign(state.value, value);
   };
   const loadForm = () => {
     console.log(formState.value);
-    formState.value.componentProps.logic = state.value.logic;
+    formState.value.componentProps.logic = state.value.name;
 
     //Object.assign(formState.value.componentProps, state.value);
   };
