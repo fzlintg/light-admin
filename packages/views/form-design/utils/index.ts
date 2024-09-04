@@ -26,6 +26,7 @@ import { defHttp } from '@utils/http/axios';
 import { useMessage } from '@h/web/useMessage';
 import { useAppStore } from '@store/modules/app';
 import 'url-search-params-polyfill';
+import { copyText } from '@utils/copyTextToClipboard';
 
 const { createMessage } = useMessage();
 const appStore = useAppStore();
@@ -401,8 +402,12 @@ export function formatFunc(item, flag = false, formContext = {}) {
       const func =
         item[name]?.trim()?.length > 0
           ? funcAsync
-            ? new AsyncFunction('{axios,nextTick,_,createMessage,appStore}', ...params, item[name])
-            : new Function('{_,createMessage,appStore}', ...params, item[name])
+            ? new AsyncFunction(
+                '{axios,nextTick,_,createMessage,appStore,copyText}',
+                ...params,
+                item[name],
+              )
+            : new Function('{_,createMessage,appStore,copyText}', ...params, item[name])
           : () => true; //默认true
 
       if (funcAsync) {
@@ -411,7 +416,7 @@ export function formatFunc(item, flag = false, formContext = {}) {
           // const argsCall = args.length == 0 ? [{}] : args;
           let result = await func.call(
             this,
-            { axios: defHttp, nextTick, _, createMessage, appStore },
+            { axios: defHttp, nextTick, _, createMessage, appStore, copyText },
             ...args,
           );
           if (args?.[0]?.callback) {
@@ -425,7 +430,7 @@ export function formatFunc(item, flag = false, formContext = {}) {
         };
       } else {
         item[originName] = function (...args) {
-          let result = func.call(this, { _, createMessage, appStore }, ...args);
+          let result = func.call(this, { _, createMessage, appStore, copyText }, ...args);
           if (args?.[0]?.callback) {
             //回调模式
             if (isNull(result)) result = true;

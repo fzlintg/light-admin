@@ -15,6 +15,7 @@ const t = {
   apiParamKey: 'api参数名称',
   afterFetch: '获取数据后处理',
   _update: '回调刷新',
+  _init: '初始化',
   allowClear: '允许清除',
   checkable: '多选',
   title: '标题',

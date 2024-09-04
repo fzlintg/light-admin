@@ -21,6 +21,14 @@ const permission: AppRouteModule = {
       component: () => import('@views/form-design/index.vue'),
     },
     {
+      path: 'logic',
+      name: 'Logic',
+      meta: {
+        title: '逻辑配置',
+      },
+      component: () => import('@/views/demo/logic/logicEdit.vue'),
+    },
+    {
       path: 'example1',
       name: 'Example1',
       meta: {

@@ -107,6 +107,7 @@
     unref,
     getCurrentInstance,
     ref,
+    onMounted,
   } from 'vue';
   import { componentMap } from '../../core/formItemConfig';
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
@@ -380,6 +381,9 @@
         cur_setFormModel(props.schema.field!, value, e);
         if (!props.inSubForm) emit('change', value);
       };
+      onMounted(() => {
+        state.formItemRef?.init?.();
+      });
 
       return {
         ...toRefs(state),

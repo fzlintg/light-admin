@@ -73,7 +73,7 @@ export default {
         {
           _type: 'custom',
           field: 'name',
-          label: '逻辑编码',
+          label: '页面编码',
           width: '200px',
           colProps: {
             span: 24,
@@ -121,7 +121,7 @@ export default {
       },
       componentProps: {
         slots: {},
-        title: '加载服务端逻辑',
+        title: '加载页面逻辑',
         width: 378,
         zIndex: 1000,
         isDetail: false,
@@ -163,7 +163,7 @@ export default {
       type: 'container',
       _type: 'custom',
       field: 'drawer_2',
-      label: '逻辑库',
+      label: '页面逻辑',
       width: '200px',
       children: [
         {
@@ -190,7 +190,7 @@ export default {
         {
           _type: 'custom',
           field: 'name',
-          label: '逻辑编码',
+          label: '页面编码',
           width: '200px',
           colProps: {
             span: 24,
