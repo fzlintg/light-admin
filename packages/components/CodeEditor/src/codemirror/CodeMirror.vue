@@ -1,7 +1,10 @@
 <template>
   <div
     class="relative !h-full w-full overflow-hidden"
-    :class="{ 'ant-input': props.bordered, 'css-dev-only-do-not-override-kqecok': props.bordered }"
+    :class="{
+      'ant-input': props.bordered,
+      'css-dev-only-do-not-override-kqecok': props.bordered,
+    }"
     ref="el"
   ></div>
 </template>
@@ -127,6 +130,10 @@
       gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       //gutters: ['CodeMirror-linenumbers'],
       styleActiveLine: true,
+
+      tabSize: 2,
+      indentUnit: 2,
+      autofocus: true,
       // extraKeys: {
       //   'Alt-F': (cm) => {
       //     formatCode();
@@ -138,7 +145,7 @@
       value: '',
       mode: props.mode,
       readOnly: props.readonly,
-      tabSize: 2,
+
       theme: 'material-palenight',
       lineWrapping: true,
       lineNumbers: true,

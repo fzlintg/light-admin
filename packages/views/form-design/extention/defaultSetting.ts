@@ -55,6 +55,9 @@ const t = {
   showPreviewNumber: '预览照片数',
   name: '名称',
   filename: '文件名',
+  closable: '可关闭',
+  showIcon: '显示图标',
+  message: '提示信息',
 };
 const setting = {};
 

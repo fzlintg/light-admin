@@ -13,24 +13,4 @@ export default [
     },
     defaultValue: 'success',
   },
-  {
-    field: 'message',
-    label: '消息',
-    component: 'Input',
-    componentProps: { defaultValue: '' },
-  },
-  {
-    field: 'showIcon',
-    label: '显示图标',
-    category: 'control',
-    componentProps: {},
-    defaultValue: true,
-  },
-  {
-    field: 'closable',
-    label: '可关闭',
-    category: 'control',
-    componentProps: {},
-    defaultValue: true,
-  },
 ];

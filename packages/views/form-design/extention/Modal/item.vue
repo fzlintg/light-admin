@@ -17,6 +17,7 @@
         ref="formRef"
         :formContext="extraData"
         :debug="debug"
+        @update:form-model="updateFormModel"
         :parentForm="parentFormRef"
         @form-loaded="handleFormLoaded"
       />
@@ -151,6 +152,9 @@
   const addCallback = (f) => {
     if (ifLoaded.value) return f.call(formRef.value);
     else callBack.value.push(f);
+  };
+  const updateFormModel = () => {
+    debugger;
   };
   defineExpose({
     addCallback,
