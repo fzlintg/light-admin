@@ -1,8 +1,8 @@
 export default [
   {
     field: 'defaultValue',
-    label: '初始颜色',
     component: 'ColorPicker',
+    label: '背景颜色',
     componentProps: {},
   },
 ];
