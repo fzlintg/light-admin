@@ -304,7 +304,7 @@
           nextTick(() => {
             ifLogicSetting.value = !!settingLogics?.[formConfig.value.currentItem.component];
             ifCustSetting.value = !!settingComp[formConfig.value.currentItem.component];
-            console.log(ifLogicSetting.value, ifCustSetting.value);
+            //   console.log(ifLogicSetting.value, ifCustSetting.value);
           });
         },
         {

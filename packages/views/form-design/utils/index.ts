@@ -615,3 +615,4 @@ export const setContext = (obj, field, vm) => {
     }
   });
 };
+export const getAttrs = () => toRefs(reactive(useAttrs()));

@@ -8,8 +8,9 @@
 </template>
 <script setup>
   import { Tag } from 'ant-design-vue';
+  import { getAttrs } from '../../utils';
 
-  const { schema } = toRefs(useAttrs());
+  const { schema } = getAttrs();
   const setText = (val) => {
     schema.value.componentProps.text = val;
   };

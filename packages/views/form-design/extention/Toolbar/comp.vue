@@ -11,8 +11,9 @@
   import { Tooltip } from 'ant-design-vue';
   import { findIndex } from 'lodash-es';
   import { onBeforeUnmount, toRefs } from 'vue';
+  import { getAttrs } from '../../utils';
 
-  const { schema } = toRefs(useAttrs());
+  const { schema } = getAttrs();
   const itemRefs = ref([]);
   const setItemRef = (index) => {
     return (el) => {

@@ -59,7 +59,7 @@
         emit('start', list1[e.oldIndex].component);
       };
       const handleAdd = (e: any) => {
-        console.log(e);
+        //     console.log(e);
       };
       // https://github.com/SortableJS/vue.draggable.next
       // https://github.com/SortableJS/vue.draggable.next/blob/master/example/components/custom-clone.vue
