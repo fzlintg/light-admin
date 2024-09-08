@@ -4,7 +4,7 @@ import { ButtonProps } from 'ant-design-vue/es/button/buttonTypes';
 //import { useI18n } from '@h/web/useI18n';
 
 //const { t } = useI18n();
-console.log('modal init');
+//console.log('modal init');
 
 export const modalProps = {
   open: { type: Boolean },

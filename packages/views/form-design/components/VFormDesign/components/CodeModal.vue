@@ -48,7 +48,7 @@ export default {
   methods: {
     async submit() {
       const data = await this.fApi.submit()
-      console.log(data)
+     // console.log(data)
      }
   }
 }

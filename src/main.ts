@@ -20,7 +20,7 @@ import { setupStore } from '@/store';
 // import { setupComponents } from './plugin';
 import App from './App.vue';
 
-console.log('begin');
+//console.log('begin');
 
 async function bootstrap() {
   const app = createApp(App);
@@ -30,7 +30,7 @@ async function bootstrap() {
   await setupI18n(app);
   setupStore(app);
 
-  console.log('i18n init ok');
+  //console.log('i18n init ok');
   // Initialize internal system configuration
   // 初始化内部系统配置
   initAppConfigStore();
@@ -64,7 +64,7 @@ async function bootstrap() {
   // await router.isReady();
   //setupComponents(app);
   app.mount('#app');
-  console.log('app mount');
+
   //app.config.globalProperties.$message = message;
 }
 

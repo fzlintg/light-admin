@@ -87,7 +87,7 @@
   const emit = defineEmits(['options-change', 'change', 'update:value']);
   const attrs = useAttrs();
   //const optionsRef = ref<OptionsItem[]>([]);
-  let injectOptions = inject('options');
+  let injectOptions = inject('options', () => []);
   const optionsRef = ref<OptionsItem[]>([]);
   //const optionsRef = inject('options')
 

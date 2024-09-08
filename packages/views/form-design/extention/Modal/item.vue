@@ -54,7 +54,8 @@
   const formRef = ref(null);
   const extraData = ref({});
   const state = ref({});
-  const { schema, formConfig, debug } = toRefs(useAttrs());
+  const { schema, formConfig, debug } = toRefs(reactive(useAttrs()));
+  // toRefs(useAttrs());
   const myProps = ref({});
   const ifLoaded = ref(false);
   const compProps = computed(() => {

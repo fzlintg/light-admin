@@ -3,7 +3,7 @@
     <a-button v-if="debug" @click="open = true">测试</a-button>
     <Drawer
       v-model:open="open"
-      v-bind="schema.componentProps"
+      v-bind="$attrs"
       :centered="true"
       @ok="handleOk"
       @cancel="handleCancle"
@@ -44,7 +44,8 @@
   const formRef = ref(null);
   const extraData = ref({});
   const state = ref({});
-  const { schema, formConfig, debug } = toRefs(useAttrs());
+  const { schema, formConfig, debug } = toRefs(reactive(useAttrs()));
+  //toRefs(useAttrs());
   const myProps = ref({});
   const compProps = computed(() => {
     return { ...schema.value.componentProps, ...myProps.value };
@@ -90,7 +91,7 @@
   ]);
   const setProps = (callback) => {
     if (callback) callback({ myProps });
-    console.log(myProps.value);
+    // console.log(myProps.value);
   };
 
   const getState = () => {
@@ -102,7 +103,7 @@
     if (fData) {
       formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
     }
-    console.log(formConfigNew.value);
+    // console.log(formConfigNew.value);
     if (!refresh) formatRules(schema.value.children, false, eData);
     if (eData) extraData.value = eData;
     open.value = true;

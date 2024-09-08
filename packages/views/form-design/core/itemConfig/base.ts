@@ -123,7 +123,7 @@ export const schema = [
     icon: 'ant-design:file-text-filled',
     field: '',
     colProps: { span: 24 },
-    componentProps: { defaultValue: '', autosize: { minRows: 2 } },
+    componentProps: { defaultValue: '', autoSize: { minRows: 2 } },
   },
   {
     component: 'Select',

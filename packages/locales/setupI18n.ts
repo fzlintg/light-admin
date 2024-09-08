@@ -41,7 +41,7 @@ async function createI18nOptions(): Promise<I18nOptions> {
 export async function getI18n() {
   const options = await createI18nOptions();
   i18n = createI18n(options);
-  console.log('geti18n,ok');
+  // console.log('geti18n,ok');
   //return i18n;
 }
 export async function setupI18n(app: App) {

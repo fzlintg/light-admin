@@ -479,7 +479,7 @@ const componentAttrs: IBaseComponentProps = {
     },
 
     {
-      field: 'autosize',
+      field: 'autoSize',
       label: '自适应内容高度',
       component: 'Checkbox',
     },

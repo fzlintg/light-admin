@@ -384,6 +384,9 @@
       formConfig.value = { ...formConfig.value, ...formWidget };
     }
   });
+  const href = window.location.href.split('?');
+  const host = href[0].split('#');
+  const inFrame = ref(host[1] != '/formDesign');
 
   // endregion
 </script>
