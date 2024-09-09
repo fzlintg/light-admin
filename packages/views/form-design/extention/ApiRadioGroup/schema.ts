@@ -5,7 +5,7 @@ export default {
   label: 'API单选',
   icon: 'ant-design:check-circle-outlined',
   //  helpMessage: ['ApiRadioGroup组件', '使用接口提供的数据生成选项'],
-
+  type: 'select',
   componentProps: {
     // api: optionsListApi,
     _update__func: `await this.getItemRef().fetch(this.formatTpl('params'))`,

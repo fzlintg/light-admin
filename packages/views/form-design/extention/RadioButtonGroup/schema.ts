@@ -2,6 +2,7 @@ export default {
   label: '单选按钮',
   icon: 'carbon:radio-button-checked',
   field: '',
+  type: 'select',
   colProps: { span: 24 },
   componentProps: {
     options: [

@@ -2,6 +2,7 @@ import { MODE } from '@c/CodeEditor';
 
 export default {
   label: '代码输入',
+  type: 'input',
   icon: 'ant-design:credit-card-outlined',
   //icon: 'prime:file-edit',
   componentProps: {

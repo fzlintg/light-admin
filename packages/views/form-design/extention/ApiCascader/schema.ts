@@ -7,6 +7,7 @@ export default {
   colProps: {
     span: 8,
   },
+  type: 'select',
   icon: 'ant-design:check-outlined',
   componentProps: {
     //   api: areaRecord,

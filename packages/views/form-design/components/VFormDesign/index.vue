@@ -13,10 +13,15 @@
       breakpoint="md"
     >
       <div class="sidebar" style="padding-bottom: 60px">
-        <FormItem label="搜索">
-          <a-input />
-        </FormItem>
-        <CollapseContainer :title="item.name" v-for="(item, key) in formItemConfig" :key="key">
+        <div class="my-3 mx-2">
+          <a-input-search
+            enter-button
+            placeholder="搜索过滤组件"
+            allowClear
+            v-model:value="inputKey"
+          />
+        </div>
+        <CollapseContainer :title="item.name" v-for="(item, key) in filterFormItem" :key="key">
           <CollapseItem
             :list="item.schema"
             :handleListPush="handleListPushDrag"
@@ -132,7 +137,25 @@
   const formModel = ref({});
   // endregion
   const formConfig = ref<IFormConfig>(formJson);
-
+  const inputKey = ref('');
+  const filterFormItem = computed(() => {
+    let result = {};
+    for (const name in formItemConfig) {
+      let schema =
+        inputKey.value == ''
+          ? formItemConfig[name].schema
+          : formItemConfig[name].schema.filter(
+              (item) =>
+                item.component.toLowerCase().indexOf(inputKey.value) > -1 ||
+                item.label.indexOf(inputKey.value) > -1,
+            );
+      if (schema.length > 0) {
+        result[name] = pick(formItemConfig[name], ['name']);
+        result[name].schema = schema;
+      }
+    }
+    return result;
+  });
   const setFormConfig = (config: IFormConfig) => {
     //外部导入时，可能会缺少必要的信息。
     config.schemas = config.schemas || [];

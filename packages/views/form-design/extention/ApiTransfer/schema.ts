@@ -2,6 +2,7 @@ export default {
   label: 'API穿梭框',
   icon: 'bx:bx-transfer-alt',
   component: 'ApiTransfer',
+  type: 'select',
   componentProps: {
     render__func: 'return item.label',
     render__params: ['item'],

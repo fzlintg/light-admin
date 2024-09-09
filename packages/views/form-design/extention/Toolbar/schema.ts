@@ -1,6 +1,6 @@
 export default {
   label: '工具栏',
-  type: 'showItem',
+  type: 'showItem_action',
   icon: 'ant-design:bell-outlined',
   componentProps: {},
   itemProps: {

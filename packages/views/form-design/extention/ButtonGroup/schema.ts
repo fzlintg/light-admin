@@ -1,6 +1,6 @@
 export default {
   label: '按钮组',
-  type: 'showItem',
+  type: 'showItem_action',
   icon: 'ant-design:bell-outlined',
   componentProps: {},
   children: [

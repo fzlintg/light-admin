@@ -16,10 +16,13 @@ const settingLogics = {};
 const schemaModules = import.meta.glob('./**/schema.ts', { eager: true });
 const expModule = {},
   schemas = {
+    showItem_action: { name: '操作类', schema: [] },
+    input: { name: '输入类', schema: [] },
+    select: { name: '选择类', schema: [] },
     showItem: { name: '展示类', schema: [] },
     containerItem: { name: '容器组件', schema: [] },
     custom: { name: '自定义组件', schema: [] },
-    container: { name: '纯容器', schema: [] },
+    container: { name: '展示容器', schema: [] },
     gridContainer: { name: '布局容器', schema: [] },
   };
 

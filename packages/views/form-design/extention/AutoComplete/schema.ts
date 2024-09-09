@@ -1,10 +1,8 @@
-import { render } from 'nprogress';
-
 export default {
-  component: 'AutoComplete',
   label: '自动完成',
   icon: 'wpf:password1',
   colProps: { span: 24 },
+  type: 'input',
   field: '',
   componentProps: {
     placeholder: '请输入关键字',

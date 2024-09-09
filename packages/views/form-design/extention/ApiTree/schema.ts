@@ -3,6 +3,7 @@
 export default {
   label: 'API树',
   required: true,
+  type: 'select',
   icon: 'clarity:tree-view-line',
   componentProps: {
     //   api: treeOptionsListApi,

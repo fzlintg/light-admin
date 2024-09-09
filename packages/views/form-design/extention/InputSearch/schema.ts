@@ -1,5 +1,5 @@
 export default {
-  label: '输入框',
+  label: '搜索输入',
   icon: 'bi:input-cursor-text',
   field: '',
   type: 'input',
@@ -7,8 +7,14 @@ export default {
   componentProps: {
     type: 'text',
     defaultValue: '',
+    onSearch__func: '',
+    onSearch__params: ['value'],
     change__func: '',
     change__params: ['value'],
     readonly: false,
+    enterButton: true,
+    size: 'middle',
+    allowClear: true,
+    showCount: false,
   },
 };

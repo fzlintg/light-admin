@@ -5,6 +5,7 @@ export default {
   label: 'API下拉树',
   //  helpMessage: ['ApiTreeSelect组件', '使用接口提供的数据生成选项'],
   required: true,
+  type: 'select',
   icon: 'clarity:tree-view-line',
   componentProps: {
     api__func: `return await axios.get({url:"/tree/getDemoOptions",params})`,
