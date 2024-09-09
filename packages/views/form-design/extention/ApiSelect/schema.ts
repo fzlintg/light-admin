@@ -22,7 +22,7 @@ export default {
     valueField: 'id',
     immediate: true,
     _update__func: `await this.itemRef().run(this.item().formatTpl('params'))`,
-    onOptionsChange__func: `console.log('get options', options.length, options);`,
+    onOptionsChange__func: ``,
     onOptionsChange__params: ['options'],
     onSearch__func: 'await this.itemRef().run({id:keyword})',
     onSearch__params: ['keyword'],

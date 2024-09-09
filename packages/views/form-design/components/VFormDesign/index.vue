@@ -13,6 +13,9 @@
       breakpoint="md"
     >
       <div class="sidebar" style="padding-bottom: 60px">
+        <FormItem label="搜索">
+          <a-input />
+        </FormItem>
         <CollapseContainer :title="item.name" v-for="(item, key) in formItemConfig" :key="key">
           <CollapseItem
             :list="item.schema"
@@ -88,7 +91,7 @@
   import 'codemirror/mode/javascript/javascript';
 
   import { ref, provide, Ref, computed, onMounted, defineAsyncComponent } from 'vue';
-  import { Layout, LayoutContent, LayoutSider } from 'ant-design-vue';
+  import { Layout, LayoutContent, LayoutSider, FormItem } from 'ant-design-vue';
 
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
   import { formItemsForEach, generateKey, getQueryParam } from '../../utils';
