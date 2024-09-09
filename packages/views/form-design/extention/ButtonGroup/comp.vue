@@ -4,7 +4,7 @@
       <Button
         v-for="(item, index) in schema.children"
         :key="item.buttonText"
-        v-bind="item"
+        v-bind="itemAttr(item)"
         :ref="setItemRef(index)"
       >
         {{ item.buttonText }}
@@ -15,8 +15,9 @@
 <script setup>
   import { Button, ButtonGroup as AButtonGroup } from 'ant-design-vue';
   import { findIndex } from 'lodash-es';
+  import { getAttrs } from '../../utils';
 
-  const { schema } = toRefs(useAttrs());
+  const { schema } = getAttrs();
   const itemRefs = ref([]);
   const setItemRef = (index) => {
     return (el) => {
@@ -26,6 +27,14 @@
         }
       }
     };
+  };
+  const itemAttr = (item) => {
+    const attrs = {};
+    for (const name in item) {
+      if (name.endsWith('__func') || name.endsWith('__params')) continue;
+      attrs[name] = item[name];
+    }
+    return attrs;
   };
   const clickByIdx = (index) => {
     itemRefs.value[index].$el.click();

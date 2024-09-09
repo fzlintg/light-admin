@@ -13,7 +13,6 @@
       item-key="key"
       v-model="schema.children"
       @start="$emit('dragStart', $event, schema.children)"
-      :move="handleCheck"
       @add="$emit('handleColAdd', event, schema.children)"
     >
       <template #item="{ element }">
@@ -31,6 +30,7 @@
   // import { getCurrentInstance, onMounted } from 'vue';
   //import { useFormDesignState } from '../../hooks/useFormDesignState';
   import draggable from 'vuedraggable';
+  import { getAttrs } from '../../utils';
   //  import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
   const FormNode = defineAsyncComponent(
     () => import('../../components/VFormDesign/components/FormNode.vue'),
@@ -46,7 +46,7 @@
   // const formConfigNew = computed(() => {
   //   return { ...formConfig.value, schemas: toRaw(schema.value.children) };
   // });
-  const { schema } = toRefs(useAttrs());
+  const { schema } = getAttrs();
 
   // const { proxy } = getCurrentInstance();
 </script>

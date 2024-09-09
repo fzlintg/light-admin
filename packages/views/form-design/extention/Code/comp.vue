@@ -1,19 +1,19 @@
 <template>
-  <a-alert
-    v-if="props.prefix && props.prefix != ''"
-    :message="props.prefix"
-    type="info"
-    class="code-prefix"
-  />
-
-  <CodeEditor v-bind="attrs" v-model:value="state" />
-
-  <a-alert
-    v-if="props.suffix && props.suffix != ''"
-    :message="props.suffix"
-    type="info"
-    class="code-prefix"
-  />
+  <div>
+    <a-alert
+      v-if="props.prefix && props.prefix != ''"
+      :message="props.prefix"
+      type="info"
+      class="code-prefix"
+    />
+    <CodeEditor v-bind="attrs" v-model:value="state" />
+    <a-alert
+      v-if="props.suffix && props.suffix != ''"
+      :message="props.suffix"
+      type="info"
+      class="code-prefix"
+    />
+  </div>
 </template>
 <script setup>
   import { CodeEditor } from '@c/CodeEditor';
@@ -24,15 +24,15 @@
   const props = defineProps({
     prefix: propTypes.string,
     suffix: propTypes.string,
-    value: propTypes.string,
+    value: propTypes.string | propTypes.object,
     defaultValue: propTypes.string,
   });
 
   const attrs = useAttrs();
   const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
-
-  state.value = state.value || props.defaultValue || '';
+  if (typeof state.value == 'object') state.value = JSON.stringify(state.value);
+  else state.value = state.value || props.defaultValue || '';
 
   //const { t } = useI18n();
   watch(

@@ -38,7 +38,7 @@
             </Col>
           </FormItem>
         </div>
-
+        <light-form logic="system.componentEdit" :form-model="{ schema: formConfig.currentItem }" />
         <FormItem label="关联字段">
           <Select
             mode="multiple"
@@ -368,7 +368,9 @@
       const linkOptions = computed(() => {
         return findSiblingsByName(formConfig.value.schemas, formConfig.value.currentItem!.key);
       });
+      const showSchema = () => {};
       return {
+        showSchema,
         formConfig,
         showControlAttrs,
         linkOptions,

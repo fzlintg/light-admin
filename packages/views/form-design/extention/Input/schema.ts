@@ -6,7 +6,8 @@ export default {
   componentProps: {
     type: 'text',
     defaultValue: '',
-    onChange__func: '',
+    change__func: '',
+    change__params: ['value'],
     readonly: false,
   },
 };

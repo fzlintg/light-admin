@@ -36,6 +36,7 @@
   import { useFormDesignState } from '../../hooks/useFormDesignState';
   import { Tabs, TabPane } from 'ant-design-vue';
   import draggable from 'vuedraggable';
+  import { getAttrs } from '../../utils';
   //import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
   const FormNode = defineAsyncComponent(
     () => import('../../components/VFormDesign/components/FormNode.vue'),
@@ -44,7 +45,7 @@
   const {
     formDesignMethods: { handleSetSelectItem },
   } = useFormDesignState();
-  const { currentItem, schema } = toRefs(useAttrs());
+  const { currentItem, schema } = getAttrs();
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');

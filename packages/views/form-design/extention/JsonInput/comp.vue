@@ -1,28 +1,30 @@
 <template>
-  <a-input v-model:value="jsonValue">
-    <template #prefix
-      ><Icon icon="ant-design:profile" class="hand" @click="visible = true"
-    /></template>
-    <template #suffix
-      ><Icon icon="ant-design:form-outlined" class="hand" @click="openForm" v-if="formModel"
-    /></template>
-  </a-input>
+  <div>
+    <a-input v-model:value="jsonValue">
+      <template #prefix
+        ><Icon icon="ant-design:profile" class="hand" @click="visible = true"
+      /></template>
+      <template #suffix
+        ><Icon icon="ant-design:form-outlined" class="hand" @click="openForm" v-if="formModel"
+      /></template>
+    </a-input>
 
-  <Modal
-    title="json编辑"
-    :open="visible"
-    @cancel="visible = false"
-    @ok="handleGetData"
-    min-height="300"
-  >
-    <CodeEditor
-      :value="editJsonValue"
-      ref="jsonEditor"
-      :mode="MODE.JAVACRIPT"
-      :height="300"
-      @change="editJsonValue = $event"
-    />
-  </Modal>
+    <Modal
+      title="json编辑"
+      :open="visible"
+      @cancel="visible = false"
+      @ok="handleGetData"
+      :min-height="300"
+    >
+      <CodeEditor
+        :value="editJsonValue"
+        ref="jsonEditor"
+        :mode="MODE.JAVACRIPT"
+        :height="300"
+        @change="editJsonValue = $event"
+      />
+    </Modal>
+  </div>
 </template>
 <script setup>
   import { useRuleFormItem } from '@h/component/useFormItem';

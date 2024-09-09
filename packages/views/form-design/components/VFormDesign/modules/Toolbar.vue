@@ -121,17 +121,17 @@
           //   icon: 'ant-design:chrome-filled',
           // },
           {
-            title: '导入JSON',
+            title: 'JSON编辑',
             type: 'importJson',
             event: 'handleOpenImportJsonModal',
             icon: 'ant-design:import-outlined',
           },
-          {
-            title: '生成JSON',
-            type: 'exportJson',
-            event: 'handleOpenJsonModal',
-            icon: 'ant-design:export-outlined',
-          },
+          // {
+          //   title: '生成JSON',
+          //   type: 'exportJson',
+          //   event: 'handleOpenJsonModal',
+          //   icon: 'ant-design:export-outlined',
+          // },
           {
             title: '生成代码',
             type: 'exportCode',

@@ -92,7 +92,7 @@
   ]);
   const setProps = (callback) => {
     if (callback) callback({ myProps });
-    console.log(myProps.value);
+    // console.log(myProps.value);
   };
   //schema.value.children = flattenArray(schema.value.children);
   // formConfig.value.children = schema.value.children;
@@ -104,7 +104,7 @@
     if (fData) {
       formModelNew.value = raw ? cloneDeep(fData) : flattenObject(fData);
     }
-    console.log(formConfigNew.value);
+    //console.log(formConfigNew.value);
     if (!refresh) formatRules(schema.value.children, false, eData);
     if (eData) extraData.value = eData;
     open.value = true;
@@ -155,7 +155,7 @@
     else callBack.value.push(f);
   };
   const updateFormModel = () => {
-    debugger;
+    //   debugger;
   };
   defineExpose({
     addCallback,

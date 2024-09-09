@@ -312,6 +312,10 @@
    */
   const handleClearFormItems = ({ cache, logic }) => {
     formConfig.value.schemas = [];
+    delete formConfig.value.id;
+    delete formConfig.value.name;
+    delete formConfig.value.title;
+
     if (logic) {
       window.localStorage.setItem(`light_form_widget${cache}`, JSON.stringify(formConfig.value));
       window.localStorage.setItem(`light_form_logic${cache}`, JSON.stringify(logic.value));

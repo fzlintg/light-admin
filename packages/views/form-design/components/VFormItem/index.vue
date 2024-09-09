@@ -380,6 +380,9 @@
         //props.formModel[props.schema.field] = value;
         cur_setFormModel(props.schema.field!, value, e);
         if (!props.inSubForm) emit('change', value);
+        if (isFunction(props.schema?.componentProps?.change)) {
+          props.schema?.componentProps?.change(value); //调用配置的change函数
+        }
       };
       onMounted(() => {
         state.formItemRef?.init?.();

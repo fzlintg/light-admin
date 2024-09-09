@@ -13,35 +13,47 @@
     style="top: 20px"
     :width="850"
   >
-    <p class="hint-box">导入格式如下:</p>
+    <p class="hint-box">数据可直接编辑再导入:</p>
     <div class="v-json-box">
       <CodeEditor v-model:value="json" ref="myEditor" :mode="MODE.JSON" />
     </div>
 
     <template #footer>
       <a-checkbox v-model:checked="ifInitKey">初始化键值</a-checkbox>
-      <a-button @click="handleCancel">取消</a-button>
+      <a-button
+        @click="handleCopyJson"
+        type="link"
+        class="copy-btn"
+        data-clipboard-action="copy"
+        :data-clipboard-text="json"
+      >
+        复制
+      </a-button>
+      <a-button @click="handleExportJson" class="copy-btn" type="link">导出</a-button>
+
       <Upload
         class="upload-button"
         :beforeUpload="beforeUpload"
         :showUploadList="false"
         accept="application/json"
       >
-        <a-button type="primary">导入json文件</a-button>
+        <a-button type="link">文件导入</a-button>
       </Upload>
-      <a-button type="primary" @click="handleImportJson">确定</a-button>
+      <a-button type="primary" @click="handleImportJson">导入</a-button>
+      <a-button @click="handleCancel">取消</a-button>
     </template>
   </Modal>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, toRefs } from 'vue';
+  import { computed, defineComponent, inject, reactive, toRefs } from 'vue';
   // import message from '../../../utils/message';
   import { useFormDesignState } from '../../../hooks/useFormDesignState';
   // import { codemirror } from 'vue-codemirror-lite';
   // import { IFormConfig } from '../../../typings/v-form-component';
-  import { importJSON } from '../../../utils';
+  import { importJSON, TransJSonToTs, removeAttrs, formatRules } from '../../../utils';
   import { CodeEditor, MODE } from '@c/CodeEditor';
   import { useMessage } from '@h/web/useMessage';
+  import { copyText } from '@utils/copyTextToClipboard';
   import {
     Upload,
     Modal,
@@ -60,30 +72,32 @@
     },
     setup() {
       const { createMessage } = useMessage();
+      // const editorJson = computed(() => {
+      //   // @ts-ignore
+      //   let jsonData = removeAttrs(state.jsonData);
+      //   return 'export default ' + TransJSonToTs(jsonData);
+      // });
+
+      const logic = inject('logic');
+      const getEditorJson = (json) => {
+        let jsonData = removeAttrs(json);
+        return 'export default ' + TransJSonToTs(jsonData);
+      };
+      const handleCopyJson = () => {
+        // 复制数据
+        const value = state.json;
+        if (!value) {
+          createMessage.warning('代码为空！');
+          return;
+        }
+        copyText(value);
+      };
 
       const state = reactive({
         //      dataType: 'json',
         ifInitKey: false,
         visible: false,
-        json: `{
-  "schemas": [
-    {
-      "component": "Input",
-      "label": "输入框",
-      "field": "input_2",
-      "span": 24,
-      "props": {
-        "type": "text"
-      }
-    }
-  ],
-  "layout": "horizontal",
-  "labelLayout": "flex",
-  "labelWidth": 100,
-  "labelCol": {},
-  "wrapperCol": {},
-  ds:[]
-}`,
+        json: '',
         jsonData: {
           schemas: {},
           config: {},
@@ -94,7 +108,13 @@
       const handleCancel = () => {
         state.visible = false;
       };
-      const showModal = () => {
+      // const showModal = () => {
+      //   state.visible = true;
+      // };
+      const showModal = (jsonData: IFormConfig) => {
+        formatRules(jsonData.schemas);
+        state.jsonData = jsonData as any;
+        state.json = getEditorJson(state.jsonData);
         state.visible = true;
       };
 
@@ -131,14 +151,27 @@
         };
         return false;
       };
-
+      const exportData = (data: string, fileName = `file.json`) => {
+        let content = 'data:text/csv;charset=utf-8,';
+        content += data;
+        const encodedUri = encodeURI(content);
+        const actions = document.createElement('a');
+        actions.setAttribute('href', encodedUri);
+        actions.setAttribute('download', fileName);
+        actions.click();
+      };
+      const handleExportJson = () => {
+        exportData(state.json, (logic?.value?.name || 'jsonSchema') + '.ts');
+      };
       return {
+        handleExportJson,
         handleImportJson,
         beforeUpload,
         handleCancel,
         showModal,
         ...toRefs(state),
         MODE,
+        handleCopyJson,
       };
     },
   });
