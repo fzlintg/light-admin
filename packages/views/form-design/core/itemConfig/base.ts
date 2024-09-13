@@ -1,13 +1,6 @@
 export const name = '基础组件';
 export const schema = [
-  {
-    component: 'StrengthMeter',
-    label: '密码强度',
-    icon: 'wpf:password1',
-    colProps: { span: 24 },
-    field: '',
-    componentProps: {},
-  },
+
   // {
   //   component: 'AutoComplete',
   //   label: '自动完成',
@@ -28,17 +21,7 @@ export const schema = [
   //     ],
   //   },
   // },
-  {
-    component: 'Divider',
-    label: '分割线',
-    icon: 'radix-icons:divider-horizontal',
-    colProps: { span: 24 },
-    field: '',
-    componentProps: {
-      orientation: 'center',
-      dashed: true,
-    },
-  },
+
 
   // {
   //   component: 'Input',
@@ -76,26 +59,9 @@ export const schema = [
   //   defaultValue: false,
   // },
 
-  {
-    component: 'Slider',
-    label: '滑动输入',
-    icon: 'vaadin:slider',
-    field: '',
-    colProps: { span: 24 },
-    componentProps: {},
-    defaultValue: 0,
-  },
 
-  {
-    component: 'Upload',
-    label: '上传',
-    icon: 'ant-design:upload-outlined',
-    field: '',
-    colProps: { span: 24 },
-    componentProps: {
-      api: () => 1,
-    },
-  },
+
+
 
   // {
   //   component: 'ColorPicker',

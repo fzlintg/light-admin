@@ -23,5 +23,12 @@ export const schema = [
     field: '',
     colProps: { span: 24 },
     componentProps: { defaultValue: '', autoSize: { minRows: 2 } },
+  },  {
+    component: 'StrengthMeter',
+    label: '密码强度',
+    icon: 'wpf:password1',
+    colProps: { span: 24 },
+    field: '',
+    componentProps: {},
   },
 ];

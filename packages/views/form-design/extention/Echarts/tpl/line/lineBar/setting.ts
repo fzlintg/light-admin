@@ -41,7 +41,7 @@ export default {
       label: '2.柱图颜色',
       componentProps: {
         buttonText: '编辑',
-        mode: 'application/json',
+        mode: 'json',
         editorTitle: '代码编辑',
         bordered: true,
         autoFormat: true,
@@ -84,7 +84,7 @@ export default {
       label: '3.柱形颜色',
       componentProps: {
         buttonText: '编辑',
-        mode: 'application/json',
+        mode: 'json',
         editorTitle: '代码编辑',
         bordered: true,
         autoFormat: true,

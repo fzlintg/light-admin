@@ -64,7 +64,7 @@ async function bootstrap() {
   // await router.isReady();
   //setupComponents(app);
   app.mount('#app');
-
+  app.config.devtools = true
   //app.config.globalProperties.$message = message;
 }
 

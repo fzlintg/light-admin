@@ -64,12 +64,7 @@
     >
       <div class="sidebar mx-2">
         <PropsPanel ref="propsPanel" :activeKey="formConfig.activeKey">
-          <template v-for="item of formConfig.schemas" #[`${item.component}Props`]="data">
-            <slot
-              :name="`${item.component}Props`"
-              v-bind="{ formItem: data, props: data.componentProps }"
-            ></slot>
-          </template>
+
         </PropsPanel>
         <div style="height: 60px"></div>
       </div>
@@ -99,7 +94,7 @@
   import { Layout, LayoutContent, LayoutSider, FormItem } from 'ant-design-vue';
 
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
-  import { formItemsForEach, generateKey, getQueryParam } from '../../utils';
+  import { formItemsForEach, generateKey, getQueryParam ,removeAttrs} from '../../utils';
   import { cloneDeep, pick } from 'lodash-es';
   //import { baseComponents, customComponents, layoutComponents } from '../../core/formItemConfig';
   import { formItemConfig } from '../../core/formItemConfig';
@@ -337,6 +332,7 @@
    * 清空表单项列表
    */
   const handleClearFormItems = ({ cache, logic }) => {
+    //formConfig.value=removeAttrs(formConfig.value)
     formConfig.value.schemas = [];
     delete formConfig.value.id;
     delete formConfig.value.name;

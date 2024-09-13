@@ -36,7 +36,7 @@ export default {
     mode: '',
   },
   colProps: {
-    span: 8,
+    span: 24,
   },
   defaultValue: null,
 };

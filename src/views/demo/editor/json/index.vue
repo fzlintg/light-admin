@@ -4,8 +4,8 @@
       <Space size="middle">
         <a-button @click="showData" type="primary">获取数据</a-button>
         <RadioGroup button-style="solid" v-model:value="modeValue" @change="handleModeChange">
-          <RadioButton value="application/json"> json数据 </RadioButton>
-          <RadioButton value="htmlmixed"> html代码 </RadioButton>
+          <RadioButton value="json"> json数据 </RadioButton>
+          <RadioButton value="html"> html代码 </RadioButton>
           <RadioButton value="javascript"> javascript代码 </RadioButton>
         </RadioGroup>
       </Space>
@@ -78,7 +78,7 @@
   };
 
   function showData() {
-    if (unref(modeValue) === 'application/json') {
+    if (unref(modeValue) === 'json') {
       Modal.info({
         title: '编辑器当前值',
         content: h(JsonPreview, { data: JSON.parse(value.value) }),

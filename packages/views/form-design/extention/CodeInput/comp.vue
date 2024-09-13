@@ -37,7 +37,7 @@
       component: 'Code',
       label: '代码',
       componentProps: {
-        mode: 'application/json',
+        mode: 'json',
         bordered: true,
         autoFormat: true,
         readonly: false,

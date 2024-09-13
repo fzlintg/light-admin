@@ -1,5 +1,6 @@
 export default {
   label: '上传图片',
+  type:"upload",
   icon: 'ant-design:export-outlined',
   componentProps: {
     showPreviewNumber: 1,

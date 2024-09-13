@@ -452,10 +452,11 @@ export function formatFunc(item, flag = false, formContext = {}) {
       //   if (flag) delete item[name];
     } else if (endsWith(name, '__tpl')) {
       const originName = name.substr(0, name.length - 5);
-      const context = {
+      let context = {
         ...(item['defaultContext__var'] ? eval('(' + item['defaultContext__var'] + ')') : {}),
         ...formContext,
       };
+      context=formModelToData(context);//lintg
       const paramStr = template(item[name])(context);
       item[originName] = eval('(' + paramStr + ')');
     }

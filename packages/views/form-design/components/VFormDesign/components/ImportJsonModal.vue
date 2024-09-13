@@ -15,7 +15,7 @@
   >
     <p class="hint-box">数据可直接编辑再导入:</p>
     <div class="v-json-box">
-      <CodeEditor v-model:value="json" ref="myEditor" :mode="MODE.JSON" />
+      <CodeEditor v-model="json" ref="myEditor" mode="json" />
     </div>
 
     <template #footer>
@@ -51,7 +51,9 @@
   // import { codemirror } from 'vue-codemirror-lite';
   // import { IFormConfig } from '../../../typings/v-form-component';
   import { importJSON, TransJSonToTs, removeAttrs, formatRules } from '../../../utils';
-  import { CodeEditor, MODE } from '@c/CodeEditor';
+  //import {  MODE,CodeEditor } from '@c/EditorCode/index';
+  import { CodeEditor } from '@c/CodeEditor';
+  //import CodeEditor from "@c/EditorCode/Editor.vue"
   import { useMessage } from '@h/web/useMessage';
   import { copyText } from '@utils/copyTextToClipboard';
   import {
@@ -170,7 +172,7 @@
         handleCancel,
         showModal,
         ...toRefs(state),
-        MODE,
+      
         handleCopyJson,
       };
     },

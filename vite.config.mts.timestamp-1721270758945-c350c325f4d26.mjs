@@ -44,7 +44,7 @@ var vite_config_default = defineApplicationConfig({
         "echarts/components",
         "echarts/renderers",
         "qrcode",
-        "@iconify/iconify",
+        "@iconify/vue",
         "ant-design-vue/es/locale/zh_CN",
         "ant-design-vue/es/locale/en_US"
       ]

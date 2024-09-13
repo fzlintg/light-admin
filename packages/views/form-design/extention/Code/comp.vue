@@ -6,7 +6,7 @@
       type="info"
       class="code-prefix"
     />
-    <CodeEditor v-bind="attrs" v-model:value="state" />
+    <CodeEditor v-bind="attrs" v-model="state" />
     <a-alert
       v-if="props.suffix && props.suffix != ''"
       :message="props.suffix"
@@ -17,6 +17,7 @@
 </template>
 <script setup>
   import { CodeEditor } from '@c/CodeEditor';
+//  import CodeEditor from "@c/EditorCode/Editor.vue"
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { Alert as AAlert } from 'ant-design-vue';
@@ -28,7 +29,7 @@
     defaultValue: propTypes.string,
   });
 
-  const attrs = useAttrs();
+  const attrs = reactive(useAttrs());
   const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
   if (typeof state.value == 'object') state.value = JSON.stringify(state.value);

@@ -1,6 +1,6 @@
 export default {
   label: 'lightForm',
-  type: 'showItem',
+  type: 'mixItem',
   icon: 'ant-design:bell-outlined',
   componentProps: {
     remote: true,

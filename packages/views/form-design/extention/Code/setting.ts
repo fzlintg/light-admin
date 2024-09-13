@@ -6,11 +6,25 @@ for (const item in MODE) {
 }
 export default [
   {
+    field: 'theme',
+    label: '主题',
+    component: 'Select',
+    componentProps: {
+      options: [
+        { value: 'default', label: '默认' },
+        { value: 'dark', label: '暗黑' },
+      ],
+    },
+  },
+  {
     field: 'mode',
     label: '模式',
     component: 'RadioButtonGroup',
     componentProps: {
-      options,
+      options:[{label:"json",value:"json"},
+      {label:"javascript",value:"javascript"},
+      {label:"html",value:"html"},
+      {label:"sql",value:"sql"},]
     },
   },
   {

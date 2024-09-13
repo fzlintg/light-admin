@@ -58,6 +58,7 @@ const t = {
   closable: '可关闭',
   showIcon: '显示图标',
   message: '提示信息',
+  change:"修改"
 };
 const setting = {};
 

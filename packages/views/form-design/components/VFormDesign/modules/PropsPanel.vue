@@ -8,7 +8,7 @@
       <FormItemProps />
     </TabPane>
     <TabPane :key="2" tab="组件">
-      <slot v-if="slotProps" :name="slotProps.component + 'Props'"></slot>
+    
       <ComponentProps />
     </TabPane>
     <TabPane :key="1" tab="表单">
@@ -43,14 +43,14 @@
     setup() {
       const { formConfig } = useFormDesignState();
 
-      const customComponents = formItemConfig.custom.schema;
+      // const customComponents = formItemConfig?.custom?.schema;
 
-      const slotProps = computed(() => {
-        return customComponents.find(
-          (item) => item.component === formConfig.value.currentItem?.component,
-        );
-      });
-      return { formConfig, customComponents, slotProps };
+      // const slotProps = computed(() => {
+      //   return customComponents?.find(
+      //     (item) => item.component === formConfig.value.currentItem?.component,
+      //   );
+      // });
+      return { formConfig };
     },
   });
 </script>

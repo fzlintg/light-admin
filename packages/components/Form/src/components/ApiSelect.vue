@@ -1,9 +1,10 @@
 <template>
   <Select
     @dropdown-visible-change="handleFetch"
-    v-bind="$attrs"
+    v-bind="attrs"
     @change="handleChange"
     :options="getOptions"
+    defaultActiveFirstOption
     v-model:value="state"
     @search="search"
   >
@@ -118,6 +119,10 @@
     debounceWait: 100,
     manual: true,
   });
+  const runData=async ()=>{
+    await run();
+    //state.value=optionsRef.value?.[0]?.value;
+  }
 
   // let paramsWait = null;
   const getOptions = computed(() => {
@@ -149,9 +154,9 @@
 
   watch(
     () => props.params,
-    (value, oldValue) => {
+    async (value, oldValue) => {
       if (isEqual(value, oldValue)) return;
-      run();
+      await runData();
     },
     { deep: true, immediate: props.immediate },
   );
@@ -172,12 +177,17 @@
       isFirstLoaded.value = true;
       if (Array.isArray(res)) {
         optionsRef.value = res;
-        emitChange();
-        return;
+
+        // emitChange();
+        // return;
       } else if (resultField) {
         optionsRef.value = get(res, resultField) || [];
       }
+
+
       emitChange();
+      state.value=optionsRef.value?.[0]?.value;
+      return;
     } catch (error) {
       console.warn(error);
       isFirstLoaded.value = false;
@@ -188,10 +198,10 @@
   async function handleFetch(visible: boolean) {
     if (visible) {
       if (props.alwaysLoad) {
-        await run();
+        await runData();
         //  await fetch();
       } else if (!props.immediate && !unref(isFirstLoaded)) {
-        await run();
+        await runData();
         // await fetch();
       }
     }

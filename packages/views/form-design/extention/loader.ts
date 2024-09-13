@@ -21,9 +21,11 @@ const expModule = {},
     select: { name: '选择类', schema: [] },
     showItem: { name: '展示类', schema: [] },
     containerItem: { name: '容器组件', schema: [] },
-    custom: { name: '自定义组件', schema: [] },
+    upload: { name: '上传', schema: [] },
     container: { name: '展示容器', schema: [] },
     gridContainer: { name: '布局容器', schema: [] },
+    mixItem: { name: '融合组件', schema: [] },
+
   };
 
 for (const item in modules) {

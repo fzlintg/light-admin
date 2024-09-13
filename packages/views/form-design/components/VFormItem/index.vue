@@ -4,7 +4,7 @@
 <template>
   <Col v-bind="colPropsComputed" style="width: 100% !important">
     <div
-      v-if="['showItem', 'container', 'containerItem', 'gridContainer'].includes(schema.type)"
+      v-if="['showItem','showItem_action', 'container', 'containerItem', 'gridContainer'].includes(schema.type)"
       :class="{
         'm-1': true,
         ['jc-' + (schema.compAlign || 'center')]: true,
@@ -243,7 +243,8 @@
       const formatTpl = (param) => {
         if (!props.schema.componentProps![param + '__tpl']) return;
         const formModel = toRaw(unref(cur_formModel));
-        const context = { ...props.schema.componentProps!['defaultContext'], ...formModel };
+        let context = { ...props.schema.componentProps!['defaultContext'], ...formModel };
+        context=formModelToData(formModel); //lintg
         let paramStr = template(props.schema.componentProps![param + '__tpl'])(context);
         myProps.value[param] = eval('(' + paramStr + ')');
         return myProps.value[param];

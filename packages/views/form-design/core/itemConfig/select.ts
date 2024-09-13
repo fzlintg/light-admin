@@ -7,6 +7,14 @@ export const schema = [
     colProps: { span: 24 },
     field: '',
     componentProps: {},
+  },  {
+    component: 'Slider',
+    label: '滑动输入',
+    icon: 'vaadin:slider',
+    field: '',
+    colProps: { span: 24 },
+    componentProps: {},
+    defaultValue: 0,
   },
   {
     component: 'Checkbox',
