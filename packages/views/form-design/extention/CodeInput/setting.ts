@@ -1,16 +1,19 @@
-
-
-const options = [];
-for (const item in MODE) {
-  options.push({ value: MODE[item], label: item });
-}
+// const options = [];
+// for (const item in MODE) {
+//   options.push({ value: MODE[item], label: item });
+// }
 export default [
   {
     field: 'mode',
     label: '模式',
     component: 'RadioButtonGroup',
     componentProps: {
-      options,
+      options: [
+        { label: 'json', value: 'json' },
+        { label: 'javascript', value: 'javascript' },
+        { label: 'html', value: 'html' },
+        { label: 'sql', value: 'sql' },
+      ],
     },
   },
   {
