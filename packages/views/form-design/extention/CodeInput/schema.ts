@@ -1,4 +1,4 @@
-import { MODE } from '@c/CodeEditor';
+
 
 export default {
   label: '代码输入',
@@ -7,7 +7,7 @@ export default {
   //icon: 'prime:file-edit',
   componentProps: {
     buttonText: '编辑',
-    mode: MODE.JSON,
+    mode: "json",
     editorTitle: '代码编辑',
     bordered: true,
     autoFormat: true,

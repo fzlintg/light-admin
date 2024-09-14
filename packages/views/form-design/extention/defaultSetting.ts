@@ -1,4 +1,3 @@
-import { MODE } from '@c/CodeEditor';
 //import { endsWith } from 'lodash-es';
 import { setting as extentionSetting } from './loader';
 import { formItemMap } from '../core/loader';

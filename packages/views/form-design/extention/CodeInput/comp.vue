@@ -12,7 +12,7 @@
   </BasicModal>
 </template>
 <script setup>
-  import { MODE } from '@c/CodeEditor';
+  
   import { BasicModal, useModal } from '@c/Modal';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';

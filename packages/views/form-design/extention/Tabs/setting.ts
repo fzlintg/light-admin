@@ -1,4 +1,4 @@
-import { MODE } from '@c/CodeEditor';
+
 
 export default [
   {
@@ -10,7 +10,7 @@ export default [
       editorTitle: '修改事件',
       bordered: true,
       autoFormat: true,
-      mode: MODE.JS,
+      mode: "javascript",
       prefix: 'function(key}{',
       suffix: '}',
     },

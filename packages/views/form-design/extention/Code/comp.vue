@@ -3,21 +3,19 @@
     <a-alert
       v-if="props.prefix && props.prefix != ''"
       :message="props.prefix"
-      type="info"
-      class="code-prefix"
+      class="code-prefix bg-gray-100"
     />
     <CodeEditor v-bind="attrs" v-model="state" />
     <a-alert
       v-if="props.suffix && props.suffix != ''"
       :message="props.suffix"
-      type="info"
-      class="code-prefix"
+      class="code-prefix bg-gray-100"
     />
   </div>
 </template>
 <script setup>
   import { CodeEditor } from '@c/CodeEditor';
-//  import CodeEditor from "@c/EditorCode/Editor.vue"
+  //  import CodeEditor from "@c/EditorCode/Editor.vue"
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
   //import { Alert as AAlert } from 'ant-design-vue';

@@ -1,4 +1,4 @@
-import { MODE } from '@c/CodeEditor';
+
 
 export default [
   {
@@ -7,7 +7,7 @@ export default [
     field: 'onRowDelete__func',
 
     componentProps: {
-      mode: MODE.JS,
+      mode: "javascript",
       buttonText: '编辑',
       editorTitle: '删除事件',
       bordered: true,
@@ -23,7 +23,7 @@ export default [
     field: 'onRowInsert__func',
 
     componentProps: {
-      mode: MODE.JS,
+      mode: "javascript",
       buttonText: '编辑',
       editorTitle: '新增事件',
       bordered: true,
@@ -39,7 +39,7 @@ export default [
     field: 'onRowAdd__func',
 
     componentProps: {
-      mode: MODE.JS,
+      mode: "javascript",
       buttonText: '编辑',
       editorTitle: '新增事件',
       bordered: true,
@@ -55,7 +55,7 @@ export default [
     field: 'onRowChange__func',
 
     componentProps: {
-      mode: MODE.JS,
+      mode: "javascript",
       buttonText: '编辑',
       editorTitle: '修改事件',
       bordered: true,

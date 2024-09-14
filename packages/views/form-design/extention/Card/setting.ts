@@ -1,12 +1,10 @@
-import { MODE } from '@c/CodeEditor';
-
 export default [
   {
     component: 'CodeInput',
     label: '工具栏渲染',
     field: 'slots_extra',
     componentProps: {
-      mode: MODE.HTML,
+      mode: 'html',
       buttonText: '编辑',
       editorTitle: '工具栏编辑',
       bordered: true,

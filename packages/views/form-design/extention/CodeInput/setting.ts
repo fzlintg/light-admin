@@ -1,4 +1,4 @@
-import { MODE } from '@c/CodeEditor';
+
 
 const options = [];
 for (const item in MODE) {

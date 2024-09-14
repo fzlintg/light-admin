@@ -1,5 +1,3 @@
-import { MODE } from '@c/CodeEditor';
-
 export default [
   {
     component: 'CodeInput',
@@ -8,7 +6,7 @@ export default [
 
     // field: 'slotsName.extra',
     componentProps: {
-      mode: MODE.HTMLMIXED,
+      mode: 'javascript',
       buttonText: '编辑',
       editorTitle: '点击事件',
       bordered: true,
