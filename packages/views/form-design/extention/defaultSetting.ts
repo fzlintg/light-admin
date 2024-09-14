@@ -58,7 +58,7 @@ const t = {
   closable: '可关闭',
   showIcon: '显示图标',
   message: '提示信息',
-  change:"修改"
+  change: '修改',
 };
 const setting = {};
 
@@ -84,7 +84,7 @@ export function getSetting(item, options) {
       label: t[func] || func,
       component: 'CodeInput',
       componentProps: {
-        mode: MODE.JS,
+        mode: 'javascript',
         buttonText: '编辑',
         editorTitle: '代码编辑',
         bordered: true,
