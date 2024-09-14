@@ -12,7 +12,6 @@
   </BasicModal>
 </template>
 <script setup>
-  
   import { BasicModal, useModal } from '@c/Modal';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { propTypes } from '@utils/propTypes';
@@ -22,7 +21,7 @@
   const props = defineProps({
     value: propTypes.string || propTypes.function,
     buttonText: propTypes.string,
-    mode: MODE,
+    mode: propTypes.string,
     editorTitle: propTypes.string,
     readonly: { type: Boolean },
     autoFormat: { type: Boolean, default: true },
