@@ -33,13 +33,6 @@
         }
         return result;
       });
-    //  [javascript(),oneDark]
-      // if(attrs.theme=='dark'){
-      //   extensions.push(oneDark);
-      // }
-
-   
-      // Codemirror EditorView instance ref
       const view = shallowRef()
       const handleReady = (payload) => {
         view.value = payload.view

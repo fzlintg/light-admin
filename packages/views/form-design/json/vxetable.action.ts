@@ -123,7 +123,7 @@ export default {
               label: '点击事件',
               componentProps: {
                 buttonText: '编辑',
-                mode: 'application/json',
+                mode: 'json',
                 editorTitle: '代码编辑',
                 bordered: true,
                 autoFormat: true,
@@ -175,7 +175,7 @@ export default {
               label: '弹框确认函数',
               componentProps: {
                 buttonText: '编辑',
-                mode: 'application/json',
+                mode: 'json',
                 editorTitle: '代码编辑',
                 bordered: true,
                 autoFormat: true,
@@ -367,7 +367,7 @@ export default {
               label: '点击事件',
               componentProps: {
                 buttonText: '编辑',
-                mode: 'application/json',
+                mode: 'json',
                 editorTitle: '代码编辑',
                 bordered: true,
                 autoFormat: true,
@@ -696,7 +696,7 @@ export default {
           label: '查询全部',
           componentProps: {
             buttonText: '编辑',
-            mode: 'application/json',
+            mode: 'json',
             editorTitle: '代码编辑',
             bordered: true,
             autoFormat: true,
@@ -722,7 +722,7 @@ export default {
           label: '查询函数',
           componentProps: {
             buttonText: '编辑',
-            mode: 'application/json',
+            mode: 'json',
             editorTitle: '代码编辑',
             bordered: true,
             autoFormat: true,
@@ -747,7 +747,7 @@ export default {
           label: '删除函数',
           componentProps: {
             buttonText: '编辑',
-            mode: 'application/json',
+            mode: 'json',
             editorTitle: '代码编辑',
             bordered: true,
             autoFormat: true,
@@ -772,7 +772,7 @@ export default {
           label: '保存函数',
           componentProps: {
             buttonText: '编辑',
-            mode: 'application/json',
+            mode: 'json',
             editorTitle: '代码编辑',
             bordered: true,
             autoFormat: true,
@@ -1035,7 +1035,7 @@ export default {
                   label: '下拉数据源',
                   componentProps: {
                     buttonText: '编辑',
-                    mode: 'application/json',
+                    mode: 'json',
                     editorTitle: '代码编辑',
                     bordered: true,
                     autoFormat: true,

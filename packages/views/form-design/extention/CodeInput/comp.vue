@@ -8,7 +8,7 @@
     @ok="handleOk"
   >
     <BasicForm @register="registerForm" />
-    <template #insertFooter> <a-button @click="formatCode"> 格式化</a-button> </template>
+    <template #insertFooter> </template>
   </BasicModal>
 </template>
 <script setup>
