@@ -1,5 +1,4 @@
 export default {
-  formItem: false,
   type: 'showItem_action',
   label: '按钮',
   icon: 'dashicons:button',

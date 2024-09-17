@@ -22,7 +22,7 @@ const permission: AppRouteModule = {
     },
     {
       path: 'logic',
-      name: 'Logic',
+      name: 'LogicEdit',
       meta: {
         title: '逻辑配置',
       },

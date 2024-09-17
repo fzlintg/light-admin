@@ -47,7 +47,7 @@ export const FormDesign: AppRouteRecordRaw = {
 };
 export const LogicEdit: AppRouteRecordRaw = {
   path: '/logicEdit',
-  name: 'LogicEdit',
+  name: 'LogicEdit2',
   component: () => import('@/views/demo/logic/logicEdit.vue'),
   meta: {
     title: '逻辑编辑',
