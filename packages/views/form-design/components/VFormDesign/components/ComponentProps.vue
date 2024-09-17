@@ -261,8 +261,8 @@
             item.category = 'input';
             item.defaultValue =
               item.defaultValue ||
-              formItemMap[item.component].defaultValue ||
-              formItemMap[item.component].componentProps.defaultValue; //lintg
+              formItemMap?.[item.component]?.defaultValue ||
+              formItemMap?.[item.component]?.componentProps?.defaultValue; //lintg
             if (item.includes) {
               if (item.includes.includes(formConfig.value.currentItem!.component)) {
                 allOptions.value.push(item);

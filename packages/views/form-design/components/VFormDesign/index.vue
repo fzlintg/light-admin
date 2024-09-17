@@ -63,9 +63,7 @@
       breakpoint="lg"
     >
       <div class="sidebar mx-2">
-        <PropsPanel ref="propsPanel" :activeKey="formConfig.activeKey">
-
-        </PropsPanel>
+        <PropsPanel ref="propsPanel" :activeKey="formConfig.activeKey" />
         <div style="height: 60px"></div>
       </div>
     </LayoutSider>
@@ -88,13 +86,13 @@
   import ImportJsonModal from './components/ImportJsonModal.vue';
   import CodeModal from './components/CodeModal.vue';
 
-  import 'codemirror/mode/javascript/javascript';
+  //import 'codemirror/mode/javascript/javascript';
 
   import { ref, provide, Ref, computed, onMounted, defineAsyncComponent } from 'vue';
   import { Layout, LayoutContent, LayoutSider, FormItem } from 'ant-design-vue';
 
   import { IVFormComponent, IFormConfig, PropsTabKey } from '../../typings/v-form-component';
-  import { formItemsForEach, generateKey, getQueryParam ,removeAttrs} from '../../utils';
+  import { formItemsForEach, generateKey, getQueryParam, removeAttrs } from '../../utils';
   import { cloneDeep, pick } from 'lodash-es';
   //import { baseComponents, customComponents, layoutComponents } from '../../core/formItemConfig';
   import { formItemConfig } from '../../core/formItemConfig';

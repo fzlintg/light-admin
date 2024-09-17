@@ -25,7 +25,7 @@ const expModule = {},
     container: { name: '展示容器', schema: [] },
     gridContainer: { name: '布局容器', schema: [] },
     mixItem: { name: '融合组件', schema: [] },
-
+    base: { name: '基础组件', schema: [] },
   };
 
 for (const item in modules) {
@@ -43,9 +43,9 @@ for (const item in modules) {
 for (const path in schemaModules) {
   const component = path.split('/')[1];
   // console.log(schemaModules[path]?.default?.type);
-  schemas[schemaModules[path]?.default?.type || 'custom'].schema.push({
+  schemas[schemaModules[path]?.default?.type || 'base'].schema.push({
     component,
-    type: 'custom',
+    type: 'base',
     ...schemaModules[path].default,
   });
 }
