@@ -15,7 +15,7 @@
   >
     <p class="hint-box">数据可直接编辑再导入:</p>
     <div class="v-json-box">
-      <CodeEditor v-model="json" ref="myEditor" mode="json" />
+      <CodeEditor v-model="json" ref="myEditor" mode="json" style="max-height: 450px" />
     </div>
 
     <template #footer>
@@ -172,7 +172,7 @@
         handleCancel,
         showModal,
         ...toRefs(state),
-      
+
         handleCopyJson,
       };
     },
