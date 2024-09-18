@@ -30,7 +30,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { get, omit, isEqual, cloneDeep } from 'lodash-es';
   //import { LoadingOutlined } from '@ant-design/icons-vue';
-  import { useI18n } from '@h/web/useI18n';
+  //import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@utils/propTypes';
   //import { defHttp as axios } from '@utils/http/axios';
   import { useRequest } from '@vben/hooks';
@@ -119,10 +119,10 @@
     debounceWait: 100,
     manual: true,
   });
-  const runData=async ()=>{
+  const runData = async () => {
     await run();
     //state.value=optionsRef.value?.[0]?.value;
-  }
+  };
 
   // let paramsWait = null;
   const getOptions = computed(() => {
@@ -184,9 +184,8 @@
         optionsRef.value = get(res, resultField) || [];
       }
 
-
       emitChange();
-      state.value=optionsRef.value?.[0]?.value;
+      state.value = state.value || optionsRef.value?.[0]?.value;
       return;
     } catch (error) {
       console.warn(error);
