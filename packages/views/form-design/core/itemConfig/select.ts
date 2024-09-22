@@ -7,7 +7,8 @@ export const schema = [
     colProps: { span: 24 },
     field: '',
     componentProps: {},
-  },  {
+  },
+  {
     component: 'Slider',
     label: '滑动输入',
     icon: 'vaadin:slider',
@@ -16,15 +17,7 @@ export const schema = [
     componentProps: {},
     defaultValue: 0,
   },
-  {
-    component: 'Checkbox',
-    label: '复选框',
-    icon: 'ant-design:check-circle-outlined',
-    colProps: { span: 24 },
-    field: '',
 
-    componentProps: { defaultValue: false },
-  },
   {
     component: 'CheckboxGroup',
     label: '复选框组',

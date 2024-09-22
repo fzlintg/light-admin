@@ -3,11 +3,11 @@
     <light-form logic="system.logicEdit" :formModel="state" ref="lightFormRef" />
   </div>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" name="LogicEdit">
   import { flattenObject, getQueryParam } from '@views/form-design/utils';
   import { defHttp as axios } from '@utils/http/axios';
 
-  defineOptions({ name: 'LogicEdit' });
+  // defineOptions({  });
   const state = ref({ type: 'sql', data: '', name: '', title: '' });
   const name = getQueryParam('name');
   const lightFormRef = ref(null);

@@ -43,7 +43,7 @@
     updateSchema([
       {
         field: 'pwd',
-        show: !unref(isUpdate),
+        ifShow: !unref(isUpdate),
       },
       {
         field: 'dept',

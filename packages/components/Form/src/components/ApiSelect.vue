@@ -30,7 +30,7 @@
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { get, omit, isEqual, cloneDeep } from 'lodash-es';
   //import { LoadingOutlined } from '@ant-design/icons-vue';
-  import { useI18n } from '@h/web/useI18n';
+  //import { useI18n } from '@h/web/useI18n';
   import { propTypes } from '@utils/propTypes';
   //import { defHttp as axios } from '@utils/http/axios';
   import { useRequest } from '@vben/hooks';
@@ -185,7 +185,11 @@
       }
 
       emitChange();
+<<<<<<< HEAD
       if (attrs.defaultActiveFirstOption) state.value = state.value || optionsRef.value?.[0]?.value;
+=======
+      state.value = state.value || optionsRef.value?.[0]?.value;
+>>>>>>> c6ac56ff6736e2b629829e6577ee43a240148246
       return;
     } catch (error) {
       console.warn(error);

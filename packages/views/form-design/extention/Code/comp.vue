@@ -30,7 +30,7 @@
   const attrs = reactive(useAttrs());
   const emit = defineEmits(['update:value']);
   const [state] = useRuleFormItem(props, 'value', 'change');
-  if (typeof state.value == 'object') state.value = JSON.stringify(state.value);
+  if (typeof state.value == 'object') state.value = JSON.stringify(state.value, null, 2);
   else state.value = state.value || props.defaultValue || '';
 
   //const { t } = useI18n();

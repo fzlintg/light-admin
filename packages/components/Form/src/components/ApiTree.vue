@@ -14,6 +14,7 @@
   import { get } from 'lodash-es';
   import { DataNode } from 'ant-design-vue/es/tree';
   import { useRuleFormItem } from '@h/component/useFormItem';
+  import { deepMerge } from '@utils';
 
   defineOptions({ name: 'ApiTree' });
 
@@ -38,7 +39,7 @@
   const emit = defineEmits(['options-change', 'change', 'update:value']);
 
   const attrs = useAttrs();
-
+  const myAttrs = ref({});
   const treeData = ref<DataNode[]>([]);
   const isFirstLoaded = ref<Boolean>(false);
   const loading = ref(false);
@@ -49,6 +50,7 @@
     return {
       ...(props.api ? { treeData: unref(treeData) } : {}),
       ...attrs,
+      ...myAttrs.value,
     };
   });
 
@@ -77,7 +79,8 @@
   onMounted(() => {
     props.immediate && fetch();
   });
-  const refresh = () => {
+  const refresh = (compProps) => {
+    deepMerge(myAttrs.value, compProps.value);
     treeData.value = [...treeData.value];
   };
   defineExpose({ refresh });
