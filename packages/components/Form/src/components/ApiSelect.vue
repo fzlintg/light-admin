@@ -119,10 +119,10 @@
     debounceWait: 100,
     manual: true,
   });
-  const runData=async ()=>{
+  const runData = async () => {
     await run();
     //state.value=optionsRef.value?.[0]?.value;
-  }
+  };
 
   // let paramsWait = null;
   const getOptions = computed(() => {
@@ -184,9 +184,8 @@
         optionsRef.value = get(res, resultField) || [];
       }
 
-
       emitChange();
-      state.value=optionsRef.value?.[0]?.value;
+      if (attrs.defaultActiveFirstOption) state.value = state.value || optionsRef.value?.[0]?.value;
       return;
     } catch (error) {
       console.warn(error);
