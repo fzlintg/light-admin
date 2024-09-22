@@ -185,11 +185,7 @@
       }
 
       emitChange();
-<<<<<<< HEAD
       if (attrs.defaultActiveFirstOption) state.value = state.value || optionsRef.value?.[0]?.value;
-=======
-      state.value = state.value || optionsRef.value?.[0]?.value;
->>>>>>> c6ac56ff6736e2b629829e6577ee43a240148246
       return;
     } catch (error) {
       console.warn(error);
