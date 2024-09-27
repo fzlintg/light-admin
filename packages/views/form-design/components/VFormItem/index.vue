@@ -4,7 +4,11 @@
 <template>
   <Col v-bind="colPropsComputed" style="width: 100% !important">
     <div
-      v-if="['showItem','showItem_action', 'container', 'containerItem', 'gridContainer'].includes(schema.type)"
+      v-if="
+        ['showItem', 'showItem_action', 'container', 'containerItem', 'gridContainer'].includes(
+          schema.type,
+        )
+      "
       :class="{
         'm-1': true,
         ['jc-' + (schema.compAlign || 'center')]: true,
@@ -20,7 +24,7 @@
         :formModel="cur_formModel"
         :formData="cur_formModel"
         :setFormModel="cur_setFormModel"
-        :inSubForm="inSubForm"
+        :subFormType="subFormType"
         @change="handleChange"
         @click="handleClick(schema)"
         :getParent="() => proxy"
@@ -30,7 +34,7 @@
       >
       <span class="item-icon">
         <Icon
-          v-if="inSubForm == 'gridSubForm'"
+          v-if="subFormType == 'gridSubForm'"
           icon="ant-design:eye-invisible-outlined"
           @click="$emit('subItemHide')"
       /></span>
@@ -88,7 +92,7 @@
       </FormItem>
       <span class="item-icon">
         <Icon
-          v-if="inSubForm == 'gridSubForm'"
+          v-if="subFormType == 'gridSubForm'"
           icon="ant-design:eye-invisible-outlined"
           @click="$emit('subItemHide')"
       /></span>
@@ -113,11 +117,12 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions, formModelToData } from '../../utils';
-  import { omit, isArray, forOwn, isFunction, get, set, template } from 'lodash-es';
+  import { omit, isArray, forOwn, isFunction, get, set, template, isUndefined } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
   import { widget } from '../../extention/loader';
+  import { string } from 'vue-types';
 
   export default defineComponent({
     name: 'VFormItem',
@@ -154,9 +159,9 @@
         type: Function as PropType<(key: string, value: any) => void>,
         default: null,
       },
-      inSubForm: {
-        type: Boolean,
-        default: false,
+      subFormType: {
+        type: String,
+        default: null,
       },
       hiddenLabel: {
         type: Boolean,
@@ -187,11 +192,13 @@
       // const formData1 = computed(() => {
       //   return formModelToData(formModel.value);
       // });
-      const cur_formModel = props.inSubForm && !!props.formModel ? props.formModel : formModel;
+
+      const cur_formModel = !!props.subFormType && !!props.formModel ? props.formModel : formModel;
+
       //  const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       //  const cur_formData =cur_formModel
-      const cur_setFormModel = props.inSubForm ? props.setFormModel : setFormModel;
-      const iconShow = () => props.inSubForm;
+      const cur_setFormModel = props.subFormType ? props.setFormModel : setFormModel;
+      const iconShow = () => props.subFormType;
       const formItemRefList: any = inject('formItemRefList', null); //lintg
       const { proxy } = getCurrentInstance();
       if (formItemRefList) formItemRefList[props.schema.field!] = proxy;
@@ -244,7 +251,7 @@
         if (!props.schema.componentProps![param + '__tpl']) return;
         const formModel = toRaw(unref(cur_formModel));
         let context = { ...props.schema.componentProps!['defaultContext'], ...formModel };
-        context=formModelToData(formModel); //lintg
+        context = formModelToData(formModel); //lintg
         let paramStr = template(props.schema.componentProps![param + '__tpl'])(context);
         myProps.value[param] = eval('(' + paramStr + ')');
         return myProps.value[param];
@@ -361,11 +368,17 @@
         let { disabled, ...attrs } = omit(result, ['options', 'treeData']) ?? {};
 
         disabled = props.formConfig.disabled || disabled;
+        if (!isUndefined(disabled)) myProps.value['disabled'] = disabled;
+        //console.log(cur_formModel);
+        if (
+          !['showItem', 'showItem_action', 'container', 'gridContainer'].includes(props.schema.type)
+        ) {
+          const fieldValue = unref(cur_formModel)[props.schema.field!];
+          myProps.value[isCheck ? 'checked' : 'value'] = fieldValue;
+        }
 
         return {
           ...attrs,
-          disabled,
-          [isCheck ? 'checked' : 'value']: unref(cur_formModel)[field!],
           ...myProps.value,
         };
       });
@@ -380,7 +393,7 @@
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
         //props.formModel[props.schema.field] = value;
         cur_setFormModel(props.schema.field!, value, e);
-        if (!props.inSubForm) emit('change', value);
+        if (!props.subFormType) emit('change', value);
         if (isFunction(props.schema?.componentProps?.change)) {
           props.schema?.componentProps?.change(value); //调用配置的change函数
         }

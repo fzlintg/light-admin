@@ -5,7 +5,7 @@
     </template>
     <VFormItem
       isRender
-      :inSubForm="attrs.inSubForm"
+      :subFormType="attrs.subFormType"
       v-for="(item, k) in attrs.schema.children"
       :key="k"
       :schema="item"
@@ -27,9 +27,9 @@
   const attrs = useAttrs();
   const { formModel, setFormModel } = useFormModelState();
 
-  const cur_formModel = attrs.inSubForm && !!attrs.formModel ? attrs.formModel : formModel;
+  const cur_formModel = attrs.subFormType && !!attrs.formModel ? attrs.formModel : formModel;
 
-  const cur_setFormModel = attrs.inSubForm ? attrs.setFormModel : setFormModel;
+  const cur_setFormModel = attrs.subFormType ? attrs.setFormModel : setFormModel;
 
   const handleChange = function (e) {
     if (['container', 'showItem'].includes(attrs.schema.type)) return;
@@ -41,6 +41,6 @@
     if (['GridSubForm', 'SubForm'].includes(attrs.schema.component) && !isArray(value)) return;
     //props.formModel[props.schema.field] = value;
     cur_setFormModel(attrs.schema.field!, value, e);
-    if (!attrs.inSubForm) emit('change', value);
+    if (!attrs.subFormType) emit('change', value);
   };
 </script>

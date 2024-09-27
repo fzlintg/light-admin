@@ -38,6 +38,7 @@
     formModelToData,
     setUrlParam,
     clearUrlParam,
+    getAttrs,
   } from '../../utils';
   //import * as utils from '../../utils/index';
   import { computed, getCurrentInstance, inject } from 'vue';
@@ -54,7 +55,7 @@
   const formRef = ref(null);
   const extraData = ref({});
   const state = ref({});
-  const { schema, formConfig, debug } = toRefs(reactive(useAttrs()));
+  const { schema, formConfig, debug } = getAttrs();
   // toRefs(useAttrs());
   const myProps = ref({});
   const ifLoaded = ref(false);

@@ -23,7 +23,8 @@
 <script setup>
   import { Tabs, TabPane, Row } from 'ant-design-vue';
   import VFormItem from '../../components/VFormItem/index.vue';
+  import { getAttrs } from '../../utils';
 
   const { schema, formData, formModel, formConfig, setFormModel, getFormItem, handleChange } =
-    toRefs(useAttrs());
+    getAttrs();
 </script>
