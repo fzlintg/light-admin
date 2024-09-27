@@ -193,11 +193,12 @@
       //   return formModelToData(formModel.value);
       // });
 
-      const cur_formModel = !!props.subFormType && !!props.formModel ? props.formModel : formModel;
+      const cur_formModel =
+        !isUndefined(props.subFormType) && !!props.formModel ? props.formModel : formModel;
 
       //  const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       //  const cur_formData =cur_formModel
-      const cur_setFormModel = props.subFormType ? props.setFormModel : setFormModel;
+      const cur_setFormModel = isUndefined(props.subFormType) ? setFormModel : props.setFormModel;
       const iconShow = () => props.subFormType;
       const formItemRefList: any = inject('formItemRefList', null); //lintg
       const { proxy } = getCurrentInstance();
@@ -370,12 +371,12 @@
         disabled = props.formConfig.disabled || disabled;
         if (!isUndefined(disabled)) myProps.value['disabled'] = disabled;
         //console.log(cur_formModel);
-        if (
-          !['showItem', 'showItem_action', 'container', 'gridContainer'].includes(props.schema.type)
-        ) {
-          const fieldValue = unref(cur_formModel)[props.schema.field!];
-          myProps.value[isCheck ? 'checked' : 'value'] = fieldValue;
-        }
+        // if (
+        //   !['showItem', 'showItem_action', 'container', 'gridContainer'].includes(props.schema.type)
+        // ) {
+        const fieldValue = unref(cur_formModel)[props.schema.field!];
+        myProps.value[isCheck ? 'checked' : 'value'] = fieldValue;
+        //   }
 
         return {
           ...attrs,
