@@ -49,7 +49,7 @@
             :form-model="getRowModel(rowId)"
             :formConfig="props.formConfig"
             :setFormModel="setRowModel(rowId)"
-            inSubForm="subForm"
+            subFormType="subForm"
             parentComp="SubForm"
           />
         </Row>

@@ -117,7 +117,18 @@
   import { IVFormComponent, IFormConfig } from '../../typings/v-form-component';
   import { asyncComputed } from '@vueuse/core';
   import { handleAsyncOptions, formModelToData } from '../../utils';
-  import { omit, isArray, forOwn, isFunction, get, set, template, isUndefined } from 'lodash-es';
+  import {
+    omit,
+    isArray,
+    forOwn,
+    isFunction,
+    get,
+    set,
+    template,
+    isUndefined,
+    isNull,
+    isNil,
+  } from 'lodash-es';
   import { Tooltip, FormItem, Divider, Col } from 'ant-design-vue';
   import Icon from '@c/Icon/Icon.vue';
   import { useFormModelState } from '../../hooks/useFormDesignState';
@@ -194,12 +205,14 @@
       // });
 
       const cur_formModel =
-        !isUndefined(props.subFormType) && !!props.formModel ? props.formModel : formModel;
+        !isNil(props.subFormType) && !!props.formModel ? props.formModel : formModel;
+      console.log(cur_formModel);
 
       //  const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       //  const cur_formData =cur_formModel
-      const cur_setFormModel = isUndefined(props.subFormType) ? setFormModel : props.setFormModel;
-      const iconShow = () => props.subFormType;
+
+      const cur_setFormModel = isNil(props.subFormType) ? setFormModel : props.setFormModel;
+      const iconShow = () => !!props.subFormType;
       const formItemRefList: any = inject('formItemRefList', null); //lintg
       const { proxy } = getCurrentInstance();
       if (formItemRefList) formItemRefList[props.schema.field!] = proxy;
@@ -369,17 +382,18 @@
         let { disabled, ...attrs } = omit(result, ['options', 'treeData']) ?? {};
 
         disabled = props.formConfig.disabled || disabled;
-        if (!isUndefined(disabled)) myProps.value['disabled'] = disabled;
+        if (!isNil(disabled)) myProps.value['disabled'] = disabled;
         //console.log(cur_formModel);
         // if (
         //   !['showItem', 'showItem_action', 'container', 'gridContainer'].includes(props.schema.type)
         // ) {
-        const fieldValue = unref(cur_formModel)[props.schema.field!];
-        myProps.value[isCheck ? 'checked' : 'value'] = fieldValue;
+        // const fieldValue = unref(cur_formModel)[props.schema.field!];
+        // myProps.value[isCheck ? 'checked' : 'value'] = fieldValue;
         //   }
 
         return {
           ...attrs,
+          [isCheck ? 'checked' : 'value']: unref(cur_formModel)[props.schema.field!],
           ...myProps.value,
         };
       });
@@ -393,8 +407,9 @@
 
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
         //props.formModel[props.schema.field] = value;
+
         cur_setFormModel(props.schema.field!, value, e);
-        if (!props.subFormType) emit('change', value);
+        if (!isNil(props.subFormType)) emit('change', value);
         if (isFunction(props.schema?.componentProps?.change)) {
           props.schema?.componentProps?.change(value); //调用配置的change函数
         }

@@ -47,7 +47,7 @@
                 :form-model="getRowModel(rowId)"
                 :formConfig="props.formConfig"
                 :setFormModel="setRowModel(rowId)"
-                inSubForm="gridSubForm"
+                subFormType="gridSubForm"
                 @sub-item-hide="removeItem(rowIdx, vitem.field)"
               />
               <Col span="6" v-if="hideFormItem(rowIdx).length > 0" class="d-flex my-3">
