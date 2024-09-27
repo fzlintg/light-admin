@@ -40,6 +40,7 @@
     provide,
     nextTick,
     defineExpose,
+    getCurrentInstance,
   } from 'vue';
   import { defHttp as axios } from '@utils/http/axios';
   import { TableAction } from '@c/Table';
@@ -62,6 +63,7 @@
   const createMessage = useMessage();
   const [state] = useRuleFormItem(props, 'dbTable', 'change');
   const insertFormRef = ref(null);
+  const { proxy } = getCurrentInstance();
   //const [checkState] = useRuleFormItem(props, 'checkbox', 'change');
   // const { schema } = toRefs(useAttrs());
   const gOptions = ref({}),
@@ -79,6 +81,7 @@
   //const tableDict = ref({ options: [], map: {} });
   const tableOptions = ref([]);
   const tableMap = ref({});
+  const reloadDict = ref(false);
   provide('options', tableOptions);
   const editForm = computed(() => {
     return insertFormRef.value.vformRef.getItemRef('modal_1');
@@ -107,21 +110,23 @@
   //   return result;
   // };
   const loadOptions = async () => {
-    let { gridOptions, actionOptions } = await axios.get({
+    let { gridOptions, actionOptions, gridProps } = await axios.get({
       url: `/api/crud/getGridOptions/${props.dbTable.replace('.', '/')}`,
     });
+    reloadDict.value = gridProps.reloadDict;
 
     const actionsTpl = TransObjectToCode(cloneDeep(actionOptions));
     createActions.value = (record) => {
-      return new Function('{ record, tableRef,axios,editForm,openDetail }', `return ${actionsTpl}`)(
-        {
-          record,
-          tableRef,
-          axios,
-          editForm,
-          openDetail,
-        },
-      );
+      return new Function(
+        '{ record, tableRef,axios,editForm,openDetail,crud }',
+        `return ${actionsTpl}`,
+      )({
+        record,
+        tableRef,
+        axios,
+        editForm,
+        openDetail,
+      });
     };
     if (props.checkbox) {
       jsonAct(gridOptions, 'checkbox', 'add');
@@ -202,11 +207,16 @@
     // }
     detailOpen.value = true;
   };
-  const saveData = ({ data, row, type = 'insert' }) => {
+  const saveData = async ({ data, row, type = 'insert' }) => {
     if (type == 'insert') tableRef.value.insert(data);
     else Object.assign(row, data);
 
     tableRef.value.commitProxy('save');
+    if (reloadDict.value)
+      // TODO: 延迟加载字典
+      window.setTimeout(async () => {
+        await loadDict();
+      }, 1000);
   };
   const refresh = async () => {
     ifShowAll.value = false;
@@ -215,5 +225,5 @@
       ifShowAll.value = true;
     });
   };
-  defineExpose({ refresh });
+  defineExpose({ refresh, loadDict });
 </script>

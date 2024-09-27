@@ -5,76 +5,79 @@
   <div class="properties-content mx-2">
     <div class="properties-body" v-if="formConfig.currentItem">
       <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择组件" />
-      <Form label-align="left" layout="vertical">
-        <!--    循环遍历渲染组件属性      -->
-
-        <div v-if="formConfig.currentItem && formConfig.currentItem.componentProps">
-          <LightProps
-            :schema="inputOptions"
-            v-model:props="formConfig.currentItem.componentProps"
-          />
-          <component
-            v-if="ifCustSetting"
-            :is="settingComp[formConfig.currentItem.component]"
-            v-model:props="formConfig.currentItem"
-          />
-          <Setting
-            v-for="item in settingLogics[formConfig.currentItem.component]"
-            :logic="item"
-            :key="item"
-            v-model:props="formConfig.currentItem"
-          />
-
-          <Divider class="divider_title" dashed>控制属性</Divider>
-          <FormItem>
-            <Col v-for="item in controlOptions" :key="item.field">
-              <Checkbox
-                v-if="showControlAttrs(item.includes)"
-                v-bind="item.componentProps"
-                v-model:checked="formConfig.currentItem.componentProps[item.field]"
-              >
-                {{ item.label }}
-              </Checkbox>
-            </Col>
-          </FormItem>
-        </div>
+      <template v-else>
         <light-form logic="system.componentEdit" :form-model="{ schema: formConfig.currentItem }" />
-        <FormItem label="关联字段">
-          <Select
-            mode="multiple"
-            v-model:value="formConfig.currentItem['link']"
-            :options="linkOptions"
-          />
-        </FormItem>
+        <Form label-align="left" layout="vertical">
+          <!--    循环遍历渲染组件属性      -->
 
-        <FormItem label="提交按钮">
-          <Checkbox v-model:checked="formConfig.currentItem.showActionButtonGroup" />
-        </FormItem>
+          <div v-if="formConfig.currentItem && formConfig.currentItem.componentProps">
+            <LightProps
+              :schema="inputOptions"
+              v-model:props="formConfig.currentItem.componentProps"
+            />
+            <component
+              v-if="ifCustSetting"
+              :is="settingComp[formConfig.currentItem.component]"
+              v-model:props="formConfig.currentItem"
+            />
+            <Setting
+              v-for="item in settingLogics[formConfig.currentItem.component]"
+              :logic="item"
+              :key="item"
+              v-model:props="formConfig.currentItem"
+            />
 
-        <FormItem
-          label="选项"
-          v-if="
-            [
-              'Select',
-              'CheckboxGroup',
-              'RadioGroup',
-              'TreeSelect',
-              'Cascader',
-              'AutoComplete',
-              'RadioButtonGroup',
-            ].includes(formConfig.currentItem.component)
-          "
-        >
-          <FormOptions />
-        </FormItem>
+            <Divider class="divider_title" dashed>控制属性</Divider>
+            <FormItem>
+              <Col v-for="item in controlOptions" :key="item.field">
+                <Checkbox
+                  v-if="showControlAttrs(item.includes)"
+                  v-bind="item.componentProps"
+                  v-model:checked="formConfig.currentItem.componentProps[item.field]"
+                >
+                  {{ item.label }}
+                </Checkbox>
+              </Col>
+            </FormItem>
+          </div>
 
-        <FormItem
-          :label="formConfig.currentItem.component == 'Tabs' ? '标签' : '栅格'"
-          v-if="['Grid', 'Tabs', 'GridSubForm'].includes(formConfig.currentItem.component)"
-        >
-          <FormOptions />
-        </FormItem>
-      </Form>
+          <FormItem label="关联字段">
+            <Select
+              mode="multiple"
+              v-model:value="formConfig.currentItem['link']"
+              :options="linkOptions"
+            />
+          </FormItem>
+
+          <FormItem label="提交按钮">
+            <Checkbox v-model:checked="formConfig.currentItem.showActionButtonGroup" />
+          </FormItem>
+
+          <FormItem
+            label="选项"
+            v-if="
+              [
+                'Select',
+                'CheckboxGroup',
+                'RadioGroup',
+                'TreeSelect',
+                'Cascader',
+                'AutoComplete',
+                'RadioButtonGroup',
+              ].includes(formConfig.currentItem.component)
+            "
+          >
+            <FormOptions />
+          </FormItem>
+
+          <FormItem
+            :label="formConfig.currentItem.component == 'Tabs' ? '标签' : '栅格'"
+            v-if="['Grid', 'Tabs', 'GridSubForm'].includes(formConfig.currentItem.component)"
+          >
+            <FormOptions />
+          </FormItem>
+        </Form>
+      </template>
     </div>
   </div>
 </template>

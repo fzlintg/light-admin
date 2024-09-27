@@ -22,7 +22,15 @@
   import { oneDark } from '@codemirror/theme-one-dark';
 
   const attrs = reactive(useAttrs());
+
   const code = ref(attrs.value);
+  //const [code] = useRuleFormItem(attrs, 'value', 'change');
+  watch(
+    () => attrs.value,
+    () => {
+      code.value = attrs.value;
+    },
+  );
   const modeMap = { javascript, json, html, sql };
   const extensions = computed(() => {
     let mode = modeMap[attrs.mode] ? modeMap[attrs.mode] : json;

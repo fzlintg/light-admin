@@ -38,11 +38,12 @@
   import draggable from 'vuedraggable';
   // import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
   import FormNode from '../../components/VFormDesign/components/FormNode.vue';
+  import { getAttrs } from '../../utils';
   // const emit = defineEmits(['dragStart', 'handleColAdd', 'handle-copy', 'handle-delete']);
   const {
     formDesignMethods: { handleSetSelectItem },
   } = useFormDesignState();
-  const { currentItem, schema } = toRefs(useAttrs());
+  const { currentItem, schema } = getAttrs();
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');

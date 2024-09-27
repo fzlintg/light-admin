@@ -40,6 +40,7 @@
   import { Row, Col } from 'ant-design-vue';
   import { defineAsyncComponent } from 'vue';
   import draggable from 'vuedraggable';
+  import { getAttrs } from '../../utils';
   // import LayoutItem from '@views/form-design/components/VFormDesign/components/LayoutItem.vue';
   // const LayoutItem = defineAsyncComponent(
   //   () => import('@views/form-design/components/VFormDesign/components/LayoutItem.vue'),
@@ -54,7 +55,7 @@
     // formConfig,
   } = useFormDesignState();
 
-  const { currentItem, schema } = toRefs(useAttrs());
+  const { currentItem, schema } = getAttrs();
 </script>
 <style lang="less">
   @import url('../../../form-design/components/VFormDesign/styles/variable.less');
