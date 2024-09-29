@@ -68,14 +68,28 @@
   });
 
   const emit = defineEmits(['options-change', 'change', 'update:value']);
+  let injectOptions = inject('options', () => []);
 
-  const options = ref<OptionsItem[]>([]);
   const loading = ref(false);
   const emitData = ref<any[]>([]);
   const attrs = useAttrs();
   // Embedded in the form, just use the hook binding to perform form verification
   const [state] = useRuleFormItem(props, 'value', 'change', emitData);
   let paramsWait = null;
+  const options = ref<OptionsItem[]>([]);
+
+  if (injectOptions?.value?.[attrs.value.schema.field]) {
+    options.value = injectOptions?.value?.[attrs.value.schema.field];
+  }
+  watch(
+    () => injectOptions?.value,
+    () => {
+      if (injectOptions?.value?.[attrs.schema.field]) {
+        options.value = injectOptions?.value?.[attrs.schema.field];
+      }
+    },
+  );
+
   // Processing options value
   const getOptions = computed(() => {
     const { labelField, valueField, numberToString } = props;
@@ -110,7 +124,7 @@
     v_params = v_params || params;
 
     if (!api || !isFunction(api)) return;
-    options.value = [];
+
     try {
       loading.value = true;
       if (beforeFetch && isFunction(beforeFetch)) {

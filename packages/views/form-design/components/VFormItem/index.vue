@@ -206,7 +206,7 @@
 
       const cur_formModel =
         !isNil(props.subFormType) && !!props.formModel ? props.formModel : formModel;
-      console.log(cur_formModel);
+      // console.log(cur_formModel);
 
       //  const cur_formData = props.inSubForm ? ref(props.formData) : formData1;
       //  const cur_formData =cur_formModel

@@ -79,15 +79,15 @@
   });
   const emit = defineEmits(['update:value', 'rowChange', 'rowAdd', 'rowDelete', 'rowInsert']);
   const [stateModel] = useRuleFormItem(props, 'value', 'change');
-  const rowIds = reactive([]);
+  const rowIds = ref([]);
   stateModel.value = stateModel.value || [];
   const initRowIds = () => {
-    rowIds.splice(0, rowIds.length);
+    rowIds.value.splice(0, rowIds.value.length);
     if (Array.isArray(stateModel.value)) {
       //自带初始值，配套提供rowIds
       for (let i = 0; i < stateModel.value.length; i++) {
         assignAdd(stateModel.value[i], initModel);
-        rowIds.push(uniqueId('gsf_'));
+        rowIds.value.push(uniqueId('gsf_'));
       }
     }
   };
@@ -117,33 +117,38 @@
   // );
 
   const addRowId = () => {
-    rowIds.push(uniqueId('gsf_'));
+    rowIds.value.push(uniqueId('gsf_'));
     stateModel.value.push(cloneDeep(initModel));
     const idx = stateModel.value.length - 1;
     emit('rowAdd', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
   const getRowModel = (rowId) => {
-    return stateModel.value[rowIds.indexOf(rowId)];
+    return stateModel.value[rowIds.value.indexOf(rowId)];
   };
 
   const setRowModel = (rowId) => {
     return (field, value) => {
-      const idx = rowIds.indexOf(rowId);
+      const idx = rowIds.value.indexOf(rowId);
       stateModel.value[idx][field] = value;
     };
   };
   const removeRowId = (idx) => {
     emit('rowDelete', { idx, data: stateModel.value, row: stateModel.value[idx] });
-    rowIds.splice(idx, 1);
+    rowIds.value.splice(idx, 1);
     stateModel.value.splice(idx, 1);
   };
   const insertRowId = (idx) => {
-    rowIds.splice(idx, 0, uniqueId('gsf_'));
+    rowIds.value.splice(idx, 0, uniqueId('gsf_'));
     stateModel.value.splice(idx, 0, cloneDeep(initModel));
     emit('rowInsert', { idx, data: stateModel.value, row: stateModel.value[idx] });
   };
+
   const dragend = ({ oldIndex, newIndex }) => {
-    rowIds.splice(newIndex, 0, rowIds.splice(oldIndex, 1)[0]);
+    // let rowId = rowIds[oldIndex];
+    // rowIds[oldIndex] = rowIds[newIndex];
+    // rowIds[newIndex] = rowId;
+
+    //rowIds.value.splice(newIndex, 0, rowIds.value.splice(oldIndex, 1)[0]);
     stateModel.value.splice(newIndex, 0, stateModel.value.splice(oldIndex, 1)[0]);
     return true;
   };
@@ -151,7 +156,7 @@
     //initData();
     initRowIds();
     if (stateModel.value?.length == 0) {
-      rowIds.splice(0, rowIds.length);
+      rowIds.value.splice(0, rowIds.value.length);
       addRowId();
     } //保持至少一行
   });

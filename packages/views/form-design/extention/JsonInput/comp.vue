@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <a-input v-model:value="jsonValue">
-      <template #prefix
-        ><Icon icon="ant-design:profile" class="hand" @click="visible = true"
-      /></template>
-      <template #suffix
-        ><Icon icon="ant-design:form-outlined" class="hand" @click="openForm" v-if="formModel"
-      /></template>
-    </a-input>
-
+  <div
+    ><a-tooltip color="white" :title="jsonValue">
+      <a-input v-model:value="jsonValue">
+        <template #prefix
+          ><Icon icon="ant-design:profile" class="hand" @click="visible = true"
+        /></template>
+        <template #suffix
+          ><Icon icon="ant-design:form-outlined" class="hand" @click="openForm" v-if="formModel"
+        /></template>
+      </a-input>
+    </a-tooltip>
     <Modal
       title="json编辑"
       :open="visible"

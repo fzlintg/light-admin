@@ -87,10 +87,9 @@
 
   const emit = defineEmits(['options-change', 'change', 'update:value']);
   const attrs = useAttrs();
-  //const optionsRef = ref<OptionsItem[]>([]);
+
   let injectOptions = inject('options', () => []);
   const optionsRef = ref<OptionsItem[]>([]);
-  //const optionsRef = inject('options')
 
   if (injectOptions?.value?.[attrs.schema.field]) {
     optionsRef.value = injectOptions?.value?.[attrs.schema.field];
@@ -177,9 +176,6 @@
       isFirstLoaded.value = true;
       if (Array.isArray(res)) {
         optionsRef.value = res;
-
-        // emitChange();
-        // return;
       } else if (resultField) {
         optionsRef.value = get(res, resultField) || [];
       }

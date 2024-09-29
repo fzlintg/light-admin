@@ -11,7 +11,7 @@ export default {
     _update__func: `await this.getItemRef().fetch(this.formatTpl('params'))`,
     api__func: `return await axios.get({url:"/select/getDemoOptions?count="+params.count});`,
     api__params: ['params'],
-    onChange__func: `console.log('ApiRadioGroup====>:', e)`,
+    onChange__func: ``,
     onChange__params: ['e'],
     defaultContext__var: `{
       input_1: 3,

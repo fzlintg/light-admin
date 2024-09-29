@@ -2,6 +2,7 @@ import { VxeUI } from '..';
 import XEUtils from 'xe-utils';
 import componentSetting from '@settings/componentSetting';
 import { Tag } from 'ant-design-vue';
+import { isBoolean } from 'lodash-es';
 
 VxeUI.setConfig(componentSetting.vxeTable);
 //add by lintg.
@@ -43,7 +44,12 @@ VxeUI.renderer.add('dict', {
         return [<Tag color="success">{mapData?.[column.field]?.[item]}</Tag>];
       });
     } else {
-      return [<span>{mapData?.[column.field]?.[value]}</span>];
+      const data = mapData?.[column.field]?.[value];
+      if (isBoolean(value)) {
+        if (value === true) return [<Tag color="success">{data ?? '是'}</Tag>];
+        else return [<Tag color="error">{data ?? '否'}</Tag>];
+      }
+      return [<Tag color="success">{data}</Tag>];
     }
   },
 });
