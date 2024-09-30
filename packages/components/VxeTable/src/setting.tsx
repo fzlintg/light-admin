@@ -27,7 +27,13 @@ VxeUI.formats.add('json', {
     return JSON.stringify(cellValue, null, 4).replace(/\\n/g, ' ');
   },
 });
-
+VxeUI.renderer.add('icon', {
+  renderDefault(renderOpts, params) {
+    const { row, column, $table } = params;
+    const value = row[column.field];
+    return [<Icon icon={value}></Icon>];
+  },
+});
 VxeUI.renderer.add('dict', {
   renderDefault(renderOpts, params) {
     const { row, column, $table } = params;
@@ -82,5 +88,13 @@ VxeUI.commands.add('insert_form', {
   commandMethod: (params) => {
     const { $grid } = params;
     $grid.context.emit('insertForm');
+  },
+});
+VxeUI.commands.add('expandAll', {
+  commandMethod: (params) => {
+    const { $grid } = params;
+    if ($grid) {
+      $grid?.setAllTreeExpand(true);
+    }
   },
 });
