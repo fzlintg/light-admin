@@ -1,5 +1,10 @@
 <template>
-  <TreeSelect v-bind="getAttrs" @change="handleChange" :load-data="async ? onLoadData : undefined">
+  <TreeSelect
+    v-bind="getAttrs"
+    @change="handleChange"
+    treeIcon
+    :load-data="async ? onLoadData : undefined"
+  >
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
@@ -132,3 +137,4 @@
     emit('options-change', treeData.value);
   }
 </script>
+<style scoped></style>
