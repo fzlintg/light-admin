@@ -1,5 +1,5 @@
 <template>
-  <Tree v-bind="getAttrs" v-model:selectedKeys="state">
+  <Tree v-bind="getAttrs" v-model:selectedKeys="state" v-if="loading">
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
@@ -8,13 +8,12 @@
 
 <script lang="ts" setup>
   import { type Recordable } from '@vben/types';
-  import { type PropType, computed, watch, ref, onMounted, unref, useAttrs } from 'vue';
+  import { type PropType, computed, watch, ref, onMounted, unref, useAttrs, nextTick } from 'vue';
   import { Tree, TreeProps } from 'ant-design-vue';
   import { isFunction } from '@utils/is';
-  import { get } from 'lodash-es';
+  import { get, merge, omit } from 'lodash-es';
   import { DataNode } from 'ant-design-vue/es/tree';
   import { useRuleFormItem } from '@h/component/useFormItem';
-  import { deepMerge } from '@utils';
 
   defineOptions({ name: 'ApiTree' });
 
@@ -49,7 +48,7 @@
   const getAttrs = computed(() => {
     return {
       ...(props.api ? { treeData: unref(treeData) } : {}),
-      ...attrs,
+      ...omit(attrs, ['checkable']),
       ...myAttrs.value,
     };
   });
@@ -80,8 +79,12 @@
     props.immediate && fetch();
   });
   const refresh = (compProps) => {
-    deepMerge(myAttrs.value, compProps.value);
-    treeData.value = [...treeData.value];
+    loading.value = false;
+    Object.assign(attrs.schema.componentProps, unref(compProps));
+    //Object.assign(myAttrs.value, unref(compProps));
+    nextTick(() => {
+      loading.value = true;
+    });
   };
   defineExpose({ refresh });
   async function fetch(v_params: any = null) {
@@ -102,7 +105,7 @@
     } catch (e) {
       console.error(e);
     }
-    loading.value = false;
+    // loading.value = false;
     if (!res) return;
     if (resultField) {
       res = get(res, resultField) || [];

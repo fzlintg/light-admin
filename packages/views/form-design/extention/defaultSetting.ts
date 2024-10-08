@@ -58,6 +58,11 @@ const t = {
   showIcon: '显示图标',
   message: '提示信息',
   change: '修改',
+  helpMessage: '帮助',
+  edit: '编辑',
+  initData: '初始数据',
+  multiple: '多选',
+  async: '异步',
 };
 const setting = {};
 

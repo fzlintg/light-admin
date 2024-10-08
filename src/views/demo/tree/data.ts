@@ -6,7 +6,7 @@ export const treeData: TreeItem[] = [
     key: '0-0',
     icon: 'ion:settings-outline',
     children: [
-      { title: 'leaf', key: '0-0-0' },
+      { title: 'leaf', key: '0-0-0', level: 2 },
       {
         title: 'leaf',
         key: '0-0-1',
