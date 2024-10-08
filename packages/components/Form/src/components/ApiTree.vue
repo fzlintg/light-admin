@@ -11,7 +11,7 @@
   import { type PropType, computed, watch, ref, onMounted, unref, useAttrs, nextTick } from 'vue';
   import { Tree, TreeProps } from 'ant-design-vue';
   import { isFunction } from '@utils/is';
-  import { get, merge, omit } from 'lodash-es';
+  import { get, omit } from 'lodash-es';
   import { DataNode } from 'ant-design-vue/es/tree';
   import { useRuleFormItem } from '@h/component/useFormItem';
 

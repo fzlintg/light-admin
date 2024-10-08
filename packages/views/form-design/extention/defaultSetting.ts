@@ -63,6 +63,10 @@ const t = {
   initData: '初始数据',
   multiple: '多选',
   async: '异步',
+  draggable: '可拖动',
+  allowDrop: '允许放置',
+  blockNode: '行块',
+  contextMenu: '右键菜单',
 };
 const setting = {};
 

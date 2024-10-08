@@ -1,5 +1,5 @@
 <template>
-  <BasicTree v-bind="treeOptions" :renderIcon="createIcon" :beforeRightClick="getRightMenuList" />
+  <BasicTree ref="treeRef" v-bind="treeOptions" :renderIcon="createIcon" @drop="onDrop" />
 </template>
 
 <script lang="ts" setup>
@@ -8,6 +8,8 @@
 
   import { PlusOutlined, DeleteOutlined } from '@ant-design/icons-vue';
   import { EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
+  import { uniq } from 'lodash-es';
+  import { AntTreeNodeDropEvent, TreeDataItem, TreeProps } from 'ant-design-vue/es/tree';
 
   const props = defineProps({
     initData: {
@@ -20,17 +22,26 @@
     },
   });
   const attrs = reactive(useAttrs());
+  const treeRef = ref();
   const treeData = ref([]);
+  const loadData = async (node) => {
+    let children = await props.loadData(node);
+    treeRef.value.updateNodeByKey(node.eventKey, { children });
+    treeRef.value.setExpandedKeys(uniq([node.eventKey, ...treeRef.value.getExpandedKeys()]));
+  };
   const treeOptions = computed(() => {
     return {
       ...attrs,
       ...(attrs.edit ? { actionList } : {}),
       treeData: treeData.value,
-      ...(attrs.async ? { loadData: props.loadData } : {}),
+      ...(attrs.async ? { loadData } : {}),
+      ...(attrs.contextMenu ? { beforeRightClick: getRightMenuList } : {}),
     };
   });
+
   onMounted(async () => {
     treeData.value = await props.initData();
+    console.log(treeOptions.value);
   });
   // const treeData = [
   //   {
@@ -61,8 +72,13 @@
       },
     },
     {
-      render: () => {
-        return h(DeleteOutlined);
+      render: (node) => {
+        return h(DeleteOutlined, {
+          class: 'ml-2',
+          onClick: () => {
+            treeRef.value.deleteNodeByKey(node.key);
+          },
+        });
       },
     },
   ];
@@ -91,6 +107,7 @@
       {
         label: '删除',
         handler: () => {
+          treeRef.value.deleteNodeByKey(node.eventKey);
           console.log('点击了删除', node);
         },
         icon: 'bx:bxs-folder-open',
@@ -100,4 +117,60 @@
       resolve(menu);
     });
   }
+  const onDrop = (info: AntTreeNodeDropEvent) => {
+    console.log(info);
+    const dropKey = info.node.key;
+    const dragKey = info.dragNode.key;
+    const dropPos = info.node.pos.split('-');
+    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+    const loop = (data: TreeProps['treeData'], key: string | number, callback: any) => {
+      data.forEach((item, index) => {
+        if (item.key === key) {
+          return callback(item, index, data);
+        }
+        if (item.children) {
+          return loop(item.children, key, callback);
+        }
+      });
+    };
+    const data = [...treeData.value];
+
+    // Find dragObject
+    let dragObj: TreeDataItem;
+    loop(data, dragKey, (item: TreeDataItem, index: number, arr: TreeProps['treeData']) => {
+      arr.splice(index, 1);
+      dragObj = item;
+    });
+    if (!info.dropToGap) {
+      // Drop on the content
+      loop(data, dropKey, (item: TreeDataItem) => {
+        item.children = item.children || [];
+        /// where to insert 示例添加到头部，可以是随意位置
+        item.children.unshift(dragObj);
+      });
+    } else if (
+      (info.node.children || []).length > 0 && // Has children
+      info.node.expanded && // Is expanded
+      dropPosition === 1 // On the bottom gap
+    ) {
+      loop(data, dropKey, (item: TreeDataItem) => {
+        item.children = item.children || [];
+        // where to insert 示例添加到头部，可以是随意位置
+        item.children.unshift(dragObj);
+      });
+    } else {
+      let ar: TreeProps['treeData'] = [];
+      let i = 0;
+      loop(data, dropKey, (_item: TreeDataItem, index: number, arr: TreeProps['treeData']) => {
+        ar = arr;
+        i = index;
+      });
+      if (dropPosition === -1) {
+        ar.splice(i, 0, dragObj);
+      } else {
+        ar.splice(i + 1, 0, dragObj);
+      }
+    }
+    treeData.value = data;
+  };
 </script>
