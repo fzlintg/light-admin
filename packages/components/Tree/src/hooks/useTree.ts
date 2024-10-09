@@ -121,10 +121,13 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     if (!childrenField || !keyField) return;
 
     forEach(treeData, (treeItem) => {
+      const children = treeItem[childrenField];
       if (treeItem[keyField] === parentKey) {
         treeItem[childrenField] = treeItem[childrenField] || [];
         treeItem[childrenField][push](node);
         return true;
+      } else if (children && children.length) {
+        insertNodeByKey({ parentKey, node: children, push });
       }
     });
     treeDataRef.value = treeData;
@@ -159,6 +162,41 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
       });
     }
   }
+  function loop(data, key, callback: any) {
+    const { key: keyField, children: childrenField } = unref(getFieldNames);
+    data.forEach((item, index) => {
+      if (item[keyField] === key) {
+        return callback(null, { item, index, data });
+      }
+      if (item[childrenField]) {
+        return loop(item[childrenField], key, callback);
+      }
+    });
+  }
+  function loopAsync(data, key) {
+    return new Promise((resolve, reject) => {
+      loop(data, key, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+  async function getNodeByKey(key: string, list?: TreeDataItem[], flag?: boolean) {
+    if (!key) return;
+    flag = flag ?? false;
+    const treeData = list || unref(treeDataRef);
+    const { item, index, data } = await loopAsync(treeData, key);
+    if (flag) {
+      data.splice(index, 1);
+    }
+    return item;
+
+    //  return getNode(key, list, unref(getFieldNames));
+  }
+
   // Delete node
   function deleteNodeByKey(key: string, list?: TreeDataItem[]) {
     if (!key) return;
@@ -207,5 +245,6 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     getChildrenKeys,
     getEnabledKeys,
     getSelectedNode,
+    getNodeByKey,
   };
 }

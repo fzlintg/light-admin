@@ -10,6 +10,7 @@
   import { EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
   import { uniq } from 'lodash-es';
   import { AntTreeNodeDropEvent, TreeDataItem, TreeProps } from 'ant-design-vue/es/tree';
+  import { defHttp as axios } from '@utils/http/axios';
 
   const props = defineProps({
     initData: {
@@ -117,10 +118,44 @@
       resolve(menu);
     });
   }
-  const onDrop = (info: AntTreeNodeDropEvent) => {
-    console.log(info);
-    const dropKey = info.node.key;
-    const dragKey = info.dragNode.key;
+  const onDrop = async (info) => {
+    const dropKey = info.node.key; //目标节点
+    const dragKey = info.dragNode.key; //拖放节点
+    const dropPos = info.node.pos.split('-');
+    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+    const tree = unref(treeRef);
+    if (!info.dropToGap) {
+      let node = await tree.getNodeByKey(dragKey);
+      tree.insertNodeByKey({
+        parentKey: dropKey,
+        node,
+        // 往后插入
+        push: 'unshift',
+      });
+    } else if (
+      //子节点排第一个
+      (info.node.children || []).length > 0 && // Has children
+      info.node.expanded && // Is expanded
+      dropPosition === 1 // On the bottom gap
+    ) {
+      tree.insertNodeByKey({
+        parentKey: dropKey,
+        node: tree.getNodeByKey(dragKey),
+        // 往后插入
+        push: 'unshift',
+      });
+    } else {
+      tree.insertNodeByKey({
+        parentKey: null,
+        node: tree.getNodeByKey(dragKey),
+        // 往后插入
+        push: 'unshift',
+      });
+    }
+  };
+  const onDrop2 = async (info: AntTreeNodeDropEvent) => {
+    const dropKey = info.node.key; //目标节点
+    const dragKey = info.dragNode.key; //拖放节点
     const dropPos = info.node.pos.split('-');
     const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
     const loop = (data: TreeProps['treeData'], key: string | number, callback: any) => {
@@ -138,17 +173,22 @@
     // Find dragObject
     let dragObj: TreeDataItem;
     loop(data, dragKey, (item: TreeDataItem, index: number, arr: TreeProps['treeData']) => {
-      arr.splice(index, 1);
+      arr.splice(index, 1); //删掉拖放节点数据
       dragObj = item;
     });
     if (!info.dropToGap) {
-      // Drop on the content
+      //子节点
       loop(data, dropKey, (item: TreeDataItem) => {
         item.children = item.children || [];
         /// where to insert 示例添加到头部，可以是随意位置
         item.children.unshift(dragObj);
       });
+      await axios.post({
+        url: '/api/crud/tree/drag/base/sys_dept',
+        data: { dropKey, dragKey, type: 'inner' },
+      });
     } else if (
+      //子节点排第一个
       (info.node.children || []).length > 0 && // Has children
       info.node.expanded && // Is expanded
       dropPosition === 1 // On the bottom gap
@@ -158,6 +198,10 @@
         // where to insert 示例添加到头部，可以是随意位置
         item.children.unshift(dragObj);
       });
+      await axios.post({
+        url: '/api/crud/tree/drag/base/sys_dept',
+        data: { dropKey, dragKey, type: 'inner' },
+      });
     } else {
       let ar: TreeProps['treeData'] = [];
       let i = 0;
@@ -166,10 +210,14 @@
         i = index;
       });
       if (dropPosition === -1) {
-        ar.splice(i, 0, dragObj);
+        ar.splice(i, 0, dragObj); //前插
       } else {
-        ar.splice(i + 1, 0, dragObj);
+        ar.splice(i + 1, 0, dragObj); //后插
       }
+      await axios.post({
+        url: '/api/crud/tree/drag/base/sys_dept',
+        data: { dropKey, dragKey, type: 'prev' },
+      });
     }
     treeData.value = data;
   };

@@ -188,6 +188,7 @@ export interface TreeActionType {
   updateNodeByKey: (key: string, node: Omit<TreeDataItem, 'key'>) => void;
   setSearchValue: (value: string) => void;
   getSearchValue: () => string;
+  getNodeByKey: (key: KeyType, treeList?: TreeItem[], flag?: boolean | null) => TreeItem | null;
   getSelectedNode: (
     key: KeyType,
     treeList?: TreeItem[],

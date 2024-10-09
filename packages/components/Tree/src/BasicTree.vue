@@ -128,6 +128,7 @@
         getChildrenKeys,
         getEnabledKeys,
         getSelectedNode,
+        getNodeByKey,
       } = useTree(treeDataRef, getFieldNames);
 
       function getIcon(params: TreeItem, icon?: string) {
@@ -347,6 +348,7 @@
         getSearchValue: () => {
           return searchState.searchText;
         },
+        getNodeByKey,
       };
 
       function renderAction(node: TreeItem) {
