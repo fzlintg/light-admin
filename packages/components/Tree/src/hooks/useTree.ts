@@ -110,8 +110,8 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
   /**
    * 添加节点
    */
-  function insertNodeByKey({ parentKey = null, node, push = 'push' }: InsertNodeParams) {
-    const treeData: any = cloneDeep(unref(treeDataRef));
+  function insertNodeByKey({ parentKey = null, node, list,push = 'push' }: InsertNodeParams) {
+    const treeData: any = list||cloneDeep(unref(treeDataRef));
     if (!parentKey) {
       treeData[push](node);
       treeDataRef.value = treeData;
@@ -120,16 +120,19 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     const { key: keyField, children: childrenField } = unref(getFieldNames);
     if (!childrenField || !keyField) return;
 
-    forEach(treeData, (treeItem) => {
+    treeData.some(treeItem => {
       const children = treeItem[childrenField];
       if (treeItem[keyField] === parentKey) {
         treeItem[childrenField] = treeItem[childrenField] || [];
         treeItem[childrenField][push](node);
         return true;
       } else if (children && children.length) {
-        insertNodeByKey({ parentKey, node: children, push });
+        return insertNodeByKey({ parentKey, node, list:children, push })
       }
-    });
+})
+    // forEach(treeData, (treeItem) => {
+     
+    // });
     treeDataRef.value = treeData;
   }
   /**
@@ -162,20 +165,20 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
       });
     }
   }
-  function loop(data, key, callback: any) {
+  function loop(data, key,callback: any) {
     const { key: keyField, children: childrenField } = unref(getFieldNames);
     data.forEach((item, index) => {
       if (item[keyField] === key) {
         return callback(null, { item, index, data });
       }
       if (item[childrenField]) {
-        return loop(item[childrenField], key, callback);
+        return loop(item[childrenField], key,item, callback);
       }
     });
   }
   function loopAsync(data, key) {
     return new Promise((resolve, reject) => {
-      loop(data, key, (error, result) => {
+      loop(data, key, null,(error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -191,10 +194,10 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     const { item, index, data } = await loopAsync(treeData, key);
     if (flag) {
       data.splice(index, 1);
+  //    if(data.length==0) delete parent.children
     }
     return item;
 
-    //  return getNode(key, list, unref(getFieldNames));
   }
 
   // Delete node

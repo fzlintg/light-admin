@@ -124,8 +124,8 @@
     const dropPos = info.node.pos.split('-');
     const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
     const tree = unref(treeRef);
+    let node = await tree.getNodeByKey(dragKey,null,true);
     if (!info.dropToGap) {
-      let node = await tree.getNodeByKey(dragKey);
       tree.insertNodeByKey({
         parentKey: dropKey,
         node,
@@ -140,14 +140,14 @@
     ) {
       tree.insertNodeByKey({
         parentKey: dropKey,
-        node: tree.getNodeByKey(dragKey),
+        node,
         // 往后插入
         push: 'unshift',
       });
     } else {
       tree.insertNodeByKey({
         parentKey: null,
-        node: tree.getNodeByKey(dragKey),
+        node,
         // 往后插入
         push: 'unshift',
       });
