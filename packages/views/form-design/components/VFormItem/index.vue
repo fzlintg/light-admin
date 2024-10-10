@@ -399,6 +399,7 @@
       });
 
       const handleChange = function (e) {
+       
         if (['container', 'gridContainer', 'showItem'].includes(props.schema.type)) return;
         // if (['Tabs', 'Card', 'Modal', 'Drawer'].includes(props.schema.component)) return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
@@ -406,8 +407,6 @@
         const value = target ? (isCheck ? target.checked : target.value) : e;
 
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
-        //props.formModel[props.schema.field] = value;
-
         cur_setFormModel(props.schema.field!, value, e);
         if (!isNil(props.subFormType)) emit('change', value);
         if (isFunction(props.schema?.componentProps?.change)) {
