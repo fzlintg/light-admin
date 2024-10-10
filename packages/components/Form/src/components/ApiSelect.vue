@@ -146,7 +146,7 @@
     () => state.value,
     (v) => {
       if (state.value) loading.value = true;
-      emit('change', v);
+      //  emit('change', v);
       emit('update:value', v);
     },
   );

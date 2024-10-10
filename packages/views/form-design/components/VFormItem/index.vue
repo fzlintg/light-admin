@@ -399,7 +399,6 @@
       });
 
       const handleChange = function (e) {
-       
         if (['container', 'gridContainer', 'showItem'].includes(props.schema.type)) return;
         // if (['Tabs', 'Card', 'Modal', 'Drawer'].includes(props.schema.component)) return;
         const isCheck = ['Switch', 'Checkbox', 'Radio'].includes(props.schema.component);
@@ -408,7 +407,9 @@
 
         if (['GridSubForm', 'SubForm'].includes(props.schema.component) && !isArray(value)) return;
         cur_setFormModel(props.schema.field!, value, e);
-        if (!isNil(props.subFormType)) emit('change', value);
+        //debugger;
+        //if (!isNil(props.subFormType))
+        emit('change', value);
         if (isFunction(props.schema?.componentProps?.change)) {
           props.schema?.componentProps?.change(value); //调用配置的change函数
         }

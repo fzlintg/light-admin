@@ -27,6 +27,8 @@ export default {
       key: 'key',
       isLeaf: 'isleaf',
     },
+    db: '',
+    table: '',
   },
   colProps: {
     span: 24,
