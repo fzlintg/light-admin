@@ -110,8 +110,33 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
   /**
    * 添加节点
    */
-  function insertNodeByKey({ parentKey = null, node, list,push = 'push' }: InsertNodeParams) {
-    const treeData: any = list||cloneDeep(unref(treeDataRef));
+  async function appendNodeByKey({ dropKey, node, list, action = 'inner', push = 'push' }) {
+    //1、子节点（inner)、兄弟节点(next)、根节点(top)
+    const treeData: any = list || cloneDeep(unref(treeDataRef));
+    const { key: keyField, children: childrenField } = unref(getFieldNames);
+    if (!childrenField || !keyField) return;
+    const { item, parent } = await loopAsync(treeData, dropKey);
+    switch (action) {
+      case "inner":
+        item.isLeaf=false;
+        item[childrenField] = item[childrenField] || [];
+        item[childrenField][push](node);
+        break;
+      case "next":
+        if (!!parent)
+          parent[childrenField][push](node);
+        else {
+          treeData[push](node)
+        }
+        break;
+      case "top":
+        treeData[push](node);
+        break;
+    }
+    treeDataRef.value = treeData;
+  }
+  function insertNodeByKey({ parentKey = null, node, list, push = 'push' }: InsertNodeParams) {
+    const treeData: any = list || cloneDeep(unref(treeDataRef));
     if (!parentKey) {
       treeData[push](node);
       treeDataRef.value = treeData;
@@ -127,11 +152,11 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
         treeItem[childrenField][push](node);
         return true;
       } else if (children && children.length) {
-        return insertNodeByKey({ parentKey, node, list:children, push })
+        return insertNodeByKey({ parentKey, node, list: children, push })
       }
-})
+    })
     // forEach(treeData, (treeItem) => {
-     
+
     // });
     treeDataRef.value = treeData;
   }
@@ -165,20 +190,20 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
       });
     }
   }
-  function loop(data, key,callback: any) {
+  function loop(data, key, parent, callback: any) {
     const { key: keyField, children: childrenField } = unref(getFieldNames);
     data.forEach((item, index) => {
       if (item[keyField] === key) {
-        return callback(null, { item, index, data });
+        return callback(null, { item, index, data, parent });
       }
       if (item[childrenField]) {
-        return loop(item[childrenField], key,item, callback);
+        return loop(item[childrenField], key, item, callback);
       }
     });
   }
   function loopAsync(data, key) {
     return new Promise((resolve, reject) => {
-      loop(data, key, null,(error, result) => {
+      loop(data, key, null, (error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -191,10 +216,11 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     if (!key) return;
     flag = flag ?? false;
     const treeData = list || unref(treeDataRef);
-    const { item, index, data } = await loopAsync(treeData, key);
+    const { item, index, data, parent } = await loopAsync(treeData, key);
     if (flag) {
       data.splice(index, 1);
-  //    if(data.length==0) delete parent.children
+      if (!!parent) parent.isLeaf = data.length > 0
+      //    if(data.length==0) delete parent.children
     }
     return item;
 
@@ -249,5 +275,6 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     getEnabledKeys,
     getSelectedNode,
     getNodeByKey,
+    appendNodeByKey
   };
 }

@@ -1,1 +1,1 @@
-export const logics = ['config.dbTable'];
+export const logics = ['system.db.table'];

@@ -16,7 +16,7 @@ export default {
     edit: false,
     multiple: false,
     async: true,
-    draggable: false,
+    draggable: true,
     blockNode: true,
     contextMenu: false,
     allowDrop__func: 'return true',

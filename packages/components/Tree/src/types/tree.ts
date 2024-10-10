@@ -189,6 +189,7 @@ export interface TreeActionType {
   setSearchValue: (value: string) => void;
   getSearchValue: () => string;
   getNodeByKey: (key: KeyType, treeList?: TreeItem[], flag?: boolean | null) => TreeItem | null;
+  appendNodeByKey: (opt: any) => void;
   getSelectedNode: (
     key: KeyType,
     treeList?: TreeItem[],

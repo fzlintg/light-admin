@@ -169,13 +169,13 @@ importers:
         version: 4.1.0(vue@3.5.11(typescript@5.6.3))
       vxe-pc-ui:
         specifier: ^4.0.96
-        version: 4.2.18
+        version: 4.2.19
       vxe-table:
         specifier: next
-        version: 4.7.85
+        version: 4.7.87
       vxe-table-plugin-export-xlsx:
         specifier: ^4.0.5
-        version: 4.0.6(vxe-table@4.7.85)
+        version: 4.0.6(vxe-table@4.7.87)
       xe-utils:
         specifier: ^3.5.30
         version: 3.5.31
@@ -3504,8 +3504,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.34:
-    resolution: {integrity: sha512-/TZAiChbAflBNjCg+VvstbcwAtIL/VdMFO3NgRFIzBjpvPzWOTIbbO8kNb6RwU4bt9TP7K+3KqBKw/lOU+Y+GA==}
+  electron-to-chromium@1.5.35:
+    resolution: {integrity: sha512-hOSRInrIDm0Brzp4IHW2F/VM+638qOL2CzE0DgpnGzKW27C95IqqeqgKz/hxHGnvPxvQGpHUGD5qRVC9EZY2+A==}
 
   emittery@0.8.1:
     resolution: {integrity: sha512-uDfvUjVrfGJJhymx/kz6prltenw1u7WrCg1oa94zYY8xxVpLLUu045LAT0dhDZdXG58/EpPL/5kA180fQ/qudg==}
@@ -5665,8 +5665,8 @@ packages:
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
-  package-manager-detector@0.2.1:
-    resolution: {integrity: sha512-/hVW2fZvAdEas+wyKh0SnlZ2mx0NIa1+j11YaQkogEJkcMErbwchHCuo8z7lEtajZJQZ6rgZNVTWMVVd71Bjng==}
+  package-manager-detector@0.2.2:
+    resolution: {integrity: sha512-VgXbyrSNsml4eHWIvxxG/nTL4wgybMTXCV2Un/+yEc3aDKKU6nQBZjbeP3Pl3qm9Qg92X/1ng4ffvCeD/zwHgg==}
 
   pako@0.2.9:
     resolution: {integrity: sha512-NUcwaKxUxWrZLpDG+z/xZaCgQITkA/Dv4V/T6bw7VON6l1Xz/VnrBqrYjZQ12TamKHzITTfOEIYUj48y2KXImA==}
@@ -7607,16 +7607,16 @@ packages:
     peerDependencies:
       vue: ^3.0.1
 
-  vxe-pc-ui@4.2.18:
-    resolution: {integrity: sha512-OfS3h7YitqwGCk4ILMUyFTBEtXnv3DnTvT7R2DYjG9O1fr6tY2EbRfnpaMMKUCfSHbq/7AyOJJNJz7/g6u8ucw==}
+  vxe-pc-ui@4.2.19:
+    resolution: {integrity: sha512-mWxRhjomh+Ded5xMc8M5LRTX99MaOSSqJpE5MRJp8j/9NqlEsSs0B5Xshw0VE/QPXN18X/kM4FNm5ltKhFAhNg==}
 
   vxe-table-plugin-export-xlsx@4.0.6:
     resolution: {integrity: sha512-SNZsEgFQbO5nPj5SuPw2l0pPj6pIZKQkdtsr1yTMAjLAbXqhROinSMoZcN9RWJwarsvhiFg9tfcFahOoTLWy3A==}
     peerDependencies:
       vxe-table: ^4.5.0
 
-  vxe-table@4.7.85:
-    resolution: {integrity: sha512-sNQ4jKnU6vZkStTK2JDDKgIz5kKCCWtTtOVl7dpNsLJ16NYWMCDlNby5m/DJC+xa0dPvSdr7+AH4TXfD1vpRFg==}
+  vxe-table@4.7.87:
+    resolution: {integrity: sha512-9NjDtbg02HZk3OlnwcNNJG3U1YKA3epGeyVPGC8PNeMEYCNbO535s8y3prPVm4PNcD0yJ3q3KMvTEaxAl2il6g==}
 
   w3c-hr-time@1.0.2:
     resolution: {integrity: sha512-z8P5DvDNjKDoFIHK7q8r8lackT6l+jo/Ye3HOle7l9nICP9lf1Ci25fy9vHd0JOWewkIFzXIEig3TdKT7JQ5fQ==}
@@ -7874,7 +7874,7 @@ snapshots:
 
   '@antfu/install-pkg@0.4.1':
     dependencies:
-      package-manager-detector: 0.2.1
+      package-manager-detector: 0.2.2
       tinyexec: 0.3.0
 
   '@antfu/utils@0.7.10': {}
@@ -10418,7 +10418,7 @@ snapshots:
   browserslist@4.24.0:
     dependencies:
       caniuse-lite: 1.0.30001667
-      electron-to-chromium: 1.5.34
+      electron-to-chromium: 1.5.35
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
 
@@ -11286,7 +11286,7 @@ snapshots:
     dependencies:
       jake: 10.9.2
 
-  electron-to-chromium@1.5.34: {}
+  electron-to-chromium@1.5.35: {}
 
   emittery@0.8.1: {}
 
@@ -13877,7 +13877,7 @@ snapshots:
 
   package-json-from-dist@1.0.1: {}
 
-  package-manager-detector@0.2.1: {}
+  package-manager-detector@0.2.2: {}
 
   pako@0.2.9: {}
 
@@ -16069,17 +16069,17 @@ snapshots:
       sortablejs: 1.14.0
       vue: 3.5.11(typescript@5.6.3)
 
-  vxe-pc-ui@4.2.18:
+  vxe-pc-ui@4.2.19:
     dependencies:
       '@vxe-ui/core': 4.0.13
 
-  vxe-table-plugin-export-xlsx@4.0.6(vxe-table@4.7.85):
+  vxe-table-plugin-export-xlsx@4.0.6(vxe-table@4.7.87):
     dependencies:
-      vxe-table: 4.7.85
+      vxe-table: 4.7.87
 
-  vxe-table@4.7.85:
+  vxe-table@4.7.87:
     dependencies:
-      vxe-pc-ui: 4.2.18
+      vxe-pc-ui: 4.2.19
 
   w3c-hr-time@1.0.2:
     dependencies:

@@ -118,40 +118,48 @@
       resolve(menu);
     });
   }
+  function fixData(data){
+    return data.forEach(item=>{
+      if(item.children&&item.children.length>0){
+        item.isLeaf=false;
+        fixData(item.children);
+      } else
+      {
+        item.isLeaf=true;
+      }
+    })
+  }
+  const dragTree=async ({dropKey,dragKey,node,list,action,push})=>{
+    await unref(treeRef).appendNodeByKey({
+         dropKey,
+        node,list,
+        action,
+        push,
+      });
+      await axios.post({
+        url: '/api/crud/tree/drag/base/sys_dept',
+        data: { dropKey, dragKey, action },
+      });
+  }
   const onDrop = async (info) => {
     const dropKey = info.node.key; //目标节点
     const dragKey = info.dragNode.key; //拖放节点
     const dropPos = info.node.pos.split('-');
     const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
     const tree = unref(treeRef);
-    let node = await tree.getNodeByKey(dragKey,null,true);
-    if (!info.dropToGap) {
-      tree.insertNodeByKey({
-        parentKey: dropKey,
-        node,
-        // 往后插入
-        push: 'unshift',
-      });
-    } else if (
-      //子节点排第一个
-      (info.node.children || []).length > 0 && // Has children
+    const data = [...treeData.value];
+    let node = await tree.getNodeByKey(dragKey,data,true);
+    let push='push',action='next';
+    if (!info.dropToGap||
+    (info.node.children || []).length > 0 && // Has children
       info.node.expanded && // Is expanded
       dropPosition === 1 // On the bottom gap
     ) {
-      tree.insertNodeByKey({
-        parentKey: dropKey,
-        node,
-        // 往后插入
-        push: 'unshift',
-      });
-    } else {
-      tree.insertNodeByKey({
-        parentKey: null,
-        node,
-        // 往后插入
-        push: 'unshift',
-      });
+      action='inner'
     }
+     await dragTree({dropKey,dragKey,node,list:data,action:"inner",push})
+    fixData(data);
+    treeData.value=[...data];
   };
   const onDrop2 = async (info: AntTreeNodeDropEvent) => {
     const dropKey = info.node.key; //目标节点

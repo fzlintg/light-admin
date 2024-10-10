@@ -9,8 +9,8 @@ export default {
     api__func: `return await axios.get({url:"/select/getDemoOptions?keyword="+params.id});
     `,
     api__params: ['params'],
-    onChange__func: `console.log('ApiSelect====>:', e, v)`,
-    onChange__params: ['e', 'v'],
+    change__func: `console.log('ApiSelect====>:', e, v)`,
+    change__params: ['e', 'v'],
     defaultContext__var: `{
       apiselect_1: '1',
 }`,
