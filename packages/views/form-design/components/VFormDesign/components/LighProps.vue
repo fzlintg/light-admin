@@ -1,6 +1,13 @@
 <template>
   <Form :model="formState" layout="vertical">
-    <FormItem :label="item.label" v-for="item in props.schema" :key="item.field">
+    <FormItem v-if="!!props.hideSetting.options" label="组件类型" class="mt-2">
+      <a-radio-group button-style="solid" v-model:value="props.props.hideSet">
+        <a-radio-button v-for="item in props.hideSetting.options" :value="item.value">{{
+          item.label
+        }}</a-radio-button>
+      </a-radio-group>
+    </FormItem>
+    <FormItem :label="item.label" v-for="item in propsSchema" :key="item.field">
       <!--     处理数组属性，placeholder       -->
       <div v-if="item.children">
         <template v-for="(child, index) of item.children" :key="index">
@@ -27,10 +34,17 @@
   </Form>
 </template>
 <script lang="ts" setup>
-  import { Form, FormItem, Divider } from 'ant-design-vue';
+  import {
+    Form,
+    FormItem,
+    Divider,
+    RadioGroup as ARadioGroup,
+    RadioButton as ARadioButton,
+  } from 'ant-design-vue';
   import { componentMap } from '../../../core/formItemConfig';
-  import { watch } from 'vue';
+  import { computed, watch } from 'vue';
   import { useRuleFormItem } from '../../../../../myhooks/component/useFormItem';
+
   //import { getInitValue } from '../../../utils/index';
 
   const props = defineProps({
@@ -42,9 +56,21 @@
       type: Object,
       default: () => ({}),
     },
+    hideSetting: {
+      type: Object,
+      default: () => ({}),
+    },
   });
 
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
+  const propsSchema = computed(() => {
+    return props.schema.filter((item) => showItem(item.field));
+  });
+  const showItem = (comp) => {
+    //  if (!props?.hideSetting?.setting) return true;
+    if (props?.hideSetting?.setting?.[props.props.hideSet]?.includes(comp)) return false;
+    return true;
+  };
   // watchEffect(() => {
   watch(
     () => props.schema,

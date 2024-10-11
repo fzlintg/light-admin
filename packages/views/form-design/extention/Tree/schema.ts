@@ -5,8 +5,10 @@ export default {
   type: 'select',
   icon: 'clarity:tree-view-line',
   componentProps: {
+    hideSet: 'auto',
     title: '树',
     helpMessage: '树组件',
+
     //   api: treeOptionsListApi,
     //  treeData:[]
     initData__func: `return await axios.post({url:"/api/logic/getLogicData/test.tree.sys_dept"});
@@ -30,6 +32,7 @@ export default {
     db: '',
     table: '',
   },
+  // compEdit:{},
   colProps: {
     span: 24,
   },

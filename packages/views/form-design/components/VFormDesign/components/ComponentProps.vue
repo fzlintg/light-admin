@@ -7,11 +7,13 @@
       <Empty class="hint-box" v-if="!formConfig.currentItem.key" description="未选择组件" />
       <template v-else>
         <light-form logic="system.componentEdit" :form-model="{ schema: formConfig.currentItem }" />
+
         <Form label-align="left" layout="vertical">
           <!--    循环遍历渲染组件属性      -->
 
           <div v-if="formConfig.currentItem && formConfig.currentItem.componentProps">
             <LightProps
+              :hideSetting="settingHide?.[formConfig.currentItem.component]"
               :schema="inputOptions"
               v-model:props="formConfig.currentItem.componentProps"
             />
@@ -116,6 +118,7 @@
     settingComp,
     settingExclude,
     settingLogics,
+    settingHide,
   } from '../../../extention/loader';
 
   import defaultSetting, {
@@ -385,6 +388,7 @@
         settingComp,
         ifCustSetting,
         settingLogics,
+        settingHide,
         //   getItemProps
       };
     },

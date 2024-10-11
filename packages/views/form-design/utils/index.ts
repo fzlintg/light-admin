@@ -249,6 +249,7 @@ export const flattenArray = (json: Array<any>, end_flag = '_json') => {
 export const flattenObject = (json, end_flag = '_json') => {
   const result = {};
   function flatten(obj, path = '') {
+    //字段名为_json的属性会被忽略拍平
     for (const key in obj) {
       const value = obj[key];
       const newPath = path ? path + '.' + key : key;
@@ -456,7 +457,7 @@ export function formatFunc(item, flag = false, formContext = {}) {
         ...(item['defaultContext__var'] ? eval('(' + item['defaultContext__var'] + ')') : {}),
         ...formContext,
       };
-      context=formModelToData(context);//lintg
+      context = formModelToData(context); //lintg
       const paramStr = template(item[name])(context);
       item[originName] = eval('(' + paramStr + ')');
     }
