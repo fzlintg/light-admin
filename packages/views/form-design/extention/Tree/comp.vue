@@ -77,6 +77,11 @@
       props.hideSet === 'auto'
         ? await axios.post({ url: `/api/crud/tree/query/${attrs.db}/${attrs.table}` })
         : await props.initData();
+
+    let { options } = await axios.get({
+      url: `/api/crud/getQueryDict/${attrs.db}/${attrs.table}`,
+    });
+    tableOptions.value = options;
   };
   const actionList: TreeActionItem[] = [
     {
