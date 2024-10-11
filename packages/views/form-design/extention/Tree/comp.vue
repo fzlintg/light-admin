@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, h, onMounted, reactive, useAttrs } from 'vue';
+  import { computed, h, onMounted, provide, reactive, useAttrs } from 'vue';
   import { BasicTree, TreeActionItem, ContextMenuItem } from '@c/Tree';
 
   import { PlusOutlined, DeleteOutlined } from '@ant-design/icons-vue';
@@ -41,6 +41,7 @@
   const editForm = computed(() => {
     return insertFormRef.value.vformRef.getItemRef('modal_1');
   });
+  provide('options', tableOptions);
   const loadData = async (node) => {
     let children =
       props.hideSet === 'auto'
@@ -161,6 +162,17 @@
       resolve(menu);
     });
   }
+
+  const saveData = async ({ data, type = 'insert' }) => {
+    let result = await axios.post({
+      url: `/api/crud/saveData/${attrs.db}/${attrs.table}`,
+      data: {
+        [type == 'insert' ? 'insertRecords' : 'updateRecords']: data,
+      },
+    });
+    if (type == 'update') treeRef.value.updateNodeByKey(data.id, { title: data.name });
+    console.log(result);
+  };
   function fixData(data) {
     return data.forEach((item) => {
       if (item.children && item.children.length > 0) {
