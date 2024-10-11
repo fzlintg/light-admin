@@ -123,12 +123,22 @@
   function getRightMenuList(node: EventDataNode): Promise<ContextMenuItem[]> {
     const menu = [
       {
-        label: '新增',
+        label: '新增节点',
         handler: () => {
           editForm.value.setProps(({ myProps }) => {
-            myProps.value = { title: '新增数据' };
+            myProps.value = { title: '新增节点' };
           });
           editForm.value.show({}, { type: 'insert' });
+        },
+        icon: 'bi:plus',
+      },
+      {
+        label: '新增子节点',
+        handler: () => {
+          editForm.value.setProps(({ myProps }) => {
+            myProps.value = { title: '新增子节点' };
+          });
+          editForm.value.show({}, { type: 'insertChild' });
         },
         icon: 'bi:plus',
       },
@@ -171,6 +181,7 @@
       },
     });
     if (type == 'update') treeRef.value.updateNodeByKey(data.id, { title: data.name });
+
     console.log(result);
   };
   function fixData(data) {
