@@ -128,7 +128,9 @@
         getChildrenKeys,
         getEnabledKeys,
         getSelectedNode,
-        getNodeByKey,appendNodeByKey
+        getNodeByKey,
+        appendNodeByKey,
+        getParentNodeByKey,
       } = useTree(treeDataRef, getFieldNames);
 
       function getIcon(params: TreeItem, icon?: string) {
@@ -237,7 +239,7 @@
           (node) => {
             const result = filterFn
               ? filterFn(searchValue, node, unref(getFieldNames))
-              : node[titleField]?.includes(searchValue) ?? false;
+              : (node[titleField]?.includes(searchValue) ?? false);
             if (result) {
               matchedKeys.push(node[keyField]);
             }
@@ -348,7 +350,9 @@
         getSearchValue: () => {
           return searchState.searchText;
         },
-        getNodeByKey,appendNodeByKey
+        getNodeByKey,
+        appendNodeByKey,
+        getParentNodeByKey,
       };
 
       function renderAction(node: TreeItem) {

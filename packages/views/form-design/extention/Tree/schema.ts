@@ -28,6 +28,7 @@ export default {
       title: 'title',
       key: 'key',
       isLeaf: 'isleaf',
+      pid: 'pid',
     },
     db: '',
     table: '',

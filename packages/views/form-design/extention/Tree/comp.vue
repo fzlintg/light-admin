@@ -18,6 +18,7 @@
   import { uniq, pick } from 'lodash-es';
   //import { AntTreeNodeDropEvent, TreeDataItem, TreeProps } from 'ant-design-vue/es/tree';
   import { defHttp as axios } from '@utils/http/axios';
+  import { useMessage } from '@h/web/useMessage';
 
   const props = defineProps({
     initData: {
@@ -41,6 +42,7 @@
   const editForm = computed(() => {
     return insertFormRef.value.vformRef.getItemRef('modal_1');
   });
+  const { createMessage } = useMessage();
   provide('options', tableOptions);
   const loadData = async (node) => {
     let children =
@@ -124,11 +126,15 @@
     const menu = [
       {
         label: '新增节点',
-        handler: () => {
+        handler: async () => {
           editForm.value.setProps(({ myProps }) => {
             myProps.value = { title: '新增节点' };
           });
-          editForm.value.show({}, { type: 'insert' });
+          let parent = await treeRef.value.getParentNodeByKey(node.eventKey);
+          editForm.value.show(
+            { [attrs.fieldNames.pid]: parent[attrs.fieldNames.key] },
+            { type: 'insert', id: node.key },
+          );
         },
         icon: 'bi:plus',
       },
@@ -138,7 +144,10 @@
           editForm.value.setProps(({ myProps }) => {
             myProps.value = { title: '新增子节点' };
           });
-          editForm.value.show({}, { type: 'insertChild' });
+          editForm.value.show(
+            { [attrs.fieldNames.pid]: node[attrs.fieldNames.key] },
+            { type: 'insertChild', id: node.key },
+          );
         },
         icon: 'bi:plus',
       },
@@ -161,9 +170,13 @@
       },
       {
         label: '删除',
-        handler: () => {
+        handler: async () => {
           treeRef.value.deleteNodeByKey(node.eventKey);
-          console.log('点击了删除', node);
+          let data = await axios.delete({
+            url: `/api/crud/removeRecord/${attrs.db}/${attrs.table}/${node.key}`,
+          });
+          createMessage.success('删除成功');
+          console.log('点击了删除', data);
         },
         icon: 'ant-design:delete-twotone',
       },
@@ -173,16 +186,29 @@
     });
   }
 
-  const saveData = async ({ data, type = 'insert' }) => {
+  const saveData = async ({ data, type = 'insert', id }) => {
     let result = await axios.post({
-      url: `/api/crud/saveData/${attrs.db}/${attrs.table}`,
-      data: {
-        [type == 'insert' ? 'insertRecords' : 'updateRecords']: data,
-      },
+      url: `/api/crud/saveRecord/${attrs.db}/${attrs.table}`,
+      data,
     });
-    if (type == 'update') treeRef.value.updateNodeByKey(data.id, { title: data.name });
-
-    console.log(result);
+    if (type == 'update')
+      treeRef.value.updateNodeByKey(data[attrs.fieldNames.key], {
+        [attrs.fieldNames.title]: data[attrs.fieldNames.title],
+      });
+    else {
+      treeRef.value.appendNodeByKey({
+        dropKey: id,
+        node: {
+          ...pick(data, [attrs.fieldNames.key, attrs.fieldNames.title]),
+          [attrs.fieldNames.key]: result[attrs.fieldNames.key],
+          isLeaf: true,
+        },
+        list: treeData.value,
+        action: type == 'insertChild' ? 'inner' : 'next',
+        push: 'push',
+      });
+    }
+    createMessage.success('保存成功');
   };
   function fixData(data) {
     return data.forEach((item) => {

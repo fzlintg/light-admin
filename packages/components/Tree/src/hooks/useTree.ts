@@ -117,19 +117,18 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     if (!childrenField || !keyField) return;
     const { item, parent } = await loopAsync(treeData, dropKey);
     switch (action) {
-      case "inner":
-        item.isLeaf=false;
+      case 'inner':
+        item.isLeaf = false;
         item[childrenField] = item[childrenField] || [];
         item[childrenField][push](node);
         break;
-      case "next":
-        if (!!parent)
-          parent[childrenField][push](node);
+      case 'next':
+        if (parent) parent[childrenField][push](node);
         else {
-          treeData[push](node)
+          treeData[push](node);
         }
         break;
-      case "top":
+      case 'top':
         treeData[push](node);
         break;
     }
@@ -145,16 +144,16 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     const { key: keyField, children: childrenField } = unref(getFieldNames);
     if (!childrenField || !keyField) return;
 
-    treeData.some(treeItem => {
+    treeData.some((treeItem) => {
       const children = treeItem[childrenField];
       if (treeItem[keyField] === parentKey) {
         treeItem[childrenField] = treeItem[childrenField] || [];
         treeItem[childrenField][push](node);
         return true;
       } else if (children && children.length) {
-        return insertNodeByKey({ parentKey, node, list: children, push })
+        return insertNodeByKey({ parentKey, node, list: children, push });
       }
-    })
+    });
     // forEach(treeData, (treeItem) => {
 
     // });
@@ -219,13 +218,17 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     const { item, index, data, parent } = await loopAsync(treeData, key);
     if (flag) {
       data.splice(index, 1);
-      if (!!parent) parent.isLeaf = data.length > 0
+      if (parent) parent.isLeaf = data.length > 0;
       //    if(data.length==0) delete parent.children
     }
     return item;
-
   }
-
+  async function getParentNodeByKey(key: string, list?: TreeDataItem[]) {
+    if (!key) return;
+    const treeData = list || unref(treeDataRef);
+    const { parent } = await loopAsync(treeData, key);
+    return parent;
+  }
   // Delete node
   function deleteNodeByKey(key: string, list?: TreeDataItem[]) {
     if (!key) return;
@@ -275,6 +278,7 @@ export function useTree(treeDataRef: Ref<TreeDataItem[]>, getFieldNames: Compute
     getEnabledKeys,
     getSelectedNode,
     getNodeByKey,
-    appendNodeByKey
+    appendNodeByKey,
+    getParentNodeByKey,
   };
 }

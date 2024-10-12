@@ -1,4 +1,4 @@
-export const logics = ['system.db.table'];
+//export const logics = ['system.db.table'];
 export const exclude = ['db', 'table', 'hideSet'];
 export const hide = {
   options: [
