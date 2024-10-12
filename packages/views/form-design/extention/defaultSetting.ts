@@ -67,6 +67,7 @@ const t = {
   allowDrop: '允许放置',
   blockNode: '行块',
   contextMenu: '右键菜单',
+  renderIcon: '渲染图标',
 };
 const setting = {};
 

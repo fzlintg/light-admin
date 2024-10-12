@@ -1,6 +1,7 @@
 <template>
-  <BasicTree ref="treeRef" v-bind="treeOptions" :renderIcon="createIcon" @drop="onDrop" />
-
+  <BasicTree ref="treeRef" v-bind="treeOptions" @drop="onDrop">
+    <template #title="item"> <component :is="getTitle(item)" /> </template>
+  </BasicTree>
   <light-form
     :logic="`crud.${attrs.db}.${attrs.table}.insert`"
     @submit="saveData"
@@ -33,6 +34,10 @@
       type: String,
       default: 'general',
     },
+    renderItem: {
+      type: Function,
+      default: () => [],
+    },
   });
   const attrs = reactive(useAttrs());
   const treeRef = ref();
@@ -44,6 +49,13 @@
   });
   const { createMessage } = useMessage();
   provide('options', tableOptions);
+  const getTitle = (item) => {
+    return {
+      render() {
+        return [h('span', {}, item.name)];
+      },
+    };
+  };
   const loadData = async (node) => {
     let children =
       props.hideSet === 'auto'
