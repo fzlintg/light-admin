@@ -5,6 +5,7 @@
   import { onMounted, watch, ref } from 'vue';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { flattenObject, formModelToData } from '../../../utils';
+  import { cloneDeep } from 'lodash-es';
 
   //import { mergeSchema } from './schema.ts';
 
@@ -24,8 +25,14 @@
   });
 
   const [formState] = useRuleFormItem(props, 'props', 'update:props');
-  const formModel = ref(flattenObject(formState.value));
+  const formModel = ref(cloneDeep(flattenObject(formState.value)));
 
+  watch(
+    () => formState.value,
+    () => {
+      formModel.value = cloneDeep(flattenObject(formState.value));
+    },
+  );
   watch(
     () => formModel.value,
     () => {
@@ -34,6 +41,10 @@
     },
     { deep: true },
   );
+
+  // watch(()=>props.props,()=>{
+
+  // })
   // watchEffect(() => {
   //   let formData = formModelToData(formModel.value);
   //   Object.assign(formState.value, formData);

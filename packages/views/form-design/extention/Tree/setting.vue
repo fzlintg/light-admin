@@ -27,10 +27,12 @@
     () => formModel.value,
     async () => {
       let formData = formModelToData(formModel.value);
-      let fieldNames = await axios.get({
-        url: `/api/crud/tree/config/${formData.componentProps.db}/${formData.componentProps.table}`,
-      });
-      formData.componentProps.fieldNames = fieldNames;
+      if (formData.componentProps.table) {
+        let fieldNames = await axios.get({
+          url: `/api/crud/tree/config/${formData.componentProps.db}/${formData.componentProps.table}`,
+        });
+        formData.componentProps.fieldNames = fieldNames;
+      }
       Object.assign(formState.value, formData);
     },
     { deep: true },

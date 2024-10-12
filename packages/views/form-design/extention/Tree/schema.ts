@@ -1,7 +1,5 @@
 //import { treeOptionsListApi } from '@/api/demo/tree';
 
-import { render } from 'nprogress';
-
 export default {
   label: '高级树',
   type: 'select',
@@ -26,8 +24,8 @@ export default {
       return 'ant-design:down-circle-twotone';
   `,
     renderIcon__params: ['node'],
-    renderItem__func: ``,
-    renderItem__params: ['node'],
+    renderItem__func: `return [h('span', {}, node.name), node.cnt>0?h('span', { class: 'text-red' }, '(' + node.cnt + ')'):''];`,
+    renderItem__params: ['node', '{ h, r }'],
     edit: false,
     multiple: false,
     async: true,

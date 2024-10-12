@@ -3,6 +3,7 @@
     <template #title="item"> <component :is="getTitle(item)" /> </template>
   </BasicTree>
   <light-form
+    v-if="!!attrs.table"
     :logic="`crud.${attrs.db}.${attrs.table}.insert`"
     @submit="saveData"
     ref="insertFormRef"
@@ -11,7 +12,16 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, h, onMounted, provide, reactive, useAttrs } from 'vue';
+  import {
+    computed,
+    getCurrentInstance,
+    h,
+    onMounted,
+    provide,
+    reactive,
+    resolveComponent,
+    useAttrs,
+  } from 'vue';
   import { BasicTree, TreeActionItem, ContextMenuItem } from '@c/Tree';
 
   import { PlusOutlined, DeleteOutlined } from '@ant-design/icons-vue';
@@ -49,10 +59,12 @@
   });
   const { createMessage } = useMessage();
   provide('options', tableOptions);
+  const { proxy } = getCurrentInstance();
   const getTitle = (item) => {
     return {
       render() {
-        return [h('span', {}, item.name)];
+        return props.renderItem.call(proxy, item, { h, r: resolveComponent });
+        //      return [h('span', {}, item.name), h('span', { class: 'text-red' }, '(' + item.cnt + ')')];
       },
     };
   };
@@ -88,6 +100,7 @@
   );
 
   const initData = async () => {
+    if (props.hideSet === 'auto' && !attrs.table) return;
     treeData.value =
       props.hideSet === 'auto'
         ? await axios.post({ url: `/api/crud/tree/query/${attrs.db}/${attrs.table}` })
@@ -122,18 +135,18 @@
     },
   ];
 
-  function createIcon({ level }) {
-    if (level === 1) {
-      return 'ion:git-compare-outline';
-    }
-    if (level === 2) {
-      return 'ion:home';
-    }
-    if (level === 3) {
-      return 'ion:airplane';
-    }
-    return '';
-  }
+  // function createIcon({ level }) {
+  //   if (level === 1) {
+  //     return 'ion:git-compare-outline';
+  //   }
+  //   if (level === 2) {
+  //     return 'ion:home';
+  //   }
+  //   if (level === 3) {
+  //     return 'ion:airplane';
+  //   }
+  //   return '';
+  // }
   function getRightMenuList(node: EventDataNode): Promise<ContextMenuItem[]> {
     const menu = [
       {

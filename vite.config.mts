@@ -99,5 +99,12 @@ export default defineApplicationConfig({
         '@views': resolve(__dirname, 'packages/views'), // 路径别名
       },
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
   },
 });
