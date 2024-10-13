@@ -1,6 +1,8 @@
 <template>
   <BasicTree ref="treeRef" v-bind="treeOptions" @drop="onDrop">
-    <template #title="item"> <component :is="getTitle(item)" /> </template>
+    <template #title="item" v-if="props.renderItem.toString() != '() => []'">
+      <component :is="getTitle(item)" />
+    </template>
   </BasicTree>
   <light-form
     v-if="!!attrs.table"
@@ -60,6 +62,9 @@
   const { createMessage } = useMessage();
   provide('options', tableOptions);
   const { proxy } = getCurrentInstance();
+  const isRender = computed(() => {
+    return props.renderItem.toString() === '() => []';
+  });
   const getTitle = (item) => {
     return {
       render() {

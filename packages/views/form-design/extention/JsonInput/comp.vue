@@ -20,7 +20,7 @@
       <CodeEditor
         :value="editJsonValue"
         ref="jsonEditor"
-        :mode="javascript"
+        mode="javascript"
         :height="300"
         @change="editJsonValue = $event"
       />

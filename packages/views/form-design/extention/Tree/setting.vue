@@ -9,6 +9,7 @@
   //import { useMessage } from '@h/web/useMessage';
   import { useRuleFormItem } from '@h/component/useFormItem';
   import { flattenObject, formModelToData } from '../../utils';
+  import { cloneDeep } from 'lodash-es';
 
   const props = defineProps({
     schema: {
@@ -24,8 +25,16 @@
   const formModel = ref(flattenObject(formState.value));
 
   watch(
+    () => formState.value,
+    () => {
+      console.log('formstate change!');
+      formModel.value = cloneDeep(flattenObject(formState.value));
+    },
+  );
+  watch(
     () => formModel.value,
     async () => {
+      console.log('formModel change!');
       let formData = formModelToData(formModel.value);
       if (formData.componentProps.table) {
         let fieldNames = await axios.get({

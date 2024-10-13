@@ -1,5 +1,7 @@
 <template>
-  <light-form :logic="props.logic" :formModel="formModel" @update:form-model="updateFormModel" />
+  <div>
+    <light-form :logic="props.logic" :formModel="formModel" @update:form-model="updateFormModel" />
+  </div>
 </template>
 <script lang="ts" setup>
   import { onMounted, watch, ref } from 'vue';
@@ -7,6 +9,7 @@
   import { flattenObject, formModelToData } from '../../../utils';
   import { cloneDeep } from 'lodash-es';
 
+  //const emit = defineEmits(['update:props']);
   //import { mergeSchema } from './schema.ts';
 
   const props = defineProps({
@@ -30,13 +33,15 @@
   watch(
     () => formState.value,
     () => {
+      console.log('formstate change!');
       formModel.value = cloneDeep(flattenObject(formState.value));
     },
   );
   watch(
     () => formModel.value,
     () => {
-      let formData = formModelToData(formModel.value);
+      let formData = cloneDeep(formModelToData(formModel.value));
+      //emit('update:props', formData);
       Object.assign(formState.value, formData);
     },
     { deep: true },

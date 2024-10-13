@@ -41,6 +41,7 @@ export default {
       isLeaf: 'isleaf',
       pid: 'pid',
     },
+    ifRender: false,
     db: '',
     table: '',
   },
