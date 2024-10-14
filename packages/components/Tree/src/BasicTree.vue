@@ -405,6 +405,18 @@
             title
           );
 
+          // const titleDom = (t) => {
+          //   return isHighlight ? (
+          //     <span class={unref(getBindValues)?.blockNode ? `${bem('content')}` : ''}>
+          //       <span>{t.substr(0, searchIdx)}</span>
+          //       <span style={highlightStyle}>{searchText}</span>
+          //       <span>{t.substr(searchIdx + (searchText as string).length)}</span>
+          //     </span>
+          //   ) : (
+          //     t
+          //   );
+          // };
+
           const iconDom = icon ? (
             <TreeIcon icon={icon} />
           ) : slots.icon ? (

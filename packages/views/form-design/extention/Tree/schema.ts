@@ -44,6 +44,7 @@ export default {
     ifRender: false,
     db: '',
     table: '',
+    search: false,
   },
   // compEdit:{},
   colProps: {

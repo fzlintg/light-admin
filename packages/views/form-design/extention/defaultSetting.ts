@@ -68,6 +68,7 @@ const t = {
   blockNode: '行块',
   contextMenu: '右键菜单',
   renderIcon: '渲染图标',
+  search: '搜索',
 };
 const setting = {};
 
