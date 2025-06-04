@@ -3,7 +3,12 @@ import { type UserConfig } from 'vite';
 
 const commonConfig: (mode: string) => UserConfig = (mode) => ({
   server: {
-    host: true,
+    host: '0.0.0.0',
+    port: 12000,
+    cors: true,
+    headers: {
+      'X-Frame-Options': 'ALLOWALL',
+    },
   },
   esbuild: {
     drop: mode === 'production' ? ['console', 'debugger'] : [],

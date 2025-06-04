@@ -56,6 +56,9 @@ export default defineApplicationConfig({
       ],
     },
     server: {
+      port: 12000,
+      host: '0.0.0.0',
+      cors: true,
       proxy: {
         '/basic-api/api': {
           target: 'http://localhost:7001',
