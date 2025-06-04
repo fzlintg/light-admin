@@ -1,190 +1,262 @@
-<div align="center"> <a href="https://github.com/anncwb/vue-vben-admin"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://anncwb.github.io/anncwb/images/logo.png"> </a> <br> <br>
+# Light Admin
 
-[![license](https://img.shields.io/github/license/anncwb/vue-vben-admin.svg)](LICENSE)
-
-<h1>Vue Light Admin</h1>
+<div align="center">
+  <img alt="Light Admin Logo" width="120" height="120" src="./public/logo.png">
+  <h1>Light Admin</h1>
+  <p>一个功能强大的可视化后台管理系统</p>
 </div>
+
+[![license](https://img.shields.io/github/license/fzlintg/light-admin.svg)](LICENSE) [![Vue](https://img.shields.io/badge/Vue-3.4+-4FC08D?style=flat&logo=vue.js&logoColor=white)](https://vuejs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![Vite](https://img.shields.io/badge/Vite-5.4+-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 
 **中文** | [English](./README.md)
 
-## 简介
+## 📖 简介
 
-Vue Light Admin 是一个免费开源的中后台模版。使用了最新的`vue3`,`vite4`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
+Light Admin 是一个功能强大的可视化后台管理系统，基于 Vue 3 + Vite + TypeScript 构建。项目在 vue-vben-admin 基础上进行了大量的修改和扩展，特别是可视化表单设计器功能，为开发者提供了一个开箱即用的中后台前端解决方案。
 
-## 特性
+## ✨ 特性
 
-- **最新技术栈**：使用 Vue3/vite2 等前端前沿技术开发
-- **TypeScript**: 应用程序级 JavaScript 的语言
-- **主题**：可配置的主题
-- **国际化**：内置完善的国际化方案
-- **Mock 数据** 内置 Mock 数据方案
-- **权限** 内置完善的动态路由权限生成方案
-- **组件** 二次封装了多个常用的组件
+- 🎨 **可视化表单设计器** - 拖拽式表单构建，支持丰富的表单组件
+- 🏗️ **组件化架构** - 几乎所有组件都进行了可视化配置
+- 📊 **图表集成** - ECharts 模板化配置，支持多种图表类型
+- 📋 **表格组件** - VXE Table 强大的表格功能，支持编辑、排序、筛选等
+- 🔐 **权限管理** - 完善的角色权限控制系统
+- 🌍 **国际化** - 内置多语言支持
+- 🎯 **TypeScript** - 完整的类型支持
+- 📱 **响应式设计** - 适配各种屏幕尺寸
+- 🚀 **现代技术栈** - Vue 3 + Vite + TypeScript + Ant Design Vue
+- 🎭 **主题定制** - 可配置的主题系统
+- 📦 **Mock 数据** - 内置 Mock 数据方案
 
-## 预览
+## 🎯 核心功能
 
-- [vue-vben-admin](https://vben.vvbin.cn/) - 完整版中文站点
-- [vue-vben-admin-gh-pages](https://anncwb.github.io/vue-vben-admin/) - 完整版 github 站点
-- [vben-admin-thin-next](https://vben.vvbin.cn/thin/next/) - 简化版中文站点
-- [vben-admin-thin-gh-pages](https://anncwb.github.io/vben-admin-thin-next/) - 简化版 github 站点
+### 🎨 可视化表单设计器
 
-测试账号: vben/123456
+- **拖拽式构建**: 通过拖拽方式快速构建表单
+- **丰富组件库**: 输入框、选择器、日期选择器、文件上传、图表等
+- **实时预览**: 所见即所得的表单预览
+- **逻辑配置**: 支持表单字段间的逻辑关联
+- **JSON 配置**: 支持配置的导入导出
+- **自定义组件**: 支持扩展自定义表单组件
 
-<p align="center">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview1.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview2.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview3.png">
-</p>
+### 📊 数据展示
 
-### 使用 Gitpod
+- **ECharts 集成**: 支持柱状图、折线图、饼图、地图等多种图表
+- **VXE Table**: 高性能表格组件，支持虚拟滚动、编辑、排序、筛选
+- **数据大屏**: 支持数据可视化大屏展示
+- **实时更新**: 支持数据的实时更新和展示
 
-在 Gitpod（适用于 GitHub 的免费在线开发环境）中打开项目，并立即开始编码.
+### 🔐 系统管理
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anncwb/vue-vben-admin)
+- **用户管理**: 用户信息的增删改查
+- **角色权限**: 基于角色的权限控制系统
+- **菜单管理**: 动态菜单配置
+- **部门管理**: 组织架构管理
+- **系统配置**: 系统参数配置
 
-## 文档
+### 🛠️ 开发工具
 
-[文档地址](https://doc.vvbin.cn/)
+- **代码编辑器**: 集成 CodeMirror 代码编辑器
+- **Markdown 编辑器**: 支持 Markdown 文档编辑
+- **富文本编辑器**: TinyMCE 富文本编辑器
+- **文件上传**: 支持多种文件格式上传
+- **Excel 导入导出**: 支持 Excel 文件的导入导出
 
-## 准备
+## 🚀 技术栈
 
-- [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
-- [Vite](https://vitejs.dev/) - 熟悉 vite 特性
-- [Vue3](https://v3.vuejs.org/) - 熟悉 Vue 基础语法
-- [TypeScript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
-- [Vue-Router-Next](https://next.router.vuejs.org/) - 熟悉 vue-router 基本使用
-- [Ant-Design-Vue](https://antdv.com/docs/vue/introduce-cn/) - ui 基本使用
-- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
+- **前端框架**: Vue 3.4+
+- **构建工具**: Vite 5.4+
+- **开发语言**: TypeScript 5.5+
+- **UI 组件库**: Ant Design Vue 4.2+
+- **状态管理**: Pinia 2.1+
+- **路由管理**: Vue Router 4.4+
+- **图表库**: ECharts 5.5+
+- **表格组件**: VXE Table
+- **CSS 框架**: UnoCSS
+- **包管理器**: pnpm
+- **代码规范**: ESLint + Prettier
+- **提交规范**: Commitizen + Husky
 
-## 安装使用
+## 🚀 快速开始
 
-- 获取项目代码
+### 环境要求
+
+- [Node.js](http://nodejs.org/) >= 18.12.0
+- [pnpm](https://pnpm.io/) >= 9.0.2
+- [Git](https://git-scm.com/) - 版本控制工具
+
+### 安装
 
 ```bash
-git clone https://github.com/anncwb/vue-vben-admin.git
-```
+# 克隆项目
+git clone https://github.com/fzlintg/light-admin.git
 
-- 安装依赖
+# 进入项目目录
+cd light-admin
 
-```bash
-cd vue-vben-admin
-
+# 安装依赖
 pnpm install
-
 ```
 
-- 运行
+### 开发
 
 ```bash
+# 启动开发服务器
 pnpm serve
+
+# 或者使用
+pnpm dev
 ```
 
-- 打包
+### 构建
 
 ```bash
+# 构建生产版本
 pnpm build
+
+# 构建测试版本
+pnpm build:test
+
+# 构建并分析包大小
+pnpm build:analyze
 ```
 
-- docker
-
-### dockerFile 位于项目根目录下 并且支持差异化部署
-
-#### 构建镜像
+### 代码检查
 
 ```bash
-docker build -t vue-vben-admin .
+# 运行 ESLint
+pnpm lint:eslint
+
+# 运行 Prettier
+pnpm lint:prettier
+
+# 运行 Stylelint
+pnpm lint:stylelint
+
+# 运行所有检查
+pnpm lint
 ```
 
-#### 动态使用环境变量实现容器差异化部署,通过不同的 VG_BASE_URL 环境变量，指向不同的后端服务地址，下面例子使用 http://localhost:3333 作为后端服务地址，并且将容器映射到 6666 端口
+## 🐳 Docker 部署
+
+### 构建镜像
 
 ```bash
-docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:3333 vue-vben-admin
+docker build -t light-admin .
 ```
 
-而后可以打开 http://localhost:6666 访问
+### 运行容器
 
-## 更新日志
+```bash
+# 使用环境变量指定后端服务地址
+docker run --name light-admin -d -p 6666:80 -e VG_BASE_URL=http://localhost:3333 light-admin
+```
+
+访问 `http://localhost:6666` 即可使用系统。
+
+## 📁 项目结构
+
+```
+light-admin/
+├── apps/                    # 应用目录
+│   ├── portal-view/         # 门户视图
+│   └── test-server/         # 测试服务器
+├── packages/                # 包目录
+│   ├── components/          # 通用组件
+│   │   ├── Form/           # 表单组件
+│   │   ├── Table/          # 表格组件
+│   │   ├── VxeTable/       # VXE表格组件
+│   │   └── LightForm/      # 轻量表单组件
+│   ├── views/              # 视图组件
+│   │   └── form-design/    # 表单设计器
+│   ├── hooks/              # 组合式函数
+│   ├── utils/              # 工具函数
+│   ├── store/              # 状态管理
+│   ├── router/             # 路由配置
+│   └── locales/            # 国际化
+├── src/                    # 源码目录
+│   ├── views/              # 页面视图
+│   │   ├── dashboard/      # 仪表板
+│   │   └── demo/           # 示例页面
+│   ├── router/             # 路由配置
+│   ├── api/                # API 接口
+│   └── assets/             # 静态资源
+├── mock/                   # Mock 数据
+├── public/                 # 公共静态资源
+└── types/                  # 类型定义
+```
+
+## 📖 使用指南
+
+### 表单设计器使用
+
+1. 访问 `/form-designer/design` 页面
+2. 从左侧组件库拖拽组件到中间画布
+3. 在右侧属性面板配置组件属性
+4. 点击预览按钮查看表单效果
+5. 导出 JSON 配置用于生产环境
+
+### 自定义组件开发
+
+```typescript
+// 在 packages/views/form-design/extention/ 目录下创建新组件
+export default {
+  name: 'CustomComponent',
+  label: '自定义组件',
+  component: 'CustomComponent',
+  // 组件配置...
+};
+```
+
+## 🤝 如何贡献
+
+我们非常欢迎您的贡献！请遵循以下步骤：
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'feat: add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
+
+### Git 提交规范
+
+请遵循 [Angular 提交规范](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular)：
+
+- `feat`: 新功能
+- `fix`: 修复问题
+- `docs`: 文档更新
+- `style`: 代码格式调整
+- `refactor`: 代码重构
+- `perf`: 性能优化
+- `test`: 测试相关
+- `chore`: 构建过程或辅助工具的变动
+
+## 🌐 浏览器支持
+
+推荐使用 `Chrome 80+` 浏览器进行开发
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari |
+| :-: | :-: | :-: | :-: |
+| last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+
+## 📄 更新日志
 
 [CHANGELOG](./CHANGELOG.zh_CN.md)
 
-## 项目地址
+## 🙏 致谢
 
-- [vue-vben-admin](https://github.com/anncwb/vue-vben-admin) - 完整版
-- [vue-vben-admin-thin-next](https://github.com/anncwb/vben-admin-thin-next) - 简化版
+本项目基于 [vue-vben-admin](https://github.com/vbenjs/vue-vben-admin) 进行开发，在此基础上进行了大量的修改和扩展，特别是可视化表单设计器功能。
 
-## 如何贡献
+感谢所有为开源社区做出贡献的开发者们！
 
-非常欢迎你的加入！[提一个 Issue](https://github.com/anncwb/vue-vben-admin/issues/new/choose) 或者提交一个 Pull Request。
+## 📞 交流与支持
 
-**Pull Request:**
+如果您在使用过程中遇到问题，可以通过以下方式获取帮助：
 
-1. Fork 代码!
-2. 创建自己的分支: `git checkout -b feat/xxxx`
-3. 提交你的修改: `git commit -am 'feat(function): add xxxxx'`
-4. 推送您的分支: `git push origin feat/xxxx`
-5. 提交`pull request`
+- 提交 [Issue](https://github.com/fzlintg/light-admin/issues)
+- 查看 [文档](./docs/)
+- 参与 [讨论](https://github.com/fzlintg/light-admin/discussions)
 
-## Git 贡献提交规范
+## 📝 许可证
 
-- 参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
-
-  - `feat` 增加新功能
-  - `fix` 修复问题/BUG
-  - `style` 代码风格相关无影响运行结果的
-  - `perf` 优化/性能提升
-  - `refactor` 重构
-  - `revert` 撤销修改
-  - `test` 测试相关
-  - `docs` 文档/注释
-  - `chore` 依赖更新/脚手架配置修改等
-  - `workflow` 工作流改进
-  - `ci` 持续集成
-  - `types` 类型定义文件更改
-  - `wip` 开发中
-
-## 浏览器支持
-
-本地开发推荐使用`Chrome 80+` 浏览器
-
-支持现代浏览器, 不支持 IE
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| :-: | :-: | :-: | :-: | :-: |
-| not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
-
-## 相关仓库
-
-如果这些插件对你有帮助，可以给一个 star 支持下
-
-- [vite-plugin-mock](https://github.com/anncwb/vite-plugin-mock) - 用于本地及开发环境数据 mock
-- [vite-plugin-html](https://github.com/anncwb/vite-plugin-html) - 用于 html 模版转换及压缩
-- [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression) - 用于打包输出.gz|.brotil 文件
-- [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons) - 用于快速生成 svg 雪碧图
-
-## 后台整合示例
-
-- [lamp-cloud](https://github.com/zuihou/lamp-cloud) - 基于 SpringCloud Alibaba 的微服务中后台快速开发平台
-- [matecloud](https://github.com/matevip/matecloud) - MateCloud 微服务脚手架，基于 Spring Cloud 2020.0.3、SpringBoot 2.5.3 的全开源平台
-
-## 维护者
-
-[@Vben](https://github.com/anncwb) [@Jinmao](https://github.com/jinmao88)
-
-## 感谢
-
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo." height='120'>
-
-## 交流
-
-`Vue-vben-Admin` 是完全开源免费的项目，在帮助开发者更方便地进行中大型管理系统开发，同时也提供 QQ 交流群使用问题欢迎在群内提问。
-
-- QQ 群 `569291866`
-
-## Star 历史
-
-[![Star History Chart](https://api.star-history.com/svg?repos=vbenjs/vue-vben-admin&type=Date)](https://star-history.com/#vbenjs/vue-vben-admin&Date)
-
-## License
-
-[MIT © Vben-2020](./LICENSE)
+[MIT © lintg_2024](./LICENSE)
