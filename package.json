@@ -37,7 +37,8 @@
     "reinstall": "rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
     "serve": "npm run dev",
     "test:gzip": "npx http-server dist --cors --gzip -c-1",
-    "type:check": "vue-tsc --noEmit --skipLibCheck"
+    "type:check": "vue-tsc --noEmit --skipLibCheck",
+    "lib": "vite build --config vite-lib.config.mts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -129,6 +130,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@alova/wormhole": "^1.0.6",
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@iconify/json": "^2.2.238",
@@ -175,7 +177,7 @@
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^2.0.29"
   },
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "pnpm@10.11.0",
   "engines": {
     "node": ">=18.12.0",
     "pnpm": ">=9.0.2"

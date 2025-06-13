@@ -1,190 +1,120 @@
-<div align="center"> <a href="https://github.com/anncwb/vue-vben-admin"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://anncwb.github.io/anncwb/images/logo.png"> </a> <br> <br>
+# Light Admin
 
-[![license](https://img.shields.io/github/license/anncwb/vue-vben-admin.svg)](LICENSE)
+基于Vue3的现代化轻量级管理系统框架，专注于组件的可视化配置和业务逻辑的快速实现。
 
-<h1>Vue Light Admin</h1>
-</div>
+[English](./README.md) | [简体中文](./README.zh-CN.md)
 
-**中文** | [English](./README.md)
+## 核心特性
 
-## 简介
+- **模块化架构**: 基于pnpm workspace的多包管理方案，实现高效的包管理和依赖控制
+- **组件系统**: 
+  - 可视化配置的组件库，降低开发门槛
+  - 模块化的组件设计，提高复用性
+  - 统一的组件规范，保证代码质量
+- **TypeScript支持**: 完整的类型定义和类型推导，提供更好的开发体验
+- **国际化**: 内置完善的多语言支持，轻松实现多语言切换
+- **主题定制**: 灵活的主题配置系统，支持动态主题切换
+- **权限管理**: 细粒度的权限控制机制，满足各类权限需求
+- **开发工具链**: 完整的开发、构建、部署工具支持，提升开发效率
 
-Vue Light Admin 是一个免费开源的中后台模版。使用了最新的`vue3`,`vite4`,`TypeScript`等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
+## 技术架构
 
-## 特性
-
-- **最新技术栈**：使用 Vue3/vite2 等前端前沿技术开发
-- **TypeScript**: 应用程序级 JavaScript 的语言
-- **主题**：可配置的主题
-- **国际化**：内置完善的国际化方案
-- **Mock 数据** 内置 Mock 数据方案
-- **权限** 内置完善的动态路由权限生成方案
-- **组件** 二次封装了多个常用的组件
-
-## 预览
-
-- [vue-vben-admin](https://vben.vvbin.cn/) - 完整版中文站点
-- [vue-vben-admin-gh-pages](https://anncwb.github.io/vue-vben-admin/) - 完整版 github 站点
-- [vben-admin-thin-next](https://vben.vvbin.cn/thin/next/) - 简化版中文站点
-- [vben-admin-thin-gh-pages](https://anncwb.github.io/vben-admin-thin-next/) - 简化版 github 站点
-
-测试账号: vben/123456
-
-<p align="center">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview1.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview2.png">
-    <img alt="VbenAdmin Logo" width="100%" src="https://anncwb.github.io/anncwb/images/preview3.png">
-</p>
-
-### 使用 Gitpod
-
-在 Gitpod（适用于 GitHub 的免费在线开发环境）中打开项目，并立即开始编码.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anncwb/vue-vben-admin)
-
-## 文档
-
-[文档地址](https://doc.vvbin.cn/)
-
-## 准备
-
-- [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
-- [Vite](https://vitejs.dev/) - 熟悉 vite 特性
-- [Vue3](https://v3.vuejs.org/) - 熟悉 Vue 基础语法
-- [TypeScript](https://www.typescriptlang.org/) - 熟悉`TypeScript`基本语法
-- [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
-- [Vue-Router-Next](https://next.router.vuejs.org/) - 熟悉 vue-router 基本使用
-- [Ant-Design-Vue](https://antdv.com/docs/vue/introduce-cn/) - ui 基本使用
-- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
-
-## 安装使用
-
-- 获取项目代码
-
-```bash
-git clone https://github.com/anncwb/vue-vben-admin.git
+```mermaid
+graph TD
+    A[Light Admin] --> B[核心功能模块]
+    A --> C[基础设施]
+    B --> D[组件packages]
+    B --> E[业务逻辑]
+    C --> F[构建工具]
+    C --> G[开发工具]
+    D --> H[UI组件]
+    D --> I[业务组件]
+    E --> J[权限管理]
+    E --> K[数据流]
 ```
 
-- 安装依赖
+## 项目结构
 
 ```bash
-cd vue-vben-admin
+├── packages/           # 核心功能模块
+│   ├── components/    # UI组件库
+│   ├── design/       # 设计系统
+│   ├── hooks/        # 可复用的逻辑钩子
+│   ├── layouts/      # 布局组件
+│   ├── views/        # 页面组件
+│   ├── store/        # 状态管理
+│   └── utils/        # 工具函数
+├── src/              # 主应用源码
+├── mock/             # 模拟数据
+├── public/           # 静态资源
+└── types/            # 类型定义
+```
 
+## 快速开始
+
+### 环境准备
+
+- Node.js 16+
+- pnpm 7+
+
+### 安装
+
+```bash
 pnpm install
-
 ```
 
-- 运行
+### 开发
 
 ```bash
-pnpm serve
+pnpm dev
 ```
 
-- 打包
+### 构建
 
 ```bash
 pnpm build
 ```
 
-- docker
+## 开发指南
 
-### dockerFile 位于项目根目录下 并且支持差异化部署
+- [组件开发规范](./docs/component-guide.zh-CN.md)
+- [主题定制指南](./docs/theme-guide.zh-CN.md)
+- [国际化配置](./docs/i18n-guide.zh-CN.md)
+- [权限配置](./docs/permission-guide.zh-CN.md)
+- [API集成指南](./docs/api-guide.zh-CN.md)
 
-#### 构建镜像
+## 部署说明
 
-```bash
-docker build -t vue-vben-admin .
-```
+### Docker部署
 
-#### 动态使用环境变量实现容器差异化部署,通过不同的 VG_BASE_URL 环境变量，指向不同的后端服务地址，下面例子使用 http://localhost:3333 作为后端服务地址，并且将容器映射到 6666 端口
+项目提供了完整的Docker支持，详见 [Docker部署指南](./docs/docker-guide.zh-CN.md)。
 
-```bash
-docker run --name vue-vben-admin -d -p 6666:80  -e VG_BASE_URL=http://localhost:3333 vue-vben-admin
-```
+### 环境配置
 
-而后可以打开 http://localhost:6666 访问
+- 支持多环境配置（开发环境/生产环境/测试环境）
+- 使用.env文件进行环境变量管理
+- 详细配置说明见 [环境配置指南](./docs/env-guide.zh-CN.md)
+
+### 性能优化
+
+- 静态资源优化
+- 代码分割
+- 懒加载
+- 详见 [性能优化指南](./docs/performance-guide.zh-CN.md)
+
+## 贡献指南
+
+我们非常欢迎你的贡献，你可以通过以下方式和我们一起共建：
+
+- 提交 [Issue](https://github.com/your-username/light-admin/issues)
+- 提交 [Pull Request](https://github.com/your-username/light-admin/pulls)
+
+在提交之前请阅读 [贡献指南](./CONTRIBUTING.zh-CN.md)。
 
 ## 更新日志
 
-[CHANGELOG](./CHANGELOG.zh_CN.md)
+详见 [更新日志](./CHANGELOG.zh-CN.md)
 
-## 项目地址
+## 许可证
 
-- [vue-vben-admin](https://github.com/anncwb/vue-vben-admin) - 完整版
-- [vue-vben-admin-thin-next](https://github.com/anncwb/vben-admin-thin-next) - 简化版
-
-## 如何贡献
-
-非常欢迎你的加入！[提一个 Issue](https://github.com/anncwb/vue-vben-admin/issues/new/choose) 或者提交一个 Pull Request。
-
-**Pull Request:**
-
-1. Fork 代码!
-2. 创建自己的分支: `git checkout -b feat/xxxx`
-3. 提交你的修改: `git commit -am 'feat(function): add xxxxx'`
-4. 推送您的分支: `git push origin feat/xxxx`
-5. 提交`pull request`
-
-## Git 贡献提交规范
-
-- 参考 [vue](https://github.com/vuejs/vue/blob/dev/.github/COMMIT_CONVENTION.md) 规范 ([Angular](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular))
-
-  - `feat` 增加新功能
-  - `fix` 修复问题/BUG
-  - `style` 代码风格相关无影响运行结果的
-  - `perf` 优化/性能提升
-  - `refactor` 重构
-  - `revert` 撤销修改
-  - `test` 测试相关
-  - `docs` 文档/注释
-  - `chore` 依赖更新/脚手架配置修改等
-  - `workflow` 工作流改进
-  - `ci` 持续集成
-  - `types` 类型定义文件更改
-  - `wip` 开发中
-
-## 浏览器支持
-
-本地开发推荐使用`Chrome 80+` 浏览器
-
-支持现代浏览器, 不支持 IE
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| :-: | :-: | :-: | :-: | :-: |
-| not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
-
-## 相关仓库
-
-如果这些插件对你有帮助，可以给一个 star 支持下
-
-- [vite-plugin-mock](https://github.com/anncwb/vite-plugin-mock) - 用于本地及开发环境数据 mock
-- [vite-plugin-html](https://github.com/anncwb/vite-plugin-html) - 用于 html 模版转换及压缩
-- [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression) - 用于打包输出.gz|.brotil 文件
-- [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons) - 用于快速生成 svg 雪碧图
-
-## 后台整合示例
-
-- [lamp-cloud](https://github.com/zuihou/lamp-cloud) - 基于 SpringCloud Alibaba 的微服务中后台快速开发平台
-- [matecloud](https://github.com/matevip/matecloud) - MateCloud 微服务脚手架，基于 Spring Cloud 2020.0.3、SpringBoot 2.5.3 的全开源平台
-
-## 维护者
-
-[@Vben](https://github.com/anncwb) [@Jinmao](https://github.com/jinmao88)
-
-## 感谢
-
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo." height='120'>
-
-## 交流
-
-`Vue-vben-Admin` 是完全开源免费的项目，在帮助开发者更方便地进行中大型管理系统开发，同时也提供 QQ 交流群使用问题欢迎在群内提问。
-
-- QQ 群 `569291866`
-
-## Star 历史
-
-[![Star History Chart](https://api.star-history.com/svg?repos=vbenjs/vue-vben-admin&type=Date)](https://star-history.com/#vbenjs/vue-vben-admin&Date)
-
-## License
-
-[MIT © Vben-2020](./LICENSE)
+[MIT](./LICENSE)
